@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Studio — Documentation</title>
+  <meta name="description" content="API Studio documentation. API development, testing, and documentation tool for VS Code and CLI.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>
+    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface{background-color:rgba(255,255,255,0.9)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+</head>
+<body class="min-h-screen">
+  <nav class="fixed top-4 left-4 right-4 z-50 bg-surface/90 backdrop-blur-md border border-border rounded-xl px-4 sm:px-6 lg:px-8 py-3 flex items-center">
+    <a href="../" class="shrink-0 leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+    <div class="hidden md:block w-px h-5 bg-border mx-5"></div>
+    <div class="hidden md:flex items-center gap-5 text-sm text-muted">
+      <a href="../" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="../macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
+        <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; All Tools</a>
+    <h1 class="text-3xl sm:text-4xl font-bold mt-4 mb-2">API Studio</h1>
+    <p class="text-muted mb-10">API development, testing, and documentation — available as a VS Code extension and CLI tool.</p>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Overview</h2>
+      <p class="text-muted mb-4">API Studio is a lightweight, fast API client built for developers who live in their editor. Design, test, and document APIs without leaving VS Code.</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="bg-surface border border-border rounded-xl p-5">
+          <h3 class="font-semibold text-sm mb-2">VS Code Extension</h3>
+          <p class="text-xs text-muted">Full API client integrated into your editor. Collections, environments, history, and mock servers.</p>
+        </div>
+        <div class="bg-surface border border-border rounded-xl p-5">
+          <h3 class="font-semibold text-sm mb-2">CLI</h3>
+          <p class="text-xs text-muted">Run collections, automate testing, and integrate with CI/CD pipelines from the command line.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Features</h2>
+      <ul class="grid sm:grid-cols-2 gap-2 text-sm text-muted">
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>REST, GraphQL, WebSocket</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Collections &amp; Folders</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Environments &amp; Variables</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Mock Servers</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>OpenAPI Import/Export</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Pre-request &amp; Test Scripts</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Request History</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>cURL Import</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>MCP Server Support</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Security Scanning</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Install</h2>
+      <div class="space-y-4">
+        <div class="bg-surface border border-border rounded-xl p-5">
+          <h3 class="font-semibold text-sm mb-2">VS Code</h3>
+          <p class="text-sm text-muted mb-2">Search "API Studio" in the VS Code Extensions marketplace, or:</p>
+          <pre class="bg-bg rounded-lg p-3 text-xs font-mono text-muted overflow-x-auto"><code>ext install vectored.api-studio</code></pre>
+        </div>
+        <div class="bg-surface border border-border rounded-xl p-5">
+          <h3 class="font-semibold text-sm mb-2">CLI</h3>
+          <pre class="bg-bg rounded-lg p-3 text-xs font-mono text-muted overflow-x-auto"><code>npm install -g @vectored/api-studio-cli</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <div class="bg-surface border border-cta/20 rounded-xl p-6 text-center">
+        <p class="text-muted text-sm">Full documentation coming soon. Check back for guides on collections, environments, scripting, and CI/CD integration.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="../" class="leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
+          <a href="../" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+          <a href="../macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
+          <a href="../macrotoolkit/support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
+          <a href="../macrotoolkit/privacy.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a>
+          <a href="https://github.com/openAPI-Studio" target="_blank" rel="noopener" class="hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
+        </div>
+      </div>
+      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built for developers.</p>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  var t=localStorage.getItem('theme');
+  if(t==='light')document.documentElement.classList.add('light');
+  else if(t==='dark')document.documentElement.classList.remove('light');
+  else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+  function upd(){
+    var isLight=document.documentElement.classList.contains('light');
+    document.getElementById('icon-dark').style.display=isLight?'block':'none';
+    document.getElementById('icon-light').style.display=isLight?'none':'block';
+  }
+  upd();
+  document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();
+    document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
+    upd();
+  });
+})();
+</script>
+</body>
+</html>

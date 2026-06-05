@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vectored — Developer Tools Documentation</title>
-  <meta name="description" content="Documentation hub for Vectored developer tools. Confluence macros, time tracking, forms, and more.">
+  <meta name="description" content="Documentation hub for Vectored developer tools. Atlassian apps, VS Code extensions, and more.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
@@ -21,57 +21,88 @@
   <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
 </head>
 <body class="min-h-screen flex flex-col">
-  <main class="flex-1 flex flex-col items-center justify-center px-4 py-20">
-    <div class="text-center mb-12">
+  <main class="flex-1 px-4 py-20 max-w-3xl mx-auto w-full">
+    <div class="text-center mb-16">
       <h1 class="font-mono font-bold text-3xl text-cta mb-2">Vectored</h1>
       <p class="text-muted">Tools for developers</p>
     </div>
 
-    <div class="w-full max-w-2xl space-y-4">
-      <!-- Macro Toolkit — Live -->
-      <a href="macrotoolkit/" class="block bg-surface border border-border rounded-xl p-6 hover:border-cta/40 transition-colors duration-200 cursor-pointer group">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="font-semibold text-lg group-hover:text-cta transition-colors duration-200">Confluence Macro Toolkit</h2>
-            <p class="text-sm text-muted mt-1">15 powerful macros for Atlassian Confluence</p>
-          </div>
-          <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
-        </div>
-      </a>
+    <!-- Atlassian Section -->
+    <section class="mb-12">
+      <h2 class="text-xs font-semibold text-muted uppercase tracking-wide mb-4 flex items-center gap-2">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M6.01 7.38c-.29-.42-.78-.42-1.03.04L.5 17.4c-.24.46 0 .84.52.84h6.56c.24 0 .52-.2.64-.44.6-1.21.44-3.14-.66-5.02L6.01 7.38zm5.99-5.38c-2.64 4.28-2.76 8.16-.34 12.28l2.86 4.88c.14.24.42.44.66.44h6.56c.52 0 .76-.38.52-.84L12.98 2.04c-.24-.42-.74-.46-.98-.04z"/></svg>
+        Atlassian
+      </h2>
 
-      <!-- Time Log — Coming Soon -->
-      <div class="bg-surface border border-border rounded-xl p-6 opacity-60">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="font-semibold text-lg">Time Log</h2>
-            <p class="text-sm text-muted mt-1">Time tracking and work logging for teams</p>
+      <!-- Confluence -->
+      <div class="mb-6">
+        <p class="text-sm text-muted mb-3 ml-1">Confluence</p>
+        <div class="space-y-3">
+          <a href="macrotoolkit/" class="block bg-surface border border-border rounded-xl p-5 hover:border-cta/40 transition-colors duration-200 cursor-pointer group">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Macro Toolkit</h3>
+                <p class="text-sm text-muted mt-0.5">15 powerful macros — diagrams, polls, charts, and more</p>
+              </div>
+              <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
+            </div>
+          </a>
+          <div class="bg-surface border border-border rounded-xl p-5 opacity-60">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-semibold">Forms</h3>
+                <p class="text-sm text-muted mt-0.5">Dynamic forms and data collection</p>
+              </div>
+              <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
+            </div>
           </div>
-          <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
+          <div class="bg-surface border border-border rounded-xl p-5 opacity-60">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-semibold">Front Door</h3>
+                <p class="text-sm text-muted mt-0.5">Customizable landing pages and portals</p>
+              </div>
+              <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Forms — Coming Soon -->
-      <div class="bg-surface border border-border rounded-xl p-6 opacity-60">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="font-semibold text-lg">Forms</h2>
-            <p class="text-sm text-muted mt-1">Dynamic forms and data collection for Confluence</p>
+      <!-- Jira -->
+      <div>
+        <p class="text-sm text-muted mb-3 ml-1">Jira</p>
+        <div class="space-y-3">
+          <div class="bg-surface border border-border rounded-xl p-5 opacity-60">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-semibold">Time Log</h3>
+                <p class="text-sm text-muted mt-0.5">Time tracking and work logging for teams</p>
+              </div>
+              <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
+            </div>
           </div>
-          <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
         </div>
       </div>
+    </section>
 
-      <!-- Front Door — Coming Soon -->
-      <div class="bg-surface border border-border rounded-xl p-6 opacity-60">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="font-semibold text-lg">Front Door</h2>
-            <p class="text-sm text-muted mt-1">Customizable landing pages and portals</p>
+    <!-- VS Code & CLI Section -->
+    <section class="mb-12">
+      <h2 class="text-xs font-semibold text-muted uppercase tracking-wide mb-4 flex items-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+        VS Code &amp; CLI
+      </h2>
+      <div class="space-y-3">
+        <a href="apistudio/" class="block bg-surface border border-border rounded-xl p-5 hover:border-cta/40 transition-colors duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">API Studio</h3>
+              <p class="text-sm text-muted mt-0.5">API development, testing, and documentation — VS Code extension &amp; CLI</p>
+            </div>
+            <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
           </div>
-          <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
-        </div>
+        </a>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-10">
@@ -80,15 +111,15 @@
         <span class="font-mono font-bold text-lg text-cta">Vectored</span>
         <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
           <a href="macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
-          <a href="macrotoolkit/docs/index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Docs</a>
+          <a href="apistudio/" class="hover:text-text transition-colors duration-200 cursor-pointer">API Studio</a>
           <a href="macrotoolkit/support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
           <a href="macrotoolkit/privacy.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a>
           <a href="macrotoolkit/terms.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Terms</a>
           <a href="macrotoolkit/security.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Security</a>
-          <a href="https://github.com/openAPI-Studio/confluence-macro-toolkit" target="_blank" rel="noopener" class="hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
+          <a href="https://github.com/openAPI-Studio" target="_blank" rel="noopener" class="hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
         </div>
       </div>
-      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built on Atlassian Forge.</p>
+      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built for developers.</p>
     </div>
   </footer>
 
