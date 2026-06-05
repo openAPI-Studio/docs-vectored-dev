@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Confluence Macro Toolkit</title>
+  <meta name="description" content="Get help with Confluence Macro Toolkit. Submit feedback, report bugs, or request features.">
+  <link rel="canonical" href="https://docs.vectored.dev/macrotoolkit/support.html">
+  <meta property="og:title" content="Support — Confluence Macro Toolkit">
+  <meta property="og:description" content="Get help with Confluence Macro Toolkit. Submit feedback, report bugs, or request features.">
+  <meta property="og:url" content="https://docs.vectored.dev/macrotoolkit/support.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vectored">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Support — Confluence Macro Toolkit">
+  <meta name="twitter:description" content="Get help with Confluence Macro Toolkit. Submit feedback, report bugs, or request features.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}html.light .backdrop-blur-md{background-color:rgba(255,255,255,0.92)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+    html.light .border-cta\/30{border-color:rgba(22,163,74,0.3)!important}
+    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.1)!important}
+    html.light .divide-border>*+*{border-color:#E2E8F0!important}
+  </style>
+<script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+</head>
+<body class="min-h-screen">
+  <nav class="fixed top-4 left-4 right-4 z-50 bg-surface/90 backdrop-blur-md border border-border rounded-xl px-4 sm:px-6 lg:px-8 py-3 flex items-center">
+    <a href="index.html" class="shrink-0 leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+    <div class="hidden md:block w-px h-5 bg-border mx-5"></div>
+    <div class="hidden md:flex items-center gap-5 text-sm text-muted">
+      <a href="index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="docs/index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Docs</a>
+      <a href="support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <div class="relative hidden md:block">
+        <input type="text" id="doc-search" placeholder="Search docs..." class="bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text placeholder:text-muted/60 w-48 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+        <div id="search-results" class="absolute top-full right-0 mt-2 w-64 bg-surface border border-border rounded-xl shadow-xl hidden max-h-72 overflow-y-auto z-50"></div>
+      </div>
+      <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
+        <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="hidden sm:inline-block bg-cta text-bg font-semibold text-sm px-4 py-2 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Try now for free</a>
+      <button id="menu-toggle" class="md:hidden p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Menu">
+        <svg id="menu-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menu-close" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed top-20 left-4 right-4 z-40 bg-surface border border-border rounded-xl p-4 hidden md:hidden">
+    <div class="flex flex-col gap-3 text-sm">
+        <div class="relative">
+          <input type="text" id="doc-search-mobile" placeholder="Search docs..." class="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+          <div id="search-results-mobile" class="absolute top-full left-0 right-0 mt-2 bg-surface border border-border rounded-xl shadow-xl hidden max-h-60 overflow-y-auto z-50"></div>
+        </div>
+      <a href="index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="docs/index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Docs</a>
+      <a href="support.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Support</a>
+      <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="px-3 py-2 rounded-lg bg-cta text-bg font-semibold text-center cursor-pointer">Try now for free</a>
+    </div>
+  </div>
+  <main class="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+    <a href="./index.html" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Back to Home</a>
+    <h1 class="text-3xl sm:text-4xl font-bold mt-4 mb-8">Customer Support</h1>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Submit Feedback or Report an Issue</h2>
+      <p class="text-muted mb-6">No login required. Your submission creates a ticket that our team reviews.</p>
+      <form action="https://docs.google.com/forms/d/e/1FAIpQLSf_8gkL6Yn59DZp3tqf61rVlQDHvYuA4AzEuVvb8AKoleC1BA/formResponse" method="POST" target="hidden_iframe" id="feedback-form" class="bg-surface border border-border rounded-xl p-6 space-y-5">
+        <div>
+          <label for="fb-type" class="block text-sm font-medium mb-2">Type <span class="text-cta">*</span></label>
+          <select id="fb-type" name="entry.2031608475" required class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text focus:outline-none focus:border-cta/50 transition-colors duration-200 cursor-pointer">
+            <option value="" disabled selected>Choose</option>
+            <option value="Bug Report">Bug Report</option>
+            <option value="Feature Request">Feature Request</option>
+            <option value="General Feedback">General Feedback</option>
+          </select>
+        </div>
+        <div>
+          <label for="fb-subject" class="block text-sm font-medium mb-2">Subject <span class="text-cta">*</span></label>
+          <input type="text" id="fb-subject" name="entry.2009145666" required placeholder="One-line summary" class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+        </div>
+        <div>
+          <label for="fb-desc" class="block text-sm font-medium mb-2">Description <span class="text-cta">*</span></label>
+          <textarea id="fb-desc" name="entry.669240199" required rows="5" placeholder="Details, steps to reproduce, etc." class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200 resize-y"></textarea>
+        </div>
+        <div>
+          <label for="fb-email" class="block text-sm font-medium mb-2">Email <span class="text-muted text-xs">(optional, for follow-up)</span></label>
+          <input type="email" id="fb-email" name="entry.919439597" placeholder="your@email.com" class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+        </div>
+        <button type="submit" class="bg-cta text-bg font-semibold text-sm px-6 py-2.5 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Submit</button>
+      </form>
+      <div id="form-success" class="bg-surface border border-cta/40 rounded-xl p-6 text-center hidden">
+        <svg class="w-12 h-12 text-cta mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <p class="font-semibold text-lg mb-1">Thank you!</p>
+        <p class="text-sm text-muted">Your feedback has been submitted. We'll review it shortly.</p>
+        <button onclick="document.getElementById('form-success').classList.add('hidden');document.getElementById('feedback-form').classList.remove('hidden');document.getElementById('feedback-form').reset();" class="mt-4 text-sm text-cta hover:underline cursor-pointer">Submit another</button>
+      </div>
+      <iframe name="hidden_iframe" style="display:none"></iframe>
+      <script>
+        document.getElementById('feedback-form').addEventListener('submit',function(){
+          var f=this;setTimeout(function(){f.classList.add('hidden');document.getElementById('form-success').classList.remove('hidden');},500);
+        });
+      </script>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Other Ways to Get Help</h2>
+      <ul class="space-y-2 text-muted">
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><a href="https://github.com/openAPI-Studio/confluence-macro-toolkit/issues" target="_blank" rel="noopener" class="text-cta hover:underline">Open a GitHub Issue</a> (requires GitHub account)</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Email us at <a href="mailto:support@vectored.dev" class="text-cta hover:underline">support@vectored.dev</a></li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Issues are triaged and addressed on a best-effort basis</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Pull requests welcome if you'd like to contribute a fix</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Security Issues</h2>
+      <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 text-sm text-muted">
+        <p>If you discover a security vulnerability, please <strong class="text-yellow-400">do not</strong> open a public issue. Instead, use GitHub's private vulnerability reporting or email the maintainer directly.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="index.html" class="leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
+          <a href="index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+          <a href="docs/index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Docs</a>
+          <a href="support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
+          <a href="privacy.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a>
+          <a href="terms.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Terms</a>
+          <a href="security.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Security</a>
+          <a href="https://github.com/openAPI-Studio/confluence-macro-toolkit" target="_blank" rel="noopener" class="hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
+        </div>
+      </div>
+      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built on Atlassian Forge.</p>
+    </div>
+  </footer>
+<script>
+(function(){
+  var t=localStorage.getItem('theme');
+  if(t==='light')document.documentElement.classList.add('light');
+  else if(t==='dark')document.documentElement.classList.remove('light');
+  else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+  function upd(){
+    var isLight=document.documentElement.classList.contains('light');
+    document.getElementById('icon-dark').style.display=isLight?'block':'none';
+    document.getElementById('icon-light').style.display=isLight?'none':'block';
+  }
+  upd();
+  document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();
+    document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
+    upd();
+  });
+})();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('menu-toggle');
+  var menu=document.getElementById('mobile-menu');
+  var open=document.getElementById('menu-open');
+  var close=document.getElementById('menu-close');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    var shown=!menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    open.style.display=shown?'block':'none';
+    close.style.display=shown?'none':'block';
+  });
+})();
+</script>
+<script>
+(function(){
+  var docs=[
+    {name:"Mermaid Diagram",page:"docs/mermaid.html",tags:"flowchart sequence gantt diagram svg"},
+    {name:"Markdown",page:"docs/markdown.html",tags:"github tables code blocks task lists"},
+    {name:"Poll / Vote",page:"docs/poll.html",tags:"voting survey single multiple thumbs emoji"},
+    {name:"Mood",page:"docs/mood.html",tags:"word cloud emoji reactions team"},
+    {name:"Graph / Chart",page:"docs/graph.html",tags:"bar line pie doughnut area chartjs"},
+    {name:"Typewriter",page:"docs/typewriter.html",tags:"animation typing fade terminal matrix"},
+    {name:"Sticky Note",page:"docs/sticky-note.html",tags:"note color handwritten pin tape"},
+    {name:"Spoiler / Reveal",page:"docs/spoiler.html",tags:"hidden content click reveal pattern"},
+    {name:"Clock",page:"docs/clock.html",tags:"analog digital timezone gadget"},
+    {name:"Stopwatch",page:"docs/stopwatch.html",tags:"timer ring classic flip interactive"},
+    {name:"Swagger / OpenAPI",page:"docs/swagger.html",tags:"api documentation json spec pro"},
+    {name:"Draw.io",page:"docs/drawio.html",tags:"diagram flowchart architecture pro"},
+    {name:"PlantUML",page:"docs/plantuml.html",tags:"uml sequence class activity pro"},
+    {name:"Wireframe",page:"docs/excalidraw.html",tags:"excalidraw sketch drawing canvas pro"},
+    {name:"Carousel",page:"docs/carousel.html",tags:"images gallery slides navigation pro"}
+  ];
+  function wire(inputId,resultsId){
+    var input=document.getElementById(inputId);
+    var results=document.getElementById(resultsId);
+    if(!input||!results)return;
+    input.addEventListener('input',function(){
+      var q=this.value.toLowerCase().trim();
+      if(!q){results.classList.add('hidden');results.innerHTML='';return;}
+      var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});
+      results.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';
+      results.classList.remove('hidden');
+    });
+    input.addEventListener('keydown',function(e){if(e.key==='Escape'){results.classList.add('hidden');this.blur();}});
+    document.addEventListener('click',function(e){if(!e.target.closest('#'+inputId)&&!e.target.closest('#'+resultsId))results.classList.add('hidden');});
+  }
+  wire('doc-search','search-results');
+  wire('doc-search-mobile','search-results-mobile');
+})();
+</script>
+</body>
+</html>

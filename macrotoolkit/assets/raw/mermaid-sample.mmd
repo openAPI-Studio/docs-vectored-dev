@@ -1,0 +1,17 @@
+flowchart TD
+    A[Start] --> B{Login Successful?}
+    B -->|No| C[Show Error Message]
+    C --> A
+    B -->|Yes| D[Load Dashboard]
+    D --> E{Choose Action}
+    E -->|View Reports| F[Reports Module]
+    E -->|Manage Tasks| G[Tasks Module]
+    E -->|Settings| H[Settings Module]
+    F --> I[Generate Report]
+    G --> J[Create Task]
+    H --> K[Update Preferences]
+    I --> L[Save/Export]
+    J --> L
+    K --> L
+    L --> M[Logout]
+    M --> A

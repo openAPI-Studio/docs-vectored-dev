@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confluence Macro Toolkit — 15 Powerful Macros by Vectored</title>
+  <meta name="description" content="Diagrams, polls, charts, markdown, animations and more for Atlassian Confluence. Free Lite edition with 10 macros, Pro unlocks 5 more.">
+  <link rel="canonical" href="https://docs.vectored.dev/macrotoolkit">
+  <meta property="og:title" content="Confluence Macro Toolkit — 15 Powerful Macros by Vectored">
+  <meta property="og:description" content="Diagrams, polls, charts, markdown, animations and more for Atlassian Confluence. Free Lite edition with 10 macros, Pro unlocks 5 more.">
+  <meta property="og:url" content="https://docs.vectored.dev/macrotoolkit">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vectored">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Confluence Macro Toolkit — 15 Powerful Macros by Vectored">
+  <meta name="twitter:description" content="Diagrams, polls, charts, markdown, animations and more for Atlassian Confluence. Free Lite edition with 10 macros, Pro unlocks 5 more.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { primary:'#1E293B', secondary:'#334155', cta:'#22C55E', bg:'#0F172A', surface:'#1E293B', text:'#F8FAFC', muted:'#94A3B8', border:'#334155' },
+        fontFamily: { sans:['IBM Plex Sans','sans-serif'], mono:['JetBrains Mono','monospace'] }
+      }}
+    }
+  </script>
+  <style>
+    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}
+    .font-mono{font-family:'JetBrains Mono',monospace}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}html.light .backdrop-blur-md{background-color:rgba(255,255,255,0.92)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+    html.light .border-cta\/30{border-color:rgba(22,163,74,0.3)!important}
+    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.1)!important}
+    html.light .divide-border>*+*{border-color:#E2E8F0!important}
+  </style>
+<script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+</head>
+<body class="min-h-screen">
+  <!-- Navbar -->
+  <nav class="fixed top-4 left-4 right-4 z-50 bg-surface/90 backdrop-blur-md border border-border rounded-xl px-4 sm:px-6 lg:px-8 py-3 flex items-center">
+    <a href="index.html" class="shrink-0 leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+    <div class="hidden md:block w-px h-5 bg-border mx-5"></div>
+    <div class="hidden md:flex items-center gap-5 text-sm text-muted">
+      <a href="index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="docs/index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Docs</a>
+      <a href="support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <div class="relative hidden md:block">
+        <input type="text" id="doc-search" placeholder="Search docs..." class="bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text placeholder:text-muted/60 w-48 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+        <div id="search-results" class="absolute top-full right-0 mt-2 w-64 bg-surface border border-border rounded-xl shadow-xl hidden max-h-72 overflow-y-auto z-50"></div>
+      </div>
+      <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
+        <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="hidden sm:inline-block bg-cta text-bg font-semibold text-sm px-4 py-2 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Try now for free</a>
+      <button id="menu-toggle" class="md:hidden p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Menu">
+        <svg id="menu-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menu-close" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed top-20 left-4 right-4 z-40 bg-surface border border-border rounded-xl p-4 hidden md:hidden">
+    <div class="flex flex-col gap-3 text-sm">
+        <div class="relative">
+          <input type="text" id="doc-search-mobile" placeholder="Search docs..." class="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+          <div id="search-results-mobile" class="absolute top-full left-0 right-0 mt-2 bg-surface border border-border rounded-xl shadow-xl hidden max-h-60 overflow-y-auto z-50"></div>
+        </div>
+      <a href="index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="docs/index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Docs</a>
+      <a href="support.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Support</a>
+      <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="px-3 py-2 rounded-lg bg-cta text-bg font-semibold text-center cursor-pointer">Try now for free</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center">
+    <div class="inline-block bg-cta/10 border border-cta/30 rounded-full px-4 py-1 text-sm text-cta font-medium mb-6">Open Source &middot; Forge Platform</div>
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">Supercharge Confluence<br>with <span class="text-cta">15 Powerful Macros</span></h1>
+    <p class="text-lg text-muted max-w-2xl mx-auto mb-10">Diagrams, polls, charts, markdown, animations, and more — all in one toolkit. Free Lite edition with 10 macros, Pro edition unlocks 5 additional macros.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="docs/index.html" class="bg-cta text-bg font-semibold px-8 py-3 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer text-lg">Read the Docs</a>
+      <a href="#comparison" class="border border-border text-text font-semibold px-8 py-3 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-lg">Compare Plans</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
+    <h2 class="text-3xl font-bold text-center mb-12">Why Macro Toolkit?</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-cta/40 transition-colors duration-200">
+        <svg class="w-8 h-8 text-cta mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        <h3 class="font-semibold mb-2">Secure by Default</h3>
+        <p class="text-sm text-muted">Runs on Forge — no external servers for most macros. Data stays in your Atlassian instance.</p>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-cta/40 transition-colors duration-200">
+        <svg class="w-8 h-8 text-cta mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <h3 class="font-semibold mb-2">Admin Controls</h3>
+        <p class="text-sm text-muted">Toggle individual macros on/off site-wide. External service macros disabled by default.</p>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-cta/40 transition-colors duration-200">
+        <svg class="w-8 h-8 text-cta mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <h3 class="font-semibold mb-2">Client-Side Rendering</h3>
+        <p class="text-sm text-muted">Most macros render entirely in the browser. No server round-trips on page view.</p>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-cta/40 transition-colors duration-200">
+        <svg class="w-8 h-8 text-cta mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+        <h3 class="font-semibold mb-2">Theme Aware</h3>
+        <p class="text-sm text-muted">Uses Atlassian Design System CSS variables. Adapts to light and dark themes.</p>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-cta/40 transition-colors duration-200">
+        <svg class="w-8 h-8 text-cta mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+        <h3 class="font-semibold mb-2">Live Preview Editors</h3>
+        <p class="text-sm text-muted">Fullscreen config editors with real-time preview. See changes as you type.</p>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-cta/40 transition-colors duration-200">
+        <svg class="w-8 h-8 text-cta mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <h3 class="font-semibold mb-2">Collaborative</h3>
+        <p class="text-sm text-muted">Polls and Mood macros support real-time voting with voter tracking.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section id="comparison" class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pb-20">
+    <h2 class="text-3xl font-bold text-center mb-12">Choose Your Plan</h2>
+    <div class="bg-surface border border-border rounded-2xl overflow-hidden">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border">
+            <th class="text-left px-5 py-4 text-muted font-medium">Macro</th>
+            <th class="px-5 py-4 text-center font-semibold">Free</th>
+            <th class="px-5 py-4 text-center font-semibold text-cta">Pro</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/mermaid.svg" class="w-4 h-4" alt=""><a href="docs/mermaid.html" class="hover:text-cta transition-colors duration-200">Mermaid Diagram</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/markdown.svg" class="w-4 h-4" alt=""><a href="docs/markdown.html" class="hover:text-cta transition-colors duration-200">Markdown</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/poll.svg" class="w-4 h-4" alt=""><a href="docs/poll.html" class="hover:text-cta transition-colors duration-200">Poll / Vote</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/mood.svg" class="w-4 h-4" alt=""><a href="docs/mood.html" class="hover:text-cta transition-colors duration-200">Mood</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/graph.svg" class="w-4 h-4" alt=""><a href="docs/graph.html" class="hover:text-cta transition-colors duration-200">Graph / Chart</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/typewriter.svg" class="w-4 h-4" alt=""><a href="docs/typewriter.html" class="hover:text-cta transition-colors duration-200">Typewriter</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/sticky-note.svg" class="w-4 h-4" alt=""><a href="docs/sticky-note.html" class="hover:text-cta transition-colors duration-200">Sticky Note</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/spoiler.svg" class="w-4 h-4" alt=""><a href="docs/spoiler.html" class="hover:text-cta transition-colors duration-200">Spoiler / Reveal</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/clock.svg" class="w-4 h-4" alt=""><a href="docs/clock.html" class="hover:text-cta transition-colors duration-200">Clock</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/stopwatch.svg" class="w-4 h-4" alt=""><a href="docs/stopwatch.html" class="hover:text-cta transition-colors duration-200">Stopwatch</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr class="bg-cta/5"><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/swagger.svg" class="w-4 h-4" alt=""><a href="docs/swagger.html" class="hover:text-cta transition-colors duration-200">Swagger / OpenAPI</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-muted/30 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr class="bg-cta/5"><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/drawio.svg" class="w-4 h-4" alt=""><a href="docs/drawio.html" class="hover:text-cta transition-colors duration-200">Draw.io Diagram</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-muted/30 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr class="bg-cta/5"><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/plantuml.svg" class="w-4 h-4" alt=""><a href="docs/plantuml.html" class="hover:text-cta transition-colors duration-200">PlantUML</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-muted/30 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr class="bg-cta/5"><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/excalidraw.svg" class="w-4 h-4" alt=""><a href="docs/excalidraw.html" class="hover:text-cta transition-colors duration-200">Wireframe / Whiteboard</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-muted/30 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          <tr class="bg-cta/5"><td class="px-5 py-3 flex items-center gap-2"><img src="docs/icons/carousel.svg" class="w-4 h-4" alt=""><a href="docs/carousel.html" class="hover:text-cta transition-colors duration-200">Carousel / Slideshow</a></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-muted/30 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-5 h-5 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="index.html" class="leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
+          <a href="index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+          <a href="docs/index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Docs</a>
+          <a href="support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
+          <a href="privacy.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a>
+          <a href="terms.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Terms</a>
+          <a href="security.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Security</a>
+          <a href="https://github.com/openAPI-Studio/confluence-macro-toolkit" target="_blank" rel="noopener" class="hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
+        </div>
+      </div>
+      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built on Atlassian Forge.</p>
+    </div>
+  </footer>
+<script>
+(function(){
+  var t=localStorage.getItem('theme');
+  if(t==='light')document.documentElement.classList.add('light');
+  else if(t==='dark')document.documentElement.classList.remove('light');
+  else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+  function upd(){
+    var isLight=document.documentElement.classList.contains('light');
+    document.getElementById('icon-dark').style.display=isLight?'block':'none';
+    document.getElementById('icon-light').style.display=isLight?'none':'block';
+  }
+  upd();
+  document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();
+    document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
+    upd();
+  });
+})();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('menu-toggle');
+  var menu=document.getElementById('mobile-menu');
+  var open=document.getElementById('menu-open');
+  var close=document.getElementById('menu-close');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    var shown=!menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    open.style.display=shown?'block':'none';
+    close.style.display=shown?'none':'block';
+  });
+})();
+</script>
+<script>
+(function(){
+  var docs=[
+    {name:"Mermaid Diagram",page:"docs/mermaid.html",tags:"flowchart sequence gantt diagram svg"},
+    {name:"Markdown",page:"docs/markdown.html",tags:"github tables code blocks task lists"},
+    {name:"Poll / Vote",page:"docs/poll.html",tags:"voting survey single multiple thumbs emoji"},
+    {name:"Mood",page:"docs/mood.html",tags:"word cloud emoji reactions team"},
+    {name:"Graph / Chart",page:"docs/graph.html",tags:"bar line pie doughnut area chartjs"},
+    {name:"Typewriter",page:"docs/typewriter.html",tags:"animation typing fade terminal matrix"},
+    {name:"Sticky Note",page:"docs/sticky-note.html",tags:"note color handwritten pin tape"},
+    {name:"Spoiler / Reveal",page:"docs/spoiler.html",tags:"hidden content click reveal pattern"},
+    {name:"Clock",page:"docs/clock.html",tags:"analog digital timezone gadget"},
+    {name:"Stopwatch",page:"docs/stopwatch.html",tags:"timer ring classic flip interactive"},
+    {name:"Swagger / OpenAPI",page:"docs/swagger.html",tags:"api documentation json spec pro"},
+    {name:"Draw.io",page:"docs/drawio.html",tags:"diagram flowchart architecture pro"},
+    {name:"PlantUML",page:"docs/plantuml.html",tags:"uml sequence class activity pro"},
+    {name:"Wireframe",page:"docs/excalidraw.html",tags:"excalidraw sketch drawing canvas pro"},
+    {name:"Carousel",page:"docs/carousel.html",tags:"images gallery slides navigation pro"}
+  ];
+  function wire(inputId,resultsId){
+    var input=document.getElementById(inputId);
+    var results=document.getElementById(resultsId);
+    if(!input||!results)return;
+    input.addEventListener('input',function(){
+      var q=this.value.toLowerCase().trim();
+      if(!q){results.classList.add('hidden');results.innerHTML='';return;}
+      var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});
+      results.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';
+      results.classList.remove('hidden');
+    });
+    input.addEventListener('keydown',function(e){if(e.key==='Escape'){results.classList.add('hidden');this.blur();}});
+    document.addEventListener('click',function(e){if(!e.target.closest('#'+inputId)&&!e.target.closest('#'+resultsId))results.classList.add('hidden');});
+  }
+  wire('doc-search','search-results');
+  wire('doc-search-mobile','search-results-mobile');
+})();
+</script>
+</body>
+</html>

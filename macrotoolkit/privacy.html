@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Confluence Macro Toolkit</title>
+  <meta name="description" content="Privacy policy for Confluence Macro Toolkit. No data collection, no tracking, no analytics.">
+  <link rel="canonical" href="https://docs.vectored.dev/macrotoolkit/privacy.html">
+  <meta property="og:title" content="Privacy Policy — Confluence Macro Toolkit">
+  <meta property="og:description" content="Privacy policy for Confluence Macro Toolkit. No data collection, no tracking, no analytics.">
+  <meta property="og:url" content="https://docs.vectored.dev/macrotoolkit/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vectored">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Privacy Policy — Confluence Macro Toolkit">
+  <meta name="twitter:description" content="Privacy policy for Confluence Macro Toolkit. No data collection, no tracking, no analytics.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}html.light .backdrop-blur-md{background-color:rgba(255,255,255,0.92)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+    html.light .border-cta\/30{border-color:rgba(22,163,74,0.3)!important}
+    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.1)!important}
+    html.light .divide-border>*+*{border-color:#E2E8F0!important}
+  </style>
+<script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+</head>
+<body class="min-h-screen">
+  <nav class="fixed top-4 left-4 right-4 z-50 bg-surface/90 backdrop-blur-md border border-border rounded-xl px-4 sm:px-6 lg:px-8 py-3 flex items-center">
+    <a href="index.html" class="shrink-0 leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+    <div class="hidden md:block w-px h-5 bg-border mx-5"></div>
+    <div class="hidden md:flex items-center gap-5 text-sm text-muted">
+      <a href="index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="docs/index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Docs</a>
+      <a href="support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <div class="relative hidden md:block">
+        <input type="text" id="doc-search" placeholder="Search docs..." class="bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text placeholder:text-muted/60 w-48 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+        <div id="search-results" class="absolute top-full right-0 mt-2 w-64 bg-surface border border-border rounded-xl shadow-xl hidden max-h-72 overflow-y-auto z-50"></div>
+      </div>
+      <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
+        <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="hidden sm:inline-block bg-cta text-bg font-semibold text-sm px-4 py-2 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Try now for free</a>
+      <button id="menu-toggle" class="md:hidden p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Menu">
+        <svg id="menu-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menu-close" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed top-20 left-4 right-4 z-40 bg-surface border border-border rounded-xl p-4 hidden md:hidden">
+    <div class="flex flex-col gap-3 text-sm">
+        <div class="relative">
+          <input type="text" id="doc-search-mobile" placeholder="Search docs..." class="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+          <div id="search-results-mobile" class="absolute top-full left-0 right-0 mt-2 bg-surface border border-border rounded-xl shadow-xl hidden max-h-60 overflow-y-auto z-50"></div>
+        </div>
+      <a href="index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="docs/index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Docs</a>
+      <a href="support.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Support</a>
+      <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="px-3 py-2 rounded-lg bg-cta text-bg font-semibold text-center cursor-pointer">Try now for free</a>
+    </div>
+  </div>
+  <main class="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+    <a href="./index.html" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Back to Home</a>
+    <h1 class="text-3xl sm:text-4xl font-bold mb-2">Privacy Policy</h1>
+    <p class="text-sm text-muted mb-10">Last updated: June 2026 &middot; Effective: June 1, 2026</p>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">1. Introduction</h2>
+      <p class="text-muted mb-3">This Privacy Policy describes how Vectored ("we", "us", "our") handles information in connection with the Confluence Macro Toolkit application ("the App") distributed through the Atlassian Marketplace. We are committed to protecting the privacy and security of our users.</p>
+      <p class="text-muted">This policy applies to both the Lite (free) and Pro editions of the App.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">2. Data We Do NOT Collect</h2>
+      <p class="text-muted mb-3">The App does <strong class="text-text">not</strong> collect, process, store, or transmit any of the following:</p>
+      <ul class="space-y-2 text-muted">
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Personal Identifiable Information (PII) — names, emails, addresses</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Usage analytics, telemetry, or behavioral data</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>IP addresses, device fingerprints, or browser information</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Cookies, tracking pixels, or advertising identifiers</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Content of diagrams, markdown, polls, or any user-created macro content</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">3. Data Storage &amp; Processing</h2>
+      <p class="text-muted mb-4">All data created by the App remains entirely within your Atlassian Confluence instance:</p>
+      <div class="bg-surface border border-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm"><tbody class="divide-y divide-border">
+          <tr><td class="px-4 py-3 text-muted font-medium">Macro content</td><td class="px-4 py-3 text-muted">Stored as Confluence macro config parameters (inline with page content) — never leaves your instance</td></tr>
+          <tr><td class="px-4 py-3 text-muted font-medium">Poll votes</td><td class="px-4 py-3 text-muted">Stored in Forge Storage (Atlassian-managed, encrypted at rest) — scoped to your site only</td></tr>
+          <tr><td class="px-4 py-3 text-muted font-medium">Mood entries</td><td class="px-4 py-3 text-muted">Stored in Forge Storage — scoped to your site only</td></tr>
+          <tr><td class="px-4 py-3 text-muted font-medium">Admin settings</td><td class="px-4 py-3 text-muted">Stored in Forge Storage — accessible only by site admins</td></tr>
+          <tr><td class="px-4 py-3 text-muted font-medium">Draw.io diagrams</td><td class="px-4 py-3 text-muted">Stored in Forge Storage + page attachments — within your instance</td></tr>
+        </tbody></table>
+      </div>
+      <p class="text-muted mt-4 text-sm">Forge Storage is Atlassian's managed storage service. Data is encrypted at rest using AES-256 and in transit using TLS 1.2+. Storage is isolated per-app and per-site. We have no access to your stored data.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">4. External Services</h2>
+      <p class="text-muted mb-4">Most macros operate entirely client-side with no external calls. Two optional macros (disabled by default) connect to external services:</p>
+      <div class="bg-surface border border-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm"><thead class="text-xs text-muted uppercase border-b border-border"><tr><th class="px-4 py-3 text-left">Service</th><th class="px-4 py-3 text-left">Used By</th><th class="px-4 py-3 text-left">Data Sent</th><th class="px-4 py-3 text-left">Purpose</th></tr></thead><tbody class="divide-y divide-border">
+          <tr><td class="px-4 py-3 font-mono text-xs">embed.diagrams.net</td><td class="px-4 py-3 text-muted">Draw.io macro</td><td class="px-4 py-3 text-muted">Diagram XML</td><td class="px-4 py-3 text-muted">Editor rendering</td></tr>
+          <tr><td class="px-4 py-3 font-mono text-xs">www.plantuml.com</td><td class="px-4 py-3 text-muted">PlantUML macro</td><td class="px-4 py-3 text-muted">PlantUML text (during editing only)</td><td class="px-4 py-3 text-muted">SVG rendering</td></tr>
+        </tbody></table>
+      </div>
+      <ul class="mt-4 space-y-2 text-sm text-muted">
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Both are disabled by default — admin must explicitly enable them</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>PlantUML: only sends text during editing; published page renders stored SVG offline</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>No personal data or authentication tokens are sent to either service</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>No other third-party analytics, advertising, or data-processing services are used</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">5. Atlassian API Scopes</h2>
+      <p class="text-muted mb-4">The App requests the following Atlassian scopes, used solely for macro functionality:</p>
+      <div class="bg-surface border border-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm"><tbody class="divide-y divide-border">
+          <tr><td class="px-4 py-3 font-mono text-xs text-cta">read:confluence-content.summary</td><td class="px-4 py-3 text-muted">Read page metadata to render macros in context</td></tr>
+          <tr><td class="px-4 py-3 font-mono text-xs text-cta">read:confluence-user</td><td class="px-4 py-3 text-muted">Resolve display names for poll/mood voter attribution</td></tr>
+          <tr><td class="px-4 py-3 font-mono text-xs text-cta">write:confluence-file</td><td class="px-4 py-3 text-muted">Upload diagram attachments (Draw.io only)</td></tr>
+          <tr><td class="px-4 py-3 font-mono text-xs text-cta">storage:app</td><td class="px-4 py-3 text-muted">Persist poll votes, mood data, admin settings, Draw.io diagrams</td></tr>
+        </tbody></table>
+      </div>
+      <p class="text-muted mt-4 text-sm">These scopes follow the principle of least privilege. The App does not request write access to page content, user management, or space administration.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">6. Data Retention &amp; Deletion</h2>
+      <ul class="space-y-2 text-muted">
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong class="text-text">Uninstall:</strong> Running <code class="font-mono bg-surface px-1 rounded text-xs">forge uninstall</code> removes all Forge Storage data for that site</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong class="text-text">Macro content:</strong> Deleting a page removes all inline macro config data</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong class="text-text">No backups:</strong> We do not maintain any copies of your data outside Atlassian infrastructure</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong class="text-text">No data export:</strong> We never export, aggregate, or access your instance data</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">7. Security Measures</h2>
+      <ul class="space-y-2 text-muted">
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Runs on Atlassian Forge — sandboxed execution environment</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>No server-side code outside Atlassian infrastructure</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>All communication over TLS 1.2+</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Content Security Policy (CSP) enforced on all Custom UI resources</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Source code publicly auditable (open source)</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">8. Children's Privacy</h2>
+      <p class="text-muted">The App is a business productivity tool and is not directed at children under 16. We do not knowingly collect data from children.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">9. GDPR &amp; International Compliance</h2>
+      <p class="text-muted mb-3">Since the App does not collect or process personal data, GDPR data subject rights (access, rectification, erasure, portability) are not applicable to our App directly. Your Confluence instance data is governed by your organization's agreement with Atlassian.</p>
+      <p class="text-muted">For GDPR purposes: we act as neither a data controller nor data processor, as no personal data flows through our systems.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">10. Changes to This Policy</h2>
+      <p class="text-muted">We may update this policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Material changes will be noted in the app's changelog. Continued use after changes constitutes acceptance.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">11. Contact</h2>
+      <p class="text-muted">If you have questions about this policy or our privacy practices:</p>
+      <ul class="mt-3 space-y-2 text-muted">
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><a href="https://github.com/openAPI-Studio/confluence-macro-toolkit/issues" target="_blank" rel="noopener" class="text-cta hover:underline">Open a GitHub issue</a></li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Use the <a href="support.html" class="text-cta hover:underline">Support page</a> feedback form</li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Email <a href="mailto:support@vectored.dev" class="text-cta hover:underline">support@vectored.dev</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="index.html" class="leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
+          <a href="index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+          <a href="docs/index.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Docs</a>
+          <a href="support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
+          <a href="privacy.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a>
+          <a href="terms.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Terms</a>
+          <a href="security.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Security</a>
+          <a href="https://github.com/openAPI-Studio/confluence-macro-toolkit" target="_blank" rel="noopener" class="hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
+        </div>
+      </div>
+      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built on Atlassian Forge.</p>
+    </div>
+  </footer>
+<script>
+(function(){
+  var t=localStorage.getItem('theme');
+  if(t==='light')document.documentElement.classList.add('light');
+  else if(t==='dark')document.documentElement.classList.remove('light');
+  else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+  function upd(){
+    var isLight=document.documentElement.classList.contains('light');
+    document.getElementById('icon-dark').style.display=isLight?'block':'none';
+    document.getElementById('icon-light').style.display=isLight?'none':'block';
+  }
+  upd();
+  document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();
+    document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
+    upd();
+  });
+})();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('menu-toggle');
+  var menu=document.getElementById('mobile-menu');
+  var open=document.getElementById('menu-open');
+  var close=document.getElementById('menu-close');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    var shown=!menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    open.style.display=shown?'block':'none';
+    close.style.display=shown?'none':'block';
+  });
+})();
+</script>
+<script>
+(function(){
+  var docs=[
+    {name:"Mermaid Diagram",page:"docs/mermaid.html",tags:"flowchart sequence gantt diagram svg"},
+    {name:"Markdown",page:"docs/markdown.html",tags:"github tables code blocks task lists"},
+    {name:"Poll / Vote",page:"docs/poll.html",tags:"voting survey single multiple thumbs emoji"},
+    {name:"Mood",page:"docs/mood.html",tags:"word cloud emoji reactions team"},
+    {name:"Graph / Chart",page:"docs/graph.html",tags:"bar line pie doughnut area chartjs"},
+    {name:"Typewriter",page:"docs/typewriter.html",tags:"animation typing fade terminal matrix"},
+    {name:"Sticky Note",page:"docs/sticky-note.html",tags:"note color handwritten pin tape"},
+    {name:"Spoiler / Reveal",page:"docs/spoiler.html",tags:"hidden content click reveal pattern"},
+    {name:"Clock",page:"docs/clock.html",tags:"analog digital timezone gadget"},
+    {name:"Stopwatch",page:"docs/stopwatch.html",tags:"timer ring classic flip interactive"},
+    {name:"Swagger / OpenAPI",page:"docs/swagger.html",tags:"api documentation json spec pro"},
+    {name:"Draw.io",page:"docs/drawio.html",tags:"diagram flowchart architecture pro"},
+    {name:"PlantUML",page:"docs/plantuml.html",tags:"uml sequence class activity pro"},
+    {name:"Wireframe",page:"docs/excalidraw.html",tags:"excalidraw sketch drawing canvas pro"},
+    {name:"Carousel",page:"docs/carousel.html",tags:"images gallery slides navigation pro"}
+  ];
+  function wire(inputId,resultsId){
+    var input=document.getElementById(inputId);
+    var results=document.getElementById(resultsId);
+    if(!input||!results)return;
+    input.addEventListener('input',function(){
+      var q=this.value.toLowerCase().trim();
+      if(!q){results.classList.add('hidden');results.innerHTML='';return;}
+      var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});
+      results.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';
+      results.classList.remove('hidden');
+    });
+    input.addEventListener('keydown',function(e){if(e.key==='Escape'){results.classList.add('hidden');this.blur();}});
+    document.addEventListener('click',function(e){if(!e.target.closest('#'+inputId)&&!e.target.closest('#'+resultsId))results.classList.add('hidden');});
+  }
+  wire('doc-search','search-results');
+  wire('doc-search-mobile','search-results-mobile');
+})();
+</script>
+</body>
+</html>
