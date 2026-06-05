@@ -3,22 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vectored — Documentation</title>
-  <meta name="description" content="Documentation hub for Vectored developer tools.">
+  <title>Vectored — Developer Tools Documentation</title>
+  <meta name="description" content="Documentation hub for Vectored developer tools. Confluence macros, time tracking, forms, and more.">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}</style>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>
+    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface{background-color:rgba(255,255,255,0.9)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
 </head>
-<body class="min-h-screen flex items-center justify-center px-4">
-  <div class="text-center max-w-md">
-    <h1 class="font-mono font-bold text-2xl text-[#22C55E] mb-2">Vectored</h1>
-    <p class="text-sm text-[#94A3B8] mb-10">Tools for developers</p>
-    <div class="space-y-3">
-      <a href="macrotoolkit/" class="block bg-[#1E293B] border border-[#334155] rounded-xl p-5 hover:border-[#22C55E]/40 transition-colors duration-200">
-        <h2 class="font-semibold text-lg mb-1">Confluence Macro Toolkit</h2>
-        <p class="text-sm text-[#94A3B8]">15 powerful macros for Atlassian Confluence</p>
-      </a>
+<body class="min-h-screen flex flex-col">
+  <main class="flex-1 flex flex-col items-center justify-center px-4 py-20">
+    <div class="text-center mb-12">
+      <h1 class="font-mono font-bold text-3xl text-cta mb-2">Vectored</h1>
+      <p class="text-muted">Tools for developers</p>
     </div>
-  </div>
+
+    <div class="w-full max-w-2xl space-y-4">
+      <!-- Macro Toolkit — Live -->
+      <a href="macrotoolkit/" class="block bg-surface border border-border rounded-xl p-6 hover:border-cta/40 transition-colors duration-200 cursor-pointer group">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="font-semibold text-lg group-hover:text-cta transition-colors duration-200">Confluence Macro Toolkit</h2>
+            <p class="text-sm text-muted mt-1">15 powerful macros for Atlassian Confluence</p>
+          </div>
+          <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
+        </div>
+      </a>
+
+      <!-- Time Log — Coming Soon -->
+      <div class="bg-surface border border-border rounded-xl p-6 opacity-60">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="font-semibold text-lg">Time Log</h2>
+            <p class="text-sm text-muted mt-1">Time tracking and work logging for teams</p>
+          </div>
+          <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
+        </div>
+      </div>
+
+      <!-- Forms — Coming Soon -->
+      <div class="bg-surface border border-border rounded-xl p-6 opacity-60">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="font-semibold text-lg">Forms</h2>
+            <p class="text-sm text-muted mt-1">Dynamic forms and data collection for Confluence</p>
+          </div>
+          <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
+        </div>
+      </div>
+
+      <!-- Front Door — Coming Soon -->
+      <div class="bg-surface border border-border rounded-xl p-6 opacity-60">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="font-semibold text-lg">Front Door</h2>
+            <p class="text-sm text-muted mt-1">Customizable landing pages and portals</p>
+          </div>
+          <span class="shrink-0 bg-muted/10 border border-muted/30 text-muted text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-border px-4 py-8 text-center text-xs text-muted">
+    <p>&copy; 2026 Vectored. Tools for developers.</p>
+  </footer>
+
+<script>
+(function(){
+  var t=localStorage.getItem('theme');
+  if(t==='light')document.documentElement.classList.add('light');
+  else if(t==='dark')document.documentElement.classList.remove('light');
+  else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+})();
+</script>
 </body>
 </html>
