@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confluence Forms — Documentation</title>
+  <meta name="description" content="Build custom forms in Confluence with drag-and-drop builder, 9 field types, theming, access control, and response management.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>
+    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface{background-color:rgba(255,255,255,0.9)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+</head>
+<body class="min-h-screen">
+  <!-- Releasing Soon Banner -->
+  <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm text-cta font-medium">
+    Releasing Soon — Documentation preview. Stay tuned for launch.
+  </div>
+
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-border px-4 sm:px-6 lg:px-8 py-3 flex items-center">
+    <a href="../" class="shrink-0 leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+    <div class="hidden md:block w-px h-5 bg-border mx-5"></div>
+    <div class="hidden md:flex items-center gap-5 text-sm text-muted">
+      <a href="../" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="../macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
+        <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16">
+    <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; All Tools</a>
+
+    <!-- Hero -->
+    <div class="mt-6 mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">Confluence Forms</h1>
+      <p class="text-lg text-muted max-w-2xl">Build custom forms with a drag-and-drop builder, embed them on any Confluence page, and manage responses — all without leaving your wiki.</p>
+    </div>
+
+    <!-- Field Types -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">9 Field Types</h2>
+      <div class="grid sm:grid-cols-3 gap-3">
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Text</h3><p class="text-xs text-muted mt-1">Single-line text input</p></div>
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Email</h3><p class="text-xs text-muted mt-1">Email with validation</p></div>
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Number</h3><p class="text-xs text-muted mt-1">Numeric with min/max range</p></div>
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Rich Text</h3><p class="text-xs text-muted mt-1">Multi-line text area</p></div>
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Single Select</h3><p class="text-xs text-muted mt-1">Radio/dropdown choices</p></div>
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Multi Select</h3><p class="text-xs text-muted mt-1">Checkbox group</p></div>
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Date</h3><p class="text-xs text-muted mt-1">Native date picker</p></div>
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Time</h3><p class="text-xs text-muted mt-1">Native time picker</p></div>
+        <div class="bg-surface border border-border rounded-xl p-4"><h3 class="font-semibold text-sm">Signature</h3><p class="text-xs text-muted mt-1">Canvas drawing (mouse + touch)</p></div>
+      </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Features</h2>
+      <div class="space-y-4">
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Form Builder<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p>Unified canvas editor with inline title/description editing. Hover toolbars for quick actions (Required, Edit, Advanced, Delete). Sliding settings drawers for detailed configuration. Visual question type selector with icons.</p>
+          </div>
+        </details>
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Validation & Constraints<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p>Required fields, min/max character length, min/max value range, custom regex patterns, custom error messages. Frontend validation blocks submission and highlights errors. Server-side enforcement for access control.</p>
+          </div>
+        </details>
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Multi-Section Forms <span class="text-[10px] bg-cta/10 border border-cta/30 text-cta font-mono px-1 rounded ml-2">PRO</span><svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p>Multiple sections per form with Next/Back navigation. Per-section validation before advancing. Progress indicator. Optional banner images per section.</p>
+          </div>
+        </details>
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Access Control<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p>Anonymous (everyone), logged-in users only, or specific Confluence groups. Single response limit (1 per user, server-enforced). Lock screens for unauthorized or already-responded users.</p>
+          </div>
+        </details>
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Theming & Styling<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p><strong>6 standard themes:</strong> Atlassian Default, Soft Floral, Rainbow Pride, Cosmic Space, Sharp Business, Ocean Vacation.</p>
+            <p><strong>Animated themes (Pro):</strong> Active Particles, Rotating Mandala/Rangoli, Cosmos, Dotmatrix, Circuit, Gridlines, Viscous.</p>
+            <p><strong>Customization:</strong> Accent color, banner images, banner decorations (circles, diamonds, waves, dots), question numbering (Q, 1, A, I, none), typography (5 font choices), form width (standard/wide/full).</p>
+          </div>
+        </details>
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Collaboration & Sharing<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p>Share editing access with collaborators. Direct shareable links. Embed via Confluence macro on any page. Shared forms appear in collaborators' dashboards.</p>
+          </div>
+        </details>
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Responses & Export<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p>Results table with dynamic column mapping. CSV export. Signature thumbnails in results. Submission timestamps. Configurable thank-you screen. PDF save option (browser print).</p>
+          </div>
+        </details>
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Dashboard<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p>Bento grid card layout. Search and sort. Form cards with accent color strips. Quick actions: Edit, Share, Duplicate, Results, Delete. Active form counter.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- How to Use -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">How to Use</h2>
+      <ol class="list-decimal list-inside space-y-3 text-muted">
+        <li>Open the <strong class="text-text">Forms Dashboard</strong> from Confluence global navigation</li>
+        <li>Click <strong class="text-text">New Form</strong> — the canvas builder opens</li>
+        <li>Add questions using the type selector (text, email, date, signature, etc.)</li>
+        <li>Configure styling, access control, and collaboration in the settings drawers</li>
+        <li>Click <strong class="text-text">Preview</strong> to test, then <strong class="text-text">Publish</strong></li>
+        <li>Embed on any page using the <code class="font-mono bg-surface px-2 py-0.5 rounded text-cta">/Confluence Form</code> macro</li>
+        <li>View responses in the Dashboard → Results tab, export as CSV</li>
+      </ol>
+    </section>
+
+    <!-- Plans -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Free vs Pro</h2>
+      <div class="bg-surface border border-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead><tr class="border-b border-border"><th class="text-left px-5 py-3 text-muted font-medium">Feature</th><th class="px-5 py-3 text-center">Free</th><th class="px-5 py-3 text-center text-cta">Pro</th></tr></thead>
+          <tbody class="divide-y divide-border">
+            <tr><td class="px-5 py-3">Forms per user</td><td class="px-5 py-3 text-center text-muted">20</td><td class="px-5 py-3 text-center">Unlimited</td></tr>
+            <tr><td class="px-5 py-3">Responses per form</td><td class="px-5 py-3 text-center text-muted">100</td><td class="px-5 py-3 text-center">Unlimited</td></tr>
+            <tr><td class="px-5 py-3">Standard themes</td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+            <tr><td class="px-5 py-3">Animated themes</td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-muted/30 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+            <tr><td class="px-5 py-3">Multi-section forms</td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-muted/30 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+            <tr><td class="px-5 py-3">All 9 field types</td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+            <tr><td class="px-5 py-3">Access control</td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+            <tr><td class="px-5 py-3">CSV export</td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+            <tr><td class="px-5 py-3">Collaboration</td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td><td class="px-5 py-3 text-center"><svg class="w-4 h-4 text-cta mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Technical -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Technical Details</h2>
+      <div class="bg-surface border border-border rounded-xl overflow-hidden">
+        <table class="w-full text-sm"><tbody class="divide-y divide-border">
+          <tr><td class="px-5 py-3 text-muted">Platform</td><td class="px-5 py-3">Atlassian Forge (Node.js 22.x)</td></tr>
+          <tr><td class="px-5 py-3 text-muted">Frontend</td><td class="px-5 py-3">React Custom UI (Vite)</td></tr>
+          <tr><td class="px-5 py-3 text-muted">Database</td><td class="px-5 py-3">Forge SQL (MySQL engine)</td></tr>
+          <tr><td class="px-5 py-3 text-muted">Storage</td><td class="px-5 py-3">Structured tables: forms, submissions, permissions, settings</td></tr>
+          <tr><td class="px-5 py-3 text-muted">External Services</td><td class="px-5 py-3">None — fully self-contained on Forge</td></tr>
+          <tr><td class="px-5 py-3 text-muted">Embed</td><td class="px-5 py-3">Confluence macro + shareable direct links</td></tr>
+          <tr><td class="px-5 py-3 text-muted">Mobile</td><td class="px-5 py-3">Fully responsive (≤600px breakpoint)</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="../" class="leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
+          <a href="../" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+          <a href="../macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
+          <a href="../macrotoolkit/support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
+          <a href="../macrotoolkit/privacy.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a>
+        </div>
+      </div>
+      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built on Atlassian Forge.</p>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  var t=localStorage.getItem('theme');
+  if(t==='light')document.documentElement.classList.add('light');
+  else if(t==='dark')document.documentElement.classList.remove('light');
+  else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+  function upd(){
+    var isLight=document.documentElement.classList.contains('light');
+    document.getElementById('icon-dark').style.display=isLight?'block':'none';
+    document.getElementById('icon-light').style.display=isLight?'none':'block';
+  }
+  upd();
+  document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();
+    document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
+    upd();
+  });
+})();
+</script>
+</body>
+</html>
