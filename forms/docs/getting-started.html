@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started — Confluence Forms Docs</title>
+  <meta name="description" content="Install, setup, and create your first form">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+</head>
+<body class="min-h-screen">
+  <!-- Banner -->
+  <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm text-cta font-medium">Releasing Soon — Documentation preview</div>
+
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-border px-4 sm:px-6 lg:px-8 py-3 flex items-center">
+    <a href="../../" class="shrink-0 leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
+    <div class="hidden md:block w-px h-5 bg-border mx-5"></div>
+    <div class="hidden md:flex items-center gap-5 text-sm text-muted">
+      <a href="../../" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
+      <a href="../" class="hover:text-text transition-colors duration-200 cursor-pointer">Forms</a>
+      <a href="../../macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
+        <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Sidebar + Content -->
+  <div class="flex">
+    <aside class="hidden lg:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
+      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; Forms Overview</a>
+      <nav class="space-y-1">
+        <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
+        <a href="building-forms.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="building-forms">Building Forms</a>
+        <a href="field-types.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="field-types">Field Types</a>
+        <a href="validation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="validation">Validation & Constraints</a>
+        <a href="multi-section.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="multi-section">Multi-Section Forms</a>
+        <a href="embedding.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="embedding">Embedding Forms</a>
+        <a href="styling.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="styling">Styling & Theming</a>
+        <a href="access-control.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="access-control">Access Control</a>
+        <a href="collaboration.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="collaboration">Collaboration</a>
+        <a href="responses.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="responses">Responses & Export</a>
+        <a href="dashboard.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="dashboard">Dashboard</a>
+        <a href="free-vs-pro.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="free-vs-pro">Free vs Pro</a>
+      </nav>
+    </aside>
+
+    <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
+      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Forms Overview</a>
+      <h1 class="text-3xl font-bold mt-4 mb-6">Getting Started</h1>
+      <div class="bg-surface border border-cta/20 rounded-xl p-8 text-center">
+        <svg class="w-12 h-12 text-cta/40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <p class="text-lg font-semibold mb-2">Coming Soon</p>
+        <p class="text-sm text-muted">This documentation page is being written. Check back soon for detailed guides on getting started.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+  (function(){
+    var t=localStorage.getItem('theme');
+    if(t==='light')document.documentElement.classList.add('light');
+    else if(t==='dark')document.documentElement.classList.remove('light');
+    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+    function upd(){var isLight=document.documentElement.classList.contains('light');document.getElementById('icon-dark').style.display=isLight?'block':'none';document.getElementById('icon-light').style.display=isLight?'none':'block';}
+    upd();
+    document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
+    var page=location.pathname.split('/').pop().replace('.html','');
+    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
+  })();
+  </script>
+</body>
+</html>
