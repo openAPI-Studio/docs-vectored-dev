@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Building Forms — Confluence Forms Docs</title>
+  <title>Building Forms — FormForge Docs</title>
   <meta name="description" content="Using the drag-and-drop canvas builder">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -62,11 +62,35 @@
     <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
       <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Forms Overview</a>
       <h1 class="text-3xl font-bold mt-4 mb-6">Building Forms</h1>
-      <div class="bg-surface border border-cta/20 rounded-xl p-8 text-center">
-        <svg class="w-12 h-12 text-cta/40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <p class="text-lg font-semibold mb-2">Coming Soon</p>
-        <p class="text-sm text-muted">This documentation page is being written. Check back soon for detailed guides on building forms.</p>
-      </div>
+      <p class="text-muted mb-8">The FormForge builder is a unified canvas editor where you design forms visually.</p>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3">The Builder Canvas</h2>
+        <p class="text-muted mb-4">The canvas displays a centered form preview where you edit titles and descriptions inline. What you see is what respondents get — a true WYSIWYG experience.</p>
+        <img src="../assets/new form editor.png" alt="Builder canvas" class="rounded-xl border border-border my-6 w-full">
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3">Adding Questions</h2>
+        <p class="text-muted mb-4">Click <strong>+ Add Question</strong> to open the field picker. Choose from 10 field types — each represented by its own icon for quick identification.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3">Question Configuration</h2>
+        <p class="text-muted mb-4">Hover any question to reveal its toolbar: a <strong>Required</strong> toggle, a <strong>Settings gear</strong>, and a <strong>Delete</strong> button. Click the gear to access advanced settings including tooltip text, placeholder, and default value.</p>
+        <img src="../assets/question with general and vaitation settings menu opened for single text.png" alt="Question settings" class="rounded-xl border border-border my-6 w-full">
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3">Rich Text Labels</h2>
+        <p class="text-muted mb-4">Question labels support <strong>Bold</strong>, <em>Italic</em>, and <a href="#" class="text-cta">Link</a> formatting via a mini toolbar that appears when editing a label.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3">Sections <span class="text-xs bg-cta/20 text-cta px-2 py-0.5 rounded-full ml-2">Pro</span></h2>
+        <p class="text-muted mb-4">Add multiple sections to your form, each with its own set of questions and an optional banner image. Respondents navigate between sections using Next and Back buttons.</p>
+        <img src="../assets/section adition.png" alt="Multi-section" class="rounded-xl border border-border my-6 w-full">
+      </section>
     </main>
   </div>
 

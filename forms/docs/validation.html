@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Validation & Constraints — Confluence Forms Docs</title>
+  <title>Validation & Constraints — FormForge Docs</title>
   <meta name="description" content="Required fields, min/max, regex, custom errors">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -62,11 +62,39 @@
     <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
       <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Forms Overview</a>
       <h1 class="text-3xl font-bold mt-4 mb-6">Validation & Constraints</h1>
-      <div class="bg-surface border border-cta/20 rounded-xl p-8 text-center">
-        <svg class="w-12 h-12 text-cta/40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <p class="text-lg font-semibold mb-2">Coming Soon</p>
-        <p class="text-sm text-muted">This documentation page is being written. Check back soon for detailed guides on validation & constraints.</p>
+      <p class="text-muted mb-6">FormForge lets you enforce data quality with built-in validation rules on every field type.</p>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Required Fields</h2>
+        <p class="text-muted">Toggle any question as required to prevent submission without an answer. A red asterisk appears next to required fields.</p>
       </div>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Min/Max Length (Text)</h2>
+        <p class="text-muted">Set minimum and maximum character limits on text fields. Respondents see a live character count and cannot submit if limits are violated.</p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Min/Max Value (Numbers)</h2>
+        <p class="text-muted">For number fields, define acceptable numeric ranges. Values outside the range trigger an inline error message.</p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Regex Patterns</h2>
+        <p class="text-muted">Apply custom regular expression patterns for advanced validation — useful for emails, phone numbers, or any structured input format.</p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Custom Error Messages</h2>
+        <p class="text-muted">Override default error text with your own messages to guide respondents clearly when validation fails.</p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Per-Section Validation</h2>
+        <p class="text-muted">In multi-section forms, validation runs when the user clicks Next — they cannot advance until all fields in the current section pass.</p>
+      </div>
+
+      <img src='../assets/question with general and vaitation settings menu opened for single text.png' alt='Validation settings panel for a single text question' class='rounded-xl border border-border my-6 w-full'>
     </main>
   </div>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Access Control — Confluence Forms Docs</title>
+  <title>Access Control — FormForge Docs</title>
   <meta name="description" content="Anonymous, logged-in, groups, single response limits">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -62,11 +62,29 @@
     <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
       <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Forms Overview</a>
       <h1 class="text-3xl font-bold mt-4 mb-6">Access Control</h1>
-      <div class="bg-surface border border-cta/20 rounded-xl p-8 text-center">
-        <svg class="w-12 h-12 text-cta/40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <p class="text-lg font-semibold mb-2">Coming Soon</p>
-        <p class="text-sm text-muted">This documentation page is being written. Check back soon for detailed guides on access control.</p>
+      <p class="text-muted mb-6">Control who can view and submit your forms with flexible access levels.</p>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Access Levels</h2>
+        <p class="text-muted mb-2">Choose who can access your form:</p>
+        <ul class="list-disc list-inside text-muted space-y-1">
+          <li><strong>Anonymous</strong> — anyone with the link can submit (no login required)</li>
+          <li><strong>Logged-in users</strong> — only authenticated Confluence users</li>
+          <li><strong>Specific groups</strong> — restrict to selected Confluence groups</li>
+        </ul>
       </div>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Single Submission Limit</h2>
+        <p class="text-muted">Enable the single-submission toggle to allow each user only one response. Subsequent attempts show a lock screen indicating the form has already been completed.</p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
+        <h2 class="text-xl font-semibold mb-3">Lock Screens</h2>
+        <p class="text-muted">Unauthorized users or those who have exceeded submission limits see a lock screen explaining why they cannot access the form.</p>
+      </div>
+
+      <img src='../assets/access and limit settings.png' alt='Access control and submission limit settings' class='rounded-xl border border-border my-6 w-full'>
     </main>
   </div>
 
