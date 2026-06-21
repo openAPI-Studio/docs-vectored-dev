@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-page="mock-request-log" class="scroll-smooth">
+<html lang="en" data-page="support-us" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Log — API Studio Docs</title>
-    <meta name="description" content="Real-time request logging for mock servers — matched and unmatched requests, filtering, and log limits.">
+    <title>Support Us — API Studio Docs</title>
+    <meta name="description" content="Support API Studio development — buy us a coffee on Ko-fi. Help keep the project alive and growing.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -18,93 +18,70 @@
 <div class="flex pt-24">
     <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#overview" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Overview</a>
-                <a href="#entries" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Log Entries</a>
-                <a href="#matched" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Matched vs Unmatched</a>
-                <a href="#filtering" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Filtering</a>
-                <a href="#limits" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Clear & Limits</a>
-            </nav>
-        </aside>
-
+    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl">
         <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">MOCK SERVERS</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">Request Log</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">Real-time logging of every request hitting your mock server — see what matched, what didn't, and inspect full request details.</p>
+        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">SETTINGS & DATA</p>
+        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">Support Us</h1>
+        <p class="text-gray-600 dark:text-muted mb-10">API Studio is built by a small team. If you find it useful, consider supporting development with a coffee on Ko-fi.</p>
 
-        <img src="../assets/mock request log with 3 matched and 1 unmatched entries with time and clear button visible.png" alt="Request log showing matched and unmatched requests with timestamps" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm mb-10">
+        <!-- Ko-fi Badge -->
+        <section class="mb-10">
+            <a href="https://ko-fi.com/openpost" target="_blank" rel="noopener">
+                <img src="https://storage.ko-fi.com/cdn/kofi2.png?v=6" alt="Buy Me a Coffee at ko-fi.com" class="h-10 hover:opacity-90 transition">
+            </a>
+        </section>
 
-        <!-- Overview -->
-        <section class="mb-12 scroll-mt-28" id="overview">
-            <h2 class="text-xl font-semibold mb-4">Overview</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Every incoming request to a running mock server is logged in real-time. The log pane is resizable — drag to expand or collapse.</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Logs are per-server — each mock server has its own log</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Logs are ephemeral — cleared when server stops or VS Code closes</span></div>
+        <!-- Main CTA -->
+        <section class="mb-12">
+            <div class="p-8 rounded-xl border border-[#FF5E5B]/30 bg-[#FF5E5B]/5 text-center">
+                <div class="text-5xl mb-4">☕</div>
+                <h2 class="text-2xl font-bold mb-3">Buy us a coffee</h2>
+                <p class="text-sm text-gray-600 dark:text-muted mb-6 max-w-md mx-auto">Your support helps us maintain API Studio, build new features, and keep it accessible to developers worldwide. Every coffee counts!</p>
+                <a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-3 bg-[#FF5E5B] text-white text-sm font-semibold rounded-lg hover:bg-[#FF5E5B]/90 transition shadow-lg shadow-[#FF5E5B]/20">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>
+                    Support on Ko-fi
+                </a>
+                <p class="text-xs text-gray-400 dark:text-muted mt-4">ko-fi.com/openpost</p>
             </div>
         </section>
 
-        <!-- Log Entries -->
-        <section class="mb-12 scroll-mt-28" id="entries">
-            <h2 class="text-xl font-semibold mb-4">Log Entries</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Each entry shows:</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-4">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Timestamp</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>HTTP method (color-coded)</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Request path</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Matched route (or 'unmatched')</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Response status code sent</span></div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
-                <strong class="text-gray-900 dark:text-text">Tip:</strong> Click an entry to see full request details — headers, body, and query params.
-            </div>
-        </section>
-
-        <!-- Matched vs Unmatched -->
-        <section class="mb-12 scroll-mt-28" id="matched">
-            <h2 class="text-xl font-semibold mb-4">Matched vs Unmatched</h2>
-            <div class="space-y-4 mb-4">
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="bg-green-500/10 border border-green-500/30 text-green-500 font-mono px-2 py-1 rounded text-xs shrink-0">matched</span>
-                    <p class="text-sm text-gray-600 dark:text-muted">Request matched a configured route — the configured response was served.</p>
+        <!-- What your support helps with -->
+        <section class="mb-12">
+            <h2 class="text-xl font-semibold mb-5">What Your Support Helps With</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <div class="flex items-center gap-2 mb-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><h4 class="font-semibold text-sm">New Features</h4></div>
+                    <p class="text-xs text-gray-500 dark:text-muted">Client streaming, bidirectional gRPC, external vault providers, Electron desktop app, and more on the roadmap.</p>
                 </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="bg-red-500/10 border border-red-500/30 text-red-500 font-mono px-2 py-1 rounded text-xs shrink-0">unmatched</span>
-                    <p class="text-sm text-gray-600 dark:text-muted">No route matched — 404 returned. Helps you discover which endpoints your app is calling that you haven't mocked yet.</p>
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <div class="flex items-center gap-2 mb-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><h4 class="font-semibold text-sm">Bug Fixes & Maintenance</h4></div>
+                    <p class="text-xs text-gray-500 dark:text-muted">Keeping up with VS Code updates, dependency patches, and reported issues.</p>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <div class="flex items-center gap-2 mb-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><h4 class="font-semibold text-sm">Documentation</h4></div>
+                    <p class="text-xs text-gray-500 dark:text-muted">Comprehensive guides, tutorials, and examples like the ones you're reading now.</p>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <div class="flex items-center gap-2 mb-2"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><h4 class="font-semibold text-sm">Infrastructure</h4></div>
+                    <p class="text-xs text-gray-500 dark:text-muted">Hosting, CI/CD, testing infrastructure, and marketplace publishing.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Filtering -->
-        <section class="mb-12 scroll-mt-28" id="filtering">
-            <h2 class="text-xl font-semibold mb-4">Filtering</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">When the log gets busy during development, use filters to focus:</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Filter by matched/unmatched status</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Filter by method or path text</span></div>
-            </div>
+        <!-- Screenshot -->
+        <section class="mb-12">
+            <img src="../assets/support us with buy me coffee page open.png" alt="Support us dialog in API Studio" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm">
+            <p class="text-xs text-gray-400 dark:text-muted mt-2">The ❤️ icon in the top bar opens the support dialog directly in API Studio</p>
         </section>
 
-        <!-- Clear & Limits -->
-        <section class="mb-12 scroll-mt-28" id="limits">
-            <h2 class="text-xl font-semibold mb-4">Clear & Limits</h2>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Clear button</strong> — resets the log</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Max log entries</strong> — configurable per server (default 100)</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Oldest entries trimmed when limit reached</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Logs not persisted to disk</span></div>
-            </div>
-        </section>
-
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next</h3>
-            <div class="flex flex-wrap gap-4">
-                <a href="mock-swagger.html" class="text-sm text-cta font-medium hover:underline">Swagger / OpenAPI →</a>
-                <a href="creating-mock-servers.html" class="text-sm text-cta font-medium hover:underline">Creating Mock Servers →</a>
+        <!-- Other ways -->
+        <section class="mb-12">
+            <h2 class="text-xl font-semibold mb-5">Other Ways to Help</h2>
+            <div class="space-y-3 text-sm text-gray-600 dark:text-muted">
+                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Rate & review</strong> on the <a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="text-cta hover:underline">VS Code Marketplace</a></span></div>
+                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Star the repo</strong> on <a href="https://github.com/openAPI-Studio" target="_blank" class="text-cta hover:underline">GitHub</a></span></div>
+                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Report bugs</strong> via GitHub Issues — helps us fix things faster</span></div>
+                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Spread the word</strong> — tell a colleague, tweet about it, write a blog post</span></div>
             </div>
         </section>
     </main>
@@ -124,7 +101,6 @@ document.getElementById('theme-toggle').onclick=()=>{const dark=!document.docume
 function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
 function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
 document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
 </script>
 <a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
 </body>

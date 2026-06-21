@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-page="license" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License — API Studio Docs</title>
+    <meta name="description" content="API Studio licensing — free until Dec 31 2026, how to activate, update, and compare free vs paid features.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>body{font-family:'IBM Plex Sans',sans-serif}code,.font-mono{font-family:'JetBrains Mono',monospace}.sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}</style>
+</head>
+<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
+<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4"><a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a><div class="hidden md:flex items-center gap-4 ml-4"><a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a><a href="./" class="text-sm text-cta font-medium">Docs</a><a href="../support.html" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Support</a></div><div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block"><input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50"></div><div class="flex items-center gap-3 ml-auto md:ml-0"><span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.58</span><button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted"><svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav>
+<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
+<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20">
+    <input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a></aside>
+
+<div class="flex pt-24">
+    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
+
+    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
+        <aside class="hidden xl:block fixed top-28 right-8 w-44">
+            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
+            <nav class="space-y-1 text-xs">
+                <a href="#free-trial" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Free Trial</a>
+                <a href="#comparison" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Free vs Paid</a>
+                <a href="#activate" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Activating</a>
+                <a href="#update" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Updating License</a>
+                <a href="#purchase" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Purchase</a>
+                <a href="#faq" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">FAQ</a>
+            </nav>
+        </aside>
+
+        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
+        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">SETTINGS & DATA</p>
+        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">License</h1>
+        <p class="text-gray-600 dark:text-muted mb-10">API Studio is free to use with all Advanced Mode features included until December 31, 2026. No credit card required.</p>
+
+        <!-- Free Trial Banner -->
+        <section class="mb-12 scroll-mt-28" id="free-trial">
+            <div class="p-6 rounded-xl border border-cta/30 bg-cta/5">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-lg bg-cta/10 flex items-center justify-center"><svg class="w-5 h-5 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                    <div>
+                        <h2 class="text-xl font-semibold">Free Until December 31, 2026</h2>
+                        <p class="text-sm text-gray-600 dark:text-muted">All features unlocked — no restrictions, no trial limits.</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-muted">A built-in trial license is automatically applied on installation. You get full access to Advanced Mode including Mock Servers, MCP Servers, Secret Vault, Testing, Scripts, and all professional features at no cost during the trial period.</p>
+            </div>
+        </section>
+
+        <!-- Comparison -->
+        <section class="mb-12 scroll-mt-28" id="comparison">
+            <h2 class="text-xl font-semibold mb-5">Free vs Paid</h2>
+            <p class="text-sm text-gray-600 dark:text-muted mb-4">After December 31, 2026, a license key will be required for Advanced Mode features. Simple Mode remains free forever.</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+                    <thead class="bg-gray-50 dark:bg-surface">
+                        <tr>
+                            <th class="text-left px-4 py-3 font-semibold border-b border-gray-200 dark:border-border">Feature</th>
+                            <th class="text-center px-4 py-3 font-semibold border-b border-gray-200 dark:border-border">Free (Simple Mode)</th>
+                            <th class="text-center px-4 py-3 font-semibold border-b border-gray-200 dark:border-border text-cta">Licensed (Advanced)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
+                        <tr><td class="px-4 py-2.5">HTTP, GraphQL, WebSocket, gRPC</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr><td class="px-4 py-2.5">Collections & Environments</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr><td class="px-4 py-2.5">Request History & Tabs</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr><td class="px-4 py-2.5">Params, Headers, Body, Auth</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr><td class="px-4 py-2.5">Code Export (15 languages)</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr><td class="px-4 py-2.5">Import/Export (Postman, OpenAPI, cURL)</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr><td class="px-4 py-2.5">CLI Runner</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr class="bg-gray-50/50 dark:bg-surface/50"><td class="px-4 py-2.5 font-medium">GUI Test Rules & Set Variables</td><td class="px-4 py-2.5 text-center text-gray-400">—</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr class="bg-gray-50/50 dark:bg-surface/50"><td class="px-4 py-2.5 font-medium">Pre-Request & Test Scripts</td><td class="px-4 py-2.5 text-center text-gray-400">—</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr class="bg-gray-50/50 dark:bg-surface/50"><td class="px-4 py-2.5 font-medium">Mock Servers</td><td class="px-4 py-2.5 text-center text-gray-400">—</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr class="bg-gray-50/50 dark:bg-surface/50"><td class="px-4 py-2.5 font-medium">MCP Servers (AI integration)</td><td class="px-4 py-2.5 text-center text-gray-400">—</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr class="bg-gray-50/50 dark:bg-surface/50"><td class="px-4 py-2.5 font-medium">Secret Vault (encrypted)</td><td class="px-4 py-2.5 text-center text-gray-400">—</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr class="bg-gray-50/50 dark:bg-surface/50"><td class="px-4 py-2.5 font-medium">Collection Runs & HTML Reports</td><td class="px-4 py-2.5 text-center text-gray-400">—</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                        <tr class="bg-gray-50/50 dark:bg-surface/50"><td class="px-4 py-2.5 font-medium">Per-Request Proxy & TLS Certs</td><td class="px-4 py-2.5 text-center text-gray-400">—</td><td class="px-4 py-2.5 text-center text-cta font-semibold">✓</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-gray-500 dark:text-muted mt-3">Simple Mode features remain free forever — no time limit. Only Advanced Mode features require a license after the trial.</p>
+        </section>
+
+        <!-- Activating -->
+        <section class="mb-12 scroll-mt-28" id="activate">
+            <h2 class="text-xl font-semibold mb-4">Activating a License</h2>
+            <p class="text-sm text-gray-600 dark:text-muted mb-4">When the built-in trial expires (or if you have a purchased license key), activate it:</p>
+            <ol class="space-y-3 text-sm text-gray-600 dark:text-muted mb-5">
+                <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">1</span><span>Open Settings (gear icon) → click <strong class="text-gray-900 dark:text-text">Advanced Mode</strong> toggle</span></li>
+                <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">2</span><span>The License Activation modal appears</span></li>
+                <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">3</span><span>Paste your license key (JWT format)</span></li>
+                <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">4</span><span>Click <strong class="text-gray-900 dark:text-text">Activate</strong></span></li>
+                <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">5</span><span>On success, Advanced Mode enables automatically</span></li>
+            </ol>
+            <img src="../assets/License apply popup up.png" alt="License activation modal with key input field" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm">
+            <p class="text-xs text-gray-400 dark:text-muted mt-2">License activation modal — paste your key and click Activate</p>
+
+            <div class="mt-5 p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
+                <strong class="text-gray-900 dark:text-text">CLI activation:</strong>
+                <pre class="mt-2 font-mono overflow-x-auto">openpost license activate &lt;your-license-key&gt;
+openpost license status</pre>
+            </div>
+        </section>
+
+        <!-- Updating -->
+        <section class="mb-12 scroll-mt-28" id="update">
+            <h2 class="text-xl font-semibold mb-4">Updating Your License</h2>
+            <p class="text-sm text-gray-600 dark:text-muted mb-4">To update an existing license (e.g., after renewal):</p>
+            <ol class="space-y-3 text-sm text-gray-600 dark:text-muted">
+                <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">1</span><span>Settings gear → scroll to License section</span></li>
+                <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">2</span><span>Click <strong class="text-gray-900 dark:text-text">Change License Key</strong></span></li>
+                <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">3</span><span>Paste the new key → Activate</span></li>
+            </ol>
+            <p class="text-sm text-gray-600 dark:text-muted mt-4">To deactivate: Settings → <strong class="text-gray-900 dark:text-text">Deactivate License</strong>. This reverts to Simple Mode. If the built-in trial is still valid, it will re-apply on next VS Code restart.</p>
+            <div class="mt-4 p-4 rounded-lg border border-gray-100 dark:border-border/50 text-xs text-gray-500 dark:text-muted">
+                <strong class="text-gray-900 dark:text-text">License details visible in settings:</strong> status (valid/expired), expiry date, and machine ID (for future use).
+            </div>
+        </section>
+
+        <!-- Purchase -->
+        <section class="mb-12 scroll-mt-28" id="purchase">
+            <h2 class="text-xl font-semibold mb-4">Purchase a License</h2>
+            <p class="text-sm text-gray-600 dark:text-muted mb-4">After the free trial ends, you can purchase a license to continue using Advanced Mode features.</p>
+            <div class="p-6 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface text-center">
+                <div class="text-3xl mb-3">🎟️</div>
+                <h3 class="font-semibold mb-1">$15 / year</h3>
+                <p class="text-sm text-gray-500 dark:text-muted mb-4">Annual subscription for Advanced Mode. Cancel anytime — reverts to Simple Mode.</p>
+                <a href="#" class="inline-flex px-6 py-2.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Purchase License (Coming Soon)</a>
+                <p class="text-xs text-gray-400 dark:text-muted mt-3">Pricing and purchase page will be available before the trial ends.</p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="mb-12 scroll-mt-28" id="faq">
+            <h2 class="text-xl font-semibold mb-5">FAQ</h2>
+            <div class="space-y-4">
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <h4 class="font-semibold text-sm mb-1">What happens after Dec 31, 2026?</h4>
+                    <p class="text-xs text-gray-500 dark:text-muted">Without a license, the extension reverts to Simple Mode. All your data remains intact — collections, environments, history are never deleted. You just lose access to advanced features until you activate a key.</p>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <h4 class="font-semibold text-sm mb-1">Is Simple Mode always free?</h4>
+                    <p class="text-xs text-gray-500 dark:text-muted">Yes. HTTP/GraphQL/WebSocket/gRPC requests, collections, environments, history, code export, and import/export are free forever with no time limit.</p>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <h4 class="font-semibold text-sm mb-1">Is it a subscription?</h4>
+                    <p class="text-xs text-gray-500 dark:text-muted">Yes — $15/year. If you don't renew, the extension reverts to Simple Mode. Your data is never deleted. You can renew anytime to re-enable Advanced Mode.</p>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <h4 class="font-semibold text-sm mb-1">Does the license require internet?</h4>
+                    <p class="text-xs text-gray-500 dark:text-muted">No. License validation is fully offline — Ed25519 signature verification with an embedded public key. No license server communication at runtime.</p>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+                    <h4 class="font-semibold text-sm mb-1">Where is the license stored?</h4>
+                    <p class="text-xs text-gray-500 dark:text-muted">In <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">~/.openpost/global/config.json</code> as the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">licenseKey</code> field. Global scope — one license covers all workspaces.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<footer class="md:ml-64 border-t border-gray-200 dark:border-border mt-16 px-6 md:px-12 py-8"><div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-muted"><span class="font-mono font-bold text-cta">Vectored</span><div class="flex gap-6"><a href="../../" class="hover:text-cta">Home</a><a href="../../macro-toolkit/" class="hover:text-cta">Macro Toolkit</a><a href="https://github.com/openAPI-Studio" target="_blank" class="hover:text-cta">GitHub</a></div></div></footer>
+
+<script>
+const sections=[{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}];
+const currentPage=document.documentElement.getAttribute('data-page');
+function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
+function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
+buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
+function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
+const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
+document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
+function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
+function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
+document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
+(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
+</script>
+<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+</body>
+</html>

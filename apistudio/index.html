@@ -344,7 +344,7 @@ const sections=[
 {title:'SECRET VAULT',links:[['Creating a Vault','docs/creating-vault.html'],['Managing Secrets','docs/managing-secrets.html'],['Secret Sets','docs/secret-sets.html'],['Certificates','docs/certificates.html']]},
 {title:'CLI',links:[['CLI Overview','docs/cli-overview.html'],['Running Collections','docs/cli-run.html'],['Import & Export','docs/cli-import-export.html'],['Vault Commands','docs/cli-vault.html'],['Serve Command','docs/cli-serve.html']]},
 {title:'CODE EXPORT',links:[['Supported Languages','docs/code-export-languages.html'],['AI Prompt Generator','docs/ai-prompts.html']]},
-{title:'SETTINGS & DATA',links:[['Settings','docs/settings.html'],['Proxy Configuration','docs/proxy.html'],['Data Storage','docs/data-storage.html'],['Keyboard Shortcuts','docs/keyboard-shortcuts.html']]}
+{title:'SETTINGS & DATA',links:[['Settings','docs/settings.html'],['Proxy Configuration','docs/proxy.html'],['Data Storage','docs/data-storage.html'],['Keyboard Shortcuts','docs/keyboard-shortcuts.html'],['License','docs/license.html'],['Support Us','docs/support-us.html']]}
 ];
 
 const currentPage=document.documentElement.getAttribute('data-page');
@@ -392,5 +392,6 @@ function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var na
 function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
 document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
 </script>
+<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
 </body>
 </html>
