@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FormForge — Documentation</title>
-  <meta name="description" content="Build custom forms in Confluence with drag-and-drop builder, 13 field types, theming, access control, multi-section navigation, and response management.">
+  <meta name="description" content="Build custom forms in Confluence with drag-and-drop builder, 13 field types, theming, access control, multi-section navigation, response management, and post-submit automation across Confluence, Jira, Slack, and Teams.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
@@ -50,7 +50,7 @@
     <!-- Hero -->
     <div class="mt-6 mb-16">
       <h1 class="text-4xl sm:text-5xl font-bold mb-4">FormForge</h1>
-      <p class="text-lg text-muted max-w-2xl mb-8">by Vectored — Build custom forms in Confluence with a drag-and-drop builder, 13 field types, theming, access control, multi-section navigation, and response management.</p>
+      <p class="text-lg text-muted max-w-2xl mb-8">by Vectored — Build custom forms in Confluence with a drag-and-drop builder, 13 field types, theming, access control, multi-section navigation, response management, and post-submit automation across Confluence, Jira, Slack, and Teams.</p>
       <a href="docs/getting-started.html" class="inline-block bg-cta text-bg font-semibold px-6 py-3 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Read the Docs</a>
     </div>
 
@@ -123,9 +123,17 @@
           </div>
         </details>
         <details class="bg-surface border border-border rounded-xl overflow-hidden group">
+          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Post-Submit Automation<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-4 text-sm text-muted space-y-2">
+            <p><strong>Visual automation canvas:</strong> chain actions that run after every submission — create Confluence pages, comments, tasks, labels, watchers, attachments; create and update Jira issues; send Slack and Microsoft Teams messages via webhooks.</p>
+            <p><strong>Flow control:</strong> If/Else branching on answer values, per-step enable/disable, duplicate steps, insert anywhere. Run after each submission or in batches (with hourly auto-flush). Batch branching splits each batch into matching groups.</p>
+            <p><strong>Safety:</strong> run as app or submitter, author permission preflight on save and at execution, dry-run test mode, and a full execution log per form. Site-wide admin kill switch.</p>
+          </div>
+        </details>
+        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
           <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Dashboard<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
           <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p>Bento grid card layout. Search and sort. Form cards with accent color strips. Quick actions: Edit, Share, Duplicate, Results, Delete. Active form counter.</p>
+            <p>Card grid with Owner/Editor role badges, form descriptions, response/field/collaborator stats, and last-response times. Search and sort (newest, oldest, A–Z, most responses). Quick actions: Edit, Share, Duplicate, Results, Delete (owner only, with confirmation).</p>
           </div>
         </details>
       </div>
@@ -216,7 +224,7 @@
     upd();
   });
 })();
-    var docs=[{name:'Getting Started',page:'docs/getting-started.html',tags:'install setup create first'},{name:'Building Forms',page:'docs/building-forms.html',tags:'builder canvas editor questions'},{name:'Field Types',page:'docs/field-types.html',tags:'text email number select date time rating signature user group link'},{name:'Smart Values',page:'docs/smart-values.html',tags:'tokens dynamic auto-fill user name email timezone'},{name:'Validation',page:'docs/validation.html',tags:'required regex min max error constraints'},{name:'Multi-Section',page:'docs/multi-section.html',tags:'sections pages steps next back pro'},{name:'Embedding',page:'docs/embedding.html',tags:'macro page embed share link direct'},{name:'Styling',page:'docs/styling.html',tags:'theme color banner font decoration'},{name:'Access Control',page:'docs/access-control.html',tags:'permission login groups anonymous limit'},{name:'Collaboration',page:'docs/collaboration.html',tags:'co-owner editor sharing'},{name:'Responses',page:'docs/responses.html',tags:'submissions export csv pdf results'},{name:'Dashboard',page:'docs/dashboard.html',tags:'search filter delete duplicate'},{name:'Free vs Pro',page:'docs/free-vs-pro.html',tags:'pricing plan limit upgrade'}];
+    var docs=[{name:'Getting Started',page:'docs/getting-started.html',tags:'install setup create first'},{name:'Building Forms',page:'docs/building-forms.html',tags:'builder canvas editor questions'},{name:'Field Types',page:'docs/field-types.html',tags:'text email number select date time rating signature user group link'},{name:'Smart Values',page:'docs/smart-values.html',tags:'tokens dynamic auto-fill user name email timezone'},{name:'Validation',page:'docs/validation.html',tags:'required regex min max error constraints'},{name:'Multi-Section',page:'docs/multi-section.html',tags:'sections pages steps next back pro'},{name:'Embedding',page:'docs/embedding.html',tags:'macro page embed share link direct'},{name:'Styling',page:'docs/styling.html',tags:'theme color banner font decoration'},{name:'Access Control',page:'docs/access-control.html',tags:'permission login groups anonymous limit'},{name:'Collaboration',page:'docs/collaboration.html',tags:'co-owner editor sharing'},{name:'Responses',page:'docs/responses.html',tags:'submissions export csv pdf results'},{name:'Automation',page:'docs/automation.html',tags:'automation actions jira slack teams webhook conditions branch batch notify test run logs'},{name:'Dashboard',page:'docs/dashboard.html',tags:'search filter delete duplicate'},{name:'Free vs Pro',page:'docs/free-vs-pro.html',tags:'pricing plan limit upgrade'}];
     function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
     wire('doc-search','search-results');
   </script>

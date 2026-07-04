@@ -59,6 +59,7 @@
         <a href="access-control.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="access-control">Access Control</a>
         <a href="collaboration.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="collaboration">Collaboration</a>
         <a href="responses.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="responses">Responses & Export</a>
+        <a href="automation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="automation">Automation</a>
         <a href="dashboard.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="dashboard">Dashboard</a>
         <a href="free-vs-pro.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="free-vs-pro">Free vs Pro</a>
       </nav>
@@ -70,13 +71,20 @@
       <p class="text-muted mb-6">Manage all your forms from the FormForge dashboard — search, sort, and take actions at a glance.</p>
 
       <div class="bg-surface border border-border rounded-xl p-5 mb-6">
-        <h2 class="text-xl font-semibold mb-3">Search & Filter</h2>
-        <p class="text-muted">Use the search bar to find forms by name. Sort the list by newest, oldest, or alphabetical order.</p>
+        <h2 class="text-xl font-semibold mb-3">Search & Sort</h2>
+        <p class="text-muted">Use the search bar to find forms by name. Sort by newest, oldest, alphabetical, or <strong>most responses</strong>. The header summarises your library — e.g. "5 forms &middot; 3 owned &middot; 2 shared with you".</p>
       </div>
 
       <div class="bg-surface border border-border rounded-xl p-5 mb-6">
         <h2 class="text-xl font-semibold mb-3">Form Cards</h2>
-        <p class="text-muted">Forms are displayed in a card grid layout. Each card shows the form name and an accent color strip matching the form's theme.</p>
+        <p class="text-muted mb-2">Forms are displayed in a card grid. Each card shows at a glance:</p>
+        <ul class="list-disc list-inside text-muted space-y-1">
+          <li>An accent color strip matching the form's theme</li>
+          <li>An <strong>Owner</strong> or <strong>Editor</strong> badge — your role on that form</li>
+          <li>The form description</li>
+          <li>Stats: response count, field count, and how many people have edit access</li>
+          <li>Created date and time of the last response</li>
+        </ul>
       </div>
 
       <div class="bg-surface border border-border rounded-xl p-5 mb-6">
@@ -84,10 +92,10 @@
         <p class="text-muted mb-2">Each form card provides quick actions:</p>
         <ul class="list-disc list-inside text-muted space-y-1">
           <li><strong>Edit</strong> — open the form builder</li>
-          <li><strong>Share</strong> — get links and embed codes</li>
-          <li><strong>Duplicate</strong> — clone the form</li>
-          <li><strong>Results</strong> — view responses</li>
-          <li><strong>Delete</strong> — remove with confirmation modal</li>
+          <li><strong>Share</strong> — direct link, embed instructions, and form ID</li>
+          <li><strong>Duplicate</strong> — clone the form (you become the copy's owner)</li>
+          <li><strong>Results</strong> — responses table, analytics dashboard, and automation logs</li>
+          <li><strong>Delete</strong> — owner only; removes the form and all responses after confirmation</li>
         </ul>
       </div>
 
@@ -110,7 +118,7 @@
     var page=location.pathname.split('/').pop().replace('.html','');
     document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
   })();
-    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'install setup create first'},{name:'Building Forms',page:'building-forms.html',tags:'builder canvas editor questions'},{name:'Field Types',page:'field-types.html',tags:'text email number select date time rating signature user group link'},{name:'Smart Values',page:'smart-values.html',tags:'tokens dynamic auto-fill user name email timezone'},{name:'Validation',page:'validation.html',tags:'required regex min max error constraints'},{name:'Multi-Section',page:'multi-section.html',tags:'sections pages steps next back pro'},{name:'Embedding',page:'embedding.html',tags:'macro page embed share link direct'},{name:'Styling',page:'styling.html',tags:'theme color banner font decoration'},{name:'Access Control',page:'access-control.html',tags:'permission login groups anonymous limit'},{name:'Collaboration',page:'collaboration.html',tags:'co-owner editor sharing'},{name:'Responses',page:'responses.html',tags:'submissions export csv pdf results'},{name:'Dashboard',page:'dashboard.html',tags:'search filter delete duplicate'},{name:'Free vs Pro',page:'free-vs-pro.html',tags:'pricing plan limit upgrade'}];
+    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'install setup create first'},{name:'Building Forms',page:'building-forms.html',tags:'builder canvas editor questions'},{name:'Field Types',page:'field-types.html',tags:'text email number select date time rating signature user group link'},{name:'Smart Values',page:'smart-values.html',tags:'tokens dynamic auto-fill user name email timezone'},{name:'Validation',page:'validation.html',tags:'required regex min max error constraints'},{name:'Multi-Section',page:'multi-section.html',tags:'sections pages steps next back pro'},{name:'Embedding',page:'embedding.html',tags:'macro page embed share link direct'},{name:'Styling',page:'styling.html',tags:'theme color banner font decoration'},{name:'Access Control',page:'access-control.html',tags:'permission login groups anonymous limit'},{name:'Collaboration',page:'collaboration.html',tags:'co-owner editor sharing'},{name:'Responses',page:'responses.html',tags:'submissions export csv pdf results'},{name:'Automation',page:'automation.html',tags:'automation actions jira slack teams webhook conditions branch batch notify test run logs'},{name:'Dashboard',page:'dashboard.html',tags:'search filter delete duplicate'},{name:'Free vs Pro',page:'free-vs-pro.html',tags:'pricing plan limit upgrade'}];
     function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
     wire('doc-search','search-results');
   </script>

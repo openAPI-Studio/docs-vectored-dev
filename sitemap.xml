@@ -20,4 +20,19 @@
   <url><loc>https://docs.vectored.dev/macrotoolkit/support.html</loc><priority>0.6</priority></url>
   <url><loc>https://docs.vectored.dev/macrotoolkit/privacy.html</loc><priority>0.3</priority></url>
   <url><loc>https://docs.vectored.dev/macrotoolkit/terms.html</loc><priority>0.3</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/</loc><priority>1.0</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/getting-started.html</loc><priority>0.9</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/building-forms.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/field-types.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/smart-values.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/validation.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/multi-section.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/embedding.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/styling.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/access-control.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/collaboration.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/responses.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/automation.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/dashboard.html</loc><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/forms/docs/free-vs-pro.html</loc><priority>0.8</priority></url>
 </urlset>
