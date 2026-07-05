@@ -3,21 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vectored — Developer Tools Documentation</title>
-  <meta name="description" content="Documentation hub for Vectored developer tools. Atlassian apps, VS Code extensions, and more.">
+  <title>Vectored — Developer Tools for Atlassian, VS Code & CLI | Documentation</title>
+  <meta name="description" content="Vectored builds developer tools for Atlassian Confluence, Jira, VS Code, and the command line — Macro Toolkit, Forms, API Studio, and more. Documentation, guides, and support.">
+  <meta property="og:title" content="Vectored — Developer Tools Documentation">
+  <meta property="og:description" content="Documentation hub for the Vectored product suite: Confluence macros, forms & automation, API tooling.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.vectored.dev/">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>tailwind.config={theme:{extend:{colors:{primary:'#171717',secondary:'#404040',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
   <style>
     body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}
     html.light body{background:#FAFAFA;color:#171717}
-    html.light .bg-surface{background-color:#FFFFFF!important}
+    html.light .bg-surface,html.light .bg-surface\/90,html.light .bg-surface\/60{background-color:#FFFFFF!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
     html.light .text-muted{color:#525252!important}
     html.light .text-text{color:#171717!important}
+    html.light .hover\:text-text:hover{color:#171717!important}
     html.light .border-border{border-color:#E5E5E5!important}
     html.light .text-cta{color:#16A34A!important}
     html.light .bg-cta\/10{background-color:rgba(22,163,74,0.08)!important}
     html.light .border-cta\/30{border-color:rgba(22,163,74,0.25)!important}
+    .hero-glow{background:radial-gradient(ellipse 60% 50% at 50% -10%,rgba(34,197,94,0.13),transparent)}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
   <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
@@ -25,126 +32,198 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="px-4 sm:px-6 lg:px-8 py-8 max-w-4xl mx-auto w-full flex items-center justify-between">
-    <div class="leading-tight">
-      <span class="font-mono font-bold text-xl text-cta block">Vectored</span>
-      <span class="text-xs text-muted">Tools for developers</span>
-    </div>
-    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
-      <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-      <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-    </button>
-  </header>
+  <!-- Nav -->
+  <div id="vc-header"></div>
+  <script src="assets/header.js"></script>
 
-  <main class="flex-1 px-4 sm:px-6 lg:px-8 pb-20 max-w-4xl mx-auto w-full">
+  <main class="flex-1">
 
-    <!-- Atlassian Section -->
-    <section class="mb-16">
-      <div class="flex items-center gap-3 mb-8">
-        <svg class="w-6 h-6" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.1186 14.0842C10.9735 13.8943 10.7399 13.7941 10.5025 13.8199C10.265 13.8457 10.0584 13.9938 9.95749 14.2105L4.07422 25.9816C3.96525 26.1998 3.9769 26.4588 4.10501 26.6662C4.23312 26.8737 4.45943 27 4.70312 27H12.8953C13.1633 27.0062 13.4099 26.8537 13.5242 26.611C15.2913 22.9568 14.2203 17.4006 11.1186 14.0842Z" fill="url(#atlassian-grad)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.4339 3.37762C12.4515 7.96969 12.1073 13.7944 14.528 18.7062L18.4776 26.6108C18.5966 26.8492 18.8401 26.9998 19.1064 26.9998H27.2971C27.5408 26.9998 27.7671 26.8735 27.8952 26.6661C28.0233 26.4586 28.035 26.1996 27.926 25.9815C27.926 25.9815 16.9068 3.92489 16.6299 3.3732C16.5181 3.14406 16.2853 2.99906 16.0305 3C15.7757 3.00095 15.5439 3.14765 15.4339 3.37762Z" fill="#2684FF"/><defs><linearGradient id="atlassian-grad" x1="14.3428" y1="15.9009" x2="6.09079" y2="24.759" gradientUnits="userSpaceOnUse"><stop stop-color="#0052CC"/><stop offset="0.923" stop-color="#2684FF"/></linearGradient></defs></svg>
-        <h2 class="font-semibold text-lg">Atlassian</h2>
-      </div>
-
-      <!-- Confluence sub-section -->
-      <div class="mb-8">
-        <div class="flex items-center gap-2 mb-4 ml-1">
-          <svg class="w-5 h-5" viewBox="0 -5 256 256" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient x1="99.14%" y1="112.71%" x2="33.86%" y2="37.75%" id="wiki-g1"><stop stop-color="#0052CC" offset="18%"/><stop stop-color="#2684FF" offset="100%"/></linearGradient><linearGradient x1="0.93%" y1="-12.58%" x2="66.18%" y2="62.31%" id="wiki-g2"><stop stop-color="#0052CC" offset="18%"/><stop stop-color="#2684FF" offset="100%"/></linearGradient></defs><path d="M9.26 187.33C6.62 191.64 3.65 196.63 1.13 200.62C-1.12 204.43 0.09 209.34 3.86 211.67L56.68 244.18C58.53 245.32 60.77 245.67 62.89 245.15C65 244.63 66.82 243.29 67.93 241.41C70.05 237.88 72.77 233.29 75.74 228.37C96.66 193.83 117.71 198.06 155.66 216.18L208.04 241.09C210.02 242.03 212.3 242.13 214.36 241.37C216.42 240.6 218.08 239.03 218.97 237.02L244.12 180.14C245.9 176.08 244.09 171.34 240.06 169.49C229 164.29 207.02 153.93 187.23 144.38C116.04 109.8 55.54 112.04 9.26 187.33Z" fill="url(#wiki-g1)"/><path d="M246.12 58.23C248.76 53.92 251.72 48.93 254.24 44.94C256.5 41.13 255.29 36.22 251.52 33.89L198.7 1.39C196.83 0.13 194.52-0.3 192.32 0.21C190.13 0.72 188.24 2.12 187.12 4.07C185 7.6 182.28 12.19 179.31 17.11C158.39 51.65 137.34 47.42 99.39 29.3L47.18 4.52C45.19 3.57 42.91 3.47 40.85 4.24C38.79 5 37.13 6.57 36.25 8.58L11.09 65.46C9.32 69.53 11.12 74.26 15.16 76.11C26.21 81.31 48.19 91.67 67.98 101.22C139.33 135.76 199.83 133.44 246.12 58.23Z" fill="url(#wiki-g2)"/></svg>
-          <span class="text-sm font-medium text-muted">Confluence</span>
+    <!-- Hero -->
+    <section class="hero-glow px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <div class="max-w-6xl mx-auto text-center">
+        <p class="font-mono text-xs text-cta tracking-widest uppercase mb-4">Documentation Hub</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight max-w-3xl mx-auto">Tools your teams already live in, made more powerful.</h1>
+        <p class="text-lg text-muted max-w-2xl mx-auto mt-6">Vectored builds production-grade apps for Atlassian Confluence &amp; Jira, VS Code, and the command line — macros, forms, automation, and API tooling used by teams every day.</p>
+        <div class="flex flex-wrap justify-center gap-3 mt-8">
+          <a href="#products" class="bg-cta text-bg font-semibold px-6 py-3 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Explore the products</a>
+          <a href="macrotoolkit/support.html" class="border border-border text-text font-semibold px-6 py-3 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer">Talk to support</a>
         </div>
-        <div class="space-y-3 ml-1">
-          <a href="macrotoolkit/" class="block bg-surface border border-border rounded-xl p-5 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Macro Toolkit</h3>
-                <p class="text-sm text-muted mt-1">15 powerful macros — diagrams, polls, charts, markdown, and more</p>
-              </div>
+
+        <!-- Stats band -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-3xl mx-auto">
+          <div class="bg-surface border border-border rounded-xl px-4 py-5"><div class="font-mono text-2xl font-bold text-cta">3</div><div class="text-xs text-muted mt-1">Products live today</div></div>
+          <div class="bg-surface border border-border rounded-xl px-4 py-5"><div class="font-mono text-2xl font-bold text-cta">15+</div><div class="text-xs text-muted mt-1">Confluence macros</div></div>
+          <div class="bg-surface border border-border rounded-xl px-4 py-5"><div class="font-mono text-2xl font-bold text-cta">4</div><div class="text-xs text-muted mt-1">Automation providers</div></div>
+          <div class="bg-surface border border-border rounded-xl px-4 py-5"><div class="font-mono text-2xl font-bold text-cta">100%</div><div class="text-xs text-muted mt-1">Runs on Atlassian Forge</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="px-4 sm:px-6 lg:px-8 py-16">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-2">Products</h2>
+        <p class="text-muted mb-10">Everything ships with full documentation, a support channel, and Marketplace-managed billing where applicable.</p>
+
+        <div class="grid md:grid-cols-2 gap-5">
+
+          <!-- Macro Toolkit -->
+          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="text-lg font-semibold">Macro Toolkit <span class="block text-xs font-normal text-muted mt-0.5">for Confluence</span></h3>
               <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
             </div>
-          </a>
-          <a href="forms/" class="block bg-surface border border-border rounded-xl p-5 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
-            <div class="flex items-center justify-between gap-4">
-              <div class="flex items-center gap-4">
-                <img src="forms/assets/icon.png" alt="" class="w-9 h-9 shrink-0 object-contain rounded-lg">
-                <div>
-                  <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Forms</h3>
-                  <p class="text-sm text-muted mt-1">Dynamic forms and data collection</p>
-                </div>
-              </div>
-              <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
+            <p class="text-sm text-muted mb-4">15 macros for pages that do more — Mermaid, PlantUML, draw.io and Excalidraw diagrams, polls, mood boards, charts, markdown, Swagger/OpenAPI viewers, carousels, and more.</p>
+            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Diagrams</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Polls</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Charts</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Markdown</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">OpenAPI</span>
             </div>
-          </a>
-          <div class="bg-surface border border-border rounded-xl p-5 opacity-50 cursor-default">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <h3 class="font-semibold">Front Door</h3>
-                <p class="text-sm text-muted mt-1">Customizable landing pages and portals</p>
-              </div>
-              <span class="shrink-0 text-xs font-mono text-muted px-2.5 py-1 border border-border rounded-full">COMING SOON</span>
+            <div class="mt-auto flex flex-wrap gap-3 text-sm">
+              <a href="macrotoolkit/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
+              <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Marketplace</a>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Jira sub-section -->
-      <div>
-        <div class="flex items-center gap-2 mb-4 ml-1">
-          <svg class="w-5 h-5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.6647 15.2165L17.2075 3.1679L16 2L6.62269 11.0697L2.33526 15.2165C1.88825 15.6494 1.88825 16.3506 2.33526 16.7835L10.9025 25.0697L16 30L25.3773 20.9303L25.5225 20.7899L29.6647 16.7835C30.1118 16.3506 30.1118 15.6494 29.6647 15.2165ZM16 20.1394L11.7202 16L16 11.8606L20.2798 16L16 20.1394Z" fill="#2684FF"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.9999 11.8606C13.1979 9.15007 13.1842 4.75994 15.9694 2.0332L6.60352 11.0881L11.701 16.0184L15.9999 11.8606Z" fill="url(#jira-g1)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M20.2912 15.9888L16 20.1392C17.3525 21.4466 18.1124 23.2202 18.1124 25.0695C18.1124 26.9189 17.3525 28.6925 16 29.9999L25.3888 20.9191L20.2912 15.9888Z" fill="url(#jira-g2)"/><defs><linearGradient id="jira-g1" x1="15.2357" y1="7.67312" x2="8.09646" y2="10.7902" gradientUnits="userSpaceOnUse"><stop offset="0.18" stop-color="#0052CC"/><stop offset="1" stop-color="#2684FF"/></linearGradient><linearGradient id="jira-g2" x1="16.8177" y1="24.2786" x2="23.9441" y2="21.1836" gradientUnits="userSpaceOnUse"><stop offset="0.18" stop-color="#0052CC"/><stop offset="1" stop-color="#2684FF"/></linearGradient></defs></svg>
-          <span class="text-sm font-medium text-muted">Jira</span>
-        </div>
-        <div class="space-y-3 ml-1">
-          <div class="bg-surface border border-border rounded-xl p-5 opacity-50 cursor-default">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <h3 class="font-semibold">Time Log</h3>
-                <p class="text-sm text-muted mt-1">Time tracking and work logging for teams</p>
+          <!-- Forms -->
+          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div class="flex items-center gap-3">
+                <img src="forms/assets/icon.png" alt="" class="w-9 h-9 shrink-0 object-contain rounded-lg">
+                <h3 class="text-lg font-semibold">Forms &amp; Frontdoor <span class="block text-xs font-normal text-muted mt-0.5">for Confluence</span></h3>
               </div>
+              <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
+            </div>
+            <p class="text-sm text-muted mb-4">Visual form builder with 13 field types, theming, access control, multi-section navigation — and a post-submit automation canvas that creates Confluence pages, opens Jira issues, and posts to Slack or Teams.</p>
+            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Form builder</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Automation</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Jira · Slack · Teams</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">CSV export</span>
+            </div>
+            <div class="mt-auto flex flex-wrap gap-3 text-sm">
+              <a href="forms/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
+              <a href="forms/docs/automation.html" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Automation guide</a>
+              <a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Marketplace</a>
+            </div>
+          </div>
+
+          <!-- API Studio -->
+          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div class="flex items-center gap-3">
+                <img src="apistudio/assets/chat.png" alt="" class="w-9 h-9 shrink-0 rounded-lg">
+                <h3 class="text-lg font-semibold">API Studio <span class="block text-xs font-normal text-muted mt-0.5">for VS Code &amp; CLI</span></h3>
+              </div>
+              <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
+            </div>
+            <p class="text-sm text-muted mb-4">API development, testing, and documentation without leaving your editor — plus a scriptable CLI for CI pipelines.</p>
+            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">REST client</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Docs generation</span>
+              <span class="bg-bg border border-border rounded-full px-2.5 py-1">CI-ready CLI</span>
+            </div>
+            <div class="mt-auto flex flex-wrap gap-3 text-sm">
+              <a href="apistudio/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
+              <a href="https://github.com/openAPI-Studio" target="_blank" rel="noopener" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Coming soon -->
+          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="text-lg font-semibold text-muted">On the roadmap</h3>
               <span class="shrink-0 text-xs font-mono text-muted px-2.5 py-1 border border-border rounded-full">COMING SOON</span>
             </div>
+            <ul class="text-sm text-muted space-y-3">
+              <li><strong class="text-text">Front Door</strong> — customizable landing pages and portals for Confluence spaces.</li>
+              <li><strong class="text-text">Time Log</strong> — time tracking and work logging for Jira teams.</li>
+            </ul>
+            <p class="text-xs text-muted mt-auto pt-4">Want early access or to influence the roadmap? <a href="macrotoolkit/support.html" class="text-cta hover:underline cursor-pointer">Tell us what you need.</a></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- VS Code & CLI Section -->
-    <section>
-      <div class="flex items-center gap-3 mb-8">
-        <svg class="w-6 h-6 text-[#007ACC]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
-        <h2 class="font-semibold text-lg">VS Code &amp; CLI</h2>
-      </div>
-      <div class="space-y-3 ml-1">
-        <a href="apistudio/" class="block bg-surface border border-border rounded-xl p-5 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
-          <div class="flex items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-              <img src="apistudio/assets/chat.png" alt="" class="w-9 h-9 shrink-0 rounded-lg">
-              <div>
-                <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">API Studio</h3>
-                <p class="text-sm text-muted mt-1">API development, testing, and documentation — extension &amp; CLI</p>
-              </div>
-            </div>
-            <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
+    <!-- Platforms -->
+    <section id="platforms" class="px-4 sm:px-6 lg:px-8 py-16 bg-bg">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-10">Built for the platforms you use</h2>
+        <div class="grid sm:grid-cols-3 gap-5">
+          <div class="bg-surface border border-border rounded-2xl p-6">
+            <svg class="w-8 h-8 mb-4" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.1186 14.0842C10.9735 13.8943 10.7399 13.7941 10.5025 13.8199C10.265 13.8457 10.0584 13.9938 9.95749 14.2105L4.07422 25.9816C3.96525 26.1998 3.9769 26.4588 4.10501 26.6662C4.23312 26.8737 4.45943 27 4.70312 27H12.8953C13.1633 27.0062 13.4099 26.8537 13.5242 26.611C15.2913 22.9568 14.2203 17.4006 11.1186 14.0842Z" fill="url(#atl-g)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.4339 3.37762C12.4515 7.96969 12.1073 13.7944 14.528 18.7062L18.4776 26.6108C18.5966 26.8492 18.8401 26.9998 19.1064 26.9998H27.2971C27.5408 26.9998 27.7671 26.8735 27.8952 26.6661C28.0233 26.4586 28.035 26.1996 27.926 25.9815C27.926 25.9815 16.9068 3.92489 16.6299 3.3732C16.5181 3.14406 16.2853 2.99906 16.0305 3C15.7757 3.00095 15.5439 3.14765 15.4339 3.37762Z" fill="#2684FF"/><defs><linearGradient id="atl-g" x1="14.3428" y1="15.9009" x2="6.09079" y2="24.759" gradientUnits="userSpaceOnUse"><stop stop-color="#0052CC"/><stop offset="0.923" stop-color="#2684FF"/></linearGradient></defs></svg>
+            <h3 class="font-semibold mb-2">Atlassian Confluence</h3>
+            <p class="text-sm text-muted">Macro Toolkit and Forms extend the pages your teams write every day — diagrams, data collection, and automation without leaving Confluence.</p>
           </div>
-        </a>
+          <div class="bg-surface border border-border rounded-2xl p-6">
+            <svg class="w-8 h-8 mb-4" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.6647 15.2165L17.2075 3.1679L16 2L6.62269 11.0697L2.33526 15.2165C1.88825 15.6494 1.88825 16.3506 2.33526 16.7835L10.9025 25.0697L16 30L25.3773 20.9303L25.5225 20.7899L29.6647 16.7835C30.1118 16.3506 30.1118 15.6494 29.6647 15.2165ZM16 20.1394L11.7202 16L16 11.8606L20.2798 16L16 20.1394Z" fill="#2684FF"/></svg>
+            <h3 class="font-semibold mb-2">Atlassian Jira</h3>
+            <p class="text-sm text-muted">Forms automation creates and updates Jira issues from submissions today; dedicated Jira apps like Time Log are on the roadmap.</p>
+          </div>
+          <div class="bg-surface border border-border rounded-2xl p-6">
+            <svg class="w-8 h-8 mb-4 text-[#007ACC]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+            <h3 class="font-semibold mb-2">VS Code &amp; CLI</h3>
+            <p class="text-sm text-muted">API Studio brings request building, testing, and doc generation into the editor, with a CLI that slots into any CI pipeline.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust -->
+    <section id="trust" class="px-4 sm:px-6 lg:px-8 py-16">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-2">Security &amp; trust</h2>
+        <p class="text-muted mb-10 max-w-2xl">Our Atlassian apps are built on Forge, Atlassian's managed cloud platform — designed so your data and permissions stay under your control.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bg-surface border border-border rounded-2xl p-6">
+            <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+            <h3 class="font-semibold mb-2">Hosted on Atlassian Forge</h3>
+            <p class="text-sm text-muted">App logic and storage run inside Atlassian's cloud — no third-party servers holding your content.</p>
+          </div>
+          <div class="bg-surface border border-border rounded-2xl p-6">
+            <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+            <h3 class="font-semibold mb-2">Respects your permissions</h3>
+            <p class="text-sm text-muted">Actions are checked against the author's real Confluence and Jira permissions — at save time and again at execution.</p>
+          </div>
+          <div class="bg-surface border border-border rounded-2xl p-6">
+            <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></div>
+            <h3 class="font-semibold mb-2">Transparent by default</h3>
+            <p class="text-sm text-muted">Execution logs for every automation run, published security and privacy policies, and open documentation.</p>
+          </div>
+          <div class="bg-surface border border-border rounded-2xl p-6">
+            <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
+            <h3 class="font-semibold mb-2">Real support</h3>
+            <p class="text-sm text-muted">A monitored support channel and docs that stay in sync with every release — not an abandoned wiki.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4 mt-8 text-sm">
+          <a href="macrotoolkit/security.html" class="text-cta font-semibold hover:underline cursor-pointer">Security policy &rarr;</a>
+          <a href="macrotoolkit/privacy.html" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Privacy policy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Docs quick links -->
+    <section class="px-4 sm:px-6 lg:px-8 py-16 bg-bg">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-10">Jump into the docs</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+          <a href="forms/docs/getting-started.html" class="bg-surface border border-border rounded-xl p-4 hover:border-cta/40 transition-all duration-200 cursor-pointer group"><span class="font-semibold group-hover:text-cta transition-colors duration-200">Forms — Getting Started</span><p class="text-muted mt-1">Create your first form in minutes.</p></a>
+          <a href="forms/docs/automation.html" class="bg-surface border border-border rounded-xl p-4 hover:border-cta/40 transition-all duration-200 cursor-pointer group"><span class="font-semibold group-hover:text-cta transition-colors duration-200">Forms — Automation</span><p class="text-muted mt-1">Conditions, batches, Jira, Slack &amp; Teams.</p></a>
+          <a href="forms/docs/embedding.html" class="bg-surface border border-border rounded-xl p-4 hover:border-cta/40 transition-all duration-200 cursor-pointer group"><span class="font-semibold group-hover:text-cta transition-colors duration-200">Forms — Embedding</span><p class="text-muted mt-1">Put forms on any Confluence page.</p></a>
+          <a href="macrotoolkit/docs/index.html" class="bg-surface border border-border rounded-xl p-4 hover:border-cta/40 transition-all duration-200 cursor-pointer group"><span class="font-semibold group-hover:text-cta transition-colors duration-200">Macro Toolkit — All Macros</span><p class="text-muted mt-1">The full catalog, macro by macro.</p></a>
+          <a href="macrotoolkit/docs/mermaid.html" class="bg-surface border border-border rounded-xl p-4 hover:border-cta/40 transition-all duration-200 cursor-pointer group"><span class="font-semibold group-hover:text-cta transition-colors duration-200">Macro Toolkit — Mermaid</span><p class="text-muted mt-1">Diagrams as code on Confluence pages.</p></a>
+          <a href="apistudio/" class="bg-surface border border-border rounded-xl p-4 hover:border-cta/40 transition-all duration-200 cursor-pointer group"><span class="font-semibold group-hover:text-cta transition-colors duration-200">API Studio — Overview</span><p class="text-muted mt-1">Extension and CLI documentation.</p></a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-10">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <span class="font-mono font-bold text-lg text-cta">Vectored</span>
-        <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
-          <a href="macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
-          <a href="apistudio/" class="hover:text-text transition-colors duration-200 cursor-pointer">API Studio</a>
-          <a href="macrotoolkit/support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
-          <a href="macrotoolkit/privacy.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a>
-          <a href="macrotoolkit/security.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Security</a>
-          <a href="https://github.com/openAPI-Studio" target="_blank" rel="noopener" class="hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
-        </div>
-      </div>
-      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built for developers.</p>
-    </div>
-  </footer>
+  <!-- Footer -->
+  <div id="vc-footer"></div>
+<script src="assets/footer.js"></script>
 
 <script>
 (function(){
@@ -163,6 +242,32 @@
     localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
     upd();
   });
+})();
+</script>
+
+<script>
+var SEARCH_INDEX=[{"p": "Macro Toolkit", "n": "Macro Toolkit Overview", "u": "macrotoolkit/"}, {"p": "Macro Toolkit", "n": "3D Viewer Macro — Docs", "u": "macrotoolkit/docs/3d-viewer.html"}, {"p": "Macro Toolkit", "n": "Carousel / Slideshow Macro — Docs", "u": "macrotoolkit/docs/carousel.html"}, {"p": "Macro Toolkit", "n": "Clock Macro — Docs", "u": "macrotoolkit/docs/clock.html"}, {"p": "Macro Toolkit", "n": "Draw.io Diagram Macro — Docs", "u": "macrotoolkit/docs/drawio.html"}, {"p": "Macro Toolkit", "n": "Wireframe / Whiteboard Macro — Docs", "u": "macrotoolkit/docs/excalidraw.html"}, {"p": "Macro Toolkit", "n": "Graph / Chart Macro — Docs", "u": "macrotoolkit/docs/graph.html"}, {"p": "Macro Toolkit", "n": "Macro Toolkit — All Docs", "u": "macrotoolkit/docs/index.html"}, {"p": "Macro Toolkit", "n": "Markdown Macro — Docs", "u": "macrotoolkit/docs/markdown.html"}, {"p": "Macro Toolkit", "n": "Mermaid Diagram Macro — Docs", "u": "macrotoolkit/docs/mermaid.html"}, {"p": "Macro Toolkit", "n": "Mood Macro — Docs", "u": "macrotoolkit/docs/mood.html"}, {"p": "Macro Toolkit", "n": "PlantUML Macro — Docs", "u": "macrotoolkit/docs/plantuml.html"}, {"p": "Macro Toolkit", "n": "Poll / Vote Macro — Docs", "u": "macrotoolkit/docs/poll.html"}, {"p": "Macro Toolkit", "n": "Spoiler / Reveal Macro — Docs", "u": "macrotoolkit/docs/spoiler.html"}, {"p": "Macro Toolkit", "n": "Sticky Note Macro — Docs", "u": "macrotoolkit/docs/sticky-note.html"}, {"p": "Macro Toolkit", "n": "Stopwatch Macro — Docs", "u": "macrotoolkit/docs/stopwatch.html"}, {"p": "Macro Toolkit", "n": "Swagger / OpenAPI Macro — Docs", "u": "macrotoolkit/docs/swagger.html"}, {"p": "Macro Toolkit", "n": "Typewriter Macro — Docs", "u": "macrotoolkit/docs/typewriter.html"}, {"p": "Macro Toolkit", "n": "Support — Confluence Macro Toolkit", "u": "macrotoolkit/support.html"}, {"p": "Macro Toolkit", "n": "Privacy Policy — Confluence Macro Toolkit", "u": "macrotoolkit/privacy.html"}, {"p": "Macro Toolkit", "n": "Security Policy — Confluence Macro Toolkit", "u": "macrotoolkit/security.html"}, {"p": "Macro Toolkit", "n": "Terms of Service — Confluence Macro Toolkit", "u": "macrotoolkit/terms.html"}, {"p": "Forms", "n": "Forms & Frontdoor Overview", "u": "forms/"}, {"p": "Forms", "n": "Access Control", "u": "forms/docs/access-control.html"}, {"p": "Forms", "n": "Automation", "u": "forms/docs/automation.html"}, {"p": "Forms", "n": "Building Forms", "u": "forms/docs/building-forms.html"}, {"p": "Forms", "n": "Collaboration", "u": "forms/docs/collaboration.html"}, {"p": "Forms", "n": "Dashboard", "u": "forms/docs/dashboard.html"}, {"p": "Forms", "n": "Embedding Forms", "u": "forms/docs/embedding.html"}, {"p": "Forms", "n": "Field Types", "u": "forms/docs/field-types.html"}, {"p": "Forms", "n": "Free vs Pro", "u": "forms/docs/free-vs-pro.html"}, {"p": "Forms", "n": "Getting Started", "u": "forms/docs/getting-started.html"}, {"p": "Forms", "n": "Multi-Section Forms (Pro)", "u": "forms/docs/multi-section.html"}, {"p": "Forms", "n": "Responses & Export", "u": "forms/docs/responses.html"}, {"p": "Forms", "n": "Smart Values", "u": "forms/docs/smart-values.html"}, {"p": "Forms", "n": "Styling & Theming", "u": "forms/docs/styling.html"}, {"p": "Forms", "n": "Validation & Constraints", "u": "forms/docs/validation.html"}, {"p": "API Studio", "n": "API Studio Overview", "u": "apistudio/"}, {"p": "API Studio", "n": "AI Prompt Generator", "u": "apistudio/docs/ai-prompts.html"}, {"p": "API Studio", "n": "API Key", "u": "apistudio/docs/api-key.html"}, {"p": "API Studio", "n": "Auth Inheritance", "u": "apistudio/docs/auth-inheritance.html"}, {"p": "API Studio", "n": "Auth Overview", "u": "apistudio/docs/auth-overview.html"}, {"p": "API Studio", "n": "AWS Signature V4", "u": "apistudio/docs/aws-sigv4.html"}, {"p": "API Studio", "n": "Basic Auth", "u": "apistudio/docs/basic-auth.html"}, {"p": "API Studio", "n": "Bearer Token", "u": "apistudio/docs/bearer-token.html"}, {"p": "API Studio", "n": "Certificates", "u": "apistudio/docs/certificates.html"}, {"p": "API Studio", "n": "Import & Export", "u": "apistudio/docs/cli-import-export.html"}, {"p": "API Studio", "n": "CLI Overview", "u": "apistudio/docs/cli-overview.html"}, {"p": "API Studio", "n": "Running Collections", "u": "apistudio/docs/cli-run.html"}, {"p": "API Studio", "n": "Serve Command", "u": "apistudio/docs/cli-serve.html"}, {"p": "API Studio", "n": "Vault Commands", "u": "apistudio/docs/cli-vault.html"}, {"p": "API Studio", "n": "Supported Languages", "u": "apistudio/docs/code-export-languages.html"}, {"p": "API Studio", "n": "Collection Editor", "u": "apistudio/docs/collection-editor.html"}, {"p": "API Studio", "n": "Collection MCP", "u": "apistudio/docs/collection-mcp.html"}, {"p": "API Studio", "n": "Collection Runs", "u": "apistudio/docs/collection-runs.html"}, {"p": "API Studio", "n": "Collection JSON Schema", "u": "apistudio/docs/collection-schema.html"}, {"p": "API Studio", "n": "Connecting AI Clients", "u": "apistudio/docs/connecting-ai-clients.html"}, {"p": "API Studio", "n": "Creating Collections", "u": "apistudio/docs/creating-collections.html"}, {"p": "API Studio", "n": "Creating Mock Servers", "u": "apistudio/docs/creating-mock-servers.html"}, {"p": "API Studio", "n": "Creating a Vault", "u": "apistudio/docs/creating-vault.html"}, {"p": "API Studio", "n": "Data Storage", "u": "apistudio/docs/data-storage.html"}, {"p": "API Studio", "n": "Digest Auth", "u": "apistudio/docs/digest-auth.html"}, {"p": "API Studio", "n": "Folders & Organization", "u": "apistudio/docs/folders-organization.html"}, {"p": "API Studio", "n": "GraphQL", "u": "apistudio/docs/graphql.html"}, {"p": "API Studio", "n": "gRPC", "u": "apistudio/docs/grpc.html"}, {"p": "API Studio", "n": "GUI Test Rules", "u": "apistudio/docs/gui-test-rules.html"}, {"p": "API Studio", "n": "Import & Export", "u": "apistudio/docs/import-export.html"}, {"p": "API Studio", "n": "API Studio — All Docs", "u": "apistudio/docs/index.html"}, {"p": "API Studio", "n": "Installation", "u": "apistudio/docs/installation.html"}, {"p": "API Studio", "n": "Keyboard Shortcuts", "u": "apistudio/docs/keyboard-shortcuts.html"}, {"p": "API Studio", "n": "License", "u": "apistudio/docs/license.html"}, {"p": "API Studio", "n": "Management MCP", "u": "apistudio/docs/management-mcp.html"}, {"p": "API Studio", "n": "Managing Environments", "u": "apistudio/docs/managing-environments.html"}, {"p": "API Studio", "n": "Managing Secrets", "u": "apistudio/docs/managing-secrets.html"}, {"p": "API Studio", "n": "Mock MCP", "u": "apistudio/docs/mock-mcp.html"}, {"p": "API Studio", "n": "Request Log", "u": "apistudio/docs/mock-request-log.html"}, {"p": "API Studio", "n": "Routes & Responses", "u": "apistudio/docs/mock-routes.html"}, {"p": "API Studio", "n": "Swagger / OpenAPI", "u": "apistudio/docs/mock-swagger.html"}, {"p": "API Studio", "n": "OAuth 2.0", "u": "apistudio/docs/oauth2.html"}, {"p": "API Studio", "n": "Parameters & Headers", "u": "apistudio/docs/params-headers.html"}, {"p": "API Studio", "n": "Pre-Request Scripts", "u": "apistudio/docs/pre-request-scripts.html"}, {"p": "API Studio", "n": "Proxy Configuration", "u": "apistudio/docs/proxy.html"}, {"p": "API Studio", "n": "Quick Start", "u": "apistudio/docs/quick-start.html"}, {"p": "API Studio", "n": "Request Body", "u": "apistudio/docs/request-body.html"}, {"p": "API Studio", "n": "Request History", "u": "apistudio/docs/request-history.html"}, {"p": "API Studio", "n": "Response Viewer", "u": "apistudio/docs/response-viewer.html"}, {"p": "API Studio", "n": "Scripting API", "u": "apistudio/docs/scripting-api.html"}, {"p": "API Studio", "n": "Secret Sets", "u": "apistudio/docs/secret-sets.html"}, {"p": "API Studio", "n": "Sending Requests", "u": "apistudio/docs/sending-requests.html"}, {"p": "API Studio", "n": "Set Variables", "u": "apistudio/docs/set-variables.html"}, {"p": "API Studio", "n": "Settings", "u": "apistudio/docs/settings.html"}, {"p": "API Studio", "n": "Server-Sent Events", "u": "apistudio/docs/sse.html"}, {"p": "API Studio", "n": "Support Us", "u": "apistudio/docs/support-us.html"}, {"p": "API Studio", "n": "Tabs & Sessions", "u": "apistudio/docs/tabs-sessions.html"}, {"p": "API Studio", "n": "Test Scripts", "u": "apistudio/docs/test-scripts.html"}, {"p": "API Studio", "n": "UI Overview", "u": "apistudio/docs/ui-overview.html"}, {"p": "API Studio", "n": "Variable Priority", "u": "apistudio/docs/variable-priority.html"}, {"p": "API Studio", "n": "Variables & Interpolation", "u": "apistudio/docs/variables-interpolation.html"}, {"p": "API Studio", "n": "WebSocket", "u": "apistudio/docs/websocket.html"}, {"p": "API Studio", "n": "Support", "u": "apistudio/support.html"}, {"p": "Blog", "n": "Blog — All Posts", "u": "blog/"}, {"p": "Blog", "n": "Introducing Forms & Frontdoor for Confluence", "u": "blog/posts/introducing-forms-and-frontdoor.html"}, {"p": "Blog", "n": "Slack and Teams notifications from Confluence forms", "u": "blog/posts/slack-teams-notifications-confluence-forms.html"}];
+(function(){
+  var i=document.getElementById('doc-search'),r=document.getElementById('search-results');
+  if(!i||!r)return;
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  i.addEventListener('input',function(){
+    var q=this.value.toLowerCase().trim();
+    if(!q){r.classList.add('hidden');r.innerHTML='';return;}
+    var terms=q.split(/\s+/);
+    var m=SEARCH_INDEX.filter(function(d){
+      var hay=(d.p+' '+d.n+' '+d.u).toLowerCase();
+      return terms.every(function(t){return hay.indexOf(t)!==-1;});
+    }).slice(0,14);
+    r.innerHTML=m.length?m.map(function(d){
+      return '<a href="'+d.u+'" class="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-bg transition-colors duration-200 cursor-pointer">'
+        +'<span class="shrink-0 text-[10px] font-mono text-cta bg-cta/10 border border-cta/30 rounded-full px-2 py-0.5">'+esc(d.p)+'</span>'
+        +'<span class="text-muted truncate">'+esc(d.n)+'</span></a>';
+    }).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';
+    r.classList.remove('hidden');
+  });
+  i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});
+  document.addEventListener('click',function(e){if(!e.target.closest('#doc-search')&&!e.target.closest('#search-results'))r.classList.add('hidden');});
 })();
 </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Collaboration — FormForge Docs</title>
+  <title>Collaboration — Forms & Frontdoor Docs</title>
   <meta name="description" content="Share editing access, co-own forms">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,24 +24,8 @@
 <body class="min-h-screen">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-border px-4 sm:px-6 lg:px-8 py-3 flex items-center">
-    <a href="../../" class="shrink-0 leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
-    <div class="hidden md:block w-px h-5 bg-border mx-5"></div>
-    <div class="hidden md:flex items-center gap-5 text-sm text-muted">
-      <a href="../../" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
-      <a href="../" class="hover:text-text transition-colors duration-200 cursor-pointer">Forms</a>
-      <a href="../../macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
-    </div>
-    <button id="menu-toggle" class="lg:hidden p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Menu"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-    <div class="flex items-center gap-3 ml-auto">
-      <div class="relative hidden md:block"><input type="text" id="doc-search" placeholder="Search docs..." class="bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text placeholder:text-muted/60 w-40 focus:outline-none focus:border-cta/50 transition-colors duration-200"><div id="search-results" class="absolute top-full right-0 mt-2 w-64 bg-surface border border-border rounded-xl shadow-xl hidden max-h-72 overflow-y-auto z-50"></div></div>
-      <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
-        <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-      </button>
-      <a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="hidden sm:inline-block bg-cta text-bg font-semibold text-sm px-4 py-2 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Try now for free</a>
-    </div>
-  </nav>
+  <div id="vc-header"></div>
+  <script src="../../assets/header.js"></script>
   <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="text-cta hover:underline">Now available on the Atlassian Marketplace &rarr;</a></div>
 
   <!-- Sidebar + Content -->
@@ -107,5 +91,7 @@
     function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
     wire('doc-search','search-results');
   </script>
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
 </body>
 </html>

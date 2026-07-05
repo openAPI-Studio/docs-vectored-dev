@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FormForge — Documentation</title>
+  <title>Forms & Frontdoor — Documentation</title>
   <meta name="description" content="Build custom forms in Confluence with drag-and-drop builder, 13 field types, theming, access control, multi-section navigation, response management, and post-submit automation across Confluence, Jira, Slack, and Teams.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,23 +26,8 @@
 <body class="min-h-screen">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-border px-4 sm:px-6 lg:px-8 py-3 flex items-center">
-    <a href="../" class="shrink-0 leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
-    <div class="hidden md:block w-px h-5 bg-border mx-5"></div>
-    <div class="hidden md:flex items-center gap-5 text-sm text-muted">
-      <a href="../" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
-      <a href="../macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
-    </div>
-    <button id="menu-toggle" class="lg:hidden p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Menu"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-    <div class="flex items-center gap-3 ml-auto">
-      <div class="relative hidden md:block"><input type="text" id="doc-search" placeholder="Search docs..." class="bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text placeholder:text-muted/60 w-40 focus:outline-none focus:border-cta/50 transition-colors duration-200"><div id="search-results" class="absolute top-full right-0 mt-2 w-64 bg-surface border border-border rounded-xl shadow-xl hidden max-h-72 overflow-y-auto z-50"></div></div>
-      <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer text-muted hover:text-text" aria-label="Toggle theme">
-        <svg id="icon-dark" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        <svg id="icon-light" class="w-5 h-5" style="display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-      </button>
-      <a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="hidden sm:inline-block bg-cta text-bg font-semibold text-sm px-4 py-2 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Try now for free</a>
-    </div>
-  </nav>
+  <div id="vc-header"></div>
+  <script src="../assets/header.js"></script>
   <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="text-cta hover:underline">Now available on the Atlassian Marketplace &rarr;</a></div>
 
   <main class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16">
@@ -50,9 +35,23 @@
 
     <!-- Hero -->
     <div class="mt-6 mb-16">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4">FormForge</h1>
-      <p class="text-lg text-muted max-w-2xl mb-8">by Vectored — Build custom forms in Confluence with a drag-and-drop builder, 13 field types, theming, access control, multi-section navigation, response management, and post-submit automation across Confluence, Jira, Slack, and Teams.</p>
-      <div class="flex flex-wrap gap-3"><a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="inline-block bg-cta text-bg font-semibold px-6 py-3 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Try now for free</a><a href="docs/getting-started.html" class="inline-block border border-border text-text font-semibold px-6 py-3 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer">Read the Docs</a></div>
+      <div class="flex items-center gap-4 mb-6">
+        <img src="assets/icon.png" alt="" class="w-16 h-16 rounded-2xl object-contain">
+        <div>
+          <h1 class="text-4xl sm:text-5xl font-bold">Forms &amp; Frontdoor</h1>
+          <p class="font-mono text-xs text-cta tracking-widest uppercase mt-2">by Vectored · for Confluence</p>
+        </div>
+      </div>
+      <p class="text-lg text-muted max-w-2xl mb-8">Build custom forms in Confluence with a visual builder, 13 field types, theming, and access control — then let post-submit automation create Confluence pages, open Jira issues, and post to Slack or Teams. Responses stay in your Atlassian site.</p>
+      <div class="flex flex-wrap gap-3"><a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="inline-block bg-cta text-bg font-semibold px-6 py-3 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Try now for free</a><a href="docs/getting-started.html" class="inline-block border border-border text-text font-semibold px-6 py-3 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer">Read the Docs</a><a href="docs/automation.html" class="inline-block border border-border text-text font-semibold px-6 py-3 rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer">Automation guide</a></div>
+
+      <!-- Stats band -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+        <div class="bg-surface border border-border rounded-xl px-4 py-5"><div class="font-mono text-2xl font-bold text-cta">13</div><div class="text-xs text-muted mt-1">Field types</div></div>
+        <div class="bg-surface border border-border rounded-xl px-4 py-5"><div class="font-mono text-2xl font-bold text-cta">13</div><div class="text-xs text-muted mt-1">Automation actions</div></div>
+        <div class="bg-surface border border-border rounded-xl px-4 py-5"><div class="font-mono text-2xl font-bold text-cta">4</div><div class="text-xs text-muted mt-1">Providers — Confluence, Jira, Slack, Teams</div></div>
+        <div class="bg-surface border border-border rounded-xl px-4 py-5"><div class="font-mono text-2xl font-bold text-cta">13</div><div class="text-xs text-muted mt-1">Themes incl. 7 animated</div></div>
+      </div>
     </div>
 
     <!-- Field Types -->
@@ -77,66 +76,58 @@
 
     <!-- Key Features -->
     <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-6">Features</h2>
-      <div class="space-y-4">
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Form Builder<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p>Unified canvas editor with inline title/description editing. Hover toolbars for quick actions (Required, Edit, Advanced, Delete). Sliding settings drawers for detailed configuration. Visual question type selector with icons.</p>
-          </div>
-        </details>
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Validation & Constraints<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p>Required fields, min/max character length, min/max value range, custom regex patterns, custom error messages. Frontend validation blocks submission and highlights errors. Server-side enforcement for access control.</p>
-          </div>
-        </details>
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Multi-Section Forms <span class="text-[10px] bg-cta/10 border border-cta/30 text-cta font-mono px-1 rounded ml-2">PRO</span><svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p>Multiple sections per form with Next/Back navigation. Per-section validation before advancing. Progress indicator. Optional banner images per section.</p>
-          </div>
-        </details>
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Access Control<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p>Anonymous (everyone), logged-in users only, or specific Confluence groups. Single response limit (1 per user, server-enforced). Lock screens for unauthorized or already-responded users.</p>
-          </div>
-        </details>
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Theming & Styling<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p><strong>6 standard themes:</strong> Atlassian Default, Soft Floral, Rainbow Pride, Cosmic Space, Sharp Business, Ocean Vacation.</p>
-            <p><strong>Animated themes (Pro):</strong> Active Particles, Rotating Mandala/Rangoli, Cosmos, Dotmatrix, Circuit, Gridlines, Viscous.</p>
-            <p><strong>Customization:</strong> Accent color, banner images, banner decorations (circles, diamonds, waves, dots), question numbering (Q, 1, A, I, none), typography (5 font choices), form width (standard/wide/full).</p>
-          </div>
-        </details>
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Collaboration & Sharing<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p>Share editing access with collaborators. Direct shareable links. Embed via Confluence macro on any page. Shared forms appear in collaborators' dashboards.</p>
-          </div>
-        </details>
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Responses & Export<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p>Results table with dynamic column mapping. CSV export. Signature thumbnails in results. Submission timestamps. Configurable thank-you screen. PDF save option (browser print).</p>
-          </div>
-        </details>
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Post-Submit Automation<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p><strong>Visual automation canvas:</strong> chain actions that run after every submission — create Confluence pages, comments, tasks, labels, watchers, attachments; create and update Jira issues; send Slack and Microsoft Teams messages via webhooks.</p>
-            <p><strong>Flow control:</strong> If/Else branching on answer values, per-step enable/disable, duplicate steps, insert anywhere. Run after each submission or in batches (with hourly auto-flush). Batch branching splits each batch into matching groups.</p>
-            <p><strong>Safety:</strong> run as app or submitter, author permission preflight on save and at execution, dry-run test mode, and a full execution log per form. Site-wide admin kill switch.</p>
-          </div>
-        </details>
-        <details class="bg-surface border border-border rounded-xl overflow-hidden group">
-          <summary class="px-5 py-4 cursor-pointer flex items-center justify-between font-semibold hover:bg-bg transition-colors duration-200">Dashboard<svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
-          <div class="px-5 pb-4 text-sm text-muted space-y-2">
-            <p>Card grid with Owner/Editor role badges, form descriptions, response/field/collaborator stats, and last-response times. Search and sort (newest, oldest, A–Z, most responses). Quick actions: Edit, Share, Duplicate, Results, Delete (owner only, with confirmation).</p>
-          </div>
-        </details>
+      <h2 class="text-2xl font-bold mb-2">Features</h2>
+      <p class="text-muted mb-8">Everything below ships in the app today — click any card for the full documentation.</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+
+        <a href="docs/building-forms.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Visual Form Builder</h3>
+          <p class="text-sm text-muted mt-2">True WYSIWYG canvas with inline editing, hover toolbars, rich-text labels, and a visual question-type picker. What you see is what respondents get.</p>
+        </a>
+
+        <a href="docs/automation.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Post-Submit Automation</h3>
+          <p class="text-sm text-muted mt-2">Visual canvas with If/Else branching and batching. Create Confluence pages, open Jira issues, post to Slack and Teams — with permission preflights and full execution logs.</p>
+        </a>
+
+        <a href="docs/validation.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Validation &amp; Constraints</h3>
+          <p class="text-sm text-muted mt-2">Required fields, length and value ranges, custom regex with custom error messages — enforced in the UI and on the server.</p>
+        </a>
+
+        <a href="docs/access-control.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Access Control</h3>
+          <p class="text-sm text-muted mt-2">Anonymous, logged-in only, or specific Confluence groups. Server-enforced single-response limits with friendly lock screens.</p>
+        </a>
+
+        <a href="docs/styling.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Theming &amp; Styling</h3>
+          <p class="text-sm text-muted mt-2">6 standard + 7 animated themes, accent colors, light/dark banner sets that follow each viewer&#39;s Confluence theme, 5 fonts, 3 widths.</p>
+        </a>
+
+        <a href="docs/multi-section.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Multi-Section Forms <span class="text-[10px] bg-cta/10 border border-cta/30 text-cta font-mono px-1.5 py-0.5 rounded ml-1 align-middle">PRO</span></h3>
+          <p class="text-sm text-muted mt-2">Stacked section editing in the builder; respondents get one page per section with Next/Back navigation and per-section validation.</p>
+        </a>
+
+        <a href="docs/collaboration.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-1.13a4 4 0 10-4-4 4 4 0 004 4zm6-4a3 3 0 11-3-3"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Collaboration &amp; Sharing</h3>
+          <p class="text-sm text-muted mt-2">Co-editors with owner/editor roles, direct shareable links, and one-click embedding on any Confluence page via macro.</p>
+        </a>
+
+        <a href="docs/responses.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Responses, Analytics &amp; Export</h3>
+          <p class="text-sm text-muted mt-2">Filterable results table, analytics dashboard with gadgets, CSV export, PDF save, and a customizable success screen with icons or emoji.</p>
+        </a>
+
       </div>
     </section>
 
@@ -149,7 +140,7 @@
         <li>Add questions using the type selector (text, email, date, signature, etc.)</li>
         <li>Configure styling, access control, and collaboration in the settings drawers</li>
         <li>Click <strong class="text-text">Preview</strong> to test, then <strong class="text-text">Publish</strong></li>
-        <li>Embed on any page using the <code class="font-mono bg-surface px-2 py-0.5 rounded text-cta">/FormForge</code> macro</li>
+        <li>Embed on any page using the <code class="font-mono bg-surface px-2 py-0.5 rounded text-cta">/Forms & Frontdoor</code> macro</li>
         <li>View responses in the Dashboard → Results tab, export as CSV</li>
       </ol>
     </section>
@@ -192,20 +183,8 @@
     </section>
   </main>
 
-  <footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-10">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <a href="../" class="leading-tight"><span class="font-mono font-bold text-lg text-cta block">Vectored</span><span class="text-[10px] text-muted">Tools for developers</span></a>
-        <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
-          <a href="../" class="hover:text-text transition-colors duration-200 cursor-pointer">Home</a>
-          <a href="../macrotoolkit/" class="hover:text-text transition-colors duration-200 cursor-pointer">Macro Toolkit</a>
-          <a href="../macrotoolkit/support.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a>
-          <a href="../macrotoolkit/privacy.html" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a>
-        </div>
-      </div>
-      <p class="text-center text-xs text-muted mt-6">&copy; 2026 Vectored. Built on Atlassian Forge.</p>
-    </div>
-  </footer>
+  <div id="vc-footer"></div>
+<script src="../assets/footer.js"></script>
 
 <script>
 (function(){
