@@ -11,8 +11,10 @@
   if (!mount) return;
   function u(p) { return root + p; }
   var year = new Date().getFullYear();
+  var hasSidebar = !!document.getElementById('sidebar-nav');
+  var sidebarClass = hasSidebar ? ' md:ml-64' : '';
   mount.outerHTML =
-    '<footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-12">' +
+    '<footer class="border-t border-border px-4 sm:px-6 lg:px-8 py-12' + sidebarClass + '">' +
       '<div class="max-w-6xl mx-auto">' +
         '<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">' +
           '<div>' +
