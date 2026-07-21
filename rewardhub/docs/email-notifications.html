@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Email Notifications — Reward Hub Docs</title>
+  <title>Email Notifications — Recognition Hub Docs</title>
   <meta name="description" content="AWS SES notifications with editable templates and smart values">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
   <!-- Sidebar + Content -->
   <div class="flex">
     <aside id="mobile-sidebar" class="hidden lg:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
-      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; Reward Hub Overview</a>
+      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; Recognition Hub Overview</a>
       <nav class="space-y-1">
         <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
         <a href="giving-recognition.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="giving-recognition">Giving Recognition</a>
@@ -45,7 +45,7 @@
     </aside>
 
     <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
-      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Reward Hub Overview</a>
+      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Recognition Hub Overview</a>
 
       <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
       <h1 class="text-3xl font-bold mt-3 mb-2">Email Notifications</h1>
@@ -55,7 +55,7 @@
       <p class="text-muted mb-4">When a recognition is posted, one email goes out per recognition: all recognized users in <strong>To</strong>, the sender in <strong>Cc</strong>. The email is a rich, branded card — title, message, value chip, GIF still frame, and a deep link back to the recognition. Self-recognitions never send mail.</p>
       <h2 class="text-2xl font-semibold mt-10 mb-4">AWS SES</h2>
       <p class="text-muted mb-4">Delivery uses <strong>AWS SES</strong>. The app ships with built-in credentials so email works out of the box, and admins can override with their own AWS access key, region, and SES-verified from-address under <strong>Settings &gt; Email</strong> (credentials are write-only and stored encrypted). A test-send button verifies the setup.</p>
-      <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><p class="text-sm text-muted"><strong class="text-text">Email leaves the Atlassian platform.</strong> Everything else in Reward Hub stays inside Atlassian, but to actually reach a recipient&rsquo;s inbox, email must be delivered through AWS SES &mdash; so the message content (title, note, value, GIF still, deep link) transits AWS to be sent. With the built-in credentials, that path is the app&rsquo;s AWS SES. <strong class="text-text">If you want complete data locality &mdash; no recognition data leaving infrastructure you control &mdash; set up your own AWS SES</strong> (access key, region, verified from-address) under <strong class="text-text">Settings &gt; Email</strong>, so mail is sent through your own AWS account. Email is the only feature that egresses beyond Atlassian.</p></div>
+      <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><p class="text-sm text-muted"><strong class="text-text">Email leaves the Atlassian platform.</strong> Everything else in Recognition Hub stays inside Atlassian, but to actually reach a recipient&rsquo;s inbox, email must be delivered through AWS SES &mdash; so the message content (title, note, value, GIF still, deep link) transits AWS to be sent. With the built-in credentials, that path is the app&rsquo;s AWS SES. <strong class="text-text">If you want complete data locality &mdash; no recognition data leaving infrastructure you control &mdash; set up your own AWS SES</strong> (access key, region, verified from-address) under <strong class="text-text">Settings &gt; Email</strong>, so mail is sent through your own AWS account. Email is the only feature that egresses beyond Atlassian.</p></div>
       <img src="../assets/ses configuration settings page.png" alt="AWS SES email settings with test send" class="rounded-xl border border-border my-6 w-full">
       <h2 class="text-2xl font-semibold mt-10 mb-4">Editable Templates</h2>
       <p class="text-muted mb-4">Under <strong>Settings &gt; Email Templates</strong>, each template opens in a full-screen editor (subject, HTML body, plain-text body) with a click-to-copy <strong>smart values</strong> panel — placeholders like <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">{{senderName}}</code>, <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">{{recipientNames}}</code>, <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">{{currentDate}}</code> that resolve at send time. Conditional sections show content only when a value exists. One click restores the shipped defaults.</p>
