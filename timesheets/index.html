@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeSheets — Time tracking &amp; approvals for Jira | Vectored</title>
+  <meta name="description" content="Timesheets, approvals, leave, billing and reporting for Jira Cloud teams, from Vectored">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .hover\:text-text:hover{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:0.5rem 0.75rem;border-bottom:1px solid #334155;vertical-align:top;font-size:0.875rem}
+    th{font-weight:600;color:#F8FAFC}
+    td{color:#94A3B8}
+    html.light th,html.light td{border-color:#E2E8F0}
+    html.light th{color:#0F172A}
+    html.light td{color:#475569}
+    .tbl-wrap{overflow-x:auto;margin-bottom:1.5rem}
+    .shot img{width:100%;height:auto;display:block;border-radius:0.5rem}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+<body class="min-h-screen">
+
+  <div id="vc-header"></div>
+  <script src="../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; TimeSheets is in active development.</div>
+
+  <main class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16">
+    <h1 class="text-4xl font-bold mb-3">TimeSheets</h1>
+    <p class="text-lg text-muted mb-10">Time tracking, approvals, leave and billing for Jira Cloud.</p>
+
+      <p class="text-muted mb-4">TimeSheets is time tracking, approvals, leave and billing for Jira Cloud. It runs entirely on Atlassian Forge — nothing to host, and no data leaves your Atlassian site except email.</p>
+      <h2 class="text-2xl font-semibold mt-10 mb-4">1. What it does</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Log time</strong> against projects and cost centres, with or without a Jira issue.</li><li><strong class="text-text">Approve</strong> it per entry or per week, with delegation for when an approver is away.</li><li><strong class="text-text">Book leave</strong>, with balances, half-days and per-project approval.</li><li><strong class="text-text">Report</strong> on teams and cost centres, and export to Excel or PDF.</li><li><strong class="text-text">Bill</strong> approved work: clients, layered rates, and immutable numbered invoices.</li><li><strong class="text-text">Govern</strong> it: retention windows, personal-data export, and erasure.</li></ul>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">New here? Start with <a href="docs/getting-started.html" class="text-cta hover:underline">Getting Started</a>. Evaluating the app for a security or privacy review? Go straight to <a href="docs/privacy-security.html" class="text-cta hover:underline">Privacy &amp; Data Handling</a>.</p></div>
+
+    <h2 class="text-2xl font-bold mb-6 mt-14">Documentation</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+        <a href="docs/getting-started.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Getting Started</h3>
+          <p class="text-sm text-muted mt-2">Install TimeSheets and log your first entry.</p>
+        </a>
+        <a href="docs/logging-time.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Logging Time</h3>
+          <p class="text-sm text-muted mt-2">Log against cost centres and Jira issues, in 5-minute increments.</p>
+        </a>
+        <a href="docs/templates.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><polyline points="15 2 15 7 20 7"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Time Templates</h3>
+          <p class="text-sm text-muted mt-2">Save recurring work as reusable one-click entries.</p>
+        </a>
+        <a href="docs/cost-centers.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Cost Centers</h3>
+          <p class="text-sm text-muted mt-2">Hierarchical cost centres, hour allotments and money budgets.</p>
+        </a>
+        <a href="docs/approvals.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Approvals</h3>
+          <p class="text-sm text-muted mt-2">Per-project approvers, bulk decisions, and a full audit trail.</p>
+        </a>
+        <a href="docs/weekly-submission.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Weekly Submission</h3>
+          <p class="text-sm text-muted mt-2">Submit a whole week for approval instead of individual entries.</p>
+        </a>
+        <a href="docs/delegation.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Approver Delegation</h3>
+          <p class="text-sm text-muted mt-2">Nominate someone to approve on your behalf while you are away.</p>
+        </a>
+        <a href="docs/approval-history.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><polyline points="12 7 12 12 15 15"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Approval History</h3>
+          <p class="text-sm text-muted mt-2">The record of every approval decision, and how long it is kept.</p>
+        </a>
+        <a href="docs/leave.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Leave Management</h3>
+          <p class="text-sm text-muted mt-2">Leave types, balances, half-days and multi-project approval.</p>
+        </a>
+        <a href="docs/leave-auto-decision.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Leave Auto-Decision</h3>
+          <p class="text-sm text-muted mt-2">Automatically settle leave that stays pending too long.</p>
+        </a>
+        <a href="docs/holidays.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Public Holidays</h3>
+          <p class="text-sm text-muted mt-2">Site-wide holiday calendars that exclude days from capacity.</p>
+        </a>
+        <a href="docs/locking.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Timesheet Locking</h3>
+          <p class="text-sm text-muted mt-2">Freeze past periods, with admin-granted unlock windows.</p>
+        </a>
+        <a href="docs/dashboard.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Dashboard & Gadgets</h3>
+          <p class="text-sm text-muted mt-2">A configurable gadget dashboard, per person and per screen size.</p>
+        </a>
+        <a href="docs/calendar.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Calendar</h3>
+          <p class="text-sm text-muted mt-2">Month and week views with multi-select and right-click actions.</p>
+        </a>
+        <a href="docs/summary.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Summary & Missing Days</h3>
+          <p class="text-sm text-muted mt-2">Month totals, missing working days, and your team at a glance.</p>
+        </a>
+        <a href="docs/reports.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Reports & Exports</h3>
+          <p class="text-sm text-muted mt-2">Team matrices, breakdowns and exports for projects you manage.</p>
+        </a>
+        <a href="docs/scheduled-reports.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Scheduled Reports</h3>
+          <p class="text-sm text-muted mt-2">Email a recurring timesheet summary on a schedule you choose.</p>
+        </a>
+        <a href="docs/clients.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Clients</h3>
+          <p class="text-sm text-muted mt-2">The external party a project is billed to, and the currency it is billed in.</p>
+        </a>
+        <a href="docs/billing-rates.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Billing Rates</h3>
+          <p class="text-sm text-muted mt-2">Hourly rates by person, project, cost centre or site default.</p>
+        </a>
+        <a href="docs/invoices.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><polyline points="15 2 15 7 20 7"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Invoices</h3>
+          <p class="text-sm text-muted mt-2">Turn approved, priced work into a numbered invoice.</p>
+        </a>
+        <a href="docs/billing-health.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Billing Health</h3>
+          <p class="text-sm text-muted mt-2">Find approved work that carries no price, and re-price after a rate change.</p>
+        </a>
+        <a href="docs/project-settings.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Project Settings</h3>
+          <p class="text-sm text-muted mt-2">Approval rules, teams, caps, cost centres and the billing client.</p>
+        </a>
+        <a href="docs/worklog-sync.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Jira Worklog Sync</h3>
+          <p class="text-sm text-muted mt-2">Mirror approved entries into native Jira worklogs.</p>
+        </a>
+        <a href="docs/email.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Email Notifications</h3>
+          <p class="text-sm text-muted mt-2">SES delivery with editable templates and smart values.</p>
+        </a>
+        <a href="docs/scheduler.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Scheduler & Automation</h3>
+          <p class="text-sm text-muted mt-2">Recurring jobs, their audience, and the bulk-email cost gate.</p>
+        </a>
+        <a href="docs/personal-settings.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8L7 17M17 7l2.8-2.8"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Personal Settings</h3>
+          <p class="text-sm text-muted mt-2">Timezone, working days, logging defaults and notification controls.</p>
+        </a>
+        <a href="docs/admin-settings.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8L7 17M17 7l2.8-2.8"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Admin Settings</h3>
+          <p class="text-sm text-muted mt-2">Every site-wide setting, what it changes, and what it does not.</p>
+        </a>
+        <a href="docs/data-requests.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Erasure & Data Export</h3>
+          <p class="text-sm text-muted mt-2">Handle a request to export or delete everything held about one person.</p>
+        </a>
+        <a href="docs/permissions.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Permissions & Security</h3>
+          <p class="text-sm text-muted mt-2">Who can see and do what, and how access is enforced.</p>
+        </a>
+        <a href="docs/privacy-security.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
+          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Privacy &amp; Data Handling</h3>
+          <p class="text-sm text-muted mt-2">What TimeSheets stores, what leaves Atlassian, and how erasure, export and retention work.</p>
+        </a>
+    </div>
+  </main>
+
+  <script>
+  (function(){
+    var t=localStorage.getItem('theme');
+    if(t==='light')document.documentElement.classList.add('light');
+    else if(t==='dark')document.documentElement.classList.remove('light');
+    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+    function upd(){var isLight=document.documentElement.classList.contains('light');var d=document.getElementById('icon-dark'),l=document.getElementById('icon-light');if(d)d.style.display=isLight?'block':'none';if(l)l.style.display=isLight?'none':'block';}
+    upd();
+    var tt=document.getElementById('theme-toggle');if(tt)tt.addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
+    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
+    var page=location.pathname.split('/').pop().replace('.html','');
+    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
+  })();
+    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'getting started install timesheets and log your first entry install the app open the hub log your first entry what an administrator should set up next where to go next install setup first run onboarding hub'},{name:'Logging Time',page:'logging-time.html',tags:'logging time log against cost centres and jira issues, in 5-minute increments the log time dialog several rows at once the daily hours meter increments, and why they are five minutes copying a previous week editing and deleting caps you may run into log worklog hours minutes duration copy week bulk'},{name:'Time Templates',page:'templates.html',tags:'time templates save recurring work as reusable one-click entries creating a template applying a template managing templates template recurring preset shortcut'},{name:'Cost Centers',page:'cost-centers.html',tags:'cost centers hierarchical cost centres, hour allotments and money budgets the cost centre tree assigning cost centres to projects billable, and what it really means hour allotments money budgets budget status and rollup remaining balance cost center cost centre budget allotment billable hierarchy'},{name:'Approvals',page:'approvals.html',tags:'approvals per-project approvers, bulk decisions, and a full audit trail how routing works configuring approvers the approvals queue filters and multi-select rejecting automatic approval what approval changes approve reject approver queue pending auto-approve'},{name:'Weekly Submission',page:'weekly-submission.html',tags:'weekly submission submit a whole week for approval instead of individual entries switching to weekly mode submitting a week recalling a submission approving a week what locks while a week is out weekly submit recall week timesheet submission'},{name:'Approver Delegation',page:'delegation.html',tags:'approver delegation nominate someone to approve on your behalf while you are away why delegate rather than add an approver setting up cover what a delegate can do what a delegate cannot do both of you can decide ending cover early admin-arranged delegation delegate cover holiday out of office stand in on behalf of'},{name:'Approval History',page:'approval-history.html',tags:'approval history the record of every approval decision, and how long it is kept per-entry history project activity automatic decisions acting on behalf of someone retention what happens when someone is erased audit history trail who approved record retention'},{name:'Leave Management',page:'leave.html',tags:'leave management leave types, balances, half-days and multi-project approval applying for leave the reason field is optional, deliberately leave types and balances half days the multi-project rule cancelling and recalling leave on the calendar leave holiday absence pto vacation sick balance'},{name:'Leave Auto-Decision',page:'leave-auto-decision.html',tags:'leave auto-decision automatically settle leave that stays pending too long how it works choosing a direction site configuration per-project overrides advance warning auto approve leave timeout pending leave escalation'},{name:'Public Holidays',page:'holidays.html',tags:'public holidays site-wide holiday calendars that exclude days from capacity adding holidays how holidays affect capacity regions holiday bank holiday public holiday region calendar'},{name:'Timesheet Locking',page:'locking.html',tags:'timesheet locking freeze past periods, with admin-granted unlock windows the lock window what locking prevents requesting an unlock reviewing unlock requests automatic re-locking billed time is a stronger lock lock freeze closed period unlock request read only'},{name:'Dashboard & Gadgets',page:'dashboard.html',tags:'dashboard & gadgets a configurable gadget dashboard, per person and per screen size adding gadgets rearranging and resizing available gadgets refreshing dashboard gadget widget layout drag resize'},{name:'Calendar',page:'calendar.html',tags:'calendar month and week views with multi-select and right-click actions navigating selecting days right-click actions leave and holidays work modes calendar month week select days right click work mode'},{name:'Summary & Missing Days',page:'summary.html',tags:'summary & missing days month totals, missing working days, and your team at a glance month summary missing days team browser pins and status summary missing days team pins status totals'},{name:'Reports & Exports',page:'reports.html',tags:'reports & exports team matrices, breakdowns and exports for projects you manage who can see reports the team matrix drilling into a cell breakdown by cost centre, project or person unpriced billable time amounts, and who can see them excel export pdf export report matrix export excel pdf breakdown grouping'},{name:'Scheduled Reports',page:'scheduled-reports.html',tags:'scheduled reports email a recurring timesheet summary on a schedule you choose creating a scheduled report choosing the run day recipients and preferences sending now scheduled report recurring email report weekly monthly run day'},{name:'Clients',page:'clients.html',tags:'clients the external party a project is billed to, and the currency it is billed in what a client is adding a client attaching a project to a client currency, and why it cannot change later payment terms and invoice prefix client customer billing currency invoice prefix payment terms'},{name:'Billing Rates',page:'billing-rates.html',tags:'billing rates hourly rates by person, project, cost centre or site default how a rate is chosen the precedence order effective dates adding a rate ending a rate without replacing it previewing which rate would apply who can see rates rate hourly price billing precedence effective date'},{name:'Invoices',page:'invoices.html',tags:'invoices turn approved, priced work into a numbered invoice preview before you commit creating a draft how work is grouped into lines issuing an invoice invoice numbering voiding and re-issuing what happens to the time entries invoice draft issue void numbering billing lines'},{name:'Billing Health',page:'billing-health.html',tags:'billing health find approved work that carries no price, and re-price after a rate change why work can end up unpriced the four figures pricing what is missing re-pricing a period what re-pricing will not touch billing health unpriced backfill recapture reprice capture'},{name:'Project Settings',page:'project-settings.html',tags:'project settings approval rules, teams, caps, cost centres and the billing client approval requirements approvers cost centres weekly billable cap billing client overrides teams, important dates and quick events project settings approvers cap teams client overrides'},{name:'Jira Worklog Sync',page:'worklog-sync.html',tags:'jira worklog sync mirror approved entries into native jira worklogs enabling sync what gets synced edits and deletions sync errors worklog sync jira tempo native issue'},{name:'Email Notifications',page:'email.html',tags:'email notifications ses delivery with editable templates and smart values built-in sender or your own editing templates smart values bounces and suppression test sends email ses notification template bounce suppression aws'},{name:'Scheduler & Automation',page:'scheduler.html',tags:'scheduler & automation recurring jobs, their audience, and the bulk-email cost gate available jobs enabling a job choosing the audience the bulk-email cost gate dry runs and history scheduler job cron automation reminder dry run cleanup'},{name:'Personal Settings',page:'personal-settings.html',tags:'personal settings timezone, working days, logging defaults and notification controls opening your settings timezone working days logging defaults notification preferences mute and snooze personal timezone preferences notifications mute snooze'},{name:'Admin Settings',page:'admin-settings.html',tags:'admin settings every site-wide setting, what it changes, and what it does not at a glance working hours working weekdays approval mode auto-approve timeout timesheet lock leave policies leave auto-decision worklog sync approver delegation project overrides site timezone reminders data retention windows billing scheduler audience hub url branding and welcome message how settings interact what no setting can do admin settings site configuration working hours approval mode lock timezone branding defaults override reference'},{name:'Erasure & Data Export',page:'data-requests.html',tags:'erasure & data export handle a request to export or delete everything held about one person before you start previewing an erasure running an erasure what is deleted, replaced and kept exporting one persons data the erasure log data retention windows erasure export gdpr dsar right to be forgotten delete person'},{name:'Permissions & Security',page:'permissions.html',tags:'permissions & security who can see and do what, and how access is enforced roles project-scoped access rules that have no exceptions enforcement is on the server scopes the app requests where your data lives permission role access security scope admin approver'},{name:'Privacy &amp; Data Handling',page:'privacy-security.html',tags:'privacy &amp; data handling what timesheets stores, what leaves atlassian, and how erasure, export and retention work where your data lives what timesheets stores what leaves atlassian jira permissions the app asks for special-category data retention erasing one person why some data survives erasure giving someone a copy of their data who can see what what you still need to decide privacy gdpr security data residency ses article 9 retention erasure export subprocessor forge'}];
+    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
+    wire('doc-search','search-results');
+  </script>
+<div id="vc-footer"></div>
+<script src="../assets/footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy & Data Handling — TimeSheets Docs</title>
+  <meta name="description" content="What TimeSheets stores, what leaves Atlassian, and how erasure, export and retention work">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .hover\:text-text:hover{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:0.5rem 0.75rem;border-bottom:1px solid #334155;vertical-align:top;font-size:0.875rem}
+    th{font-weight:600;color:#F8FAFC}
+    td{color:#94A3B8}
+    html.light th,html.light td{border-color:#E2E8F0}
+    html.light th{color:#0F172A}
+    html.light td{color:#475569}
+    .tbl-wrap{overflow-x:auto;margin-bottom:1.5rem}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+</head>
+<body class="min-h-screen">
+
+  <!-- Nav -->
+  <div id="vc-header"></div>
+  <script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; TimeSheets is in active development.</div>
+
+  <!-- Sidebar + Content -->
+  <div class="flex">
+    <aside id="mobile-sidebar" class="hidden md:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
+      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; TimeSheets Overview</a>
+      <nav id="sidebar-nav" class="space-y-1">
+        <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
+        <a href="logging-time.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="logging-time">Logging Time</a>
+        <a href="templates.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="templates">Time Templates</a>
+        <a href="cost-centers.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="cost-centers">Cost Centers</a>
+        <a href="approvals.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="approvals">Approvals</a>
+        <a href="weekly-submission.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="weekly-submission">Weekly Submission</a>
+        <a href="delegation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="delegation">Approver Delegation</a>
+        <a href="approval-history.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="approval-history">Approval History</a>
+        <a href="leave.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="leave">Leave Management</a>
+        <a href="leave-auto-decision.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="leave-auto-decision">Leave Auto-Decision</a>
+        <a href="holidays.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="holidays">Public Holidays</a>
+        <a href="locking.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="locking">Timesheet Locking</a>
+        <a href="dashboard.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="dashboard">Dashboard & Gadgets</a>
+        <a href="calendar.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="calendar">Calendar</a>
+        <a href="summary.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="summary">Summary & Missing Days</a>
+        <a href="reports.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="reports">Reports & Exports</a>
+        <a href="scheduled-reports.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="scheduled-reports">Scheduled Reports</a>
+        <a href="clients.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="clients">Clients</a>
+        <a href="billing-rates.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="billing-rates">Billing Rates</a>
+        <a href="invoices.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="invoices">Invoices</a>
+        <a href="billing-health.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="billing-health">Billing Health</a>
+        <a href="project-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="project-settings">Project Settings</a>
+        <a href="worklog-sync.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="worklog-sync">Jira Worklog Sync</a>
+        <a href="email.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="email">Email Notifications</a>
+        <a href="scheduler.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="scheduler">Scheduler & Automation</a>
+        <a href="personal-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="personal-settings">Personal Settings</a>
+        <a href="admin-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="admin-settings">Admin Settings</a>
+        <a href="data-requests.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="data-requests">Erasure & Data Export</a>
+        <a href="permissions.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="permissions">Permissions & Security</a>
+        <a href="privacy-security.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="privacy-security">Privacy &amp; Data Handling</a>
+      </nav>
+    </aside>
+
+    <main class="md:ml-64 xl:mr-56 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8 relative">
+      <aside id="toc" class="hidden xl:block fixed top-28 right-8 w-48 max-h-[calc(100vh-9rem)] overflow-y-auto">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-muted mb-3">On this page</p>
+        <nav class="space-y-1 text-xs">
+          <a href="#where-your-data-lives" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Where your data lives</a>
+          <a href="#what-timesheets-stores" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">What TimeSheets stores</a>
+          <a href="#what-leaves-atlassian" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">What leaves Atlassian</a>
+          <a href="#jira-permissions-the-app-asks-for" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Jira permissions the app asks for</a>
+          <a href="#special-category-data-and-how-the-app-avoids-it" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Special-category data, and how the app avoids it</a>
+          <a href="#retention" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Retention</a>
+          <a href="#erasing-one-person" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Erasing one person</a>
+          <a href="#why-some-data-survives-erasure" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Why some data survives erasure</a>
+          <a href="#giving-someone-a-copy-of-their-data" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Giving someone a copy of their data</a>
+          <a href="#who-can-see-what" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Who can see what</a>
+          <a href="#what-you-still-need-to-decide" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">What you still need to decide</a>
+        </nav>
+      </aside>
+
+      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; TimeSheets Overview</a>
+
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+      <h1 class="text-3xl font-bold mt-3 mb-2">Privacy &amp; Data Handling</h1>
+      <p class="text-muted mb-8">What TimeSheets stores, what leaves Atlassian, and how erasure, export and retention work</p>
+
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-10">
+        <p class="text-sm text-muted"><strong class="text-text">This page describes what the software does.</strong> It is not legal advice, and it is not a statement that your use of TimeSheets complies with any particular regulation. Your organisation is the data controller for everything in this app: the lawful basis, the retention periods and the decision to collect any category of data at all are yours to make. This page exists so you can make those decisions knowing exactly what the software stores and where it goes.</p>
+      </div>
+
+      <h2 id="where-your-data-lives" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Where your data lives</h2>
+      <p class="text-muted mb-4">TimeSheets is an <strong class="text-text">Atlassian Forge</strong> app. All of its application data is held in Forge SQL and Forge storage, which run inside Atlassian's own infrastructure. There is no TimeSheets server, no TimeSheets database, and no copy of your data on infrastructure we operate.</p>
+      <p class="text-muted mb-4">That means data residency, encryption at rest, tenancy isolation and backup are provided by the Forge platform and follow whatever Atlassian guarantees for your site. We inherit those properties rather than implementing our own — which also means we cannot weaken them.</p>
+      <p class="text-muted mb-4">One thing does leave Atlassian: outbound email. See section 3.</p>
+
+      <h2 id="what-timesheets-stores" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. What TimeSheets stores</h2>
+      <p class="text-muted mb-4">Personal data is identified by <strong class="text-text">Atlassian account ID</strong>, not by name or email. Display names and email addresses are read from Jira when needed and are not copied into the app's own tables, with one exception noted below.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Category</th><th>What is in it</th></tr></thead>
+          <tbody>
+            <tr><td class="text-text">Time entries</td><td>Account ID, project, cost centre, date, minutes, an optional free-text description, and the linked Jira issue if there is one</td></tr>
+            <tr><td class="text-text">Leave</td><td>Account ID, leave type, dates, and an <em>optional</em> free-text reason — see section 5</td></tr>
+            <tr><td class="text-text">Approvals</td><td>Who decided what and when, any comment they left, and who they acted on behalf of if they were covering for someone</td></tr>
+            <tr><td class="text-text">Personal settings</td><td>Timezone, working days, logging defaults, notification preferences, dashboard layout, pinned teammates, status message</td></tr>
+            <tr><td class="text-text">Billing</td><td>Client records, hourly rates (which may be per person), the priced snapshot of each approved entry, and invoice lines naming the person whose work is billed</td></tr>
+            <tr><td class="text-text">Email suppressions</td><td>Email addresses that bounced or reported the message as spam, so the app stops sending to them. This is the one place an address is stored rather than looked up</td></tr>
+            <tr><td class="text-text">Erasure log</td><td>A one-way hash of each erased account, never the account ID itself — see section 7</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-muted mb-4">There is no analytics SDK, no tracking pixel, no session recording and no third-party script in the app interface. Nothing about how your people use TimeSheets is sent anywhere.</p>
+
+      <h2 id="what-leaves-atlassian" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. What leaves Atlassian</h2>
+      <p class="text-muted mb-4">Exactly one thing: <strong class="text-text">email</strong>. TimeSheets sends notifications through <span class="font-mono text-sm">Amazon SES</span>, which is declared in the app manifest as the only permitted outbound destination (<span class="font-mono text-sm">*.amazonaws.com</span>). Every other operation stays inside Atlassian.</p>
+      <p class="text-muted mb-4">Two configurations are possible, and they differ in who the data reaches:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6">
+        <li><strong class="text-text">Your own SES account.</strong> You supply credentials in Admin Settings, and mail is sent through your AWS account. No third party is involved. Credentials are stored write-only — no part of the app can read them back.</li>
+        <li><strong class="text-text">The built-in sender.</strong> If you provide no credentials, mail goes through our SES account, which makes us a processor and AWS a sub-processor for message content in transit.</li>
+      </ul>
+      <p class="text-muted mb-4">Email content includes the recipient's address and display name, and the detail relevant to the notification. <strong class="text-text">For leave notifications this includes the leave type name</strong> — so if you have Sick Leave enabled, the words "Sick Leave" alongside a person's name will transit your email path. If that matters to you, use your own SES account, disable the specific leave types, or switch leave notifications off.</p>
+      <p class="text-muted mb-4">Excel and PDF exports are generated <strong class="text-text">in your browser</strong>. The file is never uploaded anywhere; it is built locally from data the server already sent you.</p>
+
+      <h2 id="jira-permissions-the-app-asks-for" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Jira permissions the app asks for</h2>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Scope</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td class="font-mono text-xs text-text">read:jira-work</td><td>Read issues so time can be logged against them</td></tr>
+            <tr><td class="font-mono text-xs text-text">write:jira-work</td><td>Mirror approved entries into native Jira worklogs, if you enable worklog sync</td></tr>
+            <tr><td class="font-mono text-xs text-text">read:jira-user</td><td>Resolve account IDs to display names so screens show people rather than identifiers</td></tr>
+            <tr><td class="font-mono text-xs text-text">read:email-address:jira</td><td>Find the address to send a notification to. Addresses are not stored except on the suppression list</td></tr>
+            <tr><td class="font-mono text-xs text-text">read:project:jira</td><td>List projects and determine what each person can browse</td></tr>
+            <tr><td class="font-mono text-xs text-text">read:board-scope:jira-software<br>read:sprint:jira-software</td><td>Sprint context on reporting screens</td></tr>
+            <tr><td class="font-mono text-xs text-text">manage:jira-configuration</td><td>Determine who is a site or project administrator, which is what the app's own permission checks are built on</td></tr>
+            <tr><td class="font-mono text-xs text-text">storage:app</td><td>The app's own database</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-muted mb-4">The app never reads issue content beyond what is needed to display and link an issue, and it does not read Jira data for projects the requesting person cannot already browse.</p>
+
+      <h2 id="special-category-data-and-how-the-app-avoids-it" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Special-category data, and how the app avoids it</h2>
+      <p class="text-muted mb-4">Leave is where sensitive data most easily enters a timesheet app, and it does so in two ways that are easy to miss.</p>
+      <p class="text-muted mb-4"><strong class="text-text">The leave type itself is an inference.</strong> "This person took Sick Leave on twelve days" is health information whether or not anyone typed a reason. Maternity and Paternity reveal family status; Bereavement reveals a death in the family. Because of that, TimeSheets <strong class="text-text">seeds those leave types switched off</strong>. A new installation collects no special-category data at all until an administrator turns a type on, having decided they have a basis for it. The types are present and correctly configured, so enabling one is a single toggle — but it is a deliberate act, not a default.</p>
+      <p class="text-muted mb-4">A generic <strong class="text-text">Leave</strong> type that implies nothing is enabled by default. If your HR system already holds the reason, routing everything through this type keeps the category out of Jira entirely.</p>
+      <p class="text-muted mb-4"><strong class="text-text">The reason box is optional, and treated as sensitive.</strong> It is labelled optional, the hint text tells people they do not need to give a medical or personal reason, and the field is length-limited. Beyond that:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6">
+        <li>The approval queue does <strong class="text-text">not</strong> contain the text. That list loads for every approver on every project a request touches; only a marker saying whether a reason exists is sent.</li>
+        <li>The words are fetched one request at a time, by the approver who is actually deciding it.</li>
+        <li>Once the request has been decided, the reason is no longer retrievable by approvers at all. Only the person who wrote it can still read it.</li>
+        <li>It is not searchable. You cannot type a medical term into a filter box and get back a list of people.</li>
+      </ul>
+
+      <h2 id="retention" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Retention</h2>
+      <p class="text-muted mb-4">TimeSheets can delete data on a schedule, per category. <strong class="text-text">Every window ships set to "keep forever" and deletes nothing until an administrator changes it.</strong> That default is deliberate: deletion cannot be undone, and an app upgrade that quietly started removing people's leave and timesheet history would be worse than continuing to hold it while you decide.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Category</th><th>Default</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="text-text">Approval history</td><td>365 days</td><td>The only window with a non-zero default; this table grows with every decision and sweep</td></tr>
+            <tr><td class="text-text">Leave history</td><td>Keep forever</td><td>The category with the strongest argument for a short window</td></tr>
+            <tr><td class="text-text">Timesheet history</td><td>Keep forever</td><td>Entries on an issued invoice are never deleted — see section 8</td></tr>
+            <tr><td class="text-text">Email suppressions</td><td>Keep forever</td><td>Deleting these means the app may start emailing an address that previously bounced or complained</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-muted mb-4">The sweep reports what it deleted <em>and what it declined to delete</em>. A retention job that silently skipped protected rows would look identical to one with nothing to do, and you would never learn your policy was not being applied.</p>
+
+      <h2 id="erasing-one-person" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Erasing one person</h2>
+      <p class="text-muted mb-4">A site administrator can erase everything held about a single Atlassian account. Because an erasure request and a business record can genuinely conflict, the app resolves it per row rather than per person:</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Kind of record</th><th>What happens</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td class="text-text">Their own data</td><td>Deleted</td><td>Timesheets, leave, preferences, dashboard, status, pins. These exist only because the person does</td></tr>
+            <tr><td class="text-text">Things they did to <em>someone else's</em> record</td><td>Identity replaced, record kept</td><td>An approval reading "approved by [removed]" destroys the audit trail of the person whose timesheet it was — and that person did not ask for anything</td></tr>
+            <tr><td class="text-text">Work on an issued invoice</td><td>Identity replaced, amounts untouched</td><td>An invoice is a financial record you are likely required to keep. Every figure stays exactly as billed</td></tr>
+            <tr><td class="text-text">Free text anywhere</td><td>Cleared</td><td>Leave reasons, entry descriptions, status messages and decision comments are removed even from records that are otherwise kept. An invoice needs the hours and the amount; it has never needed the words</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-muted mb-4">Where an identity is replaced, it becomes a stable label such as <span class="font-mono text-sm">Former member #a1b2c3d4</span> — the same label everywhere, so one person still reads as one person across an invoice, an approval and an audit trail.</p>
+      <p class="text-muted mb-4">A <strong class="text-text">preview</strong> counts exactly what would be removed and changes nothing, so you can confirm the request names the right person before anything irreversible happens.</p>
+      <p class="text-muted mb-4">The erasure log records that an erasure happened, when, and by whom — storing a <strong class="text-text">one-way hash</strong> of the account rather than the account itself. A record of "we erased this person" that named the person would defeat the purpose. The hash is salted per installation, so the same individual does not produce the same value in two different sites.</p>
+
+      <h2 id="why-some-data-survives-erasure" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Why some data survives erasure</h2>
+      <p class="text-muted mb-4">If a time entry has been billed on an issued invoice, deleting it would leave your organisation unable to substantiate an amount a customer was charged. TimeSheets keeps those rows, replaces the identity on them, clears any free text, and marks them so they no longer appear in timesheets or reports.</p>
+      <p class="text-muted mb-4">The invoice itself is designed for this: the line carries a name label separate from the account reference, so removing the identity does not change a single figure. An invoice's total still equals the sum of its lines, exactly, after an erasure.</p>
+      <p class="text-muted mb-4">Uninvoiced work is genuinely deleted. This protection applies only where a financial record actually exists.</p>
+
+      <h2 id="giving-someone-a-copy-of-their-data" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Giving someone a copy of their data</h2>
+      <p class="text-muted mb-4">A site administrator can export everything held about one account as a JSON document. It is assembled from the same list of tables that erasure uses, so the two cannot disagree — an export cannot tell someone their data is not held while erasure knows that it is.</p>
+      <p class="text-muted mb-4">Each section of the export says what erasure <em>would</em> do to those rows, so the person can see in advance what would go and what would be kept. If the export hits its size limit it says so rather than presenting a partial answer as a complete one. Exports are recorded in the audit trail.</p>
+
+      <h2 id="who-can-see-what" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Who can see what</h2>
+      <p class="text-muted mb-4">Access follows Jira. Nobody sees a project they cannot already browse, and reporting is limited to projects where the viewer is an approver or an administrator. A few specifics are worth stating plainly:</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>Who can read it</th></tr></thead>
+          <tbody>
+            <tr><td class="text-text">Someone else's time entries</td><td>Approvers and administrators of the project the time was logged to</td></tr>
+            <tr><td class="text-text">A leave reason</td><td>The author, and the approver deciding that specific request while it is still pending</td></tr>
+            <tr><td class="text-text">Rates and money</td><td>Billing administrators only, reads included. A rate is close to a person's pay rate, so an amount is never shown to an approver merely because they can see the hours. Your own rate is not visible to you in your own timesheet</td></tr>
+            <tr><td class="text-text">Cost centre budgets</td><td>Hours allowances are visible to people who can see the cost centre; money budgets are billing-administrator only</td></tr>
+            <tr><td class="text-text">Erasure and export</td><td>Site administrators only, and both are audited</td></tr>
+            <tr><td class="text-text">Site configuration</td><td>Readable by any licensed user of the app. This covers policy settings such as working hours, the lock window and approval mode, plus the account ID of whichever administrator last changed each one. It contains no rates and no credentials — email credentials are write-only and cannot be read back by any part of the app</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-muted mb-4">For the full role model, see <a href="permissions.html" class="text-cta hover:underline">Permissions &amp; Security</a>.</p>
+
+      <h2 id="what-you-still-need-to-decide" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. What you still need to decide</h2>
+      <p class="text-muted mb-4">The app gives you the controls. These decisions are not ours to make and the software cannot make them for you:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6">
+        <li><strong class="text-text">Whether to enable special-category leave types at all</strong>, and on what lawful basis if you do.</li>
+        <li><strong class="text-text">How long to keep each category of data.</strong> The defaults keep everything; that is a starting point, not a recommendation.</li>
+        <li><strong class="text-text">Whether to use your own SES account</strong>, which removes a third party from your email path.</li>
+        <li><strong class="text-text">Whether to tell your people</strong> that leave and timesheet data is held in Jira, and what your notice says about it.</li>
+        <li><strong class="text-text">Whether you need a data processing agreement</strong> covering the built-in email sender.</li>
+      </ul>
+      <p class="text-muted mb-4">If something on this page is unclear or you need detail it does not cover, <a href="../../support.html" class="text-cta hover:underline">get in touch</a> — a question about data handling is one we would rather answer twice than not at all.</p>
+
+    </main>
+  </div>
+
+  <script>
+  (function(){
+    var t=localStorage.getItem('theme');
+    if(t==='light')document.documentElement.classList.add('light');
+    else if(t==='dark')document.documentElement.classList.remove('light');
+    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+    function upd(){var isLight=document.documentElement.classList.contains('light');var d=document.getElementById('icon-dark'),l=document.getElementById('icon-light');if(d)d.style.display=isLight?'block':'none';if(l)l.style.display=isLight?'none':'block';}
+    upd();
+    var tt=document.getElementById('theme-toggle');if(tt)tt.addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
+    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
+    var page=location.pathname.split('/').pop().replace('.html','');
+    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
+  })();
+
+    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'getting started install timesheets and log your first entry install the app open the hub log your first entry what an administrator should set up next where to go next install setup first run onboarding hub'},{name:'Logging Time',page:'logging-time.html',tags:'logging time log against cost centres and jira issues, in 5-minute increments the log time dialog several rows at once the daily hours meter increments, and why they are five minutes copying a previous week editing and deleting caps you may run into log worklog hours minutes duration copy week bulk'},{name:'Time Templates',page:'templates.html',tags:'time templates save recurring work as reusable one-click entries creating a template applying a template managing templates template recurring preset shortcut'},{name:'Cost Centers',page:'cost-centers.html',tags:'cost centers hierarchical cost centres, hour allotments and money budgets the cost centre tree assigning cost centres to projects billable, and what it really means hour allotments money budgets budget status and rollup remaining balance cost center cost centre budget allotment billable hierarchy'},{name:'Approvals',page:'approvals.html',tags:'approvals per-project approvers, bulk decisions, and a full audit trail how routing works configuring approvers the approvals queue filters and multi-select rejecting automatic approval what approval changes approve reject approver queue pending auto-approve'},{name:'Weekly Submission',page:'weekly-submission.html',tags:'weekly submission submit a whole week for approval instead of individual entries switching to weekly mode submitting a week recalling a submission approving a week what locks while a week is out weekly submit recall week timesheet submission'},{name:'Approver Delegation',page:'delegation.html',tags:'approver delegation nominate someone to approve on your behalf while you are away why delegate rather than add an approver setting up cover what a delegate can do what a delegate cannot do both of you can decide ending cover early admin-arranged delegation delegate cover holiday out of office stand in on behalf of'},{name:'Approval History',page:'approval-history.html',tags:'approval history the record of every approval decision, and how long it is kept per-entry history project activity automatic decisions acting on behalf of someone retention what happens when someone is erased audit history trail who approved record retention'},{name:'Leave Management',page:'leave.html',tags:'leave management leave types, balances, half-days and multi-project approval applying for leave the reason field is optional, deliberately leave types and balances half days the multi-project rule cancelling and recalling leave on the calendar leave holiday absence pto vacation sick balance'},{name:'Leave Auto-Decision',page:'leave-auto-decision.html',tags:'leave auto-decision automatically settle leave that stays pending too long how it works choosing a direction site configuration per-project overrides advance warning auto approve leave timeout pending leave escalation'},{name:'Public Holidays',page:'holidays.html',tags:'public holidays site-wide holiday calendars that exclude days from capacity adding holidays how holidays affect capacity regions holiday bank holiday public holiday region calendar'},{name:'Timesheet Locking',page:'locking.html',tags:'timesheet locking freeze past periods, with admin-granted unlock windows the lock window what locking prevents requesting an unlock reviewing unlock requests automatic re-locking billed time is a stronger lock lock freeze closed period unlock request read only'},{name:'Dashboard & Gadgets',page:'dashboard.html',tags:'dashboard & gadgets a configurable gadget dashboard, per person and per screen size adding gadgets rearranging and resizing available gadgets refreshing dashboard gadget widget layout drag resize'},{name:'Calendar',page:'calendar.html',tags:'calendar month and week views with multi-select and right-click actions navigating selecting days right-click actions leave and holidays work modes calendar month week select days right click work mode'},{name:'Summary & Missing Days',page:'summary.html',tags:'summary & missing days month totals, missing working days, and your team at a glance month summary missing days team browser pins and status summary missing days team pins status totals'},{name:'Reports & Exports',page:'reports.html',tags:'reports & exports team matrices, breakdowns and exports for projects you manage who can see reports the team matrix drilling into a cell breakdown by cost centre, project or person unpriced billable time amounts, and who can see them excel export pdf export report matrix export excel pdf breakdown grouping'},{name:'Scheduled Reports',page:'scheduled-reports.html',tags:'scheduled reports email a recurring timesheet summary on a schedule you choose creating a scheduled report choosing the run day recipients and preferences sending now scheduled report recurring email report weekly monthly run day'},{name:'Clients',page:'clients.html',tags:'clients the external party a project is billed to, and the currency it is billed in what a client is adding a client attaching a project to a client currency, and why it cannot change later payment terms and invoice prefix client customer billing currency invoice prefix payment terms'},{name:'Billing Rates',page:'billing-rates.html',tags:'billing rates hourly rates by person, project, cost centre or site default how a rate is chosen the precedence order effective dates adding a rate ending a rate without replacing it previewing which rate would apply who can see rates rate hourly price billing precedence effective date'},{name:'Invoices',page:'invoices.html',tags:'invoices turn approved, priced work into a numbered invoice preview before you commit creating a draft how work is grouped into lines issuing an invoice invoice numbering voiding and re-issuing what happens to the time entries invoice draft issue void numbering billing lines'},{name:'Billing Health',page:'billing-health.html',tags:'billing health find approved work that carries no price, and re-price after a rate change why work can end up unpriced the four figures pricing what is missing re-pricing a period what re-pricing will not touch billing health unpriced backfill recapture reprice capture'},{name:'Project Settings',page:'project-settings.html',tags:'project settings approval rules, teams, caps, cost centres and the billing client approval requirements approvers cost centres weekly billable cap billing client overrides teams, important dates and quick events project settings approvers cap teams client overrides'},{name:'Jira Worklog Sync',page:'worklog-sync.html',tags:'jira worklog sync mirror approved entries into native jira worklogs enabling sync what gets synced edits and deletions sync errors worklog sync jira tempo native issue'},{name:'Email Notifications',page:'email.html',tags:'email notifications ses delivery with editable templates and smart values built-in sender or your own editing templates smart values bounces and suppression test sends email ses notification template bounce suppression aws'},{name:'Scheduler & Automation',page:'scheduler.html',tags:'scheduler & automation recurring jobs, their audience, and the bulk-email cost gate available jobs enabling a job choosing the audience the bulk-email cost gate dry runs and history scheduler job cron automation reminder dry run cleanup'},{name:'Personal Settings',page:'personal-settings.html',tags:'personal settings timezone, working days, logging defaults and notification controls opening your settings timezone working days logging defaults notification preferences mute and snooze personal timezone preferences notifications mute snooze'},{name:'Admin Settings',page:'admin-settings.html',tags:'admin settings every site-wide setting, what it changes, and what it does not at a glance working hours working weekdays approval mode auto-approve timeout timesheet lock leave policies leave auto-decision worklog sync approver delegation project overrides site timezone reminders data retention windows billing scheduler audience hub url branding and welcome message how settings interact what no setting can do admin settings site configuration working hours approval mode lock timezone branding defaults override reference'},{name:'Erasure & Data Export',page:'data-requests.html',tags:'erasure & data export handle a request to export or delete everything held about one person before you start previewing an erasure running an erasure what is deleted, replaced and kept exporting one persons data the erasure log data retention windows erasure export gdpr dsar right to be forgotten delete person'},{name:'Permissions & Security',page:'permissions.html',tags:'permissions & security who can see and do what, and how access is enforced roles project-scoped access rules that have no exceptions enforcement is on the server scopes the app requests where your data lives permission role access security scope admin approver'},{name:'Privacy &amp; Data Handling',page:'privacy-security.html',tags:'privacy &amp; data handling what timesheets stores, what leaves atlassian, and how erasure, export and retention work where your data lives what timesheets stores what leaves atlassian jira permissions the app asks for special-category data retention erasing one person why some data survives erasure giving someone a copy of their data who can see what what you still need to decide privacy gdpr security data residency ses article 9 retention erasure export subprocessor forge'}];
+    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
+    wire('doc-search','search-results');
+  </script>
+<script>
+(function(){
+  var links=document.querySelectorAll('#toc a[href^="#"]');
+  if(!links.length)return;
+  var ids=Array.prototype.map.call(links,function(l){return l.getAttribute('href').slice(1);});
+  function onScroll(){
+    // The active heading is the last one whose top has passed the header.
+    var active='';
+    for(var i=0;i<ids.length;i++){
+      var el=document.getElementById(ids[i]);
+      if(el&&el.getBoundingClientRect().top<=140)active=ids[i];
+    }
+    // Near the bottom nothing new crosses the line, so pin the last entry —
+    // otherwise the final section never highlights.
+    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-8)active=ids[ids.length-1];
+    Array.prototype.forEach.call(links,function(l){
+      var on=l.getAttribute('href')==='#'+active;
+      l.classList.toggle('!text-cta',on);
+      l.classList.toggle('!border-cta',on);
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+</body>
+</html>

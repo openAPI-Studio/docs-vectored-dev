@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Settings — TimeSheets Docs</title>
+  <meta name="description" content="Every site-wide setting, what it changes, and what it does not">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .hover\:text-text:hover{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:0.5rem 0.75rem;border-bottom:1px solid #334155;vertical-align:top;font-size:0.875rem}
+    th{font-weight:600;color:#F8FAFC}
+    td{color:#94A3B8}
+    html.light th,html.light td{border-color:#E2E8F0}
+    html.light th{color:#0F172A}
+    html.light td{color:#475569}
+    .tbl-wrap{overflow-x:auto;margin-bottom:1.5rem}
+    .shot img{width:100%;height:auto;display:block;border-radius:0.5rem}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+</head>
+<body class="min-h-screen">
+
+  <!-- Nav -->
+  <div id="vc-header"></div>
+  <script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; TimeSheets is in active development.</div>
+
+  <!-- Sidebar + Content -->
+  <div class="flex">
+    <aside id="mobile-sidebar" class="hidden md:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
+      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; TimeSheets Overview</a>
+      <nav id="sidebar-nav" class="space-y-1">
+        <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
+        <a href="logging-time.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="logging-time">Logging Time</a>
+        <a href="templates.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="templates">Time Templates</a>
+        <a href="cost-centers.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="cost-centers">Cost Centers</a>
+        <a href="approvals.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="approvals">Approvals</a>
+        <a href="weekly-submission.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="weekly-submission">Weekly Submission</a>
+        <a href="delegation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="delegation">Approver Delegation</a>
+        <a href="approval-history.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="approval-history">Approval History</a>
+        <a href="leave.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="leave">Leave Management</a>
+        <a href="leave-auto-decision.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="leave-auto-decision">Leave Auto-Decision</a>
+        <a href="holidays.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="holidays">Public Holidays</a>
+        <a href="locking.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="locking">Timesheet Locking</a>
+        <a href="dashboard.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="dashboard">Dashboard & Gadgets</a>
+        <a href="calendar.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="calendar">Calendar</a>
+        <a href="summary.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="summary">Summary & Missing Days</a>
+        <a href="reports.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="reports">Reports & Exports</a>
+        <a href="scheduled-reports.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="scheduled-reports">Scheduled Reports</a>
+        <a href="clients.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="clients">Clients</a>
+        <a href="billing-rates.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="billing-rates">Billing Rates</a>
+        <a href="invoices.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="invoices">Invoices</a>
+        <a href="billing-health.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="billing-health">Billing Health</a>
+        <a href="project-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="project-settings">Project Settings</a>
+        <a href="worklog-sync.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="worklog-sync">Jira Worklog Sync</a>
+        <a href="email.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="email">Email Notifications</a>
+        <a href="scheduler.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="scheduler">Scheduler & Automation</a>
+        <a href="personal-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="personal-settings">Personal Settings</a>
+        <a href="admin-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="admin-settings">Admin Settings</a>
+        <a href="data-requests.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="data-requests">Erasure & Data Export</a>
+        <a href="permissions.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="permissions">Permissions & Security</a>
+        <a href="privacy-security.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="privacy-security">Privacy &amp; Data Handling</a>
+      </nav>
+    </aside>
+
+    <main class="md:ml-64 xl:mr-56 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8 relative">
+      <aside id="toc" class="hidden xl:block fixed top-28 right-8 w-48 max-h-[calc(100vh-9rem)] overflow-y-auto">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-muted mb-3">On this page</p>
+        <nav class="space-y-1 text-xs">
+          <a href="#at-a-glance" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">At a glance</a>
+          <a href="#working-hours" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Working hours</a>
+          <a href="#working-weekdays" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Working weekdays</a>
+          <a href="#approval-mode" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Approval mode</a>
+          <a href="#auto-approve-timeout" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Auto-approve timeout</a>
+          <a href="#timesheet-lock" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Timesheet lock</a>
+          <a href="#leave-policies" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Leave policies</a>
+          <a href="#leave-auto-decision" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Leave auto-decision</a>
+          <a href="#worklog-sync" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Worklog sync</a>
+          <a href="#approver-delegation" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Approver delegation</a>
+          <a href="#project-overrides" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Project overrides</a>
+          <a href="#site-timezone" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Site timezone</a>
+          <a href="#reminders" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Reminders</a>
+          <a href="#data-retention-windows" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Data retention windows</a>
+          <a href="#billing" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Billing</a>
+          <a href="#scheduler-audience" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Scheduler audience</a>
+          <a href="#hub-url" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Hub URL</a>
+          <a href="#branding-and-welcome-message" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Branding and welcome message</a>
+          <a href="#how-settings-interact" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">How settings interact</a>
+          <a href="#what-no-setting-can-do" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">What no setting can do</a>
+        </nav>
+      </aside>
+
+      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; TimeSheets Overview</a>
+
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8L7 17M17 7l2.8-2.8"/></svg></div>
+      <h1 class="text-3xl font-bold mt-3 mb-2">Admin Settings</h1>
+      <p class="text-muted mb-8">Every site-wide setting, what it changes, and what it does not</p>
+
+      <p class="text-muted mb-4">Site-wide settings, available to Jira site administrators under <strong class="text-text">Apps → TimeSheets → Settings</strong>. This page is a reference: for each setting, what it actually changes, and — where it matters — what it deliberately does not.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Two things to know before changing anything. <strong class="text-text">Some settings are overridden per person</strong> (timezone, working weekdays) and some <strong class="text-text">per project</strong> (leave auto-decision), so a site value is a default rather than a guarantee. And <strong class="text-text">settings apply going forward</strong>: none of them retroactively rewrite entries, approvals or prices that already exist.</p></div>
+      <h2 id="at-a-glance" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. At a glance</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Default</th><th>Takes effect</th></tr></thead><tbody><tr><td>Working hours</td><td>09:00–17:00, 8h/day</td><td>Immediately, on capacity displays</td></tr><tr><td>Working weekdays</td><td>Mon–Fri</td><td>Immediately, on leave counts and missing days</td></tr><tr><td>Approval mode</td><td>Per entry</td><td>Immediately, for new submissions</td></tr><tr><td>Auto-approve timeout</td><td>72 hours</td><td>On the next scheduled sweep</td></tr><tr><td>Timesheet lock</td><td>30 days</td><td>Immediately</td></tr><tr><td>Leave policies</td><td>Half-days on, no negative balance</td><td>On the next leave request</td></tr><tr><td>Leave auto-decision</td><td>Off</td><td>On the next scheduled sweep</td></tr><tr><td>Worklog sync</td><td>Off</td><td>On the next approval</td></tr><tr><td>Approver delegation</td><td>On</td><td>Immediately</td></tr><tr><td>Project overrides</td><td>Allowed</td><td>Immediately</td></tr><tr><td>Site timezone</td><td>UTC</td><td>Only for people with no timezone of their own</td></tr><tr><td>Reminders</td><td>On, 7 days</td><td>On the next scheduled run</td></tr><tr><td>Retention windows</td><td>Audit 365 days, everything else forever</td><td>On the next sweep</td></tr><tr><td>Billing</td><td>Off</td><td>On the next approval</td></tr></tbody></table></div>
+      <figure class="shot mb-6">
+        <img src="../../assets/screenshots/timesheets-admin-settings-general.png" alt="The Admin Settings General tab showing working hours, weekdays, approval mode and lock window" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">timesheets-admin-settings-general.png</p>
+          <p class="text-xs text-muted max-w-md">The Admin Settings General tab showing working hours, weekdays, approval mode and lock window</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Admin Settings General tab showing working hours, weekdays, approval mode and lock window</figcaption>
+      </figure>
+      <h2 id="working-hours" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Working hours</h2>
+      <p class="text-muted mb-4">A start time, an end time, and <strong class="text-text">hours per day</strong>. Of the three, hours per day is the one that does real work.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Affects</th><th>How</th></tr></thead><tbody><tr><td>The daily hours meter</td><td>The denominator in <span class="font-mono text-sm">6h / 8h</span> while someone is logging time</td></tr><tr><td>Capacity in dashboard gadgets</td><td>What a full day is worth when showing utilisation</td></tr><tr><td>Reports</td><td>The expected total against which a person's logged time is compared</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">What it does not do:</strong> it does not stop anybody logging more or fewer hours. The meter is guidance. The only hard daily ceiling is 24 hours, and that is fixed.</p>
+      <p class="text-muted mb-4">Start and end times are presentational — they set expectations on screen and in reminder copy. TimeSheets does not record clock-in and clock-out times, so nothing is validated against them.</p>
+      <h2 id="working-weekdays" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Working weekdays</h2>
+      <p class="text-muted mb-4">Which days of the week count as working days. This one reaches further than most people expect:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Affects</th><th>How</th></tr></thead><tbody><tr><td>Leave day counts</td><td>A request spanning a weekend consumes balance only for working days</td></tr><tr><td>Missing days</td><td>A non-working day is never reported as missing</td></tr><tr><td>Reminders</td><td>The nudge for unlogged time skips non-working days</td></tr><tr><td>Calendar</td><td>Non-working days are shown differently</td></tr><tr><td>Report capacity</td><td>The expected hours for a period</td></tr></tbody></table></div>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90"><strong class="text-text">A person's own working weekdays override this.</strong> Somebody on a four-day week sets that in their <a href="personal-settings.html" class="text-cta hover:underline">personal settings</a>, and their leave counts and missing days follow their pattern, not the site's. Change the site value and part-time people are unaffected — which is usually what you want, and occasionally a surprise.</p></div>
+      <h2 id="approval-mode" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Approval mode</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Per entry</strong> or <strong class="text-text">weekly</strong>. This changes how everybody works, which is why it is site-wide rather than per project.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Mode</th><th>How time moves</th></tr></thead><tbody><tr><td>Per entry</td><td>Each entry is submitted and decided on its own</td></tr><tr><td>Weekly</td><td>Entries are drafts until a whole week is submitted, then decided together</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Switching modes does not convert work already in flight. Entries already pending in per-entry mode stay pending and are still decidable; weeks already submitted stay submitted. Only new work follows the new mode.</p>
+      <p class="text-muted mb-4">See <a href="weekly-submission.html" class="text-cta hover:underline">Weekly Submission</a> for what weekly mode changes day to day.</p>
+      <h2 id="auto-approve-timeout" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Auto-approve timeout</h2>
+      <p class="text-muted mb-4">Hours a pending item may sit before a scheduled job approves it. <strong class="text-text">Set it to 0 to switch it off</strong> and require a positive decision on everything.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Affects</th><th>How</th></tr></thead><tbody><tr><td>Pending time entries</td><td>Approved automatically once older than the timeout</td></tr><tr><td>Submitted weeks</td><td>The weekly sweep uses the same timeout</td></tr><tr><td>Billing</td><td>An auto-approved entry is priced exactly like a manually approved one</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Automatically approved items are recorded as decided by the system, so a reviewer can always distinguish a considered approval from a lapsed one.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">This is a convenience, not a control. If your organisation needs every entry positively approved — for a client contract, or an audit — set it to 0 and staff the queue. A timeout is not evidence that anybody looked.</p></div>
+      <h2 id="timesheet-lock" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Timesheet lock</h2>
+      <p class="text-muted mb-4">How many days back people may still edit their own time. <strong class="text-text">0 disables locking entirely.</strong></p>
+      <div class="tbl-wrap"><table><thead><tr><th>Affects</th><th>How</th></tr></thead><tbody><tr><td>Creating entries</td><td>Refused on a locked day</td></tr><tr><td>Editing and deleting</td><td>Refused on a locked day</td></tr><tr><td>Moving an entry</td><td>Refused if either the old or new date is locked</td></tr><tr><td>The Calendar</td><td>Locked days are greyed out and their right-click actions disabled</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The window is measured in <strong class="text-text">each person's own timezone</strong>, so a lock does not arrive a day early for a colleague further east.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Shortening the window locks more days immediately.</strong> Anyone mid-correction will be stopped, so a shorter window is worth announcing. Lengthening it reopens days, which is safe but may be surprising.</p>
+      <p class="text-muted mb-4">Locking can be relieved case by case with an <a href="locking.html" class="text-cta hover:underline">unlock request</a>. It cannot relieve a <strong class="text-text">billed</strong> entry — that constraint comes from the invoice, not the calendar.</p>
+      <h2 id="leave-policies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Leave policies</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Policy</th><th>Effect when on</th><th>Effect when off</th></tr></thead><tbody><tr><td>Half-days allowed</td><td>People can book 0.5 of a day</td><td>The half-day option is not offered</td></tr><tr><td>Allow negative balance</td><td>A request may exceed the remaining balance</td><td>A request exceeding the balance is refused</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Negative balances suit organisations that accrue leave through the year and would rather allow a January holiday than block it. Leaving it off suits organisations where the balance is the entitlement.</p>
+      <p class="text-muted mb-4">Turning half-days off does not alter existing half-day leave — history is not rewritten.</p>
+      <h2 id="leave-auto-decision" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Leave auto-decision</h2>
+      <p class="text-muted mb-4">Settles leave that has been pending too long, in a direction you choose. Three parts: <strong class="text-text">enabled</strong>, <strong class="text-text">days</strong>, and <strong class="text-text">action</strong> (approve or reject). Off by default.</p>
+      <p class="text-muted mb-4">This is the one policy a project can override, if project overrides are allowed. A team whose leave genuinely needs a positive decision can require one while the rest of the site is happy with silence. See <a href="leave-auto-decision.html" class="text-cta hover:underline">Leave Auto-Decision</a>.</p>
+      <p class="text-muted mb-4">Approvers are emailed before a request settles, so the deadline is not a surprise.</p>
+      <h2 id="worklog-sync" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Worklog sync</h2>
+      <p class="text-muted mb-4">Whether approved, issue-linked entries are mirrored into native Jira worklogs. <strong class="text-text">Off by default</strong>, because writing to Jira issues is a visible change that ought to be a decision.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Affects</th><th>How</th></tr></thead><tbody><tr><td>Approval</td><td>An approved, issue-linked entry writes a Jira worklog</td></tr><tr><td>Editing an approved entry</td><td>The worklog is updated</td></tr><tr><td>Rejection or deletion</td><td>The worklog is removed</td></tr><tr><td>Entries with no issue</td><td>Nothing — they have nowhere to sync, and that is not an error</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">Turning it on does not backfill.</strong> Previously approved entries are not synced retroactively; only approvals from that point forward write worklogs. Turning it off leaves existing worklogs in place.</p>
+      <p class="text-muted mb-4">If Jira refuses a write, the approval still stands and the error is recorded. Approval never fails because a downstream sync did.</p>
+      <h2 id="approver-delegation" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Approver delegation</h2>
+      <p class="text-muted mb-4">Whether <a href="delegation.html" class="text-cta hover:underline">delegation</a> is available at all. On by default.</p>
+      <p class="text-muted mb-4">This exists as an emergency switch: it disables the delegation lookup site-wide without deleting anybody's arrangements. With no delegations set up the feature is already inert, so most sites never touch this.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Switching it off means existing delegates immediately stop being able to act. Their past decisions stand and remain attributed correctly.</p></div>
+      <h2 id="project-overrides" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. Project overrides</h2>
+      <p class="text-muted mb-4">Whether projects may override site settings at all. On by default.</p>
+      <p class="text-muted mb-4">Turn it off to keep every team on identical rules — useful where consistency matters more than local judgement, or where you have been asked to demonstrate uniform policy. Existing overrides stop being applied while it is off, and start applying again if you turn it back on.</p>
+      <h2 id="site-timezone" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">12. Site timezone</h2>
+      <p class="text-muted mb-4">The fallback timezone, used only for people who have none of their own.</p>
+      <p class="text-muted mb-4">TimeSheets resolves a person's timezone in this order:</p>
+      <ol class="text-muted mb-4 space-y-2 list-decimal pl-6"><li>their <strong class="text-text">personal setting</strong>, if they have set one;</li><li>the timezone their <strong class="text-text">last logged entry</strong> was recorded in;</li><li>this <strong class="text-text">site setting</strong>.</li></ol>
+      <p class="text-muted mb-4">Timezone decides which calendar day an entry belongs to and when the lock window closes for that person. Changing the site value affects only people who have never set one and never logged time.</p>
+      <h2 id="reminders" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">13. Reminders</h2>
+      <p class="text-muted mb-4">Whether the in-app and email nudge for unlogged time runs, and after how many days a gap counts as worth mentioning.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Effect</th></tr></thead><tbody><tr><td>Reminders enabled</td><td>Master switch for the reminder sweep</td></tr><tr><td>Threshold days</td><td>How far back a missing working day must be before it is flagged</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Missing days are computed from working weekdays, public holidays and approved leave — so a holiday or a booked absence is never nudged about.</p>
+      <h2 id="data-retention-windows" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">14. Data retention windows</h2>
+      <p class="text-muted mb-4">How long each category is kept before the retention sweep deletes it. All are in days; <strong class="text-text">0 means keep forever</strong>.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Window</th><th>Default</th><th>Note</th></tr></thead><tbody><tr><td>Approval history</td><td>365 days</td><td>The only one with a non-zero default — this table grows with every decision</td></tr><tr><td>Leave history</td><td>Keep forever</td><td>The category with the strongest argument for a shorter window</td></tr><tr><td>Timesheet history</td><td>Keep forever</td><td>Entries on an issued invoice are never deleted, whatever this says</td></tr><tr><td>Email suppressions</td><td>Keep forever</td><td>Deleting these means the app may email an address that previously bounced</td></tr></tbody></table></div>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Deletion is irreversible and there is no restore inside the app. Every window except approval history ships at keep-forever on purpose: an upgrade that quietly started removing people's history would be worse than continuing to hold it while you decide.</p></div>
+      <p class="text-muted mb-4">The sweep reports what it deleted <strong class="text-text">and what it declined to delete</strong>, so a protected row never looks like an empty run. Full detail in <a href="privacy-security.html" class="text-cta hover:underline">Privacy &amp; Data Handling</a>.</p>
+      <figure class="shot mb-6">
+        <img src="../../assets/screenshots/timesheets-data-retention-settings.png" alt="The Data retention card showing the four windows at their keep-forever defaults with a warning about a short window" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">timesheets-data-retention-settings.png</p>
+          <p class="text-xs text-muted max-w-md">The Data retention card showing the four windows at their keep-forever defaults with a warning about a short window</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Data retention card showing the four windows at their keep-forever defaults with a warning about a short window</figcaption>
+      </figure>
+      <h2 id="billing" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">15. Billing</h2>
+      <p class="text-muted mb-4">Billing is off until you configure it, and configuring it does nothing until a client and a rate exist.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Effect</th></tr></thead><tbody><tr><td>Default currency</td><td>Suggested when creating a client or a rate. Does not convert anything</td></tr><tr><td>Increment</td><td>Rounds billed time up to a block: none, 6 minutes, 15 minutes or an hour</td></tr><tr><td>Rounding mode</td><td>How a half unit resolves when an amount is rounded</td></tr><tr><td>Show rates to approvers</td><td>Off, and named honestly — an amount reveals the rate behind it</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">Increment is the one worth understanding.</strong> With <span class="font-mono text-sm">none</span>, a client is billed for exactly the time logged. With <span class="font-mono text-sm">15min</span>, a 5-minute entry is billed as 15. The timesheet keeps showing 5 — what was worked and what is charged for are two different numbers, and an invoice line prints the charged one.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Changing the increment does not re-price work already captured. Existing prices keep the increment in force when they were captured; only new approvals use the new setting. Re-price a period explicitly if you want the change applied — see <a href="billing-health.html" class="text-cta hover:underline">Billing Health</a>.</p></div>
+      <p class="text-muted mb-4">There is deliberately no currency conversion anywhere in TimeSheets. A rate in a currency other than the client's cannot bill that client, and is reported rather than converted.</p>
+      <h2 id="scheduler-audience" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">16. Scheduler audience</h2>
+      <p class="text-muted mb-4">Who recurring reminders reach. There is no *everyone with a licence* option, because Jira does not offer a reliable way to enumerate that — so the roster is derived from sources you choose:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Source</th><th>Covers</th><th>Misses</th></tr></thead><tbody><tr><td>Past loggers</td><td>Anyone who logged time in the lookback window — organic and self-maintaining</td><td>Brand-new joiners who have not logged anything yet</td></tr><tr><td>Jira groups</td><td>Everybody in the named groups, including new joiners</td><td>People outside those groups</td></tr><tr><td>Projects</td><td>The teams bound to the named projects</td><td>People not on a project team</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Sources are combined and de-duplicated. <strong class="text-text">Maximum recipients per run</strong> is a hard cost backstop: a run over the cap is truncated and says so, rather than quietly mailing a whole site.</p>
+      <p class="text-muted mb-4">Reminder jobs that fan out to a derived roster also require your <strong class="text-text">own SES account</strong> — see <a href="scheduler.html" class="text-cta hover:underline">Scheduler &amp; Automation</a>.</p>
+      <figure class="shot mb-6">
+        <img src="../../assets/screenshots/timesheets-scheduler-audience.png" alt="The scheduler audience settings showing the source selector, lookback window and recipient cap" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">timesheets-scheduler-audience.png</p>
+          <p class="text-xs text-muted max-w-md">The scheduler audience settings showing the source selector, lookback window and recipient cap</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The scheduler audience settings showing the source selector, lookback window and recipient cap</figcaption>
+      </figure>
+      <h2 id="hub-url" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">17. Hub URL</h2>
+      <p class="text-muted mb-4">The link emails point back to. TimeSheets derives it automatically; set it explicitly only if your site is reached through a URL the app cannot infer.</p>
+      <p class="text-muted mb-4">Get it wrong and notifications still send — their links just land in the wrong place. Send a test after changing it.</p>
+      <h2 id="branding-and-welcome-message" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">18. Branding and welcome message</h2>
+      <p class="text-muted mb-4">A brand colour and the greeting on the Hub. Cosmetic: neither affects permissions, calculations or what anybody can see.</p>
+      <p class="text-muted mb-4">Leaving the colour empty uses the Jira brand token, so the app follows your site's own theme.</p>
+      <h2 id="how-settings-interact" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">19. How settings interact</h2>
+      <p class="text-muted mb-4">A few combinations produce behaviour that is not obvious from either setting on its own:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Combination</th><th>What happens</th></tr></thead><tbody><tr><td>Weekly mode + lock window</td><td>A week can be locked by the calendar before it is submitted. People must submit inside the window</td></tr><tr><td>Auto-approve + billing</td><td>Time is priced by an unattended job. Prices are dated by the work's date, not the sweep's, so this stays deterministic</td></tr><tr><td>Lock window + issued invoice</td><td>Billed entries are frozen regardless of the window, and an unlock will not reopen them</td></tr><tr><td>Project overrides off + per-project settings</td><td>Existing overrides stop applying but are not deleted, and resume if you turn overrides back on</td></tr><tr><td>Retention + invoices</td><td>The sweep never deletes an entry on an issued invoice, whatever the timesheet window says</td></tr></tbody></table></div>
+      <h2 id="what-no-setting-can-do" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">20. What no setting can do</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Let anybody approve their <strong class="text-text">own</strong> time or leave.</li><li>Let a delegate act beyond what the person who delegated to them can do.</li><li>Show somebody their <strong class="text-text">own billing rate</strong> in their own timesheet.</li><li>Edit an entry that is on an <strong class="text-text">issued invoice</strong>, without voiding it first.</li><li>Convert between currencies.</li></ul>
+      <p class="text-muted mb-4">These are properties of the design rather than defaults, which is why they are not on this screen.</p>
+
+    </main>
+  </div>
+
+  <script>
+  (function(){
+    var t=localStorage.getItem('theme');
+    if(t==='light')document.documentElement.classList.add('light');
+    else if(t==='dark')document.documentElement.classList.remove('light');
+    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+    function upd(){var isLight=document.documentElement.classList.contains('light');var d=document.getElementById('icon-dark'),l=document.getElementById('icon-light');if(d)d.style.display=isLight?'block':'none';if(l)l.style.display=isLight?'none':'block';}
+    upd();
+    var tt=document.getElementById('theme-toggle');if(tt)tt.addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
+    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
+    var page=location.pathname.split('/').pop().replace('.html','');
+    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
+  })();
+    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'getting started install timesheets and log your first entry install the app open the hub log your first entry what an administrator should set up next where to go next install setup first run onboarding hub'},{name:'Logging Time',page:'logging-time.html',tags:'logging time log against cost centres and jira issues, in 5-minute increments the log time dialog several rows at once the daily hours meter increments, and why they are five minutes copying a previous week editing and deleting caps you may run into log worklog hours minutes duration copy week bulk'},{name:'Time Templates',page:'templates.html',tags:'time templates save recurring work as reusable one-click entries creating a template applying a template managing templates template recurring preset shortcut'},{name:'Cost Centers',page:'cost-centers.html',tags:'cost centers hierarchical cost centres, hour allotments and money budgets the cost centre tree assigning cost centres to projects billable, and what it really means hour allotments money budgets budget status and rollup remaining balance cost center cost centre budget allotment billable hierarchy'},{name:'Approvals',page:'approvals.html',tags:'approvals per-project approvers, bulk decisions, and a full audit trail how routing works configuring approvers the approvals queue filters and multi-select rejecting automatic approval what approval changes approve reject approver queue pending auto-approve'},{name:'Weekly Submission',page:'weekly-submission.html',tags:'weekly submission submit a whole week for approval instead of individual entries switching to weekly mode submitting a week recalling a submission approving a week what locks while a week is out weekly submit recall week timesheet submission'},{name:'Approver Delegation',page:'delegation.html',tags:'approver delegation nominate someone to approve on your behalf while you are away why delegate rather than add an approver setting up cover what a delegate can do what a delegate cannot do both of you can decide ending cover early admin-arranged delegation delegate cover holiday out of office stand in on behalf of'},{name:'Approval History',page:'approval-history.html',tags:'approval history the record of every approval decision, and how long it is kept per-entry history project activity automatic decisions acting on behalf of someone retention what happens when someone is erased audit history trail who approved record retention'},{name:'Leave Management',page:'leave.html',tags:'leave management leave types, balances, half-days and multi-project approval applying for leave the reason field is optional, deliberately leave types and balances half days the multi-project rule cancelling and recalling leave on the calendar leave holiday absence pto vacation sick balance'},{name:'Leave Auto-Decision',page:'leave-auto-decision.html',tags:'leave auto-decision automatically settle leave that stays pending too long how it works choosing a direction site configuration per-project overrides advance warning auto approve leave timeout pending leave escalation'},{name:'Public Holidays',page:'holidays.html',tags:'public holidays site-wide holiday calendars that exclude days from capacity adding holidays how holidays affect capacity regions holiday bank holiday public holiday region calendar'},{name:'Timesheet Locking',page:'locking.html',tags:'timesheet locking freeze past periods, with admin-granted unlock windows the lock window what locking prevents requesting an unlock reviewing unlock requests automatic re-locking billed time is a stronger lock lock freeze closed period unlock request read only'},{name:'Dashboard & Gadgets',page:'dashboard.html',tags:'dashboard & gadgets a configurable gadget dashboard, per person and per screen size adding gadgets rearranging and resizing available gadgets refreshing dashboard gadget widget layout drag resize'},{name:'Calendar',page:'calendar.html',tags:'calendar month and week views with multi-select and right-click actions navigating selecting days right-click actions leave and holidays work modes calendar month week select days right click work mode'},{name:'Summary & Missing Days',page:'summary.html',tags:'summary & missing days month totals, missing working days, and your team at a glance month summary missing days team browser pins and status summary missing days team pins status totals'},{name:'Reports & Exports',page:'reports.html',tags:'reports & exports team matrices, breakdowns and exports for projects you manage who can see reports the team matrix drilling into a cell breakdown by cost centre, project or person unpriced billable time amounts, and who can see them excel export pdf export report matrix export excel pdf breakdown grouping'},{name:'Scheduled Reports',page:'scheduled-reports.html',tags:'scheduled reports email a recurring timesheet summary on a schedule you choose creating a scheduled report choosing the run day recipients and preferences sending now scheduled report recurring email report weekly monthly run day'},{name:'Clients',page:'clients.html',tags:'clients the external party a project is billed to, and the currency it is billed in what a client is adding a client attaching a project to a client currency, and why it cannot change later payment terms and invoice prefix client customer billing currency invoice prefix payment terms'},{name:'Billing Rates',page:'billing-rates.html',tags:'billing rates hourly rates by person, project, cost centre or site default how a rate is chosen the precedence order effective dates adding a rate ending a rate without replacing it previewing which rate would apply who can see rates rate hourly price billing precedence effective date'},{name:'Invoices',page:'invoices.html',tags:'invoices turn approved, priced work into a numbered invoice preview before you commit creating a draft how work is grouped into lines issuing an invoice invoice numbering voiding and re-issuing what happens to the time entries invoice draft issue void numbering billing lines'},{name:'Billing Health',page:'billing-health.html',tags:'billing health find approved work that carries no price, and re-price after a rate change why work can end up unpriced the four figures pricing what is missing re-pricing a period what re-pricing will not touch billing health unpriced backfill recapture reprice capture'},{name:'Project Settings',page:'project-settings.html',tags:'project settings approval rules, teams, caps, cost centres and the billing client approval requirements approvers cost centres weekly billable cap billing client overrides teams, important dates and quick events project settings approvers cap teams client overrides'},{name:'Jira Worklog Sync',page:'worklog-sync.html',tags:'jira worklog sync mirror approved entries into native jira worklogs enabling sync what gets synced edits and deletions sync errors worklog sync jira tempo native issue'},{name:'Email Notifications',page:'email.html',tags:'email notifications ses delivery with editable templates and smart values built-in sender or your own editing templates smart values bounces and suppression test sends email ses notification template bounce suppression aws'},{name:'Scheduler & Automation',page:'scheduler.html',tags:'scheduler & automation recurring jobs, their audience, and the bulk-email cost gate available jobs enabling a job choosing the audience the bulk-email cost gate dry runs and history scheduler job cron automation reminder dry run cleanup'},{name:'Personal Settings',page:'personal-settings.html',tags:'personal settings timezone, working days, logging defaults and notification controls opening your settings timezone working days logging defaults notification preferences mute and snooze personal timezone preferences notifications mute snooze'},{name:'Admin Settings',page:'admin-settings.html',tags:'admin settings every site-wide setting, what it changes, and what it does not at a glance working hours working weekdays approval mode auto-approve timeout timesheet lock leave policies leave auto-decision worklog sync approver delegation project overrides site timezone reminders data retention windows billing scheduler audience hub url branding and welcome message how settings interact what no setting can do admin settings site configuration working hours approval mode lock timezone branding defaults override reference'},{name:'Erasure & Data Export',page:'data-requests.html',tags:'erasure & data export handle a request to export or delete everything held about one person before you start previewing an erasure running an erasure what is deleted, replaced and kept exporting one persons data the erasure log data retention windows erasure export gdpr dsar right to be forgotten delete person'},{name:'Permissions & Security',page:'permissions.html',tags:'permissions & security who can see and do what, and how access is enforced roles project-scoped access rules that have no exceptions enforcement is on the server scopes the app requests where your data lives permission role access security scope admin approver'},{name:'Privacy &amp; Data Handling',page:'privacy-security.html',tags:'privacy &amp; data handling what timesheets stores, what leaves atlassian, and how erasure, export and retention work where your data lives what timesheets stores what leaves atlassian jira permissions the app asks for special-category data retention erasing one person why some data survives erasure giving someone a copy of their data who can see what what you still need to decide privacy gdpr security data residency ses article 9 retention erasure export subprocessor forge'}];
+    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
+    wire('doc-search','search-results');
+  </script>
+<script>
+(function(){
+  var links=document.querySelectorAll('#toc a[href^="#"]');
+  if(!links.length)return;
+  var ids=Array.prototype.map.call(links,function(l){return l.getAttribute('href').slice(1);});
+  function onScroll(){
+    // The active heading is the last one whose top has passed the header.
+    var active='';
+    for(var i=0;i<ids.length;i++){
+      var el=document.getElementById(ids[i]);
+      if(el&&el.getBoundingClientRect().top<=140)active=ids[i];
+    }
+    // Near the bottom nothing new crosses the line, so pin the last entry —
+    // otherwise the final section never highlights.
+    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-8)active=ids[ids.length-1];
+    Array.prototype.forEach.call(links,function(l){
+      var on=l.getAttribute('href')==='#'+active;
+      l.classList.toggle('!text-cta',on);
+      l.classList.toggle('!border-cta',on);
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+</body>
+</html>

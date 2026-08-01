@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erasure & Data Export — TimeSheets Docs</title>
+  <meta name="description" content="Handle a request to export or delete everything held about one person">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
+    html.light body{background:#F8FAFC;color:#0F172A}
+    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#475569!important}
+    html.light .text-text{color:#0F172A!important}
+    html.light .hover\:text-text:hover{color:#0F172A!important}
+    html.light .border-border{border-color:#E2E8F0!important}
+    html.light .text-cta{color:#16A34A!important}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:0.5rem 0.75rem;border-bottom:1px solid #334155;vertical-align:top;font-size:0.875rem}
+    th{font-weight:600;color:#F8FAFC}
+    td{color:#94A3B8}
+    html.light th,html.light td{border-color:#E2E8F0}
+    html.light th{color:#0F172A}
+    html.light td{color:#475569}
+    .tbl-wrap{overflow-x:auto;margin-bottom:1.5rem}
+    .shot img{width:100%;height:auto;display:block;border-radius:0.5rem}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+</head>
+<body class="min-h-screen">
+
+  <!-- Nav -->
+  <div id="vc-header"></div>
+  <script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; TimeSheets is in active development.</div>
+
+  <!-- Sidebar + Content -->
+  <div class="flex">
+    <aside id="mobile-sidebar" class="hidden md:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
+      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; TimeSheets Overview</a>
+      <nav id="sidebar-nav" class="space-y-1">
+        <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
+        <a href="logging-time.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="logging-time">Logging Time</a>
+        <a href="templates.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="templates">Time Templates</a>
+        <a href="cost-centers.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="cost-centers">Cost Centers</a>
+        <a href="approvals.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="approvals">Approvals</a>
+        <a href="weekly-submission.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="weekly-submission">Weekly Submission</a>
+        <a href="delegation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="delegation">Approver Delegation</a>
+        <a href="approval-history.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="approval-history">Approval History</a>
+        <a href="leave.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="leave">Leave Management</a>
+        <a href="leave-auto-decision.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="leave-auto-decision">Leave Auto-Decision</a>
+        <a href="holidays.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="holidays">Public Holidays</a>
+        <a href="locking.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="locking">Timesheet Locking</a>
+        <a href="dashboard.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="dashboard">Dashboard & Gadgets</a>
+        <a href="calendar.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="calendar">Calendar</a>
+        <a href="summary.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="summary">Summary & Missing Days</a>
+        <a href="reports.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="reports">Reports & Exports</a>
+        <a href="scheduled-reports.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="scheduled-reports">Scheduled Reports</a>
+        <a href="clients.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="clients">Clients</a>
+        <a href="billing-rates.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="billing-rates">Billing Rates</a>
+        <a href="invoices.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="invoices">Invoices</a>
+        <a href="billing-health.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="billing-health">Billing Health</a>
+        <a href="project-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="project-settings">Project Settings</a>
+        <a href="worklog-sync.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="worklog-sync">Jira Worklog Sync</a>
+        <a href="email.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="email">Email Notifications</a>
+        <a href="scheduler.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="scheduler">Scheduler & Automation</a>
+        <a href="personal-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="personal-settings">Personal Settings</a>
+        <a href="admin-settings.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="admin-settings">Admin Settings</a>
+        <a href="data-requests.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="data-requests">Erasure & Data Export</a>
+        <a href="permissions.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="permissions">Permissions & Security</a>
+        <a href="privacy-security.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="privacy-security">Privacy &amp; Data Handling</a>
+      </nav>
+    </aside>
+
+    <main class="md:ml-64 xl:mr-56 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8 relative">
+      <aside id="toc" class="hidden xl:block fixed top-28 right-8 w-48 max-h-[calc(100vh-9rem)] overflow-y-auto">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-muted mb-3">On this page</p>
+        <nav class="space-y-1 text-xs">
+          <a href="#before-you-start" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Before you start</a>
+          <a href="#previewing-an-erasure" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Previewing an erasure</a>
+          <a href="#running-an-erasure" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Running an erasure</a>
+          <a href="#what-is-deleted-replaced-and-kept" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">What is deleted, replaced and kept</a>
+          <a href="#exporting-one-person-s-data" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Exporting one person's data</a>
+          <a href="#the-erasure-log" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">The erasure log</a>
+          <a href="#data-retention-windows" class="block py-1 text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors duration-200 cursor-pointer">Data retention windows</a>
+        </nav>
+      </aside>
+
+      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; TimeSheets Overview</a>
+
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+      <h1 class="text-3xl font-bold mt-3 mb-2">Erasure &amp; Data Export</h1>
+      <p class="text-muted mb-8">Handle a request to export or delete everything held about one person</p>
+
+      <p class="text-muted mb-4">When someone asks for a copy of their data, or asks you to delete it, these are the tools. Both are <strong class="text-text">site-administrator only</strong> and both are recorded.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">What the app does is described here. Whether you must act on a particular request, and within what deadline, is a decision for your organisation — see <a href="privacy-security.html" class="text-cta hover:underline">Privacy &amp; Data Handling</a>.</p></div>
+      <h2 id="before-you-start" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Before you start</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Confirm the request is genuine and comes from the person it concerns.</li><li>Have the <strong class="text-text">Atlassian account ID</strong>, not just a name. Two people can share a name.</li><li>Remember erasure is <strong class="text-text">irreversible</strong>. There is no undo and no backup restore inside the app.</li></ul>
+      <h2 id="previewing-an-erasure" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Previewing an erasure</h2>
+      <p class="text-muted mb-4">Always preview first. The preview counts exactly what would be deleted, replaced and kept, table by table, and changes nothing.</p>
+      <p class="text-muted mb-4">This is the only chance to notice that a request names the wrong person while noticing is still useful.</p>
+      <figure class="shot mb-6">
+        <img src="../../assets/screenshots/timesheets-erasure-preview.png" alt="The erasure preview showing per-table counts of what would be deleted, replaced and retained" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">timesheets-erasure-preview.png</p>
+          <p class="text-xs text-muted max-w-md">The erasure preview showing per-table counts of what would be deleted, replaced and retained</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The erasure preview showing per-table counts of what would be deleted, replaced and retained</figcaption>
+      </figure>
+      <h2 id="running-an-erasure" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Running an erasure</h2>
+      <p class="text-muted mb-4">Confirm explicitly to proceed — a typed confirmation rather than a checkbox, because this is the one action in the app with no undo at all.</p>
+      <p class="text-muted mb-4">Running it twice for the same person is safe: the second run reports that the account was already erased and does nothing.</p>
+      <h2 id="what-is-deleted-replaced-and-kept" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. What is deleted, replaced and kept</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Kind of record</th><th>Treatment</th></tr></thead><tbody><tr><td>Their own timesheets, leave, preferences, dashboard, status</td><td>Deleted</td></tr><tr><td>Decisions they made about other people's records</td><td>Identity replaced, record kept — deleting it would break someone else's audit trail</td></tr><tr><td>Work on an issued invoice</td><td>Identity replaced, every amount untouched</td></tr><tr><td>Free text anywhere — reasons, descriptions, comments</td><td>Cleared, including on records that are otherwise kept</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Where an identity is replaced it becomes a stable label such as <span class="font-mono text-sm">Former member #a1b2c3d4</span>, the same everywhere, so one person still reads as one person across a document.</p>
+      <h2 id="exporting-one-person-s-data" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Exporting one person's data</h2>
+      <p class="text-muted mb-4">The export produces a JSON document of everything held about one account. Each section says what erasure <strong class="text-text">would</strong> do to those rows, so the person can see in advance what would go and what would be kept.</p>
+      <p class="text-muted mb-4">It is built from the same list of tables erasure uses, so the two can never disagree. If it hits its size limit it says so rather than presenting a partial answer as complete.</p>
+      <figure class="shot mb-6">
+        <img src="../../assets/screenshots/timesheets-data-export.png" alt="The personal data export screen with an account entered and the resulting JSON summary" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">timesheets-data-export.png</p>
+          <p class="text-xs text-muted max-w-md">The personal data export screen with an account entered and the resulting JSON summary</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The personal data export screen with an account entered and the resulting JSON summary</figcaption>
+      </figure>
+      <h2 id="the-erasure-log" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. The erasure log</h2>
+      <p class="text-muted mb-4">Every erasure is recorded: when, by whom, and how many rows in each category. The account itself is stored as a <strong class="text-text">one-way hash</strong> — a record saying *we erased this person* that named the person would defeat the point.</p>
+      <p class="text-muted mb-4">The log is enough to prove an erasure happened and to match it to a request. It is not enough to reverse.</p>
+      <figure class="shot mb-6">
+        <img src="../../assets/screenshots/timesheets-erasure-log.png" alt="The erasure log listing completed erasures with dates, actors and hashed subjects" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">timesheets-erasure-log.png</p>
+          <p class="text-xs text-muted max-w-md">The erasure log listing completed erasures with dates, actors and hashed subjects</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The erasure log listing completed erasures with dates, actors and hashed subjects</figcaption>
+      </figure>
+      <h2 id="data-retention-windows" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Data retention windows</h2>
+      <p class="text-muted mb-4">Erasure handles one person on request. Retention handles everybody, on a schedule. They are separate controls and you probably want both — see <a href="admin-settings.html" class="text-cta hover:underline">Admin Settings</a>.</p>
+
+    </main>
+  </div>
+
+  <script>
+  (function(){
+    var t=localStorage.getItem('theme');
+    if(t==='light')document.documentElement.classList.add('light');
+    else if(t==='dark')document.documentElement.classList.remove('light');
+    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
+    function upd(){var isLight=document.documentElement.classList.contains('light');var d=document.getElementById('icon-dark'),l=document.getElementById('icon-light');if(d)d.style.display=isLight?'block':'none';if(l)l.style.display=isLight?'none':'block';}
+    upd();
+    var tt=document.getElementById('theme-toggle');if(tt)tt.addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
+    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
+    var page=location.pathname.split('/').pop().replace('.html','');
+    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
+  })();
+    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'getting started install timesheets and log your first entry install the app open the hub log your first entry what an administrator should set up next where to go next install setup first run onboarding hub'},{name:'Logging Time',page:'logging-time.html',tags:'logging time log against cost centres and jira issues, in 5-minute increments the log time dialog several rows at once the daily hours meter increments, and why they are five minutes copying a previous week editing and deleting caps you may run into log worklog hours minutes duration copy week bulk'},{name:'Time Templates',page:'templates.html',tags:'time templates save recurring work as reusable one-click entries creating a template applying a template managing templates template recurring preset shortcut'},{name:'Cost Centers',page:'cost-centers.html',tags:'cost centers hierarchical cost centres, hour allotments and money budgets the cost centre tree assigning cost centres to projects billable, and what it really means hour allotments money budgets budget status and rollup remaining balance cost center cost centre budget allotment billable hierarchy'},{name:'Approvals',page:'approvals.html',tags:'approvals per-project approvers, bulk decisions, and a full audit trail how routing works configuring approvers the approvals queue filters and multi-select rejecting automatic approval what approval changes approve reject approver queue pending auto-approve'},{name:'Weekly Submission',page:'weekly-submission.html',tags:'weekly submission submit a whole week for approval instead of individual entries switching to weekly mode submitting a week recalling a submission approving a week what locks while a week is out weekly submit recall week timesheet submission'},{name:'Approver Delegation',page:'delegation.html',tags:'approver delegation nominate someone to approve on your behalf while you are away why delegate rather than add an approver setting up cover what a delegate can do what a delegate cannot do both of you can decide ending cover early admin-arranged delegation delegate cover holiday out of office stand in on behalf of'},{name:'Approval History',page:'approval-history.html',tags:'approval history the record of every approval decision, and how long it is kept per-entry history project activity automatic decisions acting on behalf of someone retention what happens when someone is erased audit history trail who approved record retention'},{name:'Leave Management',page:'leave.html',tags:'leave management leave types, balances, half-days and multi-project approval applying for leave the reason field is optional, deliberately leave types and balances half days the multi-project rule cancelling and recalling leave on the calendar leave holiday absence pto vacation sick balance'},{name:'Leave Auto-Decision',page:'leave-auto-decision.html',tags:'leave auto-decision automatically settle leave that stays pending too long how it works choosing a direction site configuration per-project overrides advance warning auto approve leave timeout pending leave escalation'},{name:'Public Holidays',page:'holidays.html',tags:'public holidays site-wide holiday calendars that exclude days from capacity adding holidays how holidays affect capacity regions holiday bank holiday public holiday region calendar'},{name:'Timesheet Locking',page:'locking.html',tags:'timesheet locking freeze past periods, with admin-granted unlock windows the lock window what locking prevents requesting an unlock reviewing unlock requests automatic re-locking billed time is a stronger lock lock freeze closed period unlock request read only'},{name:'Dashboard & Gadgets',page:'dashboard.html',tags:'dashboard & gadgets a configurable gadget dashboard, per person and per screen size adding gadgets rearranging and resizing available gadgets refreshing dashboard gadget widget layout drag resize'},{name:'Calendar',page:'calendar.html',tags:'calendar month and week views with multi-select and right-click actions navigating selecting days right-click actions leave and holidays work modes calendar month week select days right click work mode'},{name:'Summary & Missing Days',page:'summary.html',tags:'summary & missing days month totals, missing working days, and your team at a glance month summary missing days team browser pins and status summary missing days team pins status totals'},{name:'Reports & Exports',page:'reports.html',tags:'reports & exports team matrices, breakdowns and exports for projects you manage who can see reports the team matrix drilling into a cell breakdown by cost centre, project or person unpriced billable time amounts, and who can see them excel export pdf export report matrix export excel pdf breakdown grouping'},{name:'Scheduled Reports',page:'scheduled-reports.html',tags:'scheduled reports email a recurring timesheet summary on a schedule you choose creating a scheduled report choosing the run day recipients and preferences sending now scheduled report recurring email report weekly monthly run day'},{name:'Clients',page:'clients.html',tags:'clients the external party a project is billed to, and the currency it is billed in what a client is adding a client attaching a project to a client currency, and why it cannot change later payment terms and invoice prefix client customer billing currency invoice prefix payment terms'},{name:'Billing Rates',page:'billing-rates.html',tags:'billing rates hourly rates by person, project, cost centre or site default how a rate is chosen the precedence order effective dates adding a rate ending a rate without replacing it previewing which rate would apply who can see rates rate hourly price billing precedence effective date'},{name:'Invoices',page:'invoices.html',tags:'invoices turn approved, priced work into a numbered invoice preview before you commit creating a draft how work is grouped into lines issuing an invoice invoice numbering voiding and re-issuing what happens to the time entries invoice draft issue void numbering billing lines'},{name:'Billing Health',page:'billing-health.html',tags:'billing health find approved work that carries no price, and re-price after a rate change why work can end up unpriced the four figures pricing what is missing re-pricing a period what re-pricing will not touch billing health unpriced backfill recapture reprice capture'},{name:'Project Settings',page:'project-settings.html',tags:'project settings approval rules, teams, caps, cost centres and the billing client approval requirements approvers cost centres weekly billable cap billing client overrides teams, important dates and quick events project settings approvers cap teams client overrides'},{name:'Jira Worklog Sync',page:'worklog-sync.html',tags:'jira worklog sync mirror approved entries into native jira worklogs enabling sync what gets synced edits and deletions sync errors worklog sync jira tempo native issue'},{name:'Email Notifications',page:'email.html',tags:'email notifications ses delivery with editable templates and smart values built-in sender or your own editing templates smart values bounces and suppression test sends email ses notification template bounce suppression aws'},{name:'Scheduler & Automation',page:'scheduler.html',tags:'scheduler & automation recurring jobs, their audience, and the bulk-email cost gate available jobs enabling a job choosing the audience the bulk-email cost gate dry runs and history scheduler job cron automation reminder dry run cleanup'},{name:'Personal Settings',page:'personal-settings.html',tags:'personal settings timezone, working days, logging defaults and notification controls opening your settings timezone working days logging defaults notification preferences mute and snooze personal timezone preferences notifications mute snooze'},{name:'Admin Settings',page:'admin-settings.html',tags:'admin settings every site-wide setting, what it changes, and what it does not at a glance working hours working weekdays approval mode auto-approve timeout timesheet lock leave policies leave auto-decision worklog sync approver delegation project overrides site timezone reminders data retention windows billing scheduler audience hub url branding and welcome message how settings interact what no setting can do admin settings site configuration working hours approval mode lock timezone branding defaults override reference'},{name:'Erasure & Data Export',page:'data-requests.html',tags:'erasure & data export handle a request to export or delete everything held about one person before you start previewing an erasure running an erasure what is deleted, replaced and kept exporting one persons data the erasure log data retention windows erasure export gdpr dsar right to be forgotten delete person'},{name:'Permissions & Security',page:'permissions.html',tags:'permissions & security who can see and do what, and how access is enforced roles project-scoped access rules that have no exceptions enforcement is on the server scopes the app requests where your data lives permission role access security scope admin approver'},{name:'Privacy &amp; Data Handling',page:'privacy-security.html',tags:'privacy &amp; data handling what timesheets stores, what leaves atlassian, and how erasure, export and retention work where your data lives what timesheets stores what leaves atlassian jira permissions the app asks for special-category data retention erasing one person why some data survives erasure giving someone a copy of their data who can see what what you still need to decide privacy gdpr security data residency ses article 9 retention erasure export subprocessor forge'}];
+    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
+    wire('doc-search','search-results');
+  </script>
+<script>
+(function(){
+  var links=document.querySelectorAll('#toc a[href^="#"]');
+  if(!links.length)return;
+  var ids=Array.prototype.map.call(links,function(l){return l.getAttribute('href').slice(1);});
+  function onScroll(){
+    // The active heading is the last one whose top has passed the header.
+    var active='';
+    for(var i=0;i<ids.length;i++){
+      var el=document.getElementById(ids[i]);
+      if(el&&el.getBoundingClientRect().top<=140)active=ids[i];
+    }
+    // Near the bottom nothing new crosses the line, so pin the last entry —
+    // otherwise the final section never highlights.
+    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-8)active=ids[ids.length-1];
+    Array.prototype.forEach.call(links,function(l){
+      var on=l.getAttribute('href')==='#'+active;
+      l.classList.toggle('!text-cta',on);
+      l.classList.toggle('!border-cta',on);
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+</body>
+</html>
