@@ -18,14 +18,14 @@ CORE = [
             H("Open the Hub"),
             P("Everything a person needs day to day lives in one place, called the **Hub**. Find it under **Apps → TimeSheets** in the Jira top navigation."),
             P("The Hub has these tabs:"),
-            TABLE(["Tab", "What it is for"], [
-                ["Dashboard", "A configurable grid of gadgets — your week, pending approvals, leave balance and so on"],
-                ["Calendar", "Month and week views of what you logged, plus leave and holidays"],
-                ["Summary", "Month totals, missing working days, and what your team is up to"],
-                ["Approvals", "Anything waiting on your decision. Only appears if you approve for at least one project"],
-                ["Reports", "Team matrices and exports, for projects you manage"],
-                ["Notifications", "Which emails you receive, and mute or snooze controls"],
+            TABLE(["Tab", "What it is for", "Shown to"], [
+                ["Dashboard", "A configurable grid of gadgets — your week, pending approvals, leave balance and so on", "Everyone"],
+                ["Summary", "Month totals, missing working days, and what your team is up to", "Everyone"],
+                ["Calendar", "Month and week views of what you logged, plus leave and holidays", "Everyone"],
+                ["Approvals", "Anything waiting on your decision, with the pending count in the tab label", "Approvers only"],
+                ["Reports", "Team matrices, breakdowns and exports", "Approvers and project admins"],
             ]),
+            P("Which emails you receive, and the mute and snooze controls, are in your [personal settings](personal-settings.html) rather than a tab of their own."),
             SHOT("timesheets-hub-overview.png", "The TimeSheets Hub with the Dashboard tab open, showing the tab bar across the top"),
 
             H("Log your first entry"),
@@ -69,11 +69,11 @@ CORE = [
 
             H("The Log time dialog"),
             P("Open it from the Hub, from a project page, or by double-clicking a day in the Calendar. Starting from the Calendar pre-fills the date."),
-            SHOT("timesheets-log-time-modal-filled.png", "The Log time dialog with three rows filled in for different projects on the same day"),
+            SHOT("timesheets-log-time-modal-filled.png", "The Log time dialog with one project and cost centre selected at the top, and three rows below for different dates and durations"),
             TABLE(["Field", "Notes"], [
                 ["Date", "Defaults to today, or to the day you clicked in the Calendar"],
-                ["Project", "Only projects you can browse in Jira, and which have at least one cost centre"],
-                ["Cost centre", "Only those assigned to the chosen project. Changing project resets this"],
+                ["Project", "Chosen once for the whole dialog. Only projects you can browse in Jira, and which have at least one cost centre"],
+                ["Cost centre", "Chosen once for the whole dialog. Only those assigned to the project; changing project resets it"],
                 ["Duration", "Hours and minutes, in 5-minute steps. The smallest entry is 5 minutes"],
                 ["Issue", "Optional. Search by key or summary"],
                 ["Description", "Optional free text — see the note below"],
@@ -81,8 +81,9 @@ CORE = [
             NOTE("Descriptions are visible to your approvers and appear in exports. Keep them about the work."),
 
             H("Several rows at once"),
-            P("The dialog takes multiple rows, so a whole day goes in as one save. Add a row with **Add row**; each row can have its own project, cost centre, issue and duration."),
-            P("Rows can also span **different dates**, which is the quickest way to catch up after a few days away without opening the dialog repeatedly."),
+            P("The dialog takes multiple rows, so several pieces of work go in as one save. Add a row with **Add row**."),
+            WARN("**The project and cost centre are chosen once and shared by every row.** A row varies only by date, duration, description and issue. To log against two different projects you save twice — or use a [template](templates.html), which is the one thing that can span projects in a single action."),
+            P("Rows can span **different dates**, which is the quickest way to catch up after a few days away without opening the dialog repeatedly."),
             P("If any row is invalid the save is refused and the offending row is marked — nothing is saved by halves."),
 
             H("The daily hours meter"),
@@ -95,7 +96,7 @@ CORE = [
             P("Billing can round differently — an organisation that bills in 15-minute or hourly blocks sets that separately, and the timesheet still shows what was actually worked. See [Billing Rates](billing-rates.html)."),
 
             H("Copying a previous week"),
-            P("**Copy previous week** duplicates last week's entries onto this week, matching day for day. It is meant for genuinely repeating work — a standing allocation to a project, a recurring internal meeting."),
+            P("**Copy previous week** duplicates last week's entries onto this week, matching day for day. Find it on the **Summary** tab, in the *My week* panel, and on the matching dashboard gadget. It is meant for genuinely repeating work — a standing allocation to a project, a recurring internal meeting."),
             P("Copies are new entries in draft or pending state, exactly as if you had typed them. Review them before submitting: a copied week that nobody looked at is how a timesheet stops meaning anything."),
             WARN("If a cost centre used last week has since been detached from the project or deactivated, the copy fails and names the cost centre. Fix the entry or ask an administrator to reattach it."),
 
@@ -119,28 +120,44 @@ CORE = [
 
     ("templates", dict(
         label="Time Templates", title="Time Templates", icon="file",
-        desc="Save recurring work as reusable one-click entries",
-        keywords=["template", "recurring", "preset", "shortcut"],
+        desc="Save a recurring set of work as a one-click entry, across projects",
+        keywords=["template", "recurring", "preset", "shortcut", "multi project", "standing allocation"],
         blocks=[
-            P("A template is a saved set of rows you log often — a standing project allocation, a weekly ceremony, a fixed support rotation. Applying one fills the Log time dialog rather than saving behind your back, so you can adjust before committing."),
+            P("A template is a saved set of lines you log often — a standing allocation, a weekly ceremony, a fixed support rotation. Applying one creates the entries in a single action."),
+            NOTE("Templates are the **only** way to log against several projects at once. The [Log time dialog](logging-time.html) uses one project and one cost centre for all its rows; a template line carries its own."),
+
+            H("Where templates live"),
+            P("Templates are managed under **Project Settings → Templates**, so they belong to a project and are available to the people who work on it. Creating and editing them needs rights on that project."),
+            SHOT("timesheets-template-editor.png", "The template editor on Project Settings, showing several lines each with its own project, cost centre and duration"),
 
             H("Creating a template"),
             STEPS([
-                "Fill in the Log time dialog|with the rows you want to keep.",
-                "Choose Save as template|and give it a name you will recognise in a list.",
-                "It appears in your template list|available from the Log time dialog from then on.",
+                "Open Project Settings|for the project the template belongs to, and go to Templates.",
+                "Add a line|for each piece of work.",
+                "Set the project and cost centre per line|these can differ from line to line, and from the project the template lives on.",
+                "Set a duration|in 5-minute steps, and optionally an issue and a description.",
+                "Name and save it|the name is what people pick from, so make it recognisable.",
             ]),
-            SHOT("timesheets-save-as-template.png", "The Save as template control in the Log time dialog with a name entered"),
-            P("A template stores the project, cost centre, optional issue, duration and description of each row. It does **not** store a date — that is chosen when you apply it."),
+            P("A template stores project, cost centre, issue, duration and description for each line. It stores **no date** — that is chosen when the template is applied."),
+            WARN("The lines of a template may not exceed 24 hours in total, since applying it puts them all on one day."),
 
             H("Applying a template"),
-            P("Pick a template from the Log time dialog and its rows appear, pre-filled. Change anything you like, set the date, and save."),
-            P("Applying a template goes through exactly the same validation as typing the rows yourself, including cost-centre and cap checks. A template made before a cost centre was detached from a project will be refused, naming the cost centre."),
-            SHOT("timesheets-apply-template.png", "The template picker open in the Log time dialog, with a template's rows loaded below"),
+            P("Apply a template from the **Summary** tab or from a dashboard gadget. You choose the date; every line lands on that date."),
+            SHOT("timesheets-apply-template.png", "Applying a template from the Summary tab, with the date picker and the template's lines listed"),
+            P("Applying creates the entries directly rather than opening the Log time dialog for you to confirm. Check the date before you apply — a template dropped on the wrong day is corrected by deleting the entries, not by undoing the apply."),
+
+            H("Applying runs the same checks as typing"),
+            P("A template goes through exactly the validation a manual entry does. It will be refused if:"),
+            UL([
+                "a cost centre on one of its lines has since been **detached** from its project or deactivated;",
+                "the date is inside a **locked** period, or a submitted or approved week;",
+                "a line would breach a **cost centre allotment** or the project's **weekly billable cap**;",
+                "the lines would take the day past 24 hours.",
+            ]),
+            P("Where a cost centre is the problem, the error names it, so a template that has gone stale after a reorganisation is quick to fix rather than mysterious."),
 
             H("Managing templates"),
-            P("Templates are personal to you by default. Rename or delete them from the same picker."),
-            P("Deleting a template does not touch any time already logged from it — the entries are ordinary entries once saved."),
+            P("Rename, edit and delete templates from the same screen. Deleting one does not touch time already logged from it — those are ordinary entries once created."),
         ])),
 
     ("cost-centers", dict(

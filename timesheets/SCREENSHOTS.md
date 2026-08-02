@@ -20,16 +20,16 @@ realistic but fictional names and figures rather than real people's data.
 ## Logging Time
 
 - [ ] `timesheets-log-time-modal-filled.png`
-      The Log time dialog with three rows filled in for different projects on the same day
+      The Log time dialog with one project and cost centre selected at the top, and three rows below for different dates and durations
 - [ ] `timesheets-daily-hours-meter.png`
       The daily hours meter in the Log time dialog showing hours logged against the working day
 
 ## Time Templates
 
-- [ ] `timesheets-save-as-template.png`
-      The Save as template control in the Log time dialog with a name entered
+- [ ] `timesheets-template-editor.png`
+      The template editor on Project Settings, showing several lines each with its own project, cost centre and duration
 - [ ] `timesheets-apply-template.png`
-      The template picker open in the Log time dialog, with a template's rows loaded below
+      Applying a template from the Summary tab, with the date picker and the template's lines listed
 
 ## Cost Centers
 
