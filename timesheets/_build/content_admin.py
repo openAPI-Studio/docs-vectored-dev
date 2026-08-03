@@ -61,7 +61,8 @@ ADMIN = [
             P("A project can override some site-wide settings, such as leave auto-decision. Whether overrides are permitted at all is itself a site setting, so an administrator can keep the configuration uniform if they prefer."),
 
             H("Teams, important dates and quick events"),
-            P("Group members into named teams for the team browser, and record dates that matter to the project — a release, a client workshop — so they show on people's calendars alongside their own work."),
+            P("Name teams for the team browser and bind an Atlassian group to each one — the group's members become the team. This is **optional**: with no team set up, the browser falls back to whoever has logged time on the project recently, so it is useful before anybody configures anything. Set a team up when you want the list chosen deliberately rather than derived."),
+            P("Also record dates that matter to the project — a release, a client workshop — so they show on people's calendars alongside their own work."),
             SHOT("timesheets-project-teams-events.png", "The project teams list and important dates section in Project Settings"),
         ])),
 

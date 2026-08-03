@@ -114,12 +114,12 @@ realistic but fictional names and figures rather than real people's data.
 
 ## Summary & Missing Days
 
+- [ ] `timesheets-team-browser-pins.png`
+      The team browser showing colleagues with their work mode and status, with pinned people first
 - [ ] `timesheets-summary-month-totals.png`
       The five month-total tiles at the top of the Summary tab, showing approved, pending, rejected, logged and leave days
 - [ ] `timesheets-summary-missing-days.png`
       The days with no time logged section listing dates from the current month
-- [ ] `timesheets-team-browser-pins.png`
-      The team browser showing colleagues with their work mode and status, with pinned people first
 
 ## Reports & Exports
 
