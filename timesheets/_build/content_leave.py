@@ -166,24 +166,10 @@ LEAVE = [
     ("summary", dict(
         label="Summary & Missing Days", title="Summary & Missing Days", icon="list",
         desc="Your month at a glance, days you have not logged, and your team",
-        keywords=["summary", "missing days", "team", "pins", "status", "totals", "my week", "templates"],
+        keywords=["summary", "missing days", "team", "pins", "status", "totals", "my week",
+                  "templates", "work mode", "contributors"],
         blocks=[
-            P("The Summary tab answers two questions: where is everybody, and how is my own month going. It is a personal view — for team and project reporting, see [Reports & Exports](reports.html)."),
-
-            H("Team browser"),
-            P("What your colleagues are doing: who is on leave, who is working remotely, and their status. Pick a project to browse. Which projects you can pick follows your Jira access — you never see people on a project you cannot already see."),
-            P("**It works without any setup.** With no team configured, the list is everyone who has logged time on that project in the last 90 days. That is derived rather than declared, so it stays current on its own, and the screen says when a list came from there."),
-            TABLE(["Where the list comes from", "When"], [
-                ["Recent contributors", "The default — no team has been set up, or a team exists but has no Atlassian group bound"],
-                ["An Atlassian group", "A team was set up in [Project Settings](project-settings.html) and a group bound to it. A deliberate list always wins over the derived one"],
-            ]),
-            P("A project nobody has logged time against, and with no group bound, genuinely has nobody to show — and says so rather than looking broken."),
-
-            H("Pins and status"),
-            P("Pin the people you work with most. Pinned teammates get their own section showing each person's work mode, their status, and any upcoming leave — so the people you track are visible without picking a project first."),
-            P("Where somebody has both a status and upcoming leave, the leave is shown: it is the thing that changes whether you contact them."),
-            P("Pins are personal to you. Set a short status message to say what you are focused on; it is visible to colleagues who can see you in the team browser."),
-            SHOT("timesheets-team-browser-pins.png", "The team browser showing colleagues with their work mode and status, with pinned people first"),
+            P("The Summary tab answers two questions: how is my own month going, and where is everybody. It is a personal view — for team and project reporting, see [Reports & Exports](reports.html)."),
 
             H("Month totals"),
             P("Five tiles across the top, summarising **your own** time:"),
@@ -196,6 +182,25 @@ LEAVE = [
             ]),
             SHOT("timesheets-summary-month-totals.png", "The five month-total tiles at the top of the Summary tab, showing approved, pending, rejected, logged and leave days"),
             NOTE("These are totals by **status**, not by project. For a breakdown by project, cost centre or person — and the billable split — use the [Breakdown view in Reports](reports.html), which is available to approvers and project administrators."),
+
+            H("Team"),
+            P("The people you have pinned, shown with each person's work mode, their status, and any upcoming leave. This is what the section shows at rest — no picking a project first."),
+            P("Where somebody has both a status and upcoming leave, the leave is shown: it is the thing that changes whether you contact them."),
+            SHOT("timesheets-team-browser-pins.png", "The Team section showing pinned teammates with work mode, status and upcoming leave, and the Add teammate button"),
+
+            H("Finding people to pin"),
+            P("**Add teammate** reveals a project picker and, where one exists, a team picker. Star anybody to pin them; the pickers stay out of the way the rest of the time."),
+            P("Which projects you can pick follows your Jira access — you never see people on a project you cannot already see."),
+            P("**It works without any setup.** With no team configured, the list is everyone who has logged time on that project in the last 90 days. That is derived rather than declared, so it stays current on its own, and the screen says when a list came from there."),
+            TABLE(["Where the list comes from", "When"], [
+                ["Recent contributors", "The default — no team has been set up, or a team exists but has no Atlassian group bound"],
+                ["An Atlassian group", "A team was set up in [Project Settings](project-settings.html) and a group bound to it. A deliberate list always wins over the derived one"],
+            ]),
+            P("A project nobody has logged time against, and with no group bound, genuinely has nobody to show — and says so rather than looking broken."),
+
+            H("Status and work mode"),
+            P("Set a short status message to say what you are focused on, and mark a day's work mode from the [Calendar](calendar.html). Both are visible to colleagues who can see you here."),
+            P("Pins are personal to you — pinning somebody does not tell them, and does not change what either of you can see."),
 
             H("Days with no time logged"),
             P("Working days this month with nothing logged against them, shown as a row of dates you can act on. Days off, public holidays and approved leave are never listed."),
@@ -211,6 +216,6 @@ LEAVE = [
             H("Templates"),
             P("Your **personal** templates: create, edit, and apply them to a date. These belong to you alone."),
             P("Templates shared with a whole project are managed in [Project Settings](project-settings.html) instead. Both kinds work the same way — see [Time Templates](templates.html)."),
-
         ])),
+
 ]
