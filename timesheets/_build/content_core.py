@@ -126,23 +126,28 @@ CORE = [
             P("A template is a saved set of lines you log often — a standing allocation, a weekly ceremony, a fixed support rotation. Applying one creates the entries in a single action."),
             NOTE("Templates are the **only** way to log against several projects at once. The [Log time dialog](logging-time.html) uses one project and one cost centre for all its rows; a template line carries its own."),
 
-            H("Where templates live"),
-            P("Templates are managed under **Project Settings → Templates**, so they belong to a project and are available to the people who work on it. Creating and editing them needs rights on that project."),
-            SHOT("timesheets-template-editor.png", "The template editor on Project Settings, showing several lines each with its own project, cost centre and duration"),
+            H("Personal and project templates"),
+            P("There are two kinds, using the same editor and behaving identically:"),
+            TABLE(["Kind", "Managed from", "Who can use it"], [
+                ["Personal", "The Templates section of the Summary tab", "Only you"],
+                ["Project", "Project Settings → Templates", "People working on that project"],
+            ]),
+            P("Create a personal one for your own recurring pattern; create a project one when a whole team logs the same shape of work each week."),
+            SHOT("timesheets-template-editor.png", "The template editor showing several lines, each with its own project, cost centre and duration"),
 
             H("Creating a template"),
             STEPS([
-                "Open Project Settings|for the project the template belongs to, and go to Templates.",
+                "Open the Templates section|on the Summary tab for a personal template, or Project Settings for a project one.",
                 "Add a line|for each piece of work.",
-                "Set the project and cost centre per line|these can differ from line to line, and from the project the template lives on.",
+                "Set the project and cost centre per line|these can differ from line to line.",
                 "Set a duration|in 5-minute steps, and optionally an issue and a description.",
-                "Name and save it|the name is what people pick from, so make it recognisable.",
+                "Name and save it|the name is what you pick from later, so make it recognisable.",
             ]),
             P("A template stores project, cost centre, issue, duration and description for each line. It stores **no date** — that is chosen when the template is applied."),
             WARN("The lines of a template may not exceed 24 hours in total, since applying it puts them all on one day."),
 
             H("Applying a template"),
-            P("Apply a template from the **Summary** tab or from a dashboard gadget. You choose the date; every line lands on that date."),
+            P("Apply a template from the Templates section of the **Summary** tab, or from a dashboard gadget. You choose the date; every line lands on that date."),
             SHOT("timesheets-apply-template.png", "Applying a template from the Summary tab, with the date picker and the template's lines listed"),
             P("Applying creates the entries directly rather than opening the Log time dialog for you to confirm. Check the date before you apply — a template dropped on the wrong day is corrected by deleting the entries, not by undoing the apply."),
 

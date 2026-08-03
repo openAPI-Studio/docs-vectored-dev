@@ -159,26 +159,45 @@ LEAVE = [
 
     ("summary", dict(
         label="Summary & Missing Days", title="Summary & Missing Days", icon="list",
-        desc="Month totals, missing working days, and your team at a glance",
-        keywords=["summary", "missing days", "team", "pins", "status", "totals"],
+        desc="Your month at a glance, days you have not logged, and your team",
+        keywords=["summary", "missing days", "team", "pins", "status", "totals", "my week", "templates"],
         blocks=[
-            P("The Summary tab answers two questions: how did my month go, and where is everyone?"),
+            P("The Summary tab is your own view of the month: what you have logged, what you have missed, and what your colleagues are doing. It is personal — for team and project reporting, see [Reports & Exports](reports.html)."),
 
-            H("Month summary"),
-            P("Totals for the month, split by project and cost centre, with billable and non-billable separated."),
-            SHOT("timesheets-summary-month-totals.png", "The Summary tab showing month totals broken down by project with billable split"),
+            H("Month totals"),
+            P("Five tiles across the top, summarising **your own** time:"),
+            TABLE(["Tile", "What it counts"], [
+                ["Approved (mo)", "Approved and auto-approved minutes this month"],
+                ["Pending (mo)", "Awaiting a decision"],
+                ["Rejected (mo)", "Sent back this month"],
+                ["Logged (mo)", "Approved plus pending — everything except rejected"],
+                ["Leave days (yr)", "Approved leave days so far this calendar year"],
+            ]),
+            SHOT("timesheets-summary-month-totals.png", "The five month-total tiles at the top of the Summary tab, showing approved, pending, rejected, logged and leave days"),
+            NOTE("These are totals by **status**, not by project. For a breakdown by project, cost centre or person — and the billable split — use the [Breakdown view in Reports](reports.html), which is available to approvers and project administrators."),
 
-            H("Missing days"),
-            P("A working day with no time logged and no leave booked is a **missing day**. The list is calculated from your working weekdays, your public holidays and your approved leave — so a holiday or a booked absence is never flagged."),
-            P("It is a prompt, not an accusation. People forget; this is what reminds them before a month closes."),
-            SHOT("timesheets-summary-missing-days.png", "The missing days list showing working days with no time logged and a quick log action"),
+            H("Days with no time logged"),
+            P("Working days this month with nothing logged against them, shown as a row of dates you can act on. Days off, public holidays and approved leave are never listed."),
+            P("The section disappears entirely when there is nothing missing, so an empty month is silent rather than reassuring you at length."),
+            SHOT("timesheets-summary-missing-days.png", "The days with no time logged section listing dates from the current month"),
+
+            H("My week"),
+            P("This week's entries with their totals, and the **Copy previous week** button. See [Logging Time](logging-time.html) for what copying does and when it refuses."),
+
+            H("My leave"),
+            P("Your own leave requests and their status, including which projects have decided and which have not. Applying for leave starts here or from the [Calendar](calendar.html)."),
+
+            H("Templates"),
+            P("Your **personal** templates: create, edit, and apply them to a date. These belong to you alone."),
+            P("Templates shared with a whole project are managed in [Project Settings](project-settings.html) instead. Both kinds work the same way — see [Time Templates](templates.html)."),
 
             H("Team browser"),
-            P("See what your colleagues have going on — who is on leave, who is working remotely, and their status. Which teams you can see follows your Jira project access."),
+            P("What your colleagues are doing: who is on leave, who is working remotely, and their status. Pick a project and a team to browse. Which teams you can see follows your Jira project access."),
+            P("Teams are bound to Atlassian groups in Project Settings; a project with none says so rather than showing an empty list."),
 
             H("Pins and status"),
-            P("Pin the people you work with most so they stay at the top of your team view. Set a short status message to say what you are focused on."),
-            P("Pins are personal to you. Status messages are visible to colleagues who can see you in the team browser."),
-            SHOT("timesheets-team-browser-pins.png", "The team browser showing pinned colleagues with their work mode and status"),
+            P("Pin the people you work with most so they stay at the top of your team view. Pins are personal to you."),
+            P("Set a short status message to say what you are focused on. It is visible to colleagues who can see you in the team browser."),
+            SHOT("timesheets-team-browser-pins.png", "The team browser showing colleagues with their work mode and status, with pinned people first"),
         ])),
 ]

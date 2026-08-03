@@ -27,7 +27,7 @@ realistic but fictional names and figures rather than real people's data.
 ## Time Templates
 
 - [ ] `timesheets-template-editor.png`
-      The template editor on Project Settings, showing several lines each with its own project, cost centre and duration
+      The template editor showing several lines, each with its own project, cost centre and duration
 - [ ] `timesheets-apply-template.png`
       Applying a template from the Summary tab, with the date picker and the template's lines listed
 
@@ -115,11 +115,11 @@ realistic but fictional names and figures rather than real people's data.
 ## Summary & Missing Days
 
 - [ ] `timesheets-summary-month-totals.png`
-      The Summary tab showing month totals broken down by project with billable split
+      The five month-total tiles at the top of the Summary tab, showing approved, pending, rejected, logged and leave days
 - [ ] `timesheets-summary-missing-days.png`
-      The missing days list showing working days with no time logged and a quick log action
+      The days with no time logged section listing dates from the current month
 - [ ] `timesheets-team-browser-pins.png`
-      The team browser showing pinned colleagues with their work mode and status
+      The team browser showing colleagues with their work mode and status, with pinned people first
 
 ## Reports & Exports
 
