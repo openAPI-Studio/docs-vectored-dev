@@ -26,13 +26,14 @@ APPROVALS = [
 
             H("The approvals queue"),
             P("The **Approvals** tab in the Hub is everything waiting on you. It appears only if you approve for at least one project."),
-            P("Each row shows who logged the time, which project and cost centre, the date, the duration and the description. Leave requests appear here too, with the leave type and dates."),
+            P("Each row shows who logged the time, which project and cost centre, the date, the duration and the description. Leave requests appear here too, with the leave type and dates — and in weekly mode, whole submitted weeks."),
             SHOT("timesheets-approvals-queue.png", "The Approvals tab showing a mixed queue of time entries and leave requests awaiting decision"),
             P("Use **Refresh** after someone tells you they have submitted something — the queue does not poll continuously."),
 
             H("Filters and multi-select"),
             P("Filter by type, project or person, or search by name, project, issue or description. Filters are there because approving fifty entries one at a time is how approval becomes rubber-stamping."),
-            P("Tick rows and use the bulk actions to approve or reject several at once. Selection is scoped to what is on screen: applying a filter that hides a selected row also unselects it, so nothing gets decided that you could not see."),
+            P("Tick rows and use the bulk actions to approve or reject several at once, up to **100 items** in one action. Selection is scoped to what is on screen: applying a filter that hides a selected row also unselects it, so nothing gets decided that you could not see."),
+            P("A rejection comment is validated once for the whole batch rather than per item, so a bulk reject with no comment is refused outright instead of half-applying."),
             SHOT("timesheets-approvals-multiselect.png", "The Approvals queue with several rows selected and the bulk approve and reject buttons visible"),
 
             H("Rejecting"),
@@ -76,6 +77,10 @@ APPROVALS = [
             P("Made a mistake? **Recall** pulls the week back, provided nobody has decided it yet. The entries return to draft and you can edit them."),
             P("Once a week has been approved or rejected it cannot be recalled — that would rewrite a decision someone already made."),
 
+            H("After a rejection"),
+            P("A rejected week goes back to you rather than being final. Fix what the comment asked for and **submit it again** — a week can move from rejected straight back to submitted, as many times as it takes."),
+            P("An approved week is the end of the line. Correcting one means an [unlock request](locking.html), or voiding the invoice if it has been billed."),
+
             H("Approving a week"),
             P("Approvers see submitted weeks in the Approvals queue as a single item with the week's total. Approving accepts every entry in it; rejecting sends the whole week back with a comment."),
             SHOT("timesheets-weekly-approval-card.png", "A submitted week in the Approvals queue showing the person, week and total hours with approve and reject actions"),
@@ -99,7 +104,7 @@ APPROVALS = [
             STEPS([
                 "Open your delegation panel|from the Hub.",
                 "Choose a delegate|anyone who can browse the relevant projects.",
-                "Set the dates|start and end. The end date is required.",
+                "Set the dates|start and end are both required, and a delegation may not run longer than 366 days.",
                 "Optionally add a reason|useful for whoever reviews the audit trail later.",
                 "Save|the delegate sees your queue from the start date.",
             ]),
@@ -187,7 +192,7 @@ APPROVALS = [
             SHOT("timesheets-unlock-request-form.png", "The unlock request form with a date range and a reason entered"),
 
             H("Reviewing unlock requests"),
-            P("Requests go to site administrators, under **Admin Settings → Unlock Requests**. A granted unlock reopens the named dates for that person only, for a limited window."),
+            P("Requests go to site administrators, under **Admin Settings → Unlock Requests**. A granted unlock reopens the named dates for that person only, for a limited window — **48 hours** unless the administrator sets a different figure when granting it."),
             SHOT("timesheets-unlock-requests-admin.png", "The Unlock Requests admin screen listing pending requests with grant and deny actions"),
 
             H("Automatic re-locking"),

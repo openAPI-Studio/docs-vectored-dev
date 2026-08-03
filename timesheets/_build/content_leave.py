@@ -40,8 +40,14 @@ LEAVE = [
             P("The overall request is settled once every project has decided. If any project rejects, the request is rejected — one team cannot commit another team's approver to cover the gap."),
             SHOT("timesheets-leave-multi-project-approvals.png", "A leave request showing per-project approval rows, one approved and one still pending"),
 
-            H("Cancelling and recalling"),
-            P("You can cancel your own request while it is pending. Once approved, cancelling depends on your administrator's policy — the days are already reserved and other people may have planned around them."),
+            H("Cancelling"),
+            P("You can cancel your own leave, including after it has been approved — plans change, and holding somebody to a booking they no longer need helps nobody."),
+            P("Two rules apply, and neither is configurable:"),
+            UL([
+                "You can only cancel **your own** request.",
+                "Leave that has already **finished** cannot be cancelled. Its end date is in the past, the days were consumed, and rewriting that would misstate the balance.",
+            ]),
+            P("A request that was **rejected** is already settled and cannot be cancelled either — there is nothing left to withdraw."),
 
             H("Leave on the calendar"),
             P("Approved and pending leave appears on your [Calendar](calendar.html) and in your team's view, so nobody schedules work into an absence that was already agreed."),
