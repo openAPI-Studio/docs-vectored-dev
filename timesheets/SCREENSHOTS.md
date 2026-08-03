@@ -1,6 +1,6 @@
 # TimeSheets docs — screenshots needed
 
-64 screenshots. Save each one into `assets/screenshots/` using the
+64 screenshots. Save each one into `timesheets/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 

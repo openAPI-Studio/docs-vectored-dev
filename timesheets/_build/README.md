@@ -39,7 +39,7 @@ SHOT("filename.png", "What the screenshot should show")
 
 ## Screenshots
 
-`SHOT(...)` renders an `<img>` pointing at `assets/screenshots/<filename>`. If
+`SHOT(...)` renders an `<img>` pointing at `timesheets/assets/<filename>`. If
 the file is not there, its `onerror` reveals a dashed frame naming the file it
 wants — so an unshot page looks unfinished rather than showing a broken image.
 Drop the file in and it appears on the next build; no code change.

@@ -113,7 +113,7 @@
       <h2 id="at-a-glance" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. At a glance</h2>
       <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Default</th><th>Takes effect</th></tr></thead><tbody><tr><td>Working hours</td><td>09:00–17:00, 8h/day</td><td>Immediately, on capacity displays</td></tr><tr><td>Working weekdays</td><td>Mon–Fri</td><td>Immediately, on leave counts and missing days</td></tr><tr><td>Approval mode</td><td>Per entry</td><td>Immediately, for new submissions</td></tr><tr><td>Auto-approve timeout</td><td>72 hours</td><td>On the next scheduled sweep</td></tr><tr><td>Timesheet lock</td><td>30 days</td><td>Immediately</td></tr><tr><td>Leave policies</td><td>Half-days on, no negative balance</td><td>On the next leave request</td></tr><tr><td>Leave auto-decision</td><td>Off</td><td>On the next scheduled sweep</td></tr><tr><td>Worklog sync</td><td>Off</td><td>On the next approval</td></tr><tr><td>Approver delegation</td><td>On</td><td>Immediately</td></tr><tr><td>Project overrides</td><td>Allowed</td><td>Immediately</td></tr><tr><td>Site timezone</td><td>UTC</td><td>Only for people with no timezone of their own</td></tr><tr><td>Reminders</td><td>On, 7 days</td><td>On the next scheduled run</td></tr><tr><td>Retention windows</td><td>Audit 365 days, everything else forever</td><td>On the next sweep</td></tr><tr><td>Billing</td><td>Off</td><td>On the next approval</td></tr></tbody></table></div>
       <figure class="shot mb-6">
-        <img src="../../assets/screenshots/timesheets-admin-settings-general.png" alt="The Admin Settings General tab showing working hours, weekdays, approval mode and lock window" loading="lazy"
+        <img src="../assets/timesheets-admin-settings-general.png" alt="The Admin Settings General tab showing working hours, weekdays, approval mode and lock window" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
@@ -184,7 +184,7 @@
       <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Deletion is irreversible and there is no restore inside the app. Every window except approval history ships at keep-forever on purpose: an upgrade that quietly started removing people's history would be worse than continuing to hold it while you decide.</p></div>
       <p class="text-muted mb-4">The sweep reports what it deleted <strong class="text-text">and what it declined to delete</strong>, so a protected row never looks like an empty run. Full detail in <a href="privacy-security.html" class="text-cta hover:underline">Privacy &amp; Data Handling</a>.</p>
       <figure class="shot mb-6">
-        <img src="../../assets/screenshots/timesheets-data-retention-settings.png" alt="The Data retention card showing the four windows at their keep-forever defaults with a warning about a short window" loading="lazy"
+        <img src="../assets/timesheets-data-retention-settings.png" alt="The Data retention card showing the four windows at their keep-forever defaults with a warning about a short window" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
@@ -207,7 +207,7 @@
       <p class="text-muted mb-4">Sources are combined and de-duplicated. <strong class="text-text">Maximum recipients per run</strong> is a hard cost backstop: a run over the cap is truncated and says so, rather than quietly mailing a whole site.</p>
       <p class="text-muted mb-4">Reminder jobs that fan out to a derived roster also require your <strong class="text-text">own SES account</strong> — see <a href="scheduler.html" class="text-cta hover:underline">Scheduler &amp; Automation</a>.</p>
       <figure class="shot mb-6">
-        <img src="../../assets/screenshots/timesheets-scheduler-audience.png" alt="The scheduler audience settings showing the source selector, lookback window and recipient cap" loading="lazy"
+        <img src="../assets/timesheets-scheduler-audience.png" alt="The scheduler audience settings showing the source selector, lookback window and recipient cap" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">

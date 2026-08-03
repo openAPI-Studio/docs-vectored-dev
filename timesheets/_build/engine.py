@@ -278,7 +278,9 @@ def render_blocks(blocks, page_label):
         elif kind == "shot":
             filename, caption = val
             SHOTS.append((filename, caption, page_label))
-            src = f"../../assets/screenshots/{filename}"
+            # Per-app assets, matching how forms/assets works and where
+            # timesheets/assets/icon.png already lives.
+            src = f"../assets/{filename}"
             # The <img> is attempted first; if the file is not there yet its
             # onerror reveals the placeholder frame, so an unshot page looks
             # unfinished instead of showing a broken-image icon.
@@ -405,7 +407,7 @@ def landing(pages, intro_blocks):
 
 def build(pages, intro_blocks, handwritten=()):
     (ROOT / "docs").mkdir(parents=True, exist_ok=True)
-    (SITE / "assets" / "screenshots").mkdir(parents=True, exist_ok=True)
+    (ROOT / "assets").mkdir(parents=True, exist_ok=True)
 
     for slug, p in pages:
         target = ROOT / "docs" / f"{slug}.html"
@@ -448,7 +450,7 @@ def write_manifest():
     lines = [
         "# TimeSheets docs — screenshots needed",
         "",
-        f"{len(SHOTS)} screenshots. Save each one into `assets/screenshots/` using the",
+        f"{len(SHOTS)} screenshots. Save each one into `timesheets/assets/` using the",
         "exact filename below. The docs pick them up automatically on the next build —",
         "until then each slot renders a dashed placeholder naming the file it wants.",
         "",
