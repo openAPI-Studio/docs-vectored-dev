@@ -233,6 +233,8 @@ LEAVE = [
             H("History"),
             P("Everything of yours that has been **decided** — time and leave, approved, auto-approved, rejected or cancelled. Collapsed by default; click the heading to open it."),
             P("It loads only when opened, and pages ten at a time. Time and leave are listed side by side and page independently, so one running out does not stop the other."),
+            P("Each row carries the **reason** the decider gave, where they gave one, in red for a rejection. That comment lives in the audit trail rather than on the record itself, so it is fetched alongside."),
+            P("In [weekly mode](weekly-submission.html) a third list appears for **weeks**. It has to: rejecting a week sends its entries back to draft so they can be fixed, which means the entry list holds no record of the rejection at all — the week does, comment and all."),
             NOTE("Work still waiting on somebody is not here — that is live, and lives in **My leave**, **My week** and the week-submissions gadget. History is the record of what already happened."),
 
             H("When something is sent back"),

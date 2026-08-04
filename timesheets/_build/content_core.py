@@ -67,6 +67,14 @@ CORE = [
         blocks=[
             P("Time is logged against a **project** and a **cost centre**, on a date, for a number of minutes. A Jira issue is optional — plenty of real work does not have one, and TimeSheets does not pretend otherwise."),
 
+            H("The Log time button"),
+            P("**Log time** in the Hub header is a split control. The button itself opens the dialog, one click as always. The three dots beside it offer the alternatives:"),
+            TABLE(["Choice", "What it does"], [
+                ["Log time…", "The dialog — one project, as many rows as you need"],
+                ["From a template…", "A saved set of rows applied to a date, and the only way to log across several projects at once"],
+            ]),
+            NOTE("The main button is deliberately not a menu. Turning the common case into a two-step choice to expose an occasional alternative would tax every routine use."),
+
             H("The Log time dialog"),
             P("Open it from the Hub, from a project page, or by double-clicking a day in the Calendar. Starting from the Calendar pre-fills the date."),
             SHOT("timesheets-log-time-modal-filled.png", "The Log time dialog with one project and cost centre selected at the top, and three rows below for different dates and durations"),
@@ -147,7 +155,7 @@ CORE = [
             WARN("The lines of a template may not exceed 24 hours in total, since applying it puts them all on one day."),
 
             H("Applying a template"),
-            P("Apply a template from the Templates section of the **Summary** tab, or from a dashboard gadget. You choose the date; every line lands on that date."),
+            P("Three ways in: the **three dots beside Log time** in the Hub header, the Templates section of the **Summary** tab, or a dashboard gadget. You choose the date; every line lands on that date."),
             SHOT("timesheets-apply-template.png", "Applying a template from the Summary tab, with the date picker and the template's lines listed"),
             P("Applying creates the entries directly rather than opening the Log time dialog for you to confirm. Check the date before you apply — a template dropped on the wrong day is corrected by deleting the entries, not by undoing the apply."),
 
