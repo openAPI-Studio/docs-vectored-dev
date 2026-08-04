@@ -114,6 +114,19 @@ LEAVE = [
         blocks=[
             P("The Dashboard is the first thing most people see. It is a grid of gadgets that each person arranges for themselves — what a delivery lead wants on screen is not what a developer wants."),
 
+            H("What you start with"),
+            P("A new dashboard opens with eleven gadgets in three rows — what to act on, what is outstanding, then context:"),
+            TABLE(["Row", "Gadgets"], [
+                ["Act", "Quick log · My week · Capacity · Billing days"],
+                ["Outstanding", "Missing days · My week submissions · Leave balance · Logging streak"],
+                ["Context", "Time by project · My open issues · Holidays & my leave"],
+            ]),
+            P("**Reset layout** puts this back if you rearrange things and want to start again. There are 23 gadgets in total; the rest are one click away in the picker."),
+            NOTE("*Awaiting my approval* is deliberately not in the default set — it is useful only if you approve for a project, and would be a permanently empty tile for everyone else. Add it if it applies to you."),
+
+            H("The weekly submit bar"),
+            P("In [weekly approval mode](weekly-submission.html) a bar appears at the top of the Dashboard for the current week, showing its state and the button to submit it. On sites using per-entry approval it renders nothing at all."),
+
             H("Adding gadgets"),
             P("Open the gadget picker and choose what to add. Gadgets cover your own time, approvals waiting on you, Jira context, leave, and personal summaries."),
             SHOT("timesheets-gadget-picker.png", "The gadget picker open, showing the available gadgets grouped by category"),
@@ -216,6 +229,15 @@ LEAVE = [
             H("Templates"),
             P("Your **personal** templates: create, edit, and apply them to a date. These belong to you alone."),
             P("Templates shared with a whole project are managed in [Project Settings](project-settings.html) instead. Both kinds work the same way — see [Time Templates](templates.html)."),
+
+            H("History"),
+            P("Everything of yours that has been **decided** — time and leave, approved, auto-approved, rejected or cancelled. Collapsed by default; click the heading to open it."),
+            P("It loads only when opened, and pages ten at a time. Time and leave are listed side by side and page independently, so one running out does not stop the other."),
+            NOTE("Work still waiting on somebody is not here — that is live, and lives in **My leave**, **My week** and the week-submissions gadget. History is the record of what already happened."),
+
+            H("When something is sent back"),
+            P("A rejection shows as a red **sent back** row in the alert strip at the top of the Hub, counting rejected time and leave from the last fortnight, with a link down to the History section."),
+            P("You are also emailed, if email is configured, with whatever comment the approver left. A rejected time entry becomes editable again so you can correct and resubmit it; a rejected week goes back to draft — see [Weekly Submission](weekly-submission.html)."),
         ])),
 
 ]

@@ -29,6 +29,7 @@ APPROVALS = [
             P("Each row shows who logged the time, which project and cost centre, the date, the duration and the description. Leave requests appear here too, with the leave type and dates — and in weekly mode, whole submitted weeks."),
             SHOT("timesheets-approvals-queue.png", "The Approvals tab showing a mixed queue of time entries and leave requests awaiting decision"),
             P("Use **Refresh** after someone tells you they have submitted something — the queue does not poll continuously."),
+            NOTE("**Your own work is never in your own queue.** Nobody approves their own time or leave, so listing it would only offer a button that fails. Your own pending work is on the [Summary tab](summary.html) — My leave, My week, and the week-submissions gadget."),
 
             H("Filters and multi-select"),
             P("Filter by type, project or person, or search by name, project, issue or description. Filters are there because approving fifty entries one at a time is how approval becomes rubber-stamping."),
@@ -36,8 +37,10 @@ APPROVALS = [
             P("A rejection comment is validated once for the whole batch rather than per item, so a bulk reject with no comment is refused outright instead of half-applying."),
             SHOT("timesheets-approvals-multiselect.png", "The Approvals queue with several rows selected and the bulk approve and reject buttons visible"),
 
-            H("Rejecting"),
-            P("A rejection requires a comment. The person gets told what to fix, and the comment is kept in the audit trail."),
+            H("Rejecting, and approving with a note"),
+            P("A rejection **requires** a comment. The person is told what to fix, they are emailed it, and it is kept in the audit trail."),
+            P("An approval can carry a note too — the message icon beside the decision buttons, on a card or on the bulk bar. That is optional: *approved, but split this by project next time* is worth saying, and requiring a comment on every approval would only produce a hundred of them reading \"ok\"."),
+            P("Plain **Approve** stays a single click. The note is an extra affordance, not a step."),
             P("A rejected entry stays visible to its owner so they can correct and resubmit it. Rejecting also removes any price that had been captured for it — rejected work is not revenue."),
 
             H("Automatic approval"),
@@ -72,6 +75,8 @@ APPROVALS = [
                 "Submit|every draft entry in that week becomes pending together.",
             ]),
             SHOT("timesheets-week-submit-bar.png", "The weekly submission bar showing the week total and the Submit button"),
+            P("The bar appears in two places: on the **Dashboard** for the current week, and on the **Calendar's week view** for whichever week you are looking at. Use the calendar to submit an older week."),
+            WARN("A log spanning two weeks needs **two submissions** — a week is the unit, so each one is submitted on its own."),
 
             H("Recalling a submission"),
             P("Made a mistake? **Recall** pulls the week back, provided nobody has decided it yet. The entries return to draft and you can edit them."),
@@ -85,6 +90,15 @@ APPROVALS = [
             P("Approvers see submitted weeks in the Approvals queue as a single item with the week's total. Approving accepts every entry in it; rejecting sends the whole week back with a comment."),
             SHOT("timesheets-weekly-approval-card.png", "A submitted week in the Approvals queue showing the person, week and total hours with approve and reject actions"),
             NOTE("Weekly mode has its own automatic-approval sweep, using the same timeout as per-entry mode. A week left undecided long enough is approved and marked as system-decided."),
+
+            H("Being told the outcome"),
+            P("When a week is decided you are emailed, with the approver's comment if they left one — the same message a per-entry decision sends."),
+            P("In the app it shows in the **My week submissions** gadget on the Dashboard, including the reason if it was rejected, and on the submit bar for that week. A rejection also raises a **sent back** alert at the top of the Hub."),
+
+            H("Weeks carried over from per-entry mode"),
+            P("Switching a site to weekly leaves whatever was already awaiting approval in an odd position: those entries were never part of a submitted week, because weeks did not exist when they were logged."),
+            P("They are grouped onto their Monday and shown to approvers marked **carried over**, so it is clear nobody chose to submit them — the mode changed underneath. Deciding one works exactly like deciding any other week."),
+            NOTE("Submitting a week whose entries are already awaiting approval simply records the submission. There is nothing to move, and it is not an error."),
 
             H("What locks while a week is out"),
             P("A submitted or approved week cannot be edited. Attempting to change an entry in one gives a message saying whether it is submitted (recall it) or approved (it is final). This is separate from, and additional to, the [lock window](locking.html)."),
