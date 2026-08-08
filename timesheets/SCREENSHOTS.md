@@ -1,6 +1,6 @@
 # TimeSheets docs — screenshots needed
 
-66 screenshots. Save each one into `timesheets/assets/` using the
+67 screenshots. Save each one into `timesheets/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -118,12 +118,14 @@ realistic but fictional names and figures rather than real people's data.
 
 ## Summary & Missing Days
 
-- [ ] `timesheets-summary-month-totals.png`
-      The five month-total tiles at the top of the Summary tab, showing approved, pending, rejected, logged and leave days
+- [ ] `timesheets-summary-month-overview.png`
+      The month overview card showing the headline logged total against target, the split by status, and the daily bar chart
+- [ ] `timesheets-summary-week-list.png`
+      The My week card with entries grouped by day, each showing duration, project, status and the edit and delete buttons
+- [ ] `timesheets-summary-rail.png`
+      The right-hand column showing the Team card with pinned teammates and the Unlogged days card with per-day Log buttons
 - [ ] `timesheets-team-browser-pins.png`
-      The Team section showing pinned teammates with work mode, status and upcoming leave, and the Add teammate button
-- [ ] `timesheets-summary-missing-days.png`
-      The days with no time logged section listing dates from the current month
+      The Team card with Add open, showing the project picker and a list of people with star buttons
 
 ## Reports & Exports
 

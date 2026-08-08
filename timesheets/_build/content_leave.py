@@ -221,31 +221,63 @@ LEAVE = [
 
     ("summary", dict(
         label="Summary & Missing Days", title="Summary & Missing Days", icon="list",
-        desc="Your month at a glance, days you have not logged, and your team",
-        keywords=["summary", "missing days", "team", "pins", "status", "totals", "my week",
-                  "templates", "work mode", "contributors"],
+        desc="Your month at a glance, your week, your leave, and where everybody is",
+        keywords=["summary", "missing days", "unlogged", "team", "pins", "status", "totals",
+                  "my week", "templates", "work mode", "contributors", "chart", "target"],
         blocks=[
             P("The Summary tab answers two questions: how is my own month going, and where is everybody. It is a personal view — for team and project reporting, see [Reports & Exports](reports.html)."),
+            P("It is laid out in two columns. The **left** is your work, read top to bottom: the month, this week, your leave. The **right** is context you glance at rather than work through: the people you are watching, and the days you have not logged."),
 
-            H("Month totals"),
-            P("Five tiles across the top, summarising **your own** time:"),
-            TABLE(["Tile", "What it counts"], [
-                ["Approved (mo)", "Approved and auto-approved minutes this month"],
-                ["Pending (mo)", "Awaiting a decision"],
-                ["Rejected (mo)", "Sent back this month"],
-                ["Logged (mo)", "Approved plus pending — everything except rejected"],
-                ["Leave days (yr)", "Approved leave days so far this calendar year"],
+            H("The month overview"),
+            P("One headline figure — everything you have logged this month — against a target of your working days multiplied by the site's hours per day, with how many working days are left to close the gap."),
+            P("Underneath, the same total split by state:"),
+            TABLE(["Row", "What it counts"], [
+                ["Approved", "Approved and auto-approved time"],
+                ["Awaiting approval", "Submitted and still waiting for a decision"],
+                ["Sent back", "Rejected time, **shown only when there is some**"],
+                ["Leave taken this year", "Approved leave days so far this calendar year"],
             ]),
-            SHOT("timesheets-summary-month-totals.png", "The five month-total tiles at the top of the Summary tab, showing approved, pending, rejected, logged and leave days"),
-            NOTE("These are totals by **status**, not by project. For a breakdown by project, cost centre or person — and the billable split — use the [Breakdown view in Reports](reports.html), which is available to approvers and project administrators."),
+            NOTE("**Sent back time is not counted in the headline total.** It is reported so you know it needs attention, but work that has to be redone is not logged time. The same rule applies everywhere in the app."),
+            NOTE("These are totals by **state**, not by project. For a breakdown by project, cost centre or person — and the billable split — use the [Breakdown view in Reports](reports.html), which is available to approvers and project administrators."),
+            SHOT("timesheets-summary-month-overview.png", "The month overview card showing the headline logged total against target, the split by status, and the daily bar chart"),
+
+            H("The daily chart"),
+            P("One bar per day of the month, beside the totals. A dashed line marks your daily target."),
+            P("**Every calendar day is drawn, including the empty ones** — the gaps are the point. A chart that showed only the days you logged against would make a patchy month look identical to a complete one."),
+            TABLE(["Bar", "Meaning"], [
+                ["Green", "Everything on that day is approved"],
+                ["Amber", "Some of that day is still awaiting approval"],
+                ["Flat grey stub", "Nothing logged that day"],
+            ]),
+            P("A day with a mix of both is drawn amber: the unfinished part is the part you can act on. Its height is still the whole day."),
+            P("Bars are scaled with headroom above the target rather than against it, so a day you ran over is visibly taller than one that exactly hit the target rather than being clipped flat to the same height. Hovering a bar gives the date and the exact total."),
+
+            H("My week"),
+            P("This week's entries, grouped under each day with that day's running total — the question being asked of this list is nearly always \"is Tuesday complete?\" rather than \"what is my fourteenth entry\"."),
+            P("The header carries the week total against the week's target, arrows to step between weeks, **Copy previous week**, and — on sites that approve by the week — **Submit week**. See [Logging Time](logging-time.html) for what copying does and when it refuses, and [Weekly Submission](weekly-submission.html) for submitting."),
+            P("Each entry row shows its duration, project, issue and description, a status pill, and buttons to edit or delete it. An entry Jira could not sync carries a **sync** warning with the reason on hover."),
+            P("On a **locked** day the edit and delete buttons are disabled rather than removed, so it is clear the entry exists and is simply closed to changes."),
+            SHOT("timesheets-summary-week-list.png", "The My week card with entries grouped by day, each showing duration, project, status and the edit and delete buttons"),
+
+            H("My leave"),
+            P("Your own leave requests with their state, and the allowance they draw on — \"11 of 25 days used\"."),
+            P("The allowance counts only leave types that **have** an entitlement. A type with no allowance configured is left out rather than counted as zero, which would quietly understate how much of your real allowance is gone."),
+            P("Pending requests can be cancelled here. **History** on any request opens the decision trail, including which projects have decided and which have not, and the comment whoever decided it left."),
+            P("Applying for leave starts from the [Calendar](calendar.html)."),
+
+            H("Unlogged days"),
+            P("Working days this month with nothing logged against them, in the right-hand column. Each is a row with its own **Log** button, which opens the log form already set to that date."),
+            P("Days off, public holidays and approved leave are never listed, and neither is today — a day is not missing until it is over."),
+            P("The card disappears entirely when there is nothing missing, so a complete month is silent rather than reassuring you at length."),
+            SHOT("timesheets-summary-rail.png", "The right-hand column showing the Team card with pinned teammates and the Unlogged days card with per-day Log buttons"),
 
             H("Team"),
             P("The people you have pinned, shown with each person's work mode, their status, and any upcoming leave. This is what the section shows at rest — no picking a project first."),
+            P("A dot on each avatar summarises the same thing at a glance: amber for somebody away, green for somebody with a status set, grey where nothing is known. The line underneath always says it in words too, so nothing depends on the colour."),
             P("Where somebody has both a status and upcoming leave, the leave is shown: it is the thing that changes whether you contact them."),
-            SHOT("timesheets-team-browser-pins.png", "The Team section showing pinned teammates with work mode, status and upcoming leave, and the Add teammate button"),
 
             H("Finding people to pin"),
-            P("**Add teammate** reveals a project picker and, where one exists, a team picker. Star anybody to pin them; the pickers stay out of the way the rest of the time."),
+            P("**Add** reveals a project picker and, where one exists, a team picker. Star anybody to pin them; the pickers stay out of the way the rest of the time."),
             P("Which projects you can pick follows your Jira access — you never see people on a project you cannot already see."),
             P("**It works without any setup.** With no team configured, the list is everyone who has logged time on that project in the last 90 days. That is derived rather than declared, so it stays current on its own, and the screen says when a list came from there."),
             TABLE(["Where the list comes from", "When"], [
@@ -253,24 +285,15 @@ LEAVE = [
                 ["An Atlassian group", "A team was set up in [Project Settings](project-settings.html) and a group bound to it. A deliberate list always wins over the derived one"],
             ]),
             P("A project nobody has logged time against, and with no group bound, genuinely has nobody to show — and says so rather than looking broken."),
+            SHOT("timesheets-team-browser-pins.png", "The Team card with Add open, showing the project picker and a list of people with star buttons"),
 
             H("Status and work mode"),
             P("Set a short status message to say what you are focused on, and mark a day's work mode from the [Calendar](calendar.html). Both are visible to colleagues who can see you here."),
             P("Pins are personal to you — pinning somebody does not tell them, and does not change what either of you can see."),
 
-            H("Days with no time logged"),
-            P("Working days this month with nothing logged against them, shown as a row of dates you can act on. Days off, public holidays and approved leave are never listed."),
-            P("The section disappears entirely when there is nothing missing, so an empty month is silent rather than reassuring you at length."),
-            SHOT("timesheets-summary-missing-days.png", "The days with no time logged section listing dates from the current month"),
-
-            H("My week"),
-            P("This week's entries with their totals, and the **Copy previous week** button. See [Logging Time](logging-time.html) for what copying does and when it refuses."),
-
-            H("My leave"),
-            P("Your own leave requests and their status, including which projects have decided and which have not. Applying for leave starts here or from the [Calendar](calendar.html)."),
-
             H("Templates"),
             P("Your **personal** templates: create, edit, and apply them to a date. These belong to you alone."),
+            P("The section is collapsed to a single row, with the number you have saved on the heading. Click it to open."),
             P("Templates shared with a whole project are managed in [Project Settings](project-settings.html) instead. Both kinds work the same way — see [Time Templates](templates.html)."),
 
             H("History"),
