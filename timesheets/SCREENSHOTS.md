@@ -1,6 +1,6 @@
 # TimeSheets docs — screenshots needed
 
-68 screenshots. Save each one into `timesheets/assets/` using the
+69 screenshots. Save each one into `timesheets/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -131,8 +131,10 @@ realistic but fictional names and figures rather than real people's data.
 
 ## Reports & Exports
 
+- [ ] `timesheets-reports-stat-strip.png`
+      The four figures above a report: hours logged with the change against the prior period, billable share, missing days and time awaiting approval
 - [ ] `timesheets-team-matrix.png`
-      The team matrix showing people down the side and days across, with hours in each cell
+      The team matrix with people down the side, days across the top, and cells coloured by status including leave and missing days
 - [ ] `timesheets-matrix-cell-drilldown.png`
       The drill-down panel for a matrix cell listing the individual entries behind the total
 - [ ] `timesheets-breakdown-view.png`

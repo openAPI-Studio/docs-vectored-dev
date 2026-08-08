@@ -5,7 +5,8 @@ BILLING = [
     ("reports", dict(
         label="Reports & Exports", title="Reports & Exports", icon="table",
         desc="Team matrices, breakdowns and exports for projects you manage",
-        keywords=["report", "matrix", "export", "excel", "pdf", "breakdown", "grouping"],
+        keywords=["report", "matrix", "export", "excel", "csv", "breakdown", "grouping",
+                  "missing days", "billable", "heatmap", "period"],
         blocks=[
             P("Reports answer *who logged what*, and *where did the time go*. They cover only projects you manage."),
 
@@ -13,9 +14,39 @@ BILLING = [
             P("A person sees a project in reports if they are a **worklog approver** or a **project administrator** for it. Site administrators see everything they can browse."),
             P("Asking for a project outside that set does not silently return nothing — it is refused, so a report is never quietly narrower than you think."),
 
+            H("Choosing a period"),
+            P("Presets for **this month**, **last month** and the **last 14 days**, or set the dates yourself. The project picker collapses to a summary — *3 of 4 projects* — rather than a row of chips, and in the matrix view you can narrow to one person."),
+
+            H("The four figures"),
+            P("Across the top, four numbers about the period you chose."),
+            TABLE(["Figure", "What it counts"], [
+                ["Hours logged", "Everything except sent-back time, with the change against the **previous period of the same length** — not the previous calendar month, so a 14-day range compares against 14 days"],
+                ["Billable", "The billable share of those hours, with the internal remainder named"],
+                ["Missing days", "Working days already past with nothing logged, across everyone expected to log"],
+                ["Awaiting approval", "Submitted time still waiting for a decision"],
+            ]),
+            NOTE("**These are counted on the server, not added up from the table below them.** The matrix is paged and capped; summing it would quietly understate a wide range. If the table has to truncate, the report says so — and says the four figures are still complete."),
+            WARN("**Missing days counts people, not rows.** Somebody who logged *nothing at all* has no entries, so a figure derived from the table would miss exactly the person it exists to find. The roster is everyone who logged on these projects in the last 90 days, so a person who has gone quiet still appears — with an empty row and a day count against their name."),
+            P("Time that was **sent back** is reported in its own right but never counted as logged. Work that has to be redone is not time on the books, and the same rule applies everywhere else in the app."),
+            P("On sites that approve by the week, time in a week nobody has submitted yet is counted as **not yet submitted** rather than as awaiting approval — nobody is waiting on it."),
+            SHOT("timesheets-reports-stat-strip.png", "The four figures above a report: hours logged with the change against the prior period, billable share, missing days and time awaiting approval"),
+
             H("The team matrix"),
-            P("People down the side, days across the top, hours in the cells, with billable and non-billable split. It is the view for spotting a gap or an outlier in a week."),
-            SHOT("timesheets-team-matrix.png", "The team matrix showing people down the side and days across, with hours in each cell"),
+            P("People down the side, days across the top, hours in the cells. Mondays carry a divider so a month reads as weeks, weekends are tinted, and the person column stays put while the dates scroll."),
+            TABLE(["Cell", "Meaning"], [
+                ["Green", "Approved"],
+                ["Amber", "Waiting for a decision"],
+                ["Blue **L**", "On leave"],
+                ["Red **×**", "A working day with nothing logged"],
+                ["Empty", "A weekend, a public holiday, or a day nobody has reached yet"],
+            ]),
+            P("Logged time wins over everything else: somebody who worked on a public holiday still worked, and the cell shows the hours."),
+            P("Each row ends with that person's total and their **billable share**, and carries a note under the name — *Complete*, or how many days they have not logged."),
+            NOTE("In [weekly mode](weekly-submission.html) the colours follow the **week's** submission state rather than each entry's. An entry inside a week nobody has submitted is not waiting on an approver, and colouring it as pending would send you looking for something that was never sent."),
+            SHOT("timesheets-team-matrix.png", "The team matrix with people down the side, days across the top, and cells coloured by status including leave and missing days"),
+
+            H("Heatmap"),
+            P("**Heatmap** re-shades the cells by *how much* was logged rather than by status — the view for finding an unevenly loaded fortnight. Press it again to go back to status colours."),
 
             H("Drilling into a cell"),
             P("Click a cell to see the entries behind it — project, cost centre, issue, description and status. This is where you check an unusual number before asking anybody about it."),
@@ -34,12 +65,10 @@ BILLING = [
             P("Amounts appear only for billing administrators. For everyone else the money columns are **absent**, not zeroed — an approver reading the report cannot tell what anybody bills at, because the figures were never sent to their browser."),
             P("Where several currencies are present, totals are shown per currency. There is deliberately no combined total: adding dollars to euros produces a perfectly ordinary-looking number that means nothing."),
 
-            H("Excel export"),
-            P("Exports the current report to a spreadsheet. The columns follow what the server sent you, so an export never contains a column you were not allowed to see on screen."),
-
-            H("PDF export"),
-            P("A printable version of the same data, for sending on or filing."),
+            H("Exports"),
+            P("The matrix exports to **Excel** or **CSV**. The columns follow what the server sent you, so an export never contains a column you were not allowed to see on screen."),
             NOTE("Both files are generated **in your browser**. Nothing is uploaded anywhere to produce them."),
+            P("A printable **PDF** of one person's timesheet is a separate thing, produced from a project's own page in Jira rather than from here."),
         ])),
 
     ("clients", dict(
