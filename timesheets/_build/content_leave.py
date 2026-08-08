@@ -110,7 +110,8 @@ LEAVE = [
     ("dashboard", dict(
         label="Dashboard & Gadgets", title="Dashboard & Gadgets", icon="grid",
         desc="A configurable gadget dashboard, per person and per screen size",
-        keywords=["dashboard", "gadget", "widget", "layout", "drag", "resize"],
+        keywords=["dashboard", "gadget", "widget", "layout", "drag", "resize",
+                  "arrange", "category", "clock", "sprint"],
         blocks=[
             P("The Dashboard is the first thing most people see. It is a grid of gadgets that each person arranges for themselves — what a delivery lead wants on screen is not what a developer wants."),
 
@@ -121,32 +122,49 @@ LEAVE = [
                 ["Outstanding", "Missing days · My week submissions · Leave balance · Logging streak"],
                 ["Context", "Time by project · My open issues · Holidays & my leave"],
             ]),
-            P("**Reset layout** puts this back if you rearrange things and want to start again. There are 23 gadgets in total; the rest are one click away in the picker."),
+            P("There are 23 gadgets in total; the rest are one click away in the picker."),
             NOTE("*Awaiting my approval* is deliberately not in the default set — it is useful only if you approve for a project, and would be a permanently empty tile for everyone else. Add it if it applies to you."),
+
+            H("Reading a gadget"),
+            P("Every gadget has the same header: a small coloured square, its name, and at most one control on the right — a value, a period, or a toggle. Everything else is in the body."),
+            P("The coloured square is the gadget's **category**, so you can find the Jira ones or the leave ones without reading a single title."),
+            TABLE(["Colour", "Category"], [
+                ["Blue", "Jira"],
+                ["Purple", "Time & capacity"],
+                ["Green", "Leave & team"],
+                ["Amber", "Approvals & status"],
+                ["Grey", "Personal"],
+            ]),
+            P("While a gadget is loading it keeps its frame and shows placeholder lines, so the dashboard does not reflow as things arrive. A gadget that cannot load says why and offers **Try again** rather than sitting empty."),
+
+            H("Arrange mode"),
+            P("The dashboard is fixed until you press **Arrange**. That is deliberate: with drag handles permanently visible, simply reading the dashboard felt like the layout was about to move."),
+            P("In arrange mode each card gains a grip, a remove control and a resize corner. Drag by the header to move, pull the bottom-right corner to resize, and press **Done** when it looks right. **Reset layout** appears there too."),
+            P("The layout saves automatically, and is stored **per screen size** — the arrangement you build on a wide monitor does not become an unusable stack on a laptop."),
+            SHOT("timesheets-dashboard-arranged.png", "The Dashboard in arrange mode, with a gadget being dragged and the grip and remove controls visible"),
+
+            H("Adding gadgets"),
+            P("**Add gadget** opens the picker. Search by name or description, or filter by category to browse when you do not know what you are looking for."),
+            P("A gadget already on your dashboard shows **Added** and cannot be added twice — except the sticky note, countdown and clock, which are useful several times over and say so."),
+            SHOT("timesheets-gadget-picker.png", "The gadget picker with the category filter row and a search term entered"),
 
             H("The weekly submit bar"),
             P("In [weekly approval mode](weekly-submission.html) a bar appears at the top of the Dashboard for the current week, showing its state and the button to submit it. On sites using per-entry approval it renders nothing at all."),
 
-            H("Adding gadgets"),
-            P("Open the gadget picker and choose what to add. Gadgets cover your own time, approvals waiting on you, Jira context, leave, and personal summaries."),
-            SHOT("timesheets-gadget-picker.png", "The gadget picker open, showing the available gadgets grouped by category"),
+            H("Jira gadgets"),
+            P("**My open issues** lists what is assigned to you, and — the part a timesheet app can add to a Jira list — **how much you have logged against each one this week**. Nothing logged shows nothing rather than a zero; an absence is not a measurement."),
+            P("Status is a lozenge coloured by Jira's own status **category** rather than the status name, so a renamed workflow still reads correctly: grey for to-do, blue for in-progress, green for done."),
+            P("**Sprints** shows how far through each sprint is and how many days are left, with the last two days called out. The bar appears only when the sprint has a start date to measure from — where there is nothing honest to draw, it shows the dates alone."),
 
-            H("Rearranging and resizing"),
-            P("Drag a gadget by its header to move it; drag its corner to resize. The layout saves automatically."),
-            P("Layouts are stored **per screen size**, so the arrangement you build on a wide monitor does not produce an unusable stack on a laptop."),
-            SHOT("timesheets-dashboard-arranged.png", "The Dashboard with several gadgets arranged in a grid, one being dragged"),
+            H("Charts"),
+            P("**Time by project** and **Time by cost centre** switch between bars and a donut from the control in the gadget's header. The donut carries the total in the middle, and the figure for whichever slice you point at."),
 
-            H("Available gadgets"),
-            TABLE(["Group", "What you get"], [
-                ["Time", "This week at a glance, recent entries, quick log actions"],
-                ["Approvals", "What is waiting on your decision, and what you have submitted"],
-                ["Jira", "Issues assigned to you, recent activity, sprint context"],
-                ["Leave", "Your balances and upcoming absence"],
-                ["Personal", "Your own summaries, pinned teammates and status"],
-            ]),
+            H("The clock"),
+            P("A digital or analog clock for any time zone, and worth adding more than once if you work across them."),
+            NOTE("The analog dial's hands are animated by the browser rather than redrawn by the app, so a clock on your dashboard costs essentially nothing to run. If your system is set to reduce motion, the hands hold still and step instead of sweeping."),
 
             H("Refreshing"),
-            P("Gadgets load when the Dashboard opens and can be refreshed individually. They do not poll continuously — a dashboard that re-queries every few seconds is expensive for everyone on the site."),
+            P("Gadgets load when the Dashboard opens and can be refreshed together with **Refresh**. They do not poll continuously — a dashboard that re-queries every few seconds is expensive for everyone on the site."),
         ])),
 
     ("calendar", dict(

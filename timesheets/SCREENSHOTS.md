@@ -100,10 +100,10 @@ realistic but fictional names and figures rather than real people's data.
 
 ## Dashboard & Gadgets
 
-- [ ] `timesheets-gadget-picker.png`
-      The gadget picker open, showing the available gadgets grouped by category
 - [ ] `timesheets-dashboard-arranged.png`
-      The Dashboard with several gadgets arranged in a grid, one being dragged
+      The Dashboard in arrange mode, with a gadget being dragged and the grip and remove controls visible
+- [ ] `timesheets-gadget-picker.png`
+      The gadget picker with the category filter row and a search term entered
 
 ## Calendar
 
