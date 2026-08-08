@@ -1,6 +1,6 @@
 # TimeSheets docs — screenshots needed
 
-64 screenshots. Save each one into `timesheets/assets/` using the
+66 screenshots. Save each one into `timesheets/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -106,11 +106,15 @@ realistic but fictional names and figures rather than real people's data.
 ## Calendar
 
 - [ ] `timesheets-calendar-month-view.png`
-      The Calendar in month view showing logged hours per day, leave, and a public holiday
+      The Calendar in month view showing the summary strip, the month grid with logged hours and leave, and the day panel on the right
+- [ ] `timesheets-calendar-summary-strip.png`
+      The four-cell month summary strip showing logged hours against target, awaiting approval, unlogged days and leave
+- [ ] `timesheets-calendar-day-panel.png`
+      The day panel showing the selected day's total against target, its entries with durations and statuses, and the work mode toggle
 - [ ] `timesheets-calendar-multi-select.png`
-      The Calendar with several days selected and the bulk log time action available
+      The Calendar with a range of days selected and the toolbar showing the selection count
 - [ ] `timesheets-calendar-work-mode.png`
-      The right-click menu on a calendar day showing the work mode options
+      The right-click menu on a calendar day showing log time, apply leave and the two work mode options
 
 ## Summary & Missing Days
 
