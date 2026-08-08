@@ -1,6 +1,6 @@
 # TimeSheets docs — screenshots needed
 
-67 screenshots. Save each one into `timesheets/assets/` using the
+68 screenshots. Save each one into `timesheets/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -45,9 +45,11 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `timesheets-project-approvers-config.png`
       Project Settings showing the worklog approvers and leave approvers pickers with a person and a group selected
 - [ ] `timesheets-approvals-queue.png`
-      The Approvals tab showing a mixed queue of time entries and leave requests awaiting decision
+      The Approvals tab showing the waiting-on-you count, the filter bar, and items grouped by person
 - [ ] `timesheets-approvals-multiselect.png`
-      The Approvals queue with several rows selected and the bulk approve and reject buttons visible
+      The Approvals queue with several rows selected and the dark bulk action bar pinned at the bottom of the screen
+- [ ] `timesheets-approvals-rail.png`
+      The Approvals side panel showing the waiting-time breakdown, a project with no approvers, and an active delegation
 
 ## Weekly Submission
 
