@@ -41,6 +41,7 @@
             '<h4 class="text-sm font-semibold mb-3">Company</h4>' +
             '<ul class="space-y-2 text-sm text-muted">' +
               '<li><a href="' + u('macrotoolkit/support.html') + '" class="hover:text-text transition-colors duration-200 cursor-pointer">Support</a></li>' +
+              '<li><a href="' + u('feedback.html') + '" class="hover:text-text transition-colors duration-200 cursor-pointer">Send feedback</a></li>' +
               '<li><a href="' + u('macrotoolkit/security.html') + '" class="hover:text-text transition-colors duration-200 cursor-pointer">Security</a></li>' +
               '<li><a href="' + u('macrotoolkit/privacy.html') + '" class="hover:text-text transition-colors duration-200 cursor-pointer">Privacy</a></li>' +
             '</ul>' +

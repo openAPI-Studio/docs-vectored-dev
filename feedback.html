@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share feedback — Vectored</title>
+  <meta name="description" content="Tell the Vectored team what is working, what is broken, and what to build next across Macro Toolkit, Forms &amp; Frontdoor, API Studio, Recognition Hub and TimeSheets.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://docs.vectored.dev/feedback.html">
+  <meta property="og:title" content="Share feedback — Vectored">
+  <meta property="og:description" content="Two minutes of your time shapes what we ship next.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.vectored.dev/feedback.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#171717',secondary:'#404040',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>
+    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}
+    html.light body{background:#FAFAFA;color:#171717}
+    html.light .bg-surface,html.light .bg-surface\/90,html.light .bg-surface\/70,html.light .bg-surface\/60{background-color:#FFFFFF!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#525252!important}
+    html.light .text-text{color:#171717!important}
+    html.light .hover\:text-text:hover{color:#171717!important}
+    html.light .border-border{border-color:#E5E5E5!important}
+    html.light .text-cta{color:#16A34A!important}
+    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.08)!important}
+    html.light .border-cta\/30{border-color:rgba(22,163,74,0.25)!important}
+    .hero-glow{background:radial-gradient(ellipse 70% 60% at 50% -20%,rgba(34,197,94,0.16),transparent)}
+    /* Premium card: hairline gradient across the top edge. */
+    .card-lux{position:relative;overflow:hidden}
+    .card-lux::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.55),transparent)}
+    .field{background:#0F172A;border:1px solid #334155;border-radius:.6rem;padding:.7rem 1rem;font-size:.875rem;color:#F8FAFC;width:100%;transition:border-color .2s,box-shadow .2s}
+    html.light .field{background:#F8FAFC;border-color:#E5E5E5;color:#171717}
+    .field::placeholder{color:rgba(148,163,184,.6)}
+    .field:focus{outline:none;border-color:rgba(34,197,94,.6);box-shadow:0 0 0 3px rgba(34,197,94,.12)}
+    .field[aria-invalid="true"]{border-color:rgba(248,113,113,.7);box-shadow:0 0 0 3px rgba(248,113,113,.12)}
+    select.field{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2394A3B8' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;background-size:1.05rem;padding-right:2.4rem}
+    /* Chip-style radio / checkbox */
+    .chip{display:inline-flex;align-items:center;gap:.45rem;border:1px solid #334155;background:#0F172A;color:#94A3B8;border-radius:999px;padding:.45rem .9rem;font-size:.8125rem;cursor:pointer;transition:all .18s;user-select:none}
+    html.light .chip{background:#F8FAFC;border-color:#E5E5E5;color:#525252}
+    .chip:hover{border-color:rgba(34,197,94,.45);color:#F8FAFC}
+    html.light .chip:hover{color:#171717}
+    .chip input{position:absolute;opacity:0;width:0;height:0}
+    .chip.is-on{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.55);color:#22C55E}
+    /* Star rating */
+    .stars{display:flex;gap:.35rem}
+    .star{width:2.6rem;height:2.6rem;display:grid;place-items:center;border-radius:.6rem;border:1px solid #334155;background:#0F172A;cursor:pointer;transition:all .16s;color:#334155}
+    html.light .star{background:#F8FAFC;border-color:#E5E5E5;color:#D4D4D4}
+    .star svg{width:1.35rem;height:1.35rem}
+    .star.is-lit{color:#FACC15;border-color:rgba(250,204,21,.45);background:rgba(250,204,21,.08);transform:translateY(-1px)}
+    .star:focus-visible{outline:2px solid rgba(34,197,94,.6);outline-offset:2px}
+    .step-num{width:1.6rem;height:1.6rem;border-radius:.5rem;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;background:rgba(34,197,94,.12);color:#22C55E;border:1px solid rgba(34,197,94,.3)}
+    .err{color:#F87171;font-size:.75rem;margin-top:.35rem;display:none}
+    .err.show{display:block}
+    #progress-fill{transition:width .35s cubic-bezier(.4,0,.2,1)}
+    .hp{position:absolute!important;left:-9999px!important;opacity:0;height:0;width:0}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <div id="vc-header"></div>
+  <script src="assets/header.js"></script>
+
+  <main class="flex-1">
+
+    <!-- Hero -->
+    <section class="hero-glow px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+      <div class="max-w-5xl mx-auto text-center">
+        <p class="font-mono text-xs text-cta tracking-widest uppercase mb-4">Product feedback</p>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-2xl mx-auto">Tell us what to build next.</h1>
+        <p class="text-base sm:text-lg text-muted max-w-xl mx-auto mt-5">Two minutes of your time goes straight to the people writing the code. Bugs get triaged, requests get weighed, and we answer if you want us to.</p>
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-7 text-xs text-muted font-mono">
+          <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-cta" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>No account needed</span>
+          <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-cta" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Read by a human</span>
+          <span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-cta" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>~2 minutes</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form + aside -->
+    <section class="px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="max-w-5xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_18rem] gap-6 items-start">
+
+        <form id="fb-form" novalidate class="card-lux bg-surface border border-border rounded-2xl">
+          <!-- Completion progress -->
+          <div class="px-6 sm:px-8 pt-6">
+            <div class="flex items-center justify-between text-xs text-muted font-mono mb-2">
+              <span>Completion</span>
+              <span id="progress-label">0%</span>
+            </div>
+            <div class="h-1 rounded-full bg-bg overflow-hidden">
+              <div id="progress-fill" class="h-full w-0 rounded-full" style="background:linear-gradient(90deg,#22C55E,#4ADE80)"></div>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-10">
+
+            <!-- 1. Which tool -->
+            <section>
+              <div class="flex items-center gap-3 mb-5">
+                <span class="step-num">01</span>
+                <h2 class="text-lg font-semibold">Which tool is this about?</h2>
+              </div>
+
+              <label for="fb-tool" class="block text-sm font-medium mb-2">Tool <span class="text-cta">*</span></label>
+              <select id="fb-tool" name="tool" class="field" required></select>
+              <p id="tool-locked-note" class="text-xs text-muted mt-2 hidden">Preselected from the link you followed. <button type="button" id="tool-unlock" class="text-cta hover:underline cursor-pointer">Change it</button></p>
+              <p class="err" data-err="tool">Pick the tool you are giving feedback on.</p>
+
+              <div class="mt-6">
+                <label class="block text-sm font-medium mb-2" id="rating-label">How would you rate it?</label>
+                <div class="flex flex-wrap items-center gap-4">
+                  <div class="stars" id="fb-stars" role="radiogroup" aria-labelledby="rating-label"></div>
+                  <span id="rating-text" class="text-sm text-muted"></span>
+                </div>
+                <input type="hidden" name="rating" id="fb-rating" value="">
+                <p class="err" data-err="rating">Give it a rating so we know where we stand.</p>
+              </div>
+
+              <div class="mt-6" id="areas-wrap">
+                <label class="block text-sm font-medium mb-1">Which areas does this touch?</label>
+                <p class="text-xs text-muted mb-3">Pick as many as apply — helps us route it to the right owner.</p>
+                <div id="fb-areas" class="flex flex-wrap gap-2"></div>
+              </div>
+            </section>
+
+            <div class="h-px bg-border"></div>
+
+            <!-- 2. The feedback -->
+            <section>
+              <div class="flex items-center gap-3 mb-5">
+                <span class="step-num">02</span>
+                <h2 class="text-lg font-semibold">Your feedback</h2>
+              </div>
+              <div id="fb-questions" class="space-y-6"></div>
+            </section>
+
+            <div class="h-px bg-border"></div>
+
+            <!-- 3. About you -->
+            <section>
+              <div class="flex items-center gap-3 mb-5">
+                <span class="step-num">03</span>
+                <h2 class="text-lg font-semibold">About you</h2>
+              </div>
+              <p class="text-sm text-muted mb-5">Optional, but context changes how we prioritise. An admin at a 4,000-seat site and a solo evaluator need different fixes.</p>
+
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="fb-name" class="block text-sm font-medium mb-2">Name</label>
+                  <input type="text" id="fb-name" name="name" class="field" placeholder="Jane Okafor" autocomplete="name">
+                </div>
+                <div>
+                  <label for="fb-email" class="block text-sm font-medium mb-2">Work email</label>
+                  <input type="email" id="fb-email" name="email" class="field" placeholder="jane@company.com" autocomplete="email">
+                  <p class="err" data-err="email">That email address does not look right.</p>
+                </div>
+                <div>
+                  <label for="fb-company" class="block text-sm font-medium mb-2">Company</label>
+                  <input type="text" id="fb-company" name="company" class="field" placeholder="Acme Corp" autocomplete="organization">
+                </div>
+                <div>
+                  <label for="fb-position" class="block text-sm font-medium mb-2">Role / position</label>
+                  <input type="text" id="fb-position" name="position" class="field" placeholder="Confluence admin, Staff engineer…" autocomplete="organization-title">
+                </div>
+                <div>
+                  <label for="fb-companySize" class="block text-sm font-medium mb-2">Company size</label>
+                  <select id="fb-companySize" name="companySize" class="field">
+                    <option value="">Prefer not to say</option>
+                    <option>1–10</option>
+                    <option>11–50</option>
+                    <option>51–200</option>
+                    <option>201–1000</option>
+                    <option>1001–5000</option>
+                    <option>5000+</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="fb-usage" class="block text-sm font-medium mb-2">How long have you used it?</label>
+                  <select id="fb-usage" name="usage" class="field">
+                    <option value="">Prefer not to say</option>
+                    <option>Just evaluating</option>
+                    <option>Under a month</option>
+                    <option>1–6 months</option>
+                    <option>6–12 months</option>
+                    <option>Over a year</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <div class="h-px bg-border"></div>
+
+            <!-- 4. Follow-up -->
+            <section>
+              <div class="flex items-center gap-3 mb-5">
+                <span class="step-num">04</span>
+                <h2 class="text-lg font-semibold">Can we come back to you?</h2>
+              </div>
+
+              <div class="flex flex-wrap gap-2" id="fb-contact-ok"></div>
+
+              <div id="contact-extra" class="mt-5 grid sm:grid-cols-2 gap-5 hidden">
+                <div>
+                  <label for="fb-channel" class="block text-sm font-medium mb-2">Preferred channel</label>
+                  <select id="fb-channel" name="channel" class="field">
+                    <option>Email</option>
+                    <option>Video call</option>
+                    <option>Slack Connect</option>
+                    <option>Phone</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="fb-phone" class="block text-sm font-medium mb-2">Phone / handle <span class="text-muted text-xs">(if not email)</span></label>
+                  <input type="text" id="fb-phone" name="phone" class="field" placeholder="+1 555 0100, @jane on Slack…">
+                </div>
+                <div class="sm:col-span-2">
+                  <p class="err" data-err="contact">Add an email above so we can actually reach you.</p>
+                </div>
+              </div>
+
+              <label class="flex items-start gap-3 mt-6 text-sm text-muted cursor-pointer">
+                <input type="checkbox" name="testimonial" id="fb-testimonial" value="yes" class="mt-0.5 w-4 h-4 accent-[#22C55E] cursor-pointer">
+                <span>You may quote this feedback (first name and company only) in marketing material.</span>
+              </label>
+            </section>
+
+            <!-- Honeypot: never visible to a human. -->
+            <div class="hp" aria-hidden="true">
+              <label for="fb-website">Website</label>
+              <input type="text" id="fb-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Submit -->
+            <div class="pt-2">
+              <div id="form-error" class="hidden mb-4 rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300"></div>
+              <div class="flex flex-wrap items-center gap-4">
+                <button type="submit" id="fb-submit" class="inline-flex items-center gap-2 bg-cta text-bg font-semibold text-sm px-7 py-3 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
+                  <svg id="fb-spinner" class="w-4 h-4 hidden animate-spin" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="3" opacity=".25"/><path d="M21 12a9 9 0 00-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+                  <span id="fb-submit-label">Send feedback</span>
+                </button>
+                <p class="text-xs text-muted">We never sell or share this. See the <a href="macrotoolkit/privacy.html" class="text-cta hover:underline cursor-pointer">privacy policy</a>.</p>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Aside -->
+        <aside class="lg:sticky lg:top-24 space-y-4">
+          <div id="tool-card" class="card-lux bg-surface border border-border rounded-2xl p-5"></div>
+
+          <div class="bg-surface border border-border rounded-2xl p-5">
+            <h3 class="text-sm font-semibold mb-4">What happens next</h3>
+            <ol class="space-y-4 text-sm text-muted">
+              <li class="flex gap-3"><span class="font-mono text-xs text-cta shrink-0 mt-0.5">01</span><span>Lands in our triage queue within minutes.</span></li>
+              <li class="flex gap-3"><span class="font-mono text-xs text-cta shrink-0 mt-0.5">02</span><span>Bugs get reproduced; requests get sized against the roadmap.</span></li>
+              <li class="flex gap-3"><span class="font-mono text-xs text-cta shrink-0 mt-0.5">03</span><span>If you asked for a reply, you get one — usually inside two business days.</span></li>
+            </ol>
+          </div>
+
+          <div class="bg-surface border border-border rounded-2xl p-5 text-sm">
+            <h3 class="font-semibold mb-2">Urgent or private?</h3>
+            <p class="text-muted mb-3">Security issues never belong in a public form.</p>
+            <a href="macrotoolkit/security.html" class="text-cta font-semibold hover:underline cursor-pointer">Security policy &rarr;</a>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+  </main>
+
+  <div id="vc-footer"></div>
+  <script src="assets/footer.js"></script>
+  <script src="assets/feedback-config.js"></script>
+  <script src="assets/feedback-templates.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var CFG = window.VECTORED_FEEDBACK_CONFIG || {};
+    var REG = window.VectoredFeedback;
+
+    var form = document.getElementById('fb-form');
+    var toolSelect = document.getElementById('fb-tool');
+    var qWrap = document.getElementById('fb-questions');
+    var areasWrap = document.getElementById('fb-areas');
+    var starsWrap = document.getElementById('fb-stars');
+    var ratingInput = document.getElementById('fb-rating');
+    var ratingText = document.getElementById('rating-text');
+    var toolCard = document.getElementById('tool-card');
+
+    // ---------- querystring ----------
+    // Keys are matched case-insensitively so ?Tool=Forms and ?tool=forms behave
+    // the same, and a few friendly aliases map onto the canonical field names.
+    var PARAM_ALIAS = { t: 'tool', product: 'tool', app: 'tool', role: 'position', title: 'position', jobtitle: 'position',
+                        org: 'company', mail: 'email', e: 'email', n: 'name', stars: 'rating', score: 'rating',
+                        summary: 'subject', details: 'message', body: 'message', kind: 'type', category: 'type' };
+    var params = (function () {
+      var out = {}, sp = new URLSearchParams(location.search);
+      sp.forEach(function (v, k) {
+        var key = k.trim().toLowerCase();
+        key = PARAM_ALIAS[key] || key;
+        out[key] = v;
+      });
+      return out;
+    })();
+    function param(name) {
+      var v = params[String(name).toLowerCase()];
+      return v == null ? '' : v;
+    }
+
+    var RATING_WORDS = ['', 'Bad — this is costing us time', 'Rough — usable but frustrating', 'Fine — does the job', 'Good — we like it', 'Excellent — we would recommend it'];
+
+    // ---------- tool dropdown ----------
+    (function buildToolSelect() {
+      var list = REG.list(), html = '<option value="" disabled selected>Choose a tool…</option>';
+      for (var i = 0; i < list.length; i++) {
+        var t = list[i];
+        var suffix = t.badge && t.badge !== 'LIVE' ? ' (' + t.badge.toLowerCase() + ')' : '';
+        html += '<option value="' + t.id + '">' + t.name + (t.platform ? ' — ' + t.platform : '') + suffix + '</option>';
+      }
+      toolSelect.innerHTML = html;
+    })();
+
+    // ---------- stars ----------
+    (function buildStars() {
+      var html = '';
+      for (var i = 1; i <= 5; i++) {
+        html += '<button type="button" class="star" data-v="' + i + '" role="radio" aria-checked="false" aria-label="' + i + ' out of 5">' +
+                '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.4l1.2-6.5L2.5 9.3l6.6-.9z"/></svg></button>';
+      }
+      starsWrap.innerHTML = html;
+    })();
+
+    function paintStars(v) {
+      var kids = starsWrap.children;
+      for (var i = 0; i < kids.length; i++) {
+        var on = i < v;
+        kids[i].classList.toggle('is-lit', on);
+        kids[i].setAttribute('aria-checked', String(i + 1 === v));
+      }
+      ratingText.textContent = v ? RATING_WORDS[v] : '';
+    }
+    function setRating(v) { ratingInput.value = v ? String(v) : ''; paintStars(v); updateProgress(); }
+
+    starsWrap.addEventListener('click', function (e) {
+      var b = e.target.closest('.star'); if (!b) return;
+      setRating(Number(b.dataset.v));
+      clearErr('rating');
+    });
+    starsWrap.addEventListener('mouseover', function (e) {
+      var b = e.target.closest('.star'); if (b) paintStars(Number(b.dataset.v));
+    });
+    starsWrap.addEventListener('mouseleave', function () { paintStars(Number(ratingInput.value || 0)); });
+    starsWrap.addEventListener('keydown', function (e) {
+      var cur = Number(ratingInput.value || 0);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); setRating(Math.min(5, cur + 1)); }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); setRating(Math.max(1, cur - 1)); }
+    });
+
+    // ---------- contact-back chips ----------
+    (function buildContact() {
+      var wrap = document.getElementById('fb-contact-ok');
+      var opts = [
+        ['yes', 'Yes — happy to talk'],
+        ['maybe', 'Only if you need detail'],
+        ['no', 'No, this is one-way']
+      ];
+      wrap.innerHTML = opts.map(function (o) {
+        return '<label class="chip"><input type="radio" name="contactBack" value="' + o[0] + '">' + o[1] + '</label>';
+      }).join('');
+    })();
+
+    // ---------- dynamic question rendering ----------
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+    function renderQuestion(q) {
+      var id = 'q-' + q.id;
+      var req = q.required ? ' <span class="text-cta">*</span>' : '';
+      var help = q.help ? '<p class="text-xs text-muted mt-1.5">' + esc(q.help) + '</p>' : '';
+      var control = '';
+
+      if (q.type === 'textarea') {
+        control = '<textarea id="' + id + '" name="' + q.id + '" rows="' + (q.rows || 4) + '" class="field resize-y" placeholder="' + esc(q.placeholder || '') + '"' + (q.required ? ' required' : '') + '></textarea>';
+      } else if (q.type === 'select') {
+        control = '<select id="' + id + '" name="' + q.id + '" class="field"' + (q.required ? ' required' : '') + '>' +
+                  '<option value="">Choose…</option>' +
+                  (q.options || []).map(function (o) { return '<option>' + esc(o) + '</option>'; }).join('') + '</select>';
+      } else if (q.type === 'radio') {
+        control = '<div class="flex flex-wrap gap-2">' + (q.options || []).map(function (o) {
+          return '<label class="chip"><input type="radio" name="' + q.id + '" value="' + esc(o) + '">' + esc(o) + '</label>';
+        }).join('') + '</div>';
+      } else {
+        control = '<input type="text" id="' + id + '" name="' + q.id + '" class="field" placeholder="' + esc(q.placeholder || '') + '"' + (q.required ? ' required' : '') + '>';
+      }
+
+      return '<div class="q-block" data-q="' + q.id + '"' + (q.when ? ' data-when=\'' + JSON.stringify(q.when) + '\'' : '') + '>' +
+               '<label class="block text-sm font-medium mb-2"' + (q.type === 'radio' ? '' : ' for="' + id + '"') + '>' + esc(q.label) + req + '</label>' +
+               control + help +
+               '<p class="err" data-err="' + q.id + '">This one is required.</p>' +
+             '</div>';
+    }
+
+    function applyConditionals() {
+      var data = collect(false);
+      qWrap.querySelectorAll('.q-block[data-when]').forEach(function (el) {
+        var when = JSON.parse(el.getAttribute('data-when'));
+        var show = Object.keys(when).every(function (k) { return when[k].indexOf(data[k]) !== -1; });
+        el.classList.toggle('hidden', !show);
+      });
+    }
+
+    var current = null;
+
+    function applyTemplate(toolId, keepAnswers) {
+      var prev = keepAnswers ? collect(false) : {};
+      current = REG.template(toolId);
+
+      document.getElementById('rating-label').textContent = current.ratingLabel;
+
+      // Areas as multi-select chips.
+      areasWrap.innerHTML = current.areas.map(function (a) {
+        return '<label class="chip"><input type="checkbox" name="areas" value="' + esc(a) + '">' + esc(a) + '</label>';
+      }).join('');
+
+      // Questions: base + tool-specific.
+      qWrap.innerHTML = current.questions.map(renderQuestion).join('');
+
+      // Restore anything the user already typed that still exists.
+      Object.keys(prev).forEach(function (k) { if (k !== 'areas') setValue(k, prev[k]); });
+
+      // Prefill from querystring (wins over restore — the link is intentional).
+      current.questions.forEach(function (q) { var v = param(q.id); if (v) setValue(q.id, v); });
+      var areaParam = param('area') || param('areas');
+      if (areaParam) {
+        var wanted = areaParam.split(',').map(function (s) { return s.trim().toLowerCase(); });
+        areasWrap.querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+          if (wanted.indexOf(cb.value.toLowerCase()) !== -1) { cb.checked = true; cb.closest('.chip').classList.add('is-on'); }
+        });
+      }
+
+      renderToolCard();
+      applyConditionals();
+      updateProgress();
+    }
+
+    function renderToolCard() {
+      var t = current;
+      var badge = t.badge
+        ? '<span class="shrink-0 text-xs font-mono px-2.5 py-1 rounded-full ' +
+          (t.badge === 'LIVE' ? 'bg-cta/10 border border-cta/30 text-cta' : 'bg-amber-500/10 border border-amber-500/30 text-amber-400') +
+          '">' + t.badge + '</span>'
+        : '';
+      var art = t.icon
+        ? '<img src="' + t.icon + '" alt="" class="w-10 h-10 rounded-lg object-contain shrink-0" onerror="this.style.display=\'none\'">'
+        : '<div class="w-10 h-10 rounded-lg bg-cta/15 border border-cta/30 grid place-items-center font-mono font-bold text-cta shrink-0">' + esc(t.initial) + '</div>';
+      var links = '<a href="' + t.docs + '" class="text-cta text-sm font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>';
+      if (t.marketplace) links += '<a href="' + t.marketplace.replace(/&/g, '&amp;') + '" target="_blank" rel="noopener" class="text-muted text-sm hover:text-text transition-colors duration-200 cursor-pointer">' + (t.id === 'apistudio' ? 'GitHub' : 'Marketplace') + '</a>';
+
+      toolCard.innerHTML =
+        '<div class="flex items-start justify-between gap-3 mb-3">' +
+          '<div class="flex items-center gap-3">' + art +
+            '<div><div class="font-semibold leading-tight">' + esc(t.name) + '</div>' +
+            (t.platform ? '<div class="text-xs text-muted mt-0.5">' + esc(t.platform) + '</div>' : '') + '</div>' +
+          '</div>' + badge +
+        '</div>' +
+        '<p class="text-sm text-muted mb-4">' + esc(t.tagline) + '</p>' +
+        '<div class="flex flex-wrap gap-3">' + links + '</div>';
+    }
+
+    // ---------- value helpers ----------
+    function setValue(name, value) {
+      var els = form.querySelectorAll('[name="' + name + '"]');
+      if (!els.length) return;
+      var first = els[0];
+      if (first.type === 'radio') {
+        var want = String(value).toLowerCase();
+        els.forEach(function (el) {
+          var on = el.value.toLowerCase() === want;
+          el.checked = on;
+          if (el.closest('.chip')) el.closest('.chip').classList.toggle('is-on', on);
+        });
+      } else if (first.type === 'checkbox') {
+        first.checked = /^(1|true|yes|on)$/i.test(String(value));
+        if (first.closest('.chip')) first.closest('.chip').classList.toggle('is-on', first.checked);
+      } else if (first.tagName === 'SELECT') {
+        var want2 = String(value).toLowerCase(), matched = false;
+        Array.prototype.forEach.call(first.options, function (o) {
+          if (!matched && (o.value.toLowerCase() === want2 || o.text.toLowerCase() === want2)) { first.value = o.value || o.text; matched = true; }
+        });
+        if (!matched) {
+          // Unknown option from a querystring: keep it rather than dropping data.
+          var opt = document.createElement('option');
+          opt.textContent = value; first.appendChild(opt); first.value = opt.value || value;
+        }
+      } else {
+        first.value = value;
+      }
+    }
+
+    function collect(includeMeta) {
+      var out = {}, fd = new FormData(form);
+      fd.forEach(function (v, k) {
+        if (k === 'areas') { (out.areas = out.areas || []).push(v); }
+        else out[k] = typeof v === 'string' ? v.trim() : v;
+      });
+      // A locked tool (?lock=1) is disabled, and FormData skips disabled
+      // controls — put it back or every submission fails validation.
+      if (toolSelect.disabled && toolSelect.value) out.tool = toolSelect.value;
+      if (!includeMeta) return out;
+      out.toolName = current ? current.name : out.tool;
+      out.templateId = current ? current.id : 'other';
+      out.templateFallback = !!(current && current.isFallback);
+      out.pageUrl = location.href;
+      out.referrer = document.referrer || '';
+      out.userAgent = navigator.userAgent;
+      out.locale = navigator.language || '';
+      out.submittedAt = new Date().toISOString();
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'source', 'version', 'build', 'site'].forEach(function (k) {
+        if (param(k)) out[k] = param(k);
+      });
+      return out;
+    }
+
+    // ---------- validation ----------
+    function showErr(key, msg) {
+      var el = form.querySelector('.err[data-err="' + key + '"]');
+      if (!el) return;
+      if (msg) el.textContent = msg;
+      el.classList.add('show');
+      var field = form.querySelector('[name="' + key + '"]');
+      if (field && field.classList.contains('field')) field.setAttribute('aria-invalid', 'true');
+    }
+    function clearErr(key) {
+      var el = form.querySelector('.err[data-err="' + key + '"]');
+      if (el) el.classList.remove('show');
+      var field = form.querySelector('[name="' + key + '"]');
+      if (field) field.removeAttribute('aria-invalid');
+    }
+    function clearAllErrors() { form.querySelectorAll('.err').forEach(function (e) { e.classList.remove('show'); }); form.querySelectorAll('[aria-invalid]').forEach(function (e) { e.removeAttribute('aria-invalid'); }); }
+
+    var EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+    function validate() {
+      clearAllErrors();
+      var d = collect(false), bad = [];
+
+      if (!d.tool) { showErr('tool'); bad.push('tool'); }
+      if (!d.rating) { showErr('rating'); bad.push('rating'); }
+
+      (current ? current.questions : []).forEach(function (q) {
+        if (!q.required) return;
+        var block = qWrap.querySelector('.q-block[data-q="' + q.id + '"]');
+        if (block && block.classList.contains('hidden')) return;
+        if (!d[q.id]) { showErr(q.id); bad.push(q.id); }
+      });
+
+      if (d.email && !EMAIL_RE.test(d.email)) { showErr('email'); bad.push('email'); }
+      if (d.contactBack === 'yes' && !d.email && !d.phone) { showErr('contact'); bad.push('contact'); }
+
+      if (bad.length) {
+        var first = form.querySelector('.err.show');
+        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return bad.length === 0;
+    }
+
+    // ---------- progress ----------
+    var TRACKED = ['tool', 'rating', 'type', 'subject', 'message', 'name', 'email', 'company', 'position', 'contactBack'];
+    function updateProgress() {
+      var d = collect(false), done = 0;
+      TRACKED.forEach(function (k) { if (d[k]) done++; });
+      if (d.areas && d.areas.length) done += 0.5;
+      var pct = Math.min(100, Math.round((done / (TRACKED.length + 0.5)) * 100));
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-label').textContent = pct + '%';
+    }
+
+    // ---------- wiring ----------
+    form.addEventListener('change', function (e) {
+      var el = e.target;
+
+      // Chip visual state.
+      if (el.type === 'radio' && el.closest('.chip')) {
+        form.querySelectorAll('input[name="' + el.name + '"]').forEach(function (r) {
+          if (r.closest('.chip')) r.closest('.chip').classList.toggle('is-on', r.checked);
+        });
+      }
+      if (el.type === 'checkbox' && el.closest('.chip')) el.closest('.chip').classList.toggle('is-on', el.checked);
+
+      if (el.name === 'tool') { applyTemplate(el.value, true); clearErr('tool'); }
+      if (el.name === 'contactBack') document.getElementById('contact-extra').classList.toggle('hidden', el.value === 'no' || !el.value);
+      if (el.name === 'type') applyConditionals();
+
+      clearErr(el.name);
+      updateProgress();
+    });
+    form.addEventListener('input', function (e) { clearErr(e.target.name); updateProgress(); });
+
+    // ---------- submit ----------
+    var submitting = false;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (submitting) return;
+      if (!validate()) return;
+
+      var payload = collect(true);
+
+      // Honeypot: a filled "website" field means a bot. Pretend success, send nothing.
+      if (payload.website) { go(payload, 'bot'); return; }
+
+      setBusy(true);
+      var endpoint = CFG.ENDPOINT;
+
+      if (!endpoint) { mailFallback(payload); return; }
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, body: j }; }); })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.body && res.body.error ? res.body.error : 'Request failed');
+          go(payload, res.body && res.body.id);
+        })
+        .catch(function (err) {
+          setBusy(false);
+          var box = document.getElementById('form-error');
+          box.innerHTML = 'We could not send that (' + esc(err.message || 'network error') + '). ' +
+            '<button type="button" id="mail-instead" class="underline font-semibold cursor-pointer">Send it as an email instead</button> — nothing you typed is lost.';
+          box.classList.remove('hidden');
+          document.getElementById('mail-instead').addEventListener('click', function () { mailFallback(payload); });
+        });
+    });
+
+    function setBusy(on) {
+      submitting = on;
+      document.getElementById('fb-submit').disabled = on;
+      document.getElementById('fb-spinner').classList.toggle('hidden', !on);
+      document.getElementById('fb-submit-label').textContent = on ? 'Sending…' : 'Send feedback';
+    }
+
+    // No endpoint configured (or the request failed): hand the user a prefilled
+    // mail draft so the feedback still reaches us.
+    function mailFallback(payload) {
+      var lines = [];
+      Object.keys(payload).forEach(function (k) {
+        if (k === 'website' || k === 'userAgent') return;
+        var v = payload[k];
+        if (v === '' || v == null) return;
+        lines.push(k + ': ' + (Array.isArray(v) ? v.join(', ') : v));
+      });
+      var href = 'mailto:' + (CFG.FALLBACK_EMAIL || 'feedback@vectored.dev') +
+        '?subject=' + encodeURIComponent('[Feedback] ' + (payload.toolName || 'Vectored') + ' — ' + (payload.subject || '')) +
+        '&body=' + encodeURIComponent(lines.join('\n'));
+      window.location.href = href;
+      setTimeout(function () { go(payload, 'mail'); }, 800);
+    }
+
+    function go(payload, ref) {
+      var q = new URLSearchParams();
+      q.set('tool', payload.templateId || 'other');
+      if (payload.name) q.set('name', payload.name.split(' ')[0]);
+      if (payload.rating) q.set('rating', payload.rating);
+      if (payload.contactBack) q.set('contact', payload.contactBack);
+      if (ref && ref !== 'bot' && ref !== 'mail') q.set('ref', ref);
+      try { sessionStorage.removeItem('vc-feedback-draft'); } catch (_) {}
+      window.location.href = 'feedback-thanks.html?' + q.toString();
+    }
+
+    // ---------- initial state from querystring ----------
+    (function init() {
+      var toolParam = param('tool');
+      var resolved = REG.resolve(toolParam);
+      if (toolParam) {
+        toolSelect.value = resolved ? resolved.id : 'other';
+        if (/^(1|true|yes)$/i.test(param('lock'))) {
+          toolSelect.disabled = true;
+          toolSelect.classList.add('opacity-70', 'cursor-not-allowed');
+          document.getElementById('tool-locked-note').classList.remove('hidden');
+        }
+      }
+      applyTemplate(toolSelect.value, false);
+
+      // Identity + follow-up prefill.
+      ['name', 'email', 'company', 'position', 'companySize', 'usage', 'phone', 'channel'].forEach(function (k) {
+        if (param(k)) setValue(k, param(k));
+      });
+      if (param('rating')) {
+        var r = Math.max(1, Math.min(5, parseInt(param('rating'), 10) || 0));
+        if (r) setRating(r);
+      }
+      if (param('contact')) {
+        setValue('contactBack', param('contact'));
+        document.getElementById('contact-extra').classList.toggle('hidden', param('contact') === 'no');
+      }
+      applyConditionals();
+      updateProgress();
+    })();
+
+    document.getElementById('tool-unlock').addEventListener('click', function () {
+      toolSelect.disabled = false;
+      toolSelect.classList.remove('opacity-70', 'cursor-not-allowed');
+      document.getElementById('tool-locked-note').classList.add('hidden');
+      toolSelect.focus();
+    });
+  })();
+  </script>
+  <script>
+  (function () {
+    var t = localStorage.getItem('theme');
+    if (t === 'light') document.documentElement.classList.add('light');
+    else if (t === 'dark') document.documentElement.classList.remove('light');
+    function paint() {
+      var light = document.documentElement.classList.contains('light');
+      var d = document.getElementById('icon-dark'), l = document.getElementById('icon-light');
+      if (d) d.style.display = light ? 'block' : 'none';
+      if (l) l.style.display = light ? 'none' : 'block';
+    }
+    paint();
+    var btn = document.getElementById('theme-toggle');
+    if (btn) btn.addEventListener('click', function () {
+      document.documentElement.classList.toggle('light');
+      localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+      paint();
+    });
+  })();
+  </script>
+</body>
+</html>

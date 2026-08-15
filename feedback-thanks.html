@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank you — Vectored</title>
+  <meta name="description" content="Your feedback reached the Vectored team.">
+  <meta name="robots" content="noindex, follow">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#171717',secondary:'#404040',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <style>
+    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}
+    html.light body{background:#FAFAFA;color:#171717}
+    html.light .bg-surface,html.light .bg-surface\/90,html.light .bg-surface\/70{background-color:#FFFFFF!important}
+    html.light .bg-bg{background-color:#F1F5F9!important}
+    html.light .text-muted{color:#525252!important}
+    html.light .text-text{color:#171717!important}
+    html.light .hover\:text-text:hover{color:#171717!important}
+    html.light .border-border{border-color:#E5E5E5!important}
+    html.light .text-cta{color:#16A34A!important}
+    .hero-glow{background:radial-gradient(ellipse 70% 60% at 50% -10%,rgba(34,197,94,0.18),transparent)}
+    .card-lux{position:relative;overflow:hidden}
+    .card-lux::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.6),transparent)}
+
+    /* Seal: ring sweeps in, then the tick draws. */
+    .seal{width:7rem;height:7rem;position:relative;margin:0 auto}
+    .seal svg{position:absolute;inset:0;width:100%;height:100%}
+    .seal-ring{fill:none;stroke:rgba(34,197,94,.9);stroke-width:2;stroke-dasharray:302;stroke-dashoffset:302;transform:rotate(-90deg);transform-origin:50% 50%;animation:draw .9s cubic-bezier(.2,.8,.2,1) forwards}
+    .seal-glow{fill:rgba(34,197,94,.1)}
+    .seal-tick{fill:none;stroke:#22C55E;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:48;stroke-dashoffset:48;animation:draw .45s cubic-bezier(.2,.8,.2,1) .55s forwards}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    .pulse-ring{position:absolute;inset:0;border-radius:999px;border:1px solid rgba(34,197,94,.45);animation:pulse 2.6s ease-out infinite;animation-delay:1s}
+    @keyframes pulse{0%{transform:scale(.85);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+
+    .rise{opacity:0;transform:translateY(12px);animation:rise .6s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes rise{to{opacity:1;transform:none}}
+
+    /* Countdown ring around the docs button. */
+    #cd-ring{stroke-dasharray:100;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear}
+
+    .spark{position:absolute;width:5px;height:5px;border-radius:999px;opacity:0;animation:spark 1.4s ease-out forwards}
+    @keyframes spark{0%{opacity:0;transform:translate(0,0) scale(.4)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1)}}
+
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}}
+  </style>
+  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <div id="vc-header"></div>
+  <script src="assets/header.js"></script>
+
+  <main class="flex-1 hero-glow px-4 sm:px-6 lg:px-8 pt-16 pb-20">
+    <div class="max-w-2xl mx-auto">
+
+      <div id="spark-host" class="relative">
+        <div class="seal">
+          <div class="pulse-ring"></div>
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="seal-glow" cx="50" cy="50" r="48"></circle>
+            <circle class="seal-ring" cx="50" cy="50" r="48"></circle>
+            <path class="seal-tick" d="M31 51.5 L44 64 L69 38"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <p class="font-mono text-xs text-cta tracking-widest uppercase mb-4 rise" style="animation-delay:.5s">Received</p>
+        <h1 id="thanks-title" class="text-3xl sm:text-4xl font-bold rise" style="animation-delay:.6s">Thank you.</h1>
+        <p id="thanks-sub" class="text-muted text-base sm:text-lg mt-4 max-w-lg mx-auto rise" style="animation-delay:.7s">Your feedback is in our triage queue and a human will read it.</p>
+        <p id="ref-line" class="font-mono text-xs text-muted mt-4 hidden rise" style="animation-delay:.75s"></p>
+      </div>
+
+      <!-- Redirect card -->
+      <div class="card-lux bg-surface border border-border rounded-2xl p-6 mt-10 rise" style="animation-delay:.8s">
+        <div class="flex items-center gap-4">
+          <div class="relative w-12 h-12 shrink-0">
+            <svg viewBox="0 0 36 36" class="w-12 h-12 -rotate-90">
+              <circle cx="18" cy="18" r="15.9155" fill="none" stroke="currentColor" class="text-border" stroke-width="2"></circle>
+              <circle id="cd-ring" cx="18" cy="18" r="15.9155" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round"></circle>
+            </svg>
+            <span id="cd-num" class="absolute inset-0 grid place-items-center font-mono text-sm font-bold text-cta">10</span>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p id="cd-text" class="text-sm font-medium">Taking you to the documentation in 10 seconds…</p>
+            <p class="text-xs text-muted mt-1 break-all" id="cd-target">https://docs.vectored.dev</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <a id="go-now" href="https://docs.vectored.dev" class="bg-cta text-bg font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Go to the docs now</a>
+          <button type="button" id="cd-stop" class="border border-border text-text font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-bg transition-colors duration-200 cursor-pointer">Stay on this page</button>
+        </div>
+      </div>
+
+      <!-- Tool-aware next steps -->
+      <div id="next-steps" class="mt-6 rise" style="animation-delay:.9s"></div>
+
+      <!-- Secondary actions -->
+      <div class="grid sm:grid-cols-2 gap-4 mt-6 rise" style="animation-delay:1s">
+        <a id="another" href="feedback.html" class="bg-surface border border-border rounded-2xl p-5 hover:border-cta/40 transition-all duration-200 cursor-pointer group block">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <div class="font-semibold text-sm">Send more feedback</div>
+              <p class="text-xs text-muted mt-1">Another tool, another idea.</p>
+            </div>
+            <svg class="w-4 h-4 text-muted group-hover:text-cta transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+        <a href="macrotoolkit/support.html" class="bg-surface border border-border rounded-2xl p-5 hover:border-cta/40 transition-all duration-200 cursor-pointer group block">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <div class="font-semibold text-sm">Need help right now?</div>
+              <p class="text-xs text-muted mt-1">Open a support ticket instead.</p>
+            </div>
+            <svg class="w-4 h-4 text-muted group-hover:text-cta transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="vc-footer"></div>
+  <script src="assets/footer.js"></script>
+  <script src="assets/feedback-config.js"></script>
+  <script src="assets/feedback-templates.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var CFG = window.VECTORED_FEEDBACK_CONFIG || {};
+    var REG = window.VectoredFeedback;
+    var DOCS = CFG.DOCS_URL || 'https://docs.vectored.dev';
+    var SECS = Number(CFG.REDIRECT_SECONDS) > 0 ? Number(CFG.REDIRECT_SECONDS) : 10;
+
+    var sp = new URLSearchParams(location.search);
+    function p(k) { return (sp.get(k) || '').trim(); }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+    var tpl = REG.template(p('tool'));
+    var first = p('name').replace(/[^\p{L}\p{M}'\- ]/gu, '').slice(0, 40);
+    var rating = parseInt(p('rating'), 10) || 0;
+    var contact = p('contact');
+    var ref = p('ref');
+
+    // Headline adapts to who they are and how they rated us.
+    document.getElementById('thanks-title').textContent = first ? 'Thank you, ' + first + '.' : 'Thank you.';
+
+    var sub;
+    if (rating && rating <= 2) {
+      sub = 'That was not the experience we want you to have with ' + tpl.name + '. It goes to the top of the triage queue' + (contact === 'no' ? '.' : ' and we will get back to you.');
+    } else if (rating >= 4) {
+      sub = 'Glad ' + tpl.name + ' is pulling its weight. Your notes go straight to the people building it.';
+    } else {
+      sub = 'Your feedback on ' + tpl.name + ' is in our triage queue and a human will read it.';
+    }
+    if (contact === 'yes') sub += ' Expect a reply within two business days.';
+    document.getElementById('thanks-sub').textContent = sub;
+
+    if (ref) {
+      var refEl = document.getElementById('ref-line');
+      refEl.textContent = 'Reference ' + ref;
+      refEl.classList.remove('hidden');
+    }
+
+    // Keep the tool selected when they send more feedback.
+    document.getElementById('another').href = 'feedback.html?tool=' + encodeURIComponent(tpl.id);
+
+    // Tool-aware reading list.
+    (function nextSteps() {
+      var items = tpl.nextSteps || [];
+      if (!items.length) return;
+      document.getElementById('next-steps').innerHTML =
+        '<div class="bg-surface border border-border rounded-2xl p-6">' +
+          '<h2 class="text-sm font-semibold mb-1">While you are here</h2>' +
+          '<p class="text-xs text-muted mb-4">' + esc(tpl.name) + ' documentation worth a look.</p>' +
+          '<ul class="space-y-2">' + items.map(function (i) {
+            return '<li><a href="' + i.href + '" class="flex items-center gap-2 text-sm text-cta hover:underline cursor-pointer">' +
+                   '<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>' +
+                   esc(i.label) + '</a></li>';
+          }).join('') + '</ul>' +
+        '</div>';
+    })();
+
+    // ---------- countdown ----------
+    var target = DOCS;
+    document.getElementById('go-now').href = target;
+    document.getElementById('cd-target').textContent = target;
+
+    var left = SECS;
+    var ring = document.getElementById('cd-ring');
+    var num = document.getElementById('cd-num');
+    var text = document.getElementById('cd-text');
+    var timer = null, stopped = false;
+
+    function paint() {
+      num.textContent = String(left);
+      ring.style.strokeDashoffset = String(100 - (left / SECS) * 100);
+      text.textContent = 'Taking you to the documentation in ' + left + ' second' + (left === 1 ? '' : 's') + '…';
+    }
+    paint();
+
+    function stop(msg) {
+      if (stopped) return;
+      stopped = true;
+      clearInterval(timer);
+      var btn = document.getElementById('cd-stop');
+      btn.textContent = 'Redirect cancelled';
+      btn.disabled = true;
+      btn.classList.add('opacity-60', 'cursor-not-allowed');
+      text.textContent = msg || 'Auto-redirect cancelled — take your time.';
+      num.textContent = '—';
+      ring.style.strokeDashoffset = '100';
+    }
+
+    timer = setInterval(function () {
+      left--;
+      if (left <= 0) {
+        clearInterval(timer);
+        num.textContent = '0';
+        ring.style.strokeDashoffset = '100';
+        text.textContent = 'Redirecting…';
+        window.location.href = target;
+        return;
+      }
+      paint();
+    }, 1000);
+
+    document.getElementById('cd-stop').addEventListener('click', function () { stop(); });
+    // Any real intent to stay — scrolling, clicking a link, typing — cancels it.
+    ['click', 'keydown'].forEach(function (ev) {
+      document.addEventListener(ev, function (e) {
+        if (e.target.closest && e.target.closest('a') && !e.target.closest('#go-now')) stop('Auto-redirect cancelled — you clicked a link.');
+      }, true);
+    });
+
+    // ---------- confetti sparks (cheap, no library) ----------
+    (function sparks() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var host = document.getElementById('spark-host');
+      var colors = ['#22C55E', '#4ADE80', '#FACC15', '#38BDF8'];
+      for (var i = 0; i < 18; i++) {
+        var s = document.createElement('span');
+        var a = (Math.PI * 2 * i) / 18 + Math.random() * 0.3;
+        var dist = 70 + Math.random() * 60;
+        s.className = 'spark';
+        s.style.background = colors[i % colors.length];
+        s.style.left = 'calc(50% - 2.5px)';
+        s.style.top = '3.5rem';
+        s.style.setProperty('--dx', Math.cos(a) * dist + 'px');
+        s.style.setProperty('--dy', Math.sin(a) * dist + 'px');
+        s.style.animationDelay = 0.75 + Math.random() * 0.25 + 's';
+        host.appendChild(s);
+      }
+      setTimeout(function () { host.querySelectorAll('.spark').forEach(function (n) { n.remove(); }); }, 3000);
+    })();
+  })();
+  </script>
+  <script>
+  (function () {
+    var t = localStorage.getItem('theme');
+    if (t === 'light') document.documentElement.classList.add('light');
+    else if (t === 'dark') document.documentElement.classList.remove('light');
+    function paint() {
+      var light = document.documentElement.classList.contains('light');
+      var d = document.getElementById('icon-dark'), l = document.getElementById('icon-light');
+      if (d) d.style.display = light ? 'block' : 'none';
+      if (l) l.style.display = light ? 'none' : 'block';
+    }
+    paint();
+    var btn = document.getElementById('theme-toggle');
+    if (btn) btn.addEventListener('click', function () {
+      document.documentElement.classList.toggle('light');
+      localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+      paint();
+    });
+  })();
+  </script>
+</body>
+</html>
