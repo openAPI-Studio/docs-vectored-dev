@@ -1,225 +1,207 @@
 <!DOCTYPE html>
-<html lang="en" data-page="graphql" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GraphQL — API Studio Docs</title>
-    <meta name="description" content="Full GraphQL client with CodeMirror 6 editor, schema introspection, visual query builder, docs panel, multi-operation support, and graphql-transport-ws subscriptions.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>body{font-family:'IBM Plex Sans',sans-serif}code,.font-mono{font-family:'JetBrains Mono',monospace}.sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GraphQL — API Studio Docs</title>
+  <meta name="description" content="Full GraphQL client with CodeMirror 6 editor, schema introspection, visual query builder, docs panel, multi-operation support, and graphql-transport-ws subscriptions.">
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4"><a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a><div class="hidden md:flex items-center gap-4 ml-4"><a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a><a href="./" class="text-sm text-cta font-medium">Docs</a><a href="../support.html" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Support</a></div><div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block"><input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50"></div><div class="flex items-center gap-3 ml-auto md:ml-0"><span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span><button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted"><svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav>
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20"><input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a></aside>
+<body>
 
-<div class="flex pt-24">
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#schema" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Schema Loading</a>
-                <a href="#editor" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Editor</a>
-                <a href="#builder" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Query Builder</a>
-                <a href="#docs" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Docs Panel</a>
-                <a href="#multi-op" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Multi-Operation</a>
-                <a href="#subscriptions" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Subscriptions</a>
-                <a href="#variables" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Variables</a>
-                <a href="#tips" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Tips</a>
-            </nav>
-        </aside>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">PROTOCOLS</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">GraphQL</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">Full-featured GraphQL client with CodeMirror 6 editor, schema introspection and SDL import, visual query builder, docs panel, multi-operation support, and live subscriptions via <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">graphql-transport-ws</code>.</p>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">GraphQL</h1>
+      <p class="vc-lede">Full-featured GraphQL client with CodeMirror 6 editor, schema introspection and SDL import, visual query builder, docs panel, multi-operation support, and live subscriptions via <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">graphql-transport-ws</code>.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-        <!-- Schema Loading -->
-        <section class="mb-12 scroll-mt-28" id="schema">
-            <h2 class="text-xl font-semibold mb-4">Schema Loading &amp; Caching</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio fetches and caches your GraphQL schema to power autocomplete, lint, and the docs panel. Four schema operations are available:</p>
-            <div class="space-y-4 mb-5">
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Introspection</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Click <strong>Fetch Schema</strong> to send the standard introspection query to the endpoint. The result is cached with a timestamp and displayed with an <span class="text-cta font-medium">introspection</span> source badge.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">SDL Import</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Paste or browse a <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.graphql</code> / <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.gql</code> file. The schema is parsed locally without a network request. Shows an <span class="text-cta font-medium">sdl</span> source badge.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Schema URL Override</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Point the introspection fetch at a different endpoint than the one used for request execution. Set via the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">schemaUrlOverride</code> field in the request body settings.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Clear Schema</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Reset the cached schema for the current URL. Useful when the server schema has changed and you want a fresh introspection.</p>
-                    </div>
-                </div>
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">PROTOCOLS</p>
+
+<!-- Schema Loading -->
+<section class="mb-12 scroll-mt-28" id="schema">
+<h2 class="text-xl font-semibold mb-4">Schema Loading &amp; Caching</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio fetches and caches your GraphQL schema to power autocomplete, lint, and the docs panel. Four schema operations are available:</p>
+<div class="space-y-4 mb-5">
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Introspection</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Click <strong>Fetch Schema</strong> to send the standard introspection query to the endpoint. The result is cached with a timestamp and displayed with an <span class="text-cta font-medium">introspection</span> source badge.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">SDL Import</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Paste or browse a <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.graphql</code> / <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.gql</code> file. The schema is parsed locally without a network request. Shows an <span class="text-cta font-medium">sdl</span> source badge.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Schema URL Override</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Point the introspection fetch at a different endpoint than the one used for request execution. Set via the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">schemaUrlOverride</code> field in the request body settings.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Clear Schema</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Reset the cached schema for the current URL. Useful when the server schema has changed and you want a fresh introspection.</p>
+</div>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
+<strong class="text-gray-900 dark:text-text">Cache details:</strong> Schemas are stored in <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">graphql-schemas.json</code>, keyed by normalized URL (lowercase host, no default port, no trailing slash). Each entry records the source (<code class="font-mono">introspection</code> or <code class="font-mono">sdl</code>) and a <code class="font-mono">fetchedAt</code> timestamp.
             </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
-                <strong class="text-gray-900 dark:text-text">Cache details:</strong> Schemas are stored in <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">graphql-schemas.json</code>, keyed by normalized URL (lowercase host, no default port, no trailing slash). Each entry records the source (<code class="font-mono">introspection</code> or <code class="font-mono">sdl</code>) and a <code class="font-mono">fetchedAt</code> timestamp.
+</section>
+<!-- Editor -->
+<section class="mb-12 scroll-mt-28" id="editor">
+<h2 class="text-xl font-semibold mb-4">CodeMirror 6 Editor</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The query editor is powered by CodeMirror 6 with the <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">cm6-graphql</code> extension for full language support.</p>
+<div class="space-y-3 mb-5">
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Syntax highlighting</strong> — GraphQL keywords, types, fields, and arguments are color-coded</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Schema-aware autocomplete</strong> — press <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1 py-0.5 text-[10px] font-mono">Ctrl+Space</kbd> to complete field names, arguments, types, and directives against the fetched schema</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Inline lint</strong> — red squiggles under invalid fields, wrong argument types, and missing required arguments</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Prettify</strong> — one-click formatting for both query and variables (idempotent)</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Separate editors</strong> — Query uses <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">#</code> comments; Variables uses <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">//</code> and <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">/* */</code> comments</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Zoom controls</strong> — A- / A+ / ↺ buttons per editor instance (12px default, session-only)</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Variable decoration</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{variable}}</code> tokens are decorated with per-source colors (global-env, vault, local-env, collection, unresolved)</span></div>
+</div>
+</section>
+<!-- Query Builder -->
+<section class="mb-12 scroll-mt-28" id="builder">
+<h2 class="text-xl font-semibold mb-4">Visual Query Builder</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Build queries visually without writing GraphQL by hand. The builder generates the full operation string in real-time as you check fields.</p>
+<div class="space-y-3 mb-5">
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Checkbox field tree</strong> — grouped by Query / Mutation / Subscription root types</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Auto-generated variables</strong> — argument variable declarations are created automatically with names like <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{dotPath}_{argName}</code></span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Value preservation</strong> — manually-entered variable values are preserved when switching between operations</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Real-time sync</strong> — selecting fields instantly generates the query in the editor</span></div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
+<strong class="text-gray-900 dark:text-text">Variable naming:</strong> For a field at path <code class="font-mono">countries.name</code> with argument <code class="font-mono">filter</code>, the variable is named <code class="font-mono">$countries_name_filter</code>. Dots in the path are replaced with underscores.
             </div>
-        </section>
-
-        <!-- Editor -->
-        <section class="mb-12 scroll-mt-28" id="editor">
-            <h2 class="text-xl font-semibold mb-4">CodeMirror 6 Editor</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The query editor is powered by CodeMirror 6 with the <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">cm6-graphql</code> extension for full language support.</p>
-            <div class="space-y-3 mb-5">
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Syntax highlighting</strong> — GraphQL keywords, types, fields, and arguments are color-coded</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Schema-aware autocomplete</strong> — press <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1 py-0.5 text-[10px] font-mono">Ctrl+Space</kbd> to complete field names, arguments, types, and directives against the fetched schema</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Inline lint</strong> — red squiggles under invalid fields, wrong argument types, and missing required arguments</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Prettify</strong> — one-click formatting for both query and variables (idempotent)</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Separate editors</strong> — Query uses <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">#</code> comments; Variables uses <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">//</code> and <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">/* */</code> comments</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Zoom controls</strong> — A- / A+ / ↺ buttons per editor instance (12px default, session-only)</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Variable decoration</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{variable}}</code> tokens are decorated with per-source colors (global-env, vault, local-env, collection, unresolved)</span></div>
-            </div>
-        </section>
-
-        <!-- Query Builder -->
-        <section class="mb-12 scroll-mt-28" id="builder">
-            <h2 class="text-xl font-semibold mb-4">Visual Query Builder</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Build queries visually without writing GraphQL by hand. The builder generates the full operation string in real-time as you check fields.</p>
-            <div class="space-y-3 mb-5">
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Checkbox field tree</strong> — grouped by Query / Mutation / Subscription root types</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Auto-generated variables</strong> — argument variable declarations are created automatically with names like <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{dotPath}_{argName}</code></span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Value preservation</strong> — manually-entered variable values are preserved when switching between operations</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Real-time sync</strong> — selecting fields instantly generates the query in the editor</span></div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
-                <strong class="text-gray-900 dark:text-text">Variable naming:</strong> For a field at path <code class="font-mono">countries.name</code> with argument <code class="font-mono">filter</code>, the variable is named <code class="font-mono">$countries_name_filter</code>. Dots in the path are replaced with underscores.
-            </div>
-        </section>
-
-        <!-- Docs Panel -->
-        <section class="mb-12 scroll-mt-28" id="docs">
-            <h2 class="text-xl font-semibold mb-4">Docs Panel</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">A searchable type browser built from the fetched schema — navigate types, fields, and arguments without leaving the editor.</p>
-            <div class="space-y-3 mb-5">
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Full-text search</strong> — find any type, field, or description by keyword</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Clickable types</strong> — click any type reference to navigate to its definition</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Breadcrumb navigation</strong> — navigate back through the type hierarchy via the breadcrumb trail</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Inline details</strong> — field descriptions and argument signatures displayed directly</span></div>
-            </div>
-        </section>
-
-        <!-- Multi-Operation -->
-        <section class="mb-12 scroll-mt-28" id="multi-op">
-            <h2 class="text-xl font-semibold mb-4">Multi-Operation Support</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Work with multiple named operations in a single document. API Studio handles operation selection and cleanup automatically.</p>
-            <div class="space-y-3 mb-5">
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Operation picker</strong> — when the document contains more than one named operation, a dropdown appears above the editor</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Selective execution</strong> — only the selected operation is sent; <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">operationName</code> is included in the request body</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Auto-cleanup</strong> — switching to a single-operation document clears stale <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">operationName</code> automatically</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">cURL export</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">operationName</code> is included in generated cURL commands</span></div>
-            </div>
-        </section>
-
-        <!-- Subscriptions -->
-        <section class="mb-12 scroll-mt-28" id="subscriptions">
-            <h2 class="text-xl font-semibold mb-4">Subscriptions (graphql-transport-ws)</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Subscribe to real-time data streams using the modern <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">graphql-transport-ws</code> subprotocol.</p>
-            <div class="space-y-3 mb-5">
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Auto-detection</strong> — when the active operation is a <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">subscription</code>, the Send button becomes <strong>Subscribe</strong></span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">WebSocket transport</strong> — uses the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">graphql-transport-ws</code> subprotocol over WebSocket</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Protocol flow</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">connection_init</code> → <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">connection_ack</code> → <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">subscribe</code> → <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">next</code> / <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">error</code> / <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">complete</code></span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Live event panel</strong> — shows connection status, elapsed time, event count, and each <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">next</code> payload pretty-printed as JSON</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Unsubscribe</strong> — click <strong>Unsubscribe</strong> to send a <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">complete</code> frame and close the stream</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Keep-alive</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">ping</code> / <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">pong</code> frames handled automatically</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Auth injection</strong> — auth headers are injected into the WebSocket handshake request</span></div>
-            </div>
-        </section>
-
-        <!-- Variables -->
-        <section class="mb-12 scroll-mt-28" id="variables">
-            <h2 class="text-xl font-semibold mb-4">GraphQL Variables</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The variables editor sits below the query editor and accepts JSON with full comment support.</p>
-            <div class="space-y-3 mb-5">
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">JSON editor</strong> — dedicated CodeMirror instance below the query with JSON syntax highlighting</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Comment support</strong> — use <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">//</code> single-line and <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">/* */</code> multi-line comments; stripped before sending</span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Error handling</strong> — invalid JSON shows a descriptive error: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Invalid JSON in GraphQL variables: …</code></span></div>
-                <div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Environment interpolation</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{env_var}}</code> placeholders are resolved before JSON parsing</span></div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example with comments and variables:</p>
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>{
+</section>
+<!-- Docs Panel -->
+<section class="mb-12 scroll-mt-28" id="docs">
+<h2 class="text-xl font-semibold mb-4">Docs Panel</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">A searchable type browser built from the fetched schema — navigate types, fields, and arguments without leaving the editor.</p>
+<div class="space-y-3 mb-5">
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Full-text search</strong> — find any type, field, or description by keyword</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Clickable types</strong> — click any type reference to navigate to its definition</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Breadcrumb navigation</strong> — navigate back through the type hierarchy via the breadcrumb trail</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Inline details</strong> — field descriptions and argument signatures displayed directly</span></div>
+</div>
+</section>
+<!-- Multi-Operation -->
+<section class="mb-12 scroll-mt-28" id="multi-op">
+<h2 class="text-xl font-semibold mb-4">Multi-Operation Support</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Work with multiple named operations in a single document. API Studio handles operation selection and cleanup automatically.</p>
+<div class="space-y-3 mb-5">
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Operation picker</strong> — when the document contains more than one named operation, a dropdown appears above the editor</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Selective execution</strong> — only the selected operation is sent; <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">operationName</code> is included in the request body</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Auto-cleanup</strong> — switching to a single-operation document clears stale <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">operationName</code> automatically</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">cURL export</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">operationName</code> is included in generated cURL commands</span></div>
+</div>
+</section>
+<!-- Subscriptions -->
+<section class="mb-12 scroll-mt-28" id="subscriptions">
+<h2 class="text-xl font-semibold mb-4">Subscriptions (graphql-transport-ws)</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Subscribe to real-time data streams using the modern <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">graphql-transport-ws</code> subprotocol.</p>
+<div class="space-y-3 mb-5">
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Auto-detection</strong> — when the active operation is a <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">subscription</code>, the Send button becomes <strong>Subscribe</strong></span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">WebSocket transport</strong> — uses the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">graphql-transport-ws</code> subprotocol over WebSocket</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Protocol flow</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">connection_init</code> → <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">connection_ack</code> → <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">subscribe</code> → <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">next</code> / <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">error</code> / <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">complete</code></span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Live event panel</strong> — shows connection status, elapsed time, event count, and each <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">next</code> payload pretty-printed as JSON</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Unsubscribe</strong> — click <strong>Unsubscribe</strong> to send a <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">complete</code> frame and close the stream</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Keep-alive</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">ping</code> / <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">pong</code> frames handled automatically</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Auth injection</strong> — auth headers are injected into the WebSocket handshake request</span></div>
+</div>
+</section>
+<!-- Variables -->
+<section class="mb-12 scroll-mt-28" id="variables">
+<h2 class="text-xl font-semibold mb-4">GraphQL Variables</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The variables editor sits below the query editor and accepts JSON with full comment support.</p>
+<div class="space-y-3 mb-5">
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">JSON editor</strong> — dedicated CodeMirror instance below the query with JSON syntax highlighting</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Comment support</strong> — use <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">//</code> single-line and <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">/* */</code> multi-line comments; stripped before sending</span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Error handling</strong> — invalid JSON shows a descriptive error: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Invalid JSON in GraphQL variables: …</code></span></div>
+<div class="flex gap-2 items-start text-sm text-gray-600 dark:text-muted"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Environment interpolation</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{env_var}}</code> placeholders are resolved before JSON parsing</span></div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example with comments and variables:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>{
   // User ID from environment
   "userId": "{{user_id}}",
   /* Pagination */
   "first": 10,
   "after": null
 }</code></pre>
-            </div>
-        </section>
+</div>
+</section>
+<!-- Tips -->
+<section class="mb-12 scroll-mt-28" id="tips">
+<h2 class="text-xl font-semibold mb-4">Tips &amp; Troubleshooting</h2>
+<div class="space-y-4">
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<h4 class="font-semibold text-sm mb-1">Autocomplete not working?</h4>
+<p class="text-xs text-gray-500 dark:text-muted">Check that the schema has been fetched — look for the green source badge next to the URL. Without a schema, autocomplete and lint are disabled.</p>
+</div>
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<h4 class="font-semibold text-sm mb-1">Schema URL override</h4>
+<p class="text-xs text-gray-500 dark:text-muted">Use when the introspection endpoint differs from the runtime endpoint (e.g., gateway vs. service URL, or schema only exposed on a dev port).</p>
+</div>
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<h4 class="font-semibold text-sm mb-1">Large schemas</h4>
+<p class="text-xs text-gray-500 dark:text-muted">Initial introspection fetch may take a few seconds for very large schemas. Results are cached afterward — subsequent loads are instant.</p>
+</div>
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<h4 class="font-semibold text-sm mb-1">Subscriptions not connecting?</h4>
+<p class="text-xs text-gray-500 dark:text-muted">The server must support the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">graphql-transport-ws</code> subprotocol (the modern standard). The legacy <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">subscriptions-transport-ws</code> protocol is not supported.</p>
+</div>
+</div>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="websocket.html">WebSocket Client →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="grpc.html">gRPC Client →</a>
+</div>
+</section>
+      </article>
 
-        <!-- Tips -->
-        <section class="mb-12 scroll-mt-28" id="tips">
-            <h2 class="text-xl font-semibold mb-4">Tips &amp; Troubleshooting</h2>
-            <div class="space-y-4">
-                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <h4 class="font-semibold text-sm mb-1">Autocomplete not working?</h4>
-                    <p class="text-xs text-gray-500 dark:text-muted">Check that the schema has been fetched — look for the green source badge next to the URL. Without a schema, autocomplete and lint are disabled.</p>
-                </div>
-                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <h4 class="font-semibold text-sm mb-1">Schema URL override</h4>
-                    <p class="text-xs text-gray-500 dark:text-muted">Use when the introspection endpoint differs from the runtime endpoint (e.g., gateway vs. service URL, or schema only exposed on a dev port).</p>
-                </div>
-                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <h4 class="font-semibold text-sm mb-1">Large schemas</h4>
-                    <p class="text-xs text-gray-500 dark:text-muted">Initial introspection fetch may take a few seconds for very large schemas. Results are cached afterward — subsequent loads are instant.</p>
-                </div>
-                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <h4 class="font-semibold text-sm mb-1">Subscriptions not connecting?</h4>
-                    <p class="text-xs text-gray-500 dark:text-muted">The server must support the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">graphql-transport-ws</code> subprotocol (the modern standard). The legacy <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">subscriptions-transport-ws</code> protocol is not supported.</p>
-                </div>
-            </div>
-        </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next</h3>
-            <div class="flex flex-wrap gap-4">
-                <a href="websocket.html" class="text-sm text-cta font-medium hover:underline">WebSocket Client →</a>
-                <a href="grpc.html" class="text-sm text-cta font-medium hover:underline">gRPC Client →</a>
-            </div>
-        </section>
-    </main>
+  <aside class="vc-rail" data-noprint="1"></aside>
 </div>
 
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
-
-<script>
-const sections=[{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}];
-const currentPage=document.documentElement.getAttribute('data-page');
-function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
-function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
-buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
-</script>
-<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
 </body>
 </html>

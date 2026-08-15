@@ -1,96 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giving Recognition — Recognition Hub Docs</title>
   <meta name="description" content="Card templates, recipients, company values, and GIFs">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#F8FAFC;color:#0F172A}
-    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#475569!important}
-    html.light .text-text{color:#0F172A!important}
-    html.light .hover\:text-text:hover{color:#0F172A!important}
-    html.light .border-border{border-color:#E2E8F0!important}
-    html.light .text-cta{color:#16A34A!important}
-  </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <meta name="vc-updated" content="21 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- Nav -->
-  <div id="vc-header"></div>
-  <script src="../../assets/header.js"></script>
-  <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a href="https://marketplace.atlassian.com/apps/564712405" target="_blank" rel="noopener" class="text-cta hover:underline">Now available on the Atlassian Marketplace &rarr;</a></div>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-  <!-- Sidebar + Content -->
-  <div class="flex">
-    <aside id="mobile-sidebar" class="hidden lg:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
-      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; Recognition Hub Overview</a>
-      <nav class="space-y-1">
-        <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
-        <a href="giving-recognition.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="giving-recognition">Giving Recognition</a>
-        <a href="ai-assist.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="ai-assist">AI Assist</a>
-        <a href="reactions-comments.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="reactions-comments">Reactions & Comments</a>
-        <a href="sharing-and-macro.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="sharing-and-macro">Sharing & Page Macro</a>
-        <a href="email-notifications.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="email-notifications">Email Notifications</a>
-        <a href="company-values.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="company-values">Company Values</a>
-        <a href="moderation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="moderation">Moderation</a>
-      </nav>
-    </aside>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://marketplace.atlassian.com/apps/564712405" rel="noopener" target="_blank">Now available on the Atlassian Marketplace →</a></div>
 
-    <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
-      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Recognition Hub Overview</a>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></div>
-      <h1 class="text-3xl font-bold mt-3 mb-2">Giving Recognition</h1>
-      <p class="text-muted mb-8">Card templates, recipients, company values, and GIFs</p>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></div>
+      <h1 class="vc-h1">Giving Recognition</h1>
+      <p class="vc-lede">Card templates, recipients, company values, and GIFs</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-      <h2 class="text-2xl font-semibold mt-10 mb-4">Card Templates</h2>
-      <p class="text-muted mb-4">Every recognition starts from a template that shapes how the card renders on the mural: <strong>Classic</strong> (accent bar), <strong>Spotlight</strong> (GIF-forward, double width), <strong>Milestone</strong> (celebratory), <strong>Minimal Quote</strong> (short shout-outs), and <strong>Team Shout</strong> (group recognitions, double width).</p>
-      <img src="../assets/posting recognition page.png" alt="The recognition composer with templates, recipients, values and GIFs" class="rounded-xl border border-border my-6 w-full">
-      <h2 class="text-2xl font-semibold mt-10 mb-4">Recipients</h2>
-      <p class="text-muted mb-4">Search any teammate by name (Confluence or Jira) and add up to 20 recipients per recognition. Self-recognition is blocked — recognition is for celebrating <em>others</em>. For multi-recipient posts, everyone is included on one notification email.</p>
-      <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><p class="text-sm text-muted"><strong class="text-text">Email leaves the Atlassian platform.</strong> To reach a recipient&rsquo;s inbox, notification email is sent through AWS SES, so that content transits AWS &mdash; not just Atlassian. For complete data locality, configure your <strong class="text-text">own AWS SES credentials</strong> under <strong class="text-text">Settings &gt; Email</strong> so mail routes through infrastructure you control. See <a href="email-notifications.html" class="text-cta hover:underline">Email Notifications</a>.</p></div>
-      <h2 class="text-2xl font-semibold mt-10 mb-4">Company Values</h2>
-      <p class="text-muted mb-4">Optionally tag the recognition with one of your company's values. The value renders as a colored chip on the card and in the notification email, and can be curated by admins (up to 10 values).</p>
-      <h2 class="text-2xl font-semibold mt-10 mb-4">GIFs</h2>
-      <p class="text-muted mb-4">GIF search is powered by GIPHY <span class="inline-flex items-center bg-black/80 rounded-md px-2 py-1 align-middle"><img src="../assets/giphy-attribution-dark.svg" alt="Powered by GIPHY" class="h-[18px] w-auto"></span> — the composer offers a searchable picker with trending GIFs and full search. GIFs render full-size on cards and appear as a still frame in notification emails.</p>
-      <h3 class="text-lg font-semibold mt-6 mb-3">How the GIPHY integration works</h3>
-      <ul class="list-disc list-inside space-y-2 text-muted mb-4">
-        <li><strong class="text-text">Built-in or workspace key</strong> — GIFs work out of the box with the app&rsquo;s built-in GIPHY key; admins can override it with their own workspace key under <strong>Settings &gt; Connections</strong> (write-only, stored encrypted, with a test-connection button).</li>
-        <li><strong class="text-text">Content-rating ceiling</strong> — admins cap results at <span class="font-mono text-sm">G</span>, <span class="font-mono text-sm">PG</span>, or <span class="font-mono text-sm">PG-13</span> (the workplace maximum). Every GIPHY request is filtered to that rating or stricter.</li>
-        <li><strong class="text-text">Hotlinked, never re-hosted</strong> — GIF media is served straight from GIPHY&rsquo;s CDN per GIPHY&rsquo;s terms of service. Nothing is copied or stored by the app; only the GIF URL and attribution metadata are saved.</li>
-        <li><strong class="text-text">Attribution everywhere</strong> — the mandatory &ldquo;Powered by GIPHY&rdquo; mark is shown in the picker, on card media, and in emails. Admins can disable GIFs entirely at any time.</li>
-      </ul>
-      <img src="../assets/GIPHY configuration settingfspage.png" alt="GIPHY connection settings with content rating and test connection" class="rounded-xl border border-border my-6 w-full">
+      <article class="vc-doc">
+<h2 class="text-2xl font-semibold mt-10 mb-4">Card Templates</h2>
+<p class="text-muted mb-4">Every recognition starts from a template that shapes how the card renders on the mural: <strong>Classic</strong> (accent bar), <strong>Spotlight</strong> (GIF-forward, double width), <strong>Milestone</strong> (celebratory), <strong>Minimal Quote</strong> (short shout-outs), and <strong>Team Shout</strong> (group recognitions, double width).</p>
+<img alt="The recognition composer with templates, recipients, values and GIFs" class="rounded-xl border border-border my-6 w-full" src="../assets/posting recognition page.png"/>
+<h2 class="text-2xl font-semibold mt-10 mb-4">Recipients</h2>
+<p class="text-muted mb-4">Search any teammate by name (Confluence or Jira) and add up to 20 recipients per recognition. Self-recognition is blocked — recognition is for celebrating <em>others</em>. For multi-recipient posts, everyone is included on one notification email.</p>
+<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted"><strong class="text-text">Email leaves the Atlassian platform.</strong> To reach a recipient’s inbox, notification email is sent through AWS SES, so that content transits AWS — not just Atlassian. For complete data locality, configure your <strong class="text-text">own AWS SES credentials</strong> under <strong class="text-text">Settings &gt; Email</strong> so mail routes through infrastructure you control. See <a class="text-cta hover:underline" href="email-notifications.html">Email Notifications</a>.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">Company Values</h2>
+<p class="text-muted mb-4">Optionally tag the recognition with one of your company's values. The value renders as a colored chip on the card and in the notification email, and can be curated by admins (up to 10 values).</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">GIFs</h2>
+<p class="text-muted mb-4">GIF search is powered by GIPHY <span class="inline-flex items-center bg-black/80 rounded-md px-2 py-1 align-middle"><img alt="Powered by GIPHY" class="h-[18px] w-auto" src="../assets/giphy-attribution-dark.svg"/></span> — the composer offers a searchable picker with trending GIFs and full search. GIFs render full-size on cards and appear as a still frame in notification emails.</p>
+<h3 class="text-lg font-semibold mt-6 mb-3">How the GIPHY integration works</h3>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li><strong class="text-text">Built-in or workspace key</strong> — GIFs work out of the box with the app’s built-in GIPHY key; admins can override it with their own workspace key under <strong>Settings &gt; Connections</strong> (write-only, stored encrypted, with a test-connection button).</li>
+<li><strong class="text-text">Content-rating ceiling</strong> — admins cap results at <span class="font-mono text-sm">G</span>, <span class="font-mono text-sm">PG</span>, or <span class="font-mono text-sm">PG-13</span> (the workplace maximum). Every GIPHY request is filtered to that rating or stricter.</li>
+<li><strong class="text-text">Hotlinked, never re-hosted</strong> — GIF media is served straight from GIPHY’s CDN per GIPHY’s terms of service. Nothing is copied or stored by the app; only the GIF URL and attribution metadata are saved.</li>
+<li><strong class="text-text">Attribution everywhere</strong> — the mandatory “Powered by GIPHY” mark is shown in the picker, on card media, and in emails. Admins can disable GIFs entirely at any time.</li>
+</ul>
+<img alt="GIPHY connection settings with content rating and test connection" class="rounded-xl border border-border my-6 w-full" src="../assets/GIPHY configuration settingfspage.png"/>
+      </article>
 
-    </main>
-  </div>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-  <script>
-  (function(){
-    var t=localStorage.getItem('theme');
-    if(t==='light')document.documentElement.classList.add('light');
-    else if(t==='dark')document.documentElement.classList.remove('light');
-    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-    function upd(){var isLight=document.documentElement.classList.contains('light');var d=document.getElementById('icon-dark'),l=document.getElementById('icon-light');if(d)d.style.display=isLight?'block':'none';if(l)l.style.display=isLight?'none':'block';}
-    upd();
-    var tt=document.getElementById('theme-toggle');if(tt)tt.addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
-    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
-    var page=location.pathname.split('/').pop().replace('.html','');
-    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
-  })();
-    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'install setup first recognition hub apps navigation'},{name:'Giving Recognition',page:'giving-recognition.html',tags:'compose templates classic spotlight milestone quote team recipients gif giphy values post'},{name:'AI Assist',page:'ai-assist.html',tags:'ai draft rewrite forge llm claude atlassian sparkle composer generate title message value gif quick rewrite runs on atlassian'},{name:'Reactions & Comments',page:'reactions-comments.html',tags:'emoji reactions confetti comments palette celebrate'},{name:'Sharing & Page Macro',page:'sharing-and-macro.html',tags:'share direct link email macro id embed page deep link popup'},{name:'Email Notifications',page:'email-notifications.html',tags:'email ses aws smtp templates smart values credentials notifications cc'},{name:'Company Values',page:'company-values.html',tags:'values tags colors admin customize limit ten'},{name:'Moderation',page:'moderation.html',tags:'flag offensive hide review unflag delete admin search'}];
-    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
-    wire('doc-search','search-results');
-  </script>
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
 </body>
 </html>

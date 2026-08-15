@@ -80,85 +80,31 @@ ICONS = {
     "bell": '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
 }
 
+# The page shell lives in assets/tokens.css, header.js, docs.js and footer.js.
+# Generated pages carry nothing but their own metadata and content.
 HEAD = """  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content="{desc}">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/svg+xml" href="{favicon}">
+  <script>(function(){{var t=null;try{{t=localStorage.getItem('theme')}}catch(e){{}}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);}})();</script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={{theme:{{extend:{{colors:{{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'}},fontFamily:{{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}}}}}</script>
-  <style>body{{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}}.font-mono{{font-family:'JetBrains Mono',monospace}}
-    html.light body{{background:#F8FAFC;color:#0F172A}}
-    html.light .bg-surface,html.light .bg-surface\\/90{{background-color:rgba(255,255,255,0.9)!important}}
-    html.light .bg-bg{{background-color:#F1F5F9!important}}
-    html.light .text-muted{{color:#475569!important}}
-    html.light .text-text{{color:#0F172A!important}}
-    html.light .hover\\:text-text:hover{{color:#0F172A!important}}
-    html.light .border-border{{border-color:#E2E8F0!important}}
-    html.light .text-cta{{color:#16A34A!important}}
-    table{{width:100%;border-collapse:collapse}}
-    th,td{{text-align:left;padding:0.5rem 0.75rem;border-bottom:1px solid #334155;vertical-align:top;font-size:0.875rem}}
-    th{{font-weight:600;color:#F8FAFC}}
-    td{{color:#94A3B8}}
-    html.light th,html.light td{{border-color:#E2E8F0}}
-    html.light th{{color:#0F172A}}
-    html.light td{{color:#475569}}
-    .tbl-wrap{{overflow-x:auto;margin-bottom:1.5rem}}
-    .shot img{{width:100%;height:auto;display:block;border-radius:0.5rem}}
-  </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
-  <link rel="icon" type="image/svg+xml" href="{favicon}">"""
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="{up}assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="{up}assets/tokens.css">"""
 
 BANNER = '  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; TimeSheets is in active development.</div>'
 
-TAIL_SCRIPT = """  <script>
-  (function(){
-    var t=localStorage.getItem('theme');
-    if(t==='light')document.documentElement.classList.add('light');
-    else if(t==='dark')document.documentElement.classList.remove('light');
-    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-    function upd(){var isLight=document.documentElement.classList.contains('light');var d=document.getElementById('icon-dark'),l=document.getElementById('icon-light');if(d)d.style.display=isLight?'block':'none';if(l)l.style.display=isLight?'none':'block';}
-    upd();
-    var tt=document.getElementById('theme-toggle');if(tt)tt.addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
-    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
-    var page=location.pathname.split('/').pop().replace('.html','');
-    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
-  })();
-__DOCS_ARRAY__
-    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
-    wire('doc-search','search-results');
-  </script>"""
+# The theme toggle, sidebar, search and on-this-page nav that used to be
+# emitted after every page's content now live in the shared assets, so there
+# is no tail script left to write.
 
 SHOTS = []  # (filename, caption, page label) — collected during render
 
-# --- on-this-page navigation -------------------------------------------------
-
-TOC_SCRIPT = """<script>
-(function(){
-  var links=document.querySelectorAll('#toc a[href^="#"]');
-  if(!links.length)return;
-  var ids=Array.prototype.map.call(links,function(l){return l.getAttribute('href').slice(1);});
-  function onScroll(){
-    // The active heading is the last one whose top has passed the header.
-    var active='';
-    for(var i=0;i<ids.length;i++){
-      var el=document.getElementById(ids[i]);
-      if(el&&el.getBoundingClientRect().top<=140)active=ids[i];
-    }
-    // Near the bottom nothing new crosses the line, so pin the last entry —
-    // otherwise the final section never highlights.
-    if(window.innerHeight+window.scrollY>=document.body.scrollHeight-8)active=ids[ids.length-1];
-    Array.prototype.forEach.call(links,function(l){
-      var on=l.getAttribute('href')==='#'+active;
-      l.classList.toggle('!text-cta',on);
-      l.classList.toggle('!border-cta',on);
-    });
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('resize',onScroll,{passive:true});
-  onScroll();
-})();
-</script>"""
+# The on-this-page rail and its scrollspy are rendered by assets/docs.js.
 
 
 def slugify(text):
@@ -170,18 +116,18 @@ def slugify(text):
 
 
 def add_toc(path):
-    """Give every h2 an anchor and add the right-hand on-this-page nav.
+    """Give every h2 a stable anchor.
 
     Run as a post-process over the finished HTML rather than during rendering,
     so a hand-written page gets exactly the same treatment as a generated one
-    and there is only one implementation to keep correct.
+    and there is only one implementation to keep correct. The on-this-page rail
+    itself is built at runtime by assets/docs.js from these headings — the
+    anchors are stamped here so deep links stay stable across rebuilds.
     """
     doc = path.read_text(encoding="utf-8")
-    if 'id="toc"' in doc:
-        return 0
 
     heads = re.findall(r'<h2 class="([^"]*)">(.*?)</h2>', doc, flags=re.S)
-    if len(heads) < 3:      # too few sections to be worth a contents list
+    if not heads:
         return 0
 
     seen = {}
@@ -198,33 +144,6 @@ def add_toc(path):
 
     doc = re.sub(r'<h2 class="([^"]*)">(.*?)</h2>', anchor, doc, flags=re.S)
 
-    items = "\n".join(
-        f'          <a href="#{sid}" class="block py-1 text-muted hover:text-cta '
-        f'border-l-2 border-transparent hover:border-cta pl-3 transition-colors '
-        f'duration-200 cursor-pointer">{label}</a>'
-        for sid, label in entries
-    )
-    aside = f"""      <aside id="toc" class="hidden xl:block fixed top-28 right-8 w-48 max-h-[calc(100vh-9rem)] overflow-y-auto">
-        <p class="text-[10px] font-semibold uppercase tracking-widest text-muted mb-3">On this page</p>
-        <nav class="space-y-1 text-xs">
-{items}
-        </nav>
-      </aside>
-
-"""
-
-    # Reserve the gutter so wide screens do not run text under the nav.
-    doc = doc.replace(
-        '<main class="md:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">',
-        '<main class="md:ml-64 xl:mr-56 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8 relative">',
-        1,
-    )
-    marker = "<main "
-    i = doc.index(marker)
-    j = doc.index(">", i) + 1
-    doc = doc[:j] + "\n" + aside + doc[j:].lstrip("\n")
-
-    doc = doc.replace("<div id=\"vc-footer\"></div>", TOC_SCRIPT + "\n<div id=\"vc-footer\"></div>", 1)
     path.write_text(doc, encoding="utf-8")
     return len(entries)
 
@@ -301,65 +220,52 @@ def render_blocks(blocks, page_label):
     return "\n".join(out)
 
 
-def sidebar(pages):
-    links = "\n".join(
-        f'        <a href="{slug}.html" class="sidebar-link block px-3 py-1.5 rounded-lg '
-        f'text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 '
-        f'cursor-pointer" data-page="{slug}">{p["label"]}</a>'
-        for slug, p in pages
-    )
-    return f"""    <aside id="mobile-sidebar" class="hidden md:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
-      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; TimeSheets Overview</a>
-      <nav id="sidebar-nav" class="space-y-1">
-{links}
-      </nav>
-    </aside>"""
-
-
-def docs_array(pages):
-    items = []
-    for slug, p in pages:
-        heads = [v for k, v in p["blocks"] if k == "h"]
-        tags = " ".join([p["label"], p["desc"]] + heads + p.get("keywords", []))
-        tags = tags.lower().replace("'", "").replace("\n", " ")
-        items.append("{name:'%s',page:'%s.html',tags:'%s'}" % (p["label"].replace("'", ""), slug, tags))
-    return "    var docs=[" + ",".join(items) + "];"
+# The sidebar and the search index used to be written into every page here.
+# Both now come from assets/nav.js, which tools/gen_nav.py regenerates from the
+# pages on disk — so adding a page is one edit, not thirty.
 
 
 def doc_page(slug, p, pages):
     body = render_blocks(p["blocks"], p["label"])
-    tail = TAIL_SCRIPT.replace("__DOCS_ARRAY__", docs_array(pages))
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-{HEAD.format(title=p["title"] + " — TimeSheets Docs", desc=p["desc"], favicon="../../favicon.svg")}
+{HEAD.format(title=p["title"] + " — TimeSheets Docs", desc=p["desc"], favicon="../../favicon.svg", up="../../")}
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- Nav -->
-  <div id="vc-header"></div>
-  <script src="../../assets/header.js"></script>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 {BANNER}
 
-  <!-- Sidebar + Content -->
-  <div class="flex">
-{sidebar(pages)}
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-    <main class="md:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
-      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; TimeSheets Overview</a>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{ICONS[p["icon"]]}</svg></div>
+      <h1 class="vc-h1">{inline(p["title"])}</h1>
+      <p class="vc-lede">{inline(p["desc"])}</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{ICONS[p["icon"]]}</svg></div>
-      <h1 class="text-3xl font-bold mt-3 mb-2">{inline(p["title"])}</h1>
-      <p class="text-muted mb-8">{inline(p["desc"])}</p>
-
+      <article class="vc-doc">
 {body}
+      </article>
 
-    </main>
-  </div>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-{tail}
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
 </body>
 </html>
 """
@@ -373,23 +279,23 @@ def landing(pages, intro_blocks):
           <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">{p["label"]}</h3>
           <p class="text-sm text-muted mt-2">{p["desc"]}.</p>
         </a>""")
-    tail = TAIL_SCRIPT.replace("__DOCS_ARRAY__", docs_array(pages)).replace("../../assets", "../assets")
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-{HEAD.format(title="TimeSheets — Time tracking &amp; approvals for Jira | Vectored", desc="Timesheets, approvals, leave, billing and reporting for Jira Cloud teams, from Vectored", favicon="../favicon.svg")}
+{HEAD.format(title="TimeSheets — Time tracking &amp; approvals for Jira | Vectored", desc="Timesheets, approvals, leave, billing and reporting for Jira Cloud teams, from Vectored", favicon="../favicon.svg", up="../")}
 </head>
-<body class="min-h-screen">
+<body>
 
-  <div id="vc-header"></div>
-  <script src="../assets/header.js"></script>
+<div id="vc-header"></div>
+<script src="../assets/nav.js"></script>
+<script src="../assets/header.js"></script>
 {BANNER}
 
-  <main class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16">
+  <main class="vc-page">
     <h1 class="text-4xl font-bold mb-3">TimeSheets</h1>
     <p class="text-lg text-muted mb-10">Time tracking, approvals, leave and billing for Jira Cloud.</p>
 
-{render_blocks(intro_blocks, "Overview").replace('      <h2 class="text-2xl font-semibold mt-10 mb-4">', '      <h2 class="text-2xl font-semibold mt-10 mb-4">')}
+{render_blocks(intro_blocks, "Overview")}
 
     <h2 class="text-2xl font-bold mb-6 mt-14">Documentation</h2>
     <div class="grid sm:grid-cols-2 gap-4">
@@ -397,7 +303,6 @@ def landing(pages, intro_blocks):
     </div>
   </main>
 
-{tail}
 <div id="vc-footer"></div>
 <script src="../assets/footer.js"></script>
 </body>
@@ -428,22 +333,14 @@ def build(pages, intro_blocks, handwritten=()):
 
 
 def refresh_nav(path, pages):
-    """Keep a hand-written page's body, refresh its nav and search index."""
-    h = path.read_text(encoding="utf-8")
-    new_nav = "\n".join(
-        f'        <a href="{s}.html" class="sidebar-link block px-3 py-1.5 rounded-lg '
-        f'text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 '
-        f'cursor-pointer" data-page="{s}">{p["label"]}</a>'
-        for s, p in pages
-    )
-    h, n = re.subn(r'(<nav id="sidebar-nav" class="space-y-1">\n).*?(\n      </nav>)',
-                   lambda m: m.group(1) + new_nav + m.group(2), h, count=1, flags=re.S)
-    if not n:
-        raise SystemExit(f"{path.name}: sidebar not found")
-    h, n = re.subn(r"\n    var docs=\[.*?\];", "\n" + docs_array(pages), h, count=1, flags=re.S)
-    if not n:
-        raise SystemExit(f"{path.name}: search index not found")
-    path.write_text(h, encoding="utf-8")
+    """Hand-written pages need nothing refreshed any more.
+
+    They used to carry their own copy of the sidebar and the search index, so
+    a new page meant rewriting all of them. Both now live in assets/nav.js, and
+    a hand-written page is simply left alone.
+    """
+    if not path.exists():
+        raise SystemExit(f"{path.name}: hand-written page is missing")
 
 
 def write_manifest():

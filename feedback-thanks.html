@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +8,9 @@
   <meta name="robots" content="noindex, follow">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#171717',secondary:'#404040',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <script src="assets/tailwind-config.js"></script>
   <style>
-    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}
-    html.light body{background:#FAFAFA;color:#171717}
-    html.light .bg-surface,html.light .bg-surface\/90,html.light .bg-surface\/70{background-color:#FFFFFF!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#525252!important}
-    html.light .text-text{color:#171717!important}
-    html.light .hover\:text-text:hover{color:#171717!important}
-    html.light .border-border{border-color:#E5E5E5!important}
-    html.light .text-cta{color:#16A34A!important}
-    .hero-glow{background:radial-gradient(ellipse 70% 60% at 50% -10%,rgba(34,197,94,0.18),transparent)}
+.hero-glow{background:radial-gradient(ellipse 70% 60% at 50% -10%,rgba(34,197,94,0.18),transparent)}
     .card-lux{position:relative;overflow:hidden}
     .card-lux::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.6),transparent)}
 
@@ -28,7 +19,7 @@
     .seal svg{position:absolute;inset:0;width:100%;height:100%}
     .seal-ring{fill:none;stroke:rgba(34,197,94,.9);stroke-width:2;stroke-dasharray:302;stroke-dashoffset:302;transform:rotate(-90deg);transform-origin:50% 50%;animation:draw .9s cubic-bezier(.2,.8,.2,1) forwards}
     .seal-glow{fill:rgba(34,197,94,.1)}
-    .seal-tick{fill:none;stroke:#22C55E;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:48;stroke-dashoffset:48;animation:draw .45s cubic-bezier(.2,.8,.2,1) .55s forwards}
+    .seal-tick{fill:none;stroke:var(--green);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:48;stroke-dashoffset:48;animation:draw .45s cubic-bezier(.2,.8,.2,1) .55s forwards}
     @keyframes draw{to{stroke-dashoffset:0}}
     .pulse-ring{position:absolute;inset:0;border-radius:999px;border:1px solid rgba(34,197,94,.45);animation:pulse 2.6s ease-out infinite;animation-delay:1s}
     @keyframes pulse{0%{transform:scale(.85);opacity:.7}100%{transform:scale(1.5);opacity:0}}
@@ -44,14 +35,18 @@
 
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}}
   </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/tokens.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
   <div id="vc-header"></div>
-  <script src="assets/header.js"></script>
-
+<script src="assets/nav.js"></script>
+<script src="assets/header.js"></script>
   <main class="flex-1 hero-glow px-4 sm:px-6 lg:px-8 pt-16 pb-20">
     <div class="max-w-2xl mx-auto">
 
@@ -257,25 +252,6 @@
     })();
   })();
   </script>
-  <script>
-  (function () {
-    var t = localStorage.getItem('theme');
-    if (t === 'light') document.documentElement.classList.add('light');
-    else if (t === 'dark') document.documentElement.classList.remove('light');
-    function paint() {
-      var light = document.documentElement.classList.contains('light');
-      var d = document.getElementById('icon-dark'), l = document.getElementById('icon-light');
-      if (d) d.style.display = light ? 'block' : 'none';
-      if (l) l.style.display = light ? 'none' : 'block';
-    }
-    paint();
-    var btn = document.getElementById('theme-toggle');
-    if (btn) btn.addEventListener('click', function () {
-      document.documentElement.classList.toggle('light');
-      localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
-      paint();
-    });
-  })();
-  </script>
+  
 </body>
 </html>

@@ -1,124 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free vs Pro — Forms & Frontdoor Docs</title>
+  <title>Free vs Pro — Forms &amp; Frontdoor Docs</title>
   <meta name="description" content="Plan comparison and limits">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#F8FAFC;color:#0F172A}
-    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#475569!important}
-    html.light .text-text{color:#0F172A!important}
-    html.light .hover\:text-text:hover{color:#0F172A!important}
-    html.light .border-border{border-color:#E2E8F0!important}
-    html.light .text-cta{color:#16A34A!important}
-  </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- Nav -->
-  <div id="vc-header"></div>
-  <script src="../../assets/header.js"></script>
-  <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="text-cta hover:underline">Now available on the Atlassian Marketplace &rarr;</a></div>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-  <!-- Sidebar + Content -->
-  <div class="flex">
-    <aside id="mobile-sidebar" class="hidden lg:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
-      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; Forms Overview</a>
-      <nav class="space-y-1">
-        <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
-        <a href="building-forms.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="building-forms">Building Forms</a>
-        <a href="field-types.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="field-types">Field Types</a>
-        <a href="smart-values.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="smart-values">Smart Values</a>
-        <a href="validation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="validation">Validation & Constraints</a>
-        <a href="multi-section.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="multi-section">Multi-Section Forms</a>
-        <a href="embedding.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="embedding">Embedding Forms</a>
-        <a href="styling.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="styling">Styling & Theming</a>
-        <a href="access-control.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="access-control">Access Control</a>
-        <a href="collaboration.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="collaboration">Collaboration</a>
-        <a href="responses.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="responses">Responses & Export</a>
-        <a href="automation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="automation">Automation</a>
-        <a href="dashboard.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="dashboard">Dashboard</a>
-        <a href="free-vs-pro.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="free-vs-pro">Free vs Pro</a>
-      </nav>
-    </aside>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" rel="noopener" target="_blank">Now available on the Atlassian Marketplace →</a></div>
 
-    <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
-      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Forms Overview</a>
-      <h1 class="text-3xl font-bold mt-4 mb-6">Free vs Pro</h1>
-      <p class="text-muted mb-6">Compare Forms & Frontdoor plans to find the right fit for your team.</p>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-      <div class="bg-surface border border-border rounded-xl p-5">
-        <table class="w-full text-left">
-          <thead>
-            <tr class="border-b border-border">
-              <th class="py-3 pr-4 font-semibold">Feature</th>
-              <th class="py-3 pr-4 font-semibold">Free</th>
-              <th class="py-3 font-semibold text-cta">Pro</th>
-            </tr>
-          </thead>
-          <tbody class="text-muted">
-            <tr class="border-b border-border/50">
-              <td class="py-3 pr-4">Forms</td>
-              <td class="py-3 pr-4">20</td>
-              <td class="py-3">Unlimited</td>
-            </tr>
-            <tr class="border-b border-border/50">
-              <td class="py-3 pr-4">Responses per form</td>
-              <td class="py-3 pr-4">100</td>
-              <td class="py-3">Unlimited</td>
-            </tr>
-            <tr class="border-b border-border/50">
-              <td class="py-3 pr-4">Themes</td>
-              <td class="py-3 pr-4">6 standard</td>
-              <td class="py-3">6 standard + 7 live animated</td>
-            </tr>
-            <tr class="border-b border-border/50">
-              <td class="py-3 pr-4">Sections</td>
-              <td class="py-3 pr-4">1</td>
-              <td class="py-3">Multi-section</td>
-            </tr>
-            <tr class="border-b border-border/50">
-              <td class="py-3 pr-4">Field types</td>
-              <td class="py-3 pr-4">All</td>
-              <td class="py-3">All</td>
-            </tr>
-            <tr>
-              <td class="py-3 pr-4">CSV export</td>
-              <td class="py-3 pr-4">✓</td>
-              <td class="py-3">✓ + Everything in Free</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
-  </div>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Free vs Pro</h1>
+      <p class="vc-lede">Compare Forms & Frontdoor plans to find the right fit for your team.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-  <script>
-  (function(){
-    var t=localStorage.getItem('theme');
-    if(t==='light')document.documentElement.classList.add('light');
-    else if(t==='dark')document.documentElement.classList.remove('light');
-    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-    function upd(){var isLight=document.documentElement.classList.contains('light');document.getElementById('icon-dark').style.display=isLight?'block':'none';document.getElementById('icon-light').style.display=isLight?'none':'block';}
-    upd();
-    document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
-    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
-    var page=location.pathname.split('/').pop().replace('.html','');
-    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
-  })();
-    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'install setup create first'},{name:'Building Forms',page:'building-forms.html',tags:'builder canvas editor questions'},{name:'Field Types',page:'field-types.html',tags:'text email number select date time rating signature user group link'},{name:'Smart Values',page:'smart-values.html',tags:'tokens dynamic auto-fill user name email timezone'},{name:'Validation',page:'validation.html',tags:'required regex min max error constraints'},{name:'Multi-Section',page:'multi-section.html',tags:'sections pages steps next back pro'},{name:'Embedding',page:'embedding.html',tags:'macro page embed share link direct'},{name:'Styling',page:'styling.html',tags:'theme color banner font decoration'},{name:'Access Control',page:'access-control.html',tags:'permission login groups anonymous limit'},{name:'Collaboration',page:'collaboration.html',tags:'co-owner editor sharing'},{name:'Responses',page:'responses.html',tags:'submissions export csv pdf results'},{name:'Automation',page:'automation.html',tags:'automation actions jira slack teams webhook conditions branch batch notify test run logs'},{name:'Dashboard',page:'dashboard.html',tags:'search filter delete duplicate'},{name:'Free vs Pro',page:'free-vs-pro.html',tags:'pricing plan limit upgrade'}];
-    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
-    wire('doc-search','search-results');
-  </script>
+      <article class="vc-doc">
+<div class="bg-surface border border-border rounded-xl p-5">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-border">
+<th class="py-3 pr-4 font-semibold">Feature</th>
+<th class="py-3 pr-4 font-semibold">Free</th>
+<th class="py-3 font-semibold text-cta">Pro</th>
+</tr>
+</thead>
+<tbody class="text-muted">
+<tr class="border-b border-border/50">
+<td class="py-3 pr-4">Forms</td>
+<td class="py-3 pr-4">20</td>
+<td class="py-3">Unlimited</td>
+</tr>
+<tr class="border-b border-border/50">
+<td class="py-3 pr-4">Responses per form</td>
+<td class="py-3 pr-4">100</td>
+<td class="py-3">Unlimited</td>
+</tr>
+<tr class="border-b border-border/50">
+<td class="py-3 pr-4">Themes</td>
+<td class="py-3 pr-4">6 standard</td>
+<td class="py-3">6 standard + 7 live animated</td>
+</tr>
+<tr class="border-b border-border/50">
+<td class="py-3 pr-4">Sections</td>
+<td class="py-3 pr-4">1</td>
+<td class="py-3">Multi-section</td>
+</tr>
+<tr class="border-b border-border/50">
+<td class="py-3 pr-4">Field types</td>
+<td class="py-3 pr-4">All</td>
+<td class="py-3">All</td>
+</tr>
+<tr>
+<td class="py-3 pr-4">CSV export</td>
+<td class="py-3 pr-4">✓</td>
+<td class="py-3">✓ + Everything in Free</td>
+</tr>
+</tbody>
+</table>
+</div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
 </body>
 </html>

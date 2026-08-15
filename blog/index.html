@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,29 +7,22 @@
   <meta name="description" content="Product news, guides, and engineering notes from Vectored — Atlassian apps, VS Code tools, and more.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#171717',secondary:'#404040',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <script src="../assets/tailwind-config.js"></script>
   <style>
-    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#FAFAFA;color:#171717}
-    html.light .bg-surface,html.light .bg-surface\/90{background-color:#FFFFFF!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#525252!important}
-    html.light .text-text{color:#171717!important}
-    html.light .hover\:text-text:hover{color:#171717!important}
-    html.light .border-border{border-color:#E5E5E5!important}
-    html.light .text-cta{color:#16A34A!important}
-    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.08)!important}
-    html.light .border-cta\/30{border-color:rgba(22,163,74,0.25)!important}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../assets/tokens.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
   <div id="vc-header"></div>
-  <script src="../assets/header.js"></script>
-
+<script src="../assets/nav.js"></script>
+<script src="../assets/header.js"></script>
   <main class="flex-1 px-4 sm:px-6 lg:px-8 py-16 max-w-4xl mx-auto w-full">
     <p class="font-mono text-xs text-cta tracking-widest uppercase mb-3">Blog</p>
     <h1 class="text-4xl font-bold mb-3">News &amp; guides</h1>
@@ -43,13 +36,6 @@
   <script src="../assets/blog-index.js"></script>
   <script>
   (function(){
-    var t=localStorage.getItem('theme');
-    if(t==='light')document.documentElement.classList.add('light');
-    else if(t==='dark')document.documentElement.classList.remove('light');
-    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-    function upd(){var isLight=document.documentElement.classList.contains('light');document.getElementById('icon-dark').style.display=isLight?'block':'none';document.getElementById('icon-light').style.display=isLight?'none':'block';}
-    upd();
-    document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
 
     function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
     function fmt(d){return new Date(d+'T00:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});}
@@ -63,20 +49,6 @@
         +'<span class="inline-block text-sm text-cta font-semibold mt-4">Read post &rarr;</span></a>';
     }).join(''):'<p class="text-muted">No posts yet.</p>';
 
-    // Header search → blog posts + a link back to full docs search
-    var i=document.getElementById('doc-search'),r=document.getElementById('search-results');
-    if(i&&r){
-      i.addEventListener('input',function(){
-        var q=this.value.toLowerCase().trim();
-        if(!q){r.classList.add('hidden');r.innerHTML='';return;}
-        var m=posts.filter(function(p){return (p.title+' '+p.excerpt+' '+p.tag).toLowerCase().indexOf(q)!==-1;});
-        r.innerHTML=(m.length?m.map(function(p){return '<a href="posts/'+esc(p.slug)+'.html" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+esc(p.title)+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No matching posts</p>')
-          +'<a href="../" class="block px-4 py-2 text-xs text-cta border-t border-border hover:bg-bg transition-colors duration-200 cursor-pointer">Search all docs &rarr;</a>';
-        r.classList.remove('hidden');
-      });
-      i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});
-      document.addEventListener('click',function(e){if(!e.target.closest('#doc-search')&&!e.target.closest('#search-results'))r.classList.add('hidden');});
-    }
   })();
   </script>
 </body>

@@ -1,243 +1,198 @@
 <!DOCTYPE html>
-<html lang="en" data-page="sending-requests" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sending Requests — API Studio Docs</title>
-    <meta name="description" content="Send HTTP requests with any method, URL variables, concurrent tabs, and HTTP/2 auto-negotiation. Complete guide to the API Studio HTTP client.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>body{font-family:'IBM Plex Sans',sans-serif}code,.font-mono{font-family:'JetBrains Mono',monospace}.sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sending Requests — API Studio Docs</title>
+  <meta name="description" content="Send HTTP requests with any method, URL variables, concurrent tabs, and HTTP/2 auto-negotiation. Complete guide to the API Studio HTTP client.">
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
+<body>
 
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4">
-    <a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a>
-    <div class="hidden md:flex items-center gap-4 ml-4"><a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a><a href="./" class="text-sm text-cta font-medium">Docs</a><a href="../support.html" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Support</a></div>
-    <div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block"><input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50"></div>
-    <div class="flex items-center gap-3 ml-auto md:ml-0">
-        <span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span>
-        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted"><svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
-        <a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a>
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-    </div>
-</nav>
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20"><input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a></aside>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-<div class="flex pt-24">
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Sending Requests</h1>
+      <p class="vc-lede">Everything about making HTTP requests — methods, URLs with variables, concurrent execution, HTTP/2 negotiation, SSL settings, and cURL import.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-        <!-- Right TOC -->
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#methods" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">HTTP Methods</a>
-                <a href="#url-bar" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">URL Bar</a>
-                <a href="#sending" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Send & Cancel</a>
-                <a href="#concurrent" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Concurrent Requests</a>
-                <a href="#http2" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">HTTP/2</a>
-                <a href="#ssl" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">SSL & Certificates</a>
-                <a href="#curl-import" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">cURL Import</a>
-                <a href="#cookies" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Cookies</a>
-            </nav>
-        </aside>
+      <article class="vc-doc">
+<!-- Right TOC -->
 
-        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">HTTP CLIENT</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">Sending Requests</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">Everything about making HTTP requests — methods, URLs with variables, concurrent execution, HTTP/2 negotiation, SSL settings, and cURL import.</p>
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">HTTP CLIENT</p>
 
-        <img src="../assets/simple post request with side by side view.png" alt="API Studio with a POST request and response side by side" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm mb-10">
-
-        <!-- HTTP Methods -->
-        <section class="mb-12 scroll-mt-28" id="methods">
-            <h2 class="text-xl font-semibold mb-4">HTTP Methods</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Select the method from the dropdown left of the URL bar. All standard methods are built-in, plus you can type any custom method.</p>
-            <div class="grid grid-cols-4 sm:grid-cols-8 gap-2 mb-4">
-                <span class="bg-green-500/10 border border-green-500/30 text-green-500 text-xs font-mono px-2 py-1.5 rounded text-center">GET</span>
-                <span class="bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 text-xs font-mono px-2 py-1.5 rounded text-center">POST</span>
-                <span class="bg-blue-500/10 border border-blue-500/30 text-blue-500 text-xs font-mono px-2 py-1.5 rounded text-center">PUT</span>
-                <span class="bg-orange-500/10 border border-orange-500/30 text-orange-500 text-xs font-mono px-2 py-1.5 rounded text-center">PATCH</span>
-                <span class="bg-red-500/10 border border-red-500/30 text-red-500 text-xs font-mono px-2 py-1.5 rounded text-center">DELETE</span>
-                <span class="bg-purple-500/10 border border-purple-500/30 text-purple-500 text-xs font-mono px-2 py-1.5 rounded text-center">HEAD</span>
-                <span class="bg-gray-500/10 border border-gray-500/30 text-gray-400 text-xs font-mono px-2 py-1.5 rounded text-center">OPTIONS</span>
-                <span class="bg-gray-500/10 border border-gray-500/30 text-gray-400 text-xs font-mono px-2 py-1.5 rounded text-center">CUSTOM</span>
-            </div>
-            <p class="text-xs text-gray-500 dark:text-muted">Methods are color-coded in the tab bar and sidebar for quick identification. The method dropdown is a native <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">&lt;select&gt;</code> for maximum compatibility.</p>
-        </section>
-
-        <!-- URL Bar -->
-        <section class="mb-12 scroll-mt-28" id="url-bar">
-            <h2 class="text-xl font-semibold mb-4">URL Bar</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Enter your endpoint URL. It supports:</p>
-            <div class="space-y-3 text-sm text-gray-600 dark:text-muted mb-5">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Variables</strong> — Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{base_url}}/users/{{id}}</code>. Resolved from active environment, collection vars, or vault secrets.</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Query params sync</strong> — Adding <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">?key=val</code> in the URL auto-populates the Params tab, and vice versa. Bidirectional.</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Protocol schemes</strong> — <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">https://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">http://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">ws://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">wss://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">grpc://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">grpcs://</code></span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Variable hover</strong> — Hover over a <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{var}}</code> to see its resolved value and source (env, vault, collection).</span></div>
-            </div>
-            <div class="grid sm:grid-cols-2 gap-4">
-                <div><img src="../assets/resolved. variable open view.png" alt="Resolved variable showing value and source" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm"><p class="text-xs text-gray-400 dark:text-muted mt-2">Resolved variable — shows value + source</p></div>
-                <div><img src="../assets/unresolved variable open view with add variable button visible.png" alt="Unresolved variable with Add Variable button" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm"><p class="text-xs text-gray-400 dark:text-muted mt-2">Unresolved — click "Add Variable" to create it</p></div>
-            </div>
-        </section>
-
-        <!-- Send & Cancel -->
-        <section class="mb-12 scroll-mt-28" id="sending">
-            <h2 class="text-xl font-semibold mb-4">Send & Cancel</h2>
-            <div class="overflow-x-auto mb-5">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Action</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">How</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Notes</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-medium text-xs">Send</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Click <strong>Send</strong> or <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1 py-0.5 font-mono text-[10px]">Cmd+Enter</kbd></td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Button shows a loading spinner while in-flight</td></tr>
-                        <tr><td class="px-4 py-2.5 font-medium text-xs">Cancel</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Click the spinning button (becomes Cancel)</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Aborts the request immediately via AbortController</td></tr>
-                        <tr><td class="px-4 py-2.5 font-medium text-xs">SSE Stream</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Auto-detected when response is <code class="font-mono">text/event-stream</code></td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Button becomes "Stop" — events shown live in Stream tab</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <h3 class="font-semibold text-sm mb-3">Execution Pipeline</h3>
-            <p class="text-xs text-gray-500 dark:text-muted mb-3">When you click Send, the request goes through this pipeline:</p>
-            <div class="flex flex-wrap items-center gap-1 text-xs font-mono text-gray-500 dark:text-muted">
-                <span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Auth inject</span>
-                <span>→</span>
-                <span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Pre-request script</span>
-                <span>→</span>
-                <span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Cookies attach</span>
-                <span>→</span>
-                <span class="bg-cta/10 border border-cta/30 text-cta rounded px-2 py-1">HTTP send</span>
-                <span>→</span>
-                <span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Cookies parse</span>
-                <span>→</span>
-                <span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Set Variables</span>
-                <span>→</span>
-                <span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Test rules</span>
-                <span>→</span>
-                <span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Test script</span>
-                <span>→</span>
-                <span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">History save</span>
-            </div>
-        </section>
-
-        <!-- Concurrent -->
-        <section class="mb-12 scroll-mt-28" id="concurrent">
-            <h2 class="text-xl font-semibold mb-4">Concurrent Requests</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Multiple tabs can have in-flight requests simultaneously. Each tab has its own independent AbortController — cancelling one request doesn't affect others.</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Each tab shows its own loading state independently</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Responses are routed back to the correct tab via <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">tabId</code></span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Closing a tab auto-cancels any in-flight request for that tab</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>SSE streams and WebSocket connections are also per-tab</span></div>
-            </div>
-        </section>
-
-        <!-- HTTP/2 -->
-        <section class="mb-12 scroll-mt-28" id="http2">
-            <h2 class="text-xl font-semibold mb-4">HTTP/2 Auto-Negotiation</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio uses HTTP/2 when the server supports it, automatically falling back to HTTP/1.1 otherwise. No configuration needed.</p>
-            <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50 text-sm text-gray-600 dark:text-muted">
-                <p>The protocol used is shown in the <strong class="text-gray-900 dark:text-text">Request</strong> tab of the response viewer (e.g. <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">HTTP/2</code> or <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">HTTP/1.1</code>).</p>
-            </div>
-        </section>
-
-        <!-- SSL -->
-        <section class="mb-12 scroll-mt-28" id="ssl">
-            <h2 class="text-xl font-semibold mb-4">SSL & Certificates</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">SSL verification is enabled by default. For self-signed certificates during development:</p>
-            <div class="space-y-3 text-sm text-gray-600 dark:text-muted mb-5">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Global toggle</strong> — Settings → uncheck "SSL Verification" to disable for all requests</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Per-request</strong> — SSL verification is per-request (uses undici Agent), concurrent requests with different SSL settings don't interfere</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Client certificates</strong> — Configure mTLS with client cert, private key, and CA bundle from the vault. Set at request, folder, or collection level with inheritance.</span></div>
-            </div>
-        </section>
-
-        <!-- cURL Import -->
-        <section class="mb-12 scroll-mt-28" id="curl-import">
-            <h2 class="text-xl font-semibold mb-4">cURL Import</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Paste a cURL command anywhere in the URL bar — API Studio automatically detects and parses it into a full request.</p>
-
-            <h3 class="font-semibold text-sm mb-3">Supported flags</h3>
-            <div class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-xs text-gray-500 dark:text-muted mb-5">
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-X, --request</code><span>HTTP method</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-H, --header</code><span>Custom headers</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-d, --data</code><span>Request body</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-F, --form</code><span>Multipart form-data</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">--json</code><span>JSON shorthand</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-u, --user</code><span>Basic auth</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">--oauth2-bearer</code><span>Bearer token</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-G, --get</code><span>Force GET + query body</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-b, --cookie</code><span>Cookie header</span></div>
-                <div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-A, --user-agent</code><span>User-Agent header</span></div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example — paste this into the URL bar:</p>
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>curl -X POST https://api.example.com/users \
+<img alt="API Studio with a POST request and response side by side" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm mb-10" src="../assets/simple post request with side by side view.png"/>
+<!-- HTTP Methods -->
+<section class="mb-12 scroll-mt-28" id="methods">
+<h2 class="text-xl font-semibold mb-4">HTTP Methods</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Select the method from the dropdown left of the URL bar. All standard methods are built-in, plus you can type any custom method.</p>
+<div class="grid grid-cols-4 sm:grid-cols-8 gap-2 mb-4">
+<span class="bg-green-500/10 border border-green-500/30 text-green-500 text-xs font-mono px-2 py-1.5 rounded text-center">GET</span>
+<span class="bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 text-xs font-mono px-2 py-1.5 rounded text-center">POST</span>
+<span class="bg-blue-500/10 border border-blue-500/30 text-blue-500 text-xs font-mono px-2 py-1.5 rounded text-center">PUT</span>
+<span class="bg-orange-500/10 border border-orange-500/30 text-orange-500 text-xs font-mono px-2 py-1.5 rounded text-center">PATCH</span>
+<span class="bg-red-500/10 border border-red-500/30 text-red-500 text-xs font-mono px-2 py-1.5 rounded text-center">DELETE</span>
+<span class="bg-purple-500/10 border border-purple-500/30 text-purple-500 text-xs font-mono px-2 py-1.5 rounded text-center">HEAD</span>
+<span class="bg-gray-500/10 border border-gray-500/30 text-gray-400 text-xs font-mono px-2 py-1.5 rounded text-center">OPTIONS</span>
+<span class="bg-gray-500/10 border border-gray-500/30 text-gray-400 text-xs font-mono px-2 py-1.5 rounded text-center">CUSTOM</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">Methods are color-coded in the tab bar and sidebar for quick identification. The method dropdown is a native <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">&lt;select&gt;</code> for maximum compatibility.</p>
+</section>
+<!-- URL Bar -->
+<section class="mb-12 scroll-mt-28" id="url-bar">
+<h2 class="text-xl font-semibold mb-4">URL Bar</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Enter your endpoint URL. It supports:</p>
+<div class="space-y-3 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Variables</strong> — Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{base_url}}/users/{{id}}</code>. Resolved from active environment, collection vars, or vault secrets.</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Query params sync</strong> — Adding <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">?key=val</code> in the URL auto-populates the Params tab, and vice versa. Bidirectional.</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Protocol schemes</strong> — <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">https://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">http://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">ws://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">wss://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">grpc://</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">grpcs://</code></span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Variable hover</strong> — Hover over a <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{var}}</code> to see its resolved value and source (env, vault, collection).</span></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-4">
+<div><img alt="Resolved variable showing value and source" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm" src="../assets/resolved. variable open view.png"/><p class="text-xs text-gray-400 dark:text-muted mt-2">Resolved variable — shows value + source</p></div>
+<div><img alt="Unresolved variable with Add Variable button" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm" src="../assets/unresolved variable open view with add variable button visible.png"/><p class="text-xs text-gray-400 dark:text-muted mt-2">Unresolved — click "Add Variable" to create it</p></div>
+</div>
+</section>
+<!-- Send & Cancel -->
+<section class="mb-12 scroll-mt-28" id="sending">
+<h2 class="text-xl font-semibold mb-4">Send &amp; Cancel</h2>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Action</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">How</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Notes</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-medium text-xs">Send</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Click <strong>Send</strong> or <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1 py-0.5 font-mono text-[10px]">Cmd+Enter</kbd></td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Button shows a loading spinner while in-flight</td></tr>
+<tr><td class="px-4 py-2.5 font-medium text-xs">Cancel</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Click the spinning button (becomes Cancel)</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Aborts the request immediately via AbortController</td></tr>
+<tr><td class="px-4 py-2.5 font-medium text-xs">SSE Stream</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Auto-detected when response is <code class="font-mono">text/event-stream</code></td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Button becomes "Stop" — events shown live in Stream tab</td></tr>
+</tbody>
+</table>
+</div>
+<h3 class="font-semibold text-sm mb-3">Execution Pipeline</h3>
+<p class="text-xs text-gray-500 dark:text-muted mb-3">When you click Send, the request goes through this pipeline:</p>
+<div class="flex flex-wrap items-center gap-1 text-xs font-mono text-gray-500 dark:text-muted">
+<span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Auth inject</span>
+<span>→</span>
+<span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Pre-request script</span>
+<span>→</span>
+<span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Cookies attach</span>
+<span>→</span>
+<span class="bg-cta/10 border border-cta/30 text-cta rounded px-2 py-1">HTTP send</span>
+<span>→</span>
+<span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Cookies parse</span>
+<span>→</span>
+<span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Set Variables</span>
+<span>→</span>
+<span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Test rules</span>
+<span>→</span>
+<span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">Test script</span>
+<span>→</span>
+<span class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-2 py-1">History save</span>
+</div>
+</section>
+<!-- Concurrent -->
+<section class="mb-12 scroll-mt-28" id="concurrent">
+<h2 class="text-xl font-semibold mb-4">Concurrent Requests</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Multiple tabs can have in-flight requests simultaneously. Each tab has its own independent AbortController — cancelling one request doesn't affect others.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Each tab shows its own loading state independently</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Responses are routed back to the correct tab via <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">tabId</code></span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Closing a tab auto-cancels any in-flight request for that tab</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>SSE streams and WebSocket connections are also per-tab</span></div>
+</div>
+</section>
+<!-- HTTP/2 -->
+<section class="mb-12 scroll-mt-28" id="http2">
+<h2 class="text-xl font-semibold mb-4">HTTP/2 Auto-Negotiation</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio uses HTTP/2 when the server supports it, automatically falling back to HTTP/1.1 otherwise. No configuration needed.</p>
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50 text-sm text-gray-600 dark:text-muted">
+<p>The protocol used is shown in the <strong class="text-gray-900 dark:text-text">Request</strong> tab of the response viewer (e.g. <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">HTTP/2</code> or <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">HTTP/1.1</code>).</p>
+</div>
+</section>
+<!-- SSL -->
+<section class="mb-12 scroll-mt-28" id="ssl">
+<h2 class="text-xl font-semibold mb-4">SSL &amp; Certificates</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">SSL verification is enabled by default. For self-signed certificates during development:</p>
+<div class="space-y-3 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Global toggle</strong> — Settings → uncheck "SSL Verification" to disable for all requests</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Per-request</strong> — SSL verification is per-request (uses undici Agent), concurrent requests with different SSL settings don't interfere</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Client certificates</strong> — Configure mTLS with client cert, private key, and CA bundle from the vault. Set at request, folder, or collection level with inheritance.</span></div>
+</div>
+</section>
+<!-- cURL Import -->
+<section class="mb-12 scroll-mt-28" id="curl-import">
+<h2 class="text-xl font-semibold mb-4">cURL Import</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Paste a cURL command anywhere in the URL bar — API Studio automatically detects and parses it into a full request.</p>
+<h3 class="font-semibold text-sm mb-3">Supported flags</h3>
+<div class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-xs text-gray-500 dark:text-muted mb-5">
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-X, --request</code><span>HTTP method</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-H, --header</code><span>Custom headers</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-d, --data</code><span>Request body</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-F, --form</code><span>Multipart form-data</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">--json</code><span>JSON shorthand</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-u, --user</code><span>Basic auth</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">--oauth2-bearer</code><span>Bearer token</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-G, --get</code><span>Force GET + query body</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-b, --cookie</code><span>Cookie header</span></div>
+<div class="flex gap-2"><code class="font-mono text-cta w-32 shrink-0">-A, --user-agent</code><span>User-Agent header</span></div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example — paste this into the URL bar:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>curl -X POST https://api.example.com/users \
   -H "Authorization: Bearer token123" \
   -H "Content-Type: application/json" \
   -d '{"name":"John","email":"john@example.com"}'</code></pre>
-            </div>
-        </section>
+</div>
+</section>
+<!-- Cookies -->
+<section class="mb-12 scroll-mt-28" id="cookies">
+<h2 class="text-xl font-semibold mb-4">Cookies</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio has a built-in cookie jar that automatically stores and sends cookies across requests.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Automatic</strong> — <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">Set-Cookie</code> headers are parsed and stored per domain</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Sent automatically</strong> — Matching cookies are attached to subsequent requests</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Toggle</strong> — Settings → "Cookies Enabled" to disable the cookie jar</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">View &amp; manage</strong> — Settings → Cookie Manager to see, edit, or clear stored cookies</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Stored in</strong> — <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">.openpost/cookies.json</code> (workspace-local)</span></div>
+</div>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="request-body.html">Request Body →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="params-headers.html">Parameters &amp; Headers →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="response-viewer.html">Response Viewer →</a>
+</div>
+</section>
+      </article>
 
-        <!-- Cookies -->
-        <section class="mb-12 scroll-mt-28" id="cookies">
-            <h2 class="text-xl font-semibold mb-4">Cookies</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio has a built-in cookie jar that automatically stores and sends cookies across requests.</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Automatic</strong> — <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">Set-Cookie</code> headers are parsed and stored per domain</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Sent automatically</strong> — Matching cookies are attached to subsequent requests</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Toggle</strong> — Settings → "Cookies Enabled" to disable the cookie jar</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">View & manage</strong> — Settings → Cookie Manager to see, edit, or clear stored cookies</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Stored in</strong> — <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">.openpost/cookies.json</code> (workspace-local)</span></div>
-            </div>
-        </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next</h3>
-            <div class="flex flex-wrap gap-4">
-                <a href="request-body.html" class="text-sm text-cta font-medium hover:underline">Request Body →</a>
-                <a href="params-headers.html" class="text-sm text-cta font-medium hover:underline">Parameters & Headers →</a>
-                <a href="response-viewer.html" class="text-sm text-cta font-medium hover:underline">Response Viewer →</a>
-            </div>
-        </section>
-    </main>
+  <aside class="vc-rail" data-noprint="1"></aside>
 </div>
 
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
-
-<script>
-const sections=[
-{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},
-{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},
-{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},
-{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},
-{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},
-{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},
-{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},
-{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},
-{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},
-{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},
-{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},
-{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},
-{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}
-];
-const currentPage=document.documentElement.getAttribute('data-page');
-function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
-function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
-buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
-</script>
-<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
 </body>
 </html>

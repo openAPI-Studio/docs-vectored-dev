@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,31 +11,24 @@
   <meta property="og:url" content="https://docs.vectored.dev/">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#171717',secondary:'#404040',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <script src="assets/tailwind-config.js"></script>
   <style>
-    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}
-    html.light body{background:#FAFAFA;color:#171717}
-    html.light .bg-surface,html.light .bg-surface\/90,html.light .bg-surface\/60{background-color:#FFFFFF!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#525252!important}
-    html.light .text-text{color:#171717!important}
-    html.light .hover\:text-text:hover{color:#171717!important}
-    html.light .border-border{border-color:#E5E5E5!important}
-    html.light .text-cta{color:#16A34A!important}
-    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.08)!important}
-    html.light .border-cta\/30{border-color:rgba(22,163,74,0.25)!important}
-    .hero-glow{background:radial-gradient(ellipse 60% 50% at 50% -10%,rgba(34,197,94,0.13),transparent)}
+.hero-glow{background:radial-gradient(ellipse 60% 50% at 50% -10%,rgba(34,197,94,0.13),transparent)}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/tokens.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
   <!-- Nav -->
   <div id="vc-header"></div>
-  <script src="assets/header.js"></script>
-
+<script src="assets/nav.js"></script>
+<script src="assets/header.js"></script>
   <main class="flex-1">
 
     <!-- Hero -->
@@ -268,50 +261,5 @@
   <div id="vc-footer"></div>
 <script src="assets/footer.js"></script>
 
-<script>
-(function(){
-  var t=localStorage.getItem('theme');
-  if(t==='light')document.documentElement.classList.add('light');
-  else if(t==='dark')document.documentElement.classList.remove('light');
-  else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-  function upd(){
-    var isLight=document.documentElement.classList.contains('light');
-    document.getElementById('icon-dark').style.display=isLight?'block':'none';
-    document.getElementById('icon-light').style.display=isLight?'none':'block';
-  }
-  upd();
-  document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();
-    document.documentElement.classList.toggle('light');
-    localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
-    upd();
-  });
-})();
-</script>
-
-<script>
-var SEARCH_INDEX=[{"p": "Macro Toolkit", "n": "Macro Toolkit Overview", "u": "macrotoolkit/"}, {"p": "Macro Toolkit", "n": "3D Viewer Macro — Docs", "u": "macrotoolkit/docs/3d-viewer.html"}, {"p": "Macro Toolkit", "n": "Carousel / Slideshow Macro — Docs", "u": "macrotoolkit/docs/carousel.html"}, {"p": "Macro Toolkit", "n": "Clock Macro — Docs", "u": "macrotoolkit/docs/clock.html"}, {"p": "Macro Toolkit", "n": "Draw.io Diagram Macro — Docs", "u": "macrotoolkit/docs/drawio.html"}, {"p": "Macro Toolkit", "n": "Wireframe / Whiteboard Macro — Docs", "u": "macrotoolkit/docs/excalidraw.html"}, {"p": "Macro Toolkit", "n": "Graph / Chart Macro — Docs", "u": "macrotoolkit/docs/graph.html"}, {"p": "Macro Toolkit", "n": "Macro Toolkit — All Docs", "u": "macrotoolkit/docs/index.html"}, {"p": "Macro Toolkit", "n": "Markdown Macro — Docs", "u": "macrotoolkit/docs/markdown.html"}, {"p": "Macro Toolkit", "n": "Mermaid Diagram Macro — Docs", "u": "macrotoolkit/docs/mermaid.html"}, {"p": "Macro Toolkit", "n": "Mood Macro — Docs", "u": "macrotoolkit/docs/mood.html"}, {"p": "Macro Toolkit", "n": "PlantUML Macro — Docs", "u": "macrotoolkit/docs/plantuml.html"}, {"p": "Macro Toolkit", "n": "Poll / Vote Macro — Docs", "u": "macrotoolkit/docs/poll.html"}, {"p": "Macro Toolkit", "n": "Spoiler / Reveal Macro — Docs", "u": "macrotoolkit/docs/spoiler.html"}, {"p": "Macro Toolkit", "n": "Sticky Note Macro — Docs", "u": "macrotoolkit/docs/sticky-note.html"}, {"p": "Macro Toolkit", "n": "Stopwatch Macro — Docs", "u": "macrotoolkit/docs/stopwatch.html"}, {"p": "Macro Toolkit", "n": "Swagger / OpenAPI Macro — Docs", "u": "macrotoolkit/docs/swagger.html"}, {"p": "Macro Toolkit", "n": "Typewriter Macro — Docs", "u": "macrotoolkit/docs/typewriter.html"}, {"p": "Macro Toolkit", "n": "Support — Confluence Macro Toolkit", "u": "macrotoolkit/support.html"}, {"p": "Macro Toolkit", "n": "Privacy Policy — Confluence Macro Toolkit", "u": "macrotoolkit/privacy.html"}, {"p": "Macro Toolkit", "n": "Security Policy — Confluence Macro Toolkit", "u": "macrotoolkit/security.html"}, {"p": "Macro Toolkit", "n": "Terms of Service — Confluence Macro Toolkit", "u": "macrotoolkit/terms.html"}, {"p": "Forms", "n": "Forms & Frontdoor Overview", "u": "forms/"}, {"p": "Forms", "n": "Access Control", "u": "forms/docs/access-control.html"}, {"p": "Forms", "n": "Automation", "u": "forms/docs/automation.html"}, {"p": "Forms", "n": "Building Forms", "u": "forms/docs/building-forms.html"}, {"p": "Forms", "n": "Collaboration", "u": "forms/docs/collaboration.html"}, {"p": "Forms", "n": "Dashboard", "u": "forms/docs/dashboard.html"}, {"p": "Forms", "n": "Embedding Forms", "u": "forms/docs/embedding.html"}, {"p": "Forms", "n": "Field Types", "u": "forms/docs/field-types.html"}, {"p": "Forms", "n": "Free vs Pro", "u": "forms/docs/free-vs-pro.html"}, {"p": "Forms", "n": "Getting Started", "u": "forms/docs/getting-started.html"}, {"p": "Forms", "n": "Multi-Section Forms (Pro)", "u": "forms/docs/multi-section.html"}, {"p": "Forms", "n": "Responses & Export", "u": "forms/docs/responses.html"}, {"p": "Forms", "n": "Smart Values", "u": "forms/docs/smart-values.html"}, {"p": "Forms", "n": "Styling & Theming", "u": "forms/docs/styling.html"}, {"p": "Forms", "n": "Validation & Constraints", "u": "forms/docs/validation.html"}, {"p": "API Studio", "n": "API Studio Overview", "u": "apistudio/"}, {"p": "API Studio", "n": "AI Prompt Generator", "u": "apistudio/docs/ai-prompts.html"}, {"p": "API Studio", "n": "API Key", "u": "apistudio/docs/api-key.html"}, {"p": "API Studio", "n": "Auth Inheritance", "u": "apistudio/docs/auth-inheritance.html"}, {"p": "API Studio", "n": "Auth Overview", "u": "apistudio/docs/auth-overview.html"}, {"p": "API Studio", "n": "AWS Signature V4", "u": "apistudio/docs/aws-sigv4.html"}, {"p": "API Studio", "n": "Basic Auth", "u": "apistudio/docs/basic-auth.html"}, {"p": "API Studio", "n": "Bearer Token", "u": "apistudio/docs/bearer-token.html"}, {"p": "API Studio", "n": "Certificates", "u": "apistudio/docs/certificates.html"}, {"p": "API Studio", "n": "Import & Export", "u": "apistudio/docs/cli-import-export.html"}, {"p": "API Studio", "n": "CLI Overview", "u": "apistudio/docs/cli-overview.html"}, {"p": "API Studio", "n": "Running Collections", "u": "apistudio/docs/cli-run.html"}, {"p": "API Studio", "n": "Serve Command", "u": "apistudio/docs/cli-serve.html"}, {"p": "API Studio", "n": "Vault Commands", "u": "apistudio/docs/cli-vault.html"}, {"p": "API Studio", "n": "Supported Languages", "u": "apistudio/docs/code-export-languages.html"}, {"p": "API Studio", "n": "Collection Editor", "u": "apistudio/docs/collection-editor.html"}, {"p": "API Studio", "n": "Collection MCP", "u": "apistudio/docs/collection-mcp.html"}, {"p": "API Studio", "n": "Collection Runs", "u": "apistudio/docs/collection-runs.html"}, {"p": "API Studio", "n": "Collection JSON Schema", "u": "apistudio/docs/collection-schema.html"}, {"p": "API Studio", "n": "Connecting AI Clients", "u": "apistudio/docs/connecting-ai-clients.html"}, {"p": "API Studio", "n": "Creating Collections", "u": "apistudio/docs/creating-collections.html"}, {"p": "API Studio", "n": "Creating Mock Servers", "u": "apistudio/docs/creating-mock-servers.html"}, {"p": "API Studio", "n": "Creating a Vault", "u": "apistudio/docs/creating-vault.html"}, {"p": "API Studio", "n": "Data Storage", "u": "apistudio/docs/data-storage.html"}, {"p": "API Studio", "n": "Digest Auth", "u": "apistudio/docs/digest-auth.html"}, {"p": "API Studio", "n": "Folders & Organization", "u": "apistudio/docs/folders-organization.html"}, {"p": "API Studio", "n": "GraphQL", "u": "apistudio/docs/graphql.html"}, {"p": "API Studio", "n": "gRPC", "u": "apistudio/docs/grpc.html"}, {"p": "API Studio", "n": "GUI Test Rules", "u": "apistudio/docs/gui-test-rules.html"}, {"p": "API Studio", "n": "Import & Export", "u": "apistudio/docs/import-export.html"}, {"p": "API Studio", "n": "API Studio — All Docs", "u": "apistudio/docs/index.html"}, {"p": "API Studio", "n": "Installation", "u": "apistudio/docs/installation.html"}, {"p": "API Studio", "n": "Keyboard Shortcuts", "u": "apistudio/docs/keyboard-shortcuts.html"}, {"p": "API Studio", "n": "License", "u": "apistudio/docs/license.html"}, {"p": "API Studio", "n": "Management MCP", "u": "apistudio/docs/management-mcp.html"}, {"p": "API Studio", "n": "Managing Environments", "u": "apistudio/docs/managing-environments.html"}, {"p": "API Studio", "n": "Managing Secrets", "u": "apistudio/docs/managing-secrets.html"}, {"p": "API Studio", "n": "Mock MCP", "u": "apistudio/docs/mock-mcp.html"}, {"p": "API Studio", "n": "Request Log", "u": "apistudio/docs/mock-request-log.html"}, {"p": "API Studio", "n": "Routes & Responses", "u": "apistudio/docs/mock-routes.html"}, {"p": "API Studio", "n": "Swagger / OpenAPI", "u": "apistudio/docs/mock-swagger.html"}, {"p": "API Studio", "n": "OAuth 2.0", "u": "apistudio/docs/oauth2.html"}, {"p": "API Studio", "n": "Parameters & Headers", "u": "apistudio/docs/params-headers.html"}, {"p": "API Studio", "n": "Pre-Request Scripts", "u": "apistudio/docs/pre-request-scripts.html"}, {"p": "API Studio", "n": "Proxy Configuration", "u": "apistudio/docs/proxy.html"}, {"p": "API Studio", "n": "Quick Start", "u": "apistudio/docs/quick-start.html"}, {"p": "API Studio", "n": "Request Body", "u": "apistudio/docs/request-body.html"}, {"p": "API Studio", "n": "Request History", "u": "apistudio/docs/request-history.html"}, {"p": "API Studio", "n": "Response Viewer", "u": "apistudio/docs/response-viewer.html"}, {"p": "API Studio", "n": "Scripting API", "u": "apistudio/docs/scripting-api.html"}, {"p": "API Studio", "n": "Secret Sets", "u": "apistudio/docs/secret-sets.html"}, {"p": "API Studio", "n": "Sending Requests", "u": "apistudio/docs/sending-requests.html"}, {"p": "API Studio", "n": "Set Variables", "u": "apistudio/docs/set-variables.html"}, {"p": "API Studio", "n": "Settings", "u": "apistudio/docs/settings.html"}, {"p": "API Studio", "n": "Server-Sent Events", "u": "apistudio/docs/sse.html"}, {"p": "API Studio", "n": "Support Us", "u": "apistudio/docs/support-us.html"}, {"p": "API Studio", "n": "Tabs & Sessions", "u": "apistudio/docs/tabs-sessions.html"}, {"p": "API Studio", "n": "Test Scripts", "u": "apistudio/docs/test-scripts.html"}, {"p": "API Studio", "n": "UI Overview", "u": "apistudio/docs/ui-overview.html"}, {"p": "API Studio", "n": "Variable Priority", "u": "apistudio/docs/variable-priority.html"}, {"p": "API Studio", "n": "Variables & Interpolation", "u": "apistudio/docs/variables-interpolation.html"}, {"p": "API Studio", "n": "WebSocket", "u": "apistudio/docs/websocket.html"}, {"p": "API Studio", "n": "Support", "u": "apistudio/support.html"}, {"p": "Blog", "n": "Blog — All Posts", "u": "blog/"}, {"p": "Blog", "n": "Introducing Forms & Frontdoor for Confluence", "u": "blog/posts/introducing-forms-and-frontdoor.html"}, {"p": "Blog", "n": "Slack and Teams notifications from Confluence forms", "u": "blog/posts/slack-teams-notifications-confluence-forms.html"}];
-(function(){
-  var i=document.getElementById('doc-search'),r=document.getElementById('search-results');
-  if(!i||!r)return;
-  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  i.addEventListener('input',function(){
-    var q=this.value.toLowerCase().trim();
-    if(!q){r.classList.add('hidden');r.innerHTML='';return;}
-    var terms=q.split(/\s+/);
-    var m=SEARCH_INDEX.filter(function(d){
-      var hay=(d.p+' '+d.n+' '+d.u).toLowerCase();
-      return terms.every(function(t){return hay.indexOf(t)!==-1;});
-    }).slice(0,14);
-    r.innerHTML=m.length?m.map(function(d){
-      return '<a href="'+d.u+'" class="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-bg transition-colors duration-200 cursor-pointer">'
-        +'<span class="shrink-0 text-[10px] font-mono text-cta bg-cta/10 border border-cta/30 rounded-full px-2 py-0.5">'+esc(d.p)+'</span>'
-        +'<span class="text-muted truncate">'+esc(d.n)+'</span></a>';
-    }).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';
-    r.classList.remove('hidden');
-  });
-  i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});
-  document.addEventListener('click',function(e){if(!e.target.closest('#doc-search')&&!e.target.closest('#search-results'))r.classList.add('hidden');});
-})();
-</script>
 </body>
 </html>

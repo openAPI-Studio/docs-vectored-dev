@@ -1,314 +1,291 @@
 <!DOCTYPE html>
-<html lang="en" data-page="management-mcp" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management MCP — API Studio Docs</title>
-    <meta name="description" content="Built-in Management MCP server with 33 tools for full workspace management via AI clients like Copilot, Cursor, Kiro, Claude Desktop, and Amazon Q.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>body{font-family:'IBM Plex Sans',sans-serif}code,.font-mono{font-family:'JetBrains Mono',monospace}.sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Management MCP — API Studio Docs</title>
+  <meta name="description" content="Built-in Management MCP server with 33 tools for full workspace management via AI clients like Copilot, Cursor, Kiro, Claude Desktop, and Amazon Q.">
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4"><a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a><div class="hidden md:flex items-center gap-4 ml-4"><a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a><a href="./" class="text-sm text-cta font-medium">Docs</a><a href="../support.html" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Support</a></div><div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block"><input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50"></div><div class="flex items-center gap-3 ml-auto md:ml-0"><span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span><button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted"><svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav>
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20"><input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a></aside>
+<body>
 
-<div class="flex pt-24">
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#overview" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Overview</a>
-                <a href="#enabling" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Enabling</a>
-                <a href="#tools" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Tools List</a>
-                <a href="#categories" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Tool Categories</a>
-                <a href="#security-scan" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Security Scan</a>
-                <a href="#stdio" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Stdio Mode</a>
-                <a href="#multi-window" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Multi-Window Note</a>
-            </nav>
-        </aside>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">MCP SERVERS</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">Management MCP</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">A built-in MCP server with 33 tools that gives any AI client full workspace management capabilities — collections, environments, requests, mock servers, security scanning, and more via natural language.</p>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Management MCP</h1>
+      <p class="vc-lede">A built-in MCP server with 33 tools that gives any AI client full workspace management capabilities — collections, environments, requests, mock servers, security scanning, and more via natural language.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-        <img src="../assets/mock server menu open and management mcp clicked andenabled view.png" alt="Management MCP enabled in the Mock+MCP panel" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm mb-10">
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">MCP SERVERS</p>
 
-        <!-- Overview -->
-        <section class="mb-12 scroll-mt-28" id="overview">
-            <h2 class="text-xl font-semibold mb-4">Overview</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The Management MCP server is a built-in MCP (Model Context Protocol) server that exposes 33 tools for full workspace management via AI. Any MCP-compatible client can connect and control API Studio programmatically.</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Compatible clients:</strong> GitHub Copilot, Cursor, Kiro, Claude Desktop, Amazon Q</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Default port:</strong> <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">3199</code></span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Endpoint:</strong> <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">http://127.0.0.1:3199/mcp</code></span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Does NOT auto-start</strong> — must be enabled manually in settings</span></div>
+<img alt="Management MCP enabled in the Mock+MCP panel" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm mb-10" src="../assets/mock server menu open and management mcp clicked andenabled view.png"/>
+<!-- Overview -->
+<section class="mb-12 scroll-mt-28" id="overview">
+<h2 class="text-xl font-semibold mb-4">Overview</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The Management MCP server is a built-in MCP (Model Context Protocol) server that exposes 33 tools for full workspace management via AI. Any MCP-compatible client can connect and control API Studio programmatically.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Compatible clients:</strong> GitHub Copilot, Cursor, Kiro, Claude Desktop, Amazon Q</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Default port:</strong> <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">3199</code></span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Endpoint:</strong> <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">http://127.0.0.1:3199/mcp</code></span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Does NOT auto-start</strong> — must be enabled manually in settings</span></div>
+</div>
+<div class="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-500/20 text-xs text-yellow-800 dark:text-yellow-200">
+<strong>Note:</strong> The Management MCP server does not start automatically. You must explicitly enable it via VS Code settings or the Mock+MCP panel before AI clients can connect.
             </div>
-            <div class="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-500/20 text-xs text-yellow-800 dark:text-yellow-200">
-                <strong>Note:</strong> The Management MCP server does not start automatically. You must explicitly enable it via VS Code settings or the Mock+MCP panel before AI clients can connect.
+</section>
+<!-- Enabling -->
+<section class="mb-12 scroll-mt-28" id="enabling">
+<h2 class="text-xl font-semibold mb-4">Enabling</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Two ways to enable the Management MCP server:</p>
+<div class="space-y-4 mb-5">
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 text-cta font-bold text-sm">1</div>
+<div>
+<h4 class="font-semibold text-sm">VS Code Settings</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Settings → Extensions → API Studio → <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Management MCP Enabled</code></p>
+<p class="text-xs text-gray-500 dark:text-muted mt-1">Setting key: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">openPost.managementMcp.enabled</code></p>
+<p class="text-xs text-gray-500 dark:text-muted mt-1">Port: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">openPost.managementMcp.port</code> (default: 3199)</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 text-cta font-bold text-sm">2</div>
+<div>
+<h4 class="font-semibold text-sm">Mock+MCP Panel</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Mock+MCP view → MCP Servers section → Management MCP → toggle on</p>
+</div>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
+<strong class="text-gray-900 dark:text-text">Important:</strong> The Management MCP server cannot be deleted from the UI — it can only be started and stopped. It always appears first in the MCP servers list.
             </div>
-        </section>
+</section>
+<!-- All 33 Tools -->
+<section class="mb-12 scroll-mt-28" id="tools">
+<h2 class="text-xl font-semibold mb-4">All 33 Tools</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The Management MCP exposes the following tools, organized by category:</p>
+<!-- Read -->
+<h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Read (5 tools)</h3>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_collections</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List all collections (local + global)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_requests</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List requests in a collection or folder</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_environments</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List all environments (local + global)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">get_request</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Get full details of a specific request</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_servers</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List mock and MCP server instances</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Write -->
+<h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Write (17 tools)</h3>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_collection</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a new collection</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_request</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a new request in a collection</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_folder</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a folder in a collection</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_environment</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a new environment</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_mock_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a new mock server</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_mock_route</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Add a route to a mock server</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">start_mock_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Start a mock server</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">stop_mock_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Stop a running mock server</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">restart_mock_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Restart a mock server</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">start_mcp_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Start a collection-sourced MCP server</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">stop_mcp_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Stop a running MCP server</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">restart_mcp_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Restart an MCP server</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">update_collection</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Update collection name, description, auth, or scripts</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">update_request</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Update request fields including testRules and setVariables</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">update_environment</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Update environment variables</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">update_mock_route</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Update an existing mock route</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">set_active_environment</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Switch the active environment</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Execution -->
+<h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Execution (2 tools)</h3>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">run_request</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Execute a single request — full pipeline: auth, scripts, cookies, testRules, setVariables, digest retry, history save</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">run_collection</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run all requests — sequential (shared env for chaining) or parallel (separate copies)</td></tr>
+</tbody>
+</table>
+</div>
+<!-- History & Snapshots -->
+<h3 class="font-semibold text-sm mb-2 mt-6 text-cta">History &amp; Snapshots (4 tools)</h3>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_history</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List request history entries</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">get_history_entry</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Get full details of a history entry</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_snapshots</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List snapshot contracts</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">get_snapshot</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Get full details of a snapshot</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Import/Export -->
+<h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Import / Export (4 tools)</h3>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">import_curl</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Import a cURL command as a request</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">import_openapi</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Import an OpenAPI/Swagger spec as a collection</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">export_curl</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Export a request as a cURL command</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">export_openapi</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Export a collection as an OpenAPI spec</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Security -->
+<h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Security (1 tool)</h3>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">security_scan</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run automated security probes against an endpoint</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Tool Categories -->
+<section class="mb-12 scroll-mt-28" id="categories">
+<h2 class="text-xl font-semibold mb-4">Tool Categories Explained</h2>
+<div class="space-y-4">
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Read</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">List and inspect existing data — collections, requests, environments, servers. No mutations.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Write</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Create, update, and delete resources. Includes server lifecycle management (start/stop/restart).</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Execution</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5"><code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">run_request</code> executes the full pipeline — auth injection, pre-request scripts, HTTP call, test runner, digest retry, history save. <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">run_collection</code> runs all requests either sequentially (shared env vars for chaining) or in parallel (separate env copies per request).</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Import / Export</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Convert between formats — import cURL commands or OpenAPI specs, export requests as cURL or collections as OpenAPI.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Security</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Automated security testing — run probes against endpoints to detect common vulnerabilities.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Scan -->
+<section class="mb-12 scroll-mt-28" id="security-scan">
+<h2 class="text-xl font-semibold mb-4">Security Scan Tool</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">security_scan</code> tool runs automated security probes against an endpoint. It checks for common vulnerabilities and returns findings with severity levels.</p>
+<h3 class="font-semibold text-sm mb-3">Probe Types</h3>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Probe</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">What it checks</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">injection</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">SQL injection and XSS vulnerabilities</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">broken-auth</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Missing or weak authentication checks</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">security-headers</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">HSTS, Content-Security-Policy, X-Frame-Options</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">information-disclosure</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Stack traces in errors, server version headers</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">rate-limit</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Burst request testing for rate limiting</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">mass-assignment</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Extra field injection to test for unprotected properties</td></tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
+<strong class="text-gray-900 dark:text-text">Output:</strong> Each finding includes a severity level (critical, high, medium, low, info), description, and remediation guidance.
+            </div>
+</section>
+<!-- Stdio Mode -->
+<section class="mb-12 scroll-mt-28" id="stdio">
+<h2 class="text-xl font-semibold mb-4">Stdio Mode</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">For AI clients that prefer stdio transport over HTTP, API Studio provides a stable script path that survives extension upgrades.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Stable script path:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>~/.openpost/global/mcp-stdio.js</code></pre>
+</div>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Copied automatically on extension activation</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Survives extension version upgrades without manual path updates</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>MCP Connect panel shows both HTTP URL and stdio command</span></div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Usage:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>node ~/.openpost/global/mcp-stdio.js</code></pre>
+</div>
+<img alt="MCP connection instructions showing HTTP URL" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm mt-5" src="../assets/mcp menu open for management mcp with http selected.png"/>
+<p class="text-xs text-gray-400 dark:text-muted mt-2">The MCP Connect panel shows connection instructions for both HTTP and stdio modes</p>
+</section>
+<!-- Multi-Window Note -->
+<section class="mb-12 scroll-mt-28" id="multi-window">
+<h2 class="text-xl font-semibold mb-4">Multi-Window Note</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The Management MCP server runs as a single global instance — the first VS Code window to start it wins.</p>
+<div class="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-500/20 text-xs text-yellow-800 dark:text-yellow-200 mb-4">
+<strong>Important:</strong> Local scope operations (like <code class="font-mono">create_collection</code>, <code class="font-mono">create_request</code> without <code class="font-mono">scope: "global"</code>) always target the workspace where the Management MCP server was started.
+            </div>
+<h3 class="font-semibold text-sm mb-2">Workarounds</h3>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">scope: "global"</code> for collections you want accessible across all workspaces</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Close the primary window and reload the target window so the Management MCP starts there instead</span></div>
+</div>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="connecting-ai-clients.html">Connecting AI Clients →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="collection-mcp.html">Collection MCP →</a>
+</div>
+</section>
+      </article>
 
-        <!-- Enabling -->
-        <section class="mb-12 scroll-mt-28" id="enabling">
-            <h2 class="text-xl font-semibold mb-4">Enabling</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Two ways to enable the Management MCP server:</p>
-            <div class="space-y-4 mb-5">
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 text-cta font-bold text-sm">1</div>
-                    <div>
-                        <h4 class="font-semibold text-sm">VS Code Settings</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Settings → Extensions → API Studio → <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Management MCP Enabled</code></p>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-1">Setting key: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">openPost.managementMcp.enabled</code></p>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-1">Port: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">openPost.managementMcp.port</code> (default: 3199)</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 text-cta font-bold text-sm">2</div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Mock+MCP Panel</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Mock+MCP view → MCP Servers section → Management MCP → toggle on</p>
-                    </div>
-                </div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
-                <strong class="text-gray-900 dark:text-text">Important:</strong> The Management MCP server cannot be deleted from the UI — it can only be started and stopped. It always appears first in the MCP servers list.
-            </div>
-        </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-        <!-- All 33 Tools -->
-        <section class="mb-12 scroll-mt-28" id="tools">
-            <h2 class="text-xl font-semibold mb-4">All 33 Tools</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The Management MCP exposes the following tools, organized by category:</p>
-
-            <!-- Read -->
-            <h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Read (5 tools)</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_collections</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List all collections (local + global)</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_requests</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List requests in a collection or folder</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_environments</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List all environments (local + global)</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">get_request</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Get full details of a specific request</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_servers</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List mock and MCP server instances</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Write -->
-            <h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Write (17 tools)</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_collection</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a new collection</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_request</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a new request in a collection</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_folder</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a folder in a collection</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_environment</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a new environment</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_mock_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Create a new mock server</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">create_mock_route</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Add a route to a mock server</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">start_mock_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Start a mock server</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">stop_mock_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Stop a running mock server</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">restart_mock_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Restart a mock server</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">start_mcp_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Start a collection-sourced MCP server</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">stop_mcp_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Stop a running MCP server</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">restart_mcp_server</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Restart an MCP server</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">update_collection</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Update collection name, description, auth, or scripts</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">update_request</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Update request fields including testRules and setVariables</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">update_environment</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Update environment variables</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">update_mock_route</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Update an existing mock route</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">set_active_environment</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Switch the active environment</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Execution -->
-            <h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Execution (2 tools)</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">run_request</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Execute a single request — full pipeline: auth, scripts, cookies, testRules, setVariables, digest retry, history save</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">run_collection</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run all requests — sequential (shared env for chaining) or parallel (separate copies)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- History & Snapshots -->
-            <h3 class="font-semibold text-sm mb-2 mt-6 text-cta">History & Snapshots (4 tools)</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_history</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List request history entries</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">get_history_entry</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Get full details of a history entry</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">list_snapshots</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List snapshot contracts</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">get_snapshot</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Get full details of a snapshot</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Import/Export -->
-            <h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Import / Export (4 tools)</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">import_curl</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Import a cURL command as a request</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">import_openapi</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Import an OpenAPI/Swagger spec as a collection</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">export_curl</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Export a request as a cURL command</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">export_openapi</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Export a collection as an OpenAPI spec</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Security -->
-            <h3 class="font-semibold text-sm mb-2 mt-6 text-cta">Security (1 tool)</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Tool</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">security_scan</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run automated security probes against an endpoint</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Tool Categories -->
-        <section class="mb-12 scroll-mt-28" id="categories">
-            <h2 class="text-xl font-semibold mb-4">Tool Categories Explained</h2>
-            <div class="space-y-4">
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Read</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">List and inspect existing data — collections, requests, environments, servers. No mutations.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Write</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Create, update, and delete resources. Includes server lifecycle management (start/stop/restart).</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Execution</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5"><code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">run_request</code> executes the full pipeline — auth injection, pre-request scripts, HTTP call, test runner, digest retry, history save. <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">run_collection</code> runs all requests either sequentially (shared env vars for chaining) or in parallel (separate env copies per request).</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Import / Export</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Convert between formats — import cURL commands or OpenAPI specs, export requests as cURL or collections as OpenAPI.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Security</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Automated security testing — run probes against endpoints to detect common vulnerabilities.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Security Scan -->
-        <section class="mb-12 scroll-mt-28" id="security-scan">
-            <h2 class="text-xl font-semibold mb-4">Security Scan Tool</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">security_scan</code> tool runs automated security probes against an endpoint. It checks for common vulnerabilities and returns findings with severity levels.</p>
-            <h3 class="font-semibold text-sm mb-3">Probe Types</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Probe</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">What it checks</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">injection</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">SQL injection and XSS vulnerabilities</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">broken-auth</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Missing or weak authentication checks</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">security-headers</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">HSTS, Content-Security-Policy, X-Frame-Options</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">information-disclosure</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Stack traces in errors, server version headers</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">rate-limit</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Burst request testing for rate limiting</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">mass-assignment</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Extra field injection to test for unprotected properties</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border text-xs text-gray-600 dark:text-muted">
-                <strong class="text-gray-900 dark:text-text">Output:</strong> Each finding includes a severity level (critical, high, medium, low, info), description, and remediation guidance.
-            </div>
-        </section>
-
-        <!-- Stdio Mode -->
-        <section class="mb-12 scroll-mt-28" id="stdio">
-            <h2 class="text-xl font-semibold mb-4">Stdio Mode</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">For AI clients that prefer stdio transport over HTTP, API Studio provides a stable script path that survives extension upgrades.</p>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
-                <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Stable script path:</p>
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>~/.openpost/global/mcp-stdio.js</code></pre>
-            </div>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Copied automatically on extension activation</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Survives extension version upgrades without manual path updates</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>MCP Connect panel shows both HTTP URL and stdio command</span></div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Usage:</p>
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>node ~/.openpost/global/mcp-stdio.js</code></pre>
-            </div>
-            <img src="../assets/mcp menu open for management mcp with http selected.png" alt="MCP connection instructions showing HTTP URL" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm mt-5">
-            <p class="text-xs text-gray-400 dark:text-muted mt-2">The MCP Connect panel shows connection instructions for both HTTP and stdio modes</p>
-        </section>
-
-        <!-- Multi-Window Note -->
-        <section class="mb-12 scroll-mt-28" id="multi-window">
-            <h2 class="text-xl font-semibold mb-4">Multi-Window Note</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The Management MCP server runs as a single global instance — the first VS Code window to start it wins.</p>
-            <div class="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-500/20 text-xs text-yellow-800 dark:text-yellow-200 mb-4">
-                <strong>Important:</strong> Local scope operations (like <code class="font-mono">create_collection</code>, <code class="font-mono">create_request</code> without <code class="font-mono">scope: "global"</code>) always target the workspace where the Management MCP server was started.
-            </div>
-            <h3 class="font-semibold text-sm mb-2">Workarounds</h3>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">scope: "global"</code> for collections you want accessible across all workspaces</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Close the primary window and reload the target window so the Management MCP starts there instead</span></div>
-            </div>
-        </section>
-
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next</h3>
-            <div class="flex flex-wrap gap-4">
-                <a href="connecting-ai-clients.html" class="text-sm text-cta font-medium hover:underline">Connecting AI Clients →</a>
-                <a href="collection-mcp.html" class="text-sm text-cta font-medium hover:underline">Collection MCP →</a>
-            </div>
-        </section>
-    </main>
+  <aside class="vc-rail" data-noprint="1"></aside>
 </div>
 
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
-
-<script>
-const sections=[{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}];
-const currentPage=document.documentElement.getAttribute('data-page');
-function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
-function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
-buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
-</script>
-<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
 </body>
 </html>

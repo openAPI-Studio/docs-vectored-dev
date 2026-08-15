@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +7,21 @@
   <meta name="description" content="Peer recognition and kudos for Confluence & Jira teams, from Vectored">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#F8FAFC;color:#0F172A}
-    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#475569!important}
-    html.light .text-text{color:#0F172A!important}
-    html.light .hover\:text-text:hover{color:#0F172A!important}
-    html.light .border-border{border-color:#E2E8F0!important}
-    html.light .text-cta{color:#16A34A!important}
-  </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <script src="../assets/tailwind-config.js"></script>
+  
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../assets/tokens.css">
 </head>
 <body class="min-h-screen">
 
   <!-- Nav -->
   <div id="vc-header"></div>
-  <script src="../assets/header.js"></script>
+<script src="../assets/nav.js"></script>
+<script src="../assets/header.js"></script>
   <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a href="https://marketplace.atlassian.com/apps/564712405" target="_blank" rel="noopener" class="text-cta hover:underline">Now available on the Atlassian Marketplace &rarr;</a></div>
 
   <main class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16">

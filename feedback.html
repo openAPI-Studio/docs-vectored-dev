@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,33 +13,22 @@
   <meta property="og:url" content="https://docs.vectored.dev/feedback.html">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#171717',secondary:'#404040',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <script src="assets/tailwind-config.js"></script>
   <style>
-    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}
-    html.light body{background:#FAFAFA;color:#171717}
-    html.light .bg-surface,html.light .bg-surface\/90,html.light .bg-surface\/70,html.light .bg-surface\/60{background-color:#FFFFFF!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#525252!important}
-    html.light .text-text{color:#171717!important}
-    html.light .hover\:text-text:hover{color:#171717!important}
-    html.light .border-border{border-color:#E5E5E5!important}
-    html.light .text-cta{color:#16A34A!important}
-    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.08)!important}
-    html.light .border-cta\/30{border-color:rgba(22,163,74,0.25)!important}
-    .hero-glow{background:radial-gradient(ellipse 70% 60% at 50% -20%,rgba(34,197,94,0.16),transparent)}
+.hero-glow{background:radial-gradient(ellipse 70% 60% at 50% -20%,rgba(34,197,94,0.16),transparent)}
     /* Premium card: hairline gradient across the top edge. */
     .card-lux{position:relative;overflow:hidden}
     .card-lux::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,.55),transparent)}
-    .field{background:#0F172A;border:1px solid #334155;border-radius:.6rem;padding:.7rem 1rem;font-size:.875rem;color:#F8FAFC;width:100%;transition:border-color .2s,box-shadow .2s}
+    .field{background:var(--bg);border:1px solid var(--border);border-radius:.6rem;padding:.7rem 1rem;font-size:.875rem;color:var(--tx);width:100%;transition:border-color .2s,box-shadow .2s}
     html.light .field{background:#F8FAFC;border-color:#E5E5E5;color:#171717}
     .field::placeholder{color:rgba(148,163,184,.6)}
     .field:focus{outline:none;border-color:rgba(34,197,94,.6);box-shadow:0 0 0 3px rgba(34,197,94,.12)}
     .field[aria-invalid="true"]{border-color:rgba(248,113,113,.7);box-shadow:0 0 0 3px rgba(248,113,113,.12)}
     select.field{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2394A3B8' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;background-size:1.05rem;padding-right:2.4rem}
     /* Chip-style radio / checkbox */
-    .chip{display:inline-flex;align-items:center;gap:.45rem;border:1px solid #334155;background:#0F172A;color:#94A3B8;border-radius:999px;padding:.45rem .9rem;font-size:.8125rem;cursor:pointer;transition:all .18s;user-select:none}
+    .chip{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--border);background:var(--bg);color:var(--muted);border-radius:999px;padding:.45rem .9rem;font-size:.8125rem;cursor:pointer;transition:all .18s;user-select:none}
     html.light .chip{background:#F8FAFC;border-color:#E5E5E5;color:#525252}
-    .chip:hover{border-color:rgba(34,197,94,.45);color:#F8FAFC}
+    .chip:hover{border-color:rgba(34,197,94,.45);color:var(--tx)}
     html.light .chip:hover{color:#171717}
     .chip input{position:absolute;opacity:0;width:0;height:0}
     /* Active states are anchored on html so they outweigh the theme-scoped
@@ -54,27 +43,31 @@
     html.light .chip:hover{border-color:rgba(22,163,74,.45)}
     /* Star rating */
     .stars{display:flex;gap:.35rem}
-    .star{width:2.6rem;height:2.6rem;display:grid;place-items:center;border-radius:.6rem;border:1px solid #334155;background:#0F172A;cursor:pointer;transition:all .16s;color:#334155}
+    .star{width:2.6rem;height:2.6rem;display:grid;place-items:center;border-radius:.6rem;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:all .16s;color:var(--border)}
     html.light .star{background:#F8FAFC;border-color:#E5E5E5;color:#D4D4D4}
     .star svg{width:1.35rem;height:1.35rem}
     html .star.is-lit{color:#FACC15;border-color:rgba(250,204,21,.5);background:rgba(250,204,21,.1);transform:translateY(-1px)}
     html.light .star.is-lit{color:#CA8A04;border-color:rgba(202,138,4,.5);background:rgba(250,204,21,.18)}
     .star:focus-visible{outline:2px solid rgba(34,197,94,.6);outline-offset:2px}
-    .step-num{width:1.6rem;height:1.6rem;border-radius:.5rem;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;background:rgba(34,197,94,.12);color:#22C55E;border:1px solid rgba(34,197,94,.3)}
+    .step-num{width:1.6rem;height:1.6rem;border-radius:.5rem;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3)}
     .err{color:#F87171;font-size:.75rem;margin-top:.35rem;display:none}
     .err.show{display:block}
     #progress-fill{transition:width .35s cubic-bezier(.4,0,.2,1)}
     .hp{position:absolute!important;left:-9999px!important;opacity:0;height:0;width:0}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/tokens.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
   <div id="vc-header"></div>
-  <script src="assets/header.js"></script>
-
+<script src="assets/nav.js"></script>
+<script src="assets/header.js"></script>
   <main class="flex-1">
 
     <!-- Hero -->
@@ -781,25 +774,6 @@
     document.getElementById('tool-unlock').addEventListener('click', function () { unlockField('tool'); });
   })();
   </script>
-  <script>
-  (function () {
-    var t = localStorage.getItem('theme');
-    if (t === 'light') document.documentElement.classList.add('light');
-    else if (t === 'dark') document.documentElement.classList.remove('light');
-    function paint() {
-      var light = document.documentElement.classList.contains('light');
-      var d = document.getElementById('icon-dark'), l = document.getElementById('icon-light');
-      if (d) d.style.display = light ? 'block' : 'none';
-      if (l) l.style.display = light ? 'none' : 'block';
-    }
-    paint();
-    var btn = document.getElementById('theme-toggle');
-    if (btn) btn.addEventListener('click', function () {
-      document.documentElement.classList.toggle('light');
-      localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
-      paint();
-    });
-  })();
-  </script>
+  
 </body>
 </html>

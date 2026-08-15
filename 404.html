@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +7,22 @@
   <meta name="description" content="This page doesn't exist. Let's get you back on track.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <script src="assets/tailwind-config.js"></script>
   <style>
-    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#F8FAFC;color:#0F172A}
-    html.light .bg-surface{background-color:#FFFFFF!important}
-    html.light .text-muted{color:#475569!important}
-    html.light .text-text{color:#0F172A!important}
-    html.light .border-border{border-color:#E2E8F0!important}
-    html.light .text-cta{color:#16A34A!important}
-    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.08)!important}
-    .scene-svg{max-width:320px;width:100%;height:auto;margin:0 auto}
+.scene-svg{max-width:320px;width:100%;height:auto;margin:0 auto}
   </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/tokens.css">
 </head>
 <body class="min-h-screen flex flex-col">
+
+<div id="vc-header"></div>
+<script src="assets/nav.js"></script>
+<script src="assets/header.js"></script>
 
   <!-- Header -->
   <header class="px-4 sm:px-6 lg:px-8 py-8 max-w-4xl mx-auto w-full flex items-center justify-between">
@@ -56,22 +56,6 @@
 
   <script>
   (function(){
-    // Theme toggle
-    var t=localStorage.getItem('theme');
-    if(t==='light')document.documentElement.classList.add('light');
-    else if(t==='dark')document.documentElement.classList.remove('light');
-    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-    function upd(){
-      var isLight=document.documentElement.classList.contains('light');
-      document.getElementById('icon-dark').style.display=isLight?'block':'none';
-      document.getElementById('icon-light').style.display=isLight?'none':'block';
-    }
-    upd();
-    document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();
-      document.documentElement.classList.toggle('light');
-      localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
-      upd();
-    });
 
     // Random 404 themes
     var themes = [
@@ -113,5 +97,7 @@
     document.getElementById('subtext').textContent = pick.subtext;
   })();
   </script>
+<div id="vc-footer"></div>
+<script src="assets/footer.js"></script>
 </body>
 </html>

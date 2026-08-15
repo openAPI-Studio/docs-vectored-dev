@@ -1,263 +1,242 @@
 <!DOCTYPE html>
-<html lang="en" data-page="oauth2" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OAuth 2.0 — API Studio Docs</title>
-    <meta name="description" content="OAuth 2.0 authentication — Authorization Code and Client Credentials grant types with token management and variable support.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>body{font-family:'IBM Plex Sans',sans-serif}code,.font-mono{font-family:'JetBrains Mono',monospace}.sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OAuth 2.0 — API Studio Docs</title>
+  <meta name="description" content="OAuth 2.0 authentication — Authorization Code and Client Credentials grant types with token management and variable support.">
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4"><a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a><div class="hidden md:flex items-center gap-4 ml-4"><a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a><a href="./" class="text-sm text-cta font-medium">Docs</a><a href="../support.html" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Support</a></div><div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block"><input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50"></div><div class="flex items-center gap-3 ml-auto md:ml-0"><span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span><button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted"><svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav>
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20"><input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a></aside>
+<body>
 
-<div class="flex pt-24">
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#grant-types" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Grant Types</a>
-                <a href="#configuration" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Configuration</a>
-                <a href="#authorization-code" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Authorization Code</a>
-                <a href="#client-credentials" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Client Credentials</a>
-                <a href="#token-refresh" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Token Refresh</a>
-                <a href="#token-storage" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Token Storage</a>
-                <a href="#token-field" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Token Field</a>
-                <a href="#variable-support" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Variable Support</a>
-            </nav>
-        </aside>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">AUTHENTICATION</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">OAuth 2.0</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">Industry-standard authorization framework with support for Authorization Code and Client Credentials grant types, token management, and configurable token prefix.</p>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">OAuth 2.0</h1>
+      <p class="vc-lede">Industry-standard authorization framework with support for Authorization Code and Client Credentials grant types, token management, and configurable token prefix.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-        <!-- Grant Types -->
-        <section class="mb-12 scroll-mt-28" id="grant-types">
-            <h2 class="text-xl font-semibold mb-4">Grant Types</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio supports two OAuth 2.0 grant types:</p>
-            <div class="grid sm:grid-cols-2 gap-4">
-                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <h4 class="font-semibold text-sm mb-2">Authorization Code</h4>
-                    <p class="text-xs text-gray-500 dark:text-muted">For user-facing apps. Redirects the user to a login page, captures an authorization code, and exchanges it for tokens. Best for APIs that require user consent.</p>
-                </div>
-                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <h4 class="font-semibold text-sm mb-2">Client Credentials</h4>
-                    <p class="text-xs text-gray-500 dark:text-muted">For machine-to-machine communication. POSTs client ID and secret directly to the token endpoint. No user interaction required. Best for service accounts and backend integrations.</p>
-                </div>
-            </div>
-        </section>
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">AUTHENTICATION</p>
 
-        <!-- Configuration -->
-        <section class="mb-12 scroll-mt-28" id="configuration">
-            <h2 class="text-xl font-semibold mb-4">Configuration</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Select <strong class="text-gray-900 dark:text-text">OAuth 2.0</strong> from the Auth type dropdown. The following fields are available:</p>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Field</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Grant Type</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted"><code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">authorization_code</code> or <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">client_credentials</code></td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Auth URL</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Authorization endpoint (Authorization Code only)</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Token URL</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Token endpoint — where codes/credentials are exchanged for tokens</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Client ID</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">OAuth application identifier</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Client Secret</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">OAuth application secret — required for Client Credentials, optional for Authorization Code (public clients use PKCE instead)</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Scope</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Space-separated scopes (e.g. <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">read write profile</code>)</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Access Token</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Pre-obtained token — paste here to skip the OAuth flow</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Refresh Token</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Used to obtain a new access token when the current one expires</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Token Type</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Token type returned by server (usually <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">bearer</code>)</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Expires At</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Token expiration timestamp</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Token Prefix</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Prefix for the Authorization header (default: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Bearer</code>)</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Additional Params</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Extra key-value pairs sent with the token request (max 20). Keys and values support <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{variables}}</code>; standard OAuth2 parameter names (<code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">grant_type</code>, <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">client_id</code>, …) are ignored and cannot be overridden</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Authorization Code -->
-        <section class="mb-12 scroll-mt-28" id="authorization-code">
-            <h2 class="text-xl font-semibold mb-4">Authorization Code Flow</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The standard flow for user-facing applications:</p>
-            <div class="space-y-3 mb-4">
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">1</span>
-                    <p class="text-xs text-gray-600 dark:text-muted">Click <strong class="text-gray-900 dark:text-text">Get Token</strong> — API Studio opens a browser window to the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">authUrl</code></p>
-                </div>
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">2</span>
-                    <p class="text-xs text-gray-600 dark:text-muted">User logs in and grants permission — the provider redirects back with an authorization code</p>
-                </div>
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">3</span>
-                    <p class="text-xs text-gray-600 dark:text-muted">API Studio captures the code and exchanges it at the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">tokenUrl</code> (POST with client ID, code, redirect URI, and PKCE <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">code_verifier</code>; the client secret is included only if set)</p>
-                </div>
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">4</span>
-                    <p class="text-xs text-gray-600 dark:text-muted">The returned access token is stored and used in the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Authorization</code> header for subsequent requests</p>
-                </div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example configuration:</p>
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Grant Type:    Authorization Code
+<!-- Grant Types -->
+<section class="mb-12 scroll-mt-28" id="grant-types">
+<h2 class="text-xl font-semibold mb-4">Grant Types</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio supports two OAuth 2.0 grant types:</p>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<h4 class="font-semibold text-sm mb-2">Authorization Code</h4>
+<p class="text-xs text-gray-500 dark:text-muted">For user-facing apps. Redirects the user to a login page, captures an authorization code, and exchanges it for tokens. Best for APIs that require user consent.</p>
+</div>
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<h4 class="font-semibold text-sm mb-2">Client Credentials</h4>
+<p class="text-xs text-gray-500 dark:text-muted">For machine-to-machine communication. POSTs client ID and secret directly to the token endpoint. No user interaction required. Best for service accounts and backend integrations.</p>
+</div>
+</div>
+</section>
+<!-- Configuration -->
+<section class="mb-12 scroll-mt-28" id="configuration">
+<h2 class="text-xl font-semibold mb-4">Configuration</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Select <strong class="text-gray-900 dark:text-text">OAuth 2.0</strong> from the Auth type dropdown. The following fields are available:</p>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Field</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Grant Type</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted"><code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">authorization_code</code> or <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">client_credentials</code></td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Auth URL</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Authorization endpoint (Authorization Code only)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Token URL</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Token endpoint — where codes/credentials are exchanged for tokens</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Client ID</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">OAuth application identifier</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Client Secret</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">OAuth application secret — required for Client Credentials, optional for Authorization Code (public clients use PKCE instead)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Scope</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Space-separated scopes (e.g. <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">read write profile</code>)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Access Token</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Pre-obtained token — paste here to skip the OAuth flow</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Refresh Token</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Used to obtain a new access token when the current one expires</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Token Type</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Token type returned by server (usually <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">bearer</code>)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Expires At</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Token expiration timestamp</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Token Prefix</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Prefix for the Authorization header (default: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Bearer</code>)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Additional Params</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Extra key-value pairs sent with the token request (max 20). Keys and values support <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{variables}}</code>; standard OAuth2 parameter names (<code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">grant_type</code>, <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">client_id</code>, …) are ignored and cannot be overridden</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Authorization Code -->
+<section class="mb-12 scroll-mt-28" id="authorization-code">
+<h2 class="text-xl font-semibold mb-4">Authorization Code Flow</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The standard flow for user-facing applications:</p>
+<div class="space-y-3 mb-4">
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">1</span>
+<p class="text-xs text-gray-600 dark:text-muted">Click <strong class="text-gray-900 dark:text-text">Get Token</strong> — API Studio opens a browser window to the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">authUrl</code></p>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">2</span>
+<p class="text-xs text-gray-600 dark:text-muted">User logs in and grants permission — the provider redirects back with an authorization code</p>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">3</span>
+<p class="text-xs text-gray-600 dark:text-muted">API Studio captures the code and exchanges it at the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">tokenUrl</code> (POST with client ID, code, redirect URI, and PKCE <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">code_verifier</code>; the client secret is included only if set)</p>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">4</span>
+<p class="text-xs text-gray-600 dark:text-muted">The returned access token is stored and used in the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Authorization</code> header for subsequent requests</p>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example configuration:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Grant Type:    Authorization Code
 Auth URL:      https://accounts.google.com/o/oauth2/v2/auth
 Token URL:     https://oauth2.googleapis.com/token
 Client ID:     {{google_client_id}}
 Client Secret: {{google_client_secret}}
 Scope:         openid email profile</code></pre>
-            </div>
-            <div class="mt-4 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700/30 text-xs text-blue-800 dark:text-blue-200 space-y-2">
-                <p><strong>PKCE:</strong> API Studio always attaches PKCE (S256 <code class="font-mono">code_challenge</code>) to the authorization request and sends the <code class="font-mono">code_verifier</code> during the code exchange, as required for native apps by RFC 8252. Because of PKCE, the <strong>Client Secret is optional</strong> for this grant — leave it empty for public clients.</p>
-                <p><strong>Redirect URI:</strong> the local callback listens on <code class="font-mono">http://127.0.0.1:&lt;random port&gt;/callback</code>. Register a loopback redirect URI with your provider; most providers accept loopback URIs with any port.</p>
-                <p><strong>Timeout &amp; cancel:</strong> the flow waits up to 2 minutes for the browser callback. Use the <strong>Cancel</strong> button next to Get Token to abort an in-progress flow.</p>
-            </div>
-        </section>
-
-        <!-- Client Credentials -->
-        <section class="mb-12 scroll-mt-28" id="client-credentials">
-            <h2 class="text-xl font-semibold mb-4">Client Credentials Flow</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The simplest flow — no user interaction, no browser redirect. Ideal for service-to-service authentication:</p>
-            <div class="space-y-3 mb-4">
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">1</span>
-                    <p class="text-xs text-gray-600 dark:text-muted">Click <strong class="text-gray-900 dark:text-text">Get Token</strong> — API Studio POSTs <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">client_id</code> + <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">client_secret</code> directly to the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">tokenUrl</code></p>
-                </div>
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">2</span>
-                    <p class="text-xs text-gray-600 dark:text-muted">The token endpoint validates the credentials and returns an access token</p>
-                </div>
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">3</span>
-                    <p class="text-xs text-gray-600 dark:text-muted">The token is stored and sent as <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Authorization: Bearer &lt;token&gt;</code></p>
-                </div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example configuration:</p>
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Grant Type:    Client Credentials
+</div>
+<div class="mt-4 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700/30 text-xs text-blue-800 dark:text-blue-200 space-y-2">
+<p><strong>PKCE:</strong> API Studio always attaches PKCE (S256 <code class="font-mono">code_challenge</code>) to the authorization request and sends the <code class="font-mono">code_verifier</code> during the code exchange, as required for native apps by RFC 8252. Because of PKCE, the <strong>Client Secret is optional</strong> for this grant — leave it empty for public clients.</p>
+<p><strong>Redirect URI:</strong> the local callback listens on <code class="font-mono">http://127.0.0.1:&lt;random port&gt;/callback</code>. Register a loopback redirect URI with your provider; most providers accept loopback URIs with any port.</p>
+<p><strong>Timeout &amp; cancel:</strong> the flow waits up to 2 minutes for the browser callback. Use the <strong>Cancel</strong> button next to Get Token to abort an in-progress flow.</p>
+</div>
+</section>
+<!-- Client Credentials -->
+<section class="mb-12 scroll-mt-28" id="client-credentials">
+<h2 class="text-xl font-semibold mb-4">Client Credentials Flow</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The simplest flow — no user interaction, no browser redirect. Ideal for service-to-service authentication:</p>
+<div class="space-y-3 mb-4">
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">1</span>
+<p class="text-xs text-gray-600 dark:text-muted">Click <strong class="text-gray-900 dark:text-text">Get Token</strong> — API Studio POSTs <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">client_id</code> + <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">client_secret</code> directly to the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">tokenUrl</code></p>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">2</span>
+<p class="text-xs text-gray-600 dark:text-muted">The token endpoint validates the credentials and returns an access token</p>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">3</span>
+<p class="text-xs text-gray-600 dark:text-muted">The token is stored and sent as <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Authorization: Bearer &lt;token&gt;</code></p>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example configuration:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Grant Type:    Client Credentials
 Token URL:     https://auth.example.com/oauth/token
 Client ID:     {{service_client_id}}
 Client Secret: {{service_client_secret}}
 Scope:         api:read api:write</code></pre>
+</div>
+</section>
+<!-- Token Refresh -->
+<section class="mb-12 scroll-mt-28" id="token-refresh">
+<h2 class="text-xl font-semibold mb-4">Token Refresh</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">When the token endpoint returns a <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">refresh_token</code>, API Studio can renew the access token without repeating the full flow:</p>
+<ul class="text-sm text-gray-600 dark:text-muted space-y-2 ml-4 list-disc mb-4">
+<li><strong class="text-gray-900 dark:text-text">Manual:</strong> the <strong>Refresh</strong> button (enabled once a refresh token is stored) sends a <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">grant_type=refresh_token</code> request to the Token URL — no browser round-trip, even for Authorization Code configs.</li>
+<li><strong class="text-gray-900 dark:text-text">Automatic:</strong> before sending a request, if the stored token is expired or expires within 30 seconds and a refresh token exists, API Studio silently refreshes it first. If the refresh fails, the request proceeds with the existing token.</li>
+<li><strong class="text-gray-900 dark:text-text">Rotation:</strong> if the server returns a new refresh token it replaces the stored one; if it omits it, the existing refresh token is kept.</li>
+</ul>
+<p class="text-sm text-gray-600 dark:text-muted mb-2">The editor shows a live expiry indicator next to the access token (<em>Expires in 45 minutes</em> / <em>Expired 5 minutes ago</em>).</p>
+<div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700/30 text-xs text-blue-800 dark:text-blue-200">
+<strong>No <code class="font-mono">expires_in</code>?</strong> Some providers (e.g. GitHub) don't return an expiry. Those tokens are treated as non-expiring: no expiry indicator is shown and auto-refresh never triggers. Numeric-string values like <code class="font-mono">"3600"</code> are parsed normally.
             </div>
-        </section>
-
-        <!-- Token Refresh -->
-        <section class="mb-12 scroll-mt-28" id="token-refresh">
-            <h2 class="text-xl font-semibold mb-4">Token Refresh</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">When the token endpoint returns a <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">refresh_token</code>, API Studio can renew the access token without repeating the full flow:</p>
-            <ul class="text-sm text-gray-600 dark:text-muted space-y-2 ml-4 list-disc mb-4">
-                <li><strong class="text-gray-900 dark:text-text">Manual:</strong> the <strong>Refresh</strong> button (enabled once a refresh token is stored) sends a <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">grant_type=refresh_token</code> request to the Token URL — no browser round-trip, even for Authorization Code configs.</li>
-                <li><strong class="text-gray-900 dark:text-text">Automatic:</strong> before sending a request, if the stored token is expired or expires within 30 seconds and a refresh token exists, API Studio silently refreshes it first. If the refresh fails, the request proceeds with the existing token.</li>
-                <li><strong class="text-gray-900 dark:text-text">Rotation:</strong> if the server returns a new refresh token it replaces the stored one; if it omits it, the existing refresh token is kept.</li>
-            </ul>
-            <p class="text-sm text-gray-600 dark:text-muted mb-2">The editor shows a live expiry indicator next to the access token (<em>Expires in 45 minutes</em> / <em>Expired 5 minutes ago</em>).</p>
-            <div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700/30 text-xs text-blue-800 dark:text-blue-200">
-                <strong>No <code class="font-mono">expires_in</code>?</strong> Some providers (e.g. GitHub) don't return an expiry. Those tokens are treated as non-expiring: no expiry indicator is shown and auto-refresh never triggers. Numeric-string values like <code class="font-mono">"3600"</code> are parsed normally.
-            </div>
-        </section>
-
-        <!-- Token Storage -->
-        <section class="mb-12 scroll-mt-28" id="token-storage">
-            <h2 class="text-xl font-semibold mb-4">Token Storage</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Fetched tokens are saved to the entity that owns the OAuth 2.0 configuration, so every request sharing that config picks them up:</p>
-            <ul class="text-sm text-gray-600 dark:text-muted space-y-2 ml-4 list-disc mb-4">
-                <li><strong class="text-gray-900 dark:text-text">Request-level auth</strong> — the token is stored on the request itself.</li>
-                <li><strong class="text-gray-900 dark:text-text">Inherited auth</strong> — the token is stored on the folder or collection providing the config. The editor shows <em>“Token will be saved to: &lt;name&gt;”</em> so it's clear where it lands.</li>
-                <li><strong class="text-gray-900 dark:text-text">Collection / folder editors</strong> — fetching a token from the Auth tab of a collection or folder stores it on that collection or folder.</li>
-            </ul>
-            <p class="text-sm text-gray-600 dark:text-muted">Tokens never create or overwrite auth on entities that don't already use OAuth 2.0.</p>
-        </section>
-
-        <!-- Token Field -->
-        <section class="mb-12 scroll-mt-28" id="token-field">
-            <h2 class="text-xl font-semibold mb-4">Token Field</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">If you already have an access token (from another tool, a login script, or copied from a browser session), paste it directly into the <strong class="text-gray-900 dark:text-text">Access Token</strong> field. API Studio will use it without executing any OAuth flow.</p>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Access Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+</section>
+<!-- Token Storage -->
+<section class="mb-12 scroll-mt-28" id="token-storage">
+<h2 class="text-xl font-semibold mb-4">Token Storage</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Fetched tokens are saved to the entity that owns the OAuth 2.0 configuration, so every request sharing that config picks them up:</p>
+<ul class="text-sm text-gray-600 dark:text-muted space-y-2 ml-4 list-disc mb-4">
+<li><strong class="text-gray-900 dark:text-text">Request-level auth</strong> — the token is stored on the request itself.</li>
+<li><strong class="text-gray-900 dark:text-text">Inherited auth</strong> — the token is stored on the folder or collection providing the config. The editor shows <em>“Token will be saved to: &lt;name&gt;”</em> so it's clear where it lands.</li>
+<li><strong class="text-gray-900 dark:text-text">Collection / folder editors</strong> — fetching a token from the Auth tab of a collection or folder stores it on that collection or folder.</li>
+</ul>
+<p class="text-sm text-gray-600 dark:text-muted">Tokens never create or overwrite auth on entities that don't already use OAuth 2.0.</p>
+</section>
+<!-- Token Field -->
+<section class="mb-12 scroll-mt-28" id="token-field">
+<h2 class="text-xl font-semibold mb-4">Token Field</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">If you already have an access token (from another tool, a login script, or copied from a browser session), paste it directly into the <strong class="text-gray-900 dark:text-text">Access Token</strong> field. API Studio will use it without executing any OAuth flow.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Access Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
 
 → Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...</code></pre>
-            </div>
-
-            <h3 class="font-semibold text-sm mb-3">Token prefix</h3>
-            <p class="text-sm text-gray-600 dark:text-muted mb-3">The <strong class="text-gray-900 dark:text-text">Token Prefix</strong> field controls the scheme name before the token in the Authorization header:</p>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Prefix value</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Resulting header</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Bearer (default)</td><td class="px-4 py-2.5 text-xs font-mono text-gray-500 dark:text-muted">Authorization: Bearer &lt;token&gt;</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">MAC</td><td class="px-4 py-2.5 text-xs font-mono text-gray-500 dark:text-muted">Authorization: MAC &lt;token&gt;</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Custom string</td><td class="px-4 py-2.5 text-xs font-mono text-gray-500 dark:text-muted">Authorization: &lt;custom&gt; &lt;token&gt;</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">(empty)</td><td class="px-4 py-2.5 text-xs font-mono text-gray-500 dark:text-muted">Authorization: &lt;token&gt;</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Variable Support -->
-        <section class="mb-12 scroll-mt-28" id="variable-support">
-            <h2 class="text-xl font-semibold mb-4">Variable Support</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">All OAuth 2.0 configuration fields support <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{variable}}</code> placeholders — resolved from environments, vault secrets, or collection variables.</p>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Auth URL:      {{oauth_auth_url}}
+</div>
+<h3 class="font-semibold text-sm mb-3">Token prefix</h3>
+<p class="text-sm text-gray-600 dark:text-muted mb-3">The <strong class="text-gray-900 dark:text-text">Token Prefix</strong> field controls the scheme name before the token in the Authorization header:</p>
+<div class="overflow-x-auto">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Prefix value</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Resulting header</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Bearer (default)</td><td class="px-4 py-2.5 text-xs font-mono text-gray-500 dark:text-muted">Authorization: Bearer &lt;token&gt;</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">MAC</td><td class="px-4 py-2.5 text-xs font-mono text-gray-500 dark:text-muted">Authorization: MAC &lt;token&gt;</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Custom string</td><td class="px-4 py-2.5 text-xs font-mono text-gray-500 dark:text-muted">Authorization: &lt;custom&gt; &lt;token&gt;</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">(empty)</td><td class="px-4 py-2.5 text-xs font-mono text-gray-500 dark:text-muted">Authorization: &lt;token&gt;</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Variable Support -->
+<section class="mb-12 scroll-mt-28" id="variable-support">
+<h2 class="text-xl font-semibold mb-4">Variable Support</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">All OAuth 2.0 configuration fields support <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{variable}}</code> placeholders — resolved from environments, vault secrets, or collection variables.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Auth URL:      {{oauth_auth_url}}
 Token URL:     {{oauth_token_url}}
 Client ID:     {{oauth_client_id}}
 Client Secret: {{oauth_client_secret}}
 Scope:         {{oauth_scopes}}
 Access Token:  {{current_access_token}}</code></pre>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">This is especially useful for managing multiple environments (dev, staging, production) with different OAuth providers or client applications.</p>
+<div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700/30 text-xs text-blue-800 dark:text-blue-200">
+<strong>Tip:</strong> Store <code class="font-mono">clientSecret</code> in the encrypted vault rather than in environment variables. Use a Secret Set to map the vault key to a <code class="font-mono">{{variable}}</code> — the secret is automatically scrubbed from history and session files.
             </div>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">This is especially useful for managing multiple environments (dev, staging, production) with different OAuth providers or client applications.</p>
+</section>
+<!-- Security Note -->
+<section class="mb-12 scroll-mt-28 p-5 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
+<h3 class="font-semibold text-sm mb-2 flex items-center gap-2"><svg class="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>Security Note</h3>
+<p class="text-xs text-gray-600 dark:text-muted mb-2">Auth credentials appear in multiple places:</p>
+<ul class="text-xs text-gray-500 dark:text-muted space-y-1 ml-4 list-disc mb-3">
+<li><strong class="text-gray-700 dark:text-text">Actual Request tab</strong> — shows resolved auth headers with real values</li>
+<li><strong class="text-gray-700 dark:text-text">Code Export</strong> — generated code includes resolved auth values</li>
+<li><strong class="text-gray-700 dark:text-text">History</strong> — saved request headers contain injected auth (scrubbed only if from vault)</li>
+<li><strong class="text-gray-700 dark:text-text">collections.json</strong> — auth config saved in plain text (committed to git)</li>
+<li><strong class="text-gray-700 dark:text-text">Access &amp; refresh tokens</strong> — tokens fetched via Get Token / Refresh are persisted in plain text alongside the auth config in <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">collections.json</code>. Anyone with the file (or the git repo it's committed to) can use them until they expire — treat exported or shared collections accordingly</li>
+</ul>
+<p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Recommendation:</strong> Store sensitive credentials in the <a class="text-cta hover:underline" href="creating-vault.html">Secret Vault</a> and reference them as <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{variables}}</code>. Vault secrets are automatically scrubbed from persisted history, and the vault file is AES-256-GCM encrypted — safe to have alongside git-tracked files.</p>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="aws-sigv4.html">AWS Signature V4 →</a>
+</div>
+</section>
+      </article>
 
-            <div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700/30 text-xs text-blue-800 dark:text-blue-200">
-                <strong>Tip:</strong> Store <code class="font-mono">clientSecret</code> in the encrypted vault rather than in environment variables. Use a Secret Set to map the vault key to a <code class="font-mono">{{variable}}</code> — the secret is automatically scrubbed from history and session files.
-            </div>
-        </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-        <!-- Security Note -->
-        <section class="mb-12 scroll-mt-28 p-5 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
-            <h3 class="font-semibold text-sm mb-2 flex items-center gap-2"><svg class="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>Security Note</h3>
-            <p class="text-xs text-gray-600 dark:text-muted mb-2">Auth credentials appear in multiple places:</p>
-            <ul class="text-xs text-gray-500 dark:text-muted space-y-1 ml-4 list-disc mb-3">
-                <li><strong class="text-gray-700 dark:text-text">Actual Request tab</strong> — shows resolved auth headers with real values</li>
-                <li><strong class="text-gray-700 dark:text-text">Code Export</strong> — generated code includes resolved auth values</li>
-                <li><strong class="text-gray-700 dark:text-text">History</strong> — saved request headers contain injected auth (scrubbed only if from vault)</li>
-                <li><strong class="text-gray-700 dark:text-text">collections.json</strong> — auth config saved in plain text (committed to git)</li>
-                <li><strong class="text-gray-700 dark:text-text">Access &amp; refresh tokens</strong> — tokens fetched via Get Token / Refresh are persisted in plain text alongside the auth config in <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">collections.json</code>. Anyone with the file (or the git repo it's committed to) can use them until they expire — treat exported or shared collections accordingly</li>
-            </ul>
-            <p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Recommendation:</strong> Store sensitive credentials in the <a href="creating-vault.html" class="text-cta hover:underline">Secret Vault</a> and reference them as <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{variables}}</code>. Vault secrets are automatically scrubbed from persisted history, and the vault file is AES-256-GCM encrypted — safe to have alongside git-tracked files.</p>
-        </section>
-
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next</h3>
-            <div class="flex flex-wrap gap-4">
-                <a href="aws-sigv4.html" class="text-sm text-cta font-medium hover:underline">AWS Signature V4 →</a>
-            </div>
-        </section>
-    </main>
+  <aside class="vc-rail" data-noprint="1"></aside>
 </div>
 
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
-
-<script>
-const sections=[{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}];
-const currentPage=document.documentElement.getAttribute('data-page');
-function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
-function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
-buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
-</script>
-<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
 </body>
 </html>

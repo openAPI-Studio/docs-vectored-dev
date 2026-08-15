@@ -123,7 +123,7 @@ LEAVE = [
                 ["Context", "Time by project · My open issues · Holidays & my leave"],
             ]),
             P("There are 23 gadgets in total; the rest are one click away in the picker."),
-            NOTE("*Awaiting my approval* is deliberately not in the default set — it is useful only if you approve for a project, and would be a permanently empty tile for everyone else. Add it if it applies to you."),
+            NOTE("*Awaiting me* is deliberately not in the default set — it is useful only if you approve for a project, and would be a permanently empty tile for everyone else. Add it if it applies to you."),
 
             H("Reading a gadget"),
             P("Every gadget has the same header: a small coloured square, its name, and at most one control on the right — a value, a period, or a toggle. Everything else is in the body."),

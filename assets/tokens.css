@@ -1,0 +1,519 @@
+/* Vectored docs — design tokens, page shell and prose layer.
+   Loaded on every page. Colours are CSS custom properties so that light mode
+   and print are a token swap rather than a stylesheet rewrite. */
+
+/* ---------------------------------------------------------------- tokens -- */
+:root {
+  --bg: #0F172A;
+  --surface: #131F35;
+  --card: #1A2740;
+  --border: #2B3A54;
+  --tx: #F8FAFC;
+  --body: #CBD5E1;
+  --muted: #8FA3BF;
+  --green: #22C55E;
+  --greenSoft: rgba(34, 197, 94, 0.12);
+  --greenLine: rgba(34, 197, 94, 0.32);
+  --onGreen: #052e16;
+  --shadow: 0 20px 48px rgba(2, 8, 23, 0.45);
+}
+
+html[data-theme="light"] {
+  --bg: #FFFFFF;
+  --surface: #EFF3F8;
+  --card: #FFFFFF;
+  --border: #D3DCE6;
+  --tx: #0F172A;
+  --body: #334155;
+  --muted: #5B6B80;
+  --green: #15803D;
+  --greenSoft: rgba(21, 128, 61, 0.10);
+  --greenLine: rgba(21, 128, 61, 0.30);
+  --onGreen: #FFFFFF;
+  --shadow: 0 20px 48px rgba(15, 23, 42, 0.14);
+}
+
+/* ------------------------------------------------------------------ base -- */
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tx);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono, code, pre, kbd { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+::selection { background: var(--greenSoft); }
+
+:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+[data-printonly] { display: none; }
+
+/* --------------------------------------------- legacy utility remapping ---
+   The site's pages carry Tailwind colour utilities from two eras: token names
+   (text-muted, bg-surface) on the dark-first products and literal grays with
+   dark: variants on API Studio. Both are re-pointed at the tokens here so a
+   theme switch needs no per-page !important overrides. Selectors are prefixed
+   with `html` to outrank Tailwind's single-class rules; `dark:` variants keep
+   winning in dark mode through source order, which is what we want. */
+html .text-text, html .hover\:text-text:hover, html .dark\:text-text,
+html .group:hover .group-hover\:text-text { color: var(--tx); }
+html .text-body { color: var(--body); }
+html .text-muted, html .hover\:text-muted:hover, html .dark\:text-muted { color: var(--muted); }
+html .text-muted\/30 { color: color-mix(in srgb, var(--muted) 30%, transparent); }
+html .text-cta, html .hover\:text-cta:hover, html .group:hover .group-hover\:text-cta,
+html .marker\:text-cta::marker { color: var(--green); }
+html .text-bg { color: var(--onGreen); }
+html .text-border { color: var(--border); }
+
+html .bg-bg, html .hover\:bg-bg:hover, html .dark\:bg-bg { background-color: var(--bg); }
+html .bg-surface, html .hover\:bg-surface:hover, html .dark\:bg-surface,
+html .dark\:hover\:bg-surface:hover { background-color: var(--surface); }
+html .bg-surface\/50, html .dark\:bg-surface\/50 { background-color: color-mix(in srgb, var(--surface) 50%, transparent); }
+html .bg-surface\/80, html .dark\:bg-surface\/80 { background-color: color-mix(in srgb, var(--surface) 80%, transparent); }
+html .bg-surface\/90 { background-color: color-mix(in srgb, var(--surface) 90%, transparent); }
+html .bg-card { background-color: var(--card); }
+html .bg-primary, html .bg-secondary, html .dark\:bg-secondary,
+html .dark\:hover\:bg-secondary:hover { background-color: var(--card); }
+html .dark\:hover\:bg-secondary\/50:hover { background-color: color-mix(in srgb, var(--card) 50%, transparent); }
+html .bg-border { background-color: var(--border); }
+html .bg-cta, html .hover\:bg-cta:hover { background-color: var(--green); }
+html .hover\:bg-cta\/90:hover { background-color: color-mix(in srgb, var(--green) 90%, transparent); }
+html .bg-cta\/5, html .hover\:bg-cta\/5:hover { background-color: color-mix(in srgb, var(--green) 5%, transparent); }
+html .bg-cta\/10 { background-color: var(--greenSoft); }
+html .bg-cta\/15 { background-color: color-mix(in srgb, var(--green) 15%, transparent); }
+html .bg-cta\/20 { background-color: color-mix(in srgb, var(--green) 20%, transparent); }
+
+html .border-border, html .dark\:border-border, html .divide-border > * + *,
+html .dark\:divide-border\/50 > * + * { border-color: var(--border); }
+html .border-border\/50, html .dark\:border-border\/50 { border-color: color-mix(in srgb, var(--border) 50%, transparent); }
+html .border-cta, html .hover\:border-cta:hover { border-color: var(--green); }
+html .border-cta\/20 { border-color: var(--greenSoft); }
+html .border-cta\/30, html .hover\:border-cta\/30:hover { border-color: var(--greenLine); }
+html .border-cta\/40, html .hover\:border-cta\/40:hover { border-color: color-mix(in srgb, var(--green) 40%, transparent); }
+html .hover\:border-cta\/50:hover, html .focus\:border-cta\/50:focus { border-color: color-mix(in srgb, var(--green) 50%, transparent); }
+html .focus\:ring-cta\/50:focus { --tw-ring-color: color-mix(in srgb, var(--green) 50%, transparent); }
+html .dark\:placeholder-muted::placeholder, html .placeholder\:text-muted\/60::placeholder { color: color-mix(in srgb, var(--muted) 70%, transparent); }
+
+/* API Studio's literal gray scale, re-pointed at the tokens. The dark:
+   variants that sit alongside them still win in dark mode. */
+html .text-gray-900, html .text-gray-800, html .hover\:text-gray-900:hover, html .text-white { color: var(--tx); }
+html .text-gray-700, html .text-gray-600, html .hover\:text-gray-600:hover { color: var(--body); }
+html .text-gray-500, html .text-gray-400, html .text-gray-300 { color: var(--muted); }
+html .bg-white, html .hover\:bg-white:hover { background-color: var(--card); }
+html .bg-gray-50, html .hover\:bg-gray-50:hover { background-color: var(--surface); }
+html .bg-gray-100, html .hover\:bg-gray-100:hover { background-color: var(--surface); }
+html .bg-gray-200 { background-color: var(--border); }
+html .border-gray-100, html .border-gray-200, html .border-gray-300,
+html .divide-gray-100 > * + *, html .divide-gray-200 > * + * { border-color: var(--border); }
+html .placeholder-gray-400::placeholder { color: color-mix(in srgb, var(--muted) 70%, transparent); }
+
+/* ----------------------------------------------------------------- header -- */
+.vc-hd {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  height: 60px; display: flex; align-items: center; padding: 0 24px;
+}
+.vc-hd-in { width: 100%; max-width: 1440px; margin: 0 auto; display: flex; align-items: center; gap: 20px; }
+
+.vc-iconbtn {
+  padding: 7px; border-radius: 8px; color: var(--muted);
+  background: none; border: none; cursor: pointer; display: flex;
+  transition: color .15s ease, background-color .15s ease;
+}
+.vc-iconbtn:hover { color: var(--tx); background: var(--card); text-decoration: none; }
+.vc-iconbtn svg { width: 18px; height: 18px; display: block; }
+.vc-hd .vc-iconbtn.vc-first { margin-left: -8px; }
+
+.vc-wordmark { display: flex; align-items: baseline; gap: 8px; color: inherit; margin-left: -8px; }
+.vc-wordmark:hover { text-decoration: none; }
+.vc-wordmark b {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 17px;
+  color: var(--green); letter-spacing: -0.01em;
+}
+.vc-wordmark span { font-size: 12px; color: var(--muted); }
+
+.vc-vdiv { width: 1px; height: 22px; background: var(--border); flex-shrink: 0; }
+
+.vc-switch-wrap { position: relative; flex-shrink: 0; }
+.vc-switch {
+  display: flex; align-items: center; gap: 8px; background: transparent;
+  border: 1px solid var(--border); border-radius: 8px; padding: 6px 11px;
+  color: var(--tx); font: inherit; font-size: 14px; font-weight: 500;
+  cursor: pointer; white-space: nowrap;
+}
+.vc-switch[aria-expanded="true"] { background: var(--card); border-color: var(--greenLine); }
+.vc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.vc-chev { width: 14px; height: 14px; color: var(--muted); transition: transform .18s ease; }
+.vc-switch[aria-expanded="true"] .vc-chev { transform: rotate(180deg); }
+
+.vc-panel {
+  position: absolute; top: 42px; left: 0; width: 320px; background: var(--card);
+  border: 1px solid var(--border); border-radius: 14px; padding: 8px;
+  box-shadow: var(--shadow); z-index: 60;
+}
+.vc-panel[hidden] { display: none; }
+.vc-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--muted);
+}
+.vc-panel > .vc-label { padding: 8px 10px 6px; }
+.vc-prow { display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 9px; }
+.vc-prow:hover { background: var(--surface); text-decoration: none; }
+.vc-prow.cur { background: var(--greenSoft); }
+.vc-picon { width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0; background: var(--surface) center/contain no-repeat; }
+.vc-pmeta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.vc-pname { font-size: 14px; font-weight: 500; color: var(--tx); }
+.vc-pblurb { font-size: 12px; color: var(--muted); }
+.vc-pcount { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+.vc-panel-foot { border-top: 1px solid var(--border); margin: 8px 6px 0; padding-top: 8px; display: flex; flex-direction: column; gap: 2px; }
+.vc-panel-foot a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 13px; color: var(--body); }
+.vc-panel-foot a:hover { background: var(--surface); text-decoration: none; }
+
+.vc-search { flex: 1; max-width: 420px; margin-left: auto; position: relative; }
+.vc-search > svg { width: 16px; height: 16px; color: var(--muted); position: absolute; left: 11px; top: 9px; pointer-events: none; }
+.vc-search input {
+  width: 100%; box-sizing: border-box; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 8px; padding: 8px 44px 8px 34px;
+  font: inherit; font-size: 14px; color: var(--tx); outline: none;
+}
+.vc-search input:focus { border-color: var(--greenLine); }
+.vc-search input::placeholder { color: color-mix(in srgb, var(--muted) 80%, transparent); }
+.vc-kbd {
+  position: absolute; right: 10px; top: 8px; font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--muted); border: 1px solid var(--border);
+  border-radius: 4px; padding: 1px 5px; pointer-events: none;
+}
+.vc-sr {
+  position: absolute; top: 44px; left: 0; right: 0; background: var(--card);
+  border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow);
+  max-height: 340px; overflow-y: auto; z-index: 60; padding: 6px;
+}
+.vc-sr[hidden] { display: none; }
+.vc-sr a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 14px; color: var(--tx); }
+.vc-sr a:hover, .vc-sr a.sel { background: var(--surface); text-decoration: none; }
+.vc-sr a small { display: block; font-size: 12px; color: var(--muted); }
+.vc-sr p { margin: 0; padding: 10px; font-size: 14px; color: var(--muted); }
+
+.vc-hd-actions { display: flex; align-items: center; gap: 6px; }
+.vc-cta {
+  background: var(--green); color: var(--onGreen); font-weight: 600; font-size: 14px;
+  padding: 8px 14px; border-radius: 8px; margin-left: 6px; white-space: nowrap;
+}
+.vc-cta:hover { text-decoration: none; opacity: .92; }
+
+/* ------------------------------------------------------------------ shell -- */
+.vc-shell { display: flex; max-width: 1440px; margin: 0 auto; align-items: flex-start; }
+
+.vc-side {
+  flex-shrink: 0; position: sticky; top: 60px; height: calc(100vh - 60px);
+  box-sizing: border-box; overflow-y: auto; overflow-x: hidden;
+  transition: width .22s ease, padding .22s ease;
+  width: 272px; padding: 28px 20px 40px; border-right: 1px solid var(--border);
+}
+.vc-side.closed { width: 0; padding: 28px 0 40px; border-right: 0; }
+.vc-back {
+  display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted);
+  padding: 0 10px; margin-bottom: 22px; white-space: nowrap;
+}
+.vc-back:hover { color: var(--green); text-decoration: none; }
+.vc-back svg { width: 13px; height: 13px; flex-shrink: 0; }
+.vc-grp { margin-bottom: 26px; }
+.vc-grp > .vc-label { padding: 0 10px; margin-bottom: 8px; display: block; }
+.vc-grp-links { display: flex; flex-direction: column; gap: 1px; }
+.vc-grp-links a {
+  display: block; padding: 7px 10px; border-radius: 7px; font-size: 14.5px;
+  line-height: 1.35; color: var(--body); font-weight: 400;
+}
+.vc-grp-links a:hover { background: var(--surface); text-decoration: none; }
+.vc-grp-links a.active { color: var(--green); background: var(--greenSoft); font-weight: 600; }
+
+.vc-main { flex: 1; min-width: 0; padding: 36px 48px 80px; }
+.vc-col { max-width: 760px; margin: 0 auto; }
+
+.vc-crumbs { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 22px; flex-wrap: wrap; }
+.vc-crumbs a { color: var(--muted); }
+.vc-crumbs a:hover { color: var(--tx); }
+.vc-crumbs strong { color: var(--tx); font-weight: 400; }
+
+.vc-h1 { font-size: 42px; line-height: 1.12; font-weight: 700; letter-spacing: -0.032em; margin: 0 0 14px; }
+.vc-h1 img, .vc-h1 svg { height: 36px; width: auto; vertical-align: -4px; margin-right: 10px; }
+.vc-lede { font-size: 19px; line-height: 1.6; color: var(--body); margin: 0 0 24px; text-wrap: pretty; }
+
+.vc-meta {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 14px 0 16px; border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); margin-bottom: 44px;
+}
+.vc-meta-item { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.02em; color: var(--muted); }
+.vc-meta .vc-vdiv { height: 14px; }
+.vc-meta-actions { display: flex; gap: 8px; margin-left: auto; }
+.vc-pdfbtn {
+  display: flex; align-items: center; gap: 7px; background: var(--card);
+  border: 1px solid var(--border); color: var(--tx); font: inherit; font-size: 13px;
+  font-weight: 500; padding: 7px 12px; border-radius: 8px; cursor: pointer; white-space: nowrap;
+}
+.vc-pdfbtn:hover { border-color: var(--greenLine); }
+.vc-pdfbtn svg { width: 14px; height: 14px; color: var(--muted); }
+
+/* ------------------------------------------------------------ prose layer --
+   Scoped to .vc-doc. Top-level and section-level blocks take the documentation
+   type scale; anything nested deeper (cards, tables, grids) keeps the layout
+   classes the page already carries, so existing components are not disturbed. */
+.vc-doc { font-size: 17px; line-height: 1.75; color: var(--body); }
+
+.vc-doc h2 {
+  font-size: 27px; line-height: 1.26; font-weight: 600; letter-spacing: -0.024em;
+  color: var(--tx); margin: 56px 0 14px; scroll-margin-top: 90px;
+}
+.vc-doc > *:first-child h2, .vc-doc > h2:first-child { margin-top: 0; }
+.vc-doc > h3, .vc-doc > section > h3, .vc-doc > div > h3 {
+  font-size: 20px; line-height: 1.35; font-weight: 600; color: var(--tx);
+  margin: 34px 0 12px; scroll-margin-top: 90px;
+}
+.vc-doc > h4, .vc-doc > section > h4 {
+  font-size: 17px; font-weight: 600; color: var(--tx); margin: 26px 0 10px;
+}
+.vc-doc > p, .vc-doc > section > p, .vc-doc > div > p.text-muted {
+  font-size: 17px; line-height: 1.75; color: var(--body); margin: 0 0 24px; text-wrap: pretty;
+}
+.vc-doc > ul, .vc-doc > ol, .vc-doc > section > ul, .vc-doc > section > ol {
+  font-size: 17px; line-height: 1.75; color: var(--body); margin: 0 0 24px; padding-left: 22px;
+}
+.vc-doc > ul > li, .vc-doc > ol > li, .vc-doc > section > ul > li, .vc-doc > section > ol > li { margin-bottom: 8px; }
+.vc-doc strong { color: var(--tx); font-weight: 600; }
+.vc-doc em { color: var(--body); }
+.vc-doc a { color: var(--green); }
+.vc-doc a:hover { text-decoration: underline; }
+.vc-doc hr { border: 0; border-top: 1px solid var(--border); margin: 40px 0; }
+
+.vc-doc code {
+  font-family: 'JetBrains Mono', monospace; font-size: .88em;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 5px; padding: 1px 5px; color: var(--tx);
+}
+.vc-doc pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
+.vc-doc kbd {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--card);
+  border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 5px;
+  padding: 2px 6px; color: var(--tx);
+}
+
+/* Code block frame (built by docs.js around a bare <pre>). */
+.vc-code { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 0 0 24px; background: var(--card); }
+.vc-code-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px 8px 14px; border-bottom: 1px solid var(--border); background: var(--surface);
+}
+.vc-code-lang { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+.vc-copy {
+  display: flex; align-items: center; gap: 6px; background: none;
+  border: 1px solid var(--border); border-radius: 6px; color: var(--muted);
+  font: inherit; font-size: 12px; padding: 4px 9px; cursor: pointer;
+}
+.vc-copy:hover { color: var(--tx); border-color: var(--greenLine); }
+.vc-code pre {
+  margin: 0; padding: 14px 16px; font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; line-height: 1.7; color: var(--body); overflow-x: auto;
+  background: none; border: 0; border-radius: 0;
+}
+
+/* Figures. The height cap matters — raw screenshots vary wildly in aspect
+   ratio and otherwise dominate the column. */
+.vc-doc figure { margin: 0 0 28px; }
+.vc-fig-frame {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px; display: flex; justify-content: center;
+}
+.vc-fig-frame img { max-width: 100%; max-height: 420px; display: block; border-radius: 6px; }
+.vc-doc figcaption {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.5;
+  color: var(--muted); margin-top: 10px;
+}
+.vc-doc img { max-width: 100%; height: auto; }
+
+/* Callout — the shape existing pages already use for notes, restyled. */
+.vc-callout {
+  display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px; margin: 0 0 24px;
+}
+.vc-callout svg { width: 18px; height: 18px; color: var(--muted); flex-shrink: 0; margin-top: 2px; }
+.vc-callout p { font-size: 15px; line-height: 1.65; color: var(--body); margin: 0; }
+
+.vc-doc table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.vc-doc > table, .vc-doc > section > table, .vc-doc > div > table { margin: 0 0 24px; }
+.vc-doc th { text-align: left; font-weight: 600; color: var(--tx); }
+.vc-doc td { color: var(--body); }
+.vc-doc thead { background: var(--surface); }
+.vc-doc .vc-table-wrap { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 0 0 24px; }
+.vc-doc .vc-table-wrap table { font-size: 15px; }
+.vc-doc .vc-table-wrap th, .vc-doc .vc-table-wrap td { padding: 10px 14px; }
+.vc-doc .vc-table-wrap tbody tr + tr { border-top: 1px solid var(--border); }
+
+/* Bare tables — several pages ship plain <table> markup and relied on a
+   per-page <style> block for padding and rules. Folded in here instead. */
+.vc-doc table:not([class]) th, .vc-doc table:not([class]) td {
+  text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border);
+  vertical-align: top; font-size: 14px;
+}
+.vc-doc .tbl-wrap { overflow-x: auto; margin-bottom: 24px; }
+.vc-doc .shot img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
+/* Feedback + prev/next */
+.vc-fb {
+  border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 48px 0 40px;
+}
+.vc-fb-q { font-size: 15px; font-weight: 500; color: var(--tx); }
+.vc-fb-btns { display: flex; gap: 8px; margin-left: auto; }
+.vc-fb-btns button {
+  background: none; border: 1px solid var(--border); border-radius: 8px; color: var(--tx);
+  font: inherit; font-size: 14px; padding: 6px 16px; cursor: pointer;
+}
+.vc-fb-btns button:hover { border-color: var(--greenLine); color: var(--green); }
+
+.vc-pn { display: flex; gap: 16px; flex-wrap: wrap; }
+.vc-pn a {
+  flex: 1; min-width: 240px; border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px 18px; color: inherit; display: block;
+}
+.vc-pn a:hover { border-color: var(--greenLine); text-decoration: none; }
+.vc-pn a.next { text-align: right; }
+.vc-pn .lbl { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.vc-pn .ttl { font-size: 16px; font-weight: 600; color: var(--tx); }
+
+/* -------------------------------------------------------------- right rail -- */
+.vc-rail {
+  width: 236px; flex-shrink: 0; position: sticky; top: 60px; height: calc(100vh - 60px);
+  overflow-y: auto; padding: 36px 24px 40px; box-sizing: border-box;
+}
+.vc-rail > .vc-label { display: block; margin-bottom: 12px; }
+.vc-toc { display: flex; flex-direction: column; gap: 2px; border-left: 1px solid var(--border); padding-left: 2px; }
+.vc-toc a {
+  display: block; padding: 5px 12px; font-size: 13.5px; line-height: 1.45;
+  border-left: 2px solid transparent; margin-left: -2px; color: var(--muted);
+}
+.vc-toc a:hover { color: var(--tx); text-decoration: none; }
+.vc-toc a.active { border-left-color: var(--green); color: var(--green); font-weight: 500; }
+.vc-toc a.lvl3 { padding-left: 24px; font-size: 13px; }
+.vc-rail-links {
+  margin-top: 26px; border-top: 1px solid var(--border); padding-top: 18px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.vc-rail-links a { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.vc-rail-links a:hover { color: var(--tx); text-decoration: none; }
+.vc-rail-links svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ----------------------------------------------------------------- footer -- */
+.vc-ft { border-top: 1px solid var(--border); background: var(--surface); padding: 56px 48px 32px; }
+.vc-ft-in { max-width: 1240px; margin: 0 auto; }
+.vc-ft-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 44px; }
+.vc-ft-brand b {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px;
+  color: var(--green); display: block;
+}
+.vc-ft-brand p { font-size: 14px; line-height: 1.65; color: var(--muted); margin: 10px 0 18px; max-width: 260px; }
+.vc-ft-social { display: flex; gap: 10px; }
+.vc-ft-social a { color: var(--muted); display: flex; }
+.vc-ft-social a:hover { color: var(--tx); }
+.vc-ft-social svg { width: 18px; height: 18px; }
+.vc-ft h4 { font-size: 13px; font-weight: 600; color: var(--tx); margin: 0 0 12px; }
+.vc-ft ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+.vc-ft ul a { font-size: 14px; color: var(--muted); }
+.vc-ft ul a:hover { color: var(--tx); }
+.vc-ft-bot {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid var(--border); padding-top: 22px;
+}
+.vc-ft-bot span { font-size: 13px; color: var(--muted); }
+.vc-ft-bot nav { display: flex; gap: 18px; margin-left: auto; flex-wrap: wrap; }
+.vc-ft-bot nav a { font-size: 13px; color: var(--muted); }
+.vc-ft-bot nav a:hover { color: var(--tx); }
+
+/* ------------------------------------------------------- full-guide export -- */
+.vc-guide-page { margin-top: 64px; }
+.vc-guide-page:first-child { margin-top: 32px; }
+.vc-guide-title {
+  font-size: 32px; line-height: 1.18; font-weight: 700; letter-spacing: -0.028em;
+  color: var(--tx); margin: 0 0 12px; padding-top: 28px;
+  border-top: 1px solid var(--border); scroll-margin-top: 90px;
+}
+.vc-guide-title img, .vc-guide-title svg { height: 28px; width: auto; vertical-align: -3px; margin-right: 8px; }
+
+/* ------------------------------------------------------ non-doc page body -- */
+/* Landing, support and legal pages keep their own layout; they just need the
+   shell's max width and padding so the new header/footer frame them. */
+.vc-page { max-width: 1240px; margin: 0 auto; padding: 40px 48px 80px; }
+
+/* --------------------------------------------------------------- printing -- */
+.vc-print-head { border-bottom: 2px solid var(--green); padding-bottom: 14px; margin-bottom: 28px; }
+.vc-print-head > div { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.vc-print-head b { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 16px; color: var(--green); }
+.vc-print-head span { font-size: 12px; color: var(--muted); }
+.vc-print-contents { border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 0 0 40px; }
+.vc-print-contents > div { font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.vc-print-contents ol { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 7px; font-size: 15px; color: var(--body); }
+.vc-print-exp { font-size: 13px; color: var(--muted); margin-left: auto; }
+.vc-print-foot {
+  border-top: 1px solid var(--border); margin-top: 48px; padding-top: 14px;
+  justify-content: space-between; gap: 16px; font-size: 12px; color: var(--muted);
+}
+
+@media print {
+  html {
+    --bg: #fff; --surface: #fff; --card: #fff; --border: #d4d9e0;
+    --tx: #111827; --body: #1f2937; --muted: #5b6472;
+    --green: #15803D; --greenSoft: #f2f8f4; --greenLine: #bcd9c6;
+  }
+  body { background: #fff !important; color: #111827 !important; }
+  [data-noprint] { display: none !important; }
+  [data-printonly] { display: block !important; }
+  [data-print-footer] { display: flex !important; }
+  a { color: #111827 !important; text-decoration: none; }
+  h1, h2 { break-after: avoid-page; }
+  figure, pre, li { break-inside: avoid; }
+  .vc-shell, .vc-main, .vc-col { display: block; max-width: none; margin: 0; padding: 0; }
+  .vc-fig-frame img { max-height: none; }
+  @page { margin: 16mm 14mm; }
+}
+
+/* ------------------------------------------------------------- responsive -- */
+@media (max-width: 1200px) {
+  .vc-rail { display: none; }
+}
+@media (max-width: 1024px) {
+  .vc-side {
+    position: fixed; top: 60px; left: 0; z-index: 45; background: var(--bg);
+    box-shadow: var(--shadow); width: 272px;
+  }
+  .vc-side.closed { box-shadow: none; }
+  .vc-main { padding: 28px 24px 64px; }
+  .vc-h1 { font-size: 34px; }
+}
+@media (max-width: 860px) {
+  .vc-ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .vc-ft { padding: 44px 24px 28px; }
+  .vc-search { max-width: none; }
+  .vc-switch-wrap { display: none; }
+}
+@media (max-width: 640px) {
+  .vc-hd { padding: 0 14px; gap: 10px; }
+  .vc-hd-in { gap: 10px; }
+  .vc-cta { display: none; }
+  .vc-search { position: static; }
+  .vc-kbd { display: none; }
+  .vc-h1 { font-size: 29px; }
+  .vc-lede { font-size: 17px; }
+  .vc-doc { font-size: 16px; }
+  .vc-doc > p, .vc-doc > section > p { font-size: 16px; }
+  .vc-doc h2 { font-size: 23px; margin-top: 44px; }
+  .vc-meta-actions { margin-left: 0; }
+  .vc-ft-grid { grid-template-columns: 1fr; }
+  .vc-page { padding: 28px 20px 64px; }
+}

@@ -1,67 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" data-page="index">
+<html lang="en" data-page="index" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overview — API Studio Docs</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+    <script src="../assets/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body{font-family:'IBM Plex Sans',sans-serif}
+body{font-family:'IBM Plex Sans',sans-serif}
         code,.font-mono{font-family:'JetBrains Mono',monospace}
-        .sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}
-        .dark body,.dark .dark\:bg-bg{background:#0F172A}
-        ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
-    </style>
+        .dark body,.dark .dark\:bg-bg{background:var(--bg)}
+        ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+  </style>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../assets/tokens.css">
 </head>
 <body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
 
-<!-- Navbar -->
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4">
-    <a href="../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a>
-    <div class="hidden md:flex items-center gap-4 ml-4">
-        <a href="../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a>
-        <a href="./docs/" class="text-sm text-cta font-medium">Docs</a>
-    </div>
-    <div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block">
-        <input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50">
-    </div>
-    <div class="flex items-center gap-3 ml-auto md:ml-0">
-        <span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span>
-        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted">
-            <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-            <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        </button>
-        <a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a>
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-    </div>
-</nav>
-
-<!-- Mobile sidebar overlay -->
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20">
-    <input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="./support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a>
-</aside>
-
+<div id="vc-header"></div>
+<script src="../assets/nav.js"></script>
+<script src="../assets/header.js"></script>
 <!-- Layout -->
-<div class="flex pt-24">
+<div class="flex">
     <!-- Sidebar -->
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border">
-        <nav id="sidebar-nav" class="space-y-1 text-sm"></nav>
-    </aside>
-
     <!-- Content -->
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl">
+    <main class="flex-1  px-6 md:px-12 lg:px-16 pb-24 max-w-4xl">
 
         <!-- Hero -->
         <section class="mb-12">
             <div class="flex items-center gap-4 mb-4">
                 <img src="./assets/chat.png" alt="API Studio" class="w-12 h-12">
-                <h1 class="text-4xl font-bold text-gray-900 dark:text-text">API Studio</h1>
+                <h1 class="text-4xl font-bold text-gray-900 dark:text-text">API Studio</h1> <span class="font-mono text-xs px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20 align-middle">v1.4.66</span>
             </div>
             <p class="text-lg text-gray-600 dark:text-muted leading-relaxed mb-6">A fully offline, privacy-first API client for <strong class="text-gray-900 dark:text-text">VS Code</strong>, <strong class="text-gray-900 dark:text-text">CLI</strong>, and <strong class="text-gray-900 dark:text-text">Electron desktop</strong>. Test REST, GraphQL, WebSocket, and gRPC APIs without cloud accounts, telemetry, or network dependencies. Your data stays on your machine — always.</p>
             <div class="flex flex-wrap gap-3">
@@ -320,69 +290,6 @@
 <div id="vc-footer"></div>
 <script src="../assets/footer.js"></script>
 
-<script>
-// Sidebar data
-const sections=[
-{title:'GETTING STARTED',links:[['Installation','docs/installation.html'],['Quick Start','docs/quick-start.html'],['UI Overview','docs/ui-overview.html']]},
-{title:'HTTP CLIENT',links:[['Sending Requests','docs/sending-requests.html'],['Request Body','docs/request-body.html'],['Parameters & Headers','docs/params-headers.html'],['Response Viewer','docs/response-viewer.html'],['Request History','docs/request-history.html'],['Tabs & Sessions','docs/tabs-sessions.html']]},
-{title:'PROTOCOLS',links:[['GraphQL','docs/graphql.html'],['WebSocket','docs/websocket.html'],['gRPC','docs/grpc.html'],['Server-Sent Events','docs/sse.html']]},
-{title:'COLLECTIONS',links:[['Creating Collections','docs/creating-collections.html'],['Folders & Organization','docs/folders-organization.html'],['Collection Editor','docs/collection-editor.html'],['Collection Runs','docs/collection-runs.html'],['Import & Export','docs/import-export.html'],['Collection JSON Schema','docs/collection-schema.html']]},
-{title:'ENVIRONMENTS',links:[['Managing Environments','docs/managing-environments.html'],['Variables & Interpolation','docs/variables-interpolation.html'],['Variable Priority','docs/variable-priority.html']]},
-{title:'AUTHENTICATION',links:[['Auth Overview','docs/auth-overview.html'],['Basic Auth','docs/basic-auth.html'],['Bearer Token','docs/bearer-token.html'],['API Key','docs/api-key.html'],['OAuth 2.0','docs/oauth2.html'],['AWS Signature V4','docs/aws-sigv4.html'],['Digest Auth','docs/digest-auth.html'],['Auth Inheritance','docs/auth-inheritance.html']]},
-{title:'TESTING',links:[['GUI Test Rules','docs/gui-test-rules.html'],['Pre-Request Scripts','docs/pre-request-scripts.html'],['Test Scripts','docs/test-scripts.html'],['Scripting API','docs/scripting-api.html'],['Set Variables','docs/set-variables.html']]},
-{title:'MOCK SERVERS',links:[['Creating Mock Servers','docs/creating-mock-servers.html'],['Routes & Responses','docs/mock-routes.html'],['Request Log','docs/mock-request-log.html'],['Swagger / OpenAPI','docs/mock-swagger.html']]},
-{title:'MCP SERVERS',links:[['Collection MCP','docs/collection-mcp.html'],['Mock MCP','docs/mock-mcp.html'],['Management MCP','docs/management-mcp.html'],['Connecting AI Clients','docs/connecting-ai-clients.html']]},
-{title:'SECRET VAULT',links:[['Creating a Vault','docs/creating-vault.html'],['Managing Secrets','docs/managing-secrets.html'],['Secret Sets','docs/secret-sets.html'],['Certificates','docs/certificates.html']]},
-{title:'CLI',links:[['CLI Overview','docs/cli-overview.html'],['Running Collections','docs/cli-run.html'],['Import & Export','docs/cli-import-export.html'],['Vault Commands','docs/cli-vault.html'],['Serve Command','docs/cli-serve.html']]},
-{title:'CODE EXPORT',links:[['Supported Languages','docs/code-export-languages.html'],['AI Prompt Generator','docs/ai-prompts.html']]},
-{title:'SETTINGS & DATA',links:[['Settings','docs/settings.html'],['Proxy Configuration','docs/proxy.html'],['Data Storage','docs/data-storage.html'],['Keyboard Shortcuts','docs/keyboard-shortcuts.html'],['License','docs/license.html'],['Support Us','docs/support-us.html']]}
-];
-
-const currentPage=document.documentElement.getAttribute('data-page');
-
-function buildNav(container){
-    let html='';
-    sections.forEach((s,i)=>{
-        const id='cat-'+i;
-        html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;
-        s.links.forEach(([name,href])=>{
-            const page=href.replace('.html','');
-            const active=page===currentPage;
-            html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;
-        });
-        html+=`</div></div>`;
-    });
-    container.innerHTML=html;
-    // Rotate all arrows (expanded by default)
-    document.querySelectorAll('[id$="-arrow"]').forEach(a=>a.style.transform='rotate(90deg)');
-}
-
-function toggleCat(id){
-    const el=document.getElementById(id);
-    const arrow=document.getElementById(id+'-arrow');
-    if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';}
-    else{el.style.display='none';arrow.style.transform='';}
-}
-
-// Build sidebars
-buildNav(document.getElementById('sidebar-nav'));
-const mobileNav=document.getElementById('mobile-nav');
-buildNav(mobileNav);
-
-// Theme
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');
-applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{
-    const dark=!document.documentElement.classList.contains('dark');
-    applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');
-};
-
-// Mobile menu
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-</script>
 <a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
 </body>
 </html>

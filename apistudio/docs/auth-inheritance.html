@@ -1,49 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" data-page="auth-inheritance" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth Inheritance — API Studio Docs</title>
-    <meta name="description" content="Configure auth at collection or folder level and let requests inherit automatically — no need to repeat credentials on every request.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>body{font-family:'IBM Plex Sans',sans-serif}code,.font-mono{font-family:'JetBrains Mono',monospace}.sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth Inheritance — API Studio Docs</title>
+  <meta name="description" content="Configure auth at collection or folder level and let requests inherit automatically — no need to repeat credentials on every request.">
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4"><a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a><div class="hidden md:flex items-center gap-4 ml-4"><a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a><a href="./" class="text-sm text-cta font-medium">Docs</a><a href="../support.html" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Support</a></div><div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block"><input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50"></div><div class="flex items-center gap-3 ml-auto md:ml-0"><span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span><button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted"><svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav>
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20"><input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a></aside>
+<body>
 
-<div class="flex pt-24">
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#how-inheritance-works" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">How Inheritance Works</a>
-                <a href="#chain-resolution" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Chain Resolution</a>
-                <a href="#setting-collection-auth" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Setting Collection Auth</a>
-                <a href="#setting-folder-auth" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Setting Folder Auth</a>
-                <a href="#request-inherit-toggle" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Request Inherit Toggle</a>
-                <a href="#breaking-the-chain" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Breaking the Chain</a>
-                <a href="#examples" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Examples</a>
-            </nav>
-        </aside>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">AUTHENTICATION</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">Auth Inheritance</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">Set authentication once at the collection or folder level and let child requests inherit it automatically — no need to repeat credentials on every request.</p>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Auth Inheritance</h1>
+      <p class="vc-lede">Set authentication once at the collection or folder level and let child requests inherit it automatically — no need to repeat credentials on every request.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-        <!-- How Inheritance Works -->
-        <section class="mb-12 scroll-mt-28" id="how-inheritance-works">
-            <h2 class="text-xl font-semibold mb-4">How Inheritance Works</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Auth cascades down the collection hierarchy:</p>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Collection (Bearer Token)
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">AUTHENTICATION</p>
+
+<!-- How Inheritance Works -->
+<section class="mb-12 scroll-mt-28" id="how-inheritance-works">
+<h2 class="text-xl font-semibold mb-4">How Inheritance Works</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Auth cascades down the collection hierarchy:</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Collection (Bearer Token)
 ├── Folder A (inherits from collection)
 │   ├── Request 1 (inherits → uses Bearer Token)
 │   └── Request 2 (inherits → uses Bearer Token)
@@ -51,147 +50,129 @@
 │   ├── Request 3 (inherits → uses API Key)
 │   └── Request 4 (own Basic Auth → uses Basic Auth)
 └── Request 5 (inherits → uses Bearer Token)</code></pre>
-            </div>
-            <p class="text-sm text-gray-600 dark:text-muted">The <strong class="text-gray-900 dark:text-text">"Inherit from parent"</strong> toggle on requests and folders enables this behavior. When enabled, the node looks up the tree for auth configuration instead of using its own.</p>
-        </section>
-
-        <!-- Chain Resolution -->
-        <section class="mb-12 scroll-mt-28" id="chain-resolution">
-            <h2 class="text-xl font-semibold mb-4">Chain Resolution</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">When a request is sent with <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">inheritAuth: true</code>, the resolution algorithm walks <strong>up</strong> the tree:</p>
-            <div class="space-y-3 text-sm text-gray-600 dark:text-muted mb-4">
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">1</span>
-                    <div>Check the request — if <code class="font-mono text-xs">inheritAuth: false</code>, use this node's auth config</div>
-                </div>
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">2</span>
-                    <div>Check the parent folder — if <code class="font-mono text-xs">inheritAuth: false</code>, use that folder's auth</div>
-                </div>
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">3</span>
-                    <div>Continue up through nested folders...</div>
-                </div>
-                <div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">4</span>
-                    <div>Reach the collection root — use the collection's auth config</div>
-                </div>
-            </div>
-            <div class="p-4 rounded-lg border border-yellow-500/20 bg-yellow-500/5">
-                <p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Default behavior:</strong> New requests have <code class="font-mono text-xs">inheritAuth: false</code> (opt-in). You must explicitly enable inheritance for a request to look up the chain. This prevents unintended auth propagation.</p>
-            </div>
-        </section>
-
-        <!-- Setting Collection Auth -->
-        <section class="mb-12 scroll-mt-28" id="setting-collection-auth">
-            <h2 class="text-xl font-semibold mb-4">Setting Collection Auth</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">To set auth at the collection level:</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Click the collection name in the sidebar to open the <strong class="text-gray-900 dark:text-text">Collection Editor</strong></span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Navigate to the <strong class="text-gray-900 dark:text-text">Auth</strong> sub-tab</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Select the auth type and fill in credentials — this becomes the default for all inheriting children</span></div>
-            </div>
-        </section>
-
-        <!-- Setting Folder Auth -->
-        <section class="mb-12 scroll-mt-28" id="setting-folder-auth">
-            <h2 class="text-xl font-semibold mb-4">Setting Folder Auth</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">To set auth at the folder level:</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Click the folder name in the sidebar to open the <strong class="text-gray-900 dark:text-text">Folder Editor</strong></span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Navigate to the <strong class="text-gray-900 dark:text-text">Auth</strong> sub-tab</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Configure the auth type — requests inside this folder (with inheritance enabled) will use this config</span></div>
-            </div>
-            <p class="text-xs text-gray-500 dark:text-muted mt-3">Folders can also inherit from their parent by enabling the "Inherit from parent" toggle on the folder's auth tab.</p>
-        </section>
-
-        <!-- Request Inherit Toggle -->
-        <section class="mb-12 scroll-mt-28" id="request-inherit-toggle">
-            <h2 class="text-xl font-semibold mb-4">Request Inherit Toggle</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">On the request's <strong class="text-gray-900 dark:text-text">Auth</strong> tab, you'll see two options:</p>
-            <div class="space-y-4 mb-4">
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Inherit from parent</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Uses auth from the nearest ancestor (folder or collection) that has <code class="font-mono">inheritAuth: false</code>. The auth type selector is hidden when this is active.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-secondary flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Direct configuration</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Configure auth directly on this request (None, Basic, Bearer, API Key, OAuth2, AWS SigV4, Digest). This is the default for new requests.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Breaking the Chain -->
-        <section class="mb-12 scroll-mt-28" id="breaking-the-chain">
-            <h2 class="text-xl font-semibold mb-4">Breaking the Chain</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Set <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">inheritAuth: false</code> at any level to stop the lookup. That node uses its own auth and doesn't look further up the tree.</p>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example — folder override:</p>
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Collection (Bearer: {{main_token}})
+</div>
+<p class="text-sm text-gray-600 dark:text-muted">The <strong class="text-gray-900 dark:text-text">"Inherit from parent"</strong> toggle on requests and folders enables this behavior. When enabled, the node looks up the tree for auth configuration instead of using its own.</p>
+</section>
+<!-- Chain Resolution -->
+<section class="mb-12 scroll-mt-28" id="chain-resolution">
+<h2 class="text-xl font-semibold mb-4">Chain Resolution</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">When a request is sent with <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">inheritAuth: true</code>, the resolution algorithm walks <strong>up</strong> the tree:</p>
+<div class="space-y-3 text-sm text-gray-600 dark:text-muted mb-4">
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">1</span>
+<div>Check the request — if <code class="font-mono text-xs">inheritAuth: false</code>, use this node's auth config</div>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">2</span>
+<div>Check the parent folder — if <code class="font-mono text-xs">inheritAuth: false</code>, use that folder's auth</div>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">3</span>
+<div>Continue up through nested folders...</div>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-lg border border-gray-100 dark:border-border/50">
+<span class="w-6 h-6 rounded-full bg-cta/10 text-cta text-xs font-bold flex items-center justify-center shrink-0">4</span>
+<div>Reach the collection root — use the collection's auth config</div>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-yellow-500/20 bg-yellow-500/5">
+<p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Default behavior:</strong> New requests have <code class="font-mono text-xs">inheritAuth: false</code> (opt-in). You must explicitly enable inheritance for a request to look up the chain. This prevents unintended auth propagation.</p>
+</div>
+</section>
+<!-- Setting Collection Auth -->
+<section class="mb-12 scroll-mt-28" id="setting-collection-auth">
+<h2 class="text-xl font-semibold mb-4">Setting Collection Auth</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">To set auth at the collection level:</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Click the collection name in the sidebar to open the <strong class="text-gray-900 dark:text-text">Collection Editor</strong></span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Navigate to the <strong class="text-gray-900 dark:text-text">Auth</strong> sub-tab</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Select the auth type and fill in credentials — this becomes the default for all inheriting children</span></div>
+</div>
+</section>
+<!-- Setting Folder Auth -->
+<section class="mb-12 scroll-mt-28" id="setting-folder-auth">
+<h2 class="text-xl font-semibold mb-4">Setting Folder Auth</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">To set auth at the folder level:</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Click the folder name in the sidebar to open the <strong class="text-gray-900 dark:text-text">Folder Editor</strong></span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Navigate to the <strong class="text-gray-900 dark:text-text">Auth</strong> sub-tab</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Configure the auth type — requests inside this folder (with inheritance enabled) will use this config</span></div>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted mt-3">Folders can also inherit from their parent by enabling the "Inherit from parent" toggle on the folder's auth tab.</p>
+</section>
+<!-- Request Inherit Toggle -->
+<section class="mb-12 scroll-mt-28" id="request-inherit-toggle">
+<h2 class="text-xl font-semibold mb-4">Request Inherit Toggle</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">On the request's <strong class="text-gray-900 dark:text-text">Auth</strong> tab, you'll see two options:</p>
+<div class="space-y-4 mb-4">
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Inherit from parent</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Uses auth from the nearest ancestor (folder or collection) that has <code class="font-mono">inheritAuth: false</code>. The auth type selector is hidden when this is active.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-secondary flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm">Direct configuration</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Configure auth directly on this request (None, Basic, Bearer, API Key, OAuth2, AWS SigV4, Digest). This is the default for new requests.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Breaking the Chain -->
+<section class="mb-12 scroll-mt-28" id="breaking-the-chain">
+<h2 class="text-xl font-semibold mb-4">Breaking the Chain</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Set <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">inheritAuth: false</code> at any level to stop the lookup. That node uses its own auth and doesn't look further up the tree.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Example — folder override:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Collection (Bearer: {{main_token}})
 └── Admin Folder (inheritAuth: false, API Key: {{admin_key}})
     ├── Request A (inheritAuth: true → uses API Key)
     └── Request B (inheritAuth: true → uses API Key)</code></pre>
-            </div>
-            <p class="text-xs text-gray-500 dark:text-muted mt-3">The Admin Folder breaks the chain — its children inherit the folder's API Key, not the collection's Bearer token.</p>
-        </section>
-
-        <!-- Examples -->
-        <section class="mb-12 scroll-mt-28" id="examples">
-            <h2 class="text-xl font-semibold mb-4">Examples</h2>
-
-            <h3 class="font-semibold text-sm mb-3 mt-6">Example: Collection-wide Bearer Token</h3>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Collection "My API" → Auth: Bearer {{api_token}}
+</div>
+<p class="text-xs text-gray-500 dark:text-muted mt-3">The Admin Folder breaks the chain — its children inherit the folder's API Key, not the collection's Bearer token.</p>
+</section>
+<!-- Examples -->
+<section class="mb-12 scroll-mt-28" id="examples">
+<h2 class="text-xl font-semibold mb-4">Examples</h2>
+<h3 class="font-semibold text-sm mb-3 mt-6">Example: Collection-wide Bearer Token</h3>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Collection "My API" → Auth: Bearer {{api_token}}
 
 All requests with inheritAuth: true automatically
 get: Authorization: Bearer &lt;resolved token&gt;</code></pre>
-            </div>
-
-            <h3 class="font-semibold text-sm mb-3 mt-6">Example: Folder Override for Sub-API</h3>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Collection "Platform" → Auth: Bearer {{user_token}}
+</div>
+<h3 class="font-semibold text-sm mb-3 mt-6">Example: Folder Override for Sub-API</h3>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Collection "Platform" → Auth: Bearer {{user_token}}
 └── Folder "Payments API" → Auth: API Key (X-API-Key: {{pay_key}})
     └── POST /charges (inheritAuth: true → uses X-API-Key)</code></pre>
-            </div>
+</div>
+<div class="mt-4 p-4 rounded-lg border border-cta/20 bg-cta/5">
+<p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Safety note:</strong> If <code class="font-mono text-xs">request.auth</code> is <code class="font-mono text-xs">undefined</code> (e.g. from old saved data), the resolution falls back to <code class="font-mono text-xs">{ type: 'none' }</code>. This prevents errors from corrupt or legacy request data.</p>
+</div>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="auth-overview.html">Auth Overview →</a>
+</div>
+</section>
+      </article>
 
-            <div class="mt-4 p-4 rounded-lg border border-cta/20 bg-cta/5">
-                <p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Safety note:</strong> If <code class="font-mono text-xs">request.auth</code> is <code class="font-mono text-xs">undefined</code> (e.g. from old saved data), the resolution falls back to <code class="font-mono text-xs">{ type: 'none' }</code>. This prevents errors from corrupt or legacy request data.</p>
-            </div>
-        </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next</h3>
-            <div class="flex flex-wrap gap-4">
-                <a href="auth-overview.html" class="text-sm text-cta font-medium hover:underline">Auth Overview →</a>
-            </div>
-        </section>
-    </main>
+  <aside class="vc-rail" data-noprint="1"></aside>
 </div>
 
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
-
-<script>
-const sections=[{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}];
-const currentPage=document.documentElement.getAttribute('data-page');
-function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
-function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
-buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
-</script>
-<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
 </body>
 </html>

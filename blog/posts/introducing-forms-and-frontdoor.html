@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,38 +7,29 @@
   <meta name="description" content="Forms & Frontdoor is live on the Atlassian Marketplace: a visual form builder for Confluence with post-submit automation across Confluence, Jira, Slack, and Teams.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#171717',secondary:'#404040',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+  <script src="../../assets/tailwind-config.js"></script>
   <style>
-    body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#FAFAFA;color:#171717}
-    html.light .bg-surface,html.light .bg-surface\/90{background-color:#FFFFFF!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#525252!important}
-    html.light .text-text{color:#171717!important}
-    html.light .hover\:text-text:hover{color:#171717!important}
-    html.light .border-border{border-color:#E5E5E5!important}
-    html.light .text-cta{color:#16A34A!important}
-    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.08)!important}
-    html.light .border-cta\/30{border-color:rgba(22,163,74,0.25)!important}
-    .prose-vc h2{font-size:1.375rem;font-weight:700;margin:2.25rem 0 0.75rem}
+.prose-vc h2{font-size:1.375rem;font-weight:700;margin:2.25rem 0 0.75rem}
     .prose-vc h3{font-size:1.125rem;font-weight:600;margin:1.75rem 0 0.5rem}
-    .prose-vc p{margin:0.75rem 0;line-height:1.75;color:#94A3B8}
-    html.light .prose-vc p{color:#525252}
-    .prose-vc ul{list-style:disc;margin:0.75rem 0 0.75rem 1.5rem;color:#94A3B8;line-height:1.7}
-    html.light .prose-vc ul{color:#525252}
-    .prose-vc a{color:#22C55E}
-    .prose-vc code{font-family:'JetBrains Mono',monospace;font-size:0.85em;background:rgba(148,163,184,.15);padding:0.1em 0.35em;border-radius:4px}
-    .prose-vc img{border-radius:0.75rem;border:1px solid #334155;margin:1.5rem 0;max-width:100%}
+    .prose-vc p{margin:0.75rem 0;line-height:1.75;color:var(--body)}
+    .prose-vc ul{list-style:disc;margin:0.75rem 0 0.75rem 1.5rem;color:var(--body);line-height:1.7}
+    .prose-vc a{color:var(--green)}
+    .prose-vc code{font-family:'JetBrains Mono',monospace;font-size:0.85em;background:var(--surface);border:1px solid var(--border);padding:0.1em 0.35em;border-radius:4px}
+    .prose-vc img{border-radius:0.75rem;border:1px solid var(--border);margin:1.5rem 0;max-width:100%}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
   <div id="vc-header"></div>
-  <script src="../../assets/header.js"></script>
-
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
   <main class="flex-1 px-4 sm:px-6 lg:px-8 py-16 max-w-3xl mx-auto w-full">
     <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; All posts</a>
     <div class="flex items-center gap-3 text-xs text-muted mt-6 mb-3">
@@ -68,16 +59,6 @@
   <div id="vc-footer"></div>
   <script src="../../assets/footer.js"></script>
 
-  <script>
-  (function(){
-    var t=localStorage.getItem('theme');
-    if(t==='light')document.documentElement.classList.add('light');
-    else if(t==='dark')document.documentElement.classList.remove('light');
-    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-    function upd(){var isLight=document.documentElement.classList.contains('light');document.getElementById('icon-dark').style.display=isLight?'block':'none';document.getElementById('icon-light').style.display=isLight?'none':'block';}
-    upd();
-    document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
-  })();
-  </script>
+  
 </body>
 </html>

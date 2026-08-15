@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,39 +16,27 @@
   <meta name="twitter:description" content="Get help with Confluence Macro Toolkit. Submit feedback, report bugs, or request features.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#F8FAFC;color:#0F172A}
-    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}html.light .backdrop-blur-md{background-color:rgba(255,255,255,0.92)!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#475569!important}
-    html.light .text-text{color:#0F172A!important}
-    html.light .border-border{border-color:#E2E8F0!important}
-    html.light .text-cta{color:#16A34A!important}
-    html.light .border-cta\/30{border-color:rgba(22,163,74,0.3)!important}
-    html.light .bg-cta\/10{background-color:rgba(22,163,74,0.1)!important}
-    html.light .divide-border>*+*{border-color:#E2E8F0!important}
-  </style>
-<script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <script src="../assets/tailwind-config.js"></script>
+  
+<script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../assets/tokens.css">
 </head>
 <body class="min-h-screen">
   <div id="vc-header"></div>
-  <script src="../assets/header.js"></script>
+<script src="../assets/nav.js"></script>
+<script src="../assets/header.js"></script>
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="fixed top-20 left-4 right-4 z-40 bg-surface border border-border rounded-xl p-4 hidden md:hidden">
-    <div class="flex flex-col gap-3 text-sm">
-        <div class="relative">
-          <input type="text" id="doc-search-mobile" placeholder="Search docs..." class="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
-          <div id="search-results-mobile" class="absolute top-full left-0 right-0 mt-2 bg-surface border border-border rounded-xl shadow-xl hidden max-h-60 overflow-y-auto z-50"></div>
-        </div>
-      <a href="index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Home</a>
+<a href="index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Home</a>
       <a href="docs/index.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Docs</a>
       <a href="support.html" class="px-3 py-2 rounded-lg text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">Support</a>
       <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="px-3 py-2 rounded-lg bg-cta text-bg font-semibold text-center cursor-pointer">Try now for free</a>
     </div>
   </div>
-  <main class="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+  <main class=" pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
     <a href="./index.html" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Back to Home</a>
     <h1 class="text-3xl sm:text-4xl font-bold mt-4 mb-8">Customer Support</h1>
 
@@ -112,76 +100,6 @@
   </main>
   <div id="vc-footer"></div>
 <script src="../assets/footer.js"></script>
-<script>
-(function(){
-  var t=localStorage.getItem('theme');
-  if(t==='light')document.documentElement.classList.add('light');
-  else if(t==='dark')document.documentElement.classList.remove('light');
-  else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-  function upd(){
-    var isLight=document.documentElement.classList.contains('light');
-    document.getElementById('icon-dark').style.display=isLight?'block':'none';
-    document.getElementById('icon-light').style.display=isLight?'none':'block';
-  }
-  upd();
-  document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();
-    document.documentElement.classList.toggle('light');
-    localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');
-    upd();
-  });
-})();
-</script>
-<script>
-(function(){
-  var btn=document.getElementById('menu-toggle');
-  var menu=document.getElementById('mobile-menu');
-  var open=document.getElementById('menu-open');
-  var close=document.getElementById('menu-close');
-  if(!btn||!menu)return;
-  btn.addEventListener('click',function(){
-    var shown=!menu.classList.contains('hidden');
-    menu.classList.toggle('hidden');
-    open.style.display=shown?'block':'none';
-    close.style.display=shown?'none':'block';
-  });
-})();
-</script>
-<script>
-(function(){
-  var docs=[
-    {name:"Mermaid Diagram",page:"docs/mermaid.html",tags:"flowchart sequence gantt diagram svg"},
-    {name:"Markdown",page:"docs/markdown.html",tags:"github tables code blocks task lists"},
-    {name:"Poll / Vote",page:"docs/poll.html",tags:"voting survey single multiple thumbs emoji"},
-    {name:"Mood",page:"docs/mood.html",tags:"word cloud emoji reactions team"},
-    {name:"Graph / Chart",page:"docs/graph.html",tags:"bar line pie doughnut area chartjs"},
-    {name:"Typewriter",page:"docs/typewriter.html",tags:"animation typing fade terminal matrix"},
-    {name:"Sticky Note",page:"docs/sticky-note.html",tags:"note color handwritten pin tape"},
-    {name:"Spoiler / Reveal",page:"docs/spoiler.html",tags:"hidden content click reveal pattern"},
-    {name:"Clock",page:"docs/clock.html",tags:"analog digital timezone gadget"},
-    {name:"Stopwatch",page:"docs/stopwatch.html",tags:"timer ring classic flip interactive"},
-    {name:"Swagger / OpenAPI",page:"docs/swagger.html",tags:"api documentation json spec pro"},
-    {name:"Draw.io",page:"docs/drawio.html",tags:"diagram flowchart architecture pro"},
-    {name:"PlantUML",page:"docs/plantuml.html",tags:"uml sequence class activity pro"},
-    {name:"Wireframe",page:"docs/excalidraw.html",tags:"excalidraw sketch drawing canvas pro"},
-    {name:"Carousel",page:"docs/carousel.html",tags:"images gallery slides navigation pro"}
-  ];
-  function wire(inputId,resultsId){
-    var input=document.getElementById(inputId);
-    var results=document.getElementById(resultsId);
-    if(!input||!results)return;
-    input.addEventListener('input',function(){
-      var q=this.value.toLowerCase().trim();
-      if(!q){results.classList.add('hidden');results.innerHTML='';return;}
-      var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});
-      results.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';
-      results.classList.remove('hidden');
-    });
-    input.addEventListener('keydown',function(e){if(e.key==='Escape'){results.classList.add('hidden');this.blur();}});
-    document.addEventListener('click',function(e){if(!e.target.closest('#'+inputId)&&!e.target.closest('#'+resultsId))results.classList.add('hidden');});
-  }
-  wire('doc-search','search-results');
-  wire('doc-search-mobile','search-results-mobile');
-})();
-</script>
+
 </body>
 </html>

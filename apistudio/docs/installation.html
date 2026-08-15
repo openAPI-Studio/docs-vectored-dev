@@ -1,220 +1,183 @@
 <!DOCTYPE html>
-<html lang="en" data-page="installation" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Installation — API Studio Docs</title>
-    <meta name="description" content="Install API Studio from VS Code Marketplace or Open VSX. Supports VS Code, Cursor, Windsurf, Kiro, and all VS Code-based editors.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body{font-family:'IBM Plex Sans',sans-serif}
-        code,.font-mono{font-family:'JetBrains Mono',monospace}
-        .sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}
-        ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installation — API Studio Docs</title>
+  <meta name="description" content="Install API Studio from VS Code Marketplace or Open VSX. Supports VS Code, Cursor, Windsurf, Kiro, and all VS Code-based editors.">
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
+<body>
 
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4">
-    <a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a>
-    <div class="hidden md:flex items-center gap-4 ml-4">
-        <a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a>
-        <a href="./" class="text-sm text-cta font-medium">Docs</a>
-    </div>
-    <div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block">
-        <input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50">
-    </div>
-    <div class="flex items-center gap-3 ml-auto md:ml-0">
-        <span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span>
-        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted">
-            <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-            <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        </button>
-        <a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a>
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-    </div>
-</nav>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20">
-    <input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a>
-</aside>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-<div class="flex pt-24">
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border">
-        <nav id="sidebar-nav" class="space-y-1 text-sm"></nav>
-    </aside>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Installation</h1>
+      <p class="vc-lede">API Studio is available on both the VS Code Marketplace and Open VSX Registry. It works with all major VS Code-based editors.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
+      <article class="vc-doc">
+<!-- Right TOC (desktop only) -->
 
-        <!-- Right TOC (desktop only) -->
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#supported-editors" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Supported Editors</a>
-                <a href="#where-to-get-it" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Where to Get It</a>
-                <a href="#step-by-step" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Step-by-Step</a>
-                <a href="#cli-install" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">CLI (npm)</a>
-                <a href="#verify" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Verify Installation</a>
-                <a href="#requirements" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">System Requirements</a>
-            </nav>
-        </aside>
-        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">GETTING STARTED</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">Installation</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">API Studio is available on both the VS Code Marketplace and Open VSX Registry. It works with all major VS Code-based editors.</p>
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">GETTING STARTED</p>
 
-        <!-- Supported Editors -->
-        <section class="mb-12 scroll-mt-28" id="supported-editors">
-            <h2 class="text-xl font-semibold mb-5">Supported Editors</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-5">API Studio supports all VS Code-based editors and IDEs. Install it the same way you'd install any extension in your editor.</p>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-                <div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
-                    <img src="../assets/vscode_icon.png" alt="VS Code" class="w-10 h-10 object-contain">
-                    <span class="text-xs font-medium text-center">VS Code</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
-                    <img src="../assets/cursor_icon.png" alt="Cursor" class="w-10 h-10 object-contain">
-                    <span class="text-xs font-medium text-center">Cursor</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
-                    <img src="../assets/windsurf-icon.webp" alt="Windsurf" class="w-10 h-10 object-contain">
-                    <span class="text-xs font-medium text-center">Windsurf</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
-                    <img src="../assets/kiro_icon.svg" alt="Kiro" class="w-10 h-10 object-contain">
-                    <span class="text-xs font-medium text-center">Kiro</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
-                    <img src="../assets/antigravity-icon__full-color.png" alt="Antigravity" class="w-10 h-10 object-contain">
-                    <span class="text-xs font-medium text-center">Antigravity</span>
-                </div>
-            </div>
-            <p class="text-xs text-gray-500 dark:text-muted mt-3">Any editor built on the VS Code extension platform is supported — including VSCodium, Theia, and Gitpod.</p>
-        </section>
-
-        <!-- Marketplace links -->
-        <section class="mb-12 scroll-mt-28" id="where-to-get-it">
-            <h2 class="text-xl font-semibold mb-5">Where to Get It</h2>
-            <div class="grid sm:grid-cols-2 gap-4">
-                <a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface hover:border-cta/50 transition group">
-                    <div class="w-10 h-10 rounded-lg bg-[#007ACC]/10 flex items-center justify-center shrink-0">
-                        <svg class="w-6 h-6" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M29.01,5.03,23.244,2.254a1.742,1.742,0,0,0-1.989.338L2.38,19.8A1.166,1.166,0,0,0,2.3,21.447c.025.027.05.053.077.077l1.541,1.4a1.165,1.165,0,0,0,1.489.066L28.142,5.75A1.158,1.158,0,0,1,30,6.672V6.605A1.748,1.748,0,0,0,29.01,5.03Z" fill="#0065a9"/><path d="M29.01,26.97l-5.766,2.777a1.745,1.745,0,0,1-1.989-.338L2.38,12.2A1.166,1.166,0,0,1,2.3,10.553c.025-.027.05-.053.077-.077l1.541-1.4A1.165,1.165,0,0,1,5.41,9.01L28.142,26.25A1.158,1.158,0,0,0,30,25.328V25.4A1.749,1.749,0,0,1,29.01,26.97Z" fill="#007acc"/><path d="M23.244,29.747a1.745,1.745,0,0,1-1.989-.338A1.025,1.025,0,0,0,23,28.684V3.316a1.024,1.024,0,0,0-1.749-.724,1.744,1.744,0,0,1,1.989-.339l5.765,2.772A1.748,1.748,0,0,1,30,6.6V25.4a1.748,1.748,0,0,1-.991,1.576Z" fill="#1f9cf0"/></svg>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-sm group-hover:text-cta">VS Code Marketplace</h3>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-1">Official Microsoft marketplace. Works with VS Code, Cursor, Kiro, and Windsurf.</p>
-                        <span class="text-xs text-cta mt-2 inline-block">marketplace.visualstudio.com →</span>
-                    </div>
-                </a>
-                <a href="https://open-vsx.org/extension/open-post/open-post" target="_blank" class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface hover:border-cta/50 transition group">
-                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0">
-                        <svg viewBox="0 0 100 131" class="w-6 h-6"><path d="M30 44.2L52.6 5H7.3zM4.6 88.5h45.3L27.2 49.4zm51 0l22.6 39.2 22.6-39.2z" fill="#c160ef"/><path d="M52.6 5L30 44.2h45.2zM27.2 49.4l22.7 39.1 22.6-39.1zm51 0L55.6 88.5h45.2z" fill="#a60ee5"/></svg>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-sm group-hover:text-cta">Open VSX Registry</h3>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-1">Open-source registry. Works with VSCodium, Gitpod, Theia, and other open-source editors.</p>
-                        <span class="text-xs text-cta mt-2 inline-block">open-vsx.org →</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Step by step -->
-        <section class="mb-12 scroll-mt-28" id="step-by-step">
-            <h2 class="text-xl font-semibold mb-5">Step-by-Step Installation</h2>
-
-            <!-- Method 1: Marketplace -->
-            <div class="mb-8">
-                <h3 class="font-semibold mb-4 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta">1</span>
+<!-- Supported Editors -->
+<section class="mb-12 scroll-mt-28" id="supported-editors">
+<h2 class="text-xl font-semibold mb-5">Supported Editors</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-5">API Studio supports all VS Code-based editors and IDEs. Install it the same way you'd install any extension in your editor.</p>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+<div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
+<img alt="VS Code" class="w-10 h-10 object-contain" src="../assets/vscode_icon.png"/>
+<span class="text-xs font-medium text-center">VS Code</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
+<img alt="Cursor" class="w-10 h-10 object-contain" src="../assets/cursor_icon.png"/>
+<span class="text-xs font-medium text-center">Cursor</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
+<img alt="Windsurf" class="w-10 h-10 object-contain" src="../assets/windsurf-icon.webp"/>
+<span class="text-xs font-medium text-center">Windsurf</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
+<img alt="Kiro" class="w-10 h-10 object-contain" src="../assets/kiro_icon.svg"/>
+<span class="text-xs font-medium text-center">Kiro</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface">
+<img alt="Antigravity" class="w-10 h-10 object-contain" src="../assets/antigravity-icon__full-color.png"/>
+<span class="text-xs font-medium text-center">Antigravity</span>
+</div>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted mt-3">Any editor built on the VS Code extension platform is supported — including VSCodium, Theia, and Gitpod.</p>
+</section>
+<!-- Marketplace links -->
+<section class="mb-12 scroll-mt-28" id="where-to-get-it">
+<h2 class="text-xl font-semibold mb-5">Where to Get It</h2>
+<div class="grid sm:grid-cols-2 gap-4">
+<a class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface hover:border-cta/50 transition group" href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank">
+<div class="w-10 h-10 rounded-lg bg-[#007ACC]/10 flex items-center justify-center shrink-0">
+<svg class="w-6 h-6" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M29.01,5.03,23.244,2.254a1.742,1.742,0,0,0-1.989.338L2.38,19.8A1.166,1.166,0,0,0,2.3,21.447c.025.027.05.053.077.077l1.541,1.4a1.165,1.165,0,0,0,1.489.066L28.142,5.75A1.158,1.158,0,0,1,30,6.672V6.605A1.748,1.748,0,0,0,29.01,5.03Z" fill="#0065a9"></path><path d="M29.01,26.97l-5.766,2.777a1.745,1.745,0,0,1-1.989-.338L2.38,12.2A1.166,1.166,0,0,1,2.3,10.553c.025-.027.05-.053.077-.077l1.541-1.4A1.165,1.165,0,0,1,5.41,9.01L28.142,26.25A1.158,1.158,0,0,0,30,25.328V25.4A1.749,1.749,0,0,1,29.01,26.97Z" fill="#007acc"></path><path d="M23.244,29.747a1.745,1.745,0,0,1-1.989-.338A1.025,1.025,0,0,0,23,28.684V3.316a1.024,1.024,0,0,0-1.749-.724,1.744,1.744,0,0,1,1.989-.339l5.765,2.772A1.748,1.748,0,0,1,30,6.6V25.4a1.748,1.748,0,0,1-.991,1.576Z" fill="#1f9cf0"></path></svg>
+</div>
+<div>
+<h3 class="font-semibold text-sm group-hover:text-cta">VS Code Marketplace</h3>
+<p class="text-xs text-gray-500 dark:text-muted mt-1">Official Microsoft marketplace. Works with VS Code, Cursor, Kiro, and Windsurf.</p>
+<span class="text-xs text-cta mt-2 inline-block">marketplace.visualstudio.com →</span>
+</div>
+</a>
+<a class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 dark:border-border bg-gray-50 dark:bg-surface hover:border-cta/50 transition group" href="https://open-vsx.org/extension/open-post/open-post" target="_blank">
+<div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0">
+<svg class="w-6 h-6" viewBox="0 0 100 131"><path d="M30 44.2L52.6 5H7.3zM4.6 88.5h45.3L27.2 49.4zm51 0l22.6 39.2 22.6-39.2z" fill="#c160ef"></path><path d="M52.6 5L30 44.2h45.2zM27.2 49.4l22.7 39.1 22.6-39.1zm51 0L55.6 88.5h45.2z" fill="#a60ee5"></path></svg>
+</div>
+<div>
+<h3 class="font-semibold text-sm group-hover:text-cta">Open VSX Registry</h3>
+<p class="text-xs text-gray-500 dark:text-muted mt-1">Open-source registry. Works with VSCodium, Gitpod, Theia, and other open-source editors.</p>
+<span class="text-xs text-cta mt-2 inline-block">open-vsx.org →</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Step by step -->
+<section class="mb-12 scroll-mt-28" id="step-by-step">
+<h2 class="text-xl font-semibold mb-5">Step-by-Step Installation</h2>
+<!-- Method 1: Marketplace -->
+<div class="mb-8">
+<h3 class="font-semibold mb-4 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta">1</span>
                     Install from Extensions Panel
                 </h3>
-                <ol class="space-y-3 text-sm text-gray-600 dark:text-muted ml-8">
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">a.</span>
-                        <span>Open the Extensions panel — click the Extensions icon in the Activity Bar or press <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Ctrl+Shift+X</kbd> (Windows/Linux) or <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Cmd+Shift+X</kbd> (macOS)</span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">b.</span>
-                        <span>Search for <strong class="text-gray-900 dark:text-text">"API Studio"</strong></span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">c.</span>
-                        <span>Click <strong class="text-gray-900 dark:text-text">Install</strong> on the result published by <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">open-post</code></span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">d.</span>
-                        <span>Once installed, click the ⚡ icon in the Activity Bar or press <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Ctrl+Alt+P</kbd> / <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Cmd+Alt+P</kbd> to open API Studio</span>
-                    </li>
-                </ol>
-                <div class="mt-4 ml-8">
-                    <img src="../assets/Marketplace search and installation.png" alt="VS Code marketplace showing API Studio search results and install button" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm">
-                    <p class="text-xs text-gray-400 dark:text-muted mt-2">Search for "API Studio" in the Extensions panel and click Install</p>
-                </div>
-            </div>
-
-            <!-- Method 2: Command palette -->
-            <div class="mb-8">
-                <h3 class="font-semibold mb-4 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta">2</span>
+<ol class="space-y-3 text-sm text-gray-600 dark:text-muted ml-8">
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">a.</span>
+<span>Open the Extensions panel — click the Extensions icon in the Activity Bar or press <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Ctrl+Shift+X</kbd> (Windows/Linux) or <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Cmd+Shift+X</kbd> (macOS)</span>
+</li>
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">b.</span>
+<span>Search for <strong class="text-gray-900 dark:text-text">"API Studio"</strong></span>
+</li>
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">c.</span>
+<span>Click <strong class="text-gray-900 dark:text-text">Install</strong> on the result published by <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">open-post</code></span>
+</li>
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">d.</span>
+<span>Once installed, click the ⚡ icon in the Activity Bar or press <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Ctrl+Alt+P</kbd> / <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Cmd+Alt+P</kbd> to open API Studio</span>
+</li>
+</ol>
+<div class="mt-4 ml-8">
+<img alt="VS Code marketplace showing API Studio search results and install button" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm" src="../assets/Marketplace search and installation.png"/>
+<p class="text-xs text-gray-400 dark:text-muted mt-2">Search for "API Studio" in the Extensions panel and click Install</p>
+</div>
+</div>
+<!-- Method 2: Command palette -->
+<div class="mb-8">
+<h3 class="font-semibold mb-4 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta">2</span>
                     Install via Command Palette
                 </h3>
-                <ol class="space-y-3 text-sm text-gray-600 dark:text-muted ml-8">
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">a.</span>
-                        <span>Open the Command Palette with <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Ctrl+Shift+P</kbd> / <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Cmd+Shift+P</kbd></span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">b.</span>
-                        <span>Type <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1.5 py-0.5">ext install open-post.open-post</code> and press Enter</span>
-                    </li>
-                </ol>
-            </div>
-
-            <!-- Method 3: CLI -->
-            <div class="mb-8">
-                <h3 class="font-semibold mb-4 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta">3</span>
+<ol class="space-y-3 text-sm text-gray-600 dark:text-muted ml-8">
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">a.</span>
+<span>Open the Command Palette with <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Ctrl+Shift+P</kbd> / <kbd class="bg-gray-100 dark:bg-surface border border-gray-200 dark:border-border rounded px-1.5 py-0.5 text-xs font-mono">Cmd+Shift+P</kbd></span>
+</li>
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">b.</span>
+<span>Type <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1.5 py-0.5">ext install open-post.open-post</code> and press Enter</span>
+</li>
+</ol>
+</div>
+<!-- Method 3: CLI -->
+<div class="mb-8">
+<h3 class="font-semibold mb-4 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta">3</span>
                     Install via Terminal
                 </h3>
-                <pre class="bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border rounded-xl p-4 text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto ml-8"><code>code --install-extension open-post.open-post</code></pre>
-                <p class="text-xs text-gray-500 dark:text-muted mt-2 ml-8">For Cursor, use <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">cursor --install-extension open-post.open-post</code></p>
-            </div>
-
-            <!-- Method 4: VSIX -->
-            <div class="mb-8">
-                <h3 class="font-semibold mb-4 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta">4</span>
+<pre class="bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border rounded-xl p-4 text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto ml-8"><code>code --install-extension open-post.open-post</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2 ml-8">For Cursor, use <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">cursor --install-extension open-post.open-post</code></p>
+</div>
+<!-- Method 4: VSIX -->
+<div class="mb-8">
+<h3 class="font-semibold mb-4 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta">4</span>
                     Install from VSIX (Offline)
                 </h3>
-                <ol class="space-y-3 text-sm text-gray-600 dark:text-muted ml-8">
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">a.</span>
-                        <span>Download the <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">.vsix</code> file from the <a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="text-cta hover:underline">marketplace page</a> or <a href="https://github.com/openAPI-Studio/releases" target="_blank" class="text-cta hover:underline">GitHub releases</a></span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">b.</span>
-                        <span>Open Command Palette → <strong class="text-gray-900 dark:text-text">Extensions: Install from VSIX...</strong></span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-cta font-semibold shrink-0">c.</span>
-                        <span>Select the downloaded <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">.vsix</code> file</span>
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- CLI installation -->
-        <section class="mb-12 scroll-mt-28" id="cli-install">
-            <h2 class="text-xl font-semibold mb-5">CLI Installation (npm)</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1.5 py-0.5">openpost</code> CLI lets you run collections from CI/CD pipelines. It reads the same <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1.5 py-0.5">.openpost/</code> files as the VS Code extension.</p>
-            <pre class="bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border rounded-xl p-5 text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code># Install globally (recommended)
+<ol class="space-y-3 text-sm text-gray-600 dark:text-muted ml-8">
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">a.</span>
+<span>Download the <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">.vsix</code> file from the <a class="text-cta hover:underline" href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank">marketplace page</a> or <a class="text-cta hover:underline" href="https://github.com/openAPI-Studio/releases" target="_blank">GitHub releases</a></span>
+</li>
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">b.</span>
+<span>Open Command Palette → <strong class="text-gray-900 dark:text-text">Extensions: Install from VSIX...</strong></span>
+</li>
+<li class="flex gap-3">
+<span class="text-cta font-semibold shrink-0">c.</span>
+<span>Select the downloaded <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">.vsix</code> file</span>
+</li>
+</ol>
+</div>
+</section>
+<!-- CLI installation -->
+<section class="mb-12 scroll-mt-28" id="cli-install">
+<h2 class="text-xl font-semibold mb-5">CLI Installation (npm)</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1.5 py-0.5">openpost</code> CLI lets you run collections from CI/CD pipelines. It reads the same <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1.5 py-0.5">.openpost/</code> files as the VS Code extension.</p>
+<pre class="bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border rounded-xl p-5 text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code># Install globally (recommended)
 npm install -g openpost
 
 # Verify installation
@@ -222,113 +185,68 @@ openpost --version
 
 # Or run without installing
 npx openpost --help</code></pre>
-            <p class="text-xs text-gray-500 dark:text-muted mt-3">Requires Node.js 18 or later.</p>
-        </section>
+<p class="text-xs text-gray-500 dark:text-muted mt-3">Requires Node.js 18 or later.</p>
+</section>
+<!-- Verify installation -->
+<section class="mb-12 scroll-mt-28" id="verify">
+<h2 class="text-xl font-semibold mb-5">Verify Installation</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">After installing, verify API Studio is working:</p>
+<ol class="space-y-3 text-sm text-gray-600 dark:text-muted">
+<li class="flex gap-3">
+<span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">1</span>
+<span>Look for the ⚡ <strong class="text-gray-900 dark:text-text">API Studio</strong> icon in the Activity Bar (left sidebar)</span>
+</li>
+<li class="flex gap-3">
+<span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">2</span>
+<span>Click it — the webview panel opens with a new request tab</span>
+</li>
+<li class="flex gap-3">
+<span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">3</span>
+<span>Enter <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1.5 py-0.5">https://jsonplaceholder.typicode.com/posts/1</code> and click <strong class="text-gray-900 dark:text-text">Send</strong></span>
+</li>
+<li class="flex gap-3">
+<span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">4</span>
+<span>You should see a <span class="text-cta font-medium">200 OK</span> response with JSON body</span>
+</li>
+</ol>
+<div class="mt-4">
+<img alt="API Studio new request screen after first launch" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm" src="../assets/new request screen.png"/>
+<p class="text-xs text-gray-400 dark:text-muted mt-2">API Studio panel open with a new request tab ready to use</p>
+</div>
+</section>
+<!-- Requirements -->
+<section class="mb-12 scroll-mt-28" id="requirements">
+<h2 class="text-xl font-semibold mb-5">System Requirements</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-3 font-semibold border-b border-gray-200 dark:border-border">Component</th><th class="text-left px-4 py-3 font-semibold border-b border-gray-200 dark:border-border">Minimum Version</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-3">VS Code / Cursor / Windsurf / Kiro</td><td class="px-4 py-3 text-gray-600 dark:text-muted">1.85.0</td></tr>
+<tr><td class="px-4 py-3">Node.js (CLI only)</td><td class="px-4 py-3 text-gray-600 dark:text-muted">18.0</td></tr>
+<tr><td class="px-4 py-3">Operating System</td><td class="px-4 py-3 text-gray-600 dark:text-muted">Windows, macOS, or Linux (any architecture)</td></tr>
+<tr><td class="px-4 py-3">Network</td><td class="px-4 py-3 text-gray-600 dark:text-muted">Not required — fully offline after install</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next: Quick Start</h3>
+<p class="text-sm text-gray-600 dark:text-muted mb-3">Installed? Send your first request in under 60 seconds.</p>
+<a class="text-sm text-cta font-medium hover:underline" href="quick-start.html">Quick Start →</a>
+</section>
+      </article>
 
-        <!-- Verify installation -->
-        <section class="mb-12 scroll-mt-28" id="verify">
-            <h2 class="text-xl font-semibold mb-5">Verify Installation</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">After installing, verify API Studio is working:</p>
-            <ol class="space-y-3 text-sm text-gray-600 dark:text-muted">
-                <li class="flex gap-3">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">1</span>
-                    <span>Look for the ⚡ <strong class="text-gray-900 dark:text-text">API Studio</strong> icon in the Activity Bar (left sidebar)</span>
-                </li>
-                <li class="flex gap-3">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">2</span>
-                    <span>Click it — the webview panel opens with a new request tab</span>
-                </li>
-                <li class="flex gap-3">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">3</span>
-                    <span>Enter <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1.5 py-0.5">https://jsonplaceholder.typicode.com/posts/1</code> and click <strong class="text-gray-900 dark:text-text">Send</strong></span>
-                </li>
-                <li class="flex gap-3">
-                    <span class="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-xs font-mono text-cta shrink-0">4</span>
-                    <span>You should see a <span class="text-cta font-medium">200 OK</span> response with JSON body</span>
-                </li>
-            </ol>
-            <div class="mt-4">
-                <img src="../assets/new request screen.png" alt="API Studio new request screen after first launch" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm">
-                <p class="text-xs text-gray-400 dark:text-muted mt-2">API Studio panel open with a new request tab ready to use</p>
-            </div>
-        </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-        <!-- Requirements -->
-        <section class="mb-12 scroll-mt-28" id="requirements">
-            <h2 class="text-xl font-semibold mb-5">System Requirements</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-3 font-semibold border-b border-gray-200 dark:border-border">Component</th><th class="text-left px-4 py-3 font-semibold border-b border-gray-200 dark:border-border">Minimum Version</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-3">VS Code / Cursor / Windsurf / Kiro</td><td class="px-4 py-3 text-gray-600 dark:text-muted">1.85.0</td></tr>
-                        <tr><td class="px-4 py-3">Node.js (CLI only)</td><td class="px-4 py-3 text-gray-600 dark:text-muted">18.0</td></tr>
-                        <tr><td class="px-4 py-3">Operating System</td><td class="px-4 py-3 text-gray-600 dark:text-muted">Windows, macOS, or Linux (any architecture)</td></tr>
-                        <tr><td class="px-4 py-3">Network</td><td class="px-4 py-3 text-gray-600 dark:text-muted">Not required — fully offline after install</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next: Quick Start</h3>
-            <p class="text-sm text-gray-600 dark:text-muted mb-3">Installed? Send your first request in under 60 seconds.</p>
-            <a href="quick-start.html" class="text-sm text-cta font-medium hover:underline">Quick Start →</a>
-        </section>
-
-    </main>
+  <aside class="vc-rail" data-noprint="1"></aside>
 </div>
 
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
-
-<script>
-const sections=[
-{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},
-{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},
-{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},
-{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},
-{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},
-{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},
-{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},
-{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},
-{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},
-{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},
-{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},
-{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},
-{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}
-];
-const currentPage=document.documentElement.getAttribute('data-page');
-function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
-function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
-buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-
-// TOC scroll spy
-(function(){
-const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');
-const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));
-function onScroll(){
-    let active='';
-    for(const id of sectionIds){
-        const el=document.getElementById(id);
-        if(el&&el.getBoundingClientRect().top<=140)active=id;
-    }
-    tocLinks.forEach(l=>{
-        const isCurrent=l.getAttribute('href')==='#'+active;
-        l.classList.toggle('!text-cta',isCurrent);
-        l.classList.toggle('!border-cta',isCurrent);
-    });
-}
-window.addEventListener('scroll',onScroll,{passive:true});
-onScroll();
-})();
-</script>
-<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
 </body>
 </html>

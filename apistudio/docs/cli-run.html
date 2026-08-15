@@ -1,130 +1,126 @@
 <!DOCTYPE html>
-<html lang="en" data-page="cli-run" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Running Collections — API Studio Docs</title>
-    <meta name="description" content="Run collections from the CLI — sequential or parallel execution, filtering, output options, and CI/CD integration.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>body{font-family:'IBM Plex Sans',sans-serif}code,.font-mono{font-family:'JetBrains Mono',monospace}.sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running Collections — API Studio Docs</title>
+  <meta name="description" content="Run collections from the CLI — sequential or parallel execution, filtering, output options, and CI/CD integration.">
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4"><a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a><div class="hidden md:flex items-center gap-4 ml-4"><a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a><a href="./" class="text-sm text-cta font-medium">Docs</a><a href="../support.html" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Support</a></div><div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block"><input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50"></div><div class="flex items-center gap-3 ml-auto md:ml-0"><span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span><button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted"><svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav>
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20"><input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a></aside>
+<body>
 
-<div class="flex pt-24">
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#basic" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Basic Usage</a>
-                <a href="#sequential" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Sequential Mode</a>
-                <a href="#parallel" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Parallel Mode</a>
-                <a href="#filtering" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Filtering</a>
-                <a href="#output" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Output</a>
-                <a href="#cicd" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">CI/CD Examples</a>
-            </nav>
-        </aside>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">CLI</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">Running Collections</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">Execute collection requests from the command line — sequential or parallel, with filtering, environment selection, and CI/CD-ready output.</p>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Running Collections</h1>
+      <p class="vc-lede">Execute collection requests from the command line — sequential or parallel, with filtering, environment selection, and CI/CD-ready output.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-        <!-- Basic Usage -->
-        <section class="mb-12 scroll-mt-28" id="basic">
-            <h2 class="text-xl font-semibold mb-4">Basic Usage</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Run all requests in a collection with a single command:</p>
-            <div class="space-y-3 mb-5">
-                <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                    <pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "My API"</code></pre>
-                    <p class="text-xs text-gray-500 dark:text-muted mt-2">Runs all requests in the collection named "My API"</p>
-                </div>
-                <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                    <pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "My API" --env production</code></pre>
-                    <p class="text-xs text-gray-500 dark:text-muted mt-2">Run with a specific environment for variable resolution</p>
-                </div>
-            </div>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Collection matched by name (case-sensitive)</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Full pipeline per request: auth → pre-script → cookies → HTTP → post-script → tests → history</span></div>
-            </div>
-        </section>
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">CLI</p>
 
-        <!-- Sequential Mode -->
-        <section class="mb-12 scroll-mt-28" id="sequential">
-            <h2 class="text-xl font-semibold mb-4">Sequential Mode <span class="text-xs font-normal text-gray-400 dark:text-muted">(default)</span></h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Requests execute one after another in array order, sharing environment context throughout the run.</p>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Shared environment context</strong> — setVariables from request N are available to request N+1</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Enables chaining</strong> — login → extract token → use token in subsequent requests</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Scripts run in order</strong> — pre-request and test scripts execute sequentially</span></div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "My API" --env staging --verbose</code></pre>
-            </div>
-        </section>
-
-        <!-- Parallel Mode -->
-        <section class="mb-12 scroll-mt-28" id="parallel">
-            <h2 class="text-xl font-semibold mb-4">Parallel Mode</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Run requests concurrently for faster execution of independent tests:</p>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
-                <pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "My API" --mode parallel --concurrency 10</code></pre>
-            </div>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Concurrent execution</strong> — default concurrency: 5</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Separate environment copies</strong> — each request gets its own copy (no chaining)</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900 dark:text-text">Faster for independent requests</strong> — ideal for smoke tests and health checks</span></div>
-            </div>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "Smoke Tests" --mode parallel --concurrency 20</code></pre>
-            </div>
-        </section>
-
-        <!-- Filtering -->
-        <section class="mb-12 scroll-mt-28" id="filtering">
-            <h2 class="text-xl font-semibold mb-4">Filtering Requests</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--filter &lt;glob&gt;</code> to run a subset of requests from a collection:</p>
-            <div class="overflow-x-auto mb-5">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Filter</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Matches</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--filter "GET*"</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">All GET requests</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--filter "*users*"</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Requests with "users" in the name</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--filter "Auth*"</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Requests starting with "Auth"</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-xs text-gray-500 dark:text-muted">Useful for running just login flows or specific endpoints without executing the entire collection.</p>
-        </section>
-
-        <!-- Output -->
-        <section class="mb-12 scroll-mt-28" id="output">
-            <h2 class="text-xl font-semibold mb-4">Output & Reporting</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Control how results are displayed and saved:</p>
-            <div class="overflow-x-auto mb-5">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Flag</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">(default)</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Pretty terminal output with ✓/✗ per request</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Machine-readable JSON output</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--output-file results.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Save full results to file</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--verbose</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Show headers, body, timing per request</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--quiet</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Minimal output (just pass/fail summary)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-sm text-gray-600 dark:text-muted mb-3">Output includes: method, URL, status, time, test results, and errors.</p>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
-                <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Sample terminal output:</p>
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>⚡ Running My API (12 requests, sequential)
+<!-- Basic Usage -->
+<section class="mb-12 scroll-mt-28" id="basic">
+<h2 class="text-xl font-semibold mb-4">Basic Usage</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Run all requests in a collection with a single command:</p>
+<div class="space-y-3 mb-5">
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "My API"</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">Runs all requests in the collection named "My API"</p>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "My API" --env production</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">Run with a specific environment for variable resolution</p>
+</div>
+</div>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Collection matched by name (case-sensitive)</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Full pipeline per request: auth → pre-script → cookies → HTTP → post-script → tests → history</span></div>
+</div>
+</section>
+<!-- Sequential Mode -->
+<section class="mb-12 scroll-mt-28" id="sequential">
+<h2 class="text-xl font-semibold mb-4">Sequential Mode <span class="text-xs font-normal text-gray-400 dark:text-muted">(default)</span></h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Requests execute one after another in array order, sharing environment context throughout the run.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Shared environment context</strong> — setVariables from request N are available to request N+1</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Enables chaining</strong> — login → extract token → use token in subsequent requests</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Scripts run in order</strong> — pre-request and test scripts execute sequentially</span></div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "My API" --env staging --verbose</code></pre>
+</div>
+</section>
+<!-- Parallel Mode -->
+<section class="mb-12 scroll-mt-28" id="parallel">
+<h2 class="text-xl font-semibold mb-4">Parallel Mode</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Run requests concurrently for faster execution of independent tests:</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "My API" --mode parallel --concurrency 10</code></pre>
+</div>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Concurrent execution</strong> — default concurrency: 5</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Separate environment copies</strong> — each request gets its own copy (no chaining)</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Faster for independent requests</strong> — ideal for smoke tests and health checks</span></div>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "Smoke Tests" --mode parallel --concurrency 20</code></pre>
+</div>
+</section>
+<!-- Filtering -->
+<section class="mb-12 scroll-mt-28" id="filtering">
+<h2 class="text-xl font-semibold mb-4">Filtering Requests</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--filter &lt;glob&gt;</code> to run a subset of requests from a collection:</p>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Filter</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Matches</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--filter "GET*"</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">All GET requests</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--filter "*users*"</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Requests with "users" in the name</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--filter "Auth*"</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Requests starting with "Auth"</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">Useful for running just login flows or specific endpoints without executing the entire collection.</p>
+</section>
+<!-- Output -->
+<section class="mb-12 scroll-mt-28" id="output">
+<h2 class="text-xl font-semibold mb-4">Output &amp; Reporting</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Control how results are displayed and saved:</p>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Flag</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">(default)</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Pretty terminal output with ✓/✗ per request</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Machine-readable JSON output</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--output-file results.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Save full results to file</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--verbose</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Show headers, body, timing per request</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--quiet</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Minimal output (just pass/fail summary)</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-3">Output includes: method, URL, status, time, test results, and errors.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">Sample terminal output:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>⚡ Running My API (12 requests, sequential)
   Environment: production
 
   ✓ GET  /users         200  45ms
@@ -135,17 +131,15 @@
 
   ──────────────────────
   11 passed  1 failed  1.2s total</code></pre>
-            </div>
-        </section>
-
-        <!-- CI/CD Examples -->
-        <section class="mb-12 scroll-mt-28" id="cicd">
-            <h2 class="text-xl font-semibold mb-4">CI/CD Examples</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Integrate collection runs into your CI/CD pipelines. Exit code <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">0</code> = all pass, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">1</code> = one or more failures.</p>
-
-            <h3 class="font-semibold text-sm mb-2">GitHub Actions</h3>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>- name: Install API Studio CLI
+</div>
+</section>
+<!-- CI/CD Examples -->
+<section class="mb-12 scroll-mt-28" id="cicd">
+<h2 class="text-xl font-semibold mb-4">CI/CD Examples</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Integrate collection runs into your CI/CD pipelines. Exit code <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">0</code> = all pass, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">1</code> = one or more failures.</p>
+<h3 class="font-semibold text-sm mb-2">GitHub Actions</h3>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>- name: Install API Studio CLI
   run: npm install -g openpost
 
 - name: Run API tests
@@ -156,11 +150,10 @@
   with:
     name: api-test-results
     path: results.json</code></pre>
-            </div>
-
-            <h3 class="font-semibold text-sm mb-2">GitLab CI</h3>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>api-tests:
+</div>
+<h3 class="font-semibold text-sm mb-2">GitLab CI</h3>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>api-tests:
   image: node:20
   script:
     - npm install -g openpost
@@ -168,44 +161,34 @@
   artifacts:
     paths:
       - results.json</code></pre>
-            </div>
+</div>
+<h3 class="font-semibold text-sm mb-2">Tips</h3>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--output-file</code> for artifact storage and test reporting</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--retry 2</code> for flaky tests that may need retries</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Exit code <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">0</code> = all passed, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">1</code> = one or more failures</span></div>
+</div>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="cli-import-export.html">CLI Import &amp; Export →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="cli-vault.html">Vault Commands →</a>
+</div>
+</section>
+      </article>
 
-            <h3 class="font-semibold text-sm mb-2">Tips</h3>
-            <div class="space-y-2 text-sm text-gray-600 dark:text-muted">
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--output-file</code> for artifact storage and test reporting</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Use <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--retry 2</code> for flaky tests that may need retries</span></div>
-                <div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Exit code <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">0</code> = all passed, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">1</code> = one or more failures</span></div>
-            </div>
-        </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next</h3>
-            <div class="flex flex-wrap gap-4">
-                <a href="cli-import-export.html" class="text-sm text-cta font-medium hover:underline">CLI Import & Export →</a>
-                <a href="cli-vault.html" class="text-sm text-cta font-medium hover:underline">Vault Commands →</a>
-            </div>
-        </section>
-    </main>
+  <aside class="vc-rail" data-noprint="1"></aside>
 </div>
 
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
-
-<script>
-const sections=[{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}];
-const currentPage=document.documentElement.getAttribute('data-page');
-function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
-function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
-buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
-</script>
-<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
 </body>
 </html>

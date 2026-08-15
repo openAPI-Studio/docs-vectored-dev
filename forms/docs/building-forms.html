@@ -1,118 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Building Forms — Forms & Frontdoor Docs</title>
+  <title>Building Forms — Forms &amp; Frontdoor Docs</title>
   <meta name="description" content="Using the drag-and-drop canvas builder">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#F8FAFC;color:#0F172A}
-    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#475569!important}
-    html.light .text-text{color:#0F172A!important}
-    html.light .hover\:text-text:hover{color:#0F172A!important}
-    html.light .border-border{border-color:#E2E8F0!important}
-    html.light .text-cta{color:#16A34A!important}
-  </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- Nav -->
-  <div id="vc-header"></div>
-  <script src="../../assets/header.js"></script>
-  <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="text-cta hover:underline">Now available on the Atlassian Marketplace &rarr;</a></div>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-  <!-- Sidebar + Content -->
-  <div class="flex">
-    <aside id="mobile-sidebar" class="hidden lg:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
-      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; Forms Overview</a>
-      <nav class="space-y-1">
-        <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
-        <a href="building-forms.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="building-forms">Building Forms</a>
-        <a href="field-types.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="field-types">Field Types</a>
-        <a href="smart-values.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="smart-values">Smart Values</a>
-        <a href="validation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="validation">Validation & Constraints</a>
-        <a href="multi-section.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="multi-section">Multi-Section Forms</a>
-        <a href="embedding.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="embedding">Embedding Forms</a>
-        <a href="styling.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="styling">Styling & Theming</a>
-        <a href="access-control.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="access-control">Access Control</a>
-        <a href="collaboration.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="collaboration">Collaboration</a>
-        <a href="responses.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="responses">Responses & Export</a>
-        <a href="automation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="automation">Automation</a>
-        <a href="dashboard.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="dashboard">Dashboard</a>
-        <a href="free-vs-pro.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="free-vs-pro">Free vs Pro</a>
-      </nav>
-    </aside>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" rel="noopener" target="_blank">Now available on the Atlassian Marketplace →</a></div>
 
-    <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
-      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Forms Overview</a>
-      <h1 class="text-3xl font-bold mt-4 mb-6">Building Forms</h1>
-      <p class="text-muted mb-8">The Forms & Frontdoor builder is a unified canvas editor where you design forms visually.</p>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-      <section class="mb-10">
-        <h2 class="text-xl font-semibold mb-3">The Builder Canvas</h2>
-        <p class="text-muted mb-4">The canvas displays a centered form preview where you edit titles and descriptions inline. What you see is what respondents get — a true WYSIWYG experience.</p>
-        <img src="../assets/new form editor.png" alt="Builder canvas" class="rounded-xl border border-border my-6 w-full">
-      </section>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Building Forms</h1>
+      <p class="vc-lede">The Forms & Frontdoor builder is a unified canvas editor where you design forms visually.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-      <section class="mb-10">
-        <h2 class="text-xl font-semibold mb-3">Adding Questions</h2>
-        <p class="text-muted mb-4">Click <strong>+ Add Question</strong> to open the field picker. Choose from 13 field types — each represented by its own icon for quick identification.</p>
-      </section>
+      <article class="vc-doc">
+<section class="mb-10">
+<h2 class="text-xl font-semibold mb-3">The Builder Canvas</h2>
+<p class="text-muted mb-4">The canvas displays a centered form preview where you edit titles and descriptions inline. What you see is what respondents get — a true WYSIWYG experience.</p>
+<img alt="Builder canvas" class="rounded-xl border border-border my-6 w-full" src="../assets/new form editor.png"/>
+</section>
+<section class="mb-10">
+<h2 class="text-xl font-semibold mb-3">Adding Questions</h2>
+<p class="text-muted mb-4">Click <strong>+ Add Question</strong> to open the field picker. Choose from 13 field types — each represented by its own icon for quick identification.</p>
+</section>
+<section class="mb-10">
+<h2 class="text-xl font-semibold mb-3">Question Configuration</h2>
+<p class="text-muted mb-4">Hover any question to reveal its toolbar: a <strong>Required</strong> toggle, a <strong>Settings gear</strong>, and a <strong>Delete</strong> button. Click the gear to access advanced settings including tooltip text, placeholder, and default value.</p>
+<img alt="Question settings" class="rounded-xl border border-border my-6 w-full" src="../assets/question with general and vaitation settings menu opened for single text.png"/>
+</section>
+<section class="mb-10">
+<h2 class="text-xl font-semibold mb-3">Rich Text Labels</h2>
+<p class="text-muted mb-4">Question labels support <strong>Bold</strong>, <em>Italic</em>, and <a class="text-cta" href="#">Link</a> formatting via a mini toolbar that appears when editing a label.</p>
+</section>
+<section class="mb-10">
+<h2 class="text-xl font-semibold mb-3">Sections <span class="text-xs bg-cta/20 text-cta px-2 py-0.5 rounded-full ml-2">Pro</span></h2>
+<p class="text-muted mb-4">Add multiple sections with <strong>+ Add Section</strong> at the bottom of the canvas. Sections are edited in a stacked view — each with a numbered header, inline title, and its own Add Question control — while respondents see them as separate pages with Next and Back navigation. See <a class="text-cta" href="multi-section.html">Multi-Section Forms</a>.</p>
+<img alt="Multi-section" class="rounded-xl border border-border my-6 w-full" src="../assets/section adition.png"/>
+</section>
+<section class="mb-10">
+<h2 class="text-xl font-semibold mb-3">Success Screen</h2>
+<p class="text-muted mb-4">Design what respondents see after submitting: title, message, and either a <strong>success icon</strong> (built-in drawn icons or any emoji from the picker) or a custom completion image. A live preview in the panel shows the result as you type.</p>
+</section>
+<section class="mb-10">
+<h2 class="text-xl font-semibold mb-3">Post-Submit Automation</h2>
+<p class="text-muted mb-4">From the <strong>Action</strong> panel, open the Automation Builder to run Confluence, Jira, Slack, or Teams actions after each submission — with conditions, branching, and batching. See <a class="text-cta" href="automation.html">Automation</a>.</p>
+</section>
+      </article>
 
-      <section class="mb-10">
-        <h2 class="text-xl font-semibold mb-3">Question Configuration</h2>
-        <p class="text-muted mb-4">Hover any question to reveal its toolbar: a <strong>Required</strong> toggle, a <strong>Settings gear</strong>, and a <strong>Delete</strong> button. Click the gear to access advanced settings including tooltip text, placeholder, and default value.</p>
-        <img src="../assets/question with general and vaitation settings menu opened for single text.png" alt="Question settings" class="rounded-xl border border-border my-6 w-full">
-      </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-      <section class="mb-10">
-        <h2 class="text-xl font-semibold mb-3">Rich Text Labels</h2>
-        <p class="text-muted mb-4">Question labels support <strong>Bold</strong>, <em>Italic</em>, and <a href="#" class="text-cta">Link</a> formatting via a mini toolbar that appears when editing a label.</p>
-      </section>
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
 
-      <section class="mb-10">
-        <h2 class="text-xl font-semibold mb-3">Sections <span class="text-xs bg-cta/20 text-cta px-2 py-0.5 rounded-full ml-2">Pro</span></h2>
-        <p class="text-muted mb-4">Add multiple sections with <strong>+ Add Section</strong> at the bottom of the canvas. Sections are edited in a stacked view — each with a numbered header, inline title, and its own Add Question control — while respondents see them as separate pages with Next and Back navigation. See <a href="multi-section.html" class="text-cta">Multi-Section Forms</a>.</p>
-        <img src="../assets/section adition.png" alt="Multi-section" class="rounded-xl border border-border my-6 w-full">
-      </section>
-
-      <section class="mb-10">
-        <h2 class="text-xl font-semibold mb-3">Success Screen</h2>
-        <p class="text-muted mb-4">Design what respondents see after submitting: title, message, and either a <strong>success icon</strong> (built-in drawn icons or any emoji from the picker) or a custom completion image. A live preview in the panel shows the result as you type.</p>
-      </section>
-
-      <section class="mb-10">
-        <h2 class="text-xl font-semibold mb-3">Post-Submit Automation</h2>
-        <p class="text-muted mb-4">From the <strong>Action</strong> panel, open the Automation Builder to run Confluence, Jira, Slack, or Teams actions after each submission — with conditions, branching, and batching. See <a href="automation.html" class="text-cta">Automation</a>.</p>
-      </section>
-    </main>
-  </div>
-
-  <script>
-  (function(){
-    var t=localStorage.getItem('theme');
-    if(t==='light')document.documentElement.classList.add('light');
-    else if(t==='dark')document.documentElement.classList.remove('light');
-    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-    function upd(){var isLight=document.documentElement.classList.contains('light');document.getElementById('icon-dark').style.display=isLight?'block':'none';document.getElementById('icon-light').style.display=isLight?'none':'block';}
-    upd();
-    document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
-    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
-    var page=location.pathname.split('/').pop().replace('.html','');
-    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
-  })();
-    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'install setup create first'},{name:'Building Forms',page:'building-forms.html',tags:'builder canvas editor questions'},{name:'Field Types',page:'field-types.html',tags:'text email number select date time rating signature user group link'},{name:'Smart Values',page:'smart-values.html',tags:'tokens dynamic auto-fill user name email timezone'},{name:'Validation',page:'validation.html',tags:'required regex min max error constraints'},{name:'Multi-Section',page:'multi-section.html',tags:'sections pages steps next back pro'},{name:'Embedding',page:'embedding.html',tags:'macro page embed share link direct'},{name:'Styling',page:'styling.html',tags:'theme color banner font decoration'},{name:'Access Control',page:'access-control.html',tags:'permission login groups anonymous limit'},{name:'Collaboration',page:'collaboration.html',tags:'co-owner editor sharing'},{name:'Responses',page:'responses.html',tags:'submissions export csv pdf results'},{name:'Automation',page:'automation.html',tags:'automation actions jira slack teams webhook conditions branch batch notify test run logs'},{name:'Dashboard',page:'dashboard.html',tags:'search filter delete duplicate'},{name:'Free vs Pro',page:'free-vs-pro.html',tags:'pricing plan limit upgrade'}];
-    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
-    wire('doc-search','search-results');
-  </script>
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
 </body>
 </html>

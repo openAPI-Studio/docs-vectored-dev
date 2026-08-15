@@ -1,141 +1,136 @@
 <!DOCTYPE html>
-<html lang="en" data-page="api-key" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Key — API Studio Docs</title>
-    <meta name="description" content="API Key authentication — send a key-value pair as a custom header or query parameter, with full variable support.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>body{font-family:'IBM Plex Sans',sans-serif}code,.font-mono{font-family:'JetBrains Mono',monospace}.sidebar-link.active{color:#22C55E;background:rgba(34,197,94,0.1)}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Key — API Studio Docs</title>
+  <meta name="description" content="API Key authentication — send a key-value pair as a custom header or query parameter, with full variable support.">
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
-<nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-xl rounded-xl border border-gray-200 dark:border-border px-4 py-3 flex items-center gap-4"><a href="../../" class="font-mono font-bold text-cta text-lg tracking-tight shrink-0">Vectored</a><div class="hidden md:flex items-center gap-4 ml-4"><a href="../../" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Home</a><a href="./" class="text-sm text-cta font-medium">Docs</a><a href="../support.html" class="text-sm text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text">Support</a></div><div class="flex-1 max-w-xs ml-auto mr-4 hidden md:block"><input type="text" placeholder="Search docs..." id="doc-search" oninput="searchDocs(this.value)" class="w-full px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:ring-2 focus:ring-cta/50"></div><div class="flex items-center gap-3 ml-auto md:ml-0"><span class="hidden sm:inline text-xs font-mono px-2 py-0.5 rounded bg-cta/10 text-cta border border-cta/20">v1.4.66</span><button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary text-gray-600 dark:text-muted"><svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><a href="https://marketplace.visualstudio.com/items?itemName=open-post.open-post" target="_blank" class="hidden sm:inline-flex px-4 py-1.5 bg-cta text-bg text-sm font-semibold rounded-lg hover:bg-cta/90 transition">Install Extension</a><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav>
-<div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden md:hidden" onclick="closeMobile()"></div>
-<aside id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 z-50 bg-white dark:bg-surface transform -translate-x-full transition-transform md:hidden overflow-y-auto p-6 pt-20"><input type="text" placeholder="Search docs..." oninput="searchDocs(this.value)" class="w-full px-3 py-2 mb-4 text-sm rounded-lg bg-gray-100 dark:bg-bg border border-gray-200 dark:border-border text-gray-900 dark:text-text placeholder-gray-400 dark:placeholder-muted focus:outline-none focus:border-cta/50"><div id="mobile-nav"></div><hr class="border-gray-200 dark:border-border my-4"><a href="../support.html" class="block px-3 py-2 text-sm text-gray-600 dark:text-muted hover:text-cta rounded-lg hover:bg-gray-100 dark:hover:bg-secondary/50">Support</a></aside>
+<body>
 
-<div class="flex pt-24">
-    <aside class="hidden md:block fixed top-24 left-0 bottom-0 w-64 overflow-y-auto p-4 border-r border-gray-200 dark:border-border"><nav id="sidebar-nav" class="space-y-1 text-sm"></nav></aside>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-    <main class="flex-1 md:ml-64 px-6 md:px-12 lg:px-16 pb-24 max-w-4xl relative">
-        <aside class="hidden xl:block fixed top-28 right-8 w-44">
-            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-muted mb-3">On this page</p>
-            <nav class="space-y-1 text-xs">
-                <a href="#how-it-works" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">How It Works</a>
-                <a href="#configuration" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Configuration</a>
-                <a href="#header-vs-query" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Header vs Query</a>
-                <a href="#variable-support" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Variable Support</a>
-                <a href="#examples" class="block py-1 text-gray-500 dark:text-muted hover:text-cta border-l-2 border-transparent hover:border-cta pl-3 transition-colors">Examples</a>
-            </nav>
-        </aside>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-        <a href="index.html" class="text-sm text-gray-500 dark:text-muted hover:text-cta">← Back to Overview</a>
-        <p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">AUTHENTICATION</p>
-        <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-text">API Key</h1>
-        <p class="text-gray-600 dark:text-muted mb-10">Send an API key as a custom header or query parameter. Flexible naming lets you match any API's expected key format.</p>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">API Key</h1>
+      <p class="vc-lede">Send an API key as a custom header or query parameter. Flexible naming lets you match any API's expected key format.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-        <!-- How It Works -->
-        <section class="mb-12 scroll-mt-28" id="how-it-works">
-            <h2 class="text-xl font-semibold mb-4">How It Works</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">API Key authentication adds a named key-value pair to your request — either as a custom HTTP header or as a URL query parameter. Unlike Basic Auth or Bearer Token, you control the key name, making it compatible with any API that expects a specific header or param name.</p>
-            <div class="grid sm:grid-cols-2 gap-4">
-                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">As header:</p>
-                    <pre class="text-xs font-mono text-gray-700 dark:text-muted"><code>X-API-Key: abc123def456</code></pre>
-                </div>
-                <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">As query param:</p>
-                    <pre class="text-xs font-mono text-gray-700 dark:text-muted"><code>?api_key=abc123def456</code></pre>
-                </div>
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">AUTHENTICATION</p>
+
+<!-- How It Works -->
+<section class="mb-12 scroll-mt-28" id="how-it-works">
+<h2 class="text-xl font-semibold mb-4">How It Works</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">API Key authentication adds a named key-value pair to your request — either as a custom HTTP header or as a URL query parameter. Unlike Basic Auth or Bearer Token, you control the key name, making it compatible with any API that expects a specific header or param name.</p>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">As header:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted"><code>X-API-Key: abc123def456</code></pre>
+</div>
+<div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<p class="text-xs font-semibold text-gray-500 dark:text-muted mb-2">As query param:</p>
+<pre class="text-xs font-mono text-gray-700 dark:text-muted"><code>?api_key=abc123def456</code></pre>
+</div>
+</div>
+</section>
+<!-- Configuration -->
+<section class="mb-12 scroll-mt-28" id="configuration">
+<h2 class="text-xl font-semibold mb-4">Configuration</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Select <strong class="text-gray-900 dark:text-text">API Key</strong> from the Auth type dropdown. Three fields appear:</p>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Field</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Key</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">The header name or query parameter name (e.g. <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">X-API-Key</code>)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Value</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">The API key value</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Add to</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Where to place the key: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Header</code> or <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Query Params</code></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Header vs Query -->
+<section class="mb-12 scroll-mt-28" id="header-vs-query">
+<h2 class="text-xl font-semibold mb-4">Header vs Query</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The <strong class="text-gray-900 dark:text-text">Add to</strong> dropdown controls where the key is injected:</p>
+<div class="space-y-4">
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><span class="text-cta font-bold text-xs">H</span></div>
+<div>
+<h4 class="font-semibold text-sm">Header</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Adds a custom request header. Preferred for most APIs — keeps the key out of URLs, server logs, and browser history.</p>
+<pre class="text-xs font-mono text-gray-600 dark:text-muted mt-2"><code>X-API-Key: sk-abc123...</code></pre>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><span class="text-cta font-bold text-xs">Q</span></div>
+<div>
+<h4 class="font-semibold text-sm">Query Params</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Appends as a URL query parameter. Some APIs (Google Maps, weather services) require this approach.</p>
+<pre class="text-xs font-mono text-gray-600 dark:text-muted mt-2"><code>GET https://api.example.com/data?api_key=sk-abc123...</code></pre>
+</div>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-700/30 text-xs text-yellow-800 dark:text-yellow-200 mt-4">
+<strong>Security note:</strong> Query parameters may be logged by proxies, CDNs, and server access logs. Prefer header-based API keys when the API supports both options.
             </div>
-        </section>
-
-        <!-- Configuration -->
-        <section class="mb-12 scroll-mt-28" id="configuration">
-            <h2 class="text-xl font-semibold mb-4">Configuration</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Select <strong class="text-gray-900 dark:text-text">API Key</strong> from the Auth type dropdown. Three fields appear:</p>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Field</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-border/50">
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Key</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">The header name or query parameter name (e.g. <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">X-API-Key</code>)</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Value</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">The API key value</td></tr>
-                        <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">Add to</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Where to place the key: <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Header</code> or <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">Query Params</code></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Header vs Query -->
-        <section class="mb-12 scroll-mt-28" id="header-vs-query">
-            <h2 class="text-xl font-semibold mb-4">Header vs Query</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">The <strong class="text-gray-900 dark:text-text">Add to</strong> dropdown controls where the key is injected:</p>
-            <div class="space-y-4">
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><span class="text-cta font-bold text-xs">H</span></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Header</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Adds a custom request header. Preferred for most APIs — keeps the key out of URLs, server logs, and browser history.</p>
-                        <pre class="text-xs font-mono text-gray-600 dark:text-muted mt-2"><code>X-API-Key: sk-abc123...</code></pre>
-                    </div>
-                </div>
-                <div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
-                    <div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><span class="text-cta font-bold text-xs">Q</span></div>
-                    <div>
-                        <h4 class="font-semibold text-sm">Query Params</h4>
-                        <p class="text-xs text-gray-500 dark:text-muted mt-0.5">Appends as a URL query parameter. Some APIs (Google Maps, weather services) require this approach.</p>
-                        <pre class="text-xs font-mono text-gray-600 dark:text-muted mt-2"><code>GET https://api.example.com/data?api_key=sk-abc123...</code></pre>
-                    </div>
-                </div>
-            </div>
-            <div class="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-700/30 text-xs text-yellow-800 dark:text-yellow-200 mt-4">
-                <strong>Security note:</strong> Query parameters may be logged by proxies, CDNs, and server access logs. Prefer header-based API keys when the API supports both options.
-            </div>
-        </section>
-
-        <!-- Variable Support -->
-        <section class="mb-12 scroll-mt-28" id="variable-support">
-            <h2 class="text-xl font-semibold mb-4">Variable Support</h2>
-            <p class="text-sm text-gray-600 dark:text-muted mb-4">Both the <strong class="text-gray-900 dark:text-text">Key</strong> and <strong class="text-gray-900 dark:text-text">Value</strong> fields support <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{variable}}</code> placeholders.</p>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Key:   X-API-Key
+</section>
+<!-- Variable Support -->
+<section class="mb-12 scroll-mt-28" id="variable-support">
+<h2 class="text-xl font-semibold mb-4">Variable Support</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Both the <strong class="text-gray-900 dark:text-text">Key</strong> and <strong class="text-gray-900 dark:text-text">Value</strong> fields support <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{variable}}</code> placeholders.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Key:   X-API-Key
 Value: {{my_api_key}}
 
 — or even dynamic key names: —
 
 Key:   {{api_key_header_name}}
 Value: {{api_key_value}}</code></pre>
-            </div>
-            <p class="text-sm text-gray-600 dark:text-muted">Common API key header names used across popular services:</p>
-            <div class="flex flex-wrap gap-2 text-xs mt-3">
-                <span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">X-API-Key</span>
-                <span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">X-Api-Token</span>
-                <span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">Authorization</span>
-                <span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">api-key</span>
-                <span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">x-functions-key</span>
-            </div>
-        </section>
-
-        <!-- Examples -->
-        <section class="mb-12 scroll-mt-28" id="examples">
-            <h2 class="text-xl font-semibold mb-4">Examples</h2>
-
-            <h3 class="font-semibold text-sm mb-3">API key in header</h3>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-6">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Auth Type: API Key
+</div>
+<p class="text-sm text-gray-600 dark:text-muted">Common API key header names used across popular services:</p>
+<div class="flex flex-wrap gap-2 text-xs mt-3">
+<span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">X-API-Key</span>
+<span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">X-Api-Token</span>
+<span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">Authorization</span>
+<span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">api-key</span>
+<span class="bg-gray-50 dark:bg-surface border border-gray-100 dark:border-border/50 rounded px-2 py-1.5 font-mono">x-functions-key</span>
+</div>
+</section>
+<!-- Examples -->
+<section class="mb-12 scroll-mt-28" id="examples">
+<h2 class="text-xl font-semibold mb-4">Examples</h2>
+<h3 class="font-semibold text-sm mb-3">API key in header</h3>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-6">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Auth Type: API Key
 Key:       X-API-Key
 Value:     {{openai_key}}
 Add to:    Header
 
 → Request header added:
   X-API-Key: sk-proj-abc123def456...</code></pre>
-            </div>
-
-            <h3 class="font-semibold text-sm mb-3">API key in query parameter</h3>
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
-                <pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Auth Type: API Key
+</div>
+<h3 class="font-semibold text-sm mb-3">API key in query parameter</h3>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Auth Type: API Key
 Key:       api_key
 Value:     {{maps_api_key}}
 Add to:    Query Params
@@ -143,54 +138,43 @@ Add to:    Query Params
 URL: https://maps.googleapis.com/maps/api/geocode/json?address=Sydney
 
 → Final URL:
-  https://maps.googleapis.com/maps/api/geocode/json?address=Sydney&api_key=AIzaSy...</code></pre>
+  https://maps.googleapis.com/maps/api/geocode/json?address=Sydney&amp;api_key=AIzaSy...</code></pre>
+</div>
+<div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700/30 text-xs text-blue-800 dark:text-blue-200">
+<strong>Tip:</strong> For APIs that use <code class="font-mono">Authorization</code> header without the <code class="font-mono">Bearer</code> prefix (e.g. <code class="font-mono">Authorization: Api-Key xyz</code>), use API Key auth with key name <code class="font-mono">Authorization</code> and value <code class="font-mono">Api-Key {{token}}</code>.
             </div>
+</section>
+<!-- Security Note -->
+<section class="mb-12 scroll-mt-28 p-5 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
+<h3 class="font-semibold text-sm mb-2 flex items-center gap-2"><svg class="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>Security Note</h3>
+<p class="text-xs text-gray-600 dark:text-muted mb-2">Auth credentials appear in multiple places:</p>
+<ul class="text-xs text-gray-500 dark:text-muted space-y-1 ml-4 list-disc mb-3">
+<li><strong class="text-gray-700 dark:text-text">Actual Request tab</strong> — shows resolved auth headers with real values</li>
+<li><strong class="text-gray-700 dark:text-text">Code Export</strong> — generated code includes resolved auth values</li>
+<li><strong class="text-gray-700 dark:text-text">History</strong> — saved request headers contain injected auth (scrubbed only if from vault)</li>
+<li><strong class="text-gray-700 dark:text-text">collections.json</strong> — auth config saved in plain text (committed to git)</li>
+</ul>
+<p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Recommendation:</strong> Store sensitive credentials in the <a class="text-cta hover:underline" href="creating-vault.html">Secret Vault</a> and reference them as <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{variables}}</code>. Vault secrets are automatically scrubbed from persisted history, and the vault file is AES-256-GCM encrypted — safe to have alongside git-tracked files.</p>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="oauth2.html">OAuth 2.0 →</a>
+</div>
+</section>
+      </article>
 
-            <div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700/30 text-xs text-blue-800 dark:text-blue-200">
-                <strong>Tip:</strong> For APIs that use <code class="font-mono">Authorization</code> header without the <code class="font-mono">Bearer</code> prefix (e.g. <code class="font-mono">Authorization: Api-Key xyz</code>), use API Key auth with key name <code class="font-mono">Authorization</code> and value <code class="font-mono">Api-Key {{token}}</code>.
-            </div>
-        </section>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-        <!-- Security Note -->
-        <section class="mb-12 scroll-mt-28 p-5 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
-            <h3 class="font-semibold text-sm mb-2 flex items-center gap-2"><svg class="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>Security Note</h3>
-            <p class="text-xs text-gray-600 dark:text-muted mb-2">Auth credentials appear in multiple places:</p>
-            <ul class="text-xs text-gray-500 dark:text-muted space-y-1 ml-4 list-disc mb-3">
-                <li><strong class="text-gray-700 dark:text-text">Actual Request tab</strong> — shows resolved auth headers with real values</li>
-                <li><strong class="text-gray-700 dark:text-text">Code Export</strong> — generated code includes resolved auth values</li>
-                <li><strong class="text-gray-700 dark:text-text">History</strong> — saved request headers contain injected auth (scrubbed only if from vault)</li>
-                <li><strong class="text-gray-700 dark:text-text">collections.json</strong> — auth config saved in plain text (committed to git)</li>
-            </ul>
-            <p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Recommendation:</strong> Store sensitive credentials in the <a href="creating-vault.html" class="text-cta hover:underline">Secret Vault</a> and reference them as <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">{{variables}}</code>. Vault secrets are automatically scrubbed from persisted history, and the vault file is AES-256-GCM encrypted — safe to have alongside git-tracked files.</p>
-        </section>
-
-        <!-- Next -->
-        <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
-            <h3 class="font-semibold mb-2">Next</h3>
-            <div class="flex flex-wrap gap-4">
-                <a href="oauth2.html" class="text-sm text-cta font-medium hover:underline">OAuth 2.0 →</a>
-            </div>
-        </section>
-    </main>
+  <aside class="vc-rail" data-noprint="1"></aside>
 </div>
 
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
-
-<script>
-const sections=[{title:'GETTING STARTED',links:[['Installation','installation.html'],['Quick Start','quick-start.html'],['UI Overview','ui-overview.html']]},{title:'HTTP CLIENT',links:[['Sending Requests','sending-requests.html'],['Request Body','request-body.html'],['Parameters & Headers','params-headers.html'],['Response Viewer','response-viewer.html'],['Request History','request-history.html'],['Tabs & Sessions','tabs-sessions.html']]},{title:'PROTOCOLS',links:[['GraphQL','graphql.html'],['WebSocket','websocket.html'],['gRPC','grpc.html'],['Server-Sent Events','sse.html']]},{title:'COLLECTIONS',links:[['Creating Collections','creating-collections.html'],['Folders & Organization','folders-organization.html'],['Collection Editor','collection-editor.html'],['Collection Runs','collection-runs.html'],['Import & Export','import-export.html'],['Collection JSON Schema','collection-schema.html']]},{title:'ENVIRONMENTS',links:[['Managing Environments','managing-environments.html'],['Variables & Interpolation','variables-interpolation.html'],['Variable Priority','variable-priority.html']]},{title:'AUTHENTICATION',links:[['Auth Overview','auth-overview.html'],['Basic Auth','basic-auth.html'],['Bearer Token','bearer-token.html'],['API Key','api-key.html'],['OAuth 2.0','oauth2.html'],['AWS Signature V4','aws-sigv4.html'],['Digest Auth','digest-auth.html'],['Auth Inheritance','auth-inheritance.html']]},{title:'TESTING',links:[['GUI Test Rules','gui-test-rules.html'],['Pre-Request Scripts','pre-request-scripts.html'],['Test Scripts','test-scripts.html'],['Scripting API','scripting-api.html'],['Set Variables','set-variables.html']]},{title:'MOCK SERVERS',links:[['Creating Mock Servers','creating-mock-servers.html'],['Routes & Responses','mock-routes.html'],['Request Log','mock-request-log.html'],['Swagger / OpenAPI','mock-swagger.html']]},{title:'MCP SERVERS',links:[['Collection MCP','collection-mcp.html'],['Mock MCP','mock-mcp.html'],['Management MCP','management-mcp.html'],['Connecting AI Clients','connecting-ai-clients.html']]},{title:'SECRET VAULT',links:[['Creating a Vault','creating-vault.html'],['Managing Secrets','managing-secrets.html'],['Secret Sets','secret-sets.html'],['Certificates','certificates.html']]},{title:'CLI',links:[['CLI Overview','cli-overview.html'],['Running Collections','cli-run.html'],['Import & Export','cli-import-export.html'],['Vault Commands','cli-vault.html'],['Serve Command','cli-serve.html']]},{title:'CODE EXPORT',links:[['Supported Languages','code-export-languages.html'],['AI Prompt Generator','ai-prompts.html']]},{title:'SETTINGS & DATA',links:[['Settings','settings.html'],['Proxy Configuration','proxy.html'],['Data Storage','data-storage.html'],['Keyboard Shortcuts','keyboard-shortcuts.html'],['License','license.html'],['Support Us','support-us.html']]}];
-const currentPage=document.documentElement.getAttribute('data-page');
-function buildNav(container,pfx){let html='<a href="index.html" class="sidebar-link block px-3 py-2 mb-3 rounded-md text-sm font-medium '+(currentPage==='index'?'active':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50')+'" data-page="index"><img src="../assets/icon.svg" class="w-4 h-4 inline-block mr-1.5 align-middle">Overview</a>';sections.forEach((s,i)=>{const id=pfx+'-cat-'+i;html+=`<div class="mb-3"><button onclick="toggleCat('${id}')" class="flex items-center gap-1 w-full text-left px-2 py-1.5 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-muted hover:text-gray-600 dark:hover:text-text"><svg class="w-3 h-3 transition-transform" id="${id}-arrow" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>${s.title}</button><div id="${id}" class="ml-2 space-y-0.5">`;s.links.forEach(([name,href])=>{const page=href.replace('.html','');const active=page===currentPage;html+=`<a href="${href}" class="sidebar-link block px-3 py-1.5 rounded-md text-sm ${active?'active font-medium':'text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-text hover:bg-gray-100 dark:hover:bg-secondary/50'}">${name}</a>`;});html+=`</div></div>`;});container.innerHTML=html;var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');sections.forEach((s,i)=>{const hasActive=s.links.some(([_,h])=>h.replace('.html','')===currentPage);const id=pfx+'-cat-'+i;const shouldOpen=hasActive||open.includes(i);if(!shouldOpen){document.getElementById(id).style.display='none';}else{const a=document.getElementById(id+'-arrow');if(a)a.style.transform='rotate(90deg)';}});}
-function toggleCat(id){const el=document.getElementById(id);const arrow=document.getElementById(id+'-arrow');const idx=parseInt(id.split('-cat-')[1]);var open=JSON.parse(localStorage.getItem('sidebar-open')||'[]');if(el.style.display==='none'){el.style.display='';arrow.style.transform='rotate(90deg)';if(!open.includes(idx))open.push(idx);}else{el.style.display='none';arrow.style.transform='';open=open.filter(x=>x!==idx);}localStorage.setItem('sidebar-open',JSON.stringify(open));}
-buildNav(document.getElementById('sidebar-nav'),'d');buildNav(document.getElementById('mobile-nav'),'m');
-function applyTheme(dark){document.documentElement.classList.toggle('dark',dark);}
-const stored=localStorage.getItem('theme');applyTheme(stored?stored==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches);
-document.getElementById('theme-toggle').onclick=()=>{const dark=!document.documentElement.classList.contains('dark');applyTheme(dark);localStorage.setItem('theme',dark?'dark':'light');};
-function searchDocs(q){["sidebar-nav","mobile-nav"].forEach(function(nid){var nav=document.getElementById(nid);if(!nav)return;var links=nav.querySelectorAll(".sidebar-link");var divs=nav.querySelectorAll(":scope>div");if(!q){divs.forEach(function(d){d.style.display=""});buildNav(nav,"d");return}q=q.toLowerCase();divs.forEach(function(d){d.style.display="";var c=d.querySelector("[id^=d-cat-]");if(c)c.style.display="";var a=d.querySelector("[id$=-arrow]");if(a)a.style.transform="rotate(90deg)"});links.forEach(function(l){l.style.display=l.textContent.toLowerCase().includes(q)?"":"none"})});}
-function closeMobile(){document.getElementById('mobile-overlay').classList.add('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(-100%)';}
-document.getElementById('mobile-menu-btn').onclick=()=>{document.getElementById('mobile-overlay').classList.remove('hidden');document.getElementById('mobile-sidebar').style.transform='translateX(0)';};
-(function(){const tocLinks=document.querySelectorAll('aside.fixed.right-8 a[href^="#"]');const sectionIds=Array.from(tocLinks).map(l=>l.getAttribute('href').slice(1));function onScroll(){let active='';for(const id of sectionIds){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)active=id;}tocLinks.forEach(l=>{const c=l.getAttribute('href')==='#'+active;l.classList.toggle('!text-cta',c);l.classList.toggle('!border-cta',c);});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
-</script>
-<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="Support us on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
 </body>
 </html>

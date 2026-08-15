@@ -1,143 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automation — Forms & Frontdoor Docs</title>
+  <title>Automation — Forms &amp; Frontdoor Docs</title>
   <meta name="description" content="Post-submit automation: Confluence, Jira, Slack and Teams actions with conditions, branching, and batches">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E293B',secondary:'#334155',cta:'#22C55E',bg:'#0F172A',surface:'#1E293B',text:'#F8FAFC',muted:'#94A3B8',border:'#334155'},fontFamily:{sans:['IBM Plex Sans','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
-  <style>body{background:#0F172A;color:#F8FAFC;font-family:'IBM Plex Sans',sans-serif}.font-mono{font-family:'JetBrains Mono',monospace}
-    html.light body{background:#F8FAFC;color:#0F172A}
-    html.light .bg-surface,html.light .bg-surface\/90{background-color:rgba(255,255,255,0.9)!important}
-    html.light .bg-bg{background-color:#F1F5F9!important}
-    html.light .text-muted{color:#475569!important}
-    html.light .text-text{color:#0F172A!important}
-    html.light .hover\:text-text:hover{color:#0F172A!important}
-    html.light .border-border{border-color:#E2E8F0!important}
-    html.light .text-cta{color:#16A34A!important}
-  </style>
-  <script>var t=localStorage.getItem("theme");if(t==="light"||(!t&&window.matchMedia("(prefers-color-scheme:light)").matches))document.documentElement.classList.add("light")</script>
+  <meta name="vc-updated" content="5 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- Nav -->
-  <div id="vc-header"></div>
-  <script src="../../assets/header.js"></script>
-  <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="text-cta hover:underline">Now available on the Atlassian Marketplace &rarr;</a></div>
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
 
-  <!-- Sidebar + Content -->
-  <div class="flex">
-    <aside id="mobile-sidebar" class="hidden lg:block fixed top-[5.5rem] left-0 w-64 h-[calc(100vh-5.5rem)] overflow-y-auto border-r border-border px-4 py-6">
-      <a href="../" class="text-xs text-muted hover:text-cta transition-colors duration-200 cursor-pointer block mb-4">&larr; Forms Overview</a>
-      <nav class="space-y-1">
-        <a href="getting-started.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="getting-started">Getting Started</a>
-        <a href="building-forms.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="building-forms">Building Forms</a>
-        <a href="field-types.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="field-types">Field Types</a>
-        <a href="smart-values.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="smart-values">Smart Values</a>
-        <a href="validation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="validation">Validation & Constraints</a>
-        <a href="multi-section.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="multi-section">Multi-Section Forms</a>
-        <a href="embedding.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="embedding">Embedding Forms</a>
-        <a href="styling.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="styling">Styling & Theming</a>
-        <a href="access-control.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="access-control">Access Control</a>
-        <a href="collaboration.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="collaboration">Collaboration</a>
-        <a href="responses.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="responses">Responses & Export</a>
-        <a href="automation.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="automation">Automation</a>
-        <a href="dashboard.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="dashboard">Dashboard</a>
-        <a href="free-vs-pro.html" class="sidebar-link block px-3 py-1.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface transition-colors duration-200 cursor-pointer" data-page="free-vs-pro">Free vs Pro</a>
-      </nav>
-    </aside>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" rel="noopener" target="_blank">Now available on the Atlassian Marketplace →</a></div>
 
-    <main class="lg:ml-64 flex-1 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-8">
-      <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Forms Overview</a>
-      <h1 class="text-3xl font-bold mt-4 mb-6">Automation</h1>
-      <p class="text-muted mb-6">Run actions automatically after every form submission — create Confluence pages, open Jira issues, post to Slack or Teams, branch with If / Else conditions, and process responses one-by-one or in batches. Open it from the builder: <strong>Action &rarr; Automation &rarr; Open Automation Builder</strong>.</p>
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
 
-      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
-        <h2 class="text-xl font-semibold mb-3">The Automation Canvas</h2>
-        <p class="text-muted mb-2">Automations are built on a visual canvas: a trigger chip (<em>On form submit</em>) at the top, a vertical flow of step cards, and an <em>End</em> marker. Insert steps anywhere with the <strong>+</strong> buttons on the connector line.</p>
-        <ul class="list-disc list-inside text-muted space-y-1">
-          <li>Each step card shows a provider color strip, a summary of its configuration, an on/off toggle, and a <strong>&ctdot;</strong> menu (Configure / Duplicate / Delete).</li>
-          <li>Duplicating a condition clones its entire Then / Else subtree.</li>
-          <li>The master pill in the command bar turns the whole automation on or off without deleting anything.</li>
-        </ul>
-        <img src='../assets/automation canvas with simple automation built.png' alt='Automation canvas with a trigger, action steps, and an If/Else branch' class='rounded-xl border border-border my-6 w-full'>
-      </div>
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Automation</h1>
+      <p class="vc-lede">Run actions automatically after every form submission — create Confluence pages, open Jira issues, post to Slack or Teams, branch with If / Else conditions, and process responses one-by-one or in batches. Open it from the builder: <strong>Action → Automation → Open Automation Builder</strong>.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
 
-      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
-        <h2 class="text-xl font-semibold mb-3">Actions</h2>
-        <p class="text-muted mb-3">All configuration fields marked with the smart-value inserter accept tokens like <code class="font-mono text-sm">{{form.title}}</code>, <code class="font-mono text-sm">{{answer.field_name}}</code>, or <code class="font-mono text-sm">{{response.table}}</code>.</p>
-        <div class="space-y-3 text-muted">
-          <p><strong class="text-text">Confluence</strong> — Create page, Add comment, Append to page, Create task (with assignee), Add label, Add watcher, Add attachment (saves response data as a file on a page).</p>
-          <p><strong class="text-text">Jira</strong> — Create issue (project, type, priority, assignee, labels), Comment on issue, Set priority, Add watcher. Jira actions require Jira on the same site with the app installed; otherwise they show a <em>Needs Jira</em> badge.</p>
-          <p><strong class="text-text">Slack</strong> — Send a message to a channel via an incoming webhook URL (<span class="font-mono text-sm">hooks.slack.com</span>). Create one in Slack under channel &rarr; Integrations &rarr; Incoming Webhooks.</p>
-          <p><strong class="text-text">Microsoft Teams</strong> — Send a message via a Teams <em>Workflows</em> webhook. In Teams: channel &rarr; Workflows &rarr; "Post to a channel when a webhook request is received", then paste the generated URL.</p>
-          <p><strong class="text-text">Webhook (generic)</strong> — marked Coming Soon.</p>
-        </div>
-        <img src='../assets/automation step pallet.png' alt='Add-step panel with searchable action catalog' class='rounded-xl border border-border my-6 w-full'>
-      </div>
+      <article class="vc-doc">
+<div class="bg-surface border border-border rounded-xl p-5 mb-6">
+<h2 class="text-xl font-semibold mb-3">The Automation Canvas</h2>
+<p class="text-muted mb-2">Automations are built on a visual canvas: a trigger chip (<em>On form submit</em>) at the top, a vertical flow of step cards, and an <em>End</em> marker. Insert steps anywhere with the <strong>+</strong> buttons on the connector line.</p>
+<ul class="list-disc list-inside text-muted space-y-1">
+<li>Each step card shows a provider color strip, a summary of its configuration, an on/off toggle, and a <strong>⋯</strong> menu (Configure / Duplicate / Delete).</li>
+<li>Duplicating a condition clones its entire Then / Else subtree.</li>
+<li>The master pill in the command bar turns the whole automation on or off without deleting anything.</li>
+</ul>
+<img alt="Automation canvas with a trigger, action steps, and an If/Else branch" class="rounded-xl border border-border my-6 w-full" src="../assets/automation canvas with simple automation built.png"/>
+</div>
+<div class="bg-surface border border-border rounded-xl p-5 mb-6">
+<h2 class="text-xl font-semibold mb-3">Actions</h2>
+<p class="text-muted mb-3">All configuration fields marked with the smart-value inserter accept tokens like <code class="font-mono text-sm">{{form.title}}</code>, <code class="font-mono text-sm">{{answer.field_name}}</code>, or <code class="font-mono text-sm">{{response.table}}</code>.</p>
+<div class="space-y-3 text-muted">
+<p><strong class="text-text">Confluence</strong> — Create page, Add comment, Append to page, Create task (with assignee), Add label, Add watcher, Add attachment (saves response data as a file on a page).</p>
+<p><strong class="text-text">Jira</strong> — Create issue (project, type, priority, assignee, labels), Comment on issue, Set priority, Add watcher. Jira actions require Jira on the same site with the app installed; otherwise they show a <em>Needs Jira</em> badge.</p>
+<p><strong class="text-text">Slack</strong> — Send a message to a channel via an incoming webhook URL (<span class="font-mono text-sm">hooks.slack.com</span>). Create one in Slack under channel → Integrations → Incoming Webhooks.</p>
+<p><strong class="text-text">Microsoft Teams</strong> — Send a message via a Teams <em>Workflows</em> webhook. In Teams: channel → Workflows → "Post to a channel when a webhook request is received", then paste the generated URL.</p>
+<p><strong class="text-text">Webhook (generic)</strong> — marked Coming Soon.</p>
+</div>
+<img alt="Add-step panel with searchable action catalog" class="rounded-xl border border-border my-6 w-full" src="../assets/automation step pallet.png"/>
+</div>
+<div class="bg-surface border border-border rounded-xl p-5 mb-6">
+<h2 class="text-xl font-semibold mb-3">If / Else Branching</h2>
+<p class="text-muted mb-2">Add an <strong>If / Else branch</strong> to split the flow. Conditions use the same rule engine as dashboard filters — pick a field, an operator, and a value, or match free text.</p>
+<ul class="list-disc list-inside text-muted space-y-1">
+<li>Submissions matching the rules follow the <strong>Then</strong> lane; everything else follows <strong>Else</strong>.</li>
+<li>Each lane holds its own list of actions with individual toggles.</li>
+<li>A branch with no condition set runs Then for every submission (the card warns you).</li>
+<li>After the lanes, the flow rejoins and continues with all submissions.</li>
+</ul>
+</div>
+<div class="bg-surface border border-border rounded-xl p-5 mb-6">
+<h2 class="text-xl font-semibold mb-3">Run Modes: After Each vs. In Batches</h2>
+<p class="text-muted mb-2"><strong class="text-text">After each</strong> — the flow runs once per submission, immediately.</p>
+<p class="text-muted mb-2"><strong class="text-text">In batches</strong> — submissions queue up until the batch size is reached (default 25, configurable 2–500), then the flow runs once for the whole batch. Leftover submissions flush automatically every hour, so partial batches are never stuck.</p>
+<ul class="list-disc list-inside text-muted space-y-1">
+<li>In batch mode, <code class="font-mono text-sm">{{response.table}}</code> and <code class="font-mono text-sm">{{response.json}}</code> aggregate the whole batch, and <code class="font-mono text-sm">{{batch.count}}</code> gives its size.</li>
+<li>If / Else splits the batch: Then runs once with the matching submissions, Else once with the rest. Empty groups are skipped and logged.</li>
+</ul>
+</div>
+<div class="bg-surface border border-border rounded-xl p-5 mb-6">
+<h2 class="text-xl font-semibold mb-3">Run As &amp; Permissions</h2>
+<p class="text-muted mb-2">Choose whether actions run as the <strong>App</strong> (recommended) or as the <strong>Submitter</strong>. Run-as-submitter is unavailable while the form allows anonymous responses.</p>
+<p class="text-muted">Saving an automation runs a <strong>permission preflight</strong>: every enabled action is checked against what <em>you</em> (the author) can personally do — e.g. edit permission on a target page, or create permission in a Jira project. Failing steps are highlighted with the reason. The same check re-runs at execution time, so an author who later loses access can't keep automating past it.</p>
+</div>
+<div class="bg-surface border border-border rounded-xl p-5 mb-6">
+<h2 class="text-xl font-semibold mb-3">Test Runs &amp; Logs</h2>
+<p class="text-muted mb-2"><strong>Test run</strong> performs a dry run against your latest submission (no real actions executed) and shows the path taken through conditions plus each action's resolved configuration.</p>
+<p class="text-muted">The <strong>Automation</strong> tab in a form's results view shows the execution log: every action run with status (success / error / skipped), message, and timestamp. Batch runs are grouped by batch ID.</p>
+<img alt="Automation execution log with per-action statuses" class="rounded-xl border border-border my-6 w-full" src="../assets/automation result log screenshot.png"/>
+</div>
+<div class="bg-surface border border-border rounded-xl p-5 mb-6">
+<h2 class="text-xl font-semibold mb-3">Site-Wide Master Switch</h2>
+<p class="text-muted">Confluence admins can disable automation site-wide from <strong>Forms &amp; Frontdoor Settings</strong>. While off, flows can still be drafted and saved but won't run — the builder shows a warning banner.</p>
+</div>
+      </article>
 
-      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
-        <h2 class="text-xl font-semibold mb-3">If / Else Branching</h2>
-        <p class="text-muted mb-2">Add an <strong>If / Else branch</strong> to split the flow. Conditions use the same rule engine as dashboard filters — pick a field, an operator, and a value, or match free text.</p>
-        <ul class="list-disc list-inside text-muted space-y-1">
-          <li>Submissions matching the rules follow the <strong>Then</strong> lane; everything else follows <strong>Else</strong>.</li>
-          <li>Each lane holds its own list of actions with individual toggles.</li>
-          <li>A branch with no condition set runs Then for every submission (the card warns you).</li>
-          <li>After the lanes, the flow rejoins and continues with all submissions.</li>
-        </ul>
-      </div>
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
 
-      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
-        <h2 class="text-xl font-semibold mb-3">Run Modes: After Each vs. In Batches</h2>
-        <p class="text-muted mb-2"><strong class="text-text">After each</strong> — the flow runs once per submission, immediately.</p>
-        <p class="text-muted mb-2"><strong class="text-text">In batches</strong> — submissions queue up until the batch size is reached (default 25, configurable 2–500), then the flow runs once for the whole batch. Leftover submissions flush automatically every hour, so partial batches are never stuck.</p>
-        <ul class="list-disc list-inside text-muted space-y-1">
-          <li>In batch mode, <code class="font-mono text-sm">{{response.table}}</code> and <code class="font-mono text-sm">{{response.json}}</code> aggregate the whole batch, and <code class="font-mono text-sm">{{batch.count}}</code> gives its size.</li>
-          <li>If / Else splits the batch: Then runs once with the matching submissions, Else once with the rest. Empty groups are skipped and logged.</li>
-        </ul>
-      </div>
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
 
-      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
-        <h2 class="text-xl font-semibold mb-3">Run As & Permissions</h2>
-        <p class="text-muted mb-2">Choose whether actions run as the <strong>App</strong> (recommended) or as the <strong>Submitter</strong>. Run-as-submitter is unavailable while the form allows anonymous responses.</p>
-        <p class="text-muted">Saving an automation runs a <strong>permission preflight</strong>: every enabled action is checked against what <em>you</em> (the author) can personally do — e.g. edit permission on a target page, or create permission in a Jira project. Failing steps are highlighted with the reason. The same check re-runs at execution time, so an author who later loses access can't keep automating past it.</p>
-      </div>
-
-      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
-        <h2 class="text-xl font-semibold mb-3">Test Runs & Logs</h2>
-        <p class="text-muted mb-2"><strong>Test run</strong> performs a dry run against your latest submission (no real actions executed) and shows the path taken through conditions plus each action's resolved configuration.</p>
-        <p class="text-muted">The <strong>Automation</strong> tab in a form's results view shows the execution log: every action run with status (success / error / skipped), message, and timestamp. Batch runs are grouped by batch ID.</p>
-        <img src='../assets/automation result log screenshot.png' alt='Automation execution log with per-action statuses' class='rounded-xl border border-border my-6 w-full'>
-      </div>
-
-      <div class="bg-surface border border-border rounded-xl p-5 mb-6">
-        <h2 class="text-xl font-semibold mb-3">Site-Wide Master Switch</h2>
-        <p class="text-muted">Confluence admins can disable automation site-wide from <strong>Forms & Frontdoor Settings</strong>. While off, flows can still be drafted and saved but won't run — the builder shows a warning banner.</p>
-      </div>
-    </main>
-  </div>
-
-  <script>
-  (function(){
-    var t=localStorage.getItem('theme');
-    if(t==='light')document.documentElement.classList.add('light');
-    else if(t==='dark')document.documentElement.classList.remove('light');
-    else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.classList.add('light');
-    function upd(){var isLight=document.documentElement.classList.contains('light');document.getElementById('icon-dark').style.display=isLight?'block':'none';document.getElementById('icon-light').style.display=isLight?'none':'block';}
-    upd();
-    document.getElementById('theme-toggle').addEventListener('click',function(e){e.stopPropagation();document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark');upd();});
-    var mb=document.getElementById("menu-toggle"),ms=document.getElementById("mobile-sidebar");if(mb&&ms){mb.addEventListener("click",function(){ms.classList.toggle("hidden");ms.classList.toggle("fixed");ms.classList.toggle("inset-0");ms.classList.toggle("top-[7rem]");ms.classList.toggle("z-40");ms.classList.toggle("bg-bg");});}
-    var page=location.pathname.split('/').pop().replace('.html','');
-    document.querySelectorAll('.sidebar-link').forEach(function(l){if(l.dataset.page===page){l.classList.remove('text-muted');l.classList.add('text-cta','bg-cta/10','font-medium');}});
-  })();
-    var docs=[{name:'Getting Started',page:'getting-started.html',tags:'install setup create first'},{name:'Building Forms',page:'building-forms.html',tags:'builder canvas editor questions'},{name:'Field Types',page:'field-types.html',tags:'text email number select date time rating signature user group link'},{name:'Smart Values',page:'smart-values.html',tags:'tokens dynamic auto-fill user name email timezone'},{name:'Validation',page:'validation.html',tags:'required regex min max error constraints'},{name:'Multi-Section',page:'multi-section.html',tags:'sections pages steps next back pro'},{name:'Embedding',page:'embedding.html',tags:'macro page embed share link direct'},{name:'Styling',page:'styling.html',tags:'theme color banner font decoration'},{name:'Access Control',page:'access-control.html',tags:'permission login groups anonymous limit'},{name:'Collaboration',page:'collaboration.html',tags:'co-owner editor sharing'},{name:'Responses',page:'responses.html',tags:'submissions export csv pdf results'},{name:'Automation',page:'automation.html',tags:'automation actions jira slack teams webhook conditions branch batch notify test run logs'},{name:'Dashboard',page:'dashboard.html',tags:'search filter delete duplicate'},{name:'Free vs Pro',page:'free-vs-pro.html',tags:'pricing plan limit upgrade'}];
-    function wire(iid,rid){var i=document.getElementById(iid),r=document.getElementById(rid);if(!i||!r)return;i.addEventListener('input',function(){var q=this.value.toLowerCase().trim();if(!q){r.classList.add('hidden');r.innerHTML='';return;}var m=docs.filter(function(d){return d.name.toLowerCase().includes(q)||d.tags.includes(q);});r.innerHTML=m.length?m.map(function(d){return '<a href="'+d.page+'" class="block px-4 py-2 text-sm text-muted hover:text-text hover:bg-bg transition-colors duration-200 cursor-pointer">'+d.name+'</a>';}).join(''):'<p class="px-4 py-3 text-sm text-muted">No results</p>';r.classList.remove('hidden');});i.addEventListener('keydown',function(e){if(e.key==='Escape'){r.classList.add('hidden');this.blur();}});document.addEventListener('click',function(e){if(!e.target.closest('#'+iid)&&!e.target.closest('#'+rid))r.classList.add('hidden');});}
-    wire('doc-search','search-results');
-  </script>
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
 </body>
 </html>
