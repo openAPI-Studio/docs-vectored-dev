@@ -47,6 +47,10 @@
        so without this the selected state never paints in light mode). */
     html .chip.is-on{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.6);color:#22C55E}
     html.light .chip.is-on{background:rgba(22,163,74,.1);border-color:rgba(22,163,74,.55);color:#15803D}
+    /* A locked choice stays readable but is visibly out of play; the selected
+       one keeps its full colour so it still reads as the answer. */
+    .chip.is-locked{pointer-events:none;cursor:not-allowed}
+    .chip.is-locked:not(.is-on){opacity:.4}
     html.light .chip:hover{border-color:rgba(22,163,74,.45)}
     /* Star rating */
     .stars{display:flex;gap:.35rem}
@@ -421,6 +425,74 @@
 
     var current = null;
 
+    // ---------- field locking ----------
+    // ?lock=tool,type freezes those fields at their prefilled value so a
+    // "Report a bug in API Studio" link cannot come back as praise about
+    // something else. ?lock=1 is the original tool-only form.
+    var LOCKED = (function () {
+      var raw = param('lock');
+      if (!raw) return [];
+      if (/^(1|true|yes)$/i.test(raw)) return ['tool'];
+      return raw.split(',').map(function (n) { return n.trim(); }).filter(Boolean);
+    })();
+
+    function lockField(name) {
+      var els = form.querySelectorAll('[name="' + name + '"]');
+      if (!els.length) return;
+      var any = false;
+      els.forEach(function (el) {
+        // Nothing to lock a field to if the link never set a value.
+        if ((el.type === 'radio' || el.type === 'checkbox') && !el.checked) { el.disabled = true; return; }
+        if (el.tagName !== 'SELECT' && el.type !== 'radio' && el.type !== 'checkbox' && !el.value) return;
+        el.disabled = true;
+        any = true;
+      });
+      if (!any) { els.forEach(function (el) { el.disabled = false; }); return; }
+
+      els.forEach(function (el) {
+        var chip = el.closest('.chip');
+        if (chip) chip.classList.add('is-locked');
+        if (el.classList.contains('field')) el.classList.add('opacity-70', 'cursor-not-allowed');
+      });
+      note(name, els[0]);
+    }
+
+    function note(name, el) {
+      // The tool field ships its note in the markup; everything else gets one.
+      if (name === 'tool') {
+        document.getElementById('tool-locked-note').classList.remove('hidden');
+        return;
+      }
+      var host = el.closest('.q-block') || el.parentElement;
+      if (!host || host.querySelector('.lock-note')) return;
+      var p = document.createElement('p');
+      p.className = 'lock-note text-xs text-muted mt-2';
+      p.innerHTML = 'Preselected from the link you followed. <button type="button" class="text-cta hover:underline cursor-pointer">Change it</button>';
+      p.querySelector('button').addEventListener('click', function () { unlockField(name); });
+      host.appendChild(p);
+    }
+
+    function unlockField(name) {
+      LOCKED = LOCKED.filter(function (n) { return n !== name; });
+      form.querySelectorAll('[name="' + name + '"]').forEach(function (el) {
+        el.disabled = false;
+        el.classList.remove('opacity-70', 'cursor-not-allowed');
+        var chip = el.closest('.chip');
+        if (chip) chip.classList.remove('is-locked');
+      });
+      if (name === 'tool') document.getElementById('tool-locked-note').classList.add('hidden');
+      var host = form.querySelector('[name="' + name + '"]');
+      host = host && (host.closest('.q-block') || host.parentElement);
+      var n = host && host.querySelector('.lock-note');
+      if (n) n.remove();
+      var first = form.querySelector('[name="' + name + '"]');
+      if (first) first.focus();
+    }
+
+    // Questions are re-rendered whenever the tool changes, so locks have to be
+    // re-applied against the new markup.
+    function applyLocks() { LOCKED.forEach(lockField); }
+
     function applyTemplate(toolId, keepAnswers) {
       var prev = keepAnswers ? collect(false) : {};
       current = REG.template(toolId);
@@ -450,6 +522,7 @@
 
       renderToolCard();
       applyConditionals();
+      applyLocks();
       updateProgress();
     }
 
@@ -513,9 +586,12 @@
         if (k === 'areas') { (out.areas = out.areas || []).push(v); }
         else out[k] = typeof v === 'string' ? v.trim() : v;
       });
-      // A locked tool (?lock=1) is disabled, and FormData skips disabled
-      // controls — put it back or every submission fails validation.
-      if (toolSelect.disabled && toolSelect.value) out.tool = toolSelect.value;
+      // FormData skips disabled controls, and every locked field is disabled —
+      // put their values back or a locked-but-required field fails validation.
+      form.querySelectorAll('[name]:disabled').forEach(function (el) {
+        if (el.type === 'radio' || el.type === 'checkbox') { if (el.checked) out[el.name] = el.value; }
+        else if (el.value) out[el.name] = el.value;
+      });
       if (!includeMeta) return out;
       out.toolName = current ? current.name : out.tool;
       out.templateId = current ? current.id : 'other';
@@ -682,14 +758,7 @@
     (function init() {
       var toolParam = param('tool');
       var resolved = REG.resolve(toolParam);
-      if (toolParam) {
-        toolSelect.value = resolved ? resolved.id : 'other';
-        if (/^(1|true|yes)$/i.test(param('lock'))) {
-          toolSelect.disabled = true;
-          toolSelect.classList.add('opacity-70', 'cursor-not-allowed');
-          document.getElementById('tool-locked-note').classList.remove('hidden');
-        }
-      }
+      if (toolParam) toolSelect.value = resolved ? resolved.id : 'other';
       applyTemplate(toolSelect.value, false);
 
       // Identity + follow-up prefill.
@@ -705,15 +774,11 @@
         document.getElementById('contact-extra').classList.toggle('hidden', param('contact') === 'no');
       }
       applyConditionals();
+      applyLocks();
       updateProgress();
     })();
 
-    document.getElementById('tool-unlock').addEventListener('click', function () {
-      toolSelect.disabled = false;
-      toolSelect.classList.remove('opacity-70', 'cursor-not-allowed');
-      document.getElementById('tool-locked-note').classList.add('hidden');
-      toolSelect.focus();
-    });
+    document.getElementById('tool-unlock').addEventListener('click', function () { unlockField('tool'); });
   })();
   </script>
   <script>
