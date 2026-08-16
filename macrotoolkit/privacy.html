@@ -55,7 +55,7 @@
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">3. Data Storage &amp; Processing</h2>
       <p class="text-muted mb-4">All data created by the App remains entirely within your Atlassian Confluence instance:</p>
-      <div class="bg-surface border border-border rounded-xl overflow-hidden">
+      <div class="bg-surface border border-border rounded-xl overflow-x-auto">
         <table class="w-full text-sm"><tbody class="divide-y divide-border">
           <tr><td class="px-4 py-3 text-muted font-medium">Macro content</td><td class="px-4 py-3 text-muted">Stored as Confluence macro config parameters (inline with page content) — never leaves your instance</td></tr>
           <tr><td class="px-4 py-3 text-muted font-medium">Poll votes</td><td class="px-4 py-3 text-muted">Stored in Forge Storage (Atlassian-managed, encrypted at rest) — scoped to your site only</td></tr>
@@ -70,7 +70,7 @@
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">4. External Services</h2>
       <p class="text-muted mb-4">Most macros operate entirely client-side with no external calls. Two optional macros (disabled by default) connect to external services:</p>
-      <div class="bg-surface border border-border rounded-xl overflow-hidden">
+      <div class="bg-surface border border-border rounded-xl overflow-x-auto">
         <table class="w-full text-sm"><thead class="text-xs text-muted uppercase border-b border-border"><tr><th class="px-4 py-3 text-left">Service</th><th class="px-4 py-3 text-left">Used By</th><th class="px-4 py-3 text-left">Data Sent</th><th class="px-4 py-3 text-left">Purpose</th></tr></thead><tbody class="divide-y divide-border">
           <tr><td class="px-4 py-3 font-mono text-xs">embed.diagrams.net</td><td class="px-4 py-3 text-muted">Draw.io macro</td><td class="px-4 py-3 text-muted">Diagram XML</td><td class="px-4 py-3 text-muted">Editor rendering</td></tr>
           <tr><td class="px-4 py-3 font-mono text-xs">www.plantuml.com</td><td class="px-4 py-3 text-muted">PlantUML macro</td><td class="px-4 py-3 text-muted">PlantUML text (during editing only)</td><td class="px-4 py-3 text-muted">SVG rendering</td></tr>
@@ -87,7 +87,7 @@
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">5. Atlassian API Scopes</h2>
       <p class="text-muted mb-4">The App requests the following Atlassian scopes, used solely for macro functionality:</p>
-      <div class="bg-surface border border-border rounded-xl overflow-hidden">
+      <div class="bg-surface border border-border rounded-xl overflow-x-auto">
         <table class="w-full text-sm"><tbody class="divide-y divide-border">
           <tr><td class="px-4 py-3 font-mono text-xs text-cta">read:confluence-content.summary</td><td class="px-4 py-3 text-muted">Read page metadata to render macros in context</td></tr>
           <tr><td class="px-4 py-3 font-mono text-xs text-cta">read:confluence-user</td><td class="px-4 py-3 text-muted">Resolve display names for poll/mood voter attribution</td></tr>

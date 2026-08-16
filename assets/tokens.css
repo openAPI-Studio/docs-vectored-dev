@@ -144,17 +144,20 @@ html .placeholder-gray-400::placeholder { color: color-mix(in srgb, var(--muted)
 .vc-switch-wrap { position: relative; flex-shrink: 0; }
 .vc-switch {
   display: flex; align-items: center; gap: 8px; background: transparent;
+  min-width: 0;
   border: 1px solid var(--border); border-radius: 8px; padding: 6px 11px;
   color: var(--tx); font: inherit; font-size: 14px; font-weight: 500;
   cursor: pointer; white-space: nowrap;
 }
 .vc-switch[aria-expanded="true"] { background: var(--card); border-color: var(--greenLine); }
 .vc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.vc-switch-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .vc-chev { width: 14px; height: 14px; color: var(--muted); transition: transform .18s ease; }
 .vc-switch[aria-expanded="true"] .vc-chev { transform: rotate(180deg); }
 
 .vc-panel {
-  position: absolute; top: 42px; left: 0; width: 320px; background: var(--card);
+  position: absolute; top: 42px; left: 0; width: min(320px, calc(100vw - 28px));
+  background: var(--card);
   border: 1px solid var(--border); border-radius: 14px; padding: 8px;
   box-shadow: var(--shadow); z-index: 60;
 }
@@ -176,7 +179,11 @@ html .placeholder-gray-400::placeholder { color: color-mix(in srgb, var(--muted)
 .vc-panel-foot a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 13px; color: var(--body); }
 .vc-panel-foot a:hover { background: var(--surface); text-decoration: none; }
 
-.vc-search { flex: 1; max-width: 420px; margin-left: auto; position: relative; }
+/* min-width:0 matters: a flex item wrapping an <input> otherwise refuses to
+   shrink below the field's intrinsic size and pushes the header wider than a
+   phone screen, which scrolls the whole page sideways. */
+.vc-search { flex: 1; min-width: 0; max-width: 420px; margin-left: auto; position: relative; }
+.vc-search-btn { display: none; }
 .vc-search > svg { width: 16px; height: 16px; color: var(--muted); position: absolute; left: 11px; top: 9px; pointer-events: none; }
 .vc-search input {
   width: 100%; box-sizing: border-box; background: var(--bg);
@@ -287,6 +294,12 @@ html .placeholder-gray-400::placeholder { color: color-mix(in srgb, var(--muted)
   font-size: 17px; line-height: 1.75; color: var(--body); margin: 0 0 24px; padding-left: 22px;
 }
 .vc-doc > ul > li, .vc-doc > ol > li, .vc-doc > section > ul > li, .vc-doc > section > ol > li { margin-bottom: 8px; }
+/* Flex and grid children default to min-width:auto, which makes them refuse to
+   shrink below their content — one long URL in a code block or an inline
+   <code> then drags the whole page wider than a phone screen. */
+.vc-doc .flex > *, .vc-doc .grid > * { min-width: 0; }
+.vc-doc code, .vc-doc a { overflow-wrap: anywhere; }
+
 .vc-doc strong { color: var(--tx); font-weight: 600; }
 .vc-doc em { color: var(--body); }
 .vc-doc a { color: var(--green); }
@@ -351,7 +364,10 @@ html .placeholder-gray-400::placeholder { color: color-mix(in srgb, var(--muted)
 .vc-doc th { text-align: left; font-weight: 600; color: var(--tx); }
 .vc-doc td { color: var(--body); }
 .vc-doc thead { background: var(--surface); }
-.vc-doc .vc-table-wrap { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 0 0 24px; }
+.vc-doc .vc-table-wrap {
+  border: 1px solid var(--border); border-radius: 12px; margin: 0 0 24px;
+  overflow-x: auto;   /* wide tables scroll on a phone rather than being clipped */
+}
 .vc-doc .vc-table-wrap table { font-size: 15px; }
 .vc-doc .vc-table-wrap th, .vc-doc .vc-table-wrap td { padding: 10px 14px; }
 .vc-doc .vc-table-wrap tbody tr + tr { border-top: 1px solid var(--border); }
@@ -496,24 +512,57 @@ html .placeholder-gray-400::placeholder { color: color-mix(in srgb, var(--muted)
   .vc-main { padding: 28px 24px 64px; }
   .vc-h1 { font-size: 34px; }
 }
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .vc-ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .vc-ft { padding: 44px 24px 28px; }
   .vc-search { max-width: none; }
-  .vc-switch-wrap { display: none; }
+  /* The switcher is the only way to move between products, so it stays —
+     only its label gives up room. */
+  .vc-switch-label { max-width: 8rem; }
+  .vc-wordmark span { display: none; }
 }
 @media (max-width: 640px) {
-  .vc-hd { padding: 0 14px; gap: 10px; }
-  .vc-hd-in { gap: 10px; }
-  .vc-cta { display: none; }
-  .vc-search { position: static; }
-  .vc-kbd { display: none; }
+  .vc-hd { padding: 0 12px; }
+  .vc-hd-in { gap: 8px; }
+  .vc-cta, .vc-gh, .vc-kbd { display: none; }
+  .vc-hd .vc-vdiv { display: none; }
+  .vc-switch { padding: 6px 9px; }
+  .vc-switch-label { max-width: 6.5rem; }
+
+  /* Search collapses to an icon; opening it drops a full-width row under the
+     header instead of fighting the switcher for space. */
+  .vc-search-btn { display: flex; }
+  .vc-search { display: none; }
+  body.vc-search-open .vc-search {
+    display: block; position: absolute; left: 0; right: 0; top: 60px;
+    max-width: none; padding: 8px 12px; background: var(--surface);
+    border-bottom: 1px solid var(--border); box-sizing: border-box;
+  }
+  body.vc-search-open .vc-search > svg { left: 23px; top: 17px; }
+  body.vc-search-open .vc-sr { left: 12px; right: 12px; top: 52px; }
+
+  /* Anchored to the button, a 320px panel runs off the right edge of a phone.
+     Pin it to the viewport instead. */
+  .vc-panel {
+    position: fixed; top: 56px; left: 8px; right: 8px; width: auto;
+    max-height: calc(100vh - 76px); overflow-y: auto;
+  }
+
   .vc-h1 { font-size: 29px; }
   .vc-lede { font-size: 17px; }
   .vc-doc { font-size: 16px; }
   .vc-doc > p, .vc-doc > section > p { font-size: 16px; }
   .vc-doc h2 { font-size: 23px; margin-top: 44px; }
+  .vc-main { padding: 24px 18px 56px; }
   .vc-meta-actions { margin-left: 0; }
   .vc-ft-grid { grid-template-columns: 1fr; }
   .vc-page { padding: 28px 20px 64px; }
+}
+@media (max-width: 400px) {
+  /* At this width the row is 16px too wide for the label it was carrying. */
+  .vc-hd { padding: 0 8px; }
+  .vc-hd-in { gap: 6px; }
+  .vc-switch { padding: 5px 8px; gap: 6px; }
+  .vc-switch-label { max-width: 4.5rem; }
+  .vc-wordmark b { font-size: 15px; }
 }

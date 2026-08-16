@@ -48,7 +48,8 @@
         '<div class="vc-vdiv"></div>' +
         '<div class="vc-switch-wrap">' +
           '<button id="vc-switch" class="vc-switch" aria-expanded="false" aria-haspopup="true" aria-controls="vc-switch-panel">' +
-            '<span class="vc-dot"></span>' + esc(ctx ? ctx.label : 'All products') +
+            '<span class="vc-dot"></span>' +
+            '<span class="vc-switch-label">' + esc(ctx ? ctx.label : 'All products') + '</span>' +
             '<svg class="vc-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>' +
           '</button>' +
           '<div id="vc-switch-panel" class="vc-panel" hidden>' +
@@ -66,7 +67,13 @@
           '<div id="search-results" class="vc-sr" hidden></div>' +
         '</div>' +
         '<div class="vc-hd-actions">' +
-          '<a class="vc-iconbtn" href="' + GITHUB + '" target="_blank" rel="noopener" aria-label="GitHub">' + ICON_GITHUB + '</a>' +
+          // Below 640px the search field collapses to this button and opens as
+          // a full-width row under the header; there is no room for both it
+          // and the product switcher on a phone.
+          '<button id="vc-search-toggle" class="vc-iconbtn vc-search-btn" aria-label="Search" aria-expanded="false">' +
+            '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"></path></svg>' +
+          '</button>' +
+          '<a class="vc-iconbtn vc-gh" href="' + GITHUB + '" target="_blank" rel="noopener" aria-label="GitHub">' + ICON_GITHUB + '</a>' +
           '<button id="theme-toggle" class="vc-iconbtn" aria-label="Toggle theme" title="Toggle theme">' +
             '<svg id="icon-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>' +
             '<svg id="icon-dark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>' +
@@ -122,6 +129,21 @@
 
   var input = document.getElementById('doc-search'), results = document.getElementById('search-results');
   function hideResults() { if (results) { results.hidden = true; results.innerHTML = ''; } }
+
+  /* Small screens: the field is hidden until the icon opens it. */
+  var searchToggle = document.getElementById('vc-search-toggle');
+  function setSearchOpen(open) {
+    document.body.classList.toggle('vc-search-open', open);
+    if (searchToggle) searchToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open && input) input.focus();
+    if (!open) hideResults();
+  }
+  if (searchToggle) {
+    searchToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setSearchOpen(!document.body.classList.contains('vc-search-open'));
+    });
+  }
   if (input && results) {
     input.addEventListener('input', function () {
       var q = this.value.toLowerCase().trim();
@@ -141,11 +163,15 @@
       if (e.key === 'Enter') { var first = results.querySelector('a'); if (first) location.href = first.href; }
     });
     document.addEventListener('click', function (e) {
-      if (!e.target.closest('.vc-search')) hideResults();
+      if (!e.target.closest('.vc-search') && !e.target.closest('#vc-search-toggle')) setSearchOpen(false);
     });
     document.addEventListener('keydown', function (e) {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); input.focus(); input.select(); }
-      if (e.key === 'Escape') { closeSwitcher(); hideResults(); }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);   // on small screens the field is collapsed
+        input.focus(); input.select();
+      }
+      if (e.key === 'Escape') { closeSwitcher(); setSearchOpen(false); }
     });
   }
 

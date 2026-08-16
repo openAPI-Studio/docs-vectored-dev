@@ -156,10 +156,19 @@
   var stored = null;
   try { stored = localStorage.getItem('vc-docs-sidebar'); } catch (e) {}
   setSidebar(stored ? stored === 'open' : window.innerWidth > 1024);
-  if (toggle) toggle.addEventListener('click', function () {
+  if (toggle) toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
     var open = side.classList.contains('closed');
     setSidebar(open);
-    try { localStorage.setItem('vc-docs-sidebar', open ? 'open' : 'closed'); } catch (e) {}
+    try { localStorage.setItem('vc-docs-sidebar', open ? 'open' : 'closed'); } catch (e2) {}
+  });
+
+  /* Below 1024px the sidebar is a drawer over the content, so a tap outside it
+     should dismiss it — on a phone the toggle is easy to miss on the way back. */
+  document.addEventListener('click', function (e) {
+    if (window.innerWidth > 1024 || !side || side.classList.contains('closed')) return;
+    if (e.target.closest('.vc-side') || e.target.closest('#vc-sidebar-toggle')) return;
+    setSidebar(false);
   });
 
   /* --------------------------------------------------------- breadcrumbs -- */

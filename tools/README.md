@@ -11,7 +11,8 @@ need only Python 3 (`beautifulsoup4`) or Node (`jsdom`, for the smoke test).
 | `migrate_pages.py` | The same, for the landing, support, legal, blog and error pages. |
 | `check_content.py` | Diffs the visible words of two copies of the site, page by page. Used to prove the migration lost no content: `python3 tools/check_content.py OLD_TREE .` |
 | `check_links.py` | Verifies every local `href`/`src` resolves to a file that exists. |
-| `smoke.js` | Loads pages in jsdom with the real scripts running and asserts the shell built everything: sidebar, breadcrumbs, meta row, contents, TOC, prev/next, footer. `node tools/smoke.js --all` covers every doc page. |
+| `smoke.js` | Loads pages in jsdom with the real scripts running and asserts the shell built everything: sidebar, breadcrumbs, meta row, contents, TOC, prev/next, footer. Also resolves every link in the rendered DOM, which is the only way to see the ones the header and footer build at runtime. `--all` covers every doc page, `--pages` the non-doc ones. |
+| `check_responsive.js` | Renders pages in real Chrome at 320/390/820/1280px, opens the menus, and reports anything that overflows sideways. jsdom has no layout engine, so this is the only check that can see a header wider than the screen. Needs Chrome and `puppeteer-core` (set `NODE_PATH`, or `CHROME_PATH` for a non-default Chrome). |
 
 ## The shared shell
 
