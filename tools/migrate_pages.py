@@ -271,6 +271,21 @@ def migrate(page):
     s = re.sub(r'<aside\b[^>]*>\s*<nav id="sidebar-nav"[^>]*></nav>\s*</aside>\s*', '', s, flags=re.S)
     s = re.sub(r'(<main[^>]*?)\bmd:ml-64\b', r'\1', s)
 
+    # A main that sat beside a fixed sidebar was pinned left by that offset and
+    # never needed centring. With the sidebar gone it has a max-width and no
+    # auto margins, so the column hugs the left edge of the viewport. Pages
+    # that still have an aside of their own are left alone — centring there
+    # would just push the column away from its sidebar.
+    if '<aside' not in s:
+        def centre(m):
+            tag = m.group(0)
+            if 'max-w-' in tag and 'mx-auto' not in tag:
+                tag = re.sub(r'class="([^"]*)"',
+                             lambda c: 'class="%s mx-auto"' % c.group(1).strip(), tag, count=1)
+            return tag
+
+        s = re.sub(r'<main\b[^>]*>', centre, s, count=1)
+
     # Blog prose set its body copy in --muted with an html.light twin. --body
     # is the token for body copy and flips on its own, so the twin can go.
     s = s.replace("color:var(--muted)}\n    html.light .prose-vc p{color:#525252}", "color:var(--body)}")

@@ -168,7 +168,7 @@
     nav.setAttribute('data-noprint', '1');
     nav.setAttribute('aria-label', 'Breadcrumb');
     nav.innerHTML = '<a href="' + u('') + '">Docs</a><span>/</span>' +
-      (product ? '<a href="' + u(product.dir + '/docs/') + '">' + esc(product.label) + '</a><span>/</span>' : '') +
+      (product ? '<a href="' + u(product.docsHome || product.dir + '/docs/') + '">' + esc(product.label) + '</a><span>/</span>' : '') +
       '<strong aria-current="page">' + esc(pageTitle) + '</strong>';
     return nav;
   })());

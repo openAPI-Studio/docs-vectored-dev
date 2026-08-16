@@ -28,7 +28,7 @@
   }
 
   var switcherRows = products.map(function (p) {
-    return '<a class="vc-prow' + (ctx && p.key === ctx.key ? ' cur' : '') + '" href="' + u(p.dir + '/docs/') + '">' +
+    return '<a class="vc-prow' + (ctx && p.key === ctx.key ? ' cur' : '') + '" href="' + u(p.docsHome || p.dir + '/docs/') + '">' +
       '<span class="vc-picon" style="background-image:url(&quot;' + encodeURI(u(p.icon)) + '&quot;)"></span>' +
       '<span class="vc-pmeta">' +
         '<span class="vc-pname">' + esc(p.label) + '</span>' +

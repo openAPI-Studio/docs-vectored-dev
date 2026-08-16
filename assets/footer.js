@@ -26,13 +26,18 @@
       ['Forms & Frontdoor', u('forms/')],
       ['Recognition Hub', u('rewardhub/')]
     ]},
-    { title: 'Documentation', links: [
-      ['API Studio docs', u('apistudio/docs/')],
-      ['TimeSheets docs', u('timesheets/docs/getting-started.html')],
-      ['Macro Toolkit docs', u('macrotoolkit/docs/')],
-      ['Forms docs', u('forms/docs/getting-started.html')],
-      ['Recognition Hub docs', u('rewardhub/docs/getting-started.html')]
-    ]},
+    // Doc landing targets come from the registry: only two products have a
+    // docs/index.html, and the rest have to point at their first page. The
+    // fallback keeps the column populated if nav.js is not on the page.
+    { title: 'Documentation', links: (window.VC_PRODUCTS && window.VC_PRODUCTS.length
+      ? window.VC_PRODUCTS.map(function (p) { return [p.label + ' docs', u(p.docsHome || p.dir + '/docs/')]; })
+      : [
+          ['API Studio docs', u('apistudio/docs/')],
+          ['TimeSheets docs', u('timesheets/docs/getting-started.html')],
+          ['Macro Toolkit docs', u('macrotoolkit/docs/')],
+          ['Forms & Frontdoor docs', u('forms/docs/getting-started.html')],
+          ['Recognition Hub docs', u('rewardhub/docs/getting-started.html')]
+        ])},
     { title: 'Get the apps', links: [
       ['Atlassian Marketplace', MARKETPLACE, 1],
       ['API Studio on GitHub', GITHUB, 1],

@@ -7,10 +7,12 @@
 
      node tools/smoke.js            # a representative page per product
      node tools/smoke.js --all      # every doc page
+     node tools/smoke.js --pages    # the landing, legal, blog and error pages
 */
 const fs = require('fs');
 const path = require('path');
 const { JSDOM, VirtualConsole, requestInterceptor } = require('jsdom');
+const { fileURLToPath } = require('url');
 
 const ROOT = path.dirname(__dirname);
 
@@ -22,6 +24,19 @@ const localOnly = {
     }
   })]
 };
+
+// Pages that are not documentation: they take the header, footer and tokens
+// but none of the docs shell.
+const OTHER_PAGES = [
+  'index.html', '404.html', 'feedback.html', 'feedback-thanks.html',
+  'privacy.html', 'security.html', 'support.html',
+  'apistudio/index.html', 'apistudio/support.html', 'apistudio/landing-old.html',
+  'forms/index.html', 'macrotoolkit/index.html', 'macrotoolkit/support.html',
+  'macrotoolkit/privacy.html', 'macrotoolkit/security.html', 'macrotoolkit/terms.html',
+  'rewardhub/index.html', 'timesheets/index.html', 'blog/index.html',
+  'blog/posts/introducing-forms-and-frontdoor.html',
+  'blog/posts/slack-teams-notifications-confluence-forms.html'
+];
 
 function pagesFor(all) {
   const dirs = ['apistudio', 'timesheets', 'macrotoolkit', 'forms', 'rewardhub'];
@@ -61,27 +76,49 @@ async function check(rel) {
   const problems = [];
   const need = (sel, label) => { if (!d.querySelector(sel)) problems.push('missing ' + label); };
 
+  const isDoc = !!d.querySelector('.vc-shell');
+
   need('header.vc-hd', 'header');
   need('.vc-hd .vc-switch', 'product switcher');
   need('#doc-search', 'search input');
   need('footer.vc-ft', 'footer');
-  need('.vc-side .vc-grp-links a', 'sidebar links');
-  need('.vc-crumbs strong', 'breadcrumbs');
-  need('.vc-meta .vc-meta-item', 'meta row');
-  need('.vc-meta [data-print="page"]', 'PDF button');
-  need('.vc-fb', 'feedback block');
-  need('.vc-print-head', 'print title block');
-  need('article.vc-doc', 'article');
+  if (isDoc) need('.vc-side .vc-grp-links a', 'sidebar links');
+  if (isDoc) need('.vc-crumbs strong', 'breadcrumbs');
+  if (isDoc) need('.vc-meta .vc-meta-item', 'meta row');
+  if (isDoc) need('.vc-meta [data-print="page"]', 'PDF button');
+  if (isDoc) need('.vc-fb', 'feedback block');
+  if (isDoc) need('.vc-print-head', 'print title block');
+  if (isDoc) need('article.vc-doc', 'article');
 
-  if (d.querySelectorAll('article.vc-doc h2').length && !d.querySelector('.vc-toc a')) {
-    problems.push('missing table of contents');
-  }
-  if (!d.querySelector('.vc-side a.active')) problems.push('sidebar has no active page');
-  if (!d.querySelector('.vc-pn a')) problems.push('missing prev/next');
-  if (d.querySelectorAll('article.vc-doc pre').length && !d.querySelector('.vc-code .vc-copy')) {
-    problems.push('code block not framed');
+  if (isDoc) {
+    if (d.querySelectorAll('article.vc-doc h2').length && !d.querySelector('.vc-toc a')) {
+      problems.push('missing table of contents');
+    }
+    if (!d.querySelector('.vc-side a.active')) problems.push('sidebar has no active page');
+    if (!d.querySelector('.vc-pn a')) problems.push('missing prev/next');
+    if (d.querySelectorAll('article.vc-doc pre').length && !d.querySelector('.vc-code .vc-copy')) {
+      problems.push('code block not framed');
+    }
   }
   if (d.querySelector('[data-vc]')) problems.push('unfilled placeholder: ' + d.querySelector('[data-vc]').dataset.vc);
+
+  // The header, footer and sidebar links are built at runtime, so a static
+  // scan of the HTML never sees them — this is where a switcher entry
+  // pointing at a directory with no index.html shows up.
+  const pageDir = path.dirname(file);
+  for (const a of d.querySelectorAll('a[href]')) {
+    const href = a.getAttribute('href');
+    if (!href || /^(https?:|mailto:|tel:|data:|javascript:|#)/.test(href)) continue;
+    let target = decodeURIComponent(href.split('#')[0].split('?')[0]);
+    if (!target) continue;
+    if (target.startsWith('file:')) target = fileURLToPath(target);
+    // A leading slash means the deployed site root, not the filesystem root.
+    let full = target.startsWith('/') && !target.startsWith(ROOT)
+      ? path.join(ROOT, target)
+      : path.resolve(pageDir, target);
+    if (fs.existsSync(full) && fs.statSync(full).isDirectory()) full = path.join(full, 'index.html');
+    if (!fs.existsSync(full)) problems.push('dead link: ' + href);
+  }
 
   dom.window.close();
   return { rel, problems, errors };
@@ -89,7 +126,7 @@ async function check(rel) {
 
 (async () => {
   const all = process.argv.includes('--all');
-  const pages = pagesFor(all);
+  const pages = process.argv.includes('--pages') ? OTHER_PAGES : pagesFor(all);
   let bad = 0;
   for (const p of pages) {
     const r = await check(p);

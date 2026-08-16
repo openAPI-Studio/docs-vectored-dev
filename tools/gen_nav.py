@@ -118,10 +118,17 @@ def build():
         missing = actual - seen
         if missing:
             raise SystemExit('%s: pages not in any group: %s' % (p['key'], sorted(missing)))
+        # Where "<Product> docs" should land. Only two products have a
+        # docs/index.html; linking the bare directory for the rest 404s, so
+        # fall back to the first page in nav order.
+        first = groups[0]['items'][0]['h']
+        docs_home = d + '/docs/' if 'index' in seen else d + '/docs/' + first
+
         out.append({
             'key': p['key'], 'label': p['label'], 'blurb': p['blurb'], 'dir': d,
             'icon': p['icon'], 'cta': p['cta'], 'ctaLabel': p['ctaLabel'],
-            'homeLabel': p['homeLabel'], 'count': len(actual), 'groups': groups,
+            'homeLabel': p['homeLabel'], 'docsHome': docs_home,
+            'count': len(actual), 'groups': groups,
         })
     return out
 
@@ -142,6 +149,8 @@ js = """/* Vectored docs — product registry.
      blurb      one-line description shown in the product switcher
      icon       switcher icon, root-relative (64px copies, not the originals)
      cta        header call-to-action target; root-relative when not absolute
+     docsHome   where "<Product> docs" links to — the directory when it has an
+                index.html, otherwise the first page in nav order
      count      number of doc pages, shown in the switcher
      groups     [{ title, items: [{ h: href, l: label, t: search text }] }]
 */
