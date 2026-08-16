@@ -129,6 +129,11 @@ html .placeholder-gray-400::placeholder { color: color-mix(in srgb, var(--muted)
 }
 .vc-iconbtn:hover { color: var(--tx); background: var(--card); text-decoration: none; }
 .vc-iconbtn svg { width: 18px; height: 18px; display: block; }
+.vc-iconbtn svg.vc-ico-burger { display: none; }
+
+/* The drawer's backdrop. Only ever shown under 1024px, where the sidebar
+   stops being a column and becomes an overlay. */
+.vc-scrim { display: none; }
 .vc-hd .vc-iconbtn.vc-first { margin-left: -8px; }
 
 .vc-wordmark { display: flex; align-items: baseline; gap: 8px; color: inherit; margin-left: -8px; }
@@ -506,9 +511,22 @@ html .placeholder-gray-400::placeholder { color: color-mix(in srgb, var(--muted)
 @media (max-width: 1024px) {
   .vc-side {
     position: fixed; top: 60px; left: 0; z-index: 45; background: var(--bg);
-    box-shadow: var(--shadow); width: 272px;
+    box-shadow: var(--shadow); width: min(320px, 86vw);
+    border-right: 1px solid var(--border);
   }
-  .vc-side.closed { box-shadow: none; }
+  .vc-side.closed { box-shadow: none; border-right: 0; }
+
+  /* A drawer is a hamburger; the panel glyph means "collapse this column",
+     which is not what the button does at this width. */
+  .vc-iconbtn svg.vc-ico-panel { display: none; }
+  .vc-iconbtn svg.vc-ico-burger { display: block; }
+
+  .vc-scrim {
+    display: block; position: fixed; inset: 60px 0 0; z-index: 44;
+    background: rgba(2, 8, 23, 0.55); backdrop-filter: blur(1px);
+  }
+  .vc-scrim[hidden] { display: none; }
+
   .vc-main { padding: 28px 24px 64px; }
   .vc-h1 { font-size: 34px; }
 }

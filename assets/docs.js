@@ -148,14 +148,35 @@
   }
 
   var toggle = document.getElementById('vc-sidebar-toggle');
+
+  /* Below 1024px the sidebar is a drawer over the page, so it needs a scrim:
+     without one the content behind stays fully lit and it is not obvious the
+     page is waiting on a choice. */
+  var scrim = el('div', 'vc-scrim');
+  scrim.hidden = true;
+  document.body.appendChild(scrim);
+
   function setSidebar(open) {
     if (!side) return;
     side.classList.toggle('closed', !open);
+    scrim.hidden = !open;
     if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
+  scrim.addEventListener('click', function () {
+    setSidebar(false);
+    try { localStorage.setItem('vc-docs-sidebar', 'closed'); } catch (e) {}
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && window.innerWidth <= 1024 && side && !side.classList.contains('closed')) {
+      setSidebar(false);
+    }
+  });
   var stored = null;
   try { stored = localStorage.getItem('vc-docs-sidebar'); } catch (e) {}
-  setSidebar(stored ? stored === 'open' : window.innerWidth > 1024);
+  // The stored preference is about the desktop column. A drawer that opens
+  // over the page on load, because of a click made on a laptop, is just in
+  // the way — so below 1024px always start closed.
+  setSidebar(window.innerWidth > 1024 && stored !== 'closed');
   if (toggle) toggle.addEventListener('click', function (e) {
     e.stopPropagation();
     var open = side.classList.contains('closed');

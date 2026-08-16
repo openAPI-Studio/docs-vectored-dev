@@ -41,8 +41,12 @@
   var html =
     '<header class="vc-hd" data-noprint="1">' +
       '<div class="vc-hd-in">' +
-        '<button id="vc-sidebar-toggle" class="vc-iconbtn vc-first" aria-label="Toggle sidebar" title="Toggle sidebar" aria-expanded="true">' +
-          '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M9 4v16"></path></svg>' +
+        // Two icons, one per breakpoint: the panel glyph reads as "collapse
+        // this column" on a desktop, but on a phone the sidebar is a drawer
+        // over the page, and a drawer is a hamburger.
+        '<button id="vc-sidebar-toggle" class="vc-iconbtn vc-first" aria-label="Documentation menu" title="Documentation menu" aria-expanded="true">' +
+          '<svg class="vc-ico-panel" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M9 4v16"></path></svg>' +
+          '<svg class="vc-ico-burger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>' +
         '</button>' +
         '<a class="vc-wordmark" href="' + u('') + '"><b>Vectored</b><span>Docs</span></a>' +
         '<div class="vc-vdiv"></div>' +
