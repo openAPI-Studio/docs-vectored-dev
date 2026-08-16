@@ -84,11 +84,14 @@
       </div>
     </section>
 
-    <!-- Form + aside -->
+    <!-- Form + aside. From xl a third, empty column mirrors the aside so the
+         form sits on the page's centre line under the hero instead of being
+         pushed left by the cards beside it. Below xl there is not enough room
+         to spend 18rem on whitespace, so it stays a two-column row. -->
     <section class="px-4 sm:px-6 lg:px-8 pb-20">
-      <div class="max-w-5xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_18rem] gap-6 items-start">
+      <div class="max-w-5xl xl:max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_18rem] xl:grid-cols-[18rem_minmax(0,1fr)_18rem] gap-6 items-start">
 
-        <form id="fb-form" novalidate class="card-lux bg-surface border border-border rounded-2xl">
+        <form id="fb-form" novalidate class="xl:col-start-2 card-lux bg-surface border border-border rounded-2xl">
           <!-- Completion progress -->
           <div class="px-6 sm:px-8 pt-6">
             <div class="flex items-center justify-between text-xs text-muted font-mono mb-2">
@@ -253,7 +256,7 @@
         </form>
 
         <!-- Aside -->
-        <aside class="lg:sticky lg:top-24 space-y-4">
+        <aside class="xl:col-start-3 lg:sticky lg:top-24 space-y-4">
           <div id="tool-card" class="card-lux bg-surface border border-border rounded-2xl p-5"></div>
 
           <div class="bg-surface border border-border rounded-2xl p-5">
