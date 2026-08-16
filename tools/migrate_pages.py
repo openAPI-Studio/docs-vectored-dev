@@ -141,6 +141,34 @@ def clean_css(css):
     return ''.join(parts).strip()
 
 
+def drop_element(s, opening):
+    """Remove the element whose opening tag matches, brackets balanced.
+
+    A non-greedy regex is not enough here: the mobile drawer wraps its links in
+    another <div>, so `.*?</div>\\s*</div>` stops at the wrong pair and leaves
+    the links orphaned in the body.
+    """
+    m = re.search(opening, s)
+    if not m:
+        return s
+    tag = re.match(r'<(\w+)', m.group(0)).group(1)
+    open_re = re.compile(r'<%s\b' % tag)
+    close_re = re.compile(r'</%s>' % tag)
+    depth, pos = 1, m.end()
+    while depth:
+        nxt_open = open_re.search(s, pos)
+        nxt_close = close_re.search(s, pos)
+        if not nxt_close:
+            return s                      # unbalanced; leave the page alone
+        if nxt_open and nxt_open.start() < nxt_close.start():
+            depth += 1
+            pos = nxt_open.end()
+        else:
+            depth -= 1
+            pos = nxt_close.end()
+    return s[:m.start()].rstrip() + '\n' + s[pos:].lstrip('\n')
+
+
 def rel_root(page):
     return '../' * page.count('/')
 
@@ -193,7 +221,8 @@ def migrate(page):
 
     # The mobile drawer duplicated the old navbar's links; its toggle lived in
     # that navbar, so what is left is unreachable markup.
-    s = re.sub(r'\s*<div\b[^>]*id="mobile-menu"[^>]*>.*?</div>\s*</div>\s*', '\n', s, flags=re.S)
+    s = re.sub(r'[ \t]*<!--\s*Mobile menu\s*-->[ \t]*\n?', '', s)
+    s = drop_element(s, r'<div\b[^>]*id="mobile-menu"[^>]*>')
 
     if 'id="vc-header"' not in s:
         # Drop the hand-rolled navbar and its mobile drawer.
@@ -209,9 +238,9 @@ def migrate(page):
                        r'border border-cta/20 align-middle">' + badge.group(1) + '</span>',
                        s, count=1)
         s = re.sub(r'\s*<!--\s*Mobile sidebar overlay\s*-->', '', s)
-        s = re.sub(r'<div\b[^>]*id="mobile-overlay"[^>]*>.*?</div>\s*', '', s, flags=re.S)
-        s = re.sub(r'<aside\b[^>]*id="mobile-sidebar"[^>]*>.*?</aside>\s*', '', s, flags=re.S)
-        s = re.sub(r'<div\b[^>]*id="mobile-menu"[^>]*>.*?</div>\s*', '', s, flags=re.S)
+        s = drop_element(s, r'<div\b[^>]*id="mobile-overlay"[^>]*>')
+        s = drop_element(s, r'<aside\b[^>]*id="mobile-sidebar"[^>]*>')
+        s = drop_element(s, r'<div\b[^>]*id="mobile-menu"[^>]*>')
         s = re.sub(r'(<body[^>]*>)', r'\1\n\n<div id="vc-header"></div>', s, count=1)
 
     if 'assets/nav.js' not in s:
@@ -241,6 +270,14 @@ def migrate(page):
     # now, so the duplicate is dead weight.
     s = re.sub(r'<aside\b[^>]*>\s*<nav id="sidebar-nav"[^>]*></nav>\s*</aside>\s*', '', s, flags=re.S)
     s = re.sub(r'(<main[^>]*?)\bmd:ml-64\b', r'\1', s)
+
+    # Blog prose set its body copy in --muted with an html.light twin. --body
+    # is the token for body copy and flips on its own, so the twin can go.
+    s = s.replace("color:var(--muted)}\n    html.light .prose-vc p{color:#525252}", "color:var(--body)}")
+    s = s.replace("color:var(--muted);line-height:1.7}\n    html.light .prose-vc ul{color:#525252}",
+                  "color:var(--body);line-height:1.7}")
+    s = s.replace("background:rgba(148,163,184,.15);padding:0.1em 0.35em",
+                  "background:var(--surface);border:1px solid var(--border);padding:0.1em 0.35em")
 
     s = re.sub(r'\n{3,}', '\n\n', s)
     open(path, 'w', encoding='utf-8').write(s)
