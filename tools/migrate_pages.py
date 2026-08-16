@@ -261,10 +261,12 @@ def migrate(page):
         s = s.replace('<div id="vc-footer"></div>',
                       '<div id="vc-footer"></div>\n<script src="%sassets/footer.js"></script>' % up, 1)
 
-    # The old navbar was fixed-position, so pages padded the first row to clear
-    # it. The new header is in flow and needs no such allowance.
-    s = re.sub(r'(<div class="flex) pt-2\d(")', r'\1\2', s)
-    s = re.sub(r'(<main[^>]*?)\bpt-2\d\b', r'\1', s)
+    # The old navbar was fixed-position, so pages padded the first row by
+    # ~112px to clear it. The new header is in flow, so that allowance is
+    # wrong — but dropping it entirely leaves the first line touching the
+    # header. Fall back to the same pt-16 the other landing pages use.
+    s = re.sub(r'(<div class="flex) pt-2\d(")', r'\1 pt-16\2', s)
+    s = re.sub(r'(<main[^>]*?)\bpt-2\d\b', r'\1pt-16', s)
 
     # Old fixed sidebars on landing pages: the shared header carries navigation
     # now, so the duplicate is dead weight.
