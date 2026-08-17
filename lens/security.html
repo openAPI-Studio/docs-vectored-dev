@@ -95,7 +95,8 @@
       </ul>
 
       <h3 class="text-lg font-semibold mt-6 mb-3">What is in a prompt</h3>
-      <p class="text-muted mb-4">Only what the enabled feature needs. The private-data check is the case that matters most: when a model is allowed to sharpen its results, it receives the <em>type</em> of each flagged region and the page title and heading — never the flagged text. A model is never asked to look at a credential to decide whether it is one. Captured images are not sent to any provider.</p>
+      <p class="text-muted mb-4">Only what the feature actually needs, and the amount differs by feature. The private-data check is the one that matters most: when a model is allowed to sharpen its results, it receives the <em>type</em> of each flagged region and the page title and heading — never the flagged text. A model is never asked to look at a credential to decide whether it is one.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Suggest name &amp; description</strong> is the widest: it sends the text inside the captured region, because describing a screenshot is the task. It is a button you press per capture, never something that happens on save. <strong class="text-text">Write steps from clicks</strong> sends only the accessible names of the controls that were clicked, never anything typed into a field, and works with no provider at all. Captured images are not sent to any provider.</p>
       <p class="text-muted">Model output can only re-rank and relabel what the local rules already found. It can never add a region, and it can never blur one — blurring stays a click you make. A provider that is slow, unreachable or answers badly leaves the local results exactly as they were.</p>
     </section>
 

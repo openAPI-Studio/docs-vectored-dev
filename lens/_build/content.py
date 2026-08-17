@@ -107,6 +107,8 @@ PAGES["capturing"] = dict(
             "The **note** is stored in `project_metadata.json` for that capture. Use it for context a file name cannot carry.",
             "Press **Save** to write the file. A toast confirms where it went.",
         ]),
+        P("If you have connected an AI provider, a **Suggest name & description** button appears above the name field. It reads the text inside the region you captured and fills in a file name and a one-line description of what the screenshot shows. The description is added to your note rather than replacing it, and everything it writes is yours to edit."),
+        NOTE("This is the one feature that sends the captured region's text to your provider, because describing a screenshot is the task. It only ever runs when you press the button — never as part of saving. If your provider is the browser's built-in model or one on your own machine, that text does not leave the device either way."),
         NOTE("The toast tells you the truth about where the file landed. If it says *Downloaded to Downloads*, the project folder was unavailable and the reason is in the message — most often folder access needs reconnecting."),
     ],
 )
@@ -149,6 +151,16 @@ PAGES["recording"] = dict(
         ]),
         P("Encoding runs in the page and locks the controls while it works. Progress is shown on the bar."),
         SHOT("lens-gif-converter.png", "The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header"),
+
+        H("Writing steps from what you clicked"),
+        P("While a recording runs, Lens notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, **Write steps from clicks** turns that into a numbered list and adds it to your note."),
+        P("This works with no AI provider at all: the click list alone produces usable steps. If you have a provider connected, it rewrites the list into better prose instead — merging actions that are really one step and dropping navigation noise. The toast tells you which of the two you got."),
+        UL([
+            "The log follows the recording across pages, so a walkthrough that navigates keeps its steps.",
+            "Repeated clicks on the same control within a second are treated as one step.",
+            "Steps are added to your note, never over the top of what you already wrote.",
+        ]),
+        NOTE("If the recording had no clicks in it, the button does not appear — there is nothing to write."),
 
         H("Recording across page navigation"),
         P("A recording belongs to the **tab**, not the page. If you click a link and navigate, recording continues and the controls are rebuilt on the new page with the timer intact."),
@@ -294,6 +306,8 @@ PAGES["settings"] = dict(
         ]),
         P("Picking one that runs in the cloud asks you to confirm first, because it changes what the extension does with page text. **Test connection** tells you whether the provider is actually reachable before you rely on it."),
         NOTE("An API key is stored in this browser only, in its own storage area, and is read only by the extension's background worker — never by the code Lens injects into a page. The settings screen can tell you a key is saved but cannot show it back to you. Vectored never receives it; see the [privacy policy](../privacy.html#ai)."),
+
+        P("Connecting a provider also puts two buttons on the save screens: **Suggest name & description** on a screenshot, and **Write steps from clicks** on a recording. Both are covered in [Capturing](capturing.html) and [Recording](recording.html). Neither runs on its own — you press them, per capture."),
 
         H("Let the model sharpen redaction hints"),
         P("Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console."),

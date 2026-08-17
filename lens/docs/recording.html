@@ -74,10 +74,15 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">4. Recording across page navigation</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Writing steps from what you clicked</h2>
+<p class="text-muted mb-4">While a recording runs, Lens notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, <strong class="text-text">Write steps from clicks</strong> turns that into a numbered list and adds it to your note.</p>
+<p class="text-muted mb-4">This works with no AI provider at all: the click list alone produces usable steps. If you have a provider connected, it rewrites the list into better prose instead — merging actions that are really one step and dropping navigation noise. The toast tells you which of the two you got.</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">The log follows the recording across pages, so a walkthrough that navigates keeps its steps.</li><li class="mb-2">Repeated clicks on the same control within a second are treated as one step.</li><li class="mb-2">Steps are added to your note, never over the top of what you already wrote.</li></ul>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">If the recording had no clicks in it, the button does not appear — there is nothing to write.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. Recording across page navigation</h2>
 <p class="text-muted mb-4">A recording belongs to the <strong class="text-text">tab</strong>, not the page. If you click a link and navigate, recording continues and the controls are rebuilt on the new page with the timer intact.</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">Navigating to a page Chrome does not allow extensions on — <span class="font-mono text-sm">chrome://</span> pages, the Web Store — keeps the recording going, but the on-page controls cannot be shown. Stop it from the popup instead.</li><li class="mb-2">Closing the tab ends the recording and discards it.</li></ul>
-<h2 class="text-2xl font-semibold mt-10 mb-4">5. Stopping from another tab</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. Stopping from another tab</h2>
 <p class="text-muted mb-4">If you switch tabs, the Lens popup shows a <strong class="text-text">Recording</strong> banner with the elapsed time and which tab it belongs to. <strong class="text-text">Stop &amp; convert</strong> there brings that tab forward and opens the converter; the cross button discards the recording.</p>
 <figure class="shot mb-6">
         <img src="../assets/lens-popup-recording-banner.png" alt="The popup showing the red recording banner with elapsed time, the source tab name, and Stop &amp; convert and discard buttons" loading="lazy"
@@ -91,7 +96,7 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The popup showing the red recording banner with elapsed time, the source tab name, and Stop &amp; convert and discard buttons</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">6. Length limit</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. Length limit</h2>
 <p class="text-muted mb-4">Recordings stop automatically at the cap set under <strong class="text-text">Settings &gt; Maximum GIF recording length</strong> — one minute by default, up to ten. When the cap is reached the recording stops and the converter opens as though you had pressed stop.</p>
       </article>
 

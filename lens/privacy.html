@@ -125,7 +125,20 @@
       <p class="text-muted mt-4">Choosing a provider that runs in the cloud asks you to confirm first, because it genuinely changes what the extension does.</p>
 
       <h3 class="text-lg font-semibold mt-6 mb-3">What is actually sent</h3>
-      <p class="text-muted mb-4">Only what the enabled feature needs, and never the thing the feature is protecting. The redaction check is the clearest case: when you let a model sharpen its results, it is told the <em>type</em> of each flagged region — "an AWS access key", "a password field" — along with the page title and heading, so it can tell a real credential from an example in documentation. It is never sent the flagged text itself. Sending an API key to a model to ask whether it is an API key would defeat the point of the feature.</p>
+      <p class="text-muted mb-4">Only what the feature you pressed actually needs, and never the thing a feature is protecting. Each feature is listed below with exactly what its prompt carries. Captured images are not sent to any provider.</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Feature</th><th>How it runs</th><th>What the prompt contains</th></tr></thead>
+          <tbody>
+            <tr><td><strong class="text-text">Sharpen the private-data check</strong></td><td>Automatically, only if you switch it on</td><td>The <em>type</em> of each flagged region — "an AWS access key", "a password field" — plus the page title and heading. <strong class="text-text">Never the flagged text itself.</strong></td></tr>
+            <tr><td><strong class="text-text">Suggest name &amp; description</strong></td><td>A button you press, per capture</td><td>The page title and heading, the names of controls in the region, and <strong class="text-text">the text inside the region you captured</strong> — describing a screenshot is the task, so this one needs its content.</td></tr>
+            <tr><td><strong class="text-text">Write steps from clicks</strong></td><td>A button you press, per recording</td><td>The page title and the names of the controls you clicked, as a screen reader would announce them. Never anything you typed into a field. This feature also works with no provider at all, from the click list alone.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-muted mt-4">The distinction is deliberate. Sending an API key to a model to ask whether it is an API key would defeat the point of the check that found it — so the check never does. Asking a model to describe a screenshot without giving it the content would be pointless, so that one does, and it only ever happens because you pressed the button on the capture in front of you.</p>
       <p class="text-muted mb-4">Captured images are not sent to any provider.</p>
 
       <h3 class="text-lg font-semibold mt-6 mb-3">Your API key</h3>
