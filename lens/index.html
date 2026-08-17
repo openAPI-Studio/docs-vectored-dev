@@ -125,6 +125,8 @@
       <h2 class="text-2xl font-bold mb-6">Where your captures go</h2>
       <div class="bg-surface border border-border rounded-xl p-6">
         <p class="text-muted mb-4">Screenshots of internal tools are some of the most sensitive things a browser extension can touch. Lens is built so that they never leave the machine that took them: there is no account, no server, no analytics and no network call at capture time.</p>
+        <p class="text-muted mb-4">Before a capture is saved, Lens checks the region for passwords, API keys and tokens and offers to blur them — a check that runs on the page structure in your own browser, with no AI and nothing sent anywhere.</p>
+        <p class="text-muted mb-4">AI features are off on install. If you turn them on, you choose who does the work: your browser's built-in model, a model on your own machine, or an API key of your own. The first two keep everything local; picking a cloud provider asks you to confirm first. Either way there is no Vectored server in the path.</p>
         <div class="flex flex-wrap gap-3 text-sm">
           <a href="privacy.html" class="text-cta font-semibold hover:underline cursor-pointer">Privacy &rarr;</a>
           <a href="security.html" class="text-cta font-semibold hover:underline cursor-pointer">Security &rarr;</a>

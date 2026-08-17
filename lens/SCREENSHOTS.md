@@ -1,6 +1,6 @@
 # Lens docs — screenshots needed
 
-14 screenshots. Save each one into `lens/assets/` using the
+15 screenshots. Save each one into `lens/assets/` using the
 exact filename below. The docs pick them up automatically on the next page
 load — until then each slot renders a dashed placeholder naming the file it
 wants, so an unshot page looks unfinished rather than broken.
@@ -24,6 +24,8 @@ these end up on a public docs site.
 
 - [ ] `lens-selection-handles.png`
       A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes
+- [ ] `lens-redaction-hints.png`
+      The annotation editor with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
 - [ ] `lens-annotation-editor.png`
       The annotation editor with the toolbar visible and an arrow, a text label and a blurred region applied to a screenshot
 ## Recording GIF and MP4

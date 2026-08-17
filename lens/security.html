@@ -36,7 +36,7 @@
     <p class="text-sm text-muted mb-10">Lens by Vectored &middot; Last updated: August 2026</p>
 
     <div class="bg-cta/10 border border-cta/20 rounded-xl p-5 mb-10">
-      <p class="text-sm text-muted"><strong class="text-text">Threat model in one line.</strong> Lens runs entirely on your machine with no network surface of its own, so the risks worth documenting are what it can reach locally and what it is trusted with — not what it might leak in transit.</p>
+      <p class="text-sm text-muted"><strong class="text-text">Threat model in one line.</strong> Lens runs on your machine and, as installed, has no network surface of its own, so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in <a href="#ai" class="text-cta hover:underline">section 4</a>.</p>
     </div>
 
     <section class="mb-10">
@@ -57,7 +57,8 @@
           </tbody>
         </table>
       </div>
-      <p class="text-muted mt-4">Lens requests no permission for network access, native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.</p>
+      <p class="text-muted mt-4">Lens requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.</p>
+      <p class="text-muted mt-4">The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Lens contacts no host on its own initiative — see <a href="#ai" class="text-cta hover:underline">section 4</a>.</p>
     </section>
 
     <section class="mb-10">
@@ -81,8 +82,25 @@
       </ul>
     </section>
 
+    <section class="mb-10" id="ai">
+      <h2 class="text-xl font-semibold mb-4">4. AI providers and key handling</h2>
+      <p class="text-muted mb-4">AI features are off on install and there is no Vectored model, endpoint or proxy anywhere in the path. When you enable them you pick who does the work — the browser's built-in model, a model on your own machine, or Claude or OpenAI with a key you supply. The first two keep everything on the device; the last two are an outbound request from your browser straight to that company.</p>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">Where the key lives, and why</h3>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>Requests to a keyed provider are made by the extension's <strong class="text-text">background service worker</strong>, never by the code Lens injects into the page. Injected code shares a process with the page it is injected into, so a page-side compromise must not be able to read a key — it is never put there.</li>
+        <li>The key is stored under its own storage area, separate from the settings the page-side code is allowed to read, so it cannot be picked up as a side effect of reading preferences.</li>
+        <li>The settings screen writes keys but cannot read them back; it can only tell you whether one is saved.</li>
+        <li>A key is sent to exactly one place: the provider it belongs to. It never reaches Vectored, and there is no Vectored endpoint for it to reach.</li>
+      </ul>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">What is in a prompt</h3>
+      <p class="text-muted mb-4">Only what the enabled feature needs. The private-data check is the case that matters most: when a model is allowed to sharpen its results, it receives the <em>type</em> of each flagged region and the page title and heading — never the flagged text. A model is never asked to look at a credential to decide whether it is one. Captured images are not sent to any provider.</p>
+      <p class="text-muted">Model output can only re-rank and relabel what the local rules already found. It can never add a region, and it can never blur one — blurring stays a click you make. A provider that is slow, unreachable or answers badly leaves the local results exactly as they were.</p>
+    </section>
+
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">4. What Lens deliberately cannot capture</h2>
+      <h2 class="text-xl font-semibold mb-4">5. What Lens deliberately cannot capture</h2>
       <p class="text-muted mb-4">Some limits are Chrome's and are worth knowing, because they are security boundaries rather than bugs:</p>
       <ul class="list-disc pl-6 text-muted space-y-2">
         <li>Browser pages — <span class="font-mono text-xs">chrome://</span>, <span class="font-mono text-xs">about:</span>, the Web Store, DevTools, other extensions' pages — cannot be captured by any extension.</li>
@@ -92,16 +110,17 @@
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">5. Handling sensitive captures</h2>
+      <h2 class="text-xl font-semibold mb-4">6. Handling sensitive captures</h2>
       <ul class="list-disc pl-6 text-muted space-y-2">
-        <li>Use the <strong class="text-text">blur</strong> tool for credentials, tokens and names. It rewrites pixels rather than covering them, so the original cannot be recovered from the saved file.</li>
+        <li>Lens flags likely credentials in the captured region before you save and offers to blur them. That check runs on page structure in your browser, with no AI and no network call, and is on by default. Treat it as a safety net, not a guarantee — it looks for known shapes, so read the capture as well.</li>
+        <li>Use the <strong class="text-text">blur</strong> tool for anything the check missed. It rewrites pixels rather than covering them, so the original cannot be recovered from the saved file.</li>
         <li>Remember that a capture records the page <strong class="text-text">URL and title</strong> into <span class="font-mono text-sm">project_metadata.json</span>. If the URL itself is sensitive — a signed link, a token in a query string — treat the metadata file with the same care as the image, or turn off <strong class="text-text">Write metadata file</strong> in Settings.</li>
         <li>Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Lens inherits the protection of the folder you choose and adds none of its own.</li>
       </ul>
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">6. Reporting a vulnerability</h2>
+      <h2 class="text-xl font-semibold mb-4">7. Reporting a vulnerability</h2>
       <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 text-sm text-muted mb-4">
         <p>If you find a security issue, please <strong class="text-yellow-400">do not</strong> open a public issue or describe it in the support form. Email <a href="mailto:security@vectored.dev" class="text-cta hover:underline">security@vectored.dev</a> directly.</p>
       </div>
@@ -115,7 +134,7 @@
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">7. Related</h2>
+      <h2 class="text-xl font-semibold mb-4">8. Related</h2>
       <p class="text-muted"><a href="privacy.html" class="text-cta hover:underline">Lens privacy policy</a> &middot; <a href="../security.html" class="text-cta hover:underline">Vectored site security</a> &middot; <a href="support.html" class="text-cta hover:underline">Support</a></p>
     </section>
   </main>

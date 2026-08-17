@@ -73,6 +73,18 @@ PAGES["capturing"] = dict(
         H("Capture full tab"),
         P("**Full tab** skips the selection step and captures the whole visible area of the tab. It does not capture below the fold — only what is on screen."),
 
+        H("The private-data check"),
+        P("As the editor opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered."),
+        P("It looks for password fields, fields named for a credential that have something in them, and text shaped like an API key, a JWT, a bearer token or a PEM private key. Unless you turn it off, it also flags email addresses and card numbers — card numbers are checksum-checked, so an order number is not mistaken for one."),
+        UL([
+            "Tick or untick anything in the list, then press **Blur all** to cover the ticked ones in a single step that a single **Undo** reverses.",
+            "**Dismiss** hides the bar and changes nothing.",
+            "High-confidence findings are ticked for you; the rest are listed but left unticked.",
+        ]),
+        NOTE("The check runs on the structure of the page in your own browser. It uses no AI and sends nothing anywhere, and it is on by default. If you have connected an AI provider you can additionally let a model sort real credentials from documentation examples — see [Settings](settings.html)."),
+        WARN("Treat it as a safety net, not a guarantee. It recognises known shapes, so it will not catch a secret that does not look like one, or a name or figure that is sensitive only in context. Read the capture as well."),
+        SHOT("lens-redaction-hints.png", "The annotation editor with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below"),
+
         H("Annotating"),
         P("After confirming, the editor opens with a toolbar above the image."),
         TABLE(["Tool", "What it does"], [
@@ -264,6 +276,28 @@ PAGES["settings"] = dict(
 
         H("Play shutter sound"),
         P("A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension."),
+
+        H("Flag private data in captures"),
+        P("On by default. Checks each captured region for credentials before you save and offers to blur them — see [Capturing](capturing.html) for what the bar looks like and what it recognises. It reads the page structure in your browser: no AI, no network call, nothing sent anywhere."),
+
+        H("Also flag emails and card numbers"),
+        P("On by default, and only has an effect while the check above is on. Widens it past credentials to personal data. Card numbers are validated against their checksum, so order and reference numbers are not flagged."),
+
+        H("AI provider"),
+        P("**None** by default, which means every AI feature is off and Lens makes no network requests. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine."),
+        TABLE(["Provider", "Runs", "Needs"], [
+            ["None", "Nothing — AI features off", "—"],
+            ["Your browser's built-in model", "On your device", "Edge or Chrome with the model available"],
+            ["A local model", "On your device", "Ollama, LM Studio or similar, and the model name"],
+            ["Claude", "Anthropic's servers", "An Anthropic API key"],
+            ["OpenAI or compatible", "OpenAI's servers, or an endpoint you name", "An API key"],
+        ]),
+        P("Picking one that runs in the cloud asks you to confirm first, because it changes what the extension does with page text. **Test connection** tells you whether the provider is actually reachable before you rely on it."),
+        NOTE("An API key is stored in this browser only, in its own storage area, and is read only by the extension's background worker — never by the code Lens injects into a page. The settings screen can tell you a key is saved but cannot show it back to you. Vectored never receives it; see the [privacy policy](../privacy.html#ai)."),
+
+        H("Let the model sharpen redaction hints"),
+        P("Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console."),
+        P("The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one."),
 
         H("File name pattern"),
         P("Controls the name each capture is given before you edit it. The extension is added automatically."),

@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Lens</title>
-  <meta name="description" content="Privacy policy for Lens by Vectored. Captures never leave your machine: no account, no server, no analytics, no network calls.">
+  <meta name="description" content="Privacy policy for Lens by Vectored. No account, no server, no analytics. Captures never leave your machine, and Lens makes no network calls unless you connect an AI provider of your own.">
   <link rel="canonical" href="https://docs.vectored.dev/lens/privacy.html">
   <meta property="og:title" content="Privacy Policy — Lens">
-  <meta property="og:description" content="Privacy policy for Lens by Vectored. Captures never leave your machine: no account, no server, no analytics.">
+  <meta property="og:description" content="Privacy policy for Lens by Vectored. No account, no server, no analytics, and no network calls unless you connect your own AI provider.">
   <meta property="og:url" content="https://docs.vectored.dev/lens/privacy.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Vectored">
@@ -36,7 +36,7 @@
     <p class="text-sm text-muted mb-10">Lens by Vectored &middot; Last updated: August 2026</p>
 
     <div class="bg-cta/10 border border-cta/20 rounded-xl p-5 mb-10">
-      <p class="text-sm text-muted"><strong class="text-text">The short version.</strong> Lens has no account, no server and no analytics. It makes no network requests. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it.</p>
+      <p class="text-sm text-muted"><strong class="text-text">The short version.</strong> Lens has no account, no server and no analytics. As installed it makes no network requests at all. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it — that last part stays true no matter what you turn on. The one thing that can change it is you connecting an AI provider of your own, which is off by default and covered in <a href="#ai" class="text-cta hover:underline">section 7</a>.</p>
     </div>
 
     <section class="mb-10">
@@ -56,6 +56,7 @@
         <li>Cookies or any advertising or tracking identifier</li>
       </ul>
       <p class="text-muted mt-4">The extension contains no analytics SDK, no remote configuration and no update-check call of its own. Extension updates are delivered by the Chrome Web Store, not by us.</p>
+      <p class="text-muted mt-4">This list is about Vectored, and it holds unconditionally. If you connect an AI provider, Lens talks to <em>that provider</em> using <em>your</em> key — not to us, and we learn nothing about it. See <a href="#ai" class="text-cta hover:underline">section 7</a>.</p>
     </section>
 
     <section class="mb-10">
@@ -69,6 +70,7 @@
             <tr><td><span class="font-mono text-xs">project_metadata.json</span> — file name, page title, page URL, timestamp, captured region, your note</td><td>Alongside the captures, in the same folder</td><td>So the capture set is self-describing and readable by other tools</td></tr>
             <tr><td>Project list and folder handles</td><td>IndexedDB in your browser profile</td><td>To reopen your folder without asking you to pick it every time</td></tr>
             <tr><td>Settings</td><td><span class="font-mono text-xs">chrome.storage.local</span></td><td>To remember your preferences</td></tr>
+            <tr><td>AI provider API key, only if you set one</td><td><span class="font-mono text-xs">chrome.storage.local</span>, in its own area, separate from your settings</td><td>So Lens can reach the provider you chose. Written by the settings screen, read only by the background worker, never by page-injected code</td></tr>
             <tr><td>Preview thumbnails, capped and downscaled</td><td><span class="font-mono text-xs">chrome.storage.local</span></td><td>So the timeline renders without reading every file from disk</td></tr>
             <tr><td>In-progress recording state</td><td><span class="font-mono text-xs">chrome.storage.session</span></td><td>So a recording survives navigation; cleared when the browser closes</td></tr>
           </tbody>
@@ -95,17 +97,59 @@
 
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">6. Redaction</h2>
+      <p class="text-muted mb-4">Before a capture is saved, Lens checks the captured region for things that usually should not be shared — password fields, API keys, tokens, private keys, and optionally emails and card numbers — and offers to blur each one. That check reads the page structure in your own browser. It uses no AI, makes no network call, and is on by default. It only ever suggests: nothing is blurred until you ask for it.</p>
       <p class="text-muted">The blur tool rewrites the underlying image data rather than drawing an opaque shape over it. Once a blurred capture is saved, the original pixels are not recoverable from that file by removing a layer. This is intentional: a redaction that can be peeled off is not a redaction. Check the result before saving, because it cannot be undone after the fact.</p>
     </section>
 
+    <section class="mb-10" id="ai">
+      <h2 class="text-xl font-semibold mb-4">7. AI features and your own provider</h2>
+
+      <div class="bg-cta/10 border border-cta/20 rounded-xl p-4 mb-4 text-sm">
+        <p class="text-muted"><strong class="text-text">Every AI feature is off when you install Lens.</strong> Until you pick a provider, none of this applies and Lens makes no network requests.</p>
+      </div>
+
+      <p class="text-muted mb-4">Lens has no AI service of its own and never will — there is no Vectored model, no Vectored endpoint and no Vectored proxy in the path. Instead you choose who does the work, and the choice determines whether anything leaves your machine:</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Provider you choose</th><th>Where it runs</th><th>What leaves your machine</th></tr></thead>
+          <tbody>
+            <tr><td><strong class="text-text">None</strong> — the default</td><td>Nowhere; AI features are off</td><td>Nothing</td></tr>
+            <tr><td><strong class="text-text">Your browser's built-in model</strong> (Edge, Chrome)</td><td>On your device, inside the browser</td><td>Nothing</td></tr>
+            <tr><td><strong class="text-text">A model on your machine</strong> (Ollama, LM Studio)</td><td>On your device, on a port you name</td><td>Nothing</td></tr>
+            <tr><td><strong class="text-text">Claude</strong> (Anthropic) or <strong class="text-text">OpenAI</strong></td><td>That company's servers</td><td>The prompt for the feature you enabled, sent directly from your browser using your API key</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-muted mt-4">Choosing a provider that runs in the cloud asks you to confirm first, because it genuinely changes what the extension does.</p>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">What is actually sent</h3>
+      <p class="text-muted mb-4">Only what the enabled feature needs, and never the thing the feature is protecting. The redaction check is the clearest case: when you let a model sharpen its results, it is told the <em>type</em> of each flagged region — "an AWS access key", "a password field" — along with the page title and heading, so it can tell a real credential from an example in documentation. It is never sent the flagged text itself. Sending an API key to a model to ask whether it is an API key would defeat the point of the feature.</p>
+      <p class="text-muted mb-4">Captured images are not sent to any provider.</p>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">Your API key</h3>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>It is stored in your browser profile, in its own storage area, separate from your other settings.</li>
+        <li>It is only ever read by the extension's background worker, never by the code Lens injects into a page — that code shares a process with the page, so a key must not be readable there.</li>
+        <li>The settings screen can tell you a key is saved but cannot show it back to you.</li>
+        <li>It is sent only to the provider it belongs to. Vectored never receives it, and there is nowhere for it to be sent to us.</li>
+        <li>Clearing the field removes it; uninstalling the extension removes it along with everything else.</li>
+      </ul>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">Whose policy applies</h3>
+      <p class="text-muted">Once a prompt reaches a hosted provider, that company's privacy policy and terms govern it, including how long they keep it and whether they train on it. That relationship is between you and them — you supplied the key and Vectored is not a party to it. Check their terms before enabling a cloud provider on work that is confidential.</p>
+    </section>
+
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">7. Third parties</h2>
-      <p class="text-muted mb-4">Lens sends nothing to any third party. It bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin.</p>
+      <h2 class="text-xl font-semibold mb-4">8. Third parties</h2>
+      <p class="text-muted mb-4">Lens bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin. As installed it sends nothing to anyone.</p>
+      <p class="text-muted mb-4">The one third party Lens can ever talk to is an AI provider you chose and configured yourself, and only for a feature you turned on — see <a href="#ai" class="text-cta hover:underline">section 7</a>. There is no third party Lens contacts on its own initiative.</p>
       <p class="text-muted">If you choose to contact us through the <a href="support.html" class="text-cta hover:underline">support form</a>, that is a separate, voluntary act: only what you type into the form is sent, and only then. The extension is not involved.</p>
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">8. Retention and deletion</h2>
+      <h2 class="text-xl font-semibold mb-4">9. Retention and deletion</h2>
       <ul class="list-disc pl-6 text-muted space-y-2">
         <li><strong class="text-text">Captures and metadata</strong> are ordinary files. Delete them as you would any file; Lens keeps no second copy.</li>
         <li><strong class="text-text">Cached thumbnails</strong> can be cleared from the dashboard under Settings, without touching the files on disk.</li>
@@ -115,22 +159,23 @@
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">9. GDPR and international transfers</h2>
-      <p class="text-muted">Lens performs no processing of personal data on behalf of Vectored: no personal data is transmitted to or held by us, and there is no international transfer of your data because there is no transfer at all. Where you capture content containing personal data, you remain the controller of the resulting files, which stay on infrastructure you control.</p>
+      <h2 class="text-xl font-semibold mb-4">10. GDPR and international transfers</h2>
+      <p class="text-muted mb-4">Lens performs no processing of personal data on behalf of Vectored: no personal data is transmitted to or held by us, and as installed there is no international transfer of your data because there is no transfer at all. Where you capture content containing personal data, you remain the controller of the resulting files, which stay on infrastructure you control.</p>
+      <p class="text-muted">If you connect a cloud AI provider, you are the one instructing a processor of your choosing, under your own account with them. Vectored is not a party to that arrangement and cannot see it — but it is a transfer, and if the content is subject to GDPR it is yours to assess.</p>
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">10. Children's privacy</h2>
+      <h2 class="text-xl font-semibold mb-4">11. Children's privacy</h2>
       <p class="text-muted">Lens is a developer and documentation tool, not directed at children, and collects no personal information from anyone.</p>
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">11. Changes to this policy</h2>
-      <p class="text-muted">If this policy changes, the updated version will be posted here with a new "Last updated" date. Any change that would alter what leaves your machine — of which there is currently nothing — will be called out in the extension's release notes, not only here.</p>
+      <h2 class="text-xl font-semibold mb-4">12. Changes to this policy</h2>
+      <p class="text-muted">If this policy changes, the updated version will be posted here with a new "Last updated" date. Any change to what can leave your machine will be called out in the extension's release notes, not only here — and any new way for data to leave will arrive switched off, the way the AI providers in <a href="#ai" class="text-cta hover:underline">section 7</a> did.</p>
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">12. Contact</h2>
+      <h2 class="text-xl font-semibold mb-4">13. Contact</h2>
       <p class="text-muted">Questions about this policy: <a href="mailto:support@vectored.dev" class="text-cta hover:underline">support@vectored.dev</a>, or use the <a href="support.html" class="text-cta hover:underline">support form</a>. For security reports, see the <a href="security.html" class="text-cta hover:underline">security page</a>.</p>
     </section>
   </main>
