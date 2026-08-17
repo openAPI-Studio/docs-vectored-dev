@@ -49,7 +49,7 @@ these end up on a public docs site.
 - [ ] `lens-dashboard-projects.png`
       The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges
 - [ ] `lens-dashboard-timeline.png`
-      The dashboard master timeline with the filter bar and capture cards grouped by day, each showing its captured size and type badge
+      The dashboard master timeline with the filter bar and capture cards grouped under project headings, each card showing its captured size and type badge
 ## Settings
 
 - [ ] `lens-click-marker.png`

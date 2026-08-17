@@ -239,14 +239,19 @@ PAGES["timeline"] = dict(
         P("Open the dashboard from the arrow icon at the top right of the popup. It has three sections."),
         UL([
             "**Projects** — every project as a card with its folder, capture count, last capture and access state.",
-            "**Timeline** — every capture across all projects, grouped by day.",
+            "**Timeline** — every capture across all projects, grouped by project.",
             "**Settings** — all preferences, plus your keyboard shortcuts.",
         ]),
         SHOT("lens-dashboard-projects.png", "The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges"),
 
         H("Searching and filtering"),
-        P("The master timeline's filter bar stays fixed as you scroll and combines three filters: free-text search across name, page title and URL; a project filter; and a type filter for PNG or GIF. The count on the right reflects what is currently shown."),
-        SHOT("lens-dashboard-timeline.png", "The dashboard master timeline with the filter bar and capture cards grouped by day, each showing its captured size and type badge"),
+        P("The master timeline's filter bar stays fixed as you scroll and combines free-text search across name, page title and URL, a project filter, and a type filter for PNG or GIF. The count on the right reflects what is currently shown."),
+
+        H("Grouping"),
+        P("The master timeline is grouped by **project** by default. Projects are ordered by their most recent capture, so whatever you are working on now is at the top, and captures stay newest-first inside each one."),
+        P("**Group by day** in the filter bar switches to date headings instead — useful for answering \"what did I do yesterday\" rather than \"show me this project\". Each card shows whichever of the two the heading does not: the date inside a project group, the project name inside a day group."),
+        NOTE("Your choice is remembered, so the timeline opens the way you left it."),
+        SHOT("lens-dashboard-timeline.png", "The dashboard master timeline with the filter bar and capture cards grouped under project headings, each card showing its captured size and type badge"),
 
         H("Exporting"),
         UL([
