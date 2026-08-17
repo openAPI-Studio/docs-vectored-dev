@@ -1,6 +1,6 @@
 # Lens docs — screenshots needed
 
-15 screenshots. Save each one into `lens/assets/` using the
+16 screenshots. Save each one into `lens/assets/` using the
 exact filename below. The docs pick them up automatically on the next page
 load — until then each slot renders a dashed placeholder naming the file it
 wants, so an unshot page looks unfinished rather than broken.
@@ -54,3 +54,7 @@ these end up on a public docs site.
 
 - [ ] `lens-click-marker.png`
       A recording in progress with a red click marker expanding at the point of a click inside the recorded region
+## AI Features
+
+- [ ] `lens-ai-provider.png`
+      The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options

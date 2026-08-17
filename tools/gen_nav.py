@@ -50,6 +50,7 @@ GROUPS = {
    ('Capture', ['capturing','recording']),
    ('Organise', ['projects','timeline']),
    ('Configure', ['settings','shortcuts']),
+   ('AI', ['ai']),
    ('Help', ['troubleshooting']),
  ],
  'rewardhub': [

@@ -84,7 +84,7 @@
 
     <section class="mb-10" id="ai">
       <h2 class="text-xl font-semibold mb-4">4. AI providers and key handling</h2>
-      <p class="text-muted mb-4">AI features are off on install and there is no Vectored model, endpoint or proxy anywhere in the path. When you enable them you pick who does the work — the browser's built-in model, a model on your own machine, or Claude or OpenAI with a key you supply. The first two keep everything on the device; the last two are an outbound request from your browser straight to that company.</p>
+      <p class="text-muted mb-4">AI features are off on install and there is no Vectored model, endpoint or proxy anywhere in the path. The <a href="docs/ai.html" class="text-cta hover:underline">AI features documentation</a> covers setup and what each feature sends. When you enable them you pick who does the work — the browser's built-in model, a model on your own machine, or Claude or OpenAI with a key you supply. The first two keep everything on the device; the last two are an outbound request from your browser straight to that company.</p>
 
       <h3 class="text-lg font-semibold mt-6 mb-3">Where the key lives, and why</h3>
       <ul class="list-disc pl-6 text-muted space-y-2">
@@ -97,7 +97,17 @@
       <h3 class="text-lg font-semibold mt-6 mb-3">What is in a prompt</h3>
       <p class="text-muted mb-4">Only what the feature actually needs, and the amount differs by feature. The private-data check is the one that matters most: when a model is allowed to sharpen its results, it receives the <em>type</em> of each flagged region and the page title and heading — never the flagged text. A model is never asked to look at a credential to decide whether it is one.</p>
       <p class="text-muted mb-4"><strong class="text-text">Suggest name &amp; description</strong> is the widest: it sends the text inside the captured region, because describing a screenshot is the task. It is a button you press per capture, never something that happens on save. <strong class="text-text">Write steps from clicks</strong> sends only the accessible names of the controls that were clicked, never anything typed into a field, and works with no provider at all. Captured images are not sent to any provider.</p>
-      <p class="text-muted">Model output can only re-rank and relabel what the local rules already found. It can never add a region, and it can never blur one — blurring stays a click you make. A provider that is slow, unreachable or answers badly leaves the local results exactly as they were.</p>
+      <p class="text-muted mb-4">Model output can only re-rank and relabel what the local rules already found. It can never add a region, and it can never blur one — blurring stays a click you make. A provider that is slow, unreachable or answers badly leaves the local results exactly as they were.</p>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">Model output is treated as untrusted</h3>
+      <p class="text-muted mb-4">The page being captured is the same page whose title and headings go into the prompt that examines it. A hostile page can therefore write text aimed at the model — including text intended to talk it out of flagging that page's own credential fields. Lens is built on the assumption that this will be attempted:</p>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li><strong class="text-text">A high-confidence finding cannot be cleared by the model.</strong> A password field, or text matching a known key format, stays selected whatever the response says. The model can promote a lower-confidence finding but never demote a high one.</li>
+        <li><strong class="text-text">A demoted finding is still shown.</strong> Nothing is ever removed from the list — at most it is left unticked, in front of you.</li>
+        <li><strong class="text-text">Nothing generated is executed.</strong> Model output only ever becomes text in a field you can edit, or the order of a list. It is never run, never used to build a request, and never written to disk without passing through you.</li>
+        <li><strong class="text-text">A suggested file name is sanitised</strong> like any other name Lens writes — extension stripped, path separators and filesystem-rejected characters replaced, length capped — so a name cannot direct a write outside your project folder.</li>
+      </ul>
+      <p class="text-muted mt-4">The check that finds the regions in the first place runs on the page structure with no model involved, so with no provider configured none of this applies at all.</p>
     </section>
 
     <section class="mb-10">

@@ -264,6 +264,95 @@ PAGES["timeline"] = dict(
     ],
 )
 
+PAGES["ai"] = dict(
+    title="AI Features",
+    lede="Off by default. When you turn them on, you choose who does the work.",
+    desc="Lens AI features, the four providers you can choose between, exactly what each feature sends, and how your API key is stored.",
+    icon="sparkles",
+    blocks=[
+        NOTE("Every AI feature is off when you install Lens, and with no provider selected the extension makes no network requests at all. Nothing on this page happens until you choose one."),
+
+        P("Lens has no AI service of its own. There is no Vectored model, no Vectored endpoint and no Vectored proxy — instead you pick who does the work, and that choice decides whether anything leaves your machine."),
+
+        H("Choosing a provider"),
+        TABLE(["Provider", "Where it runs", "What leaves your machine", "You need"], [
+            ["**None** — the default", "Nowhere", "Nothing", "—"],
+            ["**Your browser's built-in model**", "On your device", "Nothing", "Edge or Chrome with the model available"],
+            ["**A local model**", "On your device", "Nothing", "Ollama, LM Studio or similar"],
+            ["**Claude**", "Anthropic's servers", "The prompt for the feature you used", "An Anthropic API key"],
+            ["**OpenAI or compatible**", "OpenAI, or an endpoint you name", "The prompt for the feature you used", "An API key"],
+        ]),
+        P("Choosing one that runs in the cloud asks you to confirm first, because it genuinely changes what the extension does with page text. **Test connection** on the Settings page tells you whether the provider is reachable before you rely on it."),
+        SHOT("lens-ai-provider.png", "The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options"),
+
+        H("What each feature sends"),
+        P("Only what that feature needs. The amounts differ, so they are listed separately rather than summarised."),
+        TABLE(["Feature", "How it runs", "What the prompt contains"], [
+            ["Sharpen the private-data check", "Automatically, only if you switch it on", "The **type** of each flagged region — \"an AWS access key\", \"a password field\" — plus the page title and heading. Never the flagged text."],
+            ["Suggest name & description", "A button you press, per capture", "The page title and heading, the names of controls in the region, and **the text inside the region you captured**."],
+            ["Write steps from clicks", "A button you press, per recording", "The page title and the names of the controls you clicked. Never anything you typed into a field."],
+        ]),
+        P("Captured images are never sent to any provider. Lens does not keep a copy of any prompt or response."),
+        NOTE("**Write steps from clicks** works with no provider at all — the click list alone produces usable numbered steps, and a model only rewrites them into better prose. The toast tells you which of the two you got."),
+
+        H("Setting up the browser's built-in model"),
+        P("Edge and Chrome both expose an on-device model to extensions. Nothing is configured and nothing leaves the device, but the model has to be downloaded once and the hardware bar is real."),
+        STEPS([
+            "Open the Lens dashboard and go to Settings|then **AI assistance**.",
+            "Choose **Browser's built-in model**|no key or address is needed.",
+            "Press **Test connection**|it reports whether the model is present, unavailable, or not yet downloaded.",
+            "Press **Download model** if it appears|the download is several gigabytes and reports its progress. Lens never starts it during a capture.",
+        ]),
+        WARN("On Microsoft Edge this currently requires the Canary or Dev channel with the **Prompt API for on-device language model** flag enabled, and a capable GPU. If your device does not meet the bar, use a local model or a hosted provider instead — the rest of Lens is unaffected."),
+        NOTE("Edge's built-in model is text-only. That is why every Lens AI feature is built on page text and structure rather than on the image, and why it behaves the same in both browsers."),
+
+        H("Setting up a local model"),
+        P("A model running on your own machine keeps everything on the device while giving you a full-size model. Anything that speaks the OpenAI chat format works — Ollama, LM Studio, llama.cpp, vLLM."),
+        STEPS([
+            "Start your server|for Ollama that is `ollama serve`, and `ollama pull <model>` once for the model itself.",
+            "Choose **Local model** in Settings|then enter the server address and the model name.",
+            "Press **Test connection**|this actually contacts the server, so a wrong address or a stopped server is reported here rather than mid-capture.",
+        ]),
+
+        H("Setting up Claude or OpenAI"),
+        P("These run on the provider's servers. Lens sends the request straight from your browser using your key — there is no Vectored server in the path, and we never receive the key or the prompt."),
+        STEPS([
+            "Create an API key with that provider|Lens cannot create one for you.",
+            "Choose the provider in Settings and confirm the prompt|it explains what changes before anything is saved.",
+            "Paste the key and pick a model|the key is saved as soon as you leave the field.",
+            "Press **Test connection**|then use a feature to confirm end to end.",
+        ]),
+
+        H("How your API key is stored"),
+        UL([
+            "In this browser only, in its own storage area, kept apart from your other settings.",
+            "Read only by the extension's background worker — never by the code Lens puts into a page. Injected code shares a process with the page it is injected into, so a key is never placed there.",
+            "The Settings page can tell you a key is saved but cannot show it back to you.",
+            "Sent only to the provider it belongs to. Vectored never receives it, and there is nowhere for it to be sent to us.",
+            "Removed when you clear the field, and when you uninstall the extension.",
+        ]),
+        WARN("Scope the key to the minimum the provider allows. Anything the key can do, a mistake can do."),
+
+        H("What the model is allowed to change"),
+        P("For the private-data check specifically, the model's influence is bounded on both sides. It can re-rank and relabel what the local rules already found. It cannot add a region, it cannot blur anything, and it cannot clear a high-confidence finding such as a password field or a key matching a known format."),
+        P("That last limit exists because the page being captured is the same page whose title and headings go into the prompt. A hostile page could try to write something into the prompt to talk the model out of a finding — so on the findings that matter most, it is not able to."),
+
+        H("When something does not work"),
+        TABLE(["What you see", "What it means"], [
+            ["The suggest button is not there", "No provider is selected. Choose one in Settings."],
+            ["\"That provider still needs an API key or a model name\"", "The configuration is incomplete."],
+            ["\"still needs to download\"", "The built-in model has not been fetched. Use **Download model** on the Settings page."],
+            ["\"did not answer in time\"", "The provider was too slow. Nothing was changed; try again or pick a faster model."],
+            ["\"answer could not be read\"", "The model did not return usable JSON. Nothing was changed. A larger model usually fixes this."],
+            ["Not available on this machine", "The built-in model is unsupported here — see the hardware note above."],
+        ]),
+        NOTE("Every one of these leaves your capture exactly as it was. No AI failure can lose work, block a capture, or change an image."),
+
+        H("Where to read the rest"),
+        P("The [privacy policy](../privacy.html#ai) sets out what each feature sends and whose terms apply to it. The [security page](../security.html#ai) covers key handling and why the request is made where it is."),
+    ],
+)
+
 PAGES["settings"] = dict(
     title="Settings",
     lede="Every preference, and exactly what it changes.",
@@ -420,6 +509,7 @@ ORDER = [
     "projects",
     "timeline",
     "settings",
+    "ai",
     "shortcuts",
     "troubleshooting",
 ]

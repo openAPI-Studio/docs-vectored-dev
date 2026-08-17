@@ -56,7 +56,7 @@
         <li>Cookies or any advertising or tracking identifier</li>
       </ul>
       <p class="text-muted mt-4">The extension contains no analytics SDK, no remote configuration and no update-check call of its own. Extension updates are delivered by the Chrome Web Store, not by us.</p>
-      <p class="text-muted mt-4">This list is about Vectored, and it holds unconditionally. If you connect an AI provider, Lens talks to <em>that provider</em> using <em>your</em> key — not to us, and we learn nothing about it. See <a href="#ai" class="text-cta hover:underline">section 7</a>.</p>
+      <p class="text-muted mt-4">This list is about Vectored, and it holds unconditionally. If you connect an AI provider, Lens talks to <em>that provider</em> using <em>your</em> key — not to us, and we learn nothing about it. See <a href="#ai" class="text-cta hover:underline">section 7</a> and the <a href="docs/ai.html" class="text-cta hover:underline">AI features documentation</a>.</p>
     </section>
 
     <section class="mb-10">
@@ -70,6 +70,7 @@
             <tr><td><span class="font-mono text-xs">project_metadata.json</span> — file name, page title, page URL, timestamp, captured region, your note</td><td>Alongside the captures, in the same folder</td><td>So the capture set is self-describing and readable by other tools</td></tr>
             <tr><td>Project list and folder handles</td><td>IndexedDB in your browser profile</td><td>To reopen your folder without asking you to pick it every time</td></tr>
             <tr><td>Settings</td><td><span class="font-mono text-xs">chrome.storage.local</span></td><td>To remember your preferences</td></tr>
+            <tr><td>AI prompts and responses</td><td>Nowhere — held in memory for the length of the request</td><td>They are not needed after the answer arrives</td></tr>
             <tr><td>AI provider API key, only if you set one</td><td><span class="font-mono text-xs">chrome.storage.local</span>, in its own area, separate from your settings</td><td>So Lens can reach the provider you chose. Written by the settings screen, read only by the background worker, never by page-injected code</td></tr>
             <tr><td>Preview thumbnails, capped and downscaled</td><td><span class="font-mono text-xs">chrome.storage.local</span></td><td>So the timeline renders without reading every file from disk</td></tr>
             <tr><td>In-progress recording state</td><td><span class="font-mono text-xs">chrome.storage.session</span></td><td>So a recording survives navigation; cleared when the browser closes</td></tr>
@@ -151,7 +152,16 @@
       </ul>
 
       <h3 class="text-lg font-semibold mt-6 mb-3">Whose policy applies</h3>
-      <p class="text-muted">Once a prompt reaches a hosted provider, that company's privacy policy and terms govern it, including how long they keep it and whether they train on it. That relationship is between you and them — you supplied the key and Vectored is not a party to it. Check their terms before enabling a cloud provider on work that is confidential.</p>
+      <p class="text-muted mb-4">Once a prompt reaches a hosted provider, that company's privacy policy and terms govern it, including how long they keep it and whether they train on it. That relationship is between you and them — you supplied the key, you chose the provider, and Vectored is not a party to it and cannot see it. Check their terms before enabling a cloud provider on work that is confidential.</p>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">What Lens itself keeps</h3>
+      <p class="text-muted mb-4">Nothing. Prompts and responses are held in memory for the length of the request and are not written to disk, to extension storage or to a log. Generated text becomes yours the moment it lands in a field you can edit — Lens keeps no separate copy of it, and no record that a feature was used.</p>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">Accuracy</h3>
+      <p class="text-muted mb-4">Generated text can be wrong, and the private-data check finds known shapes rather than everything that might be sensitive. Neither is a guarantee, and neither removes your responsibility to read a capture before you share it. See the <a href="docs/ai.html" class="text-cta hover:underline">AI features documentation</a> for what each feature does and does not do.</p>
+
+      <h3 class="text-lg font-semibold mt-6 mb-3">Turning it back off</h3>
+      <p class="text-muted">Setting the provider back to <strong class="text-text">None</strong> stops every AI feature immediately and returns the extension to making no network requests. Clearing the API key field removes the key. Neither affects any capture you have already saved.</p>
     </section>
 
     <section class="mb-10">
