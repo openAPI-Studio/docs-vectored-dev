@@ -183,6 +183,33 @@
       nextSteps: [{ label: 'TimeSheets documentation', href: 'https://docs.vectored.dev/timesheets/' }],
     },
 
+    lens: {
+      id: 'lens',
+      name: 'Lens',
+      platform: 'for Chrome',
+      tagline: 'Region screenshots, GIF and MP4 capture, filed into local folders.',
+      badge: 'COMING SOON',
+      docs: 'https://docs.vectored.dev/lens/',
+      marketplace: null,
+      icon: 'lens/assets/icon.png',
+      accent: '#F59E0B',
+      initial: 'L',
+      ratingLabel: 'How useful would Lens be for you?',
+      areas: ['Region capture', 'Annotation & blur', 'GIF recording', 'MP4 recording', 'Projects & folders', 'Timeline & search', 'File naming', 'Keyboard shortcuts', 'Something else'],
+      questions: [
+        { id: 'earlyAccess', label: 'Want early access?', type: 'radio', options: ['Yes, put me on the beta list', 'No, just leaving feedback'] },
+        { id: 'captureType', label: 'Which capture is this about?', type: 'select', options: ['Region screenshot', 'Full tab screenshot', 'GIF recording', 'MP4 recording', 'Not capture-specific'] },
+        { id: 'outputFormat', label: 'Which output format?', type: 'select', options: ['PNG', 'JPEG', 'GIF', 'MP4 / WebM', 'Not sure'], when: { captureType: ['Region screenshot', 'Full tab screenshot', 'GIF recording', 'MP4 recording'] } },
+        { id: 'browserVersion', label: 'Chrome version and platform', type: 'text', placeholder: 'e.g. Chrome 151 on macOS 15', help: 'Recording support differs between Chrome builds, so this narrows things down fast.' },
+        { id: 'sitePattern', label: 'What were you capturing?', type: 'textarea', rows: 2, placeholder: 'The kind of page — an internal dashboard, a docs site, a video player. No need to name anything confidential.' },
+      ],
+      nextSteps: [
+        { label: 'Getting started with Lens', href: 'https://docs.vectored.dev/lens/docs/getting-started.html' },
+        { label: 'Recording GIF and MP4', href: 'https://docs.vectored.dev/lens/docs/recording.html' },
+        { label: 'Troubleshooting', href: 'https://docs.vectored.dev/lens/docs/troubleshooting.html' },
+      ],
+    },
+
     frontdoor: {
       id: 'frontdoor',
       name: 'Front Door',
@@ -220,7 +247,7 @@
   };
 
   // Order the dropdown deliberately: live products first, then upcoming, then catch-alls.
-  var ORDER = ['macrotoolkit', 'forms', 'apistudio', 'rewardhub', 'timesheets', 'frontdoor', 'docs'];
+  var ORDER = ['macrotoolkit', 'forms', 'apistudio', 'rewardhub', 'timesheets', 'lens', 'frontdoor', 'docs'];
 
   // Aliases so old links, marketplace slugs and in-app links all resolve.
   var ALIASES = {
@@ -242,6 +269,10 @@
     'time-log': 'timesheets',
     timelog: 'timesheets',
     ts: 'timesheets',
+    'lens-by-vectored': 'lens',
+    lensbyvectored: 'lens',
+    screensnap: 'lens',
+    ln: 'lens',
     'front-door': 'frontdoor',
     portal: 'frontdoor',
     documentation: 'docs',

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started — Lens Docs</title>
+  <meta name="description" content="Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording.">
+  <meta name="vc-updated" content="17 Aug 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium"><span class="text-amber-400">Lens is coming soon.</span> <a class="text-cta hover:underline" href="../support.html">Ask for early access &rarr;</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg></div>
+      <h1 class="vc-h1">Getting Started</h1>
+      <p class="vc-lede">Install Lens, link a project folder, and take your first capture.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">Lens is a Chrome extension that captures a region of any tab as a <strong class="text-text">PNG</strong>, a <strong class="text-text">JPEG</strong>, an animated <strong class="text-text">GIF</strong> or an <strong class="text-text">MP4</strong>, then files it into a folder on your own machine along with a metadata timeline. Nothing is uploaded — see <a href="../privacy.html" class="text-cta hover:underline">Privacy</a>.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">1. Install and pin</h2>
+<ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Install Lens from the Chrome Web Store</strong> <span class="text-muted">or load the unpacked folder via chrome://extensions with Developer mode on.</span></li><li class="mb-3"><strong class="text-text">Pin it to the toolbar</strong> <span class="text-muted">click the puzzle-piece icon in Chrome's toolbar and press the pin next to Lens. The toolbar icon is where recording status and capture errors are reported.</span></li><li class="mb-3"><strong class="text-text">Open the popup</strong> <span class="text-muted">click the Lens icon. This is where you pick the active project and start a capture.</span></li></ol>
+<figure class="shot mb-6">
+        <img src="../assets/lens-popup-first-run.png" alt="The Lens popup on first run, showing the default project, no folder linked, and the three capture actions" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-popup-first-run.png</p>
+          <p class="text-xs text-muted max-w-md">The Lens popup on first run, showing the default project, no folder linked, and the three capture actions</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Lens popup on first run, showing the default project, no folder linked, and the three capture actions</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. Link a project folder</h2>
+<p class="text-muted mb-4">A <strong class="text-text">project</strong> is a name plus one folder on your computer. Captures for the active project are written straight into that folder, next to a <span class="font-mono text-sm">project_metadata.json</span> file that records what was captured, from which page, and when.</p>
+<ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Open the popup and press <strong class="text-text">New project</strong></strong> <span class="text-muted">or press <strong class="text-text">Link</strong> on the default project to give the existing one a folder.</span></li><li class="mb-3"><strong class="text-text">Name the project</strong> <span class="text-muted">for example, the documentation set or release you are capturing for.</span></li><li class="mb-3"><strong class="text-text">Choose a folder</strong> <span class="text-muted">Chrome asks you to pick it and to grant read/write access. Lens can only ever see the folder you pick.</span></li></ol>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Without a linked folder Lens still works — captures fall back to your <strong class="text-text">Downloads</strong> folder, under <span class="font-mono text-sm">Lens-Captures/</span>. The popup says which mode you are in.</p></div>
+<figure class="shot mb-6">
+        <img src="../assets/lens-folder-linked.png" alt="The popup project row with a folder linked, showing the folder name and the Change button" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-folder-linked.png</p>
+          <p class="text-xs text-muted max-w-md">The popup project row with a folder linked, showing the folder name and the Change button</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The popup project row with a folder linked, showing the folder name and the Change button</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. Take your first capture</h2>
+<ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Capture region</strong></strong> <span class="text-muted">or use the keyboard shortcut. The page dims and the cursor becomes a crosshair.</span></li><li class="mb-3"><strong class="text-text">Drag a rectangle</strong> <span class="text-muted">over the area you want. Drag the handles to resize, or drag from the middle to move it.</span></li><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Capture Image</strong></strong> <span class="text-muted">the annotation editor opens with your capture loaded.</span></li><li class="mb-3"><strong class="text-text">Name it and save</strong> <span class="text-muted">the file lands in the project folder and appears in the popup timeline.</span></li></ol>
+<figure class="shot mb-6">
+        <img src="../assets/lens-region-selection.png" alt="A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-region-selection.png</p>
+          <p class="text-xs text-muted max-w-md">A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Where to go next</h2>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><a href="capturing.html" class="text-cta hover:underline">Capturing a region</a> — selection, annotation and saving in detail.</li><li class="mb-2"><a href="recording.html" class="text-cta hover:underline">Recording GIF and MP4</a> — the recorder, its controls and the two output formats.</li><li class="mb-2"><a href="projects.html" class="text-cta hover:underline">Projects and folders</a> — multiple projects, switching, and reconnecting folder access.</li><li class="mb-2"><a href="settings.html" class="text-cta hover:underline">Settings</a> — every preference and what it changes.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

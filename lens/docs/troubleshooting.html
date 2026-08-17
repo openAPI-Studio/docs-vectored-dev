@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troubleshooting — Lens Docs</title>
+  <meta name="description" content="Diagnose blocked pages, blank recordings, lost folder access and captures missing from the timeline.">
+  <meta name="vc-updated" content="17 Aug 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium"><span class="text-amber-400">Lens is coming soon.</span> <a class="text-cta hover:underline" href="../support.html">Ask for early access &rarr;</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg></div>
+      <h1 class="vc-h1">Troubleshooting</h1>
+      <p class="vc-lede">What the errors mean and what to do about them.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">Lens reports failures where it can — an in-page toast when a content script can run, and the toolbar icon badge when one cannot.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">1. This page cannot be captured</h2>
+<p class="text-muted mb-4">Chrome forbids extensions from running on some pages, and no extension can work around it.</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><span class="font-mono text-sm">chrome://</span> and <span class="font-mono text-sm">about:</span> pages, including New Tab and Settings</li><li class="mb-2">The Chrome Web Store</li><li class="mb-2"><span class="font-mono text-sm">devtools://</span> and <span class="font-mono text-sm">view-source:</span> pages</li><li class="mb-2">Other extensions' pages</li><li class="mb-2">The built-in PDF viewer</li><li class="mb-2"><span class="font-mono text-sm">file://</span> URLs, unless you enable <strong class="text-text">Allow access to file URLs</strong> for Lens on <span class="font-mono text-sm">chrome://extensions</span></li></ul>
+<p class="text-muted mb-4">On these pages the toolbar icon shows a red <strong class="text-text">!</strong> with the reason in its tooltip, because a toast cannot be drawn.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. The recording came out blank</h2>
+<p class="text-muted mb-4">Tab capture succeeds on protected video but returns solid black — sites using DRM, such as YouTube and Netflix, are excluded from capture by design. Lens samples the recorded frames and warns you when they look blank, but still opens the converter so you can judge for yourself.</p>
+<p class="text-muted mb-4">If a whole page records black, the page is blocking capture. If only a video player area is black, that player is protected and the rest of the page is fine.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. Captures are going to Downloads instead of my folder</h2>
+<p class="text-muted mb-4">Folder access has lapsed. Open the popup: the folder row shows <strong class="text-text">access lost</strong> and a <strong class="text-text">Reconnect</strong> button. One click fixes it.</p>
+<p class="text-muted mb-4">This happens because re-granting folder access requires a click, and the extension's background worker never has one — so it cannot recover on its own. See <a href="projects.html" class="text-cta hover:underline">Projects and folders</a>.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. A capture saved but is not in the timeline</h2>
+<p class="text-muted mb-4">The file was written but <span class="font-mono text-sm">project_metadata.json</span> could not be updated. The save toast says so explicitly. Two causes:</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Write metadata file</strong> is switched off in Settings — turn it back on.</li><li class="mb-2">The metadata file could not be written, usually a permission problem on the folder. Reconnect the folder.</li></ul>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The timeline merges the folder's metadata with a local cache, so a capture that went to Downloads still appears — it is just not in your project folder.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. The MP4 I recorded is a WebM</h2>
+<p class="text-muted mb-4">Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an <span class="font-mono text-sm">.mp4</span> that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. Nothing happened when I pressed the shortcut</h2>
+<p class="text-muted mb-4">See <a href="shortcuts.html" class="text-cta hover:underline">Keyboard shortcuts</a> — the usual causes are a restricted page, a conflicting binding, or a page that has not finished loading.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. Still stuck</h2>
+<p class="text-muted mb-4"><a href="../support.html" class="text-cta hover:underline">Open a support ticket</a> and include what you were capturing, which browser version you are on, and what the toast or tooltip said. No account is needed.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

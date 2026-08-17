@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline and Dashboard — Lens Docs</title>
+  <meta name="description" content="Browse captures in the popup timeline and the dashboard master timeline, search and filter them, and export the metadata as JSON.">
+  <meta name="vc-updated" content="17 Aug 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium"><span class="text-amber-400">Lens is coming soon.</span> <a class="text-cta hover:underline" href="../support.html">Ask for early access &rarr;</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+      <h1 class="vc-h1">Timeline and Dashboard</h1>
+      <p class="vc-lede">Review, search and export everything you have captured.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">Lens keeps two views of what you have captured: a compact timeline in the popup for the active project, and a master timeline on the dashboard covering every project.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">1. The popup timeline</h2>
+<p class="text-muted mb-4">Captures are grouped by day, newest first, with the time down the left. Each row shows a thumbnail, the file name, its type and the page title.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Control</th><th>What it does</th></tr></thead><tbody><tr><td>Thumbnail</td><td>Opens a larger preview with the page URL and capture time</td></tr><tr><td>Copy</td><td>Puts the image on the clipboard</td></tr><tr><td>Rename</td><td>Renames the file on disk and in the metadata</td></tr><tr><td>Delete</td><td>Removes the entry from the timeline</td></tr><tr><td>Search</td><td>Filters by file name, page title or URL</td></tr><tr><td>JSON</td><td>Exports <span class="font-mono text-sm">project_metadata.json</span> for the active project</td></tr></tbody></table></div>
+<figure class="shot mb-6">
+        <img src="../assets/lens-popup-timeline.png" alt="The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-popup-timeline.png</p>
+          <p class="text-xs text-muted max-w-md">The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. The dashboard</h2>
+<p class="text-muted mb-4">Open the dashboard from the arrow icon at the top right of the popup. It has three sections.</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Projects</strong> — every project as a card with its folder, capture count, last capture and access state.</li><li class="mb-2"><strong class="text-text">Timeline</strong> — every capture across all projects, grouped by day.</li><li class="mb-2"><strong class="text-text">Settings</strong> — all preferences, plus your keyboard shortcuts.</li></ul>
+<figure class="shot mb-6">
+        <img src="../assets/lens-dashboard-projects.png" alt="The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-dashboard-projects.png</p>
+          <p class="text-xs text-muted max-w-md">The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. Searching and filtering</h2>
+<p class="text-muted mb-4">The master timeline's filter bar stays fixed as you scroll and combines three filters: free-text search across name, page title and URL; a project filter; and a type filter for PNG or GIF. The count on the right reflects what is currently shown.</p>
+<figure class="shot mb-6">
+        <img src="../assets/lens-dashboard-timeline.png" alt="The dashboard master timeline with the filter bar and capture cards grouped by day, each showing its captured size and type badge" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-dashboard-timeline.png</p>
+          <p class="text-xs text-muted max-w-md">The dashboard master timeline with the filter bar and capture cards grouped by day, each showing its captured size and type badge</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The dashboard master timeline with the filter bar and capture cards grouped by day, each showing its captured size and type badge</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Exporting</h2>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Export timeline JSON</strong> on the dashboard writes every capture across all projects to a single file.</li><li class="mb-2"><strong class="text-text">JSON</strong> in the popup, or <strong class="text-text">Export JSON</strong> on a project card, writes that one project's <span class="font-mono text-sm">project_metadata.json</span>.</li></ul>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. Cached previews</h2>
+<p class="text-muted mb-4">Thumbnails are held in extension storage so the timeline loads instantly. <strong class="text-text">Settings &gt; Clear cached previews</strong> empties that cache. Files already written to disk are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

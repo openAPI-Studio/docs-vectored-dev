@@ -45,6 +45,13 @@ GROUPS = {
    ('Configure', ['smart-values','validation','multi-section','embedding','styling']),
    ('Manage', ['access-control','collaboration','responses','automation','dashboard','free-vs-pro']),
  ],
+ 'lens': [
+   ('Start here', ['getting-started']),
+   ('Capture', ['capturing','recording']),
+   ('Organise', ['projects','timeline']),
+   ('Configure', ['settings','shortcuts']),
+   ('Help', ['troubleshooting']),
+ ],
  'rewardhub': [
    ('Start here', ['getting-started']),
    ('Recognize', ['giving-recognition','ai-assist','reactions-comments','sharing-and-macro']),
@@ -81,6 +88,10 @@ PRODUCTS = [
       dir='rewardhub', icon='rewardhub/assets/logo-64.png',
       cta='https://marketplace.atlassian.com/apps/564712405',
       ctaLabel='Try free', homeLabel='Recognition Hub Overview'),
+ dict(key='lens', label='Lens', blurb='Screenshots, GIF & MP4',
+      dir='lens', icon='lens/assets/icon-64.png',
+      cta='lens/docs/getting-started.html', ctaLabel='Read the docs',
+      homeLabel='Lens Overview'),
 ]
 
 

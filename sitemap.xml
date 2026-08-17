@@ -105,6 +105,18 @@
   <url><loc>https://docs.vectored.dev/blog/posts/introducing-forms-and-frontdoor.html</loc><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/blog/posts/slack-teams-notifications-confluence-forms.html</loc><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/rewardhub/</loc><priority>0.9</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/</loc><priority>0.9</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/support.html</loc><priority>0.5</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/privacy.html</loc><priority>0.5</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/security.html</loc><priority>0.5</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/getting-started.html</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/capturing.html</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/recording.html</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/projects.html</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/timeline.html</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/settings.html</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/shortcuts.html</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/troubleshooting.html</loc><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/rewardhub/docs/getting-started.html</loc><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/rewardhub/docs/giving-recognition.html</loc><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/rewardhub/docs/ai-assist.html</loc><priority>0.7</priority></url>

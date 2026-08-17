@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Lens Docs</title>
+  <meta name="description" content="Reference for every Lens setting: recording format, image format, file name pattern, clipboard, metadata, click markers and the shutter sound.">
+  <meta name="vc-updated" content="17 Aug 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium"><span class="text-amber-400">Lens is coming soon.</span> <a class="text-cta hover:underline" href="../support.html">Ask for early access &rarr;</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+      <h1 class="vc-h1">Settings</h1>
+      <p class="vc-lede">Every preference, and exactly what it changes.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">Settings live on the dashboard under <strong class="text-text">Settings</strong>, and apply to every project. A change takes effect on your next capture, not one already in progress.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">1. Recording format</h2>
+<p class="text-muted mb-4"><strong class="text-text">GIF</strong> or <strong class="text-text">MP4</strong>. See <a href="recording.html" class="text-cta hover:underline">Recording</a> for the trade-off. The description under the control tells you whether your Chrome build can encode MP4, or will fall back to WebM.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. Maximum GIF recording length</h2>
+<p class="text-muted mb-4">One to ten minutes. A recording stops at the cap and opens the converter as though you had pressed stop. This exists because a long recording at 15 frames a second becomes a very large GIF.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. Still image format</h2>
+<p class="text-muted mb-4"><strong class="text-text">PNG</strong> keeps text crisp and is the right default for documentation. <strong class="text-text">JPEG</strong> produces much smaller files but softens text and adds artefacts around high-contrast edges. The file extension follows the setting.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Write metadata file</h2>
+<p class="text-muted mb-4">On by default. When off, capture files are still written to the project folder but <span class="font-mono text-sm">project_metadata.json</span> is not updated — so those captures will not appear in the timeline read from that folder.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. Copy to clipboard on capture</h2>
+<p class="text-muted mb-4">Puts each capture on the clipboard as well as saving it. Because the clipboard only accepts PNG images, a JPEG capture is converted before copying. The save toast reports whether the copy succeeded.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. Visualise clicks</h2>
+<p class="text-muted mb-4">Draws a marker at each click while recording, so a walkthrough shows where you clicked. Markers are only drawn <strong class="text-text">inside</strong> the recorded region — a marker outside it would never appear in the output.</p>
+<figure class="shot mb-6">
+        <img src="../assets/lens-click-marker.png" alt="A recording in progress with a red click marker expanding at the point of a click inside the recorded region" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-click-marker.png</p>
+          <p class="text-xs text-muted max-w-md">A recording in progress with a red click marker expanding at the point of a click inside the recorded region</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A recording in progress with a red click marker expanding at the point of a click inside the recorded region</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. Play shutter sound</h2>
+<p class="text-muted mb-4">A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. File name pattern</h2>
+<p class="text-muted mb-4">Controls the name each capture is given before you edit it. The extension is added automatically.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Token</th><th>Expands to</th><th>Example</th></tr></thead><tbody><tr><td><span class="font-mono text-sm">{name}</span></td><td>The capture type — <span class="font-mono text-sm">Lens</span> for stills, <span class="font-mono text-sm">LensRecord</span> for recordings</td><td>Lens</td></tr><tr><td><span class="font-mono text-sm">{date}</span></td><td>Capture date</td><td>2026-08-17</td></tr><tr><td><span class="font-mono text-sm">{time}</span></td><td>Capture time</td><td>09-04-07</td></tr><tr><td><span class="font-mono text-sm">{index}</span></td><td>A counter that increments through the day and resets at midnight</td><td>007</td></tr></tbody></table></div>
+<p class="text-muted mb-4">Anything else in the pattern is kept as written. Characters a file system rejects — <span class="font-mono text-sm">/ \ : * ? " &lt; &gt; |</span> — are replaced with a dash. The line under the field previews the name your next capture will get.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Clear the field and it returns to the default, <span class="font-mono text-sm">{name}_{date}_{time}</span>.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">9. Keyboard shortcuts</h2>
+<p class="text-muted mb-4">The Settings page lists the shortcuts currently bound, read from Chrome rather than hardcoded, so it always reflects reality. See <a href="shortcuts.html" class="text-cta hover:underline">Keyboard shortcuts</a> to change them.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

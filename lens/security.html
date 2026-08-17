@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security — Lens</title>
+  <meta name="description" content="Security model for Lens by Vectored: what each Chrome permission is used for, how folder access is scoped, and how to report a vulnerability.">
+  <link rel="canonical" href="https://docs.vectored.dev/lens/security.html">
+  <meta property="og:title" content="Security — Lens">
+  <meta property="og:description" content="Security model for Lens by Vectored: permissions, folder scope, and vulnerability reporting.">
+  <meta property="og:url" content="https://docs.vectored.dev/lens/security.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vectored">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Security — Lens">
+  <meta name="twitter:description" content="Security model for Lens by Vectored: permissions, folder scope, and vulnerability reporting.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="../assets/tailwind-config.js"></script>
+
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../assets/tokens.css">
+</head>
+<body class="min-h-screen">
+  <div id="vc-header"></div>
+<script src="../assets/nav.js"></script>
+<script src="../assets/header.js"></script>
+
+  <main class="pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+    <a href="index.html" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Back to Lens</a>
+    <h1 class="text-3xl sm:text-4xl font-bold mt-4 mb-2">Security</h1>
+    <p class="text-sm text-muted mb-10">Lens by Vectored &middot; Last updated: August 2026</p>
+
+    <div class="bg-cta/10 border border-cta/20 rounded-xl p-5 mb-10">
+      <p class="text-sm text-muted"><strong class="text-text">Threat model in one line.</strong> Lens runs entirely on your machine with no network surface of its own, so the risks worth documenting are what it can reach locally and what it is trusted with — not what it might leak in transit.</p>
+    </div>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">1. Permissions, and why each one exists</h2>
+      <p class="text-muted mb-4">A screen-capture extension necessarily asks for broad permissions. Here is what each is used for, so you can judge whether the trade is one you want to make.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Permission</th><th>What it is used for</th></tr></thead>
+          <tbody>
+            <tr><td><span class="font-mono text-xs">tabCapture</span></td><td>The video stream a GIF or MP4 recording is made from. Only for the tab you started recording on, and only while recording.</td></tr>
+            <tr><td><span class="font-mono text-xs">scripting</span></td><td>Injecting the selection overlay and editor into the tab at the moment you start a capture. Nothing is injected before that.</td></tr>
+            <tr><td><span class="font-mono text-xs">host_permissions</span> for all sites</td><td>Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Lens has no code that does so.</td></tr>
+            <tr><td><span class="font-mono text-xs">tabs</span></td><td>Reading the active tab's title and URL to record alongside a capture, and bringing a recording's tab forward when you stop it from the popup.</td></tr>
+            <tr><td><span class="font-mono text-xs">activeTab</span></td><td>Capturing the visible area of the current tab for still screenshots.</td></tr>
+            <tr><td><span class="font-mono text-xs">downloads</span></td><td>The fallback path when no project folder is linked or access has lapsed.</td></tr>
+            <tr><td><span class="font-mono text-xs">storage</span></td><td>Settings, the project list and cached thumbnails.</td></tr>
+            <tr><td><span class="font-mono text-xs">offscreen</span></td><td>A hidden document that holds the recording stream, because a Manifest V3 service worker cannot.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-muted mt-4">Lens requests no permission for network access, native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">2. File system scope</h2>
+      <p class="text-muted mb-4">Lens writes through the File System Access API, which is scoped by design:</p>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>It can only touch folders picked by you in the browser's own picker. There is no path entry, and no way for the extension to name a folder you did not choose.</li>
+        <li>A granted handle is stored in the extension's IndexedDB, but the grant itself is held by the browser and is revocable there.</li>
+        <li>Re-granting lapsed access requires a click from you. The background service worker has no user activation and therefore <em>cannot</em> restore access on its own, by design of the platform — so silent re-acquisition is not possible.</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">3. No remote code</h2>
+      <p class="text-muted mb-4">Everything Lens executes ships inside the extension package and is reviewable in the Chrome Web Store listing:</p>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>No script is loaded from a CDN or any remote origin at runtime, which Manifest V3 forbids and Lens does not attempt.</li>
+        <li>The GIF encoder is implemented in the extension rather than pulled from a third-party bundle, so there is no external package in the capture path.</li>
+        <li>MP4 and WebM encoding is done by Chrome's own <span class="font-mono text-sm">MediaRecorder</span>, not by bundled codec code.</li>
+        <li>The shutter sound is synthesised at runtime rather than shipped as an audio asset.</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">4. What Lens deliberately cannot capture</h2>
+      <p class="text-muted mb-4">Some limits are Chrome's and are worth knowing, because they are security boundaries rather than bugs:</p>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>Browser pages — <span class="font-mono text-xs">chrome://</span>, <span class="font-mono text-xs">about:</span>, the Web Store, DevTools, other extensions' pages — cannot be captured by any extension.</li>
+        <li>DRM-protected video is excluded from tab capture by the platform and records as solid black. Lens detects this and warns rather than handing you a black file without explanation.</li>
+        <li><span class="font-mono text-xs">file://</span> URLs require you to enable file access for the extension explicitly.</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">5. Handling sensitive captures</h2>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>Use the <strong class="text-text">blur</strong> tool for credentials, tokens and names. It rewrites pixels rather than covering them, so the original cannot be recovered from the saved file.</li>
+        <li>Remember that a capture records the page <strong class="text-text">URL and title</strong> into <span class="font-mono text-sm">project_metadata.json</span>. If the URL itself is sensitive — a signed link, a token in a query string — treat the metadata file with the same care as the image, or turn off <strong class="text-text">Write metadata file</strong> in Settings.</li>
+        <li>Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Lens inherits the protection of the folder you choose and adds none of its own.</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">6. Reporting a vulnerability</h2>
+      <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 text-sm text-muted mb-4">
+        <p>If you find a security issue, please <strong class="text-yellow-400">do not</strong> open a public issue or describe it in the support form. Email <a href="mailto:security@vectored.dev" class="text-cta hover:underline">security@vectored.dev</a> directly.</p>
+      </div>
+      <p class="text-muted mb-4">Useful things to include: the extension version, your Chrome version and platform, what an attacker would gain, and the smallest reproduction you can manage.</p>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>We aim to acknowledge a report within three working days.</li>
+        <li>We will tell you whether we consider it in scope, and why, rather than going silent.</li>
+        <li>We will credit you in the release notes when a fix ships, unless you would rather we did not.</li>
+        <li>Please give us a reasonable window to ship a fix before disclosing publicly.</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">7. Related</h2>
+      <p class="text-muted"><a href="privacy.html" class="text-cta hover:underline">Lens privacy policy</a> &middot; <a href="../security.html" class="text-cta hover:underline">Vectored site security</a> &middot; <a href="support.html" class="text-cta hover:underline">Support</a></p>
+    </section>
+  </main>
+  <div id="vc-footer"></div>
+<script src="../assets/footer.js"></script>
+
+</body>
+</html>

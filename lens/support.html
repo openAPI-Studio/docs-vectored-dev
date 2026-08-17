@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Lens</title>
+  <meta name="description" content="Get help with Lens by Vectored. Ask for early access, report a bug, or request a feature. No login required.">
+  <link rel="canonical" href="https://docs.vectored.dev/lens/support.html">
+  <meta property="og:title" content="Support — Lens">
+  <meta property="og:description" content="Get help with Lens by Vectored. Ask for early access, report a bug, or request a feature.">
+  <meta property="og:url" content="https://docs.vectored.dev/lens/support.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vectored">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Support — Lens">
+  <meta name="twitter:description" content="Get help with Lens by Vectored. Ask for early access, report a bug, or request a feature.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="../assets/tailwind-config.js"></script>
+
+<script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../assets/tokens.css">
+</head>
+<body class="min-h-screen">
+  <div id="vc-header"></div>
+<script src="../assets/nav.js"></script>
+<script src="../assets/header.js"></script>
+  <main class="pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+    <a href="./index.html" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Back to Lens</a>
+    <h1 class="text-3xl sm:text-4xl font-bold mt-4 mb-2">Lens Support</h1>
+    <p class="text-muted mb-8">Lens has not been released yet. Use this form to ask for early access, tell us what it needs to do, or report a problem with a build you already have.</p>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Submit Feedback or Report an Issue</h2>
+      <p class="text-muted mb-6">No login required. Your submission creates a ticket that our team reviews.</p>
+      <form id="feedback-form" data-vc-support data-tool="lens" novalidate class="bg-surface border border-border rounded-xl p-6 space-y-5">
+        <div>
+          <label for="fb-type" class="block text-sm font-medium mb-2">Type <span class="text-cta">*</span></label>
+          <select id="fb-type" name="type" required class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text focus:outline-none focus:border-cta/50 transition-colors duration-200 cursor-pointer">
+            <option value="" disabled selected>Choose</option>
+            <option value="Early access">Early Access Request</option>
+            <option value="Bug">Bug Report</option>
+            <option value="Feature request">Feature Request</option>
+            <option value="Question">Question</option>
+            <option value="Other">General Feedback</option>
+          </select>
+        </div>
+        <div>
+          <label for="fb-subject" class="block text-sm font-medium mb-2">Subject <span class="text-cta">*</span></label>
+          <input type="text" id="fb-subject" name="subject" required placeholder="One-line summary" class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+        </div>
+        <div>
+          <label for="fb-desc" class="block text-sm font-medium mb-2">Description <span class="text-cta">*</span></label>
+          <textarea id="fb-desc" name="message" required rows="5" placeholder="For a bug: what you were capturing, your Chrome version, and what happened instead. For early access: what you would use Lens for." class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200 resize-y"></textarea>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="fb-name" class="block text-sm font-medium mb-2">Name <span class="text-muted text-xs">(optional)</span></label>
+            <input type="text" id="fb-name" name="name" placeholder="Jane Okafor" autocomplete="name" class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+          </div>
+          <div>
+            <label for="fb-company" class="block text-sm font-medium mb-2">Company <span class="text-muted text-xs">(optional)</span></label>
+            <input type="text" id="fb-company" name="company" placeholder="Acme Corp" autocomplete="organization" class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+          </div>
+        </div>
+        <div>
+          <label for="fb-email" class="block text-sm font-medium mb-2">Email <span class="text-muted text-xs">(optional, but required if you want early access)</span></label>
+          <input type="email" id="fb-email" name="email" placeholder="your@email.com" autocomplete="email" class="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-muted/60 focus:outline-none focus:border-cta/50 transition-colors duration-200">
+        </div>
+        <div id="form-error" class="hidden rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300"></div>
+        <button type="submit" class="bg-cta text-bg font-semibold text-sm px-6 py-2.5 rounded-lg hover:bg-cta/90 transition-colors duration-200 cursor-pointer">Submit</button>
+      </form>
+      <div id="form-success" class="bg-surface border border-cta/40 rounded-xl p-6 text-center hidden">
+        <svg class="w-12 h-12 text-cta mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <p class="font-semibold text-lg mb-1">Thank you!</p>
+        <p class="text-sm text-muted">Your ticket is with our team. If you left an email, we'll reply there.</p>
+        <p data-ref class="font-mono text-xs text-muted mt-3 hidden"></p>
+        <button type="button" data-reset class="mt-4 text-sm text-cta hover:underline cursor-pointer">Submit another</button>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Give Detailed Feedback</h2>
+      <div class="bg-cta/10 border border-cta/20 rounded-xl px-4 py-3 text-sm">
+        <p class="text-muted">The long-form feedback page asks Lens-specific questions — which capture type and output format, your Chrome version, and what you were capturing — which makes a bug far quicker to place. <a href="../feedback.html?tool=lens" class="text-cta font-semibold hover:underline cursor-pointer">Open the Lens feedback form &rarr;</a></p>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Before You Report a Bug</h2>
+      <p class="text-muted mb-4">A few problems have known causes and an immediate fix:</p>
+      <ul class="space-y-2 text-muted">
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-text">Captures going to Downloads</strong> — folder access has lapsed. Open the popup and press <strong class="text-text">Reconnect</strong>.</span></li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-text">A black recording</strong> — the page uses protected video, which the browser excludes from capture.</span></li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-text">A WebM instead of an MP4</strong> — your Chrome build cannot encode MP4, so Lens named the file for what it actually wrote.</span></li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>The full list is in <a href="docs/troubleshooting.html" class="text-cta hover:underline">Troubleshooting</a>.</span></li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Other Ways to Get Help</h2>
+      <ul class="space-y-2 text-muted">
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Read the <a href="docs/getting-started.html" class="text-cta hover:underline">documentation</a></li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Email us at <a href="mailto:support@vectored.dev" class="text-cta hover:underline">support@vectored.dev</a></li>
+        <li class="flex items-start gap-2"><svg class="w-4 h-4 text-cta shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Issues are triaged and addressed on a best-effort basis</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Security Issues</h2>
+      <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 text-sm text-muted">
+        <p>If you discover a security vulnerability, please <strong class="text-yellow-400">do not</strong> describe it in this form. Email <a href="mailto:security@vectored.dev" class="text-cta hover:underline">security@vectored.dev</a> directly — see the <a href="security.html" class="text-cta hover:underline">security page</a> for what to include and what to expect.</p>
+      </div>
+    </section>
+  </main>
+  <div id="vc-footer"></div>
+<script src="../assets/footer.js"></script>
+<script src="../assets/feedback-templates.js"></script>
+<script src="../assets/feedback-config.js"></script>
+<script src="../assets/support-form.js"></script>
+
+</body>
+</html>

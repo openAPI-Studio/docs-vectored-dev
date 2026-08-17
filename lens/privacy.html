@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Lens</title>
+  <meta name="description" content="Privacy policy for Lens by Vectored. Captures never leave your machine: no account, no server, no analytics, no network calls.">
+  <link rel="canonical" href="https://docs.vectored.dev/lens/privacy.html">
+  <meta property="og:title" content="Privacy Policy — Lens">
+  <meta property="og:description" content="Privacy policy for Lens by Vectored. Captures never leave your machine: no account, no server, no analytics.">
+  <meta property="og:url" content="https://docs.vectored.dev/lens/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vectored">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Privacy Policy — Lens">
+  <meta name="twitter:description" content="Privacy policy for Lens by Vectored. Captures never leave your machine.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="../assets/tailwind-config.js"></script>
+
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../assets/tokens.css">
+</head>
+<body class="min-h-screen">
+  <div id="vc-header"></div>
+<script src="../assets/nav.js"></script>
+<script src="../assets/header.js"></script>
+
+  <main class="pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+    <a href="index.html" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Back to Lens</a>
+    <h1 class="text-3xl sm:text-4xl font-bold mt-4 mb-2">Privacy Policy</h1>
+    <p class="text-sm text-muted mb-10">Lens by Vectored &middot; Last updated: August 2026</p>
+
+    <div class="bg-cta/10 border border-cta/20 rounded-xl p-5 mb-10">
+      <p class="text-sm text-muted"><strong class="text-text">The short version.</strong> Lens has no account, no server and no analytics. It makes no network requests. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it.</p>
+    </div>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">1. Who this covers</h2>
+      <p class="text-muted">This policy covers the Lens browser extension for Chrome, published by Vectored. It does not cover the documentation site you are reading, which is covered by the <a href="../privacy.html" class="text-cta hover:underline">site privacy policy</a>.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">2. What Lens does not collect</h2>
+      <p class="text-muted mb-4">Lens does not collect, transmit or receive any of the following:</p>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>Your screenshots, recordings or any part of them</li>
+        <li>The pages you visit, their titles, URLs or contents</li>
+        <li>Your project names, folder names or folder paths</li>
+        <li>Usage analytics, telemetry, crash reports or feature counters</li>
+        <li>An email address, name, account or device identifier</li>
+        <li>Cookies or any advertising or tracking identifier</li>
+      </ul>
+      <p class="text-muted mt-4">The extension contains no analytics SDK, no remote configuration and no update-check call of its own. Extension updates are delivered by the Chrome Web Store, not by us.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">3. What is stored, and where</h2>
+      <p class="text-muted mb-4">Everything Lens stores is local to your browser profile or written to a folder you chose. Nothing is stored by Vectored.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>What</th><th>Where it lives</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Captures — <span class="font-mono text-xs">.png</span>, <span class="font-mono text-xs">.jpg</span>, <span class="font-mono text-xs">.gif</span>, <span class="font-mono text-xs">.mp4</span></td><td>The project folder you picked, or your Downloads folder as a fallback</td><td>They are the product of the tool</td></tr>
+            <tr><td><span class="font-mono text-xs">project_metadata.json</span> — file name, page title, page URL, timestamp, captured region, your note</td><td>Alongside the captures, in the same folder</td><td>So the capture set is self-describing and readable by other tools</td></tr>
+            <tr><td>Project list and folder handles</td><td>IndexedDB in your browser profile</td><td>To reopen your folder without asking you to pick it every time</td></tr>
+            <tr><td>Settings</td><td><span class="font-mono text-xs">chrome.storage.local</span></td><td>To remember your preferences</td></tr>
+            <tr><td>Preview thumbnails, capped and downscaled</td><td><span class="font-mono text-xs">chrome.storage.local</span></td><td>So the timeline renders without reading every file from disk</td></tr>
+            <tr><td>In-progress recording state</td><td><span class="font-mono text-xs">chrome.storage.session</span></td><td>So a recording survives navigation; cleared when the browser closes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">4. Access to your file system</h2>
+      <p class="text-muted mb-4">Lens uses the browser's File System Access API. This has specific and deliberately narrow properties:</p>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li>Lens can only read or write inside folders <strong class="text-text">you explicitly picked</strong> in the browser's own folder picker. It cannot browse your disk, and it cannot reach a folder you did not choose.</li>
+        <li>Permission is granted per folder and can lapse — after a browser restart, for example. Lens cannot restore it silently; it needs a click from you.</li>
+        <li>Revoking access is done in Chrome, under the site and extension permission controls, and takes effect immediately.</li>
+      </ul>
+      <p class="text-muted mt-4">If no folder is linked, or access has lapsed, captures fall back to your Downloads folder under <span class="font-mono text-sm">Lens-Captures/</span>. The extension tells you when this happens rather than failing quietly.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">5. Access to page content</h2>
+      <p class="text-muted mb-4">To draw the selection overlay and capture a region, Lens injects its capture interface into the tab you are capturing — but only at the moment you start a capture, and only into that tab. There is no content script running in the background on every page you visit.</p>
+      <p class="text-muted">Captured pixels are held in memory long enough to crop, annotate and encode them, then written to your chosen folder. They are not copied anywhere else.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">6. Redaction</h2>
+      <p class="text-muted">The blur tool rewrites the underlying image data rather than drawing an opaque shape over it. Once a blurred capture is saved, the original pixels are not recoverable from that file by removing a layer. This is intentional: a redaction that can be peeled off is not a redaction. Check the result before saving, because it cannot be undone after the fact.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">7. Third parties</h2>
+      <p class="text-muted mb-4">Lens sends nothing to any third party. It bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin.</p>
+      <p class="text-muted">If you choose to contact us through the <a href="support.html" class="text-cta hover:underline">support form</a>, that is a separate, voluntary act: only what you type into the form is sent, and only then. The extension is not involved.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">8. Retention and deletion</h2>
+      <ul class="list-disc pl-6 text-muted space-y-2">
+        <li><strong class="text-text">Captures and metadata</strong> are ordinary files. Delete them as you would any file; Lens keeps no second copy.</li>
+        <li><strong class="text-text">Cached thumbnails</strong> can be cleared from the dashboard under Settings, without touching the files on disk.</li>
+        <li><strong class="text-text">Projects, settings and folder handles</strong> are removed when you uninstall the extension, along with everything else in its browser storage.</li>
+      </ul>
+      <p class="text-muted mt-4">Because Vectored holds none of your data, there is nothing for us to delete on request and no data export for us to produce — you already hold the only copy.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">9. GDPR and international transfers</h2>
+      <p class="text-muted">Lens performs no processing of personal data on behalf of Vectored: no personal data is transmitted to or held by us, and there is no international transfer of your data because there is no transfer at all. Where you capture content containing personal data, you remain the controller of the resulting files, which stay on infrastructure you control.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">10. Children's privacy</h2>
+      <p class="text-muted">Lens is a developer and documentation tool, not directed at children, and collects no personal information from anyone.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">11. Changes to this policy</h2>
+      <p class="text-muted">If this policy changes, the updated version will be posted here with a new "Last updated" date. Any change that would alter what leaves your machine — of which there is currently nothing — will be called out in the extension's release notes, not only here.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">12. Contact</h2>
+      <p class="text-muted">Questions about this policy: <a href="mailto:support@vectored.dev" class="text-cta hover:underline">support@vectored.dev</a>, or use the <a href="support.html" class="text-cta hover:underline">support form</a>. For security reports, see the <a href="security.html" class="text-cta hover:underline">security page</a>.</p>
+    </section>
+  </main>
+  <div id="vc-footer"></div>
+<script src="../assets/footer.js"></script>
+
+</body>
+</html>

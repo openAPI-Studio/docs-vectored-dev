@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Shortcuts — Lens Docs</title>
+  <meta name="description" content="Lens keyboard shortcuts for region capture, GIF recording and full-tab capture, and how to remap them in Chrome.">
+  <meta name="vc-updated" content="17 Aug 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium"><span class="text-amber-400">Lens is coming soon.</span> <a class="text-cta hover:underline" href="../support.html">Ask for early access &rarr;</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="9" x2="6" y2="9"/><line x1="10" y1="9" x2="10" y2="9"/><line x1="14" y1="9" x2="14" y2="9"/><line x1="18" y1="9" x2="18" y2="9"/><line x1="7" y1="14" x2="17" y2="14"/></svg></div>
+      <h1 class="vc-h1">Keyboard Shortcuts</h1>
+      <p class="vc-lede">The default bindings, and how to change them.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">Lens registers three commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Command</th><th>macOS</th><th>Windows / Linux</th><th>What it does</th></tr></thead><tbody><tr><td>Capture region</td><td>⌘⇧S</td><td>Alt+Shift+S</td><td>Opens the region selector</td></tr><tr><td>Record GIF region</td><td>⌘⇧R</td><td>Alt+Shift+R</td><td>Opens the region selector ready to record</td></tr><tr><td>Capture full tab</td><td>⌘⇧F</td><td>Alt+Shift+F</td><td>Captures the visible tab with no selection step</td></tr></tbody></table></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">1. Changing a shortcut</h2>
+<ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Open <span class="font-mono text-sm">chrome://extensions/shortcuts</span></strong> <span class="text-muted">or follow the link at the top of the Settings page on the dashboard.</span></li><li class="mb-3"><strong class="text-text">Find Lens in the list</strong> <span class="text-muted">each command has its own row.</span></li><li class="mb-3"><strong class="text-text">Click the field and press the combination</strong> <span class="text-muted">Chrome refuses combinations already taken by the browser or another extension.</span></li></ol>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Chrome allows a limited number of *suggested* shortcuts per extension, and any command can be left unbound. An unbound command shows as <strong class="text-text">not set</strong> on the Settings page; the popup buttons still work.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. When a shortcut does nothing</h2>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">The tab is a page Chrome does not allow extensions on — <span class="font-mono text-sm">chrome://</span> pages, the Web Store, the PDF viewer. The toolbar icon shows a red <strong class="text-text">!</strong> and its tooltip explains why.</li><li class="mb-2">Another extension has claimed the same combination. Chrome gives it to whichever registered first; rebind one of them.</li><li class="mb-2">The page has not finished loading. Wait for it and try again.</li></ul>
+<p class="text-muted mb-4">See <a href="troubleshooting.html" class="text-cta hover:underline">Troubleshooting</a> for the full list of pages capture cannot run on.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
