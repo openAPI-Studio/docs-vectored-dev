@@ -1,0 +1,263 @@
+{
+  "projectName": "timesheets",
+  "createdAt": "2026-08-16T16:33:57.229Z",
+  "lastUpdated": "2026-08-16T17:52:58.625Z",
+  "timeline": [
+    {
+      "id": "snap_1786902778597_axp5ga",
+      "filename": "timesheets-approvals-multiselect.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:52:58.565Z",
+      "crop": {
+        "x": 335,
+        "y": 346,
+        "width": 1189,
+        "height": 650
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786902727864_ag1d7z",
+      "filename": "timesheets-approvals-queue.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:52:07.846Z",
+      "crop": {
+        "x": 334,
+        "y": 48,
+        "width": 1531,
+        "height": 942
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786902404894_t6om30",
+      "filename": "timesheets-project-approvers-config.png",
+      "title": "TimeSheets Settings - Jira",
+      "url": "https://vectored.atlassian.net/jira/software/projects/KAN/settings/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:46:44.883Z",
+      "crop": {
+        "x": 352,
+        "y": 59,
+        "width": 1517,
+        "height": 764
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786902352317_b1u4z8",
+      "filename": "timesheets-budget-status-card.png",
+      "title": "TimeSheets by Vectored - Jira",
+      "url": "https://vectored.atlassian.net/jira/settings/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:45:52.301Z",
+      "crop": {
+        "x": 650,
+        "y": 135,
+        "width": 1163,
+        "height": 587
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786900154265_g7cutv",
+      "filename": "timesheets-cost-centre-tree.png",
+      "title": "TimeSheets Settings - Jira",
+      "url": "https://vectored.atlassian.net/jira/software/projects/KAN/settings/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:09:14.249Z",
+      "crop": {
+        "x": 10,
+        "y": 47,
+        "width": 1863,
+        "height": 713
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786900076473_e8jys2",
+      "filename": "timesheets-apply-template.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:07:56.449Z",
+      "crop": {
+        "x": 22,
+        "y": 361,
+        "width": 1837,
+        "height": 689
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786899935347_1mcc2n",
+      "filename": "timesheets-template-editor.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:05:35.336Z",
+      "crop": {
+        "x": 547,
+        "y": 300,
+        "width": 773,
+        "height": 566
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786899846523_ihjpvj",
+      "filename": "timesheets-daily-hours-meter.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:04:06.506Z",
+      "crop": {
+        "x": 17,
+        "y": 221,
+        "width": 1513,
+        "height": 858
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786899767778_e2sfue",
+      "filename": "timesheets-log-time-modal-filled.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T17:02:47.758Z",
+      "crop": {
+        "x": 486,
+        "y": 312,
+        "width": 900,
+        "height": 538
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786899356529_n2lu9v",
+      "filename": "timesheets-personal-settings.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T16:55:56.504Z",
+      "crop": {
+        "x": 491,
+        "y": 317,
+        "width": 893,
+        "height": 528
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786899305696_ds3uxe",
+      "filename": "timesheets-calendar-locked-days.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T16:55:05.677Z",
+      "crop": {
+        "x": 14,
+        "y": 313,
+        "width": 1844,
+        "height": 744
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786899225605_2v00w8",
+      "filename": "timesheets-calendar-multi-select.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T16:53:45.583Z",
+      "crop": {
+        "x": 24,
+        "y": 222,
+        "width": 1493,
+        "height": 869
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786898508679_rsgpw0",
+      "filename": "timesheets-calendar-month-view.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T16:41:48.660Z",
+      "crop": {
+        "x": 9,
+        "y": 59,
+        "width": 1850,
+        "height": 1029
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786898450713_6j5iol",
+      "filename": "timesheets-gadget-picker.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T16:40:50.683Z",
+      "crop": {
+        "x": 456,
+        "y": 79,
+        "width": 771,
+        "height": 895
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786898381544_qq7qup",
+      "filename": "timesheets-dashboard-arranged.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T16:39:41.518Z",
+      "crop": {
+        "x": 19,
+        "y": 117,
+        "width": 2499,
+        "height": 1368
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786898317231_2u65ss",
+      "filename": "timesheets-log-time-modal.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T16:38:37.205Z",
+      "crop": {
+        "x": 376,
+        "y": 234,
+        "width": 924,
+        "height": 580
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    },
+    {
+      "id": "snap_1786898179024_sqwvno",
+      "filename": "timesheets-hub-overview.png",
+      "title": "TimeSheets - Jira",
+      "url": "https://vectored.atlassian.net/jira/apps/caf52eca-b961-4995-a0a5-2b0cd396569f/5638d1fe-d682-47b6-8024-adc024b9378c",
+      "timestamp": "2026-08-16T16:36:19.003Z",
+      "crop": {
+        "x": 1,
+        "y": 48,
+        "width": 1684,
+        "height": 920
+      },
+      "notes": "",
+      "createdBy": "screen grabber by vectored"
+    }
+  ],
+  "createdBy": "screen grabber by vectored"
+}
