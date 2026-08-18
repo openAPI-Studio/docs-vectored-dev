@@ -9,6 +9,15 @@
   var script = document.currentScript;
   if (!script || !script.src) return;
   var root = new URL('..', script.src).href;
+
+  // Analytics rides along here because footer.js is the one script every page
+  // loads. Injected before the mount check so a page that somehow lacks the
+  // footer div still reports. analytics.js no-ops unless a token is set.
+  var a = document.createElement('script');
+  a.defer = true;
+  a.src = root + 'assets/analytics.js';
+  document.head.appendChild(a);
+
   var mount = document.getElementById('vc-footer');
   if (!mount) return;
   function u(p) { return root + p; }
