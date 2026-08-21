@@ -58,6 +58,10 @@ def inline(text):
     out = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
                  r'<a href="\2" class="text-cta hover:underline">\1</a>', out)
     out = re.sub(r"\*\*([^*]+)\*\*", r'<strong class="text-text">\1</strong>', out)
+    # Bold is consumed above, so a surviving *pair* is an italic. Both ends must
+    # sit against a non-space character, which keeps a lone asterisk — a glob, a
+    # footnote marker — from turning the rest of a sentence slanted.
+    out = re.sub(r"\*(?=\S)([^*]*[^*\s])\*", r'<em>\1</em>', out)
     out = re.sub(r"`([^`]+)`", r'<span class="font-mono text-sm">\1</span>', out)
     return out
 
@@ -231,4 +235,5 @@ ICONS = {
     "keyboard": '<rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="9" x2="6" y2="9"/><line x1="10" y1="9" x2="10" y2="9"/><line x1="14" y1="9" x2="14" y2="9"/><line x1="18" y1="9" x2="18" y2="9"/><line x1="7" y1="14" x2="17" y2="14"/>',
     "life-buoy": '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>',
     "shield": '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+    "book": '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/>',
 }

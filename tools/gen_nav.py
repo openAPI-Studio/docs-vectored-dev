@@ -47,7 +47,7 @@ GROUPS = {
  ],
  'lens': [
    ('Start here', ['getting-started']),
-   ('Capture', ['capturing','recording']),
+   ('Capture', ['capturing','recording','guides']),
    ('Organise', ['projects','timeline']),
    ('Configure', ['settings','shortcuts']),
    ('AI', ['ai']),
@@ -89,7 +89,7 @@ PRODUCTS = [
       dir='rewardhub', icon='rewardhub/assets/logo-64.png',
       cta='https://marketplace.atlassian.com/apps/564712405',
       ctaLabel='Try free', homeLabel='Recognition Hub Overview'),
- dict(key='lens', label='Lens', blurb='Screenshots, GIF & MP4',
+ dict(key='lens', label='Lens', blurb='Screenshots, GIF & guides',
       dir='lens', icon='lens/assets/icon-64.png',
       cta='lens/docs/getting-started.html', ctaLabel='Read the docs',
       homeLabel='Lens Overview'),

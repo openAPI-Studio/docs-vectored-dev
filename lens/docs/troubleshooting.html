@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Troubleshooting — Lens Docs</title>
   <meta name="description" content="Diagnose blocked pages, blank recordings, lost folder access and captures missing from the timeline.">
-  <meta name="vc-updated" content="17 Aug 2026">
+  <meta name="vc-updated" content="20 Aug 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -53,11 +53,15 @@
 <p class="text-muted mb-4">The file was written but <span class="font-mono text-sm">project_metadata.json</span> could not be updated. The save toast says so explicitly. Two causes:</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Write metadata file</strong> is switched off in Settings — turn it back on.</li><li class="mb-2">The metadata file could not be written, usually a permission problem on the folder. Reconnect the folder.</li></ul>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The timeline merges the folder's metadata with a local cache, so a capture that went to Downloads still appears — it is just not in your project folder.</p></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">5. The MP4 I recorded is a WebM</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. "No frames were captured"</h2>
+<p class="text-muted mb-4">The recording produced nothing to encode. Usually the tab was hidden or minimised for the whole recording — tab capture samples what is being drawn, and a tab that is not being drawn produces nothing. Check the tab stayed visible and record again.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. My guide is not in the folder</h2>
+<p class="text-muted mb-4">A guide is written when you approve it on the save screen. If no folder was linked at that moment it is held in the browser instead and listed under <strong class="text-text">Dashboard &gt; Guides</strong> as <strong class="text-text">pending</strong>. Link a folder, make that project active, and write it from there — nothing is lost in the meantime.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. The MP4 I recorded is a WebM</h2>
 <p class="text-muted mb-4">Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an <span class="font-mono text-sm">.mp4</span> that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">6. Nothing happened when I pressed the shortcut</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. Nothing happened when I pressed the shortcut</h2>
 <p class="text-muted mb-4">See <a href="shortcuts.html" class="text-cta hover:underline">Keyboard shortcuts</a> — the usual causes are a restricted page, a conflicting binding, or a page that has not finished loading.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">7. Still stuck</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">9. Still stuck</h2>
 <p class="text-muted mb-4"><a href="../support.html" class="text-cta hover:underline">Open a support ticket</a> and include what you were capturing, which browser version you are on, and what the toast or tooltip said. No account is needed.</p>
       </article>
 

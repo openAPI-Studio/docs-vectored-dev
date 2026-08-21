@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step-by-step Guides — Lens Docs</title>
+  <meta name="description" content="Capture a step-by-step guide from your clicks, review it before saving, edit it in the guide editor and export it as HTML, Markdown or rich text.">
+  <meta name="vc-updated" content="20 Aug 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium"><span class="text-amber-400">Lens is coming soon.</span> <a class="text-cta hover:underline" href="../support.html">Ask for early access &rarr;</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/></svg></div>
+      <h1 class="vc-h1">Step-by-step Guides</h1>
+      <p class="vc-lede">Click through a flow once. Lens writes the walkthrough.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">A <strong class="text-text">guide</strong> is a walkthrough of a flow: one screenshot per click, cropped to the control you clicked, numbered, with a sentence under each. You click through the task once and Lens assembles the document, rather than asking you to screenshot each step and paste them together afterwards.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted"><strong class="text-text">No AI is involved in building a guide.</strong> Step sentences come from the accessible name of each control — the name a screen reader would announce. That is also why nothing you type into a field is ever read. A connected model can rewrite those sentences afterwards; it never writes them in the first place.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">1. Two ways to capture one</h2>
+<p class="text-muted mb-4"><strong class="text-text">Record steps</strong> (⌘⇧E, Alt+Shift+E) is the light one: no region to drag, no video, and <strong class="text-text">no time limit</strong> — nothing accumulates between clicks, so a walkthrough can take as long as the work does.</p>
+<ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Record steps</strong> in the popup</strong> <span class="text-muted">or use the shortcut. A small widget appears in the corner of the page.</span></li><li class="mb-3"><strong class="text-text">Click through your flow as you normally would</strong> <span class="text-muted">every click on a real control becomes a step. Scrolling is free, and a page load becomes a step of its own so the guide does not read as though everything happened on one screen.</span></li><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Record clip</strong> for anything a still cannot carry</strong> <span class="text-muted">a drag, a hover menu, an animation. Drag a region, do the thing, press <strong class="text-text">Stop clip</strong>, and it is dropped in as one animated step in the place you recorded it.</span></li><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Finish</strong></strong> <span class="text-muted">the review panel opens. There is no file to name, because the guide is the whole result.</span></li></ol>
+<p class="text-muted mb-4"><strong class="text-text">Record GIF</strong> (⌘⇧R) produces a guide as well as the recording, as long as <strong class="text-text">Build a guide from each recording</strong> is on — it is by default. The review panel appears under the file name on the save screen.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The region you drag limits the <em>recording</em>, not the steps. Each step screenshot is a fresh capture of the whole tab, cropped around whatever you clicked, so steps stay readable even when the recorded region was small.</p></div>
+<figure class="shot mb-6">
+        <img src="../assets/lens-steps-widget.png" alt="The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-steps-widget.png</p>
+          <p class="text-xs text-muted max-w-md">The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. What does not become a step</h2>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">Clicks on Lens's own controls. Pressing <strong class="text-text">Finish</strong> does not appear in the guide it finishes.</li><li class="mb-2">Clicks on nothing — empty space, a page background.</li><li class="mb-2">A repeated click on the same control within a second, which is counted once.</li><li class="mb-2">A drag or a text selection, which is not a click at all.</li></ul>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. Reviewing before anything is written</h2>
+<p class="text-muted mb-4">Nothing reaches your folder until you approve it. The review panel lists every step with its screenshot, and you can:</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">Edit the guide title, and the text of any step.</li><li class="mb-2">Untick steps you do not want. They are dropped, and the rest renumber.</li><li class="mb-2">Untick the guide entirely and keep just the recording.</li><li class="mb-2"><strong class="text-text">Rewrite with AI</strong> — only if you have a model connected. It refuses any answer that changes the number of steps, so it can improve the words but cannot invent or lose a step.</li></ul>
+<figure class="shot mb-6">
+        <img src="../assets/lens-guide-review.png" alt="The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-guide-review.png</p>
+          <p class="text-xs text-muted max-w-md">The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Where guides live afterwards</h2>
+<p class="text-muted mb-4"><strong class="text-text">Dashboard &gt; Guides.</strong> One card per guide, newest first, each showing the site's own logo — or its favicon where there is no logo, or a coloured initial where there is neither — with the title, the site, the step count, the project and the day it was captured.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Action</th><th>What it does</th></tr></thead><tbody><tr><td>Open editor</td><td>Opens the guide as a document in its own tab</td></tr><tr><td>Export</td><td>Self-contained HTML, Markdown, or the clipboard</td></tr><tr><td>Delete</td><td>Removes the guide's folder on disk and the entry pointing at it. Asks first</td></tr></tbody></table></div>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Guides recorded while no folder was linked are held in the browser and listed below the others as <strong class="text-text">pending</strong>. They are not lost — link a folder, make that project active, and write them from there.</p></div>
+<figure class="shot mb-6">
+        <img src="../assets/lens-guides-list.png" alt="The dashboard Guides tab with guide cards, each showing the site&#x27;s logo, title, step count and the folder path it was written to" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-guides-list.png</p>
+          <p class="text-xs text-muted max-w-md">The dashboard Guides tab with guide cards, each showing the site&#x27;s logo, title, step count and the folder path it was written to</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The dashboard Guides tab with guide cards, each showing the site&#x27;s logo, title, step count and the folder path it was written to</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. The guide editor</h2>
+<p class="text-muted mb-4">The editor opens in its own tab and reads as a document: the sheet is the width of the exported page, and the steps run down it in order.</p>
+<p class="text-muted mb-4">Step text is <strong class="text-text">Markdown</strong>, and the toolbar offers exactly what Markdown can carry — bold, italic, strikethrough, code, highlight, links, bullet and numbered lists, task lists, tables, code blocks, rules, callouts and headings. Nothing else is offered on purpose: a font size or a colour would be something one of the two exports could not represent, and the same text is written to <span class="font-mono text-sm">guide.md</span> and rendered into <span class="font-mono text-sm">guide.html</span>.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Key</th><th>What it does</th></tr></thead><tbody><tr><td>⌘B / ⌘I</td><td>Bold, italic</td></tr><tr><td>⌘K</td><td>Link</td></tr><tr><td>⌘S</td><td>Save</td></tr><tr><td>⌘click</td><td>Open a link — a plain click inside editable text places the caret instead, as it does everywhere</td></tr></tbody></table></div>
+<figure class="shot mb-6">
+        <img src="../assets/lens-guide-editor.png" alt="The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">lens-guide-editor.png</p>
+          <p class="text-xs text-muted max-w-md">The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar</figcaption>
+      </figure>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. Working on a step</h2>
+<p class="text-muted mb-4">Hover a step. On the step itself:</p>
+<div class="tbl-wrap"><table><thead><tr><th>Control</th><th>What it does</th></tr></thead><tbody><tr><td>Move up / Move down</td><td>Reorder. Numbers are rewritten, but <strong class="text-text">file names never change</strong> — anything already exported still points at the right picture</td></tr><tr><td>Add step above / below</td><td>An empty step to write by hand</td></tr><tr><td>Duplicate</td><td>A copy, for when two steps differ by a word</td></tr><tr><td>Split into individual clicks</td><td>Breaks an animated step back apart. Lossless — each click kept its own still</td></tr><tr><td>Copy step</td><td>Text and picture together, ready to paste</td></tr><tr><td>Delete</td><td>The step goes, and its picture is removed from the folder when you save</td></tr></tbody></table></div>
+<p class="text-muted mb-4">On the screenshot itself you get the same image tools as a still capture — crop, annotate, blur, colour and rotation — plus <strong class="text-text">Replace image</strong>, which swaps in a different file while keeping its name.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Nothing is written until you press <strong class="text-text">Save</strong>. Closing with unsaved changes asks first, and undo covers everything, including a rewrite the assistant applied.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. Exporting</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Format</th><th>What you get</th></tr></thead><tbody><tr><td><strong class="text-text">Self-contained HTML</strong></td><td><span class="font-mono text-sm">guide.html</span> with every picture inlined and no scripts. One file you can email, and ⌘P &gt; Save as PDF is the PDF route</td></tr><tr><td><strong class="text-text">Markdown</strong></td><td><span class="font-mono text-sm">guide.md</span> beside its screenshots, relative paths, ready for a repo or a docs site</td></tr><tr><td><strong class="text-text">Copy to clipboard</strong></td><td>Rich text for pasting into Confluence, Notion or a document</td></tr></tbody></table></div>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Animated steps print their poster frame. When pasting into a document, check the pictures survived — editors disagree about pasted images and some drop them.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. The assistant</h2>
+<p class="text-muted mb-4">The editor has a chat panel, and it stays shut until you have configured a model <strong class="text-text">and</strong> a test has actually reached it. See <a href="ai.html" class="text-cta hover:underline">AI features</a> for setting one up.</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Step</strong> and <strong class="text-text">Guide</strong> attach material to <em>this</em> message. A question with nothing attached sends only the question.</li><li class="mb-2"><strong class="text-text">Media</strong> additionally sends the screenshots of what you attached. Off by default — the files are not even read unless it is on.</li><li class="mb-2">The <strong class="text-text">model switcher</strong> picks which of your configured models answers, per message.</li><li class="mb-2"><strong class="text-text">Auto</strong> applies a proposed rewrite as it arrives rather than waiting for a click. Off by default, and undo reverses it.</li></ul>
+<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted">If a request fails, the panel says so and stops. It has no offline imitation of a model — inventing documentation for software it cannot see is the one thing a documentation tool must never do.</p></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

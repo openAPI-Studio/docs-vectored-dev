@@ -11,7 +11,7 @@ PAGES["getting-started"] = dict(
     desc="Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording.",
     icon="rocket",
     blocks=[
-        P("Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, an animated **GIF** or an **MP4**, then files it into a folder on your own machine along with a metadata timeline. Nothing is uploaded — see [Privacy](../privacy.html)."),
+        P("Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, an animated **GIF** or an **MP4**, then files it into a folder on your own machine along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](guides.html). Nothing is uploaded — see [Privacy](../privacy.html)."),
 
         H("Install and pin"),
         STEPS([
@@ -35,8 +35,8 @@ PAGES["getting-started"] = dict(
         STEPS([
             "Press **Capture region**|or use the keyboard shortcut. The page dims and the cursor becomes a crosshair.",
             "Drag a rectangle|over the area you want. Drag the handles to resize, or drag from the middle to move it.",
-            "Press **Capture Image**|the annotation editor opens with your capture loaded.",
-            "Name it and save|the file lands in the project folder and appears in the popup timeline.",
+            "Press **Capture Image**|the save screen opens with your capture loaded, its tools down the left and the file name on the right.",
+            "Annotate if you want to, then name it and save|the file lands in the project folder and appears in the popup timeline.",
         ]),
         SHOT("lens-region-selection.png", "A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below"),
 
@@ -44,6 +44,7 @@ PAGES["getting-started"] = dict(
         UL([
             "[Capturing a region](capturing.html) — selection, annotation and saving in detail.",
             "[Recording GIF and MP4](recording.html) — the recorder, its controls and the two output formats.",
+            "[Step-by-step guides](guides.html) — click through a flow once and get a documented walkthrough out of it.",
             "[Projects and folders](projects.html) — multiple projects, switching, and reconnecting folder access.",
             "[Settings](settings.html) — every preference and what it changes.",
         ]),
@@ -56,7 +57,7 @@ PAGES["capturing"] = dict(
     desc="Select a region of a page, annotate it with shapes, text and blur, then save it into your project folder.",
     icon="crop",
     blocks=[
-        P("A still capture is a two-step flow: choose the region on the page, then annotate and name it in the editor."),
+        P("A still capture is one screen after the selection: the picture, the tools that change it, and the name it will be saved under are all in front of you at once. Nothing is written until you press Save."),
 
         H("Selecting the region"),
         P("Start a capture from the popup's **Capture region** button or the keyboard shortcut. The page dims, and the region you drag stays bright."),
@@ -74,41 +75,57 @@ PAGES["capturing"] = dict(
         P("**Full tab** skips the selection step and captures the whole visible area of the tab. It does not capture below the fold — only what is on screen."),
 
         H("The private-data check"),
-        P("As the editor opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered."),
+        P("As the save screen opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered."),
         P("It looks for password fields, fields named for a credential that have something in them, and text shaped like an API key, a JWT, a bearer token or a PEM private key. Unless you turn it off, it also flags email addresses and card numbers — card numbers are checksum-checked, so an order number is not mistaken for one."),
         UL([
-            "Tick or untick anything in the list, then press **Blur all** to cover the ticked ones in a single step that a single **Undo** reverses.",
+            "Tick or untick anything in the list, then press **Blur selected** to cover the ticked ones in a single step that a single **Undo** reverses.",
             "**Dismiss** hides the bar and changes nothing.",
             "High-confidence findings are ticked for you; the rest are listed but left unticked.",
         ]),
         NOTE("The check runs on the structure of the page in your own browser. It uses no AI and sends nothing anywhere, and it is on by default. If you have connected an AI provider you can additionally let a model sort real credentials from documentation examples — see [Settings](settings.html)."),
         WARN("Treat it as a safety net, not a guarantee. It recognises known shapes, so it will not catch a secret that does not look like one, or a name or figure that is sensitive only in context. Read the capture as well."),
-        SHOT("lens-redaction-hints.png", "The annotation editor with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below"),
+        SHOT("lens-redaction-hints.png", "The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below"),
 
-        H("Annotating"),
-        P("After confirming, the editor opens with a toolbar above the image."),
+        H("The save screen"),
+        P("Confirming the selection opens the editor and the save form as a single screen. Down the left is a rail of tools, in the middle the picture, and on the right the panel for whichever tool is selected — with the file name and notes below it."),
+        P("The rail has two halves. Above the divider are **marks** you add on top of the picture; below it are changes to the **picture itself**."),
         TABLE(["Tool", "What it does"], [
-            ["Pen", "Freehand drawing"],
-            ["Text", "Click to place a text label"],
-            ["Rectangle", "Outline a box"],
-            ["Ellipse", "Outline a circle or oval"],
-            ["Arrow", "Point at something"],
-            ["Blur", "Pixelate a region — applied to the image data, not drawn over it"],
-            ["Undo", "Step back one annotation"],
-            ["Reset", "Discard all annotations and start from the original capture"],
+            ["Pen", "Freehand drawing. Hold Shift to constrain the line"],
+            ["Text", "Click where the label goes, then type"],
+            ["Box", "Drag a rectangle. Shift keeps it square"],
+            ["Circle", "Drag an ellipse. Shift keeps it round"],
+            ["Arrow", "Drag from the tail to the point"],
+            ["Blur", "Pixelate a region — rewritten into the image data, not drawn over it"],
+            ["Crop", "Trim the picture to a region or a fixed ratio"],
+            ["Adjust", "Brightness, contrast, saturation, exposure and warmth, plus Auto"],
+            ["Turn", "Rotate left or right, flip across or down"],
         ]),
-        WARN("**Blur is irreversible and that is the point.** It rewrites the underlying pixels rather than covering them, so the original content cannot be recovered from the saved file by removing a layer. Use it for tokens, names and anything else that should not leave your machine — but check the result before saving, because Undo after a blur restores the pixels only within the current editing session."),
-        SHOT("lens-annotation-editor.png", "The annotation editor with the toolbar visible and an arrow, a text label and a blurred region applied to a screenshot"),
+        P("**Style** — colour, size and font — sits in the panel and applies to the next mark you make. Everything you add is listed under **Marks** in the order you made it, with blurs tagged *permanent*, so three edits later you can still see at a glance that a blur is in place."),
+        SHOT("lens-capture-saver.png", "The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right"),
+
+        H("Cropping, adjusting and turning"),
+        UL([
+            "**Crop** opens on the whole picture — easier to pull inward than an empty box is to place. Ratio chips offer Free, Original, 1:1, 16:9, 4:3 and 3:2, and the readout shows the real pixel size you will get. **Apply crop** commits it.",
+            "**Adjust** previews live against the picture as it was when you opened the tool, so dragging a slider back to the middle returns the exact original pixels rather than an approximation. **Auto** stretches the histogram to use the full range.",
+            "**Turn** applies immediately — each rotation or flip is one step that Undo reverses.",
+        ]),
+        NOTE("Cropping or turning retires the private-data bar, because the regions it flagged no longer line up with the picture. Anything still sensitive is covered with the blur tool instead."),
+
+        H("Undoing"),
+        P("**⌘Z** (**Ctrl+Z**), or the Undo button under the picture. It steps back through everything — marks, crops, rotations and adjustments alike — restoring the size of the picture as well as its pixels, and taking the mark back off the list."),
+        P("**Escape** works inward-out. In Crop, Adjust or Turn it leaves that tool. On a picture you have not drawn on, it closes the save screen. It will not throw away work you have done: undo that first, deliberately."),
+        WARN("**Blur is irreversible and that is the point.** It rewrites the underlying pixels rather than covering them, so the original cannot be recovered from the saved file by removing a layer. Undo reverses a blur only while the save screen is still open — once the file is written, what was covered is gone."),
 
         H("Naming and saving"),
-        P("Below the image are the file name, an optional note, and the page title and URL that will be recorded alongside the capture."),
+        P("Below the tools are the file name, an optional note, and the page title and URL that will be recorded alongside the capture."),
         UL([
             "The name is prefilled from your **file name pattern** — see [Settings](settings.html).",
             "The **note** is stored in `project_metadata.json` for that capture. Use it for context a file name cannot carry.",
-            "Press **Save** to write the file. A toast confirms where it went.",
+            "**Save to project** (**⌘S**) writes the file. The footer says which project it is going to before you press it, and a toast afterwards says where it actually landed.",
+            "**Copy image** puts it on the clipboard instead of saving.",
         ]),
-        P("If you have connected an AI provider, a **Suggest name & description** button appears above the name field. It reads the text inside the region you captured and fills in a file name and a one-line description of what the screenshot shows. The description is added to your note rather than replacing it, and everything it writes is yours to edit."),
-        NOTE("This is the one feature that sends the captured region's text to your provider, because describing a screenshot is the task. It only ever runs when you press the button — never as part of saving. If your provider is the browser's built-in model or one on your own machine, that text does not leave the device either way."),
+        P("If you have connected an AI provider, a **Suggest name** button appears above the name field. It reads the text inside the region you captured and fills in a file name and a one-line description of what the screenshot shows. The description is added to your note rather than replacing it, and everything it writes is yours to edit."),
+        NOTE("This is the one still-capture feature that sends the region's text to your provider, because describing a screenshot is the task. It only ever runs when you press the button — never as part of saving. If your provider is the browser's built-in model or one on your own machine, that text does not leave the device either way."),
         NOTE("The toast tells you the truth about where the file landed. If it says *Downloaded to Downloads*, the project folder was unavailable and the reason is in the message — most often folder access needs reconnecting."),
     ],
 )
@@ -152,6 +169,10 @@ PAGES["recording"] = dict(
         P("Encoding runs in the page and locks the controls while it works. Progress is shown on the bar."),
         SHOT("lens-gif-converter.png", "The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header"),
 
+        H("You also get a guide"),
+        P("If the recording had clicks in it, Lens builds a **step-by-step guide** from it as well: a screenshot taken at the moment of each click, cropped to the control, numbered and captioned. It appears for review under the file name on the save screen, and nothing is written until you approve it — you can untick individual steps, or untick the guide entirely and keep just the recording."),
+        P("This is on by default and needs no AI. See [Guides](guides.html) for the review panel, the editor and exporting. If you want the walkthrough without the video, **Record steps** (⌘⇧E) captures one with no recording behind it and no time limit."),
+
         H("Writing steps from what you clicked"),
         P("While a recording runs, Lens notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, **Write steps from clicks** turns that into a numbered list and adds it to your note."),
         P("This works with no AI provider at all: the click list alone produces usable steps. If you have a provider connected, it rewrites the list into better prose instead — merging actions that are really one step and dropping navigation noise. The toast tells you which of the two you got."),
@@ -175,6 +196,99 @@ PAGES["recording"] = dict(
 
         H("Length limit"),
         P("Recordings stop automatically at the cap set under **Settings > Maximum GIF recording length** — one minute by default, up to ten. When the cap is reached the recording stops and the converter opens as though you had pressed stop."),
+    ],
+)
+
+PAGES["guides"] = dict(
+    title="Step-by-step Guides",
+    lede="Click through a flow once. Lens writes the walkthrough.",
+    desc="Capture a step-by-step guide from your clicks, review it before saving, edit it in the guide editor and export it as HTML, Markdown or rich text.",
+    icon="book",
+    blocks=[
+        P("A **guide** is a walkthrough of a flow: one screenshot per click, cropped to the control you clicked, numbered, with a sentence under each. You click through the task once and Lens assembles the document, rather than asking you to screenshot each step and paste them together afterwards."),
+        NOTE("**No AI is involved in building a guide.** Step sentences come from the accessible name of each control — the name a screen reader would announce. That is also why nothing you type into a field is ever read. A connected model can rewrite those sentences afterwards; it never writes them in the first place."),
+
+        H("Two ways to capture one"),
+        P("**Record steps** (⌘⇧E, Alt+Shift+E) is the light one: no region to drag, no video, and **no time limit** — nothing accumulates between clicks, so a walkthrough can take as long as the work does."),
+        STEPS([
+            "Press **Record steps** in the popup|or use the shortcut. A small widget appears in the corner of the page.",
+            "Click through your flow as you normally would|every click on a real control becomes a step. Scrolling is free, and a page load becomes a step of its own so the guide does not read as though everything happened on one screen.",
+            "Press **Record clip** for anything a still cannot carry|a drag, a hover menu, an animation. Drag a region, do the thing, press **Stop clip**, and it is dropped in as one animated step in the place you recorded it.",
+            "Press **Finish**|the review panel opens. There is no file to name, because the guide is the whole result.",
+        ]),
+        P("**Record GIF** (⌘⇧R) produces a guide as well as the recording, as long as **Build a guide from each recording** is on — it is by default. The review panel appears under the file name on the save screen."),
+        NOTE("The region you drag limits the *recording*, not the steps. Each step screenshot is a fresh capture of the whole tab, cropped around whatever you clicked, so steps stay readable even when the recorded region was small."),
+        SHOT("lens-steps-widget.png", "The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons"),
+
+        H("What does not become a step"),
+        UL([
+            "Clicks on Lens's own controls. Pressing **Finish** does not appear in the guide it finishes.",
+            "Clicks on nothing — empty space, a page background.",
+            "A repeated click on the same control within a second, which is counted once.",
+            "A drag or a text selection, which is not a click at all.",
+        ]),
+
+        H("Reviewing before anything is written"),
+        P("Nothing reaches your folder until you approve it. The review panel lists every step with its screenshot, and you can:"),
+        UL([
+            "Edit the guide title, and the text of any step.",
+            "Untick steps you do not want. They are dropped, and the rest renumber.",
+            "Untick the guide entirely and keep just the recording.",
+            "**Rewrite with AI** — only if you have a model connected. It refuses any answer that changes the number of steps, so it can improve the words but cannot invent or lose a step.",
+        ]),
+        SHOT("lens-guide-review.png", "The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption"),
+
+        H("Where guides live afterwards"),
+        P("**Dashboard > Guides.** One card per guide, newest first, each showing the site's own logo — or its favicon where there is no logo, or a coloured initial where there is neither — with the title, the site, the step count, the project and the day it was captured."),
+        TABLE(["Action", "What it does"], [
+            ["Open editor", "Opens the guide as a document in its own tab"],
+            ["Export", "Self-contained HTML, Markdown, or the clipboard"],
+            ["Delete", "Removes the guide's folder on disk and the entry pointing at it. Asks first"],
+        ]),
+        NOTE("Guides recorded while no folder was linked are held in the browser and listed below the others as **pending**. They are not lost — link a folder, make that project active, and write them from there."),
+        SHOT("lens-guides-list.png", "The dashboard Guides tab with guide cards, each showing the site's logo, title, step count and the folder path it was written to"),
+
+        H("The guide editor"),
+        P("The editor opens in its own tab and reads as a document: the sheet is the width of the exported page, and the steps run down it in order."),
+        P("Step text is **Markdown**, and the toolbar offers exactly what Markdown can carry — bold, italic, strikethrough, code, highlight, links, bullet and numbered lists, task lists, tables, code blocks, rules, callouts and headings. Nothing else is offered on purpose: a font size or a colour would be something one of the two exports could not represent, and the same text is written to `guide.md` and rendered into `guide.html`."),
+        TABLE(["Key", "What it does"], [
+            ["⌘B / ⌘I", "Bold, italic"],
+            ["⌘K", "Link"],
+            ["⌘S", "Save"],
+            ["⌘click", "Open a link — a plain click inside editable text places the caret instead, as it does everywhere"],
+        ]),
+        SHOT("lens-guide-editor.png", "The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar"),
+
+        H("Working on a step"),
+        P("Hover a step. On the step itself:"),
+        TABLE(["Control", "What it does"], [
+            ["Move up / Move down", "Reorder. Numbers are rewritten, but **file names never change** — anything already exported still points at the right picture"],
+            ["Add step above / below", "An empty step to write by hand"],
+            ["Duplicate", "A copy, for when two steps differ by a word"],
+            ["Split into individual clicks", "Breaks an animated step back apart. Lossless — each click kept its own still"],
+            ["Copy step", "Text and picture together, ready to paste"],
+            ["Delete", "The step goes, and its picture is removed from the folder when you save"],
+        ]),
+        P("On the screenshot itself you get the same image tools as a still capture — crop, annotate, blur, colour and rotation — plus **Replace image**, which swaps in a different file while keeping its name."),
+        NOTE("Nothing is written until you press **Save**. Closing with unsaved changes asks first, and undo covers everything, including a rewrite the assistant applied."),
+
+        H("Exporting"),
+        TABLE(["Format", "What you get"], [
+            ["**Self-contained HTML**", "`guide.html` with every picture inlined and no scripts. One file you can email, and ⌘P > Save as PDF is the PDF route"],
+            ["**Markdown**", "`guide.md` beside its screenshots, relative paths, ready for a repo or a docs site"],
+            ["**Copy to clipboard**", "Rich text for pasting into Confluence, Notion or a document"],
+        ]),
+        NOTE("Animated steps print their poster frame. When pasting into a document, check the pictures survived — editors disagree about pasted images and some drop them."),
+
+        H("The assistant"),
+        P("The editor has a chat panel, and it stays shut until you have configured a model **and** a test has actually reached it. See [AI features](ai.html) for setting one up."),
+        UL([
+            "**Step** and **Guide** attach material to *this* message. A question with nothing attached sends only the question.",
+            "**Media** additionally sends the screenshots of what you attached. Off by default — the files are not even read unless it is on.",
+            "The **model switcher** picks which of your configured models answers, per message.",
+            "**Auto** applies a proposed rewrite as it arrives rather than waiting for a click. Off by default, and undo reverses it.",
+        ]),
+        WARN("If a request fails, the panel says so and stops. It has no offline imitation of a model — inventing documentation for software it cannot see is the one thing a documentation tool must never do."),
     ],
 )
 
@@ -267,7 +381,7 @@ PAGES["timeline"] = dict(
 PAGES["ai"] = dict(
     title="AI Features",
     lede="Off by default. When you turn them on, you choose who does the work.",
-    desc="Lens AI features, the four providers you can choose between, exactly what each feature sends, and how your API key is stored.",
+    desc="Lens AI features, the providers you can connect, exactly what each feature sends, and how your API key is stored.",
     icon="sparkles",
     blocks=[
         NOTE("Every AI feature is off when you install Lens, and with no provider selected the extension makes no network requests at all. Nothing on this page happens until you choose one."),
@@ -280,19 +394,31 @@ PAGES["ai"] = dict(
             ["**Your browser's built-in model**", "On your device", "Nothing", "Edge or Chrome with the model available"],
             ["**A local model**", "On your device", "Nothing", "Ollama, LM Studio or similar"],
             ["**Claude**", "Anthropic's servers", "The prompt for the feature you used", "An Anthropic API key"],
+            ["**Gemini**", "Google's servers", "The prompt for the feature you used", "A Google AI API key"],
             ["**OpenAI or compatible**", "OpenAI, or an endpoint you name", "The prompt for the feature you used", "An API key"],
         ]),
-        P("Choosing one that runs in the cloud asks you to confirm first, because it genuinely changes what the extension does with page text. **Test connection** on the Settings page tells you whether the provider is reachable before you rely on it."),
+        P("Choosing one that runs in the cloud asks you to confirm first, because it genuinely changes what the extension does with page text."),
+
+        H("Configuring more than one"),
+        P("You are not limited to a single choice. Settings holds as many models as you like — a local one for everyday work and a hosted one for the harder rewrites, say — each saved with its own key and its own model name."),
+        UL([
+            "**Test** is not optional. A model is marked usable only once a test has actually reached it, because a key that looks well-formed is not a model that answers. Until then, the features that depend on it stay shut.",
+            "One is the **active** model, used by the buttons on the capture screens.",
+            "In the guide editor's assistant you switch between them **per message**, so a question can go to a different model than the last one did.",
+        ]),
+        SHOT("lens-ai-profiles.png", "The AI assistance panel on the Settings page listing several configured models, each with its provider, model name and a verified badge"),
         SHOT("lens-ai-provider.png", "The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options"),
 
         H("What each feature sends"),
         P("Only what that feature needs. The amounts differ, so they are listed separately rather than summarised."),
         TABLE(["Feature", "How it runs", "What the prompt contains"], [
             ["Sharpen the private-data check", "Automatically, only if you switch it on", "The **type** of each flagged region — \"an AWS access key\", \"a password field\" — plus the page title and heading. Never the flagged text."],
-            ["Suggest name & description", "A button you press, per capture", "The page title and heading, the names of controls in the region, and **the text inside the region you captured**."],
+            ["Suggest name", "A button you press, per capture", "The page title and heading, the names of controls in the region, and **the text inside the region you captured**."],
             ["Write steps from clicks", "A button you press, per recording", "The page title and the names of the controls you clicked. Never anything you typed into a field."],
+            ["Rewrite a guide's steps", "A button you press, on the review panel", "The step sentences Lens already wrote. The answer is rejected outright if it changes the number of steps."],
+            ["The guide editor's assistant", "A message you send, per message", "Your message, plus **whatever you attached to it** — a step, several steps, the whole guide, or a text selection — and nothing else. A question with nothing attached sends only the question."],
         ]),
-        P("Captured images are never sent to any provider. Lens does not keep a copy of any prompt or response."),
+        P("Images are sent in one case only: the assistant's **Media** switch, which is off by default. With it off the screenshots are not even read from disk. Everywhere else, captured images are never sent to any provider. Lens does not keep a copy of any prompt or response."),
         NOTE("**Write steps from clicks** works with no provider at all — the click list alone produces usable numbered steps, and a model only rewrites them into better prose. The toast tells you which of the two you got."),
 
         H("Setting up the browser's built-in model"),
@@ -314,7 +440,7 @@ PAGES["ai"] = dict(
             "Press **Test connection**|this actually contacts the server, so a wrong address or a stopped server is reported here rather than mid-capture.",
         ]),
 
-        H("Setting up Claude or OpenAI"),
+        H("Setting up Claude, Gemini or OpenAI"),
         P("These run on the provider's servers. Lens sends the request straight from your browser using your key — there is no Vectored server in the path, and we never receive the key or the prompt."),
         STEPS([
             "Create an API key with that provider|Lens cannot create one for you.",
@@ -339,7 +465,8 @@ PAGES["ai"] = dict(
 
         H("When something does not work"),
         TABLE(["What you see", "What it means"], [
-            ["The suggest button is not there", "No provider is selected. Choose one in Settings."],
+            ["The suggest button is not there", "No model is configured, or none has passed a test. Set one up in Settings."],
+            ["The assistant will not open", "Same reason. It stays shut until a test has actually reached a model, rather than opening and failing on your first message."],
             ["\"That provider still needs an API key or a model name\"", "The configuration is incomplete."],
             ["\"still needs to download\"", "The built-in model has not been fetched. Use **Download model** on the Settings page."],
             ["\"did not answer in time\"", "The provider was too slow. Nothing was changed; try again or pick a faster model."],
@@ -356,7 +483,7 @@ PAGES["ai"] = dict(
 PAGES["settings"] = dict(
     title="Settings",
     lede="Every preference, and exactly what it changes.",
-    desc="Reference for every Lens setting: recording format, image format, file name pattern, clipboard, metadata, click markers and the shutter sound.",
+    desc="Reference for every Lens setting: recording and image format, guides, private-data flagging, AI models, file name pattern, clipboard, metadata and sounds.",
     icon="sliders",
     blocks=[
         P("Settings live on the dashboard under **Settings**, and apply to every project. A change takes effect on your next capture, not one already in progress."),
@@ -389,19 +516,40 @@ PAGES["settings"] = dict(
         H("Also flag emails and card numbers"),
         P("On by default, and only has an effect while the check above is on. Widens it past credentials to personal data. Card numbers are validated against their checksum, so order and reference numbers are not flagged."),
 
-        H("AI provider"),
-        P("**None** by default, which means every AI feature is off and Lens makes no network requests. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine."),
+        H("Build a guide from each recording"),
+        P("On by default. Any recording with clicks in it also produces a step-by-step guide, offered for review on the save screen — see [Guides](guides.html). Turn it off and recordings are just recordings."),
+
+        H("Auto-blur guide steps"),
+        P("**Off**, and deliberately so. When on, anything the private-data check flags in a step screenshot is blurred without asking."),
+        WARN("This is the only place in Lens where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason."),
+
+        H("Guide marker colour"),
+        P("The colour of the numbered callout drawn on each step screenshot. Red by default. Pick something that stands out against the product you are documenting."),
+
+        H("Maximum steps per guide"),
+        P("Sixty by default. A flow longer than that is usually two guides, and the cap stops a stray click storm from producing a document nobody will read."),
+
+        H("Guide image format"),
+        P("**JPEG** by default here, rather than PNG. A sixty-step guide is sixty screenshots, and JPEG is what keeps that folder to a sane size. Switch to PNG if your steps are mostly small text."),
+
+        H("Merge clicks into animated steps"),
+        P("Off by default. When several clicks happen on one screen with no scrolling between them, they can be saved as one short animated step instead of a run of near-identical stills."),
+        P("The clip is cut from footage the recording already sampled, so nothing is captured twice. Three controls tune it: the longest gap between clicks that still counts as one run, the longest a merged step may be, and its frame rate. An animated step can always be split back into its individual clicks in the editor — each click kept its own still."),
+
+        H("AI models"),
+        P("**None configured** by default, which means every AI feature is off and Lens makes no network requests at all. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine."),
         TABLE(["Provider", "Runs", "Needs"], [
-            ["None", "Nothing — AI features off", "—"],
             ["Your browser's built-in model", "On your device", "Edge or Chrome with the model available"],
             ["A local model", "On your device", "Ollama, LM Studio or similar, and the model name"],
             ["Claude", "Anthropic's servers", "An Anthropic API key"],
+            ["Gemini", "Google's servers", "A Google AI API key"],
             ["OpenAI or compatible", "OpenAI's servers, or an endpoint you name", "An API key"],
         ]),
-        P("Picking one that runs in the cloud asks you to confirm first, because it changes what the extension does with page text. **Test connection** tells you whether the provider is actually reachable before you rely on it."),
+        P("Add as many as you like. Each is saved with its own key and model name, one is marked active for the capture screens, and the guide editor's assistant lets you switch between them per message."),
+        P("Picking one that runs in the cloud asks you to confirm first, because it changes what the extension does with page text. **Test** actually contacts the model, and a model that has not passed one is not offered anywhere — a key that looks well-formed is not a model that answers."),
         NOTE("An API key is stored in this browser only, in its own storage area, and is read only by the extension's background worker — never by the code Lens injects into a page. The settings screen can tell you a key is saved but cannot show it back to you. Vectored never receives it; see the [privacy policy](../privacy.html#ai)."),
 
-        P("Connecting a provider also puts two buttons on the save screens: **Suggest name & description** on a screenshot, and **Write steps from clicks** on a recording. Both are covered in [Capturing](capturing.html) and [Recording](recording.html). Neither runs on its own — you press them, per capture."),
+        P("Connecting a model also puts buttons on the save screens — **Suggest name** on a screenshot, **Write steps from clicks** on a recording, **Rewrite with AI** on a guide — and opens the assistant in the guide editor. None of them runs on its own: you press them, per capture. See [Capturing](capturing.html), [Recording](recording.html) and [Guides](guides.html)."),
 
         H("Let the model sharpen redaction hints"),
         P("Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console."),
@@ -429,11 +577,22 @@ PAGES["shortcuts"] = dict(
     desc="Lens keyboard shortcuts for region capture, GIF recording and full-tab capture, and how to remap them in Chrome.",
     icon="keyboard",
     blocks=[
-        P("Lens registers three commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension."),
+        P("Lens registers four commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension."),
         TABLE(["Command", "macOS", "Windows / Linux", "What it does"], [
             ["Capture region", "⌘⇧S", "Alt+Shift+S", "Opens the region selector"],
-            ["Record GIF region", "⌘⇧R", "Alt+Shift+R", "Opens the region selector ready to record"],
             ["Capture full tab", "⌘⇧F", "Alt+Shift+F", "Captures the visible tab with no selection step"],
+            ["Record steps", "⌘⇧E", "Alt+Shift+E", "Starts a walkthrough — a screenshot per click, no video, no time limit"],
+            ["Record GIF region", "⌘⇧R", "Alt+Shift+R", "Opens the region selector ready to record"],
+        ]),
+
+        H("Inside the save screen"),
+        P("These are not Chrome commands and cannot be rebound — they belong to the editor that opens after a capture."),
+        TABLE(["Key", "What it does"], [
+            ["⌘S / Ctrl+S", "Save into the project folder"],
+            ["⌘Z / Ctrl+Z", "Undo the last mark, crop, rotation or adjustment"],
+            ["Escape", "Leave the tool you are in; on an unedited picture, close the save screen"],
+            ["Shift", "Held while dragging, constrains a shape — a square, a circle, a straight line"],
+            ["Enter", "In the file name field, saves"],
         ]),
 
         H("Changing a shortcut"),
@@ -490,6 +649,12 @@ PAGES["troubleshooting"] = dict(
         ]),
         NOTE("The timeline merges the folder's metadata with a local cache, so a capture that went to Downloads still appears — it is just not in your project folder."),
 
+        H("\"No frames were captured\""),
+        P("The recording produced nothing to encode. Usually the tab was hidden or minimised for the whole recording — tab capture samples what is being drawn, and a tab that is not being drawn produces nothing. Check the tab stayed visible and record again."),
+
+        H("My guide is not in the folder"),
+        P("A guide is written when you approve it on the save screen. If no folder was linked at that moment it is held in the browser instead and listed under **Dashboard > Guides** as **pending**. Link a folder, make that project active, and write it from there — nothing is lost in the meantime."),
+
         H("The MP4 I recorded is a WebM"),
         P("Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an `.mp4` that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it."),
 
@@ -506,6 +671,7 @@ ORDER = [
     "getting-started",
     "capturing",
     "recording",
+    "guides",
     "projects",
     "timeline",
     "settings",

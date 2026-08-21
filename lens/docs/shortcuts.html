@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Keyboard Shortcuts — Lens Docs</title>
   <meta name="description" content="Lens keyboard shortcuts for region capture, GIF recording and full-tab capture, and how to remap them in Chrome.">
-  <meta name="vc-updated" content="17 Aug 2026">
+  <meta name="vc-updated" content="20 Aug 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -38,12 +38,15 @@
       <div data-vc="contents"></div>
 
       <article class="vc-doc">
-<p class="text-muted mb-4">Lens registers three commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension.</p>
-<div class="tbl-wrap"><table><thead><tr><th>Command</th><th>macOS</th><th>Windows / Linux</th><th>What it does</th></tr></thead><tbody><tr><td>Capture region</td><td>⌘⇧S</td><td>Alt+Shift+S</td><td>Opens the region selector</td></tr><tr><td>Record GIF region</td><td>⌘⇧R</td><td>Alt+Shift+R</td><td>Opens the region selector ready to record</td></tr><tr><td>Capture full tab</td><td>⌘⇧F</td><td>Alt+Shift+F</td><td>Captures the visible tab with no selection step</td></tr></tbody></table></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">1. Changing a shortcut</h2>
+<p class="text-muted mb-4">Lens registers four commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Command</th><th>macOS</th><th>Windows / Linux</th><th>What it does</th></tr></thead><tbody><tr><td>Capture region</td><td>⌘⇧S</td><td>Alt+Shift+S</td><td>Opens the region selector</td></tr><tr><td>Capture full tab</td><td>⌘⇧F</td><td>Alt+Shift+F</td><td>Captures the visible tab with no selection step</td></tr><tr><td>Record steps</td><td>⌘⇧E</td><td>Alt+Shift+E</td><td>Starts a walkthrough — a screenshot per click, no video, no time limit</td></tr><tr><td>Record GIF region</td><td>⌘⇧R</td><td>Alt+Shift+R</td><td>Opens the region selector ready to record</td></tr></tbody></table></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">1. Inside the save screen</h2>
+<p class="text-muted mb-4">These are not Chrome commands and cannot be rebound — they belong to the editor that opens after a capture.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Key</th><th>What it does</th></tr></thead><tbody><tr><td>⌘S / Ctrl+S</td><td>Save into the project folder</td></tr><tr><td>⌘Z / Ctrl+Z</td><td>Undo the last mark, crop, rotation or adjustment</td></tr><tr><td>Escape</td><td>Leave the tool you are in; on an unedited picture, close the save screen</td></tr><tr><td>Shift</td><td>Held while dragging, constrains a shape — a square, a circle, a straight line</td></tr><tr><td>Enter</td><td>In the file name field, saves</td></tr></tbody></table></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. Changing a shortcut</h2>
 <ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Open <span class="font-mono text-sm">chrome://extensions/shortcuts</span></strong> <span class="text-muted">or follow the link at the top of the Settings page on the dashboard.</span></li><li class="mb-3"><strong class="text-text">Find Lens in the list</strong> <span class="text-muted">each command has its own row.</span></li><li class="mb-3"><strong class="text-text">Click the field and press the combination</strong> <span class="text-muted">Chrome refuses combinations already taken by the browser or another extension.</span></li></ol>
-<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Chrome allows a limited number of *suggested* shortcuts per extension, and any command can be left unbound. An unbound command shows as <strong class="text-text">not set</strong> on the Settings page; the popup buttons still work.</p></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">2. When a shortcut does nothing</h2>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Chrome allows a limited number of <em>suggested</em> shortcuts per extension, and any command can be left unbound. An unbound command shows as <strong class="text-text">not set</strong> on the Settings page; the popup buttons still work.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. When a shortcut does nothing</h2>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">The tab is a page Chrome does not allow extensions on — <span class="font-mono text-sm">chrome://</span> pages, the Web Store, the PDF viewer. The toolbar icon shows a red <strong class="text-text">!</strong> and its tooltip explains why.</li><li class="mb-2">Another extension has claimed the same combination. Chrome gives it to whichever registered first; rebind one of them.</li><li class="mb-2">The page has not finished loading. Wait for it and try again.</li></ul>
 <p class="text-muted mb-4">See <a href="troubleshooting.html" class="text-cta hover:underline">Troubleshooting</a> for the full list of pages capture cannot run on.</p>
       </article>

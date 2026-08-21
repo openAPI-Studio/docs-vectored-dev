@@ -1,6 +1,6 @@
 # Lens docs — screenshots needed
 
-16 screenshots. Save each one into `lens/assets/` using the
+21 screenshots. Save each one into `lens/assets/` using the
 exact filename below. The docs pick them up automatically on the next page
 load — until then each slot renders a dashed placeholder naming the file it
 wants, so an unshot page looks unfinished rather than broken.
@@ -25,9 +25,9 @@ these end up on a public docs site.
 - [ ] `lens-selection-handles.png`
       A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes
 - [ ] `lens-redaction-hints.png`
-      The annotation editor with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
-- [ ] `lens-annotation-editor.png`
-      The annotation editor with the toolbar visible and an arrow, a text label and a blurred region applied to a screenshot
+      The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
+- [ ] `lens-capture-saver.png`
+      The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right
 ## Recording GIF and MP4
 
 - [ ] `lens-recording-active.png`
@@ -36,6 +36,16 @@ these end up on a public docs site.
       The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header
 - [ ] `lens-popup-recording-banner.png`
       The popup showing the red recording banner with elapsed time, the source tab name, and Stop & convert and discard buttons
+## Step-by-step Guides
+
+- [ ] `lens-steps-widget.png`
+      The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons
+- [ ] `lens-guide-review.png`
+      The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption
+- [ ] `lens-guides-list.png`
+      The dashboard Guides tab with guide cards, each showing the site's logo, title, step count and the folder path it was written to
+- [ ] `lens-guide-editor.png`
+      The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar
 ## Projects and Folders
 
 - [ ] `lens-project-folder.png`
@@ -56,5 +66,7 @@ these end up on a public docs site.
       A recording in progress with a red click marker expanding at the point of a click inside the recorded region
 ## AI Features
 
+- [ ] `lens-ai-profiles.png`
+      The AI assistance panel on the Settings page listing several configured models, each with its provider, model name and a verified badge
 - [ ] `lens-ai-provider.png`
       The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options
