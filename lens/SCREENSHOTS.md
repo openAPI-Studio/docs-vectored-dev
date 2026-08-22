@@ -1,6 +1,6 @@
 # Lens docs — screenshots needed
 
-21 screenshots. Save each one into `lens/assets/` using the
+22 screenshots. Save each one into `lens/assets/` using the
 exact filename below. The docs pick them up automatically on the next page
 load — until then each slot renders a dashed placeholder naming the file it
 wants, so an unshot page looks unfinished rather than broken.
@@ -44,6 +44,8 @@ these end up on a public docs site.
       The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption
 - [ ] `lens-guides-list.png`
       The dashboard Guides tab with guide cards, each showing the site's logo, title, step count and the folder path it was written to
+- [ ] `lens-guide-mode.png`
+      Guide Mode running on a live page: the companion panel with a step and its screenshot, and a blue ring drawn around the button that step refers to
 - [ ] `lens-guide-editor.png`
       The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar
 ## Projects and Folders

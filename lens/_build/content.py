@@ -205,19 +205,22 @@ PAGES["guides"] = dict(
     desc="Capture a step-by-step guide from your clicks, review it before saving, edit it in the guide editor and export it as HTML, Markdown or rich text.",
     icon="book",
     blocks=[
-        P("A **guide** is a walkthrough of a flow: one screenshot per click, cropped to the control you clicked, numbered, with a sentence under each. You click through the task once and Lens assembles the document, rather than asking you to screenshot each step and paste them together afterwards."),
-        NOTE("**No AI is involved in building a guide.** Step sentences come from the accessible name of each control — the name a screen reader would announce. That is also why nothing you type into a field is ever read. A connected model can rewrite those sentences afterwards; it never writes them in the first place."),
+        P("A **guide** is a walkthrough of a flow: a screenshot per step with the control you used ringed and numbered, and a sentence under each. You click through the task once and Lens assembles the document, rather than asking you to screenshot each step and paste them together afterwards. A finished guide can also be played back against the live page, with each step's control highlighted on it — see **Guide Mode** below."),
+        NOTE("**No AI is involved in building a guide.** Step sentences come from the accessible name of each control — the name a screen reader would announce. A connected model can rewrite those sentences afterwards; it never writes them in the first place."),
 
         H("Two ways to capture one"),
         P("**Record steps** (⌘⇧E, Alt+Shift+E) is the light one: no region to drag, no video, and **no time limit** — nothing accumulates between clicks, so a walkthrough can take as long as the work does."),
         STEPS([
             "Press **Record steps** in the popup|or use the shortcut. A small widget appears in the corner of the page.",
-            "Click through your flow as you normally would|every click on a real control becomes a step. Scrolling is free, and a page load becomes a step of its own so the guide does not read as though everything happened on one screen.",
+            "Click through your flow as you normally would|every click on a real control becomes a step, and a page load becomes a step of its own so the guide does not read as though everything happened on one screen.",
+            "Type into fields as you normally would|a field is captured once you stop typing, not when you click into it, so the picture shows a filled box rather than an empty one. The step quotes what you entered — *Type \"ACME-1024\" into \"Order number\"*.",
+            "Scroll as you normally would|scrolling far enough to reach something becomes a step, named for the heading you land on. A nudge to bring something into view does not.",
             "Press **Record clip** for anything a still cannot carry|a drag, a hover menu, an animation. Drag a region, do the thing, press **Stop clip**, and it is dropped in as one animated step in the place you recorded it.",
             "Press **Finish**|the review panel opens. There is no file to name, because the guide is the whole result.",
         ]),
         P("**Record GIF** (⌘⇧R) produces a guide as well as the recording, as long as **Build a guide from each recording** is on — it is by default. The review panel appears under the file name on the save screen."),
-        NOTE("The region you drag limits the *recording*, not the steps. Each step screenshot is a fresh capture of the whole tab, cropped around whatever you clicked, so steps stay readable even when the recorded region was small."),
+        NOTE("The region you drag limits the *recording*, not the steps. Each step screenshot is a fresh capture of the **whole tab**, with the control you used ringed on it — so steps stay readable even when the recorded region was small."),
+        P("A step is the whole screen on purpose. A picture cropped tight around one button leaves out the part of the page a reader needs in order to know where they are, and a crop cannot be undone once it is saved. Lens works out where a tighter crop would go and offers it instead: open a step's crop tool in the editor and that box is already drawn, ready to accept or drag."),
         SHOT("lens-steps-widget.png", "The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons"),
 
         H("What does not become a step"),
@@ -226,6 +229,8 @@ PAGES["guides"] = dict(
             "Clicks on nothing — empty space, a page background.",
             "A repeated click on the same control within a second, which is counted once.",
             "A drag or a text selection, which is not a click at all.",
+            "Clicking into a field and leaving it empty — the step arrives when you type something, not before.",
+            "A short scroll, or the jump a page makes in response to a click that was already recorded.",
         ]),
 
         H("Reviewing before anything is written"),
@@ -241,12 +246,33 @@ PAGES["guides"] = dict(
         H("Where guides live afterwards"),
         P("**Dashboard > Guides.** One card per guide, newest first, each showing the site's own logo — or its favicon where there is no logo, or a coloured initial where there is neither — with the title, the site, the step count, the project and the day it was captured."),
         TABLE(["Action", "What it does"], [
+            ["Play", "Runs the guide against the live page. See **Guide Mode** below"],
             ["Open editor", "Opens the guide as a document in its own tab"],
             ["Export", "Self-contained HTML, Markdown, or the clipboard"],
             ["Delete", "Removes the guide's folder on disk and the entry pointing at it. Asks first"],
         ]),
         NOTE("Guides recorded while no folder was linked are held in the browser and listed below the others as **pending**. They are not lost — link a folder, make that project active, and write them from there."),
         SHOT("lens-guides-list.png", "The dashboard Guides tab with guide cards, each showing the site's logo, title, step count and the folder path it was written to"),
+
+        H("Guide Mode: playing a guide back"),
+        P("An exported guide is something you read next to the work. **Guide Mode** puts it *on* the work: a small panel floats over the real page with the current step and its screenshot, and a ring is drawn around the control that step is about, on the page itself."),
+        P("Start it from **Dashboard > Guides > Play**, or from **Guide Mode** in the editor's toolbar."),
+        TABLE(["Control", "What it does"], [
+            ["Drag the header", "Moves the panel. It remembers where you left it"],
+            ["Drag the bottom corner", "Resizes it, both directions. The step text scrolls inside"],
+            ["Minimise", "Collapses to a pill **in the same place**, so the walkthrough does not jump to another corner"],
+            ["The step number", "Opens the list of every step, to jump straight to one"],
+            ["Auto-advance", "On by default. Moves to the next step when you actually use the ringed control"],
+            ["Expand the picture", "Opens the step's screenshot full size"],
+        ]),
+        P("The walkthrough follows you across pages: navigating mid-guide takes the panel with it and carries on at the right step. When a click takes you to a new page, the page-load step you have just performed is skipped, so you land on the step that is actually about the page in front of you."),
+        SHOT("lens-guide-mode.png", "Guide Mode running on a live page: the companion panel with a step and its screenshot, and a blue ring drawn around the button that step refers to"),
+
+        H("When the control cannot be found"),
+        P("Beside the step number the panel says which it is — **Ringed on the page**, or **Not on this page**. A step with no control to point at, such as a page load or a scroll, says nothing there and shows no ring; press **Next** when you have done it."),
+        P("Lens looks for the control by the selector recorded at the time, then its id, then a test id, label or field name, then its position in the page, and finally by the words on it. A guide recorded before Guide Mode existed, or one recorded in Plain mode, still names the control each step is about — and that name alone is often enough to find it."),
+        P("It also keeps looking. A page that fetches its content draws its controls after the page has loaded, and a control behind a menu does not exist until you open that menu; the ring goes on the moment the control appears, however long that takes."),
+        NOTE("Guide Mode needs an ordinary website tab. Started from the dashboard or the editor — both extension pages, which Chrome does not allow any script into — it opens the page the guide starts on in a new tab."),
 
         H("The guide editor"),
         P("The editor opens in its own tab and reads as a document: the sheet is the width of the exported page, and the steps run down it in order."),
@@ -269,7 +295,7 @@ PAGES["guides"] = dict(
             ["Copy step", "Text and picture together, ready to paste"],
             ["Delete", "The step goes, and its picture is removed from the folder when you save"],
         ]),
-        P("On the screenshot itself you get the same image tools as a still capture — crop, annotate, blur, colour and rotation — plus **Replace image**, which swaps in a different file while keeping its name."),
+        P("On the screenshot itself you get the same image tools as a still capture — crop, annotate, blur, colour and rotation — plus **Replace image**, which swaps in a different file while keeping its name. The crop tool opens with the crop the recording suggested already drawn, to accept or drag."),
         NOTE("Nothing is written until you press **Save**. Closing with unsaved changes asks first, and undo covers everything, including a rewrite the assistant applied."),
 
         H("Exporting"),
@@ -519,6 +545,15 @@ PAGES["settings"] = dict(
         H("Build a guide from each recording"),
         P("On by default. Any recording with clicks in it also produces a step-by-step guide, offered for review on the save screen — see [Guides](guides.html). Turn it off and recordings are just recordings."),
 
+        H("Walkthrough mode"),
+        P("**Interactive** by default. As well as the screenshots and the words, Lens notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup."),
+        P("The same setting sits under the **Record steps** button in the popup, as a checkbox. Both write the one value."),
+
+        H("Quote what you typed"),
+        P("On by default. A step for a field you filled in reads *Type \"ACME-1024\" into \"Order number\"* rather than *Type into \"Order number\"* — the difference between an instruction a reader can follow and one they cannot."),
+        P("It is fenced in. Nothing is quoted from a password or payment field, from a field whose name suggests a secret, or from a value shaped like a key, a token, a card number or an email address. Those steps name the field and stop there. The rules are the same ones the private-data check uses. Turn the setting off and nothing you enter is written down at all."),
+        NOTE("The screenshot for such a step is taken *after* you have typed, so what you entered is visible in the picture whether or not it is quoted in the text. That is the point of the step. Blur it in the editor, or delete the step, before the guide is saved."),
+
         H("Auto-blur guide steps"),
         P("**Off**, and deliberately so. When on, anything the private-data check flags in a step screenshot is blurred without asking."),
         WARN("This is the only place in Lens where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason."),
@@ -654,6 +689,14 @@ PAGES["troubleshooting"] = dict(
 
         H("My guide is not in the folder"),
         P("A guide is written when you approve it on the save screen. If no folder was linked at that moment it is held in the browser instead and listed under **Dashboard > Guides** as **pending**. Link a folder, make that project active, and write it from there — nothing is lost in the meantime."),
+
+        H("Guide Mode is not highlighting anything"),
+        P("Look at the label beside the step number in the panel."),
+        UL([
+            "**Not on this page** — the control could not be found. Either you are not on the page that step is about, or the page has changed since the guide was recorded. Lens keeps looking, so if the control is behind a menu, opening that menu will ring it.",
+            "**Nothing at all** — that step has no control to point at. A page load and a scroll are instructions to follow, not things to click; press **Next** when you have done it.",
+            "**Plain walkthrough** — the guide was recorded with **Walkthrough mode** set to Plain, so nothing was written down about the page's controls. Guides recorded that way show their words and pictures only. Re-record with Interactive to get the highlighting.",
+        ]),
 
         H("The MP4 I recorded is a WebM"),
         P("Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an `.mp4` that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it."),
