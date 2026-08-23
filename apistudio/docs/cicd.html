@@ -244,7 +244,6 @@ steps:
 <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Machine-readable stdout for downstream parsing</td></tr>
 <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--filter &lt;glob&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run a smoke subset on every push, the full suite nightly</td></tr>
 <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--mode parallel</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Faster runs for independent requests (no variable chaining)</td></tr>
-<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--retry &lt;n&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Absorb flaky network conditions on shared runners</td></tr>
 <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--dry-run</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Validate config and interpolation without sending traffic</td></tr>
 <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--quiet</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Trim log noise to a pass/fail summary</td></tr>
 </tbody>
@@ -267,7 +266,7 @@ test('checkout API passes its collection', async () =&gt; {
     env: 'production',
     mode: 'sequential',
   });
-  expect(result).toBeDefined();
+  expect(result.failed).toBe(0);
 });
 
 afterAll(() =&gt; op.dispose());</code></pre>

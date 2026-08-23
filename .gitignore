@@ -1,2 +1,5 @@
 .DS_Store
 __pycache__/
+
+# Comparison drafts held for legal review — must not reach the public repo
+apistudio/docs/_drafts/
