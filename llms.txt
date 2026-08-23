@@ -1,0 +1,188 @@
+# Vectored Docs
+
+> Documentation for Vectored's developer tools. API Studio is an offline API client for VS Code and the command line covering REST, GraphQL, WebSocket and gRPC, with mock servers, MCP servers, CI/CD integration and git-based collections. Lens captures and documents screen recordings locally. TimeSheets, Macro Toolkit, Forms & Frontdoor and Recognition Hub are Atlassian Confluence apps. Everything here is offline-first: the apps collect no usage data and require no account.
+
+## API Studio
+
+- [API Studio — Overview](https://docs.vectored.dev/apistudio/): Fully offline, privacy-first API client for VS Code and the command line. Test REST, GraphQL, WebSocket and gRPC APIs, run collections in CI/CD pipelines, and keep collections in git as plain JSON — no cloud account, no telemetry.
+- [Overview](https://docs.vectored.dev/apistudio/docs/index.html): API Studio documentation — a fully offline API client for VS Code and the CLI. REST, GraphQL, WebSocket and gRPC, mock servers, MCP servers, an encrypted vault, CI/CD pipeline integration and git-based team workflow.
+- [Getting started — Installation](https://docs.vectored.dev/apistudio/docs/installation.html): Install API Studio from VS Code Marketplace or Open VSX. Supports VS Code, Cursor, Windsurf, Kiro, and all VS Code-based editors.
+- [Getting started — Quick Start](https://docs.vectored.dev/apistudio/docs/quick-start.html): Send your first API request in under 60 seconds. Learn the API Studio UI layout, create environments, save collections, and export code.
+- [Getting started — UI Overview](https://docs.vectored.dev/apistudio/docs/ui-overview.html): Complete guide to the API Studio interface — Simple vs Advanced mode, sidebar tabs, request builder, response viewer, layout options, and keyboard shortcuts.
+- [HTTP client — Sending Requests](https://docs.vectored.dev/apistudio/docs/sending-requests.html): Send HTTP requests with any method, URL variables, concurrent tabs, and HTTP/2 auto-negotiation. Complete guide to the API Studio HTTP client.
+- [HTTP client — Request Body](https://docs.vectored.dev/apistudio/docs/request-body.html): All 7 body types: JSON, raw, XML, form-data, urlencoded, binary, and GraphQL. Inline comments, Content-Type auto-sync, and CodeMirror editor.
+- [HTTP client — Parameters & Headers](https://docs.vectored.dev/apistudio/docs/params-headers.html): Query parameters with bidirectional URL sync, custom request headers with autocomplete, enable/disable rows, and variable interpolation.
+- [HTTP client — Response Viewer](https://docs.vectored.dev/apistudio/docs/response-viewer.html): Status codes, timing breakdown, body viewer with Pretty/Raw/Tree modes, headers, cookies, actual request tab, test results, and schema extraction.
+- [HTTP client — Request History](https://docs.vectored.dev/apistudio/docs/request-history.html): Automatic request history, browsing past requests, per-URL history, search, managing entries, history cap, global vs local storage, and secret scrubbing.
+- [HTTP client — Tabs & Sessions](https://docs.vectored.dev/apistudio/docs/tabs-sessions.html): Multi-tab interface, session persistence, tab grouping, stacked view, context menu, dirty indicators, concurrent requests, and close behavior.
+- [Protocols — GraphQL](https://docs.vectored.dev/apistudio/docs/graphql.html): Full GraphQL client with CodeMirror 6 editor, schema introspection, visual query builder, docs panel, multi-operation support, and graphql-transport-ws subscriptions.
+- [Protocols — WebSocket](https://docs.vectored.dev/apistudio/docs/websocket.html): Real-time two-way communication testing with WebSocket connections — connect, send messages, view logs, and manage auth.
+- [Protocols — gRPC](https://docs.vectored.dev/apistudio/docs/grpc.html): gRPC client for API Studio — unary and server-streaming calls with proto file loading, service/method picker, metadata, auth, TLS certificates, and grpcurl code export.
+- [Protocols — Server-Sent Events](https://docs.vectored.dev/apistudio/docs/sse.html): Real-time SSE streaming with auto-detection, live event viewer, mid-stream cancellation, and history persistence.
+- [Collections — Creating Collections](https://docs.vectored.dev/apistudio/docs/creating-collections.html): Create, rename, and delete collections. Understand Local vs Global scope, saving requests, and scope visibility.
+- [Collections — Folders & Organization](https://docs.vectored.dev/apistudio/docs/folders-organization.html): Create nested folders, drag-and-drop reordering, deep search, and best practices for organizing API requests in collections.
+- [Collections — Collection Editor](https://docs.vectored.dev/apistudio/docs/collection-editor.html): Edit collections with Overview, Auth, Scripts, Runs, and MCP tabs. Folder editor, auth inheritance, script inheritance, and collection runs.
+- [Collections — Collection Runs](https://docs.vectored.dev/apistudio/docs/collection-runs.html): Run all requests in a collection sequentially or in parallel, view results, export HTML reports, and chain variables between requests.
+- [Collections — Import & Export](https://docs.vectored.dev/apistudio/docs/import-export.html): Import collections from Postman, OpenAPI, and cURL. Export to API Studio JSON, Postman v2.1, and OpenAPI 3.0 formats.
+- [Collections — Collection JSON Schema](https://docs.vectored.dev/apistudio/docs/collection-schema.html): Complete JSON schema reference for API Studio collections.json file format — Collection, ApiRequest, AuthConfig, TestRule, and all nested types.
+- [Environments — Managing Environments](https://docs.vectored.dev/apistudio/docs/managing-environments.html): Create, edit, and manage environments with key-value variables. Local vs global scope, active selection, and CLI management.
+- [Environments — Variables & Interpolation](https://docs.vectored.dev/apistudio/docs/variables-interpolation.html): Use {{variable}} placeholders in URLs, headers, body, and auth fields. Resolve from environments, vault secrets, and collection variables.
+- [Environments — Variable Priority](https://docs.vectored.dev/apistudio/docs/variable-priority.html): How API Studio resolves variable conflicts — priority chain from collection variables through global environment, vault secrets, to local environment.
+- [Authentication — Auth Overview](https://docs.vectored.dev/apistudio/docs/auth-overview.html): Overview of all 7 authentication types supported by API Studio — Basic, Bearer, API Key, OAuth 2.0, AWS SigV4, Digest, and how auth injection works.
+- [Authentication — Basic Auth](https://docs.vectored.dev/apistudio/docs/basic-auth.html): HTTP Basic Authentication — username and password Base64 encoded in the Authorization header, with full variable support.
+- [Authentication — Bearer Token](https://docs.vectored.dev/apistudio/docs/bearer-token.html): Bearer token authentication — adds an Authorization: Bearer header with support for environment variables and vault secrets.
+- [Authentication — API Key](https://docs.vectored.dev/apistudio/docs/api-key.html): API Key authentication — send a key-value pair as a custom header or query parameter, with full variable support.
+- [Authentication — OAuth 2.0](https://docs.vectored.dev/apistudio/docs/oauth2.html): OAuth 2.0 authentication — Authorization Code and Client Credentials grant types with token management and variable support.
+- [Authentication — AWS Signature V4](https://docs.vectored.dev/apistudio/docs/aws-sigv4.html): AWS Signature Version 4 authentication for signing requests to AWS services like DynamoDB, S3, and Lambda.
+- [Authentication — Digest Auth](https://docs.vectored.dev/apistudio/docs/digest-auth.html): RFC 7616 Digest authentication with automatic challenge-response handling, MD5 and SHA-256 algorithm support.
+- [Authentication — Auth Inheritance](https://docs.vectored.dev/apistudio/docs/auth-inheritance.html): Configure auth at collection or folder level and let requests inherit automatically — no need to repeat credentials on every request.
+- [Testing — GUI Test Rules](https://docs.vectored.dev/apistudio/docs/gui-test-rules.html): No-code assertions in the Tests tab — 11 source types, 15 operators, no JavaScript needed. Results shown in response Test Results tab.
+- [Testing — Pre-Request Scripts](https://docs.vectored.dev/apistudio/docs/pre-request-scripts.html): JavaScript scripts that run before HTTP requests — dynamically modify headers, URLs, generate tokens, and set timestamps in a sandboxed VM.
+- [Testing — Test Scripts](https://docs.vectored.dev/apistudio/docs/test-scripts.html): JavaScript scripts that run after HTTP responses — assert values, extract data, set variables, and log debug info in a sandboxed VM.
+- [Testing — Scripting API](https://docs.vectored.dev/apistudio/docs/scripting-api.html): Complete API reference for pre-request and test script objects — request, response, environment, console, and built-in globals.
+- [Testing — Set Variables](https://docs.vectored.dev/apistudio/docs/set-variables.html): GUI rules that extract values from API responses and save them as environment variables for request chaining — no code needed.
+- [Mock servers — Creating Mock Servers](https://docs.vectored.dev/apistudio/docs/creating-mock-servers.html): Built-in multi-instance mock servers for offline API simulation. Create, configure, start, stop, and share mock servers with your team.
+- [Mock servers — Routes & Responses](https://docs.vectored.dev/apistudio/docs/mock-routes.html): Configure mock server routes with path matching, response bodies, headers, status codes, file responses, snapshot responses, and variable interpolation.
+- [Mock servers — Request Log](https://docs.vectored.dev/apistudio/docs/mock-request-log.html): Real-time request logging for mock servers — matched and unmatched requests, filtering, and log limits.
+- [Mock servers — Swagger / OpenAPI](https://docs.vectored.dev/apistudio/docs/mock-swagger.html): Auto-generated OpenAPI 3.0 documentation and interactive Swagger UI for mock servers.
+- [MCP servers — Collection MCP](https://docs.vectored.dev/apistudio/docs/collection-mcp.html): Expose collection requests as MCP tools for AI clients. JSON-RPC 2.0 server, tool generation, input schema, call logging, and configuration.
+- [MCP servers — Mock MCP](https://docs.vectored.dev/apistudio/docs/mock-mcp.html): Enable MCP on mock servers to expose routes as MCP tools for AI clients. Predictable, controlled API responses without hitting real endpoints.
+- [MCP servers — Management MCP](https://docs.vectored.dev/apistudio/docs/management-mcp.html): Built-in Management MCP server with 33 tools for full workspace management via AI clients like Copilot, Cursor, Kiro, Claude Desktop, and Amazon Q.
+- [MCP servers — Connecting AI Clients](https://docs.vectored.dev/apistudio/docs/connecting-ai-clients.html): Connect any MCP-compatible AI client to API Studio — Claude Desktop, Cursor, Kiro, VS Code Copilot, Amazon Q, and headless CLI.
+- [Secret vault — Creating a Vault](https://docs.vectored.dev/apistudio/docs/creating-vault.html): Create and manage an AES-256-GCM encrypted vault for storing secrets and TLS certificates. Fully offline, global scope, master password protected.
+- [Secret vault — Managing Secrets](https://docs.vectored.dev/apistudio/docs/managing-secrets.html): Add, view, edit, and delete secrets in the encrypted vault. Automatic scrubbing protects secrets from leaking to disk.
+- [Secret vault — Secret Sets](https://docs.vectored.dev/apistudio/docs/secret-sets.html): Create named groups of vault key → variable mappings to switch between credential profiles. Bridge encrypted secrets to {{variable}} placeholders.
+- [Secret vault — Certificates](https://docs.vectored.dev/apistudio/docs/certificates.html): Store TLS client certificates in the encrypted vault for mTLS authentication. Configure per-request, per-folder, or per-collection with inheritance.
+- [CLI — CLI Overview](https://docs.vectored.dev/apistudio/docs/cli-overview.html): Install and use the openpost CLI to run collections, manage environments, import/export, and integrate with CI/CD pipelines.
+- [CLI — Running Collections](https://docs.vectored.dev/apistudio/docs/cli-run.html): Run collections from the CLI — sequential or parallel execution, filtering, output options, and CI/CD integration.
+- [CLI — Import & Export](https://docs.vectored.dev/apistudio/docs/cli-import-export.html): Import cURL commands and OpenAPI specs, export cURL and OpenAPI from collections, and list workspace resources via the CLI.
+- [CLI — Vault Commands](https://docs.vectored.dev/apistudio/docs/cli-vault.html): Create, unlock, and manage the encrypted secret vault from the CLI. Add secrets, list entries, and manage licenses.
+- [CLI — Serve Command](https://docs.vectored.dev/apistudio/docs/cli-serve.html): Start the Management MCP server without VS Code for headless CI/CD, remote AI access, and automated collection runs.
+- [Team & CI/CD — Version Control & Team Workflow](https://docs.vectored.dev/apistudio/docs/version-control.html): Keep API collections under version control in git — what to commit, code review of API changes in a pull request, handling merge conflicts in collections.json, and sharing environments across a team without a cloud account.
+- [Team & CI/CD — CI/CD Integration](https://docs.vectored.dev/apistudio/docs/cicd.html): Run API Studio collections as automated integration tests in continuous integration pipelines — GitHub Actions, GitLab CI, Jenkins, CircleCI and Azure Pipelines, with exit codes, JSON reports and secret handling.
+- [Code export — Supported Languages](https://docs.vectored.dev/apistudio/docs/code-export-languages.html): Generate ready-to-use code from any API request in 15 languages including cURL, Python, JavaScript, Go, Java, C#, Ruby, PHP, Rust, Swift, and grpcurl.
+- [Code export — AI Prompt Generator](https://docs.vectored.dev/apistudio/docs/ai-prompts.html): Generate copy-paste-ready prompts for AI tools from your API requests and responses. 5 dialects: Explain, Integrate, Debug, Test, Document.
+- [Settings & data — Settings](https://docs.vectored.dev/apistudio/docs/settings.html): Configure API Studio — Simple vs Advanced Mode, SSL verification, cookies, tab layout, history cap, and subtle contract notifications.
+- [Settings & data — Proxy Configuration](https://docs.vectored.dev/apistudio/docs/proxy.html): Named proxy profiles for routing requests through HTTP/HTTPS proxies — corporate proxies, debugging proxies, and per-request proxy selection.
+- [Settings & data — Data Storage](https://docs.vectored.dev/apistudio/docs/data-storage.html): How API Studio stores data — local and global JSON files, git workflow, no-workspace mode, and cross-window sync.
+- [Settings & data — Keyboard Shortcuts](https://docs.vectored.dev/apistudio/docs/keyboard-shortcuts.html): All keyboard shortcuts for API Studio — panel, request, tab, and editor shortcuts for macOS and Windows/Linux.
+- [Settings & data — License](https://docs.vectored.dev/apistudio/docs/license.html): API Studio licensing — free until Dec 31 2026, how to activate, update, and compare free vs paid features.
+- [Settings & data — Support Us](https://docs.vectored.dev/apistudio/docs/support-us.html): Support API Studio development — buy us a coffee on Ko-fi. Help keep the project alive and growing.
+- [API Studio — Support](https://docs.vectored.dev/apistudio/support.html): Get help with API Studio. Submit feedback, report bugs, or request features.
+
+## TimeSheets
+
+- [TimeSheets — Overview](https://docs.vectored.dev/timesheets/): Timesheets, approvals, leave, billing and reporting for Jira Cloud teams, from Vectored
+- [Start here — Getting Started](https://docs.vectored.dev/timesheets/docs/getting-started.html): Install TimeSheets and log your first entry
+- [Time entry — Logging Time](https://docs.vectored.dev/timesheets/docs/logging-time.html): Log against cost centres and Jira issues, in 5-minute increments
+- [Time entry — Time Templates](https://docs.vectored.dev/timesheets/docs/templates.html): Save a recurring set of work as a one-click entry, across projects
+- [Time entry — Cost Centres](https://docs.vectored.dev/timesheets/docs/cost-centers.html): Hierarchical cost centres, hour allotments and money budgets
+- [Time entry — Calendar](https://docs.vectored.dev/timesheets/docs/calendar.html): Month and week views, the month summary, and the day panel
+- [Time entry — Summary & Missing Days](https://docs.vectored.dev/timesheets/docs/summary.html): Your month at a glance, your week, your leave, and where everybody is
+- [Approvals](https://docs.vectored.dev/timesheets/docs/approvals.html): Per-project approvers, bulk decisions, and a full audit trail
+- [Approvals — Weekly Submission](https://docs.vectored.dev/timesheets/docs/weekly-submission.html): Submit a whole week for approval instead of individual entries
+- [Approvals — Approver Delegation](https://docs.vectored.dev/timesheets/docs/delegation.html): Nominate someone to approve on your behalf while you are away
+- [Approvals — Approval History](https://docs.vectored.dev/timesheets/docs/approval-history.html): The record of every approval decision, and how long it is kept
+- [Approvals — Timesheet Locking](https://docs.vectored.dev/timesheets/docs/locking.html): Freeze past periods, with admin-granted unlock windows
+- [Leave — Leave Management](https://docs.vectored.dev/timesheets/docs/leave.html): Leave types, balances, half-days and multi-project approval
+- [Leave — Leave Auto-Decision](https://docs.vectored.dev/timesheets/docs/leave-auto-decision.html): Automatically settle leave that stays pending too long
+- [Leave — Public Holidays](https://docs.vectored.dev/timesheets/docs/holidays.html): Site-wide holiday calendars that exclude days from capacity
+- [Reports — Dashboard & Gadgets](https://docs.vectored.dev/timesheets/docs/dashboard.html): A configurable gadget dashboard, per person and per screen size
+- [Reports — Reports & Exports](https://docs.vectored.dev/timesheets/docs/reports.html): Team matrices, breakdowns and exports for projects you manage
+- [Reports — Scheduled Reports](https://docs.vectored.dev/timesheets/docs/scheduled-reports.html): Email a recurring timesheet summary on a schedule you choose
+- [Billing — Clients](https://docs.vectored.dev/timesheets/docs/clients.html): The external party a project is billed to, and the currency it is billed in
+- [Billing — Billing Rates](https://docs.vectored.dev/timesheets/docs/billing-rates.html): Hourly rates by person, project, cost centre or site default
+- [Billing — Invoices](https://docs.vectored.dev/timesheets/docs/invoices.html): Turn approved, priced work into a numbered invoice
+- [Billing — Billing Health](https://docs.vectored.dev/timesheets/docs/billing-health.html): Find approved work that carries no price, and re-price after a rate change
+- [Administration — Project Settings](https://docs.vectored.dev/timesheets/docs/project-settings.html): Approval rules, teams, caps, cost centres and the billing client
+- [Administration — Jira Worklog Sync](https://docs.vectored.dev/timesheets/docs/worklog-sync.html): Mirror approved entries into native Jira worklogs
+- [Administration — Email Notifications](https://docs.vectored.dev/timesheets/docs/email.html): SES delivery with editable templates and smart values
+- [Administration — Scheduler & Automation](https://docs.vectored.dev/timesheets/docs/scheduler.html): Recurring jobs, their audience, and the bulk-email cost gate
+- [Administration — Personal Settings](https://docs.vectored.dev/timesheets/docs/personal-settings.html): Timezone, working days, logging defaults and notification controls
+- [Administration — Admin Settings](https://docs.vectored.dev/timesheets/docs/admin-settings.html): Every site-wide setting, what it changes, and what it does not
+- [Administration — Erasure & Data Export](https://docs.vectored.dev/timesheets/docs/data-requests.html): Handle a request to export or delete everything held about one person
+- [Administration — Permissions & Security](https://docs.vectored.dev/timesheets/docs/permissions.html): Who can see and do what, and how access is enforced
+- [Administration — Privacy & Data Handling](https://docs.vectored.dev/timesheets/docs/privacy-security.html): What TimeSheets stores, what leaves Atlassian, and how erasure, export and retention work
+
+## Macro Toolkit
+
+- [Macro Toolkit — Overview](https://docs.vectored.dev/macrotoolkit/): Diagrams, polls, charts, markdown, animations and more for Atlassian Confluence. Free Lite edition with 10 macros, Pro unlocks 5 more.
+- [Start here — All macros](https://docs.vectored.dev/macrotoolkit/docs/index.html): Learn how to use all 15 macros in Confluence Macro Toolkit. Step-by-step guides for each macro.
+- [Lite & Pro — Mermaid Diagram Macro](https://docs.vectored.dev/macrotoolkit/docs/mermaid.html): Render flowcharts, sequence diagrams, and Gantt charts from Mermaid syntax in Confluence.
+- [Lite & Pro — Markdown Macro](https://docs.vectored.dev/macrotoolkit/docs/markdown.html): Write GitHub-flavored Markdown with tables, code blocks, and task lists in Confluence.
+- [Lite & Pro — Poll / Vote Macro](https://docs.vectored.dev/macrotoolkit/docs/poll.html): Create interactive polls with real-time results and voter tracking in Confluence.
+- [Lite & Pro — Mood Macro](https://docs.vectored.dev/macrotoolkit/docs/mood.html): Create floating word cloud and emoji reaction visualizations in Confluence.
+- [Lite & Pro — Graph / Chart Macro](https://docs.vectored.dev/macrotoolkit/docs/graph.html): Create bar, line, pie, doughnut, and area charts with Chart.js in Confluence.
+- [Lite & Pro — Typewriter Macro](https://docs.vectored.dev/macrotoolkit/docs/typewriter.html): Animate text with typewriter, word-by-word, line-by-line, or fade effects in Confluence.
+- [Lite & Pro — Sticky Note Macro](https://docs.vectored.dev/macrotoolkit/docs/sticky-note.html): Add colorful sticky notes with handwritten style, pins, and tape in Confluence.
+- [Lite & Pro — Spoiler / Reveal Macro](https://docs.vectored.dev/macrotoolkit/docs/spoiler.html): Hide content behind patterns with animated reveal on click in Confluence.
+- [Lite & Pro — Clock Macro](https://docs.vectored.dev/macrotoolkit/docs/clock.html): Display configurable analog and digital clock gadgets in Confluence.
+- [Lite & Pro — Stopwatch Macro](https://docs.vectored.dev/macrotoolkit/docs/stopwatch.html): Interactive stopwatch with ring, classic, and flip styles in Confluence.
+- [Pro edition — Swagger / OpenAPI Macro](https://docs.vectored.dev/macrotoolkit/docs/swagger.html): Render interactive API documentation from OpenAPI specs in Confluence. Pro edition.
+- [Pro edition — Draw.io Diagram Macro](https://docs.vectored.dev/macrotoolkit/docs/drawio.html): Full draw.io diagramming editor embedded in Confluence. Pro edition.
+- [Pro edition — PlantUML Macro](https://docs.vectored.dev/macrotoolkit/docs/plantuml.html): Render UML diagrams from PlantUML syntax in Confluence. Pro edition.
+- [Pro edition — Wireframe / Whiteboard Macro](https://docs.vectored.dev/macrotoolkit/docs/excalidraw.html): Create wireframes and sketches with Excalidraw in Confluence. Pro edition.
+- [Pro edition — Carousel / Slideshow Macro](https://docs.vectored.dev/macrotoolkit/docs/carousel.html): Display images in an interactive slideshow in Confluence. Pro edition.
+- [Pro edition — 3D Viewer Macro](https://docs.vectored.dev/macrotoolkit/docs/3d-viewer.html): Display interactive 3D models (STL, OBJ, GLB, 3MF) with orbit controls in Confluence. Pro edition.
+- [Macro Toolkit — Privacy Policy](https://docs.vectored.dev/macrotoolkit/privacy.html): Privacy policy for Confluence Macro Toolkit. No data collection, no tracking, no analytics.
+- [Macro Toolkit — Security Policy](https://docs.vectored.dev/macrotoolkit/security.html): Security policy for Confluence Macro Toolkit. Forge-sandboxed, no external servers, CSP enforced, open source.
+- [Macro Toolkit — Support](https://docs.vectored.dev/macrotoolkit/support.html): Get help with Confluence Macro Toolkit. Submit feedback, report bugs, or request features.
+- [Macro Toolkit — Terms of Service](https://docs.vectored.dev/macrotoolkit/terms.html): Terms of service for Confluence Macro Toolkit. Open source under Apache-2.0 license.
+
+## Forms & Frontdoor
+
+- [Forms & Frontdoor — Overview](https://docs.vectored.dev/forms/): Build custom forms in Confluence with drag-and-drop builder, 13 field types, theming, access control, multi-section navigation, response management, and post-submit automation across Confluence, Jira, Slack, and Teams.
+- [Start here — Getting Started](https://docs.vectored.dev/forms/docs/getting-started.html): Install, setup, and create your first form
+- [Start here — Building Forms](https://docs.vectored.dev/forms/docs/building-forms.html): Using the drag-and-drop canvas builder
+- [Start here — Field Types](https://docs.vectored.dev/forms/docs/field-types.html): All 13 field types: text, email, number, rich text, single select, multi select, date, time, rating, signature, user picker, group picker, link
+- [Configure — Smart Values](https://docs.vectored.dev/forms/docs/smart-values.html): Dynamic tokens that auto-fill form fields based on the logged-in user, page context, and submission time.
+- [Configure — Validation & Constraints](https://docs.vectored.dev/forms/docs/validation.html): Required fields, min/max, regex, custom errors
+- [Configure — Multi-Section Forms (Pro)](https://docs.vectored.dev/forms/docs/multi-section.html): Create multi-page forms with navigation (Pro)
+- [Configure — Embedding Forms](https://docs.vectored.dev/forms/docs/embedding.html): Use the Forms & Frontdoor macro or direct shareable links
+- [Configure — Styling & Theming](https://docs.vectored.dev/forms/docs/styling.html): Themes, colors, banners, fonts, and decorations
+- [Manage — Access Control](https://docs.vectored.dev/forms/docs/access-control.html): Anonymous, logged-in, groups, single response limits
+- [Manage — Collaboration](https://docs.vectored.dev/forms/docs/collaboration.html): Share editing access, co-own forms
+- [Manage — Responses & Export](https://docs.vectored.dev/forms/docs/responses.html): View results, CSV export, PDF save
+- [Manage — Automation](https://docs.vectored.dev/forms/docs/automation.html): Post-submit automation: Confluence, Jira, Slack and Teams actions with conditions, branching, and batches
+- [Manage — Dashboard](https://docs.vectored.dev/forms/docs/dashboard.html): Manage all forms, search, sort, duplicate, delete
+- [Manage — Free vs Pro](https://docs.vectored.dev/forms/docs/free-vs-pro.html): Plan comparison and limits
+
+## Recognition Hub
+
+- [Recognition Hub — Overview](https://docs.vectored.dev/rewardhub/): Peer recognition and kudos for Confluence & Jira teams, from Vectored
+- [Start here — Getting Started](https://docs.vectored.dev/rewardhub/docs/getting-started.html): Install Recognition Hub and post your first recognition
+- [Recognize — Giving Recognition](https://docs.vectored.dev/rewardhub/docs/giving-recognition.html): Card templates, recipients, company values, and GIFs
+- [Recognize — AI Assist](https://docs.vectored.dev/rewardhub/docs/ai-assist.html): Draft recognitions and rewrite messages with Atlassian-hosted AI, powered by Forge LLMs
+- [Recognize — Reactions & Comments](https://docs.vectored.dev/rewardhub/docs/reactions-comments.html): Celebrate posts with emoji reactions, confetti, and comments
+- [Recognize — Sharing & Page Macro](https://docs.vectored.dev/rewardhub/docs/sharing-and-macro.html): Direct links, email sharing, and embedding cards on pages
+- [Configure — Company Values](https://docs.vectored.dev/rewardhub/docs/company-values.html): Tag recognitions with the values your company celebrates
+- [Configure — Email Notifications](https://docs.vectored.dev/rewardhub/docs/email-notifications.html): AWS SES notifications with editable templates and smart values
+- [Configure — Moderation](https://docs.vectored.dev/rewardhub/docs/moderation.html): Flagging, review queue, and admin controls
+
+## Lens
+
+- [Lens — Overview](https://docs.vectored.dev/lens/): Region screenshots, GIF and MP4 recording for Chrome, filed straight into your own local folders. Coming soon from Vectored.
+- [Start here — Getting Started](https://docs.vectored.dev/lens/docs/getting-started.html): Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording.
+- [Capture — Capturing a Region](https://docs.vectored.dev/lens/docs/capturing.html): Select a region of a page, annotate it with shapes, text and blur, then save it into your project folder.
+- [Capture — Recording GIF and MP4](https://docs.vectored.dev/lens/docs/recording.html): Record part of a tab as an animated GIF or MP4, with click-through interaction, navigation support and a converter for GIF output.
+- [Capture — Step-by-step Guides](https://docs.vectored.dev/lens/docs/guides.html): Capture a step-by-step guide from your clicks, review it before saving, edit it in the guide editor and export it as HTML, Markdown or rich text.
+- [Organise — Projects and Folders](https://docs.vectored.dev/lens/docs/projects.html): Create projects, link local folders, switch the active project and reconnect folder access when Chrome drops it.
+- [Organise — Timeline and Dashboard](https://docs.vectored.dev/lens/docs/timeline.html): Browse captures in the popup timeline and the dashboard master timeline, search and filter them, and export the metadata as JSON.
+- [Configure — Settings](https://docs.vectored.dev/lens/docs/settings.html): Reference for every Lens setting: recording and image format, guides, private-data flagging, AI models, file name pattern, clipboard, metadata and sounds.
+- [Configure — Keyboard Shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html): Lens keyboard shortcuts for region capture, GIF recording and full-tab capture, and how to remap them in Chrome.
+- [AI — AI Features](https://docs.vectored.dev/lens/docs/ai.html): Lens AI features, the providers you can connect, exactly what each feature sends, and how your API key is stored.
+- [Help — Troubleshooting](https://docs.vectored.dev/lens/docs/troubleshooting.html): Diagnose blocked pages, blank recordings, lost folder access and captures missing from the timeline.
+- [Lens — Privacy Policy](https://docs.vectored.dev/lens/privacy.html): Privacy policy for Lens by Vectored. No account, no server, no analytics. Captures never leave your machine, and Lens makes no network calls unless you connect an AI provider of your own.
+- [Lens — Security](https://docs.vectored.dev/lens/security.html): Security model for Lens by Vectored: what each Chrome permission is used for, how folder access is scoped, and how to report a vulnerability.
+- [Lens — Support](https://docs.vectored.dev/lens/support.html): Get help with Lens by Vectored. Ask for early access, report a bug, or request a feature. No login required.
+
+## About
+
+- [Vectored Docs Home](https://docs.vectored.dev/index.html): Vectored builds developer tools for Atlassian Confluence, Jira, VS Code, and the command line — Macro Toolkit, Forms, API Studio, and more. Documentation, guides, and support.
+- [Support](https://docs.vectored.dev/support.html): Get help with Confluence Macro Toolkit. Submit feedback, report bugs, or request features.
+- [Security](https://docs.vectored.dev/security.html): Security policy for all Vectored apps. Forge-sandboxed, no external servers, CSP enforced, open source.
+- [Privacy Policy](https://docs.vectored.dev/privacy.html): Privacy policy for all Vectored apps. No data collection, no tracking, no analytics in our apps.
+- [Feedback](https://docs.vectored.dev/feedback.html): Tell the Vectored team what is working, what is broken, and what to build next across Macro Toolkit, Forms & Frontdoor, API Studio, Recognition Hub and TimeSheets.
+- [Blog](https://docs.vectored.dev/blog/): Product news, guides, and engineering notes from Vectored — Atlassian apps, VS Code tools, and more.
+- [Blog — Introducing Forms & Frontdoor for Confluence](https://docs.vectored.dev/blog/posts/introducing-forms-and-frontdoor.html): Forms & Frontdoor is live on the Atlassian Marketplace: a visual form builder for Confluence with post-submit automation across Confluence, Jira, Slack, and Teams.
+- [Blog — Slack and Teams notifications from Confluence forms](https://docs.vectored.dev/blog/posts/slack-teams-notifications-confluence-forms.html): How to route Confluence form submissions to Slack or Microsoft Teams channels using the Forms & Frontdoor automation canvas — webhooks only, no middleware.

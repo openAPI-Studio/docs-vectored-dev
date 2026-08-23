@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://docs.vectored.dev/sitemap.xml
+
+# Machine-readable docs index: https://docs.vectored.dev/llms.txt

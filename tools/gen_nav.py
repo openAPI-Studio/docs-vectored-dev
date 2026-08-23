@@ -23,6 +23,7 @@ GROUPS = {
    ('MCP servers', ['collection-mcp','mock-mcp','management-mcp','connecting-ai-clients']),
    ('Secret vault', ['creating-vault','managing-secrets','secret-sets','certificates']),
    ('CLI', ['cli-overview','cli-run','cli-import-export','cli-vault','cli-serve']),
+   ('Team & CI/CD', ['version-control','cicd']),
    ('Code export', ['code-export-languages','ai-prompts']),
    ('Settings & data', ['settings','proxy','data-storage','keyboard-shortcuts','license','support-us']),
  ],
