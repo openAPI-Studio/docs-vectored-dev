@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CI/CD Integration — API Studio Docs</title>
+  <meta name="description" content="Run API Studio collections as automated integration tests in continuous integration pipelines — GitHub Actions, GitLab CI, Jenkins, CircleCI and Azure Pipelines, with exit codes, JSON reports and secret handling.">
+  <meta name="vc-updated" content="23 Aug 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">CI/CD Integration</h1>
+      <p class="vc-lede">Run your collections as automated integration tests inside any continuous integration pipeline. The same <code class="font-mono">openpost</code> CLI that runs locally runs in CI, fails the build on a failed assertion, and writes machine-readable reports.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">TEAM &amp; CI/CD</p>
+
+<!-- Overview -->
+<section class="mb-12 scroll-mt-28" id="overview">
+<h2 class="text-xl font-semibold mb-4">Overview</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio collections are plain JSON committed to your repository, and the CLI is a plain npm package. That means continuous integration needs no export step, no cloud sync and no service account — check out the repo, install the CLI, run the collection.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">No cloud dependency</strong> — the runner is fully offline, so pipelines never call out to a vendor API</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Standard exit codes</strong> — a failed assertion returns <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">1</code> and fails the build with no extra wiring</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Same execution pipeline</strong> — auth, scripts, cookies, test rules and interpolation behave exactly as they do in the editor</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Machine-readable output</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">--json</code> and <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">--output-file</code> for artifacts and downstream reporting</span></div>
+</div>
+</section>
+
+<!-- Install -->
+<section class="mb-12 scroll-mt-28" id="install">
+<h2 class="text-xl font-semibold mb-4">Installing in a pipeline</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The CLI ships as the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">openpost</code> npm package and requires Node.js 18 or newer.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code># Install globally on the runner
+npm install -g openpost
+
+# Or run it directly without installing
+npx openpost run "My API" --env production</code></pre>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">Pin the version in CI (<code class="font-mono">npm install -g openpost@1.2.3</code>) so a new release cannot change pipeline behaviour without a commit.</p>
+</section>
+
+<!-- Exit codes -->
+<section class="mb-12 scroll-mt-28" id="exit-codes">
+<h2 class="text-xl font-semibold mb-4">Exit codes</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Every CI system decides pass or fail from the process exit code. No reporter plugin is required.</p>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Code</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Meaning</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Pipeline result</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">0</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">All requests sent and all tests passed</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Build passes</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">1</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">One or more requests or assertions failed</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Build fails</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">2</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Bad arguments, missing collection, or config error</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Build fails (investigate config, not the API)</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">Distinguishing <code class="font-mono">1</code> from <code class="font-mono">2</code> is useful in scheduled runs: exit <code class="font-mono">2</code> means the pipeline itself is misconfigured rather than the API being unhealthy.</p>
+</section>
+
+<!-- GitHub Actions -->
+<section class="mb-12 scroll-mt-28" id="github-actions">
+<h2 class="text-xl font-semibold mb-4">GitHub Actions</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>name: API tests
+
+on: [push, pull_request]
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install API Studio CLI
+        run: npm install -g openpost
+
+      - name: Run API tests
+        run: openpost run "My API" --env production --output-file results.json
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-results
+          path: results.json</code></pre>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted"><code class="font-mono">if: always()</code> keeps the report artifact even when the run fails — which is exactly when you want to read it.</p>
+</section>
+
+<!-- GitLab CI -->
+<section class="mb-12 scroll-mt-28" id="gitlab-ci">
+<h2 class="text-xl font-semibold mb-4">GitLab CI</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>api-tests:
+  image: node:20
+  script:
+    - npm install -g openpost
+    - openpost run "My API" --env production --output-file results.json
+  artifacts:
+    when: always
+    paths:
+      - results.json</code></pre>
+</div>
+</section>
+
+<!-- Jenkins -->
+<section class="mb-12 scroll-mt-28" id="jenkins">
+<h2 class="text-xl font-semibold mb-4">Jenkins</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">A declarative pipeline stage. The CLI needs only Node.js on the agent.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>pipeline {
+  agent { docker { image 'node:20' } }
+
+  stages {
+    stage('API tests') {
+      steps {
+        sh 'npm install -g openpost'
+        sh 'openpost run "My API" --env production --output-file results.json'
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: 'results.json', allowEmptyArchive: true
+    }
+  }
+}</code></pre>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">A non-zero exit from <code class="font-mono">sh</code> marks the stage failed, so no additional assertion step is needed.</p>
+</section>
+
+<!-- CircleCI -->
+<section class="mb-12 scroll-mt-28" id="circleci">
+<h2 class="text-xl font-semibold mb-4">CircleCI</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>version: 2.1
+
+jobs:
+  api-tests:
+    docker:
+      - image: cimg/node:20.11
+    steps:
+      - checkout
+      - run:
+          name: Install API Studio CLI
+          command: npm install -g openpost
+      - run:
+          name: Run API tests
+          command: openpost run "My API" --env production --output-file results.json
+      - store_artifacts:
+          path: results.json
+
+workflows:
+  test:
+    jobs:
+      - api-tests</code></pre>
+</div>
+</section>
+
+<!-- Azure -->
+<section class="mb-12 scroll-mt-28" id="azure-pipelines">
+<h2 class="text-xl font-semibold mb-4">Azure Pipelines</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+
+  - script: npm install -g openpost
+    displayName: Install API Studio CLI
+
+  - script: openpost run "My API" --env production --output-file results.json
+    displayName: Run API tests
+
+  - task: PublishPipelineArtifact@1
+    condition: always()
+    inputs:
+      targetPath: results.json
+      artifact: api-test-results</code></pre>
+</div>
+</section>
+
+<!-- Secrets -->
+<section class="mb-12 scroll-mt-28" id="secrets">
+<h2 class="text-xl font-semibold mb-4">Secrets in CI</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The encrypted vault lives in global storage (<code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">~/.openpost/global/</code>) and is deliberately <em>not</em> committed, so a CI runner has no vault. Supply secrets the way your CI system already does — through its own secret store, injected as environment variables.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code># GitHub Actions
+- name: Run API tests
+  env:
+    API_TOKEN: ${{ secrets.API_TOKEN }}
+  run: openpost run "My API" --env production</code></pre>
+</div>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Keep a dedicated CI environment whose variables read from the runner environment rather than hard-coded values</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Never commit real credentials to <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">environments.json</code> — it is a committed file</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>See <a class="text-cta hover:underline" href="managing-secrets.html">Managing Secrets</a> and <a class="text-cta hover:underline" href="version-control.html">Version Control &amp; Team Workflow</a></span></div>
+</div>
+</section>
+
+<!-- Flags -->
+<section class="mb-12 scroll-mt-28" id="useful-flags">
+<h2 class="text-xl font-semibold mb-4">Flags worth knowing in CI</h2>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Flag</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Why it matters in a pipeline</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--env &lt;name&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Select the environment to resolve variables against</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--output-file &lt;path&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Write full results for artifact upload</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Machine-readable stdout for downstream parsing</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--filter &lt;glob&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run a smoke subset on every push, the full suite nightly</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--mode parallel</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Faster runs for independent requests (no variable chaining)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--retry &lt;n&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Absorb flaky network conditions on shared runners</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--dry-run</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Validate config and interpolation without sending traffic</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--quiet</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Trim log noise to a pass/fail summary</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">Full reference on <a class="text-cta hover:underline" href="cli-run.html">Running Collections</a> and <a class="text-cta hover:underline" href="cli-overview.html">CLI Overview</a>.</p>
+</section>
+
+<!-- Programmatic -->
+<section class="mb-12 scroll-mt-28" id="programmatic">
+<h2 class="text-xl font-semibold mb-4">Inside an existing test suite</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">If your pipeline already runs Jest or Mocha, the same runner is available as a Node.js API, so API checks live alongside unit tests instead of in a separate stage.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>import { OpenPost } from 'openpost';
+
+const op = new OpenPost({ workspace: process.cwd() });
+
+test('checkout API passes its collection', async () =&gt; {
+  const result = await op.runCollection('My API', {
+    env: 'production',
+    mode: 'sequential',
+  });
+  expect(result).toBeDefined();
+});
+
+afterAll(() =&gt; op.dispose());</code></pre>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">The programmatic API uses the same execution pipeline as the extension — auth, scripts, cookies, test rules and variable interpolation all apply.</p>
+</section>
+
+<!-- Patterns -->
+<section class="mb-12 scroll-mt-28" id="patterns">
+<h2 class="text-xl font-semibold mb-4">Common pipeline patterns</h2>
+<div class="space-y-3 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm text-gray-900 dark:text-text">Smoke tests on every pull request</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5"><code class="font-mono">openpost run "My API" --filter "Smoke*" --mode parallel</code> — fast feedback without the full suite</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm text-gray-900 dark:text-text">Full regression nightly</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Scheduled job running the whole collection sequentially so chained requests work</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm text-gray-900 dark:text-text">Post-deploy verification</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Run against the deployed environment as a release gate — exit code 1 blocks promotion</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div>
+<h4 class="font-semibold text-sm text-gray-900 dark:text-text">Contract check against a mock</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Start a mock server in the pipeline and run the collection against it before the real backend exists</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="version-control.html">Version Control &amp; Team Workflow →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="cli-run.html">Running Collections →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="gui-test-rules.html">GUI Test Rules →</a>
+</div>
+</section>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
+</body>
+</html>

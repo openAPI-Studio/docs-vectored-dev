@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overview — API Studio Docs</title>
+    <title>API Studio — Offline API Client for VS Code, CLI and Desktop</title>
+    <meta name="description" content="Fully offline, privacy-first API client for VS Code and the command line. Test REST, GraphQL, WebSocket and gRPC APIs, run collections in CI/CD pipelines, and keep collections in git as plain JSON — no cloud account, no telemetry.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,6 +16,50 @@ body{font-family:'IBM Plex Sans',sans-serif}
   </style>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="stylesheet" href="../assets/tokens.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "API Studio",
+  "alternateName": "OpenPost",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "API Client",
+  "operatingSystem": "macOS, Windows, Linux",
+  "softwareRequirements": "Visual Studio Code, or Node.js 18+ for the CLI",
+  "url": "https://docs.vectored.dev/apistudio/",
+  "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=open-post.open-post",
+  "description": "Fully offline, privacy-first API client for VS Code and the command line. Test REST, GraphQL, WebSocket and gRPC APIs, run collections in CI/CD, and keep everything in git as plain JSON \u2014 no cloud account, no telemetry.",
+  "featureList": [
+    "REST and HTTP client with multi-tab sessions",
+    "GraphQL client with schema introspection and subscriptions",
+    "WebSocket client for ws and wss endpoints",
+    "gRPC client with .proto loading and server streaming",
+    "Server-Sent Events (SSE) streaming",
+    "Built-in mock servers with Swagger/OpenAPI docs",
+    "Model Context Protocol (MCP) servers for AI clients",
+    "CLI runner (openpost) for CI/CD pipelines",
+    "Continuous integration support with standard exit codes",
+    "GUI test rules and JavaScript test scripts",
+    "Pre-request scripts and response variable extraction",
+    "AES-256-GCM encrypted secret vault",
+    "Code export to 15 languages including cURL, Python, Go, Rust and Java",
+    "Import from Postman, OpenAPI and cURL",
+    "Git-friendly plain JSON storage in .openpost/",
+    "Version control and pull request review of API collections",
+    "Fully offline operation with no account or telemetry"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vectored",
+    "url": "https://docs.vectored.dev/"
+  }
+}
+  </script>
 </head>
 <body class="bg-white dark:bg-bg text-gray-900 dark:text-text min-h-screen">
 

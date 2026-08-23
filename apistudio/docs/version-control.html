@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Version Control &amp; Team Workflow — API Studio Docs</title>
+  <meta name="description" content="Keep API collections under version control in git — what to commit, how to review API changes in a pull request, handling merge conflicts in collections.json, and sharing environments across a team without a cloud account.">
+  <meta name="vc-updated" content="23 Aug 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Version Control &amp; Team Workflow</h1>
+      <p class="vc-lede">Collections, environments and mock servers are plain JSON in your repository. They travel through the same branches, pull requests and code review as the code they describe — no cloud workspace, no seats, no sync service.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">TEAM &amp; CI/CD</p>
+
+<!-- Overview -->
+<section class="mb-12 scroll-mt-28" id="overview">
+<h2 class="text-xl font-semibold mb-4">Why source control, not a cloud workspace</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">API Studio has no server component. Everything it knows about your APIs lives in a <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.openpost/</code> directory at your project root. Because that directory is ordinary text, your existing version control is the sharing mechanism.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">The API definition ships with the code that implements it</strong> — one branch, one commit, one review</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Branches work as expected</strong> — a feature branch carries its own requests and environments</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">History is your audit trail</strong> — <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">git blame</code> and <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">git log</code> answer who changed an endpoint and when</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Onboarding is a clone</strong> — a new developer gets every collection by checking out the repo</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">No drift between docs and code</strong> — a stale collection shows up as an unmerged diff, not a forgotten cloud workspace</span></div>
+</div>
+</section>
+
+<!-- What to commit -->
+<section class="mb-12 scroll-mt-28" id="what-to-commit">
+<h2 class="text-xl font-semibold mb-4">What to commit</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Local workspace storage lives in <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.openpost/</code>. Some of it is shared team state; some of it is personal and noisy.</p>
+<div class="overflow-x-auto mb-4">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">File</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Commit?</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Why</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">collections.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Yes</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">The shared API definition — the whole point</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">environments.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Yes</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Shared variable sets — but never real credentials</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">mock-servers.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Yes</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Teammates get the same mock backends</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">snapshots.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Yes</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Response structure snapshots act as a contract baseline</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">config.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Yes</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Project settings the team should share</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">session.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">No</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Your open tabs — changes constantly, means nothing to others</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">cookies.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">No</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Your personal session cookies</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">history.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Optional</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Can grow large and is personal; usually ignored</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-3">Recommended <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.gitignore</code> entries:</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>.openpost/session.json
+.openpost/cookies.json
+.openpost/history.json</code></pre>
+</div>
+<div class="p-4 rounded-lg border border-cta/20 bg-cta/5">
+<p class="text-xs text-gray-600 dark:text-muted"><strong class="text-gray-900 dark:text-text">Global storage is never committed.</strong> <code class="font-mono">~/.openpost/global/</code> holds your licence key, vault and personal preferences. It lives outside the project directory, so there is nothing to exclude.</p>
+</div>
+</section>
+
+<!-- Secrets -->
+<section class="mb-12 scroll-mt-28" id="secrets">
+<h2 class="text-xl font-semibold mb-4">Keeping secrets out of the repository</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4"><code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">environments.json</code> is a committed file, so treat it as public to everyone with repository access.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Put tokens and passwords in the <a class="text-cta hover:underline" href="creating-vault.html">encrypted vault</a>, which is global-only and never enters the project</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Commit environments containing only non-sensitive values — base URLs, API versions, feature flags</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Secret values are automatically scrubbed from history before it is written to disk, so an accidentally committed <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">history.json</code> does not leak them</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>In pipelines, inject credentials from your CI secret store — see <a class="text-cta hover:underline" href="cicd.html">CI/CD Integration</a></span></div>
+</div>
+</section>
+
+<!-- Code review -->
+<section class="mb-12 scroll-mt-28" id="code-review">
+<h2 class="text-xl font-semibold mb-4">Reviewing API changes in a pull request</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Because collections are committed JSON, a change to an endpoint appears in the pull request next to the handler that serves it. Reviewers see the request change and the implementation change together.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>$ git diff --stat
+ src/routes/users.ts              | 24 ++++++++---
+ .openpost/collections.json       | 18 +++++---
+ 2 files changed, 31 insertions(+), 11 deletions(-)</code></pre>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-3">Things worth asking for in review:</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>A new endpoint arrives with a request in the collection, not in a follow-up commit</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>A changed response shape updates its <a class="text-cta hover:underline" href="gui-test-rules.html">test rules</a> in the same diff</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>No literal credentials appear in the <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">environments.json</code> hunk</span></div>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted mt-4">Pair this with the pipeline from <a class="text-cta hover:underline" href="cicd.html">CI/CD Integration</a> so the collection is also <em>executed</em> on the pull request, not only read.</p>
+</section>
+
+<!-- Merge conflicts -->
+<section class="mb-12 scroll-mt-28" id="merge-conflicts">
+<h2 class="text-xl font-semibold mb-4">Merge conflicts, honestly</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Worth being straightforward about a real trade-off. API Studio stores every collection in a single <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.openpost/collections.json</code> array rather than one file per request. That keeps the format simple and makes the whole workspace portable, but it means two people editing <em>different requests in the same workspace</em> are still editing the same file, and git may report a conflict where a per-request layout would not.</p>
+<p class="text-sm text-gray-600 dark:text-muted mb-3">In practice this is manageable, and these habits keep it small:</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-4">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Commit collection changes on their own.</strong> A small, focused commit is far easier to resolve than one bundled with a large refactor</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Rebase before you push.</strong> Most conflicts here come from a stale branch, not genuinely incompatible edits</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Split by service, not by person.</strong> In a monorepo, give each service its own workspace directory so teams touch different <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.openpost/</code> folders</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Requests carry stable UUIDs.</strong> Objects are matched by <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">id</code>, so a conflict is normally resolved by keeping both objects rather than merging text line by line</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Ignore the noisy files.</strong> Most spurious conflicts come from <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">session.json</code> and <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">history.json</code>. Gitignore them and the problem largely disappears</span></div>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-3">When a conflict does happen, both sides are valid JSON objects in an array, so resolution is usually mechanical — take both entries and verify the result parses:</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code># after resolving the conflict markers by hand
+jq empty .openpost/collections.json &amp;&amp; echo "valid JSON"
+
+# confirm nothing broke
+openpost list collections
+openpost run "My API" --dry-run</code></pre>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted"><code class="font-mono">--dry-run</code> validates configuration and variable interpolation without sending any traffic, which makes it a safe post-merge check.</p>
+</section>
+
+<!-- Team setup -->
+<section class="mb-12 scroll-mt-28" id="team-setup">
+<h2 class="text-xl font-semibold mb-4">Setting a team up</h2>
+<div class="space-y-3 text-sm text-gray-600 dark:text-muted">
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 font-mono text-xs text-cta font-semibold">1</div>
+<div>
+<h4 class="font-semibold text-sm text-gray-900 dark:text-text">Commit the workspace</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Add <code class="font-mono">.openpost/</code> with the gitignore entries above. One developer does this once.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 font-mono text-xs text-cta font-semibold">2</div>
+<div>
+<h4 class="font-semibold text-sm text-gray-900 dark:text-text">Everyone clones</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Opening the folder in VS Code picks up the collections automatically. No import, no invite, no licence seat to assign.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 font-mono text-xs text-cta font-semibold">3</div>
+<div>
+<h4 class="font-semibold text-sm text-gray-900 dark:text-text">Each developer sets up their own secrets</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Vault contents are personal and global. Shared environments reference secrets by name, so each person supplies their own values.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start p-4 rounded-lg border border-gray-100 dark:border-border/50">
+<div class="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 font-mono text-xs text-cta font-semibold">4</div>
+<div>
+<h4 class="font-semibold text-sm text-gray-900 dark:text-text">Wire the collection into CI</h4>
+<p class="text-xs text-gray-500 dark:text-muted mt-0.5">Run it on every pull request so a broken endpoint fails review rather than production. See <a class="text-cta hover:underline" href="cicd.html">CI/CD Integration</a>.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Monorepo -->
+<section class="mb-12 scroll-mt-28" id="monorepo">
+<h2 class="text-xl font-semibold mb-4">Monorepos and multiple workspaces</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Local storage is per workspace, so a monorepo can hold one <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">.openpost/</code> per service. Each team owns its own file, which removes most cross-team conflicts outright.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>repo/
+├── services/
+│   ├── billing/
+│   │   └── .openpost/collections.json   ← billing team
+│   └── identity/
+│       └── .openpost/collections.json   ← identity team
+└── .github/workflows/api-tests.yml</code></pre>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-3">Point the CLI at whichever workspace you need:</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost run "Billing API" --workspace services/billing --env staging</code></pre>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">Collections that genuinely belong to everyone can live in global storage instead — see <a class="text-cta hover:underline" href="data-storage.html">Data Storage</a>.</p>
+</section>
+
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="cicd.html">CI/CD Integration →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="data-storage.html">Data Storage →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="collection-schema.html">Collection JSON Schema →</a>
+</div>
+</section>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
+</body>
+</html>
