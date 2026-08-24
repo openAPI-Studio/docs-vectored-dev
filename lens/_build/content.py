@@ -22,6 +22,18 @@ PAGES["getting-started"] = dict(
         ]),
         SHOT("lens-popup-first-run.png", "The Lens popup on first run, showing the default project, no folder linked, and the three capture actions"),
 
+        H("What is in the popup"),
+        P("Top to bottom: the header, the project, the capture actions, and this project's recent captures."),
+        TABLE(["Where", "What it is"], [
+            ["Header, right", "The arrow opens the full dashboard in a tab. **?** holds Docs, Support and Security. The gear goes straight to the dashboard's Settings"],
+            ["Project", "The dropdown switches project; the row under it names the linked folder, with **Link**, **Change** or **Reconnect** beside it"],
+            ["Capture region", "The full-width button, because it is the one most people reach for"],
+            ["Steps, GIF, Full tab", "The row of three under it. Each shows its own keyboard shortcut"],
+            ["Interactive walkthrough", "A switch. On, a walkthrough also records which control each step points at, so it can be [played back](guides.html) against the live page. Off records the screenshots and the words only"],
+            ["Timeline", "This project's captures, newest first. See [Timeline and dashboard](timeline.html)"],
+            ["Footer", "**License** states the built-in free licence, which covers every feature and needs no key. **Privacy** opens the policy"],
+        ]),
+
         H("Link a project folder"),
         P("A **project** is a name plus one folder on your computer. Captures for the active project are written straight into that folder, next to a `project_metadata.json` file that records what was captured, from which page, and when."),
         STEPS([
@@ -246,6 +258,8 @@ PAGES["guides"] = dict(
             "A repeated click on the same control within a second, which is counted once.",
             "A drag or a text selection, which is not a click at all.",
             "Clicking into a field and leaving it empty — the step arrives when you type something, not before.",
+            "Pausing while you fill a field in. The step is written once the typing settles, and typing on into the same field extends that step rather than adding another; the picture is of the field as you leave it.",
+            "The page load a click causes — said as part of that click (*Follow \"Support\" — opens docs.vectored.dev/support.html*) rather than as a step of its own with no picture. A redirect chain names where you end up; a page you open yourself is still a step.",
             "Clicking a dropdown open. The step is the option you choose from it. On most platforms the open list is drawn by the operating system and would not appear in a screenshot of the page anyway.",
             "A short scroll, or the jump a page makes in response to a click that was already recorded.",
         ]),
@@ -268,6 +282,7 @@ PAGES["guides"] = dict(
             ["Export", "Self-contained HTML, Markdown, or the clipboard"],
             ["Delete", "Removes the guide's folder on disk and the entry pointing at it. Asks first"],
         ]),
+        P("Above the cards sit three actions that apply to the whole set: **Find guides on disk**, **Import guide** and **Export all guides**. The first two are covered under **Importing a guide** below, the third under **Exporting**."),
         NOTE("Guides recorded while no folder was linked are held in the browser and listed below the others as **pending**. They are not lost — link a folder, make that project active, and write them from there."),
         SHOT("lens-guides-list.png", "The dashboard Guides tab with guide cards, each showing the site's logo, title, step count and the folder path it was written to"),
 
@@ -285,21 +300,47 @@ PAGES["guides"] = dict(
         P("The walkthrough follows you across pages: navigating mid-guide takes the panel with it and carries on at the right step. When a click takes you to a new page, the page-load step you have just performed is skipped, so you land on the step that is actually about the page in front of you."),
         SHOT("lens-guide-mode.png", "Guide Mode running on a live page: the companion panel with a step and its screenshot, and a blue ring drawn around the button that step refers to"),
 
+        P("Where the recording caught what was typed — an order number, a search term, an option chosen from a dropdown — the panel carries a **Copy** button beside the instruction, so the value goes into the field without being read off a screenshot and retyped. Anything that looked like a credential was never written down, so those steps have nothing to copy."),
+
+        H("Dropdowns wait for the choice"),
+        P("Opening a dropdown is not the same as choosing from it, so a step about one does not move on when you click it. What happens next depends on where the list is drawn."),
+        UL([
+            "**A list drawn in the page** — a listbox, a menu, or a dropdown built out of `div`s — has the option itself ringed as soon as it appears, with the tag reading **Pick \"Overnight courier\"**. Click that option and the step is done.",
+            "**A list drawn by the operating system**, which is what a plain `<select>` gets on macOS, is not part of the page and has nothing in it to ring. The tag names the option to choose instead.",
+        ]),
+        P("Choose something other than what the guide recorded and the step stays where it is, saying **Choose \"Asia Pacific\"** — better than carrying you forward from a choice you did not make."),
+
         H("When the control cannot be found"),
         P("Beside the step number the panel says which it is — **Ringed on the page**, or **Not on this page**. A step with no control to point at, such as a page load or a scroll, says nothing there and shows no ring; press **Next** when you have done it."),
         P("Lens looks for the control by the selector recorded at the time, then its id, then a test id, label or field name, then its position in the page, and finally by the words on it. A guide recorded before Guide Mode existed, or one recorded in Plain mode, still names the control each step is about — and that name alone is often enough to find it."),
         P("It also keeps looking. A page that fetches its content draws its controls after the page has loaded, and a control behind a menu does not exist until you open that menu; the ring goes on the moment the control appears, however long that takes."),
         NOTE("Guide Mode needs an ordinary website tab. Started from the dashboard or the editor — both extension pages, which Chrome does not allow any script into — it opens the page the guide starts on in a new tab."),
 
+        H("What a guide says about itself"),
+        P("Above the first step sits a table: **written by**, **email**, **status** (Draft, In review, Published), **date**, **steps**, **time needed** and **comments**. Every field is editable in the editor, and all of it is printed into `guide.html` and `guide.md` above step 1 — they are the questions a reader asks before starting, not after finishing."),
+        P("The time needed is worked out from the steps themselves: a click reads quicker than a field to fill in, a clip counts for as long as it runs, and the words in each step count towards the reading. Type over it and your figure stands; clear it and the calculation comes back."),
+        NOTE("The name and address are filled in for you — from Settings, or from the address this Chrome profile is signed in with when Settings is blank. A guide someone else wrote keeps their name when you open it, and nothing is sent anywhere: it goes into that guide's own file in your folder. See [Privacy](../privacy.html)."),
+
         H("The guide editor"),
         P("The editor opens in its own tab and reads as a document: the sheet is the width of the exported page, and the steps run down it in order."),
-        P("Step text is **Markdown**, and the toolbar offers exactly what Markdown can carry — bold, italic, strikethrough, code, highlight, links, bullet and numbered lists, task lists, tables, code blocks, rules, callouts and headings. Nothing else is offered on purpose: a font size or a colour would be something one of the two exports could not represent, and the same text is written to `guide.md` and rendered into `guide.html`."),
+        P("Step text is **Markdown**, and the toolbar offers exactly what Markdown can carry — bold, italic, strikethrough, code, highlight, links with an optional tooltip, pictures, bullet and numbered lists, task lists, nesting a list item deeper or bringing it back out, a line break inside a paragraph, tables, code blocks, rules, callouts and headings. Nothing else is offered on purpose: a font size or a colour would be something one of the two exports could not represent, and the same text is written to `guide.md` and rendered into `guide.html`."),
+        P("Typed by hand, the whole of the [basic syntax](https://www.markdownguide.org/basic-syntax/) works: headings, bold, italic and both at once, blockquotes, ordered and unordered lists (`-`, `*` and `+`) nested by indentation, code spans — including the doubled-backtick form that holds a backtick — fenced code blocks, horizontal rules, links with titles, autolinked addresses such as `<https://example.com>` and bare email addresses, pictures, two-space hard line breaks, and backslash escapes. On top of that: strikethrough, `==highlight==`, tables, task lists, GitHub-style callouts and `:emoji:` shortcodes."),
+        P("Printed as written rather than rendered: setext headings, four-space indented code blocks, nested blockquotes, reference-style links, and raw HTML — the last of those deliberately."),
+        P("**Enter** carries on what you are in the middle of: another bullet, another numbered item, another task with its own box, and any inline formatting you had switched on. An empty list item leaves the list, and Enter after a heading drops back to ordinary text."),
+        P("**Insert a picture** opens the file picker and copies the file into the guide's own folder when you save, writing it into the text as `![alt](name.png)`. **Insert a table** opens a grid — drag across it to choose the size — and while the caret is inside a table, a small bar above it adds or removes rows and columns."),
         TABLE(["Key", "What it does"], [
             ["⌘B / ⌘I", "Bold, italic"],
             ["⌘K", "Link"],
             ["⌘S", "Save"],
+            ["⌘⇧M", "Switch between formatted editing and the raw Markdown"],
+            ["⌘⇧O", "Show or hide the outline down the left"],
             ["⌘click", "Open a link — a plain click inside editable text places the caret instead, as it does everywhere"],
         ]),
+        P("The **outline** down the left jumps between steps. The button in its header collapses it, and a tab at the screen edge — or ⌘⇧O — brings it back. On a window narrower than about 1000px there is no room for it and it is not shown."),
+        P("**Markdown** in the ribbon, or ⌘⇧M, replaces the sheet with the whole guide as one Markdown document — the same text `guide.md` is exported as, title and numbered steps and picture links and all. Retitle it, rewrite a step, reorder or delete items, or type a new numbered step at the end; the document is read back into the guide as you type."),
+        P("The outline still works here: clicking a step scrolls the document to that step's numbered line and puts the caret on it."),
+        P("Lines are numbered down the left, and a wrapped line stays one line however many rows it takes — each number is as tall as the line beside it. The **?** next to the toggle, which only exists in this view, lists every mark the editor understands and what it produces; clicking a row drops it in at the caret."),
+        P("What the text does not carry is kept from the steps that were there: which control each step points at, what kind of step it is, the file behind each picture. Items are matched to their steps by the picture they name, so a step that moves takes its screenshot and its recorded control with it, and an item you type in becomes a plain step with no picture. While the mode is on the formatting controls are blurred and made inert rather than hidden — they have nothing to act on — and the title in the header is read-only, because the document's first line is the title. The mode is remembered between sessions."),
         SHOT("lens-guide-editor.png", "The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar"),
 
         H("Working on a step"),
@@ -312,16 +353,31 @@ PAGES["guides"] = dict(
             ["Copy step", "Text and picture together, ready to paste"],
             ["Delete", "The step goes, and its picture is removed from the folder when you save"],
         ]),
+        P("The page a step happened on sits under it as a small pill, showing the host and the end of the path — `docs.vectored.dev/lens`, or `docs/getting-started.html` for a local file. A search address with forty parameters shortens to `google.com/search?…`, and the whole address is the tooltip. Clicking the pill changes the address, which is what you want when a guide was recorded against localhost; the arrow beside it opens the page in a new tab."),
         P("On the screenshot itself you get the same image tools as a still capture — crop, annotate, blur, colour and rotation — plus **Replace image**, which swaps in a different file while keeping its name. The crop tool opens with the crop the recording suggested already drawn, to accept or drag."),
         NOTE("Nothing is written until you press **Save**. Closing with unsaved changes asks first, and undo covers everything, including a rewrite the assistant applied."),
 
         H("Exporting"),
         TABLE(["Format", "What you get"], [
-            ["**Self-contained HTML**", "`guide.html` with every picture inlined and no scripts. One file you can email, and ⌘P > Save as PDF is the PDF route"],
+            ["**Self-contained HTML**", "`guide.html` with every picture inlined and no scripts. One file you can email, and ⌘P > Save as PDF is the PDF route. A recorded value prints on its own line, selectable in one click"],
             ["**Markdown**", "`guide.md` beside its screenshots, relative paths, ready for a repo or a docs site"],
             ["**Copy to clipboard**", "Rich text for pasting into Confluence, Notion or a document"],
         ]),
+        P("From the **editor**, Markdown downloads as a `.zip` holding `guide.md` and every screenshot it points at, in one folder. On its own the Markdown is a document whose picture links lead nowhere; the archive keeps the two together. A guide with no screenshots downloads as a plain `.md`."),
+        P("**Export all guides**, above the cards on the Guides tab, writes `Lens_Guides_<date>.zip`: one folder per guide, each holding `guide.html`, `guide.md`, the screenshots, and the `guide.json` they were built from — so the archive can be read back in, not only read. A guide that cannot be read, usually a folder needing reconnecting, is left out and counted rather than failing the whole archive."),
         NOTE("Animated steps print their poster frame. When pasting into a document, check the pictures survived — editors disagree about pasted images and some drop them."),
+
+        H("Importing a guide"),
+        P("A guide appears in the list because `project_metadata.json` names it. Copying a guide folder into a project achieves nothing on its own, and a metadata file that is lost or overwritten takes every guide in that project out of the list with all the files still sitting on disk. These two actions cover both."),
+        TABLE(["Action", "What it does"], [
+            ["**Import guide > From a file**", "A `.zip` written by either export, or a bare `guide.json`. One archive may hold many guides; all of them come in"],
+            ["**Import guide > From a link**", "The same, fetched from an address you paste"],
+            ["**Find guides on disk**", "Lists guide folders that are in a linked project folder but missing from its timeline"],
+        ]),
+        P("An import is always a **copy**: it is given a new id and its own folder, so importing the same bundle twice leaves two guides rather than quietly overwriting the first. Nothing already on disk is replaced. A `guide.json` that arrives without its screenshots imports anyway and says so — those steps keep their words and have no picture."),
+        P("Imports land in the **active project**, which must have a folder linked. What kind of file it is is read from its first bytes rather than its name, so a bundle fetched from a link works whatever the address ends in."),
+        NOTE("Importing from a link is the only time Lens reaches the network on its own. It downloads the address you paste and nothing else: no service in between, nothing of yours sent with the request, `http` and `https` only, and 50 MB or 30 seconds at the outside. See [Privacy](../privacy.html)."),
+        P("**Find guides on disk** walks every linked project, keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time."),
 
         H("The assistant"),
         P("The editor has a chat panel, and it stays shut until you have configured a model **and** a test has actually reached it. See [AI features](ai.html) for setting one up."),
@@ -383,7 +439,7 @@ PAGES["timeline"] = dict(
         H("The popup timeline"),
         P("Captures are grouped by day, newest first, with the time down the left. Each row shows a thumbnail, the file name, its type and the page title."),
         TABLE(["Control", "What it does"], [
-            ["Thumbnail", "Opens a larger preview with the page URL and capture time"],
+            ["Thumbnail", "Opens a larger preview with the page URL and capture time. The preview shows the real file, so a GIF plays"],
             ["Copy", "Puts the image on the clipboard"],
             ["Rename", "Renames the file on disk and in the metadata"],
             ["Delete", "Removes the entry from the timeline"],
@@ -393,10 +449,11 @@ PAGES["timeline"] = dict(
         SHOT("lens-popup-timeline.png", "The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title"),
 
         H("The dashboard"),
-        P("Open the dashboard from the arrow icon at the top right of the popup. It has three sections."),
+        P("Open the dashboard from the arrow icon at the top right of the popup, or the gear beside it to land straight on Settings. It has four sections."),
         UL([
             "**Projects** — every project as a card with its folder, capture count, last capture and access state.",
             "**Timeline** — every capture across all projects, grouped by project.",
+            "**Guides** — every step-by-step guide, with import and export for the whole set. See [Guides](guides.html).",
             "**Settings** — all preferences, plus your keyboard shortcuts.",
         ]),
         SHOT("lens-dashboard-projects.png", "The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges"),
@@ -416,8 +473,10 @@ PAGES["timeline"] = dict(
             "**JSON** in the popup, or **Export JSON** on a project card, writes that one project's `project_metadata.json`.",
         ]),
 
-        H("Cached previews"),
-        P("Thumbnails are held in extension storage so the timeline loads instantly. **Settings > Clear cached previews** empties that cache. Files already written to disk are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place."),
+        H("Thumbnails, and the file behind them"),
+        P("What the timeline shows beside each entry is a small JPEG of the **first frame**, held in extension storage so the list loads instantly. That is why a GIF sits still in the popup timeline and in the dashboard grid, and why a screenshot there is thumbnail-sized rather than full resolution."),
+        P("Open one and the preview reads the actual file out of the project folder instead: full size, and a recording that plays. Where no folder is linked, or its access has lapsed, the stored thumbnail stays up rather than the preview failing."),
+        P("**Settings > Clear cached previews** empties that cache. Files already written to disk are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place until you open one."),
     ],
 )
 
@@ -710,6 +769,14 @@ PAGES["troubleshooting"] = dict(
 
         H("My guide is not in the folder"),
         P("A guide is written when you approve it on the save screen. If no folder was linked at that moment it is held in the browser instead and listed under **Dashboard > Guides** as **pending**. Link a folder, make that project active, and write it from there — nothing is lost in the meantime."),
+
+        H("My guides have disappeared from the dashboard"),
+        P("The files are almost certainly still there. A guide is listed because `project_metadata.json` names it, so a metadata file that was lost, replaced or hand-edited takes every guide in that project out of the list while the folders sit untouched on disk."),
+        P("**Dashboard > Guides > Find guides on disk** walks every linked project and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason."),
+
+        H("A dropdown step will not move on"),
+        P("That is deliberate. Opening a dropdown is not choosing from it, so the step waits for the option the guide recorded — the panel names which one. Pick something else and the step stays put and tells you what to look for. Where the list is drawn in the page, the option itself is ringed; where the operating system draws it, as with a plain `<select>` on macOS, there is nothing in the page to ring and the tag names it instead."),
+        P("**Next** moves on regardless, if you want to skip it."),
 
         H("Guide Mode is not highlighting anything"),
         P("Look at the label beside the step number in the panel."),

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Getting Started — TimeSheets Docs</title>
   <meta name="description" content="Install TimeSheets and log your first entry">
-  <meta name="vc-updated" content="8 Aug 2026">
+  <meta name="vc-updated" content="23 Aug 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -38,10 +38,11 @@
 
       <article class="vc-doc">
       <p class="text-muted mb-4">TimeSheets adds time tracking, approvals, leave and billing to Jira Cloud. It runs entirely on Atlassian Forge, so there is nothing to host and no data leaves your Atlassian site except email.</p>
-      <p class="text-muted mb-4">This page takes you from a fresh install to a first logged entry. It should take about ten minutes.</p>
+      <p class="text-muted mb-4">This page takes you from a fresh install to a first logged entry. It should take about ten minutes. Steps 1 and 2 are for an administrator and must both be done before anyone else opens the app.</p>
       <h2 id="install-the-app" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Install the app</h2>
       <p class="text-muted mb-4">Install TimeSheets from the Atlassian Marketplace. On first load the app creates its own tables, which takes a few seconds; if a screen looks empty immediately after installing, reload it once.</p>
-      <p class="text-muted mb-4">You need to be a <strong class="text-text">Jira site administrator</strong> to install and to reach the admin screens. Everyone else can start logging time straight away.</p>
+      <p class="text-muted mb-4">You need to be a <strong class="text-text">Jira site administrator</strong> to install and to reach the admin screens.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Do not hand the app to your team yet. Nobody can log a single entry until an administrator has created a cost centre and assigned it to a project — step 2. A person who opens the Hub before that finds an empty project list and no way forward.</p></div>
       <figure class="shot mb-6">
         <img src="../assets/timesheets-marketplace-install.png" alt="The TimeSheets listing on the Atlassian Marketplace, with the Get it now button" loading="lazy"
              class="rounded-lg border border-border"
@@ -54,7 +55,24 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The TimeSheets listing on the Atlassian Marketplace, with the Get it now button</figcaption>
       </figure>
-      <h2 id="open-the-hub" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Open the Hub</h2>
+      <h2 id="create-a-cost-centre-and-attach-it" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Create a cost centre and attach it to a project</h2>
+      <p class="text-muted mb-4">This is the one step that cannot be skipped. Every worklog entry carries exactly one <strong class="text-text">cost centre</strong> — the label that says how the work is classified for reporting and billing — and a cost centre is only offered on projects it has been attached to. A project with none attached does not appear in the Log time dialog at all.</p>
+      <p class="text-muted mb-4">Do both halves before anyone else opens the app:</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Create the cost centre</span> &mdash; go to <strong class="text-text">Admin Settings → Cost Centers</strong> and add one. A name is all that is required; code, parent, billable, hour allotment and budget are optional and can be filled in later. One general cost centre is enough to get started &mdash; you can add the real structure once people are logging.</li><li class="pl-2"><span class="text-text font-medium">Attach it to your projects</span> &mdash; open <strong class="text-text">Project Settings → Cost centres</strong> for each project that will track time, and assign the cost centres that may be used there. Repeat for every project; nothing is attached automatically, including projects created after the cost centre.</li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/timesheets-project-cost-centre-assign.png" alt="The cost centres section of Project Settings, with a cost centre assigned to the project" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">timesheets-project-cost-centre-assign.png</p>
+          <p class="text-xs text-muted max-w-md">The cost centres section of Project Settings, with a cost centre assigned to the project</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The cost centres section of Project Settings, with a cost centre assigned to the project</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Detaching a cost centre later stops it being used for <strong class="text-text">new</strong> entries only; existing entries keep theirs. Full detail in <a href="cost-centers.html" class="text-cta hover:underline">Cost Centers</a> and <a href="project-settings.html" class="text-cta hover:underline">Project Settings</a>.</p>
+      <h2 id="open-the-hub" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Open the Hub</h2>
       <p class="text-muted mb-4">Everything a person needs day to day lives in one place, called the <strong class="text-text">Hub</strong>. Find it under <strong class="text-text">Apps → TimeSheets</strong> in the Jira top navigation.</p>
       <p class="text-muted mb-4">The Hub has these tabs:</p>
       <div class="tbl-wrap"><table><thead><tr><th>Tab</th><th>What it is for</th><th>Shown to</th></tr></thead><tbody><tr><td>Dashboard</td><td>A configurable grid of gadgets — your week, pending approvals, leave balance and so on</td><td>Everyone</td></tr><tr><td>Summary</td><td>Month totals, missing working days, and what your team is up to</td><td>Everyone</td></tr><tr><td>Calendar</td><td>Month and week views of what you logged, plus leave and holidays</td><td>Everyone</td></tr><tr><td>Approvals</td><td>Anything waiting on your decision, with the pending count in the tab label</td><td>Approvers only</td></tr><tr><td>Reports</td><td>Team matrices, breakdowns and exports</td><td>Approvers and project admins</td></tr></tbody></table></div>
@@ -71,7 +89,7 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The TimeSheets Hub with the Dashboard tab open, showing the tab bar across the top</figcaption>
       </figure>
-      <h2 id="log-your-first-entry" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Log your first entry</h2>
+      <h2 id="log-your-first-entry" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Log your first entry</h2>
       <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the Hub</span> &mdash; and stay on the Dashboard, or go to the Calendar.</li><li class="pl-2"><span class="text-text font-medium">Click Log time</span> &mdash; or double-click a day in the Calendar to start on that date.</li><li class="pl-2"><span class="text-text font-medium">Pick a project and a cost centre</span> &mdash; the cost centre is how the work is classified for reporting and billing.</li><li class="pl-2"><span class="text-text font-medium">Enter the time</span> &mdash; in hours or minutes. Entries go in 5-minute increments.</li><li class="pl-2"><span class="text-text font-medium">Optionally link a Jira issue</span> &mdash; type a key or search by summary.</li><li class="pl-2"><span class="text-text font-medium">Save</span> &mdash; the entry appears immediately on your Calendar and Dashboard.</li></ol>
       <figure class="shot mb-6">
         <img src="../assets/timesheets-log-time-modal.png" alt="The Log time dialog with a project, cost centre, date and duration filled in" loading="lazy"
@@ -85,12 +103,12 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The Log time dialog with a project, cost centre, date and duration filled in</figcaption>
       </figure>
-      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">If the project you want is not in the list, it either has no cost centres assigned to it yet, or you cannot browse it in Jira. Both are fixed by an administrator — see <a href="project-settings.html" class="text-cta hover:underline">Project Settings</a>.</p></div>
-      <h2 id="what-an-administrator-should-set-up-next" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. What an administrator should set up next</h2>
-      <p class="text-muted mb-4">TimeSheets works out of the box, but four things are worth deciding early because they shape everything else:</p>
-      <ol class="text-muted mb-4 space-y-2 list-decimal pl-6"><li><strong class="text-text">Cost centres.</strong> How work is classified. Nothing can be logged until at least one is assigned to a project — see <a href="cost-centers.html" class="text-cta hover:underline">Cost Centers</a>.</li><li><strong class="text-text">Approvals.</strong> Whether time needs approving at all, per entry or per week, and who approves it — see <a href="approvals.html" class="text-cta hover:underline">Approvals</a>.</li><li><strong class="text-text">Working hours and days.</strong> The basis for capacity, missing-day detection and leave — see <a href="admin-settings.html" class="text-cta hover:underline">Admin Settings</a>.</li><li><strong class="text-text">Leave types.</strong> Which categories your organisation uses. Health-related types arrive switched off on purpose — see <a href="leave.html" class="text-cta hover:underline">Leave Management</a>.</li></ol>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">If the project you want is not in the list, it almost always has no cost centres attached yet — go back to step 2. The other cause is that you cannot browse the project in Jira. Both are fixed by an administrator — see <a href="project-settings.html" class="text-cta hover:underline">Project Settings</a>.</p></div>
+      <h2 id="what-an-administrator-should-set-up-next" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. What an administrator should set up next</h2>
+      <p class="text-muted mb-4">Cost centres are already in place from step 2. Beyond them, three things are worth deciding early because they shape everything else:</p>
+      <ol class="text-muted mb-4 space-y-2 list-decimal pl-6"><li><strong class="text-text">Approvals.</strong> Whether time needs approving at all, per entry or per week, and who approves it — see <a href="approvals.html" class="text-cta hover:underline">Approvals</a>.</li><li><strong class="text-text">Working hours and days.</strong> The basis for capacity, missing-day detection and leave — see <a href="admin-settings.html" class="text-cta hover:underline">Admin Settings</a>.</li><li><strong class="text-text">Leave types.</strong> Which categories your organisation uses. Health-related types arrive switched off on purpose — see <a href="leave.html" class="text-cta hover:underline">Leave Management</a>.</li></ol>
       <p class="text-muted mb-4">Billing is entirely optional and off until you add a client and a rate. If you only want timesheets, you can ignore it.</p>
-      <h2 id="where-to-go-next" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Where to go next</h2>
+      <h2 id="where-to-go-next" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Where to go next</h2>
       <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Logging in bulk, copying weeks and using templates — <a href="logging-time.html" class="text-cta hover:underline">Logging Time</a></li><li>Getting time approved — <a href="approvals.html" class="text-cta hover:underline">Approvals</a></li><li>Booking and approving leave — <a href="leave.html" class="text-cta hover:underline">Leave Management</a></li><li>Turning approved hours into invoices — <a href="invoices.html" class="text-cta hover:underline">Invoices</a></li><li>What is stored and who can see it — <a href="privacy-security.html" class="text-cta hover:underline">Privacy &amp; Data Handling</a></li></ul>
       </article>
 

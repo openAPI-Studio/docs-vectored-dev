@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Getting Started — Lens Docs</title>
   <meta name="description" content="Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording. Works completely offline, with no account and no subscription.">
-  <meta name="vc-updated" content="25 Aug 2026">
+  <meta name="vc-updated" content="28 Aug 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -54,7 +54,10 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The Lens popup on first run, showing the default project, no folder linked, and the three capture actions</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">2. Link a project folder</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. What is in the popup</h2>
+<p class="text-muted mb-4">Top to bottom: the header, the project, the capture actions, and this project's recent captures.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Where</th><th>What it is</th></tr></thead><tbody><tr><td>Header, right</td><td>The arrow opens the full dashboard in a tab. <strong class="text-text">?</strong> holds Docs, Support and Security. The gear goes straight to the dashboard's Settings</td></tr><tr><td>Project</td><td>The dropdown switches project; the row under it names the linked folder, with <strong class="text-text">Link</strong>, <strong class="text-text">Change</strong> or <strong class="text-text">Reconnect</strong> beside it</td></tr><tr><td>Capture region</td><td>The full-width button, because it is the one most people reach for</td></tr><tr><td>Steps, GIF, Full tab</td><td>The row of three under it. Each shows its own keyboard shortcut</td></tr><tr><td>Interactive walkthrough</td><td>A switch. On, a walkthrough also records which control each step points at, so it can be <a href="guides.html" class="text-cta hover:underline">played back</a> against the live page. Off records the screenshots and the words only</td></tr><tr><td>Timeline</td><td>This project's captures, newest first. See <a href="timeline.html" class="text-cta hover:underline">Timeline and dashboard</a></td></tr><tr><td>Footer</td><td><strong class="text-text">License</strong> states the built-in free licence, which covers every feature and needs no key. <strong class="text-text">Privacy</strong> opens the policy</td></tr></tbody></table></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. Link a project folder</h2>
 <p class="text-muted mb-4">A <strong class="text-text">project</strong> is a name plus one folder on your computer. Captures for the active project are written straight into that folder, next to a <span class="font-mono text-sm">project_metadata.json</span> file that records what was captured, from which page, and when.</p>
 <ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Open the popup and press <strong class="text-text">New project</strong></strong> <span class="text-muted">or press <strong class="text-text">Link</strong> on the default project to give the existing one a folder.</span></li><li class="mb-3"><strong class="text-text">Name the project</strong> <span class="text-muted">for example, the documentation set or release you are capturing for.</span></li><li class="mb-3"><strong class="text-text">Choose a folder</strong> <span class="text-muted">Chrome asks you to pick it and to grant read/write access. Lens can only ever see the folder you pick.</span></li></ol>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Without a linked folder Lens still works — captures fall back to your <strong class="text-text">Downloads</strong> folder, under <span class="font-mono text-sm">Lens-Captures/</span>. The popup says which mode you are in.</p></div>
@@ -70,7 +73,7 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The popup project row with a folder linked, showing the folder name and the Change button</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">3. Take your first capture</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Take your first capture</h2>
 <ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Capture region</strong></strong> <span class="text-muted">or use the keyboard shortcut. The page dims and the cursor becomes a crosshair.</span></li><li class="mb-3"><strong class="text-text">Drag a rectangle</strong> <span class="text-muted">over the area you want. Drag the handles to resize, or drag from the middle to move it.</span></li><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Capture Image</strong></strong> <span class="text-muted">the save screen opens with your capture loaded, its tools down the left and the file name on the right.</span></li><li class="mb-3"><strong class="text-text">Annotate if you want to, then name it and save</strong> <span class="text-muted">the file lands in the project folder and appears in the popup timeline.</span></li></ol>
 <figure class="shot mb-6">
         <img src="../assets/lens-region-selection.png" alt="A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below" loading="lazy"
@@ -84,7 +87,7 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">4. Where to go next</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. Where to go next</h2>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><a href="capturing.html" class="text-cta hover:underline">Capturing a region</a> — selection, annotation and saving in detail.</li><li class="mb-2"><a href="recording.html" class="text-cta hover:underline">Recording GIF and MP4</a> — the recorder, its controls and the two output formats.</li><li class="mb-2"><a href="guides.html" class="text-cta hover:underline">Step-by-step guides</a> — click through a flow once and get a documented walkthrough out of it.</li><li class="mb-2"><a href="projects.html" class="text-cta hover:underline">Projects and folders</a> — multiple projects, switching, and reconnecting folder access.</li><li class="mb-2"><a href="settings.html" class="text-cta hover:underline">Settings</a> — every preference and what it changes.</li></ul>
       </article>
 

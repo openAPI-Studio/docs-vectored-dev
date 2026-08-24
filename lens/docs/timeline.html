@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Timeline and Dashboard — Lens Docs</title>
   <meta name="description" content="Browse captures in the popup timeline and the dashboard master timeline, search and filter them, and export the metadata as JSON.">
-  <meta name="vc-updated" content="20 Aug 2026">
+  <meta name="vc-updated" content="24 Aug 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -41,7 +41,7 @@
 <p class="text-muted mb-4">Lens keeps two views of what you have captured: a compact timeline in the popup for the active project, and a master timeline on the dashboard covering every project.</p>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. The popup timeline</h2>
 <p class="text-muted mb-4">Captures are grouped by day, newest first, with the time down the left. Each row shows a thumbnail, the file name, its type and the page title.</p>
-<div class="tbl-wrap"><table><thead><tr><th>Control</th><th>What it does</th></tr></thead><tbody><tr><td>Thumbnail</td><td>Opens a larger preview with the page URL and capture time</td></tr><tr><td>Copy</td><td>Puts the image on the clipboard</td></tr><tr><td>Rename</td><td>Renames the file on disk and in the metadata</td></tr><tr><td>Delete</td><td>Removes the entry from the timeline</td></tr><tr><td>Search</td><td>Filters by file name, page title or URL</td></tr><tr><td>JSON</td><td>Exports <span class="font-mono text-sm">project_metadata.json</span> for the active project</td></tr></tbody></table></div>
+<div class="tbl-wrap"><table><thead><tr><th>Control</th><th>What it does</th></tr></thead><tbody><tr><td>Thumbnail</td><td>Opens a larger preview with the page URL and capture time. The preview shows the real file, so a GIF plays</td></tr><tr><td>Copy</td><td>Puts the image on the clipboard</td></tr><tr><td>Rename</td><td>Renames the file on disk and in the metadata</td></tr><tr><td>Delete</td><td>Removes the entry from the timeline</td></tr><tr><td>Search</td><td>Filters by file name, page title or URL</td></tr><tr><td>JSON</td><td>Exports <span class="font-mono text-sm">project_metadata.json</span> for the active project</td></tr></tbody></table></div>
 <figure class="shot mb-6">
         <img src="../assets/lens-popup-timeline.png" alt="The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title" loading="lazy"
              class="rounded-lg border border-border"
@@ -55,8 +55,8 @@
         <figcaption class="text-xs text-muted mt-2">The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title</figcaption>
       </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">2. The dashboard</h2>
-<p class="text-muted mb-4">Open the dashboard from the arrow icon at the top right of the popup. It has three sections.</p>
-<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Projects</strong> — every project as a card with its folder, capture count, last capture and access state.</li><li class="mb-2"><strong class="text-text">Timeline</strong> — every capture across all projects, grouped by project.</li><li class="mb-2"><strong class="text-text">Settings</strong> — all preferences, plus your keyboard shortcuts.</li></ul>
+<p class="text-muted mb-4">Open the dashboard from the arrow icon at the top right of the popup, or the gear beside it to land straight on Settings. It has four sections.</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Projects</strong> — every project as a card with its folder, capture count, last capture and access state.</li><li class="mb-2"><strong class="text-text">Timeline</strong> — every capture across all projects, grouped by project.</li><li class="mb-2"><strong class="text-text">Guides</strong> — every step-by-step guide, with import and export for the whole set. See <a href="guides.html" class="text-cta hover:underline">Guides</a>.</li><li class="mb-2"><strong class="text-text">Settings</strong> — all preferences, plus your keyboard shortcuts.</li></ul>
 <figure class="shot mb-6">
         <img src="../assets/lens-dashboard-projects.png" alt="The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges" loading="lazy"
              class="rounded-lg border border-border"
@@ -89,8 +89,10 @@
       </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">5. Exporting</h2>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Export timeline JSON</strong> on the dashboard writes every capture across all projects to a single file.</li><li class="mb-2"><strong class="text-text">JSON</strong> in the popup, or <strong class="text-text">Export JSON</strong> on a project card, writes that one project's <span class="font-mono text-sm">project_metadata.json</span>.</li></ul>
-<h2 class="text-2xl font-semibold mt-10 mb-4">6. Cached previews</h2>
-<p class="text-muted mb-4">Thumbnails are held in extension storage so the timeline loads instantly. <strong class="text-text">Settings &gt; Clear cached previews</strong> empties that cache. Files already written to disk are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. Thumbnails, and the file behind them</h2>
+<p class="text-muted mb-4">What the timeline shows beside each entry is a small JPEG of the <strong class="text-text">first frame</strong>, held in extension storage so the list loads instantly. That is why a GIF sits still in the popup timeline and in the dashboard grid, and why a screenshot there is thumbnail-sized rather than full resolution.</p>
+<p class="text-muted mb-4">Open one and the preview reads the actual file out of the project folder instead: full size, and a recording that plays. Where no folder is linked, or its access has lapsed, the stored thumbnail stays up rather than the preview failing.</p>
+<p class="text-muted mb-4"><strong class="text-text">Settings &gt; Clear cached previews</strong> empties that cache. Files already written to disk are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place until you open one.</p>
       </article>
 
       <div data-vc="pagefoot"></div>

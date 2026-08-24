@@ -59,6 +59,7 @@
       </div>
       <p class="text-muted mt-4">Lens requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.</p>
       <p class="text-muted mt-4">The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Lens contacts no host on its own initiative — see <a href="#ai" class="text-cta hover:underline">section 4</a>.</p>
+      <p class="text-muted mt-4">The same permission covers one other request, and only when you ask for it: <strong class="text-text">importing a guide from a link</strong>. Lens fetches the address you paste and nothing else, over <span class="font-mono text-xs">http</span> or <span class="font-mono text-xs">https</span> only, capped at 50&nbsp;MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.</p>
     </section>
 
     <section class="mb-10">
