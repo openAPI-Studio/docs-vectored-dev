@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Troubleshooting — Lens Docs</title>
-  <meta name="description" content="Diagnose blocked pages, blank recordings, lost folder access and captures missing from the timeline.">
-  <meta name="vc-updated" content="23 Aug 2026">
+  <meta name="description" content="Diagnose blocked pages, blank recordings, low-quality GIFs, lost folder access and captures missing from the timeline.">
+  <meta name="vc-updated" content="25 Aug 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -60,11 +60,16 @@
 <h2 class="text-2xl font-semibold mt-10 mb-4">7. Guide Mode is not highlighting anything</h2>
 <p class="text-muted mb-4">Look at the label beside the step number in the panel.</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Not on this page</strong> — the control could not be found. Either you are not on the page that step is about, or the page has changed since the guide was recorded. Lens keeps looking, so if the control is behind a menu, opening that menu will ring it.</li><li class="mb-2"><strong class="text-text">Nothing at all</strong> — that step has no control to point at. A page load and a scroll are instructions to follow, not things to click; press <strong class="text-text">Next</strong> when you have done it.</li><li class="mb-2"><strong class="text-text">Plain walkthrough</strong> — the guide was recorded with <strong class="text-text">Walkthrough mode</strong> set to Plain, so nothing was written down about the page's controls. Guides recorded that way show their words and pictures only. Re-record with Interactive to get the highlighting.</li></ul>
-<h2 class="text-2xl font-semibold mt-10 mb-4">8. The MP4 I recorded is a WebM</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. My GIF came out blurry or soft</h2>
+<p class="text-muted mb-4">The converter's <strong class="text-text">Quality / scale</strong> control was below 100%. At 75% or 50% every captured pixel is resampled, which softens text first. Re-encode from the converter at 100%, and raise the framerate to 30 if motion also looked choppy — see <strong class="text-text">Getting the highest-quality GIF</strong> on the <a href="recording.html" class="text-cta hover:underline">Recording</a> page.</p>
+<p class="text-muted mb-4">If the recording itself looked soft on screen, the region was captured on a scaled display. Recording at 100% scale keeps whatever the tab actually rendered; it cannot add detail that was never drawn.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">9. Do I need an account or a subscription?</h2>
+<p class="text-muted mb-4">No. Lens has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud <a href="ai.html" class="text-cta hover:underline">AI provider</a> you connect with your own key — that is your account with that provider, not one with Vectored.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">10. The MP4 I recorded is a WebM</h2>
 <p class="text-muted mb-4">Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an <span class="font-mono text-sm">.mp4</span> that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">9. Nothing happened when I pressed the shortcut</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">11. Nothing happened when I pressed the shortcut</h2>
 <p class="text-muted mb-4">See <a href="shortcuts.html" class="text-cta hover:underline">Keyboard shortcuts</a> — the usual causes are a restricted page, a conflicting binding, or a page that has not finished loading.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">10. Still stuck</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">12. Still stuck</h2>
 <p class="text-muted mb-4"><a href="../support.html" class="text-cta hover:underline">Open a support ticket</a> and include what you were capturing, which browser version you are on, and what the toast or tooltip said. No account is needed.</p>
       </article>
 

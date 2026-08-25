@@ -8,10 +8,11 @@ PAGES = {}
 PAGES["getting-started"] = dict(
     title="Getting Started",
     lede="Install Lens, link a project folder, and take your first capture.",
-    desc="Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording.",
+    desc="Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording. Works completely offline, with no account and no subscription.",
     icon="rocket",
     blocks=[
-        P("Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, an animated **GIF** or an **MP4**, then files it into a folder on your own machine along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](guides.html). Nothing is uploaded — see [Privacy](../privacy.html)."),
+        P("Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a folder on your own machine along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](guides.html). Nothing is uploaded — see [Privacy](../privacy.html)."),
+        NOTE("**Lens works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](ai.html) you connect yourself, which is off on install and optional."),
 
         H("Install and pin"),
         STEPS([
@@ -132,11 +133,12 @@ PAGES["capturing"] = dict(
 
 PAGES["recording"] = dict(
     title="Recording GIF and MP4",
-    lede="Record a region of a tab as an animated GIF or an MP4 video.",
-    desc="Record part of a tab as an animated GIF or MP4, with click-through interaction, navigation support and a converter for GIF output.",
+    lede="Record a region of a tab as a high-quality animated GIF or an MP4 video.",
+    desc="Record part of a tab as a high-quality animated GIF or MP4, with click-through interaction, navigation support and a converter that controls GIF framerate, speed and scale. Runs entirely offline.",
     icon="video",
     blocks=[
-        P("Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through."),
+        P("Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen."),
+        NOTE("Recording and encoding both happen inside your browser. Nothing is uploaded, no account or subscription is involved, and the whole flow works offline."),
 
         H("Starting a recording"),
         STEPS([
@@ -154,6 +156,7 @@ PAGES["recording"] = dict(
             ["Best for", "Embedding anywhere, no player needed", "Anything longer than a few seconds"],
             ["File size", "Large — tens of MB is normal", "Typically a small fraction of the GIF"],
             ["Colours", "256 per file, chosen automatically", "Full colour"],
+            ["Quality controls", "Framerate, speed and scale, set after you stop", "None — recorded as captured"],
             ["Conversion step", "Yes — a converter opens after you stop", "No — the file is ready when you stop"],
         ]),
         WARN("MP4 recording depends on your Chrome build. Where Chrome cannot encode MP4, Lens records **WebM** instead and names the file accordingly, so the extension always matches the actual contents. The Settings page tells you which one your browser will produce before you record."),
@@ -166,7 +169,17 @@ PAGES["recording"] = dict(
             "**Quality / scale** — 100%, 75% or 50%. Halving the scale is the fastest way to cut file size.",
             "The header shows how many frames were captured, the captured pixel size, and the region you selected.",
         ]),
-        P("Encoding runs in the page and locks the controls while it works. Progress is shown on the bar."),
+        P("Encoding runs in the page and locks the controls while it works. Progress is shown on the bar. It is done entirely on your machine — there is no upload step and no service to sign up for, so the converter works with the network off."),
+
+        H("Getting the highest-quality GIF"),
+        P("The defaults favour a file you can attach to a ticket. When the GIF is going into documentation and detail matters more than size, push all three controls up:"),
+        UL([
+            "**Scale 100%** — the single biggest factor. At 100% each captured pixel becomes a GIF pixel, so text in the recording stays readable.",
+            "**30 frames per second** — for cursor movement, drag-and-drop and anything animated. 10 or 15 is enough for a slow click-through and encodes far faster.",
+            "**Playback speed 1×** — anything faster drops frames from the output, not just the preview.",
+            "Select a **tight region**. A small region at full scale is both sharper and smaller than a big region scaled down.",
+        ]),
+        NOTE("A high-quality GIF is a large GIF — a full-scale 30fps recording of a wide region runs to tens of megabytes and takes noticeably longer to encode. If the result is too big to share, halve the scale before you drop the framerate: it costs less of what makes a recording readable."),
         SHOT("lens-gif-converter.png", "The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header"),
 
         H("You also get a guide"),
@@ -521,6 +534,9 @@ PAGES["settings"] = dict(
         H("Recording format"),
         P("**GIF** or **MP4**. See [Recording](recording.html) for the trade-off. The description under the control tells you whether your Chrome build can encode MP4, or will fall back to WebM."),
 
+        H("GIF quality, framerate and scale"),
+        P("These are not on the Settings page — they live in the converter that opens when you stop a GIF recording, so you set them per recording against a preview of the actual frames. Scale 100% at 30 frames a second gives the highest-quality output — see **Getting the highest-quality GIF** on the [Recording](recording.html) page."),
+
         H("Maximum GIF recording length"),
         P("One to ten minutes. A recording stops at the cap and opens the converter as though you had pressed stop. This exists because a long recording at 15 frames a second becomes a very large GIF."),
 
@@ -656,7 +672,7 @@ PAGES["shortcuts"] = dict(
 PAGES["troubleshooting"] = dict(
     title="Troubleshooting",
     lede="What the errors mean and what to do about them.",
-    desc="Diagnose blocked pages, blank recordings, lost folder access and captures missing from the timeline.",
+    desc="Diagnose blocked pages, blank recordings, low-quality GIFs, lost folder access and captures missing from the timeline.",
     icon="life-buoy",
     blocks=[
         P("Lens reports failures where it can — an in-page toast when a content script can run, and the toolbar icon badge when one cannot."),
@@ -702,6 +718,13 @@ PAGES["troubleshooting"] = dict(
             "**Nothing at all** — that step has no control to point at. A page load and a scroll are instructions to follow, not things to click; press **Next** when you have done it.",
             "**Plain walkthrough** — the guide was recorded with **Walkthrough mode** set to Plain, so nothing was written down about the page's controls. Guides recorded that way show their words and pictures only. Re-record with Interactive to get the highlighting.",
         ]),
+
+        H("My GIF came out blurry or soft"),
+        P("The converter's **Quality / scale** control was below 100%. At 75% or 50% every captured pixel is resampled, which softens text first. Re-encode from the converter at 100%, and raise the framerate to 30 if motion also looked choppy — see **Getting the highest-quality GIF** on the [Recording](recording.html) page."),
+        P("If the recording itself looked soft on screen, the region was captured on a scaled display. Recording at 100% scale keeps whatever the tab actually rendered; it cannot add detail that was never drawn."),
+
+        H("Do I need an account or a subscription?"),
+        P("No. Lens has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud [AI provider](ai.html) you connect with your own key — that is your account with that provider, not one with Vectored."),
 
         H("The MP4 I recorded is a WebM"),
         P("Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an `.mp4` that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it."),

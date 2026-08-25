@@ -1,6 +1,6 @@
 # Vectored Docs
 
-> Documentation for Vectored's developer tools. API Studio is an offline API client for VS Code and the command line covering REST, GraphQL, WebSocket and gRPC, with mock servers, MCP servers, CI/CD integration and git-based collections. Lens captures and documents screen recordings locally. TimeSheets, Macro Toolkit, Forms & Frontdoor and Recognition Hub are Atlassian Confluence apps. Everything here is offline-first: the apps collect no usage data and require no account.
+> Documentation for Vectored's developer tools. API Studio is an offline API client for VS Code and the command line covering REST, GraphQL, WebSocket and gRPC, with mock servers, MCP servers, CI/CD integration and git-based collections. Lens captures screenshots and high-quality GIF recordings and documents flows locally, completely offline and with no subscription. TimeSheets, Macro Toolkit, Forms & Frontdoor and Recognition Hub are Atlassian Confluence apps. Everything here is offline-first: the apps collect no usage data and require no account.
 
 ## API Studio
 
@@ -161,20 +161,20 @@
 
 ## Lens
 
-- [Lens — Overview](https://docs.vectored.dev/lens/): Region screenshots, GIF and MP4 recording for Chrome, filed straight into your own local folders. Coming soon from Vectored.
-- [Start here — Getting Started](https://docs.vectored.dev/lens/docs/getting-started.html): Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording.
+- [Lens — Overview](https://docs.vectored.dev/lens/): Region screenshots, high-quality GIF and MP4 recording for Chrome, filed straight into your own local folders. Works completely offline — no account, no subscription. Coming soon from Vectored.
+- [Start here — Getting Started](https://docs.vectored.dev/lens/docs/getting-started.html): Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording. Works completely offline, with no account and no subscription.
 - [Capture — Capturing a Region](https://docs.vectored.dev/lens/docs/capturing.html): Select a region of a page, annotate it with shapes, text and blur, then save it into your project folder.
-- [Capture — Recording GIF and MP4](https://docs.vectored.dev/lens/docs/recording.html): Record part of a tab as an animated GIF or MP4, with click-through interaction, navigation support and a converter for GIF output.
+- [Capture — Recording GIF and MP4](https://docs.vectored.dev/lens/docs/recording.html): Record part of a tab as a high-quality animated GIF or MP4, with click-through interaction, navigation support and a converter that controls GIF framerate, speed and scale. Runs entirely offline.
 - [Capture — Step-by-step Guides](https://docs.vectored.dev/lens/docs/guides.html): Capture a step-by-step guide from your clicks, review it before saving, edit it in the guide editor and export it as HTML, Markdown or rich text.
 - [Organise — Projects and Folders](https://docs.vectored.dev/lens/docs/projects.html): Create projects, link local folders, switch the active project and reconnect folder access when Chrome drops it.
 - [Organise — Timeline and Dashboard](https://docs.vectored.dev/lens/docs/timeline.html): Browse captures in the popup timeline and the dashboard master timeline, search and filter them, and export the metadata as JSON.
 - [Configure — Settings](https://docs.vectored.dev/lens/docs/settings.html): Reference for every Lens setting: recording and image format, guides, private-data flagging, AI models, file name pattern, clipboard, metadata and sounds.
 - [Configure — Keyboard Shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html): Lens keyboard shortcuts for region capture, GIF recording and full-tab capture, and how to remap them in Chrome.
 - [AI — AI Features](https://docs.vectored.dev/lens/docs/ai.html): Lens AI features, the providers you can connect, exactly what each feature sends, and how your API key is stored.
-- [Help — Troubleshooting](https://docs.vectored.dev/lens/docs/troubleshooting.html): Diagnose blocked pages, blank recordings, lost folder access and captures missing from the timeline.
-- [Lens — Privacy Policy](https://docs.vectored.dev/lens/privacy.html): Privacy policy for Lens by Vectored. No account, no server, no analytics. Captures never leave your machine, and Lens makes no network calls unless you connect an AI provider of your own.
+- [Help — Troubleshooting](https://docs.vectored.dev/lens/docs/troubleshooting.html): Diagnose blocked pages, blank recordings, low-quality GIFs, lost folder access and captures missing from the timeline.
+- [Lens — Privacy Policy](https://docs.vectored.dev/lens/privacy.html): Privacy policy for Lens by Vectored. No account, no subscription, no server, no analytics. Captures never leave your machine, and Lens makes no network calls unless you connect an AI provider of your own.
 - [Lens — Security](https://docs.vectored.dev/lens/security.html): Security model for Lens by Vectored: what each Chrome permission is used for, how folder access is scoped, and how to report a vulnerability.
-- [Lens — Support](https://docs.vectored.dev/lens/support.html): Get help with Lens by Vectored. Ask for early access, report a bug, or request a feature. No login required.
+- [Lens — Support](https://docs.vectored.dev/lens/support.html): Get help with Lens by Vectored. Ask for early access, report a bug, or request a feature. No login and no subscription required.
 
 ## About
 

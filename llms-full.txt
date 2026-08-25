@@ -13330,9 +13330,11 @@ by Vectored · for Chrome
 
 COMING SOON
 
-Capture a region of any tab as a PNG, an animated GIF or an MP4, or click through a flow and get a step-by-step guide out of it — annotated, named, and filed straight into a folder on your own machine with a metadata timeline beside it. No account, no upload, no server.
+Capture a region of any tab as a PNG, a high-quality animated GIF or an MP4, or click through a flow and get a step-by-step guide out of it — annotated, named, and filed straight into a folder on your own machine with a metadata timeline beside it. GIFs record at up to 30 frames a second and encode at full captured resolution. Everything runs completely offline: no account, no subscription, no upload, no server.
 
 [Read the Docs](https://docs.vectored.dev/lens/docs/getting-started.html) [Ask for early access](https://docs.vectored.dev/lens/support.html)
+
+Works completely offline No subscription No account or sign-in High-quality GIF output
 
 ![Lens capturing a region of a web page, with the selection toolbar and the extension popup visible](https://docs.vectored.dev/lens/assets/lens-hero.png)
 
@@ -13358,6 +13360,14 @@ Local
 
 Files, in your folders
 
+30fps
+
+High-quality GIF capture
+
+None
+
+Subscription required
+
 ### What’s Inside
 
 Everything Lens ships with — click any card for the documentation.
@@ -13376,9 +13386,9 @@ Click through a flow once and get a numbered walkthrough out of it — a screens
 
 ](https://docs.vectored.dev/lens/docs/guides.html) [
 
-#### GIF and MP4 recording
+#### High-quality GIF and MP4 recording
 
-Record a region while you keep using the page — clicks and scrolling pass straight through. GIF for embedding anywhere, MP4 for anything longer than a few seconds.
+Record a region while you keep using the page — clicks and scrolling pass straight through. GIFs encode at up to 30 frames a second and 100% of the captured resolution, with framerate, speed and scale under your control before you commit. MP4 for anything longer than a few seconds.
 
 ](https://docs.vectored.dev/lens/docs/recording.html) [
 
@@ -13399,6 +13409,12 @@ Each project writes into one folder you pick, with a project_metadata.json timel
 Every capture grouped by day, searchable by file name, page title or URL, filterable by project and type, and exportable as JSON.
 
 ](https://docs.vectored.dev/lens/docs/timeline.html) [
+
+#### Completely offline, no subscription
+
+Every capture, recording and guide is produced on your own machine. There is no account to create, no subscription to pay for and no licence check — install it and it works, on a plane or behind a firewall, with the network switched off.
+
+](https://docs.vectored.dev/lens/privacy.html) [
 
 #### Naming that fits your workflow
 
@@ -13424,11 +13440,11 @@ Press the shortcut, drag a region, and either capture a still or start recording
 
 #### It lands on disk
 
-The file is written into your folder, the metadata timeline is updated, and it appears in the popup — all without leaving your machine.
+The file is written into your folder, the metadata timeline is updated, and it appears in the popup — all without leaving your machine, and all without a network connection.
 
 ### Where your captures go
 
-Screenshots of internal tools are some of the most sensitive things a browser extension can touch. Lens is built so that they never leave the machine that took them: there is no account, no server, no analytics and no network call at capture time.
+Screenshots of internal tools are some of the most sensitive things a browser extension can touch. Lens is built so that they never leave the machine that took them: there is no account, no subscription, no server, no analytics and no network call at capture time. As installed it is completely offline — unplug the network and every feature on this page still works.
 
 Before a capture is saved, Lens checks the region for passwords, API keys and tokens and offers to blur them — a check that runs on the page structure in your own browser, with no AI and nothing sent anywhere.
 
@@ -13436,7 +13452,7 @@ AI features are off on install. If you turn them on, you choose who does the wor
 
 [Privacy →](https://docs.vectored.dev/lens/privacy.html) [Security →](https://docs.vectored.dev/lens/security.html)
 
-Lens has not been released yet. If you want it early, or there is something it needs to do before it is useful to you, [tell us](https://docs.vectored.dev/lens/support.html) — no account required.
+Lens has not been released yet. If you want it early, or there is something it needs to do before it is useful to you, [tell us](https://docs.vectored.dev/lens/support.html) — no account and no subscription required, then or later.
 
 ## Getting Started
 
@@ -13444,7 +13460,9 @@ Source: https://docs.vectored.dev/lens/docs/getting-started.html
 
 Install Lens, link a project folder, and take your first capture.
 
-Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, an animated **GIF** or an **MP4**, then files it into a folder on your own machine along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](https://docs.vectored.dev/lens/docs/guides.html). Nothing is uploaded — see [Privacy](https://docs.vectored.dev/lens/privacy.html).
+Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a folder on your own machine along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](https://docs.vectored.dev/lens/docs/guides.html). Nothing is uploaded — see [Privacy](https://docs.vectored.dev/lens/privacy.html).
+
+**Lens works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](https://docs.vectored.dev/lens/docs/ai.html) you connect yourself, which is off on install and optional.
 
 ### 1. Install and pin
 
@@ -13650,9 +13668,11 @@ The toast tells you the truth about where the file landed. If it says *Downloade
 
 Source: https://docs.vectored.dev/lens/docs/recording.html
 
-Record a region of a tab as an animated GIF or an MP4 video.
+Record a region of a tab as a high-quality animated GIF or an MP4 video.
 
-Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through.
+Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen.
+
+Recording and encoding both happen inside your browser. Nothing is uploaded, no account or subscription is involved, and the whole flow works offline.
 
 ### 1. Starting a recording
 
@@ -13685,6 +13705,7 @@ Set the output under **Settings > Capture and recording > Recording format**.
 | Best for | Embedding anywhere, no player needed | Anything longer than a few seconds |
 | File size | Large — tens of MB is normal | Typically a small fraction of the GIF |
 | Colours | 256 per file, chosen automatically | Full colour |
+| Quality controls | Framerate, speed and scale, set after you stop | None — recorded as captured |
 | Conversion step | Yes — a converter opens after you stop | No — the file is ready when you stop |
 
 MP4 recording depends on your Chrome build. Where Chrome cannot encode MP4, Lens records **WebM** instead and names the file accordingly, so the extension always matches the actual contents. The Settings page tells you which one your browser will produce before you record.
@@ -13701,7 +13722,21 @@ Stopping a GIF recording opens a converter with a player, so you can check the r
 
 - The header shows how many frames were captured, the captured pixel size, and the region you selected.
 
-Encoding runs in the page and locks the controls while it works. Progress is shown on the bar.
+Encoding runs in the page and locks the controls while it works. Progress is shown on the bar. It is done entirely on your machine — there is no upload step and no service to sign up for, so the converter works with the network off.
+
+### 4. Getting the highest-quality GIF
+
+The defaults favour a file you can attach to a ticket. When the GIF is going into documentation and detail matters more than size, push all three controls up:
+
+- **Scale 100%** — the single biggest factor. At 100% each captured pixel becomes a GIF pixel, so text in the recording stays readable.
+
+- **30 frames per second** — for cursor movement, drag-and-drop and anything animated. 10 or 15 is enough for a slow click-through and encodes far faster.
+
+- **Playback speed 1×** — anything faster drops frames from the output, not just the preview.
+
+- Select a **tight region**. A small region at full scale is both sharper and smaller than a big region scaled down.
+
+A high-quality GIF is a large GIF — a full-scale 30fps recording of a wide region runs to tens of megabytes and takes noticeably longer to encode. If the result is too big to share, halve the scale before you drop the framerate: it costs less of what makes a recording readable.
 
 ![The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header](https://docs.vectored.dev/lens/assets/lens-gif-converter.png)
 
@@ -13713,13 +13748,13 @@ The GIF converter with the player showing a captured frame, the framerate, speed
 
 The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header
 
-### 4. You also get a guide
+### 5. You also get a guide
 
 If the recording had clicks in it, Lens builds a **step-by-step guide** from it as well: a screenshot taken at the moment of each click, cropped to the control, numbered and captioned. It appears for review under the file name on the save screen, and nothing is written until you approve it — you can untick individual steps, or untick the guide entirely and keep just the recording.
 
 This is on by default and needs no AI. See [Guides](https://docs.vectored.dev/lens/docs/guides.html) for the review panel, the editor and exporting. If you want the walkthrough without the video, **Record steps** (⌘⇧E) captures one with no recording behind it and no time limit.
 
-### 5. Writing steps from what you clicked
+### 6. Writing steps from what you clicked
 
 While a recording runs, Lens notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, **Write steps from clicks** turns that into a numbered list and adds it to your note.
 
@@ -13733,7 +13768,7 @@ This works with no AI provider at all: the click list alone produces usable step
 
 If the recording had no clicks in it, the button does not appear — there is nothing to write.
 
-### 6. Recording across page navigation
+### 7. Recording across page navigation
 
 A recording belongs to the **tab**, not the page. If you click a link and navigate, recording continues and the controls are rebuilt on the new page with the timer intact.
 
@@ -13741,7 +13776,7 @@ A recording belongs to the **tab**, not the page. If you click a link and naviga
 
 - Closing the tab ends the recording and discards it.
 
-### 7. Stopping from another tab
+### 8. Stopping from another tab
 
 If you switch tabs, the Lens popup shows a **Recording** banner with the elapsed time and which tab it belongs to. **Stop & convert** there brings that tab forward and opens the converter; the cross button discards the recording.
 
@@ -13755,7 +13790,7 @@ The popup showing the red recording banner with elapsed time, the source tab nam
 
 The popup showing the red recording banner with elapsed time, the source tab name, and Stop & convert and discard buttons
 
-### 8. Length limit
+### 9. Length limit
 
 Recordings stop automatically at the cap set under **Settings > Maximum GIF recording length** — one minute by default, up to ten. When the cap is reached the recording stops and the converter opens as though you had pressed stop.
 
@@ -14124,23 +14159,27 @@ Settings live on the dashboard under **Settings**, and apply to every project. A
 
 **GIF** or **MP4**. See [Recording](https://docs.vectored.dev/lens/docs/recording.html) for the trade-off. The description under the control tells you whether your Chrome build can encode MP4, or will fall back to WebM.
 
-### 2. Maximum GIF recording length
+### 2. GIF quality, framerate and scale
+
+These are not on the Settings page — they live in the converter that opens when you stop a GIF recording, so you set them per recording against a preview of the actual frames. Scale 100% at 30 frames a second gives the highest-quality output — see **Getting the highest-quality GIF** on the [Recording](https://docs.vectored.dev/lens/docs/recording.html) page.
+
+### 3. Maximum GIF recording length
 
 One to ten minutes. A recording stops at the cap and opens the converter as though you had pressed stop. This exists because a long recording at 15 frames a second becomes a very large GIF.
 
-### 3. Still image format
+### 4. Still image format
 
 **PNG** keeps text crisp and is the right default for documentation. **JPEG** produces much smaller files but softens text and adds artefacts around high-contrast edges. The file extension follows the setting.
 
-### 4. Write metadata file
+### 5. Write metadata file
 
 On by default. When off, capture files are still written to the project folder but project_metadata.json is not updated — so those captures will not appear in the timeline read from that folder.
 
-### 5. Copy to clipboard on capture
+### 6. Copy to clipboard on capture
 
 Puts each capture on the clipboard as well as saving it. Because the clipboard only accepts PNG images, a JPEG capture is converted before copying. The save toast reports whether the copy succeeded.
 
-### 6. Visualise clicks
+### 7. Visualise clicks
 
 Draws a marker at each click while recording, so a walkthrough shows where you clicked. Markers are only drawn **inside** the recorded region — a marker outside it would never appear in the output.
 
@@ -14154,29 +14193,29 @@ A recording in progress with a red click marker expanding at the point of a clic
 
 A recording in progress with a red click marker expanding at the point of a click inside the recorded region
 
-### 7. Play shutter sound
+### 8. Play shutter sound
 
 A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension.
 
-### 8. Flag private data in captures
+### 9. Flag private data in captures
 
 On by default. Checks each captured region for credentials before you save and offers to blur them — see [Capturing](https://docs.vectored.dev/lens/docs/capturing.html) for what the bar looks like and what it recognises. It reads the page structure in your browser: no AI, no network call, nothing sent anywhere.
 
-### 9. Also flag emails and card numbers
+### 10. Also flag emails and card numbers
 
 On by default, and only has an effect while the check above is on. Widens it past credentials to personal data. Card numbers are validated against their checksum, so order and reference numbers are not flagged.
 
-### 10. Build a guide from each recording
+### 11. Build a guide from each recording
 
 On by default. Any recording with clicks in it also produces a step-by-step guide, offered for review on the save screen — see [Guides](https://docs.vectored.dev/lens/docs/guides.html). Turn it off and recordings are just recordings.
 
-### 11. Walkthrough mode
+### 12. Walkthrough mode
 
 **Interactive** by default. As well as the screenshots and the words, Lens notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](https://docs.vectored.dev/lens/docs/guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup.
 
 The same setting sits under the **Record steps** button in the popup, as a checkbox. Both write the one value.
 
-### 12. Quote what you typed
+### 13. Quote what you typed
 
 On by default. A step for a field you filled in reads *Type "ACME-1024" into "Order number"* rather than *Type into "Order number"* — the difference between an instruction a reader can follow and one they cannot.
 
@@ -14186,31 +14225,31 @@ The option you pick from a dropdown is held to the same bar, and is recorded wha
 
 The screenshot for such a step is taken *after* you have typed, so what you entered is visible in the picture whether or not it is quoted in the text. That is the point of the step. Blur it in the editor, or delete the step, before the guide is saved.
 
-### 13. Auto-blur guide steps
+### 14. Auto-blur guide steps
 
 **Off**, and deliberately so. When on, anything the private-data check flags in a step screenshot is blurred without asking.
 
 This is the only place in Lens where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason.
 
-### 14. Guide marker colour
+### 15. Guide marker colour
 
 The colour of the numbered callout drawn on each step screenshot. Red by default. Pick something that stands out against the product you are documenting.
 
-### 15. Maximum steps per guide
+### 16. Maximum steps per guide
 
 Sixty by default. A flow longer than that is usually two guides, and the cap stops a stray click storm from producing a document nobody will read.
 
-### 16. Guide image format
+### 17. Guide image format
 
 **JPEG** by default here, rather than PNG. A sixty-step guide is sixty screenshots, and JPEG is what keeps that folder to a sane size. Switch to PNG if your steps are mostly small text.
 
-### 17. Merge clicks into animated steps
+### 18. Merge clicks into animated steps
 
 Off by default. When several clicks happen on one screen with no scrolling between them, they can be saved as one short animated step instead of a run of near-identical stills.
 
 The clip is cut from footage the recording already sampled, so nothing is captured twice. Three controls tune it: the longest gap between clicks that still counts as one run, the longest a merged step may be, and its frame rate. An animated step can always be split back into its individual clicks in the editor — each click kept its own still.
 
-### 18. AI models
+### 19. AI models
 
 **None configured** by default, which means every AI feature is off and Lens makes no network requests at all. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine.
 
@@ -14230,13 +14269,13 @@ An API key is stored in this browser only, in its own storage area, and is read 
 
 Connecting a model also puts buttons on the save screens — **Suggest name** on a screenshot, **Write steps from clicks** on a recording, **Rewrite with AI** on a guide — and opens the assistant in the guide editor. None of them runs on its own: you press them, per capture. See [Capturing](https://docs.vectored.dev/lens/docs/capturing.html), [Recording](https://docs.vectored.dev/lens/docs/recording.html) and [Guides](https://docs.vectored.dev/lens/docs/guides.html).
 
-### 19. Let the model sharpen redaction hints
+### 20. Let the model sharpen redaction hints
 
 Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console.
 
 The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one.
 
-### 20. File name pattern
+### 21. File name pattern
 
 Controls the name each capture is given before you edit it. The extension is added automatically.
 
@@ -14251,7 +14290,7 @@ Anything else in the pattern is kept as written. Characters a file system reject
 
 Clear the field and it returns to the default, {name}_{date}_{time}.
 
-### 21. Keyboard shortcuts
+### 22. Keyboard shortcuts
 
 The Settings page lists the shortcuts currently bound, read from Chrome rather than hardcoded, so it always reflects reality. See [Keyboard shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html) to change them.
 
@@ -14513,15 +14552,25 @@ Look at the label beside the step number in the panel.
 
 - **Plain walkthrough** — the guide was recorded with **Walkthrough mode** set to Plain, so nothing was written down about the page's controls. Guides recorded that way show their words and pictures only. Re-record with Interactive to get the highlighting.
 
-### 8. The MP4 I recorded is a WebM
+### 8. My GIF came out blurry or soft
+
+The converter's **Quality / scale** control was below 100%. At 75% or 50% every captured pixel is resampled, which softens text first. Re-encode from the converter at 100%, and raise the framerate to 30 if motion also looked choppy — see **Getting the highest-quality GIF** on the [Recording](https://docs.vectored.dev/lens/docs/recording.html) page.
+
+If the recording itself looked soft on screen, the region was captured on a scaled display. Recording at 100% scale keeps whatever the tab actually rendered; it cannot add detail that was never drawn.
+
+### 9. Do I need an account or a subscription?
+
+No. Lens has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud [AI provider](https://docs.vectored.dev/lens/docs/ai.html) you connect with your own key — that is your account with that provider, not one with Vectored.
+
+### 10. The MP4 I recorded is a WebM
 
 Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an .mp4 that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it.
 
-### 9. Nothing happened when I pressed the shortcut
+### 11. Nothing happened when I pressed the shortcut
 
 See [Keyboard shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html) — the usual causes are a restricted page, a conflicting binding, or a page that has not finished loading.
 
-### 10. Still stuck
+### 12. Still stuck
 
 [Open a support ticket](https://docs.vectored.dev/lens/support.html) and include what you were capturing, which browser version you are on, and what the toast or tooltip said. No account is needed.
 
@@ -14535,7 +14584,7 @@ Source: https://docs.vectored.dev/lens/privacy.html
 
 Lens by Vectored · Last updated: August 2026
 
-**The short version.** Lens has no account, no server and no analytics. As installed it makes no network requests at all. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it — that last part stays true no matter what you turn on. The one thing that can change it is you connecting an AI provider of your own, which is off by default and covered in [section 7](#ai).
+**The short version.** Lens has no account, no subscription, no server and no analytics. As installed it makes no network requests at all — it is a completely offline tool. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it — that last part stays true no matter what you turn on. The one thing that can change it is you connecting an AI provider of your own, which is off by default and covered in [section 7](#ai).
 
 ### 1. Who this covers
 
@@ -14705,7 +14754,7 @@ Source: https://docs.vectored.dev/lens/security.html
 
 Lens by Vectored · Last updated: August 2026
 
-**Threat model in one line.** Lens runs on your machine and, as installed, has no network surface of its own, so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in [section 4](#ai).
+**Threat model in one line.** Lens runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in [section 4](#ai).
 
 ### 1. Permissions, and why each one exists
 
@@ -14834,7 +14883,7 @@ Lens has not been released yet. Use this form to ask for early access, tell us w
 
 ### Submit Feedback or Report an Issue
 
-No login required. Your submission creates a ticket that our team reviews.
+No login and no subscription required. Your submission creates a ticket that our team reviews.
 
 Type *
 
@@ -14958,9 +15007,9 @@ Approvals Leave & holidays Cost centers Worklog sync
 
 COMING SOON
 
-Screenshot and screen recording for documentation — capture a region of any tab as PNG, GIF or MP4, annotate and redact it, and file it straight into a local project folder with a metadata timeline.
+Screenshot and screen recording for documentation — capture a region of any tab as PNG, a high-quality GIF or MP4, annotate and redact it, and file it straight into a local project folder with a metadata timeline. Completely offline, with no account and no subscription.
 
-Region capture GIF & MP4 Annotation & blur Local folders
+Region capture High-quality GIF & MP4 Annotation & blur Local folders Fully offline No subscription
 
 [Documentation →](https://docs.vectored.dev/lens/) [Early access](https://docs.vectored.dev/lens/support.html)
 

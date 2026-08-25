@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings — Lens Docs</title>
   <meta name="description" content="Reference for every Lens setting: recording and image format, guides, private-data flagging, AI models, file name pattern, clipboard, metadata and sounds.">
-  <meta name="vc-updated" content="23 Aug 2026">
+  <meta name="vc-updated" content="25 Aug 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -41,15 +41,17 @@
 <p class="text-muted mb-4">Settings live on the dashboard under <strong class="text-text">Settings</strong>, and apply to every project. A change takes effect on your next capture, not one already in progress.</p>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Recording format</h2>
 <p class="text-muted mb-4"><strong class="text-text">GIF</strong> or <strong class="text-text">MP4</strong>. See <a href="recording.html" class="text-cta hover:underline">Recording</a> for the trade-off. The description under the control tells you whether your Chrome build can encode MP4, or will fall back to WebM.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">2. Maximum GIF recording length</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. GIF quality, framerate and scale</h2>
+<p class="text-muted mb-4">These are not on the Settings page — they live in the converter that opens when you stop a GIF recording, so you set them per recording against a preview of the actual frames. Scale 100% at 30 frames a second gives the highest-quality output — see <strong class="text-text">Getting the highest-quality GIF</strong> on the <a href="recording.html" class="text-cta hover:underline">Recording</a> page.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. Maximum GIF recording length</h2>
 <p class="text-muted mb-4">One to ten minutes. A recording stops at the cap and opens the converter as though you had pressed stop. This exists because a long recording at 15 frames a second becomes a very large GIF.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">3. Still image format</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Still image format</h2>
 <p class="text-muted mb-4"><strong class="text-text">PNG</strong> keeps text crisp and is the right default for documentation. <strong class="text-text">JPEG</strong> produces much smaller files but softens text and adds artefacts around high-contrast edges. The file extension follows the setting.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">4. Write metadata file</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. Write metadata file</h2>
 <p class="text-muted mb-4">On by default. When off, capture files are still written to the project folder but <span class="font-mono text-sm">project_metadata.json</span> is not updated — so those captures will not appear in the timeline read from that folder.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">5. Copy to clipboard on capture</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. Copy to clipboard on capture</h2>
 <p class="text-muted mb-4">Puts each capture on the clipboard as well as saving it. Because the clipboard only accepts PNG images, a JPEG capture is converted before copying. The save toast reports whether the copy succeeded.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">6. Visualise clicks</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. Visualise clicks</h2>
 <p class="text-muted mb-4">Draws a marker at each click while recording, so a walkthrough shows where you clicked. Markers are only drawn <strong class="text-text">inside</strong> the recorded region — a marker outside it would never appear in the output.</p>
 <figure class="shot mb-6">
         <img src="../assets/lens-click-marker.png" alt="A recording in progress with a red click marker expanding at the point of a click inside the recorded region" loading="lazy"
@@ -63,50 +65,50 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">A recording in progress with a red click marker expanding at the point of a click inside the recorded region</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">7. Play shutter sound</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. Play shutter sound</h2>
 <p class="text-muted mb-4">A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">8. Flag private data in captures</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">9. Flag private data in captures</h2>
 <p class="text-muted mb-4">On by default. Checks each captured region for credentials before you save and offers to blur them — see <a href="capturing.html" class="text-cta hover:underline">Capturing</a> for what the bar looks like and what it recognises. It reads the page structure in your browser: no AI, no network call, nothing sent anywhere.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">9. Also flag emails and card numbers</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">10. Also flag emails and card numbers</h2>
 <p class="text-muted mb-4">On by default, and only has an effect while the check above is on. Widens it past credentials to personal data. Card numbers are validated against their checksum, so order and reference numbers are not flagged.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">10. Build a guide from each recording</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">11. Build a guide from each recording</h2>
 <p class="text-muted mb-4">On by default. Any recording with clicks in it also produces a step-by-step guide, offered for review on the save screen — see <a href="guides.html" class="text-cta hover:underline">Guides</a>. Turn it off and recordings are just recordings.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">11. Walkthrough mode</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">12. Walkthrough mode</h2>
 <p class="text-muted mb-4"><strong class="text-text">Interactive</strong> by default. As well as the screenshots and the words, Lens notes which control each step points at — enough to find it again later, which is what lets a guide be <a href="guides.html" class="text-cta hover:underline">played back against the live page</a>. <strong class="text-text">Plain</strong> records the screenshots and the words only, and writes nothing about the page's own markup.</p>
 <p class="text-muted mb-4">The same setting sits under the <strong class="text-text">Record steps</strong> button in the popup, as a checkbox. Both write the one value.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">12. Quote what you typed</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">13. Quote what you typed</h2>
 <p class="text-muted mb-4">On by default. A step for a field you filled in reads <em>Type "ACME-1024" into "Order number"</em> rather than <em>Type into "Order number"</em> — the difference between an instruction a reader can follow and one they cannot.</p>
 <p class="text-muted mb-4">It is fenced in. Nothing is quoted from a password or payment field, from a field whose name suggests a secret, or from a value shaped like a key, a token, a card number or an email address. Those steps name the field and stop there. The rules are the same ones the private-data check uses. Turn the setting off and nothing you enter is written down at all.</p>
 <p class="text-muted mb-4">The option you pick from a dropdown is held to the same bar, and is recorded whatever this setting says — it is a label on the page rather than something you entered. An option carrying a mail address or an account number names the field and stops there.</p>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The screenshot for such a step is taken <em>after</em> you have typed, so what you entered is visible in the picture whether or not it is quoted in the text. That is the point of the step. Blur it in the editor, or delete the step, before the guide is saved.</p></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">13. Auto-blur guide steps</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">14. Auto-blur guide steps</h2>
 <p class="text-muted mb-4"><strong class="text-text">Off</strong>, and deliberately so. When on, anything the private-data check flags in a step screenshot is blurred without asking.</p>
 <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted">This is the only place in Lens where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason.</p></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">14. Guide marker colour</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">15. Guide marker colour</h2>
 <p class="text-muted mb-4">The colour of the numbered callout drawn on each step screenshot. Red by default. Pick something that stands out against the product you are documenting.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">15. Maximum steps per guide</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">16. Maximum steps per guide</h2>
 <p class="text-muted mb-4">Sixty by default. A flow longer than that is usually two guides, and the cap stops a stray click storm from producing a document nobody will read.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">16. Guide image format</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">17. Guide image format</h2>
 <p class="text-muted mb-4"><strong class="text-text">JPEG</strong> by default here, rather than PNG. A sixty-step guide is sixty screenshots, and JPEG is what keeps that folder to a sane size. Switch to PNG if your steps are mostly small text.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">17. Merge clicks into animated steps</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">18. Merge clicks into animated steps</h2>
 <p class="text-muted mb-4">Off by default. When several clicks happen on one screen with no scrolling between them, they can be saved as one short animated step instead of a run of near-identical stills.</p>
 <p class="text-muted mb-4">The clip is cut from footage the recording already sampled, so nothing is captured twice. Three controls tune it: the longest gap between clicks that still counts as one run, the longest a merged step may be, and its frame rate. An animated step can always be split back into its individual clicks in the editor — each click kept its own still.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">18. AI models</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">19. AI models</h2>
 <p class="text-muted mb-4"><strong class="text-text">None configured</strong> by default, which means every AI feature is off and Lens makes no network requests at all. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine.</p>
 <div class="tbl-wrap"><table><thead><tr><th>Provider</th><th>Runs</th><th>Needs</th></tr></thead><tbody><tr><td>Your browser's built-in model</td><td>On your device</td><td>Edge or Chrome with the model available</td></tr><tr><td>A local model</td><td>On your device</td><td>Ollama, LM Studio or similar, and the model name</td></tr><tr><td>Claude</td><td>Anthropic's servers</td><td>An Anthropic API key</td></tr><tr><td>Gemini</td><td>Google's servers</td><td>A Google AI API key</td></tr><tr><td>OpenAI or compatible</td><td>OpenAI's servers, or an endpoint you name</td><td>An API key</td></tr></tbody></table></div>
 <p class="text-muted mb-4">Add as many as you like. Each is saved with its own key and model name, one is marked active for the capture screens, and the guide editor's assistant lets you switch between them per message.</p>
 <p class="text-muted mb-4">Picking one that runs in the cloud asks you to confirm first, because it changes what the extension does with page text. <strong class="text-text">Test</strong> actually contacts the model, and a model that has not passed one is not offered anywhere — a key that looks well-formed is not a model that answers.</p>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">An API key is stored in this browser only, in its own storage area, and is read only by the extension's background worker — never by the code Lens injects into a page. The settings screen can tell you a key is saved but cannot show it back to you. Vectored never receives it; see the <a href="../privacy.html#ai" class="text-cta hover:underline">privacy policy</a>.</p></div>
 <p class="text-muted mb-4">Connecting a model also puts buttons on the save screens — <strong class="text-text">Suggest name</strong> on a screenshot, <strong class="text-text">Write steps from clicks</strong> on a recording, <strong class="text-text">Rewrite with AI</strong> on a guide — and opens the assistant in the guide editor. None of them runs on its own: you press them, per capture. See <a href="capturing.html" class="text-cta hover:underline">Capturing</a>, <a href="recording.html" class="text-cta hover:underline">Recording</a> and <a href="guides.html" class="text-cta hover:underline">Guides</a>.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">19. Let the model sharpen redaction hints</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">20. Let the model sharpen redaction hints</h2>
 <p class="text-muted mb-4">Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console.</p>
 <p class="text-muted mb-4">The model is told the <strong class="text-text">type</strong> of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">20. File name pattern</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">21. File name pattern</h2>
 <p class="text-muted mb-4">Controls the name each capture is given before you edit it. The extension is added automatically.</p>
 <div class="tbl-wrap"><table><thead><tr><th>Token</th><th>Expands to</th><th>Example</th></tr></thead><tbody><tr><td><span class="font-mono text-sm">{name}</span></td><td>The capture type — <span class="font-mono text-sm">Lens</span> for stills, <span class="font-mono text-sm">LensRecord</span> for recordings</td><td>Lens</td></tr><tr><td><span class="font-mono text-sm">{date}</span></td><td>Capture date</td><td>2026-08-17</td></tr><tr><td><span class="font-mono text-sm">{time}</span></td><td>Capture time</td><td>09-04-07</td></tr><tr><td><span class="font-mono text-sm">{index}</span></td><td>A counter that increments through the day and resets at midnight</td><td>007</td></tr></tbody></table></div>
 <p class="text-muted mb-4">Anything else in the pattern is kept as written. Characters a file system rejects — <span class="font-mono text-sm">/ \ : * ? " &lt; &gt; |</span> — are replaced with a dash. The line under the field previews the name your next capture will get.</p>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Clear the field and it returns to the default, <span class="font-mono text-sm">{name}_{date}_{time}</span>.</p></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">21. Keyboard shortcuts</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">22. Keyboard shortcuts</h2>
 <p class="text-muted mb-4">The Settings page lists the shortcuts currently bound, read from Chrome rather than hardcoded, so it always reflects reality. See <a href="shortcuts.html" class="text-cta hover:underline">Keyboard shortcuts</a> to change them.</p>
       </article>
 

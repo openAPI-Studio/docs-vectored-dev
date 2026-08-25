@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recording GIF and MP4 — Lens Docs</title>
-  <meta name="description" content="Record part of a tab as an animated GIF or MP4, with click-through interaction, navigation support and a converter for GIF output.">
-  <meta name="vc-updated" content="20 Aug 2026">
+  <meta name="description" content="Record part of a tab as a high-quality animated GIF or MP4, with click-through interaction, navigation support and a converter that controls GIF framerate, speed and scale. Runs entirely offline.">
+  <meta name="vc-updated" content="25 Aug 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -33,12 +33,13 @@
       <div data-vc="crumbs"></div>
       <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
       <h1 class="vc-h1">Recording GIF and MP4</h1>
-      <p class="vc-lede">Record a region of a tab as an animated GIF or an MP4 video.</p>
+      <p class="vc-lede">Record a region of a tab as a high-quality animated GIF or an MP4 video.</p>
       <div data-vc="meta"></div>
       <div data-vc="contents"></div>
 
       <article class="vc-doc">
-<p class="text-muted mb-4">Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through.</p>
+<p class="text-muted mb-4">Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Recording and encoding both happen inside your browser. Nothing is uploaded, no account or subscription is involved, and the whole flow works offline.</p></div>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Starting a recording</h2>
 <ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Record GIF</strong> in the popup</strong> <span class="text-muted">or use the recording shortcut. The region selector opens exactly as it does for a still capture.</span></li><li class="mb-3"><strong class="text-text">Drag the region and press <strong class="text-text">Record GIF</strong></strong> <span class="text-muted">on the selection toolbar.</span></li><li class="mb-3"><strong class="text-text">Use the page normally</strong> <span class="text-muted">a dashed red frame marks the recorded area and a REC widget shows elapsed time.</span></li><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Stop &amp; Convert</strong></strong> <span class="text-muted">when you are done.</span></li></ol>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The dashed frame and the REC widget sit <strong class="text-text">outside</strong> the recorded region, so neither appears in the output. If your selection covers the whole viewport there is nowhere to put the widget, and it will be captured.</p></div>
@@ -56,12 +57,16 @@
       </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">2. Choosing GIF or MP4</h2>
 <p class="text-muted mb-4">Set the output under <strong class="text-text">Settings &gt; Capture and recording &gt; Recording format</strong>.</p>
-<div class="tbl-wrap"><table><thead><tr><th></th><th>GIF</th><th>MP4</th></tr></thead><tbody><tr><td>Best for</td><td>Embedding anywhere, no player needed</td><td>Anything longer than a few seconds</td></tr><tr><td>File size</td><td>Large — tens of MB is normal</td><td>Typically a small fraction of the GIF</td></tr><tr><td>Colours</td><td>256 per file, chosen automatically</td><td>Full colour</td></tr><tr><td>Conversion step</td><td>Yes — a converter opens after you stop</td><td>No — the file is ready when you stop</td></tr></tbody></table></div>
+<div class="tbl-wrap"><table><thead><tr><th></th><th>GIF</th><th>MP4</th></tr></thead><tbody><tr><td>Best for</td><td>Embedding anywhere, no player needed</td><td>Anything longer than a few seconds</td></tr><tr><td>File size</td><td>Large — tens of MB is normal</td><td>Typically a small fraction of the GIF</td></tr><tr><td>Colours</td><td>256 per file, chosen automatically</td><td>Full colour</td></tr><tr><td>Quality controls</td><td>Framerate, speed and scale, set after you stop</td><td>None — recorded as captured</td></tr><tr><td>Conversion step</td><td>Yes — a converter opens after you stop</td><td>No — the file is ready when you stop</td></tr></tbody></table></div>
 <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted">MP4 recording depends on your Chrome build. Where Chrome cannot encode MP4, Lens records <strong class="text-text">WebM</strong> instead and names the file accordingly, so the extension always matches the actual contents. The Settings page tells you which one your browser will produce before you record.</p></div>
 <h2 class="text-2xl font-semibold mt-10 mb-4">3. The GIF converter</h2>
 <p class="text-muted mb-4">Stopping a GIF recording opens a converter with a player, so you can check the result before committing to an encode.</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Framerate</strong> — 10, 15, 24 or 30 frames per second.</li><li class="mb-2"><strong class="text-text">Playback speed</strong> — 0.5× to 2×, applied to the output, not just the preview.</li><li class="mb-2"><strong class="text-text">Quality / scale</strong> — 100%, 75% or 50%. Halving the scale is the fastest way to cut file size.</li><li class="mb-2">The header shows how many frames were captured, the captured pixel size, and the region you selected.</li></ul>
-<p class="text-muted mb-4">Encoding runs in the page and locks the controls while it works. Progress is shown on the bar.</p>
+<p class="text-muted mb-4">Encoding runs in the page and locks the controls while it works. Progress is shown on the bar. It is done entirely on your machine — there is no upload step and no service to sign up for, so the converter works with the network off.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Getting the highest-quality GIF</h2>
+<p class="text-muted mb-4">The defaults favour a file you can attach to a ticket. When the GIF is going into documentation and detail matters more than size, push all three controls up:</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Scale 100%</strong> — the single biggest factor. At 100% each captured pixel becomes a GIF pixel, so text in the recording stays readable.</li><li class="mb-2"><strong class="text-text">30 frames per second</strong> — for cursor movement, drag-and-drop and anything animated. 10 or 15 is enough for a slow click-through and encodes far faster.</li><li class="mb-2"><strong class="text-text">Playback speed 1×</strong> — anything faster drops frames from the output, not just the preview.</li><li class="mb-2">Select a <strong class="text-text">tight region</strong>. A small region at full scale is both sharper and smaller than a big region scaled down.</li></ul>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">A high-quality GIF is a large GIF — a full-scale 30fps recording of a wide region runs to tens of megabytes and takes noticeably longer to encode. If the result is too big to share, halve the scale before you drop the framerate: it costs less of what makes a recording readable.</p></div>
 <figure class="shot mb-6">
         <img src="../assets/lens-gif-converter.png" alt="The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header" loading="lazy"
              class="rounded-lg border border-border"
@@ -74,18 +79,18 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">4. You also get a guide</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. You also get a guide</h2>
 <p class="text-muted mb-4">If the recording had clicks in it, Lens builds a <strong class="text-text">step-by-step guide</strong> from it as well: a screenshot taken at the moment of each click, cropped to the control, numbered and captioned. It appears for review under the file name on the save screen, and nothing is written until you approve it — you can untick individual steps, or untick the guide entirely and keep just the recording.</p>
 <p class="text-muted mb-4">This is on by default and needs no AI. See <a href="guides.html" class="text-cta hover:underline">Guides</a> for the review panel, the editor and exporting. If you want the walkthrough without the video, <strong class="text-text">Record steps</strong> (⌘⇧E) captures one with no recording behind it and no time limit.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">5. Writing steps from what you clicked</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. Writing steps from what you clicked</h2>
 <p class="text-muted mb-4">While a recording runs, Lens notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, <strong class="text-text">Write steps from clicks</strong> turns that into a numbered list and adds it to your note.</p>
 <p class="text-muted mb-4">This works with no AI provider at all: the click list alone produces usable steps. If you have a provider connected, it rewrites the list into better prose instead — merging actions that are really one step and dropping navigation noise. The toast tells you which of the two you got.</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">The log follows the recording across pages, so a walkthrough that navigates keeps its steps.</li><li class="mb-2">Repeated clicks on the same control within a second are treated as one step.</li><li class="mb-2">Steps are added to your note, never over the top of what you already wrote.</li></ul>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">If the recording had no clicks in it, the button does not appear — there is nothing to write.</p></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">6. Recording across page navigation</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. Recording across page navigation</h2>
 <p class="text-muted mb-4">A recording belongs to the <strong class="text-text">tab</strong>, not the page. If you click a link and navigate, recording continues and the controls are rebuilt on the new page with the timer intact.</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">Navigating to a page Chrome does not allow extensions on — <span class="font-mono text-sm">chrome://</span> pages, the Web Store — keeps the recording going, but the on-page controls cannot be shown. Stop it from the popup instead.</li><li class="mb-2">Closing the tab ends the recording and discards it.</li></ul>
-<h2 class="text-2xl font-semibold mt-10 mb-4">7. Stopping from another tab</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. Stopping from another tab</h2>
 <p class="text-muted mb-4">If you switch tabs, the Lens popup shows a <strong class="text-text">Recording</strong> banner with the elapsed time and which tab it belongs to. <strong class="text-text">Stop &amp; convert</strong> there brings that tab forward and opens the converter; the cross button discards the recording.</p>
 <figure class="shot mb-6">
         <img src="../assets/lens-popup-recording-banner.png" alt="The popup showing the red recording banner with elapsed time, the source tab name, and Stop &amp; convert and discard buttons" loading="lazy"
@@ -99,7 +104,7 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">The popup showing the red recording banner with elapsed time, the source tab name, and Stop &amp; convert and discard buttons</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">8. Length limit</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">9. Length limit</h2>
 <p class="text-muted mb-4">Recordings stop automatically at the cap set under <strong class="text-text">Settings &gt; Maximum GIF recording length</strong> — one minute by default, up to ten. When the cap is reached the recording stops and the converter opens as though you had pressed stop.</p>
       </article>
 
