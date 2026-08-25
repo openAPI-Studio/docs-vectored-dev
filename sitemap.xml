@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://docs.vectored.dev/</loc><lastmod>2026-08-17</lastmod><priority>1.0</priority></url>
+  <url><loc>https://docs.vectored.dev/</loc><lastmod>2026-08-25</lastmod><priority>1.0</priority></url>
   <url><loc>https://docs.vectored.dev/macrotoolkit/</loc><lastmod>2026-08-16</lastmod><priority>1.0</priority></url>
   <url><loc>https://docs.vectored.dev/macrotoolkit/docs/3d-viewer.html</loc><lastmod>2026-08-16</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/macrotoolkit/docs/carousel.html</loc><lastmod>2026-08-16</lastmod><priority>0.8</priority></url>
@@ -138,19 +138,19 @@
   <url><loc>https://docs.vectored.dev/blog/posts/introducing-forms-and-frontdoor.html</loc><lastmod>2026-08-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/blog/posts/slack-teams-notifications-confluence-forms.html</loc><lastmod>2026-08-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/rewardhub/</loc><lastmod>2026-08-16</lastmod><priority>0.9</priority></url>
-  <url><loc>https://docs.vectored.dev/lens/</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
-  <url><loc>https://docs.vectored.dev/lens/support.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://docs.vectored.dev/lens/privacy.html</loc><lastmod>2026-08-18</lastmod><priority>0.5</priority></url>
-  <url><loc>https://docs.vectored.dev/lens/security.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
-  <url><loc>https://docs.vectored.dev/lens/docs/getting-started.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/</loc><lastmod>2026-08-25</lastmod><priority>0.9</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/support.html</loc><lastmod>2026-08-25</lastmod><priority>0.5</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/privacy.html</loc><lastmod>2026-08-25</lastmod><priority>0.5</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/security.html</loc><lastmod>2026-08-25</lastmod><priority>0.5</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/getting-started.html</loc><lastmod>2026-08-25</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/lens/docs/capturing.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docs.vectored.dev/lens/docs/recording.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/recording.html</loc><lastmod>2026-08-25</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/lens/docs/projects.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/lens/docs/timeline.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docs.vectored.dev/lens/docs/settings.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/settings.html</loc><lastmod>2026-08-25</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/lens/docs/ai.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/lens/docs/shortcuts.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docs.vectored.dev/lens/docs/troubleshooting.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docs.vectored.dev/lens/docs/troubleshooting.html</loc><lastmod>2026-08-25</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/lens/docs/guides.html</loc><lastmod>2026-08-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/rewardhub/docs/getting-started.html</loc><lastmod>2026-08-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/rewardhub/docs/giving-recognition.html</loc><lastmod>2026-08-16</lastmod><priority>0.7</priority></url>
