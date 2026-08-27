@@ -8232,13 +8232,15 @@ Install TimeSheets and log your first entry
 
 TimeSheets adds time tracking, approvals, leave and billing to Jira Cloud. It runs entirely on Atlassian Forge, so there is nothing to host and no data leaves your Atlassian site except email.
 
-This page takes you from a fresh install to a first logged entry. It should take about ten minutes.
+This page takes you from a fresh install to a first logged entry. It should take about ten minutes. Steps 1 and 2 are for an administrator and must both be done before anyone else opens the app.
 
 ### 1. Install the app
 
 Install TimeSheets from the Atlassian Marketplace. On first load the app creates its own tables, which takes a few seconds; if a screen looks empty immediately after installing, reload it once.
 
-You need to be a **Jira site administrator** to install and to reach the admin screens. Everyone else can start logging time straight away.
+You need to be a **Jira site administrator** to install and to reach the admin screens.
+
+Do not hand the app to your team yet. Nobody can log a single entry until an administrator has created a cost centre and assigned it to a project — step 2. A person who opens the Hub before that finds an empty project list and no way forward.
 
 ![The TimeSheets listing on the Atlassian Marketplace, with the Get it now button](https://docs.vectored.dev/timesheets/assets/timesheets-marketplace-install.png)
 
@@ -8250,7 +8252,29 @@ The TimeSheets listing on the Atlassian Marketplace, with the Get it now button
 
 The TimeSheets listing on the Atlassian Marketplace, with the Get it now button
 
-### 2. Open the Hub
+### 2. Create a cost centre and attach it to a project
+
+This is the one step that cannot be skipped. Every worklog entry carries exactly one **cost centre** — the label that says how the work is classified for reporting and billing — and a cost centre is only offered on projects it has been attached to. A project with none attached does not appear in the Log time dialog at all.
+
+Do both halves before anyone else opens the app:
+
+1. Create the cost centre — go to **Admin Settings → Cost Centers** and add one. A name is all that is required; code, parent, billable, hour allotment and budget are optional and can be filled in later. One general cost centre is enough to get started — you can add the real structure once people are logging.
+
+2. Attach it to your projects — open **Project Settings → Cost centres** for each project that will track time, and assign the cost centres that may be used there. Repeat for every project; nothing is attached automatically, including projects created after the cost centre.
+
+![The cost centres section of Project Settings, with a cost centre assigned to the project](https://docs.vectored.dev/timesheets/assets/timesheets-project-cost-centre-assign.png)
+
+Screenshot needed
+
+timesheets-project-cost-centre-assign.png
+
+The cost centres section of Project Settings, with a cost centre assigned to the project
+
+The cost centres section of Project Settings, with a cost centre assigned to the project
+
+Detaching a cost centre later stops it being used for **new** entries only; existing entries keep theirs. Full detail in [Cost Centers](https://docs.vectored.dev/timesheets/docs/cost-centers.html) and [Project Settings](https://docs.vectored.dev/timesheets/docs/project-settings.html).
+
+### 3. Open the Hub
 
 Everything a person needs day to day lives in one place, called the **Hub**. Find it under **Apps → TimeSheets** in the Jira top navigation.
 
@@ -8276,7 +8300,7 @@ The TimeSheets Hub with the Dashboard tab open, showing the tab bar across the t
 
 The TimeSheets Hub with the Dashboard tab open, showing the tab bar across the top
 
-### 3. Log your first entry
+### 4. Log your first entry
 
 1. Open the Hub — and stay on the Dashboard, or go to the Calendar.
 
@@ -8300,23 +8324,21 @@ The Log time dialog with a project, cost centre, date and duration filled in
 
 The Log time dialog with a project, cost centre, date and duration filled in
 
-If the project you want is not in the list, it either has no cost centres assigned to it yet, or you cannot browse it in Jira. Both are fixed by an administrator — see [Project Settings](https://docs.vectored.dev/timesheets/docs/project-settings.html).
+If the project you want is not in the list, it almost always has no cost centres attached yet — go back to step 2. The other cause is that you cannot browse the project in Jira. Both are fixed by an administrator — see [Project Settings](https://docs.vectored.dev/timesheets/docs/project-settings.html).
 
-### 4. What an administrator should set up next
+### 5. What an administrator should set up next
 
-TimeSheets works out of the box, but four things are worth deciding early because they shape everything else:
+Cost centres are already in place from step 2. Beyond them, three things are worth deciding early because they shape everything else:
 
-1. **Cost centres.** How work is classified. Nothing can be logged until at least one is assigned to a project — see [Cost Centers](https://docs.vectored.dev/timesheets/docs/cost-centers.html).
+1. **Approvals.** Whether time needs approving at all, per entry or per week, and who approves it — see [Approvals](https://docs.vectored.dev/timesheets/docs/approvals.html).
 
-2. **Approvals.** Whether time needs approving at all, per entry or per week, and who approves it — see [Approvals](https://docs.vectored.dev/timesheets/docs/approvals.html).
+2. **Working hours and days.** The basis for capacity, missing-day detection and leave — see [Admin Settings](https://docs.vectored.dev/timesheets/docs/admin-settings.html).
 
-3. **Working hours and days.** The basis for capacity, missing-day detection and leave — see [Admin Settings](https://docs.vectored.dev/timesheets/docs/admin-settings.html).
-
-4. **Leave types.** Which categories your organisation uses. Health-related types arrive switched off on purpose — see [Leave Management](https://docs.vectored.dev/timesheets/docs/leave.html).
+3. **Leave types.** Which categories your organisation uses. Health-related types arrive switched off on purpose — see [Leave Management](https://docs.vectored.dev/timesheets/docs/leave.html).
 
 Billing is entirely optional and off until you add a client and a rate. If you only want timesheets, you can ignore it.
 
-### 5. Where to go next
+### 6. Where to go next
 
 - Logging in bulk, copying weeks and using templates — [Logging Time](https://docs.vectored.dev/timesheets/docs/logging-time.html)
 
@@ -13382,7 +13404,7 @@ Drag a region, resize it precisely, then annotate with pen, text, shapes and arr
 
 #### Step-by-step guides
 
-Click through a flow once and get a numbered walkthrough out of it — a screenshot per click, cropped to the control and captioned from the page itself. No AI involved. Export as one self-contained HTML file, as Markdown, or straight into a doc.
+Click through a flow once and get a numbered walkthrough out of it — a screenshot per click, cropped to the control and captioned from the page itself. No AI involved. Export as one self-contained HTML file, as Markdown zipped with its screenshots, or straight into a doc — and import one back from a file or a link.
 
 ](https://docs.vectored.dev/lens/docs/guides.html) [
 
@@ -13482,7 +13504,21 @@ The Lens popup on first run, showing the default project, no folder linked, and 
 
 The Lens popup on first run, showing the default project, no folder linked, and the three capture actions
 
-### 2. Link a project folder
+### 2. What is in the popup
+
+Top to bottom: the header, the project, the capture actions, and this project's recent captures.
+
+| Where | What it is |
+| --- | --- |
+| Header, right | The arrow opens the full dashboard in a tab. **?** holds Docs, Support and Security. The gear goes straight to the dashboard's Settings |
+| Project | The dropdown switches project; the row under it names the linked folder, with **Link**, **Change** or **Reconnect** beside it |
+| Capture region | The full-width button, because it is the one most people reach for |
+| Steps, GIF, Full tab | The row of three under it. Each shows its own keyboard shortcut |
+| Interactive walkthrough | A switch. On, a walkthrough also records which control each step points at, so it can be [played back](https://docs.vectored.dev/lens/docs/guides.html) against the live page. Off records the screenshots and the words only |
+| Timeline | This project's captures, newest first. See [Timeline and dashboard](https://docs.vectored.dev/lens/docs/timeline.html) |
+| Footer | **License** states the built-in free licence, which covers every feature and needs no key. **Privacy** opens the policy |
+
+### 3. Link a project folder
 
 A **project** is a name plus one folder on your computer. Captures for the active project are written straight into that folder, next to a project_metadata.json file that records what was captured, from which page, and when.
 
@@ -13504,7 +13540,7 @@ The popup project row with a folder linked, showing the folder name and the Chan
 
 The popup project row with a folder linked, showing the folder name and the Change button
 
-### 3. Take your first capture
+### 4. Take your first capture
 
 1. **Press **Capture region**** or use the keyboard shortcut. The page dims and the cursor becomes a crosshair.
 
@@ -13524,7 +13560,7 @@ A region selected on a web page, with the dimension pill above it and the Cancel
 
 A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below
 
-### 4. Where to go next
+### 5. Where to go next
 
 - [Capturing a region](https://docs.vectored.dev/lens/docs/capturing.html) — selection, annotation and saving in detail.
 
@@ -13854,6 +13890,10 @@ The walkthrough widget in the corner of a page, showing a step count, a clip cou
 
 - Clicking into a field and leaving it empty — the step arrives when you type something, not before.
 
+- Pausing while you fill a field in. The step is written once the typing settles, and typing on into the same field extends that step rather than adding another; the picture is of the field as you leave it.
+
+- The page load a click causes — said as part of that click (*Follow "Support" — opens docs.vectored.dev/support.html*) rather than as a step of its own with no picture. A redirect chain names where you end up; a page you open yourself is still a step.
+
 - Clicking a dropdown open. The step is the option you choose from it. On most platforms the open list is drawn by the operating system and would not appear in a screenshot of the page anyway.
 
 - A short scroll, or the jump a page makes in response to a click that was already recorded.
@@ -13890,6 +13930,8 @@ The review panel on the save screen listing numbered steps with their screenshot
 | Open editor | Opens the guide as a document in its own tab |
 | Export | Self-contained HTML, Markdown, or the clipboard |
 | Delete | Removes the guide's folder on disk and the entry pointing at it. Asks first |
+
+Above the cards sit three actions that apply to the whole set: **Find guides on disk**, **Import guide** and **Export all guides**. The first two are covered under **Importing a guide** below, the third under **Exporting**.
 
 Guides recorded while no folder was linked are held in the browser and listed below the others as **pending**. They are not lost — link a folder, make that project active, and write them from there.
 
@@ -13930,7 +13972,19 @@ Guide Mode running on a live page: the companion panel with a step and its scree
 
 Guide Mode running on a live page: the companion panel with a step and its screenshot, and a blue ring drawn around the button that step refers to
 
-### 6. When the control cannot be found
+Where the recording caught what was typed — an order number, a search term, an option chosen from a dropdown — the panel carries a **Copy** button beside the instruction, so the value goes into the field without being read off a screenshot and retyped. Anything that looked like a credential was never written down, so those steps have nothing to copy.
+
+### 6. Dropdowns wait for the choice
+
+Opening a dropdown is not the same as choosing from it, so a step about one does not move on when you click it. What happens next depends on where the list is drawn.
+
+- **A list drawn in the page** — a listbox, a menu, or a dropdown built out of divs — has the option itself ringed as soon as it appears, with the tag reading **Pick "Overnight courier"**. Click that option and the step is done.
+
+- **A list drawn by the operating system**, which is what a plain <select> gets on macOS, is not part of the page and has nothing in it to ring. The tag names the option to choose instead.
+
+Choose something other than what the guide recorded and the step stays where it is, saying **Choose "Asia Pacific"** — better than carrying you forward from a choice you did not make.
+
+### 7. When the control cannot be found
 
 Beside the step number the panel says which it is — **Ringed on the page**, or **Not on this page**. A step with no control to point at, such as a page load or a scroll, says nothing there and shows no ring; press **Next** when you have done it.
 
@@ -13940,18 +13994,46 @@ It also keeps looking. A page that fetches its content draws its controls after 
 
 Guide Mode needs an ordinary website tab. Started from the dashboard or the editor — both extension pages, which Chrome does not allow any script into — it opens the page the guide starts on in a new tab.
 
-### 7. The guide editor
+### 8. What a guide says about itself
+
+Above the first step sits a table: **written by**, **email**, **status** (Draft, In review, Published), **date**, **steps**, **time needed** and **comments**. Every field is editable in the editor, and all of it is printed into guide.html and guide.md above step 1 — they are the questions a reader asks before starting, not after finishing.
+
+The time needed is worked out from the steps themselves: a click reads quicker than a field to fill in, a clip counts for as long as it runs, and the words in each step count towards the reading. Type over it and your figure stands; clear it and the calculation comes back.
+
+The name and address are filled in for you — from Settings, or from the address this Chrome profile is signed in with when Settings is blank. A guide someone else wrote keeps their name when you open it, and nothing is sent anywhere: it goes into that guide's own file in your folder. See [Privacy](https://docs.vectored.dev/lens/privacy.html).
+
+### 9. The guide editor
 
 The editor opens in its own tab and reads as a document: the sheet is the width of the exported page, and the steps run down it in order.
 
-Step text is **Markdown**, and the toolbar offers exactly what Markdown can carry — bold, italic, strikethrough, code, highlight, links, bullet and numbered lists, task lists, tables, code blocks, rules, callouts and headings. Nothing else is offered on purpose: a font size or a colour would be something one of the two exports could not represent, and the same text is written to guide.md and rendered into guide.html.
+Step text is **Markdown**, and the toolbar offers exactly what Markdown can carry — bold, italic, strikethrough, code, highlight, links with an optional tooltip, pictures, bullet and numbered lists, task lists, nesting a list item deeper or bringing it back out, a line break inside a paragraph, tables, code blocks, rules, callouts and headings. Nothing else is offered on purpose: a font size or a colour would be something one of the two exports could not represent, and the same text is written to guide.md and rendered into guide.html.
+
+Typed by hand, the whole of the [basic syntax](https://www.markdownguide.org/basic-syntax/) works: headings, bold, italic and both at once, blockquotes, ordered and unordered lists (-, * and +) nested by indentation, code spans — including the doubled-backtick form that holds a backtick — fenced code blocks, horizontal rules, links with titles, autolinked addresses such as <https://example.com> and bare email addresses, pictures, two-space hard line breaks, and backslash escapes. On top of that: strikethrough, ==highlight==, tables, task lists, GitHub-style callouts and :emoji: shortcodes.
+
+Printed as written rather than rendered: setext headings, four-space indented code blocks, nested blockquotes, reference-style links, and raw HTML — the last of those deliberately.
+
+**Enter** carries on what you are in the middle of: another bullet, another numbered item, another task with its own box, and any inline formatting you had switched on. An empty list item leaves the list, and Enter after a heading drops back to ordinary text.
+
+**Insert a picture** opens the file picker and copies the file into the guide's own folder when you save, writing it into the text as ![alt](https://docs.vectored.dev/lens/docs/name.png). **Insert a table** opens a grid — drag across it to choose the size — and while the caret is inside a table, a small bar above it adds or removes rows and columns.
 
 | Key | What it does |
 | --- | --- |
 | ⌘B / ⌘I | Bold, italic |
 | ⌘K | Link |
 | ⌘S | Save |
+| ⌘⇧M | Switch between formatted editing and the raw Markdown |
+| ⌘⇧O | Show or hide the outline down the left |
 | ⌘click | Open a link — a plain click inside editable text places the caret instead, as it does everywhere |
+
+The **outline** down the left jumps between steps. The button in its header collapses it, and a tab at the screen edge — or ⌘⇧O — brings it back. On a window narrower than about 1000px there is no room for it and it is not shown.
+
+**Markdown** in the ribbon, or ⌘⇧M, replaces the sheet with the whole guide as one Markdown document — the same text guide.md is exported as, title and numbered steps and picture links and all. Retitle it, rewrite a step, reorder or delete items, or type a new numbered step at the end; the document is read back into the guide as you type.
+
+The outline still works here: clicking a step scrolls the document to that step's numbered line and puts the caret on it.
+
+Lines are numbered down the left, and a wrapped line stays one line however many rows it takes — each number is as tall as the line beside it. The **?** next to the toggle, which only exists in this view, lists every mark the editor understands and what it produces; clicking a row drops it in at the caret.
+
+What the text does not carry is kept from the steps that were there: which control each step points at, what kind of step it is, the file behind each picture. Items are matched to their steps by the picture they name, so a step that moves takes its screenshot and its recorded control with it, and an item you type in becomes a plain step with no picture. While the mode is on the formatting controls are blurred and made inert rather than hidden — they have nothing to act on — and the title in the header is read-only, because the document's first line is the title. The mode is remembered between sessions.
 
 ![The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar](https://docs.vectored.dev/lens/assets/lens-guide-editor.png)
 
@@ -13963,7 +14045,7 @@ The guide editor showing the dark chrome around a white document sheet, with num
 
 The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar
 
-### 8. Working on a step
+### 10. Working on a step
 
 Hover a step. On the step itself:
 
@@ -13976,21 +14058,45 @@ Hover a step. On the step itself:
 | Copy step | Text and picture together, ready to paste |
 | Delete | The step goes, and its picture is removed from the folder when you save |
 
+The page a step happened on sits under it as a small pill, showing the host and the end of the path — docs.vectored.dev/lens, or docs/getting-started.html for a local file. A search address with forty parameters shortens to google.com/search?…, and the whole address is the tooltip. Clicking the pill changes the address, which is what you want when a guide was recorded against localhost; the arrow beside it opens the page in a new tab.
+
 On the screenshot itself you get the same image tools as a still capture — crop, annotate, blur, colour and rotation — plus **Replace image**, which swaps in a different file while keeping its name. The crop tool opens with the crop the recording suggested already drawn, to accept or drag.
 
 Nothing is written until you press **Save**. Closing with unsaved changes asks first, and undo covers everything, including a rewrite the assistant applied.
 
-### 9. Exporting
+### 11. Exporting
 
 | Format | What you get |
 | --- | --- |
-| **Self-contained HTML** | guide.html with every picture inlined and no scripts. One file you can email, and ⌘P > Save as PDF is the PDF route |
+| **Self-contained HTML** | guide.html with every picture inlined and no scripts. One file you can email, and ⌘P > Save as PDF is the PDF route. A recorded value prints on its own line, selectable in one click |
 | **Markdown** | guide.md beside its screenshots, relative paths, ready for a repo or a docs site |
 | **Copy to clipboard** | Rich text for pasting into Confluence, Notion or a document |
 
+From the **editor**, Markdown downloads as a .zip holding guide.md and every screenshot it points at, in one folder. On its own the Markdown is a document whose picture links lead nowhere; the archive keeps the two together. A guide with no screenshots downloads as a plain .md.
+
+**Export all guides**, above the cards on the Guides tab, writes Lens_Guides_<date>.zip: one folder per guide, each holding guide.html, guide.md, the screenshots, and the guide.json they were built from — so the archive can be read back in, not only read. A guide that cannot be read, usually a folder needing reconnecting, is left out and counted rather than failing the whole archive.
+
 Animated steps print their poster frame. When pasting into a document, check the pictures survived — editors disagree about pasted images and some drop them.
 
-### 10. The assistant
+### 12. Importing a guide
+
+A guide appears in the list because project_metadata.json names it. Copying a guide folder into a project achieves nothing on its own, and a metadata file that is lost or overwritten takes every guide in that project out of the list with all the files still sitting on disk. These two actions cover both.
+
+| Action | What it does |
+| --- | --- |
+| **Import guide > From a file** | A .zip written by either export, or a bare guide.json. One archive may hold many guides; all of them come in |
+| **Import guide > From a link** | The same, fetched from an address you paste |
+| **Find guides on disk** | Lists guide folders that are in a linked project folder but missing from its timeline |
+
+An import is always a **copy**: it is given a new id and its own folder, so importing the same bundle twice leaves two guides rather than quietly overwriting the first. Nothing already on disk is replaced. A guide.json that arrives without its screenshots imports anyway and says so — those steps keep their words and have no picture.
+
+Imports land in the **active project**, which must have a folder linked. What kind of file it is is read from its first bytes rather than its name, so a bundle fetched from a link works whatever the address ends in.
+
+Importing from a link is the only time Lens reaches the network on its own. It downloads the address you paste and nothing else: no service in between, nothing of yours sent with the request, http and https only, and 50 MB or 30 seconds at the outside. See [Privacy](https://docs.vectored.dev/lens/privacy.html).
+
+**Find guides on disk** walks every linked project, keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time.
+
+### 13. The assistant
 
 The editor has a chat panel, and it stays shut until you have configured a model **and** a test has actually reached it. See [AI features](https://docs.vectored.dev/lens/docs/ai.html) for setting one up.
 
@@ -14078,7 +14184,7 @@ Captures are grouped by day, newest first, with the time down the left. Each row
 
 | Control | What it does |
 | --- | --- |
-| Thumbnail | Opens a larger preview with the page URL and capture time |
+| Thumbnail | Opens a larger preview with the page URL and capture time. The preview shows the real file, so a GIF plays |
 | Copy | Puts the image on the clipboard |
 | Rename | Renames the file on disk and in the metadata |
 | Delete | Removes the entry from the timeline |
@@ -14097,11 +14203,13 @@ The popup timeline with captures grouped under Today and Yesterday, each row sho
 
 ### 2. The dashboard
 
-Open the dashboard from the arrow icon at the top right of the popup. It has three sections.
+Open the dashboard from the arrow icon at the top right of the popup, or the gear beside it to land straight on Settings. It has four sections.
 
 - **Projects** — every project as a card with its folder, capture count, last capture and access state.
 
 - **Timeline** — every capture across all projects, grouped by project.
+
+- **Guides** — every step-by-step guide, with import and export for the whole set. See [Guides](https://docs.vectored.dev/lens/docs/guides.html).
 
 - **Settings** — all preferences, plus your keyboard shortcuts.
 
@@ -14143,9 +14251,13 @@ The dashboard master timeline with the filter bar and capture cards grouped unde
 
 - **JSON** in the popup, or **Export JSON** on a project card, writes that one project's project_metadata.json.
 
-### 6. Cached previews
+### 6. Thumbnails, and the file behind them
 
-Thumbnails are held in extension storage so the timeline loads instantly. **Settings > Clear cached previews** empties that cache. Files already written to disk are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place.
+What the timeline shows beside each entry is a small JPEG of the **first frame**, held in extension storage so the list loads instantly. That is why a GIF sits still in the popup timeline and in the dashboard grid, and why a screenshot there is thumbnail-sized rather than full resolution.
+
+Open one and the preview reads the actual file out of the project folder instead: full size, and a recording that plays. Where no folder is linked, or its access has lapsed, the stored thumbnail stays up rather than the preview failing.
+
+**Settings > Clear cached previews** empties that cache. Files already written to disk are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place until you open one.
 
 ## Settings
 
@@ -14542,7 +14654,19 @@ The recording produced nothing to encode. Usually the tab was hidden or minimise
 
 A guide is written when you approve it on the save screen. If no folder was linked at that moment it is held in the browser instead and listed under **Dashboard > Guides** as **pending**. Link a folder, make that project active, and write it from there — nothing is lost in the meantime.
 
-### 7. Guide Mode is not highlighting anything
+### 7. My guides have disappeared from the dashboard
+
+The files are almost certainly still there. A guide is listed because project_metadata.json names it, so a metadata file that was lost, replaced or hand-edited takes every guide in that project out of the list while the folders sit untouched on disk.
+
+**Dashboard > Guides > Find guides on disk** walks every linked project and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason.
+
+### 8. A dropdown step will not move on
+
+That is deliberate. Opening a dropdown is not choosing from it, so the step waits for the option the guide recorded — the panel names which one. Pick something else and the step stays put and tells you what to look for. Where the list is drawn in the page, the option itself is ringed; where the operating system draws it, as with a plain <select> on macOS, there is nothing in the page to ring and the tag names it instead.
+
+**Next** moves on regardless, if you want to skip it.
+
+### 9. Guide Mode is not highlighting anything
 
 Look at the label beside the step number in the panel.
 
@@ -14552,25 +14676,25 @@ Look at the label beside the step number in the panel.
 
 - **Plain walkthrough** — the guide was recorded with **Walkthrough mode** set to Plain, so nothing was written down about the page's controls. Guides recorded that way show their words and pictures only. Re-record with Interactive to get the highlighting.
 
-### 8. My GIF came out blurry or soft
+### 10. My GIF came out blurry or soft
 
 The converter's **Quality / scale** control was below 100%. At 75% or 50% every captured pixel is resampled, which softens text first. Re-encode from the converter at 100%, and raise the framerate to 30 if motion also looked choppy — see **Getting the highest-quality GIF** on the [Recording](https://docs.vectored.dev/lens/docs/recording.html) page.
 
 If the recording itself looked soft on screen, the region was captured on a scaled display. Recording at 100% scale keeps whatever the tab actually rendered; it cannot add detail that was never drawn.
 
-### 9. Do I need an account or a subscription?
+### 11. Do I need an account or a subscription?
 
 No. Lens has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud [AI provider](https://docs.vectored.dev/lens/docs/ai.html) you connect with your own key — that is your account with that provider, not one with Vectored.
 
-### 10. The MP4 I recorded is a WebM
+### 12. The MP4 I recorded is a WebM
 
 Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an .mp4 that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it.
 
-### 11. Nothing happened when I pressed the shortcut
+### 13. Nothing happened when I pressed the shortcut
 
 See [Keyboard shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html) — the usual causes are a restricted page, a conflicting binding, or a page that has not finished loading.
 
-### 12. Still stuck
+### 14. Still stuck
 
 [Open a support ticket](https://docs.vectored.dev/lens/support.html) and include what you were capturing, which browser version you are on, and what the toast or tooltip said. No account is needed.
 
@@ -14712,7 +14836,9 @@ Setting the provider back to **None** stops every AI feature immediately and ret
 
 Lens bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin. As installed it sends nothing to anyone.
 
-The one third party Lens can ever talk to is an AI provider you chose and configured yourself, and only for a feature you turned on — see [section 7](#ai). There is no third party Lens contacts on its own initiative.
+The one third party Lens can ever talk to on its own is an AI provider you chose and configured yourself, and only for a feature you turned on — see [section 7](#ai). There is no third party Lens contacts on its own initiative.
+
+One other request exists, and you make it happen: **importing a guide from a link**. Paste an address into the dashboard and Lens downloads it from that address and no other — no service of ours in between, and nothing about you, your captures or your projects sent with the request. Whoever hosts the file sees an ordinary download, as they would from any browser. Only http and https addresses are accepted. Importing from a file on your machine makes no request at all.
 
 If you choose to contact us through the [support form](https://docs.vectored.dev/lens/support.html), that is a separate, voluntary act: only what you type into the form is sent, and only then. The extension is not involved.
 
@@ -14774,6 +14900,8 @@ A screen-capture extension necessarily asks for broad permissions. Here is what 
 Lens requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.
 
 The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Lens contacts no host on its own initiative — see [section 4](#ai).
+
+The same permission covers one other request, and only when you ask for it: **importing a guide from a link**. Lens fetches the address you paste and nothing else, over http or https only, capped at 50 MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.
 
 ### 2. File system scope
 
