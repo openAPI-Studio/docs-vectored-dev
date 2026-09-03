@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings — Lens Docs</title>
   <meta name="description" content="Reference for every Lens setting: recording format, image format, file name pattern, clipboard, metadata, click markers and the shutter sound.">
-  <meta name="vc-updated" content="17 Aug 2026">
+  <meta name="vc-updated" content="03 Sep 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -63,14 +63,22 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">A recording in progress with a red click marker expanding at the point of a click inside the recorded region</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">7. Play shutter sound</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. Open Lens after saving</h2>
+<p class="text-muted mb-4">On by default. A capture that is written opens the Lens menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a toast. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. Explain Smart Capture before it starts</h2>
+<p class="text-muted mb-4">On by default. Shows how a walkthrough is recorded — when each screenshot is taken, how fast you can click, what does and does not become a step — with <strong class="text-text">Start recording</strong> and <strong class="text-text">Cancel</strong>, before anything is recorded. The dialog can also be dismissed for good from itself.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">9. Watermark</h2>
+<p class="text-muted mb-4">Lens draws a small mark in the corner of the images it saves, and tiles it faintly through exported documents — PDF and self-contained HTML — with a line at the foot of Markdown and clipboard copies.</p>
+<p class="text-muted mb-4">A licence puts it under your control: your own wording and logo, or off entirely. Without one, the mark stays. Everything else Lens does is unaffected either way — see <a href="../index.html" class="text-cta hover:underline">the licence</a>.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Where a guide came from is recorded separately and is never removed: the source page, the date and the author are written into every export whatever the licence says. Only the visible mark is licensed.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">10. Play shutter sound</h2>
 <p class="text-muted mb-4">A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">8. File name pattern</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">11. File name pattern</h2>
 <p class="text-muted mb-4">Controls the name each capture is given before you edit it. The extension is added automatically.</p>
 <div class="tbl-wrap"><table><thead><tr><th>Token</th><th>Expands to</th><th>Example</th></tr></thead><tbody><tr><td><span class="font-mono text-sm">{name}</span></td><td>The capture type — <span class="font-mono text-sm">Lens</span> for stills, <span class="font-mono text-sm">LensRecord</span> for recordings</td><td>Lens</td></tr><tr><td><span class="font-mono text-sm">{date}</span></td><td>Capture date</td><td>2026-08-17</td></tr><tr><td><span class="font-mono text-sm">{time}</span></td><td>Capture time</td><td>09-04-07</td></tr><tr><td><span class="font-mono text-sm">{index}</span></td><td>A counter that increments through the day and resets at midnight</td><td>007</td></tr></tbody></table></div>
 <p class="text-muted mb-4">Anything else in the pattern is kept as written. Characters a file system rejects — <span class="font-mono text-sm">/ \ : * ? " &lt; &gt; |</span> — are replaced with a dash. The line under the field previews the name your next capture will get.</p>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Clear the field and it returns to the default, <span class="font-mono text-sm">{name}_{date}_{time}</span>.</p></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">9. Keyboard shortcuts</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">12. Keyboard shortcuts</h2>
 <p class="text-muted mb-4">The Settings page lists the shortcuts currently bound, read from Chrome rather than hardcoded, so it always reflects reality. See <a href="shortcuts.html" class="text-cta hover:underline">Keyboard shortcuts</a> to change them.</p>
       </article>
 

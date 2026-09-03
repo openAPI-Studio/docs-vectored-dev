@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guides and Guide Mode — Lens Docs</title>
+  <meta name="description" content="Record a step-by-step guide with Lens Smart Capture, edit the steps, export it as HTML, Markdown or PDF, share it with a colleague, and replay it on the live page with Guide Mode.">
+  <meta name="vc-updated" content="03 Sep 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium"><span class="text-amber-400">Lens is coming soon.</span> <a class="text-cta hover:underline" href="../support.html">Ask for early access &rarr;</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+      <h1 class="vc-h1">Guides and Guide Mode</h1>
+      <p class="vc-lede">Record a click-by-click walkthrough, edit it, share it, and play it back on the live page.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">A <strong class="text-text">guide</strong> is a numbered sequence of steps, each with its own screenshot and the control it points at. Lens records one by watching your clicks — there is no region to drag and no video behind it.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">1. Recording one</h2>
+<p class="text-muted mb-4">Press <strong class="text-text">Smart Capture</strong> in the popup, or its keyboard shortcut. A briefing appears first, explaining how the recorder behaves; nothing is recorded until you press <strong class="text-text">Start recording</strong>, and <strong class="text-text">Cancel</strong> leaves nothing behind.</p>
+<ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press Smart Capture</strong> <span class="text-muted">the briefing opens over the page.</span></li><li class="mb-3"><strong class="text-text">Read it and press Start recording</strong> <span class="text-muted">a small bar appears in the corner with the step count, Finish and discard.</span></li><li class="mb-3"><strong class="text-text">Work through your flow</strong> <span class="text-muted">at a normal, unhurried pace. Every click on a real control becomes a numbered step.</span></li><li class="mb-3"><strong class="text-text">Press Finish</strong> <span class="text-muted">the guide is assembled and offered for saving into the active project.</span></li></ol>
+<p class="text-muted mb-4">Four things decide whether a guide comes out right, and the briefing says all four:</p>
+<div class="tbl-wrap"><table><thead><tr><th>Rule</th><th>Why</th></tr></thead><tbody><tr><td>Leave about a second between clicks</td><td>Chrome allows a tab to be photographed about twice a second. Click faster and the step is still recorded, it just has no picture.</td></tr><tr><td>Pause after typing before clicking on</td><td>What you type becomes one step, written down about a second and a half after you stop — not one step per key.</td></tr><tr><td>Keep the recorded tab in front</td><td>A tab that is not the visible one cannot be photographed. Following a link into a new tab is fine; the walkthrough goes with it.</td></tr><tr><td>Press and release in one place</td><td>A drag, or a press held longer than about a second and a half, is read as a text selection and dropped.</td></tr></tbody></table></div>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Clicking into a text box, or opening a dropdown, is deliberately <strong class="text-text">not</strong> a step. The step is what you typed, or the option you picked — not the click that got you there. Recording stops at 60 steps.</p></div>
+<p class="text-muted mb-4">The corner bar never appears in the pictures. Turn the briefing off for good from the dialog itself, or from <strong class="text-text">Dashboard → Settings → Explain Smart Capture before it starts</strong>.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. Editing a guide</h2>
+<p class="text-muted mb-4"><strong class="text-text">Dashboard → Guides → Open editor</strong>. Each step has its wording, its screenshot and its own controls: reorder, duplicate, split a run of clicks, add a note below the picture, or delete it. The header block carries the title, author, status, date, step count, how long the guide takes and a comments field — all of it editable, and all of it carried into every export.</p>
+<p class="text-muted mb-4">The time is worked out from the steps unless you type your own figure, and the note beside it is yours to write: say *including approvals* and that is what the exports say.</p>
+<p class="text-muted mb-4"><strong class="text-text">Markdown</strong> at the top of the ribbon swaps the formatted view for the guide's raw Markdown. Edits made there — including in the header table and the comments — come back with you.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. Exporting</h2>
+<p class="text-muted mb-4"><strong class="text-text">Dashboard → Guides → Export</strong> offers four destinations:</p>
+<div class="tbl-wrap"><table><thead><tr><th>Export</th><th>What it is for</th></tr></thead><tbody><tr><td><strong class="text-text">Share bundle (.zip)</strong></td><td>One file to send to a colleague. Downloads.</td></tr><tr><td><strong class="text-text">Self-contained HTML</strong></td><td>One <span class="font-mono text-sm">guide.html</span> with every picture inside it. Written into the project folder.</td></tr><tr><td><strong class="text-text">Markdown</strong></td><td><span class="font-mono text-sm">guide.md</span> beside its screenshots, for a repo or a docs site.</td></tr><tr><td><strong class="text-text">Copy to clipboard</strong></td><td>Rich text for Confluence, Notion or a doc.</td></tr></tbody></table></div>
+<p class="text-muted mb-4"><strong class="text-text">Export all guides</strong>, beside the Import button, writes every guide into one archive.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Sharing a guide with a colleague</h2>
+<p class="text-muted mb-4"><strong class="text-text">Share bundle</strong> is the one to send. It holds the guide itself — the steps and the control each one points at — its screenshots, and readable HTML and Markdown copies for anyone who only wants to read it. Your colleague imports it from <strong class="text-text">Dashboard → Guides → Import</strong>, and it arrives as a guide with a <strong class="text-text">Play</strong> button, not a document about one.</p>
+<p class="text-muted mb-4">Import also takes a link, so a bundle put on an internal share can be pulled in by address rather than by file.</p>
+<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted">A shared guide plays with rings only against the same screens. Guide Mode finds each step's control by a selector recorded against the page you captured on, so a colleague on the same app and version gets the rings in the right places, and one on a different build may not. The pictures and the words are unaffected either way.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. Printing a guide, or saving it as PDF</h2>
+<p class="text-muted mb-4">From the editor, <strong class="text-text">Export → Print / Save as PDF</strong>. The guide prints on its own — no toolbars, no side panels, no per-step buttons — as one continuous strip sized to the document rather than sliced into A4 pages, so no screenshot is ever cut in half. A guide long enough to exceed a single PDF page breaks between steps, never through a picture.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. Guide Mode — playing a guide back</h2>
+<p class="text-muted mb-4"><strong class="text-text">Play</strong> on any guide card runs it against the live page. Each step is shown in turn with its control ringed on the real page, so the reader follows along in the software rather than reading about it.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">A walkthrough recorded with <strong class="text-text">Interactive walkthrough</strong> turned off records the screenshots and the words only, with nothing about the page's own markup. It reads and exports perfectly, and it does not play.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. Where guides live</h2>
+<p class="text-muted mb-4">Each guide is a folder inside its project, holding <span class="font-mono text-sm">guide.json</span> and its screenshots. A guide is listed because <span class="font-mono text-sm">project_metadata.json</span> names it — copying a folder in by hand achieves nothing on its own, which is what Import is for.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

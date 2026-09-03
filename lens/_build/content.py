@@ -44,6 +44,7 @@ PAGES["getting-started"] = dict(
         UL([
             "[Capturing a region](capturing.html) — selection, annotation and saving in detail.",
             "[Recording GIF and MP4](recording.html) — the recorder, its controls and the two output formats.",
+            "[Guides and Guide Mode](guides.html) \u2014 record a click-by-click walkthrough, share it, and play it back on the live page.",
             "[Projects and folders](projects.html) — multiple projects, switching, and reconnecting folder access.",
             "[Settings](settings.html) — every preference and what it changes.",
         ]),
@@ -67,7 +68,20 @@ PAGES["capturing"] = dict(
             ["Confirm", "Press **Capture Image**, or press Enter"],
             ["Cancel", "Press **Cancel**, or press Escape"],
         ]),
-        P("The pill above the selection shows the size in CSS pixels and the native pixel size you will actually get — on a Retina display a 600×400 selection is captured at 1200×800."),
+        P("The pill above the selection shows the size in CSS pixels and the native pixel size you will actually get — on a Retina display a 600x400 selection is captured at 1200x800."),
+
+        H("Capturing a hover state or an open menu"),
+        P("A hover, a dropdown and a pop-up menu all close the moment you click anywhere else \u2014 including on the **Capture Image** button \u2014 so on their own they can never be photographed. The delay beside that button solves it: choose **3s**, **5s**, **10s** or **30s** and Lens hands the page back to you for that long before the shutter fires."),
+        STEPS([
+            "Drag the region|over the area the menu or tooltip will appear in, not over the control that opens it.",
+            "Pick a delay|from the clock menu on the left of the capture toolbar.",
+            "Press **Capture Image**|the toolbar controls disappear, the region stays outlined, and the count starts.",
+            "Set the page up|hover the control, open the menu, focus the field. Clicks, hovers and scrolling all reach the page normally.",
+            "Wait|the capture is taken automatically when the count reaches zero.",
+        ]),
+        P("The count runs in the capture toolbar, in the place the delay was chosen. **Cancel** or **Escape** calls it off and gives you the selection back, still adjustable. Your choice is remembered for the rest of the session, so a run of captures that all need the same pause only needs setting once."),
+        NOTE("Native dropdowns \u2014 a plain `<select>` \u2014 are drawn by the operating system rather than by the page, so Chrome cannot photograph them and they will not appear. Menus, tooltips, hover states and focus rings built in HTML and CSS, which is the great majority, all capture normally."),
+        WARN("The region is fixed to the screen, not to the page. If you scroll during the delay, the capture takes whatever has moved under the box."),
         SHOT("lens-selection-handles.png", "A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes"),
 
         H("Capture full tab"),
@@ -262,6 +276,17 @@ PAGES["settings"] = dict(
         P("Draws a marker at each click while recording, so a walkthrough shows where you clicked. Markers are only drawn **inside** the recorded region — a marker outside it would never appear in the output."),
         SHOT("lens-click-marker.png", "A recording in progress with a red click marker expanding at the point of a click inside the recorded region"),
 
+        H("Open Lens after saving"),
+        P("On by default. A capture that is written opens the Lens menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a toast. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures."),
+
+        H("Explain Smart Capture before it starts"),
+        P("On by default. Shows how a walkthrough is recorded \u2014 when each screenshot is taken, how fast you can click, what does and does not become a step \u2014 with **Start recording** and **Cancel**, before anything is recorded. The dialog can also be dismissed for good from itself."),
+
+        H("Watermark"),
+        P("Lens draws a small mark in the corner of the images it saves, and tiles it faintly through exported documents \u2014 PDF and self-contained HTML \u2014 with a line at the foot of Markdown and clipboard copies."),
+        P("A licence puts it under your control: your own wording and logo, or off entirely. Without one, the mark stays. Everything else Lens does is unaffected either way \u2014 see [the licence](../index.html)."),
+        NOTE("Where a guide came from is recorded separately and is never removed: the source page, the date and the author are written into every export whatever the licence says. Only the visible mark is licensed."),
+
         H("Play shutter sound"),
         P("A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension."),
 
@@ -360,10 +385,69 @@ PAGES["troubleshooting"] = dict(
 )
 
 # Sidebar order.
+PAGES["guides"] = dict(
+    title="Guides and Guide Mode",
+    lede="Record a click-by-click walkthrough, edit it, share it, and play it back on the live page.",
+    desc="Record a step-by-step guide with Lens Smart Capture, edit the steps, export it as HTML, Markdown or PDF, share it with a colleague, and replay it on the live page with Guide Mode.",
+    icon="list",
+    blocks=[
+        P("A **guide** is a numbered sequence of steps, each with its own screenshot and the control it points at. Lens records one by watching your clicks \u2014 there is no region to drag and no video behind it."),
+
+        H("Recording one"),
+        P("Press **Smart Capture** in the popup, or its keyboard shortcut. A briefing appears first, explaining how the recorder behaves; nothing is recorded until you press **Start recording**, and **Cancel** leaves nothing behind."),
+        STEPS([
+            "Press Smart Capture|the briefing opens over the page.",
+            "Read it and press Start recording|a small bar appears in the corner with the step count, Finish and discard.",
+            "Work through your flow|at a normal, unhurried pace. Every click on a real control becomes a numbered step.",
+            "Press Finish|the guide is assembled and offered for saving into the active project.",
+        ]),
+        P("Four things decide whether a guide comes out right, and the briefing says all four:"),
+        TABLE(["Rule", "Why"], [
+            ["Leave about a second between clicks", "Chrome allows a tab to be photographed about twice a second. Click faster and the step is still recorded, it just has no picture."],
+            ["Pause after typing before clicking on", "What you type becomes one step, written down about a second and a half after you stop \u2014 not one step per key."],
+            ["Keep the recorded tab in front", "A tab that is not the visible one cannot be photographed. Following a link into a new tab is fine; the walkthrough goes with it."],
+            ["Press and release in one place", "A drag, or a press held longer than about a second and a half, is read as a text selection and dropped."],
+        ]),
+        NOTE("Clicking into a text box, or opening a dropdown, is deliberately **not** a step. The step is what you typed, or the option you picked \u2014 not the click that got you there. Recording stops at 60 steps."),
+        P("The corner bar never appears in the pictures. Turn the briefing off for good from the dialog itself, or from **Dashboard \u2192 Settings \u2192 Explain Smart Capture before it starts**."),
+
+        H("Editing a guide"),
+        P("**Dashboard \u2192 Guides \u2192 Open editor**. Each step has its wording, its screenshot and its own controls: reorder, duplicate, split a run of clicks, add a note below the picture, or delete it. The header block carries the title, author, status, date, step count, how long the guide takes and a comments field \u2014 all of it editable, and all of it carried into every export."),
+        P("The time is worked out from the steps unless you type your own figure, and the note beside it is yours to write: say *including approvals* and that is what the exports say."),
+        P("**Markdown** at the top of the ribbon swaps the formatted view for the guide's raw Markdown. Edits made there \u2014 including in the header table and the comments \u2014 come back with you."),
+
+        H("Exporting"),
+        P("**Dashboard \u2192 Guides \u2192 Export** offers four destinations:"),
+        TABLE(["Export", "What it is for"], [
+            ["**Share bundle (.zip)**", "One file to send to a colleague. Downloads."],
+            ["**Self-contained HTML**", "One `guide.html` with every picture inside it. Written into the project folder."],
+            ["**Markdown**", "`guide.md` beside its screenshots, for a repo or a docs site."],
+            ["**Copy to clipboard**", "Rich text for Confluence, Notion or a doc."],
+        ]),
+        P("**Export all guides**, beside the Import button, writes every guide into one archive."),
+
+        H("Sharing a guide with a colleague"),
+        P("**Share bundle** is the one to send. It holds the guide itself \u2014 the steps and the control each one points at \u2014 its screenshots, and readable HTML and Markdown copies for anyone who only wants to read it. Your colleague imports it from **Dashboard \u2192 Guides \u2192 Import**, and it arrives as a guide with a **Play** button, not a document about one."),
+        P("Import also takes a link, so a bundle put on an internal share can be pulled in by address rather than by file."),
+        WARN("A shared guide plays with rings only against the same screens. Guide Mode finds each step's control by a selector recorded against the page you captured on, so a colleague on the same app and version gets the rings in the right places, and one on a different build may not. The pictures and the words are unaffected either way."),
+
+        H("Printing a guide, or saving it as PDF"),
+        P("From the editor, **Export \u2192 Print / Save as PDF**. The guide prints on its own \u2014 no toolbars, no side panels, no per-step buttons \u2014 as one continuous strip sized to the document rather than sliced into A4 pages, so no screenshot is ever cut in half. A guide long enough to exceed a single PDF page breaks between steps, never through a picture."),
+
+        H("Guide Mode \u2014 playing a guide back"),
+        P("**Play** on any guide card runs it against the live page. Each step is shown in turn with its control ringed on the real page, so the reader follows along in the software rather than reading about it."),
+        NOTE("A walkthrough recorded with **Interactive walkthrough** turned off records the screenshots and the words only, with nothing about the page's own markup. It reads and exports perfectly, and it does not play."),
+
+        H("Where guides live"),
+        P("Each guide is a folder inside its project, holding `guide.json` and its screenshots. A guide is listed because `project_metadata.json` names it \u2014 copying a folder in by hand achieves nothing on its own, which is what Import is for."),
+    ],
+)
+
 ORDER = [
     "getting-started",
     "capturing",
     "recording",
+    "guides",
     "projects",
     "timeline",
     "settings",

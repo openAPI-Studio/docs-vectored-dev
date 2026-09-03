@@ -47,7 +47,7 @@ GROUPS = {
  ],
  'lens': [
    ('Start here', ['getting-started']),
-   ('Capture', ['capturing','recording']),
+   ('Capture', ['capturing','recording','guides']),
    ('Organise', ['projects','timeline']),
    ('Configure', ['settings','shortcuts']),
    ('Help', ['troubleshooting']),
@@ -55,7 +55,7 @@ GROUPS = {
  'rewardhub': [
    ('Start here', ['getting-started']),
    ('Recognize', ['giving-recognition','ai-assist','reactions-comments','sharing-and-macro']),
-   ('Configure', ['company-values','email-notifications','moderation']),
+   ('Configure', ['company-values','rewards-setup','email-notifications','moderation']),
  ],
 }
 
