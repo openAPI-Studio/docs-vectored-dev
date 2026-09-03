@@ -90,7 +90,8 @@ PRODUCTS = [
       ctaLabel='Try free', homeLabel='Recognition Hub Overview'),
  dict(key='lens', label='Lens', blurb='Screenshots, GIF & MP4',
       dir='lens', icon='lens/assets/icon-64.png',
-      cta='lens/docs/getting-started.html', ctaLabel='Read the docs',
+      cta='https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki',
+      ctaLabel='Try now',
       homeLabel='Lens Overview'),
 ]
 
