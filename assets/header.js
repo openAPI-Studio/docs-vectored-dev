@@ -82,7 +82,7 @@
             '<svg id="icon-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>' +
             '<svg id="icon-dark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>' +
           '</button>' +
-          (ctx ? '<a class="vc-cta" href="' + esc(ctaHref(ctx)) + '"' + (/^https?:/.test(ctx.cta) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(ctx.ctaLabel) + '</a>' : '') +
+          (ctx ? '<a class="vc-cta" href="' + esc(ctaHref(ctx)) + '" data-store="' + esc(ctx.key) + '"' + (/^https?:/.test(ctx.cta) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(ctx.ctaLabel) + '</a>' : '') +
         '</div>' +
       '</div>' +
     '</header>';
@@ -177,6 +177,19 @@
       }
       if (e.key === 'Escape') { closeSwitcher(); setSearchOpen(false); }
     });
+  }
+
+  /* ------------------------------------------------ store links ------ */
+  /* The CTA above is an install link for some products, and which store it
+     should point at depends on the browser reading the page. store.js does that
+     rewrite; loading it from here means every page carrying the header gets it,
+     rather than each template having to remember. Loaded once, however many
+     scripts ask. */
+  if (!document.getElementById('vc-store-js')) {
+    var store = document.createElement('script');
+    store.id = 'vc-store-js';
+    store.src = u('assets/store.js');
+    document.head.appendChild(store);
   }
 
   /* ------------------------------------------------- sidebar toggle -- */

@@ -190,7 +190,7 @@ PAGE = """<!DOCTYPE html>
 <script src="../../assets/nav.js"></script>
 <script src="../../assets/header.js"></script>
 
-<div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium"><span class="text-amber-400">Lens is coming soon.</span> <a class="text-cta hover:underline" href="../support.html">Ask for early access &rarr;</a></div>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><span class="text-cta">Lens is out.</span> <a class="text-cta hover:underline" href="https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki" data-store="lens" target="_blank" rel="noopener">Install for Chrome or Edge &rarr;</a></div>
 
 <div class="vc-shell">
   <aside class="vc-side" data-noprint="1"></aside>
