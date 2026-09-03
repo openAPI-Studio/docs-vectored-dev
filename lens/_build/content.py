@@ -84,6 +84,19 @@ PAGES["capturing"] = dict(
         P("The pill above the selection shows the size in CSS pixels and the native pixel size you will actually get — on a Retina display a 600×400 selection is captured at 1200×800."),
         SHOT("lens-selection-handles.png", "A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes"),
 
+        H("Capturing a hover state or an open menu"),
+        P("A hover, a dropdown and a pop-up menu all close the moment you click anywhere else \u2014 including on the **Capture Image** button \u2014 so on their own they can never be photographed. The delay beside that button solves it: choose **3s**, **5s**, **10s** or **30s** and Lens hands the page back to you for that long before the shutter fires."),
+        STEPS([
+            "Drag the region|over the area the menu or tooltip will appear in, not over the control that opens it.",
+            "Pick a delay|from the clock menu on the left of the capture toolbar.",
+            "Press **Capture Image**|the toolbar controls disappear, the region stays outlined, and the count starts.",
+            "Set the page up|hover the control, open the menu, focus the field. Clicks, hovers and scrolling all reach the page normally.",
+            "Wait|the capture is taken automatically when the count reaches zero.",
+        ]),
+        P("The count runs in the capture toolbar, in the place the delay was chosen, so nothing new appears on the page to get in the way. **Cancel** or **Escape** calls it off and gives the selection back, still adjustable. The choice is remembered for the rest of the session, so a run of captures that all need the same pause only needs setting once."),
+        NOTE("Native dropdowns \u2014 a plain `<select>` \u2014 are drawn by the operating system rather than by the page, so Chrome cannot photograph them and they will not appear. Menus, tooltips, hover states and focus rings built in HTML and CSS, which is the great majority, all capture normally."),
+        WARN("The region is fixed to the screen, not to the page. If you scroll during the delay, the capture takes whatever has moved under the box."),
+
         H("Capture full tab"),
         P("**Full tab** skips the selection step and captures the whole visible area of the tab. It does not capture below the fold — only what is on screen."),
 
@@ -359,13 +372,20 @@ PAGES["guides"] = dict(
 
         H("Exporting"),
         TABLE(["Format", "What you get"], [
-            ["**Self-contained HTML**", "`guide.html` with every picture inlined and no scripts. One file you can email, and ⌘P > Save as PDF is the PDF route. A recorded value prints on its own line, selectable in one click"],
+            ["**Share bundle (.zip)**", "One guide as one file, for sending to somebody. It downloads rather than being written into the project folder, because it exists to be sent"],
+            ["**Print / Save as PDF**", "The guide alone \u2014 no toolbars, no side panels, no per-step buttons \u2014 as one continuous strip sized to the document rather than sliced into A4 pages, so no screenshot is cut in half"],
+            ["**Self-contained HTML**", "`guide.html` with every picture inlined and no scripts. One file you can email. A recorded value prints on its own line, selectable in one click"],
             ["**Markdown**", "`guide.md` beside its screenshots, relative paths, ready for a repo or a docs site"],
             ["**Copy to clipboard**", "Rich text for pasting into Confluence, Notion or a document"],
         ]),
         P("From the **editor**, Markdown downloads as a `.zip` holding `guide.md` and every screenshot it points at, in one folder. On its own the Markdown is a document whose picture links lead nowhere; the archive keeps the two together. A guide with no screenshots downloads as a plain `.md`."),
         P("**Export all guides**, above the cards on the Guides tab, writes `Lens_Guides_<date>.zip`: one folder per guide, each holding `guide.html`, `guide.md`, the screenshots, and the `guide.json` they were built from — so the archive can be read back in, not only read. A guide that cannot be read, usually a folder needing reconnecting, is left out and counted rather than failing the whole archive."),
-        NOTE("Animated steps print their poster frame. When pasting into a document, check the pictures survived — editors disagree about pasted images and some drop them."),
+        NOTE("A guide longer than a single PDF page allows breaks between steps, never through a picture. Animated steps print their poster frame. When pasting into a document, check the pictures survived — editors disagree about pasted images and some drop them."),
+
+        H("Sending a guide to a colleague"),
+        P("**Share bundle** is the one to send. It holds the guide itself \u2014 the steps and the control each one points at \u2014 its screenshots, and readable HTML and Markdown copies for anyone who only wants to read it. The other end imports it from the same tab and gets a guide with a **Play** button, not a document about one."),
+        P("Before this, sharing one guide meant sending the whole archive of every guide you had: **Export all guides** was the only route that produced something importable."),
+        WARN("A shared guide plays with rings only against the same screens. Guide Mode finds each step's control by a selector recorded against the page you captured on, so a colleague on the same app and version gets the rings in the right places, and one on a different build may not. The pictures and the words are unaffected either way. A walkthrough recorded with **Interactive walkthrough** off has no selectors at all: it imports and reads perfectly, and it does not play."),
 
         H("Importing a guide"),
         P("A guide appears in the list because `project_metadata.json` names it. Copying a guide folder into a project achieves nothing on its own, and a metadata file that is lost or overwritten takes every guide in that project out of the list with all the files still sitting on disk. These two actions cover both."),
@@ -614,6 +634,17 @@ PAGES["settings"] = dict(
 
         H("Play shutter sound"),
         P("A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension."),
+
+        H("Open Lens after saving"),
+        P("On by default. A capture that is written opens the Lens menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a message that disappears. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures."),
+
+        H("Explain Smart Capture before it starts"),
+        P("On by default. Before a walkthrough records anything, a short briefing explains how the recorder behaves \u2014 when each screenshot is taken, how fast you can click, what does and does not become a step \u2014 with **Start recording** and **Cancel**. Nothing is recorded until you press Start, and Cancel leaves nothing behind. The dialog carries its own **Don't show this again**."),
+
+        H("Watermark"),
+        P("Lens draws a small mark in the corner of the images it saves \u2014 screenshots, recordings and the step images in a guide \u2014 picking black or white to suit what is behind it. It also tiles faintly through exported documents, PDF and self-contained HTML, and closes Markdown and clipboard copies with a line."),
+        P("A licence puts it under your control: your own wording and logo, or off entirely. Without one the mark stays. Nothing else Lens does is affected either way \u2014 see [the licence](../index.html)."),
+        NOTE("Where a guide came from is recorded separately and is never removed: the source page, the date and the author go into every export whatever the licence says. Only the visible mark is licensed."),
 
         H("Flag private data in captures"),
         P("On by default. Checks each captured region for credentials before you save and offers to blur them — see [Capturing](capturing.html) for what the bar looks like and what it recognises. It reads the page structure in your browser: no AI, no network call, nothing sent anywhere."),
