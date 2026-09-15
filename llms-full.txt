@@ -13130,9 +13130,19 @@ Click **+ Give recognition** in the header. Pick a card template, search for the
 
 ### 4. Admin Setup
 
-Site admins configure Recognition Hub under **Settings > Recognition Hub** (Confluence or Jira): connect a GIPHY key (or use the built-in one), define company values, set up email notifications, and manage moderation.
+Site admins configure Recognition Hub under **Settings > Recognition Hub** (Confluence or Jira): connect a GIPHY key, define company values, set up email notifications, manage moderation, and — optionally — connect Tremendous to attach real monetary rewards to recognitions.
 
 ![GIPHY connection settings](https://docs.vectored.dev/rewardhub/assets/GIPHY configuration settingfspage.png)
+
+#### Turn on GIFs
+
+GIFs are **off by default**. To enable the GIF picker in the composer, open **Settings > Connections**, make sure a GIPHY key is present (the app can ship a built-in key, or you can paste your own workspace key), then switch on **Enable GIFs in the composer**. The toggle stays disabled until a key exists. Use **Test connection** to confirm the key is healthy, then reload the hub — the GIF button appears in the composer. Full details in [Giving Recognition](https://docs.vectored.dev/rewardhub/docs/giving-recognition.html).
+
+**Don't see GIFs?** The most common cause is the **Enable GIFs in the composer** toggle still being off, or the page not yet reloaded after enabling it. A key alone is not enough — the toggle must be on.
+
+#### Rewards (optional)
+
+Recognition Hub can attach real, spendable rewards to recognitions — funded and fulfilled through **Tremendous**. Recipients redeem their balance for a gift card of their choice, PayPal, and more. Setting it up is a one-time admin task: connect a Tremendous API key, pick a reward catalog, create funding pools, and choose who can give rewards. See [Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub/docs/rewards.html) for the full step-by-step.
 
 [Get Recognition Hub on the Atlassian Marketplace →](https://marketplace.atlassian.com/apps/564712405)
 
@@ -13162,9 +13172,13 @@ Optionally tag the recognition with one of your company's values. The value rend
 
 GIF search is powered by GIPHY ![Powered by GIPHY](https://docs.vectored.dev/rewardhub/assets/giphy-attribution-dark.svg) — the composer offers a searchable picker with trending GIFs and full search. GIFs render full-size on cards and appear as a still frame in notification emails.
 
+**GIFs are off until an admin turns them on.** Even with a GIPHY key in place, the GIF picker stays hidden until an admin ticks **Enable GIFs in the composer** under **Settings > Connections**. Save a key (or use the built-in one), then flip the toggle — the picker appears in the composer after the next reload.
+
 #### How the GIPHY integration works
 
-- **Built-in or workspace key** — GIFs work out of the box with the app’s built-in GIPHY key; admins can override it with their own workspace key under **Settings > Connections** (write-only, stored encrypted, with a test-connection button).
+- **Enable the toggle first** — GIFs ship **off**. Under **Settings > Connections**, ensure a key is present (built-in or your own), then turn on **Enable GIFs in the composer**. The toggle can’t be switched on until a key exists.
+
+- **Built-in or workspace key** — GIFs can run on the app’s built-in GIPHY key; admins can override it with their own workspace key under **Settings > Connections** (write-only, stored encrypted, with a test-connection button).
 
 - **Content-rating ceiling** — admins cap results at G, PG, or PG-13 (the workplace maximum). Every GIPHY request is filtered to that rating or stricter.
 
@@ -13272,6 +13286,120 @@ The Email tab lets you send the recognition to teammates on your site (searchabl
 
 The page macro is **Confluence only** — Jira has no page-macro equivalent. Copy the **Macro ID** from the share dialog, then on any Confluence page type `/Recognition Card`, insert the macro, and paste the ID. The live card — reactions and comments included — renders right on the page.
 
+## Rewards & Tremendous Setup
+
+Source: https://docs.vectored.dev/rewardhub/docs/rewards.html
+
+Attach real, spendable rewards to recognitions — funded and fulfilled through Tremendous
+
+### How Rewards Work
+
+With rewards enabled, someone giving recognition can attach a cash reward to it. The amount is entered **per person** — recognize five people at $10 each and $50 is drawn from the giver's pool. Each recipient's reward **balance** grows as they receive rewards, and they can redeem any part of it whenever they like. At redemption, Recognition Hub creates a Tremendous order and hands the recipient a **redemption link** where they choose their gift card brand, cash-out (PayPal, Venmo, and more, where available), or charity.
+
+Money is real and it moves through **Tremendous**. Recognition Hub keeps an internal ledger — pools and user balances — that always stays within your funded Tremendous balance; funds only actually leave Tremendous the moment a recipient redeems. This keeps the app out of money-movement scope while giving you full pool/limit control.
+
+**Rewards leave the Atlassian platform.** Reward fulfillment is handled by Tremendous, so a recipient's name and email and the reward amount are sent to Tremendous to issue the reward. Rewards are optional and off until an admin connects a Tremendous account — if you never connect one, no reward data ever leaves Atlassian.
+
+### What You'll Need
+
+- A **Tremendous account** — sign up free at [tremendous.com](https://www.tremendous.com). Use their sandbox (testflight.tremendous.com) to trial the flow with no real money.
+
+- A **Tremendous API key** (from the dashboard — see below).
+
+- At least one **campaign** in Tremendous, which defines the catalog of gift cards / payout options recipients can pick from.
+
+- **Funds** in your Tremendous balance (added in the Tremendous dashboard) before anyone can redeem.
+
+- Recognition Hub **admin** access (Settings > Recognition Hub).
+
+### Step 1 — Get Your Tremendous API Key
+
+1. Sign in to [app.tremendous.com](https://app.tremendous.com) (or testflight.tremendous.com for sandbox).
+
+2. Open **Team Settings → Developers → API keys** (sometimes shown as **Settings → API**).
+
+3. Click **Create API key**, give it a name (e.g. *Recognition Hub*), and copy the key.
+
+4. Store it somewhere safe for a moment — you'll paste it into Recognition Hub once. It is shown only at creation time.
+
+**Sandbox vs. production keys are different.** A key created in the sandbox (testflight.tremendous.com) only works with the sandbox environment, and a production key only works with production. Match the key to the **Sandbox mode** toggle in Recognition Hub (Step 3).
+
+### Step 2 — Create a Campaign (Reward Catalog)
+
+A **campaign** tells Tremendous which brands and payout options a recipient may choose from on the redemption page. Every reward order must reference one, so you need at least one campaign before rewards can be issued.
+
+1. In the Tremendous dashboard, open **Campaigns** (under **Rewards** or **Catalog**, depending on your account).
+
+2. Click **New campaign**, name it (e.g. *Recognition Rewards*), and select the products you want available — specific gift-card brands, "recipient's choice", cash-out options, charity, and so on.
+
+3. Save. Most accounts already ship with a default campaign you can use as-is.
+
+You don't need to copy the campaign ID by hand — Recognition Hub fetches your campaigns automatically when you test the connection, and lets you pick one from a dropdown.
+
+### Step 3 — Connect Tremendous in Recognition Hub
+
+1. Open **Settings > Recognition Hub > Rewards** (Confluence or Jira).
+
+2. Paste your **API key**.
+
+3. Set the **Sandbox mode** toggle to match your key — on for a testflight key, off for a production key.
+
+4. Click **Save key**. The key is write-only: it's stored encrypted and never shown again or sent to the browser.
+
+5. Click **Test connection**. This verifies the key, shows your live Tremendous balance, registers the status webhook, and loads your campaigns.
+
+6. Under **Reward catalog**, pick the campaign recipients should redeem against. Recognition Hub auto-selects one if only a default exists; change it any time.
+
+**USD only, for now.** Rewards require the workspace currency to be USD. If it isn't, the Rewards tab shows a warning and reward features stay hidden until the currency is set to USD.
+
+### Step 4 — Fund Your Tremendous Balance
+
+Recognition Hub allocates from your real Tremendous balance — it doesn't add money to Tremendous for you. Add funds once in the Tremendous dashboard:
+
+1. In Tremendous, go to **Billing → Payment methods** and link a bank account or card (a one-time setup Tremendous requires on their side).
+
+2. Add funds to your **balance**. Bank transfers may take a few business days to fully settle; cards clear faster.
+
+3. Back in Recognition Hub, the **Reward Pools** tab shows your live Tremendous balance so you know how much is available to allocate.
+
+### Step 5 — Create Pools, Load Money, Assign Givers
+
+Pools are how you budget and control who can give rewards. Open **Settings > Recognition Hub > Reward Pools**.
+
+- **Create a pool** — name it for a team, budget, or quarter (e.g. *Engineering Q3*).
+
+- **Load money** — allocate an amount from your Tremendous balance into the pool. Recognition Hub only lets you allocate what's actually unallocated (Tremendous balance minus everything already committed to pools and unredeemed user balances), so you can never over-promise.
+
+- **Assign givers** — add the people (or Atlassian groups) allowed to give rewards from this pool. A direct user assignment wins; otherwise the first matching group assignment applies. Each person or group belongs to one pool at a time.
+
+Only someone assigned to a pool with a positive balance sees the reward option in the composer. Everyone else gives recognition exactly as before.
+
+### Step 6 — Give a Reward
+
+An eligible giver opens the composer, adds recipients, and ticks **Attach a reward**. They enter an amount **per person**; the composer shows the live math — what each recipient gets, the total drawn from the pool, and the pool balance afterward — and blocks the post if it would overdraw the pool. On post, each recipient's balance is credited and the reward chip appears on the card (visible only to the giver and recipients, never broadcast).
+
+### Step 7 — How Recipients Redeem
+
+Anyone with a balance opens **My rewards** from their profile menu in the hub. They see their balance, redeem any amount (down to a $5 minimum), and get a **redemption link** to open right away — Tremendous also emails them the same link. On the Tremendous page they pick their gift card, cash-out option, or charity. The panel also shows their reward history, past redemptions with re-openable links, and lifetime achievements (totals plus Bronze/Silver/Gold badges).
+
+**Failed orders are auto-refunded.** If Tremendous can't complete an order, Recognition Hub credits the amount straight back to the recipient's balance — money is never lost in the gap. A background job and Tremendous webhooks keep every redemption's status in sync.
+
+### Auditing & Control
+
+Every money-adjacent action — pool creation, loading funds, assignments, reward grants, redemptions, refunds, and provider events — is written to an immutable **Audit Log** under **Settings > Recognition Hub > Audit Log**, filterable by action type. Pool and user balances are always reconcilable from their underlying ledgers.
+
+### Troubleshooting
+
+- **"No reward catalogs found"** — your Tremendous account has no campaign. Create one (Step 2), then run **Test connection** again.
+
+- **Redemption fails immediately** — usually a key/environment mismatch (sandbox key with sandbox off, or vice versa) or an unselected campaign. Re-check Step 3; the recipient's balance is refunded automatically.
+
+- **Giver doesn't see the reward option** — they aren't assigned to a pool, or their pool balance is zero. Assign them and load the pool (Step 5).
+
+- **Balance looks low right after funding** — bank transfers to Tremendous can take a few business days to fully settle. The Reward Pools tab reflects the live Tremendous balance.
+
+[Get Recognition Hub on the Atlassian Marketplace →](https://marketplace.atlassian.com/apps/564712405)
+
 ## Company Values
 
 Source: https://docs.vectored.dev/rewardhub/docs/company-values.html
@@ -13348,13 +13476,13 @@ Source: https://docs.vectored.dev/lens/
 
 ## Lens
 
-by Vectored · for Chrome
+by Vectored · for Chrome & Edge
 
-COMING SOON
+AVAILABLE NOW
 
 Capture a region of any tab as a PNG, a high-quality animated GIF or an MP4, or click through a flow and get a step-by-step guide out of it — annotated, named, and filed straight into a folder on your own machine with a metadata timeline beside it. GIFs record at up to 30 frames a second and encode at full captured resolution. Everything runs completely offline: no account, no subscription, no upload, no server.
 
-[Read the Docs](https://docs.vectored.dev/lens/docs/getting-started.html) [Ask for early access](https://docs.vectored.dev/lens/support.html)
+[Read the Docs](https://docs.vectored.dev/lens/docs/getting-started.html) [Install from the Chrome Web Store](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki)
 
 Works completely offline No subscription No account or sign-in High-quality GIF output
 
@@ -13474,7 +13602,7 @@ AI features are off on install. If you turn them on, you choose who does the wor
 
 [Privacy →](https://docs.vectored.dev/lens/privacy.html) [Security →](https://docs.vectored.dev/lens/security.html)
 
-Lens has not been released yet. If you want it early, or there is something it needs to do before it is useful to you, [tell us](https://docs.vectored.dev/lens/support.html) — no account and no subscription required, then or later.
+Lens is free, on the [Chrome Web Store and Edge Add-ons](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). If there is something it should do that it does not, [tell us](https://docs.vectored.dev/lens/support.html) — no account and no subscription required, then or later.
 
 ## Getting Started
 
@@ -13604,11 +13732,31 @@ A selection with its eight resize handles visible and the dimension pill reading
 
 A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes
 
-### 2. Capture full tab
+### 2. Capturing a hover state or an open menu
+
+A hover, a dropdown and a pop-up menu all close the moment you click anywhere else — including on the **Capture Image** button — so on their own they can never be photographed. The delay beside that button solves it: choose **3s**, **5s**, **10s** or **30s** and Lens hands the page back to you for that long before the shutter fires.
+
+1. **Drag the region** over the area the menu or tooltip will appear in, not over the control that opens it.
+
+2. **Pick a delay** from the clock menu on the left of the capture toolbar.
+
+3. **Press **Capture Image**** the toolbar controls disappear, the region stays outlined, and the count starts.
+
+4. **Set the page up** hover the control, open the menu, focus the field. Clicks, hovers and scrolling all reach the page normally.
+
+5. **Wait** the capture is taken automatically when the count reaches zero.
+
+The count runs in the capture toolbar, in the place the delay was chosen, so nothing new appears on the page to get in the way. **Cancel** or **Escape** calls it off and gives the selection back, still adjustable. The choice is remembered for the rest of the session, so a run of captures that all need the same pause only needs setting once.
+
+Native dropdowns — a plain <select> — are drawn by the operating system rather than by the page, so Chrome cannot photograph them and they will not appear. Menus, tooltips, hover states and focus rings built in HTML and CSS, which is the great majority, all capture normally.
+
+The region is fixed to the screen, not to the page. If you scroll during the delay, the capture takes whatever has moved under the box.
+
+### 3. Capture full tab
 
 **Full tab** skips the selection step and captures the whole visible area of the tab. It does not capture below the fold — only what is on screen.
 
-### 3. The private-data check
+### 4. The private-data check
 
 As the save screen opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered.
 
@@ -13634,7 +13782,7 @@ The save screen with an amber bar above the image listing two flagged regions, a
 
 The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
 
-### 4. The save screen
+### 5. The save screen
 
 Confirming the selection opens the editor and the save form as a single screen. Down the left is a rail of tools, in the middle the picture, and on the right the panel for whichever tool is selected — with the file name and notes below it.
 
@@ -13664,7 +13812,7 @@ The save screen with the tool rail on the left, an annotated screenshot in the m
 
 The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right
 
-### 5. Cropping, adjusting and turning
+### 6. Cropping, adjusting and turning
 
 - **Crop** opens on the whole picture — easier to pull inward than an empty box is to place. Ratio chips offer Free, Original, 1:1, 16:9, 4:3 and 3:2, and the readout shows the real pixel size you will get. **Apply crop** commits it.
 
@@ -13674,7 +13822,7 @@ The save screen with the tool rail on the left, an annotated screenshot in the m
 
 Cropping or turning retires the private-data bar, because the regions it flagged no longer line up with the picture. Anything still sensitive is covered with the blur tool instead.
 
-### 6. Undoing
+### 7. Undoing
 
 **⌘Z** (**Ctrl+Z**), or the Undo button under the picture. It steps back through everything — marks, crops, rotations and adjustments alike — restoring the size of the picture as well as its pixels, and taking the mark back off the list.
 
@@ -13682,7 +13830,7 @@ Cropping or turning retires the private-data bar, because the regions it flagged
 
 **Blur is irreversible and that is the point.** It rewrites the underlying pixels rather than covering them, so the original cannot be recovered from the saved file by removing a layer. Undo reverses a blur only while the save screen is still open — once the file is written, what was covered is gone.
 
-### 7. Naming and saving
+### 8. Naming and saving
 
 Below the tools are the file name, an optional note, and the page title and URL that will be recorded alongside the capture.
 
@@ -14068,7 +14216,9 @@ Nothing is written until you press **Save**. Closing with unsaved changes asks f
 
 | Format | What you get |
 | --- | --- |
-| **Self-contained HTML** | guide.html with every picture inlined and no scripts. One file you can email, and ⌘P > Save as PDF is the PDF route. A recorded value prints on its own line, selectable in one click |
+| **Share bundle (.zip)** | One guide as one file, for sending to somebody. It downloads rather than being written into the project folder, because it exists to be sent |
+| **Print / Save as PDF** | The guide alone — no toolbars, no side panels, no per-step buttons — as one continuous strip sized to the document rather than sliced into A4 pages, so no screenshot is cut in half |
+| **Self-contained HTML** | guide.html with every picture inlined and no scripts. One file you can email. A recorded value prints on its own line, selectable in one click |
 | **Markdown** | guide.md beside its screenshots, relative paths, ready for a repo or a docs site |
 | **Copy to clipboard** | Rich text for pasting into Confluence, Notion or a document |
 
@@ -14076,9 +14226,17 @@ From the **editor**, Markdown downloads as a .zip holding guide.md and every scr
 
 **Export all guides**, above the cards on the Guides tab, writes Lens_Guides_<date>.zip: one folder per guide, each holding guide.html, guide.md, the screenshots, and the guide.json they were built from — so the archive can be read back in, not only read. A guide that cannot be read, usually a folder needing reconnecting, is left out and counted rather than failing the whole archive.
 
-Animated steps print their poster frame. When pasting into a document, check the pictures survived — editors disagree about pasted images and some drop them.
+A guide longer than a single PDF page allows breaks between steps, never through a picture. Animated steps print their poster frame. When pasting into a document, check the pictures survived — editors disagree about pasted images and some drop them.
 
-### 12. Importing a guide
+### 12. Sending a guide to a colleague
+
+**Share bundle** is the one to send. It holds the guide itself — the steps and the control each one points at — its screenshots, and readable HTML and Markdown copies for anyone who only wants to read it. The other end imports it from the same tab and gets a guide with a **Play** button, not a document about one.
+
+Before this, sharing one guide meant sending the whole archive of every guide you had: **Export all guides** was the only route that produced something importable.
+
+A shared guide plays with rings only against the same screens. Guide Mode finds each step's control by a selector recorded against the page you captured on, so a colleague on the same app and version gets the rings in the right places, and one on a different build may not. The pictures and the words are unaffected either way. A walkthrough recorded with **Interactive walkthrough** off has no selectors at all: it imports and reads perfectly, and it does not play.
+
+### 13. Importing a guide
 
 A guide appears in the list because project_metadata.json names it. Copying a guide folder into a project achieves nothing on its own, and a metadata file that is lost or overwritten takes every guide in that project out of the list with all the files still sitting on disk. These two actions cover both.
 
@@ -14096,7 +14254,7 @@ Importing from a link is the only time Lens reaches the network on its own. It d
 
 **Find guides on disk** walks every linked project, keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time.
 
-### 13. The assistant
+### 14. The assistant
 
 The editor has a chat panel, and it stays shut until you have configured a model **and** a test has actually reached it. See [AI features](https://docs.vectored.dev/lens/docs/ai.html) for setting one up.
 
@@ -14309,25 +14467,41 @@ A recording in progress with a red click marker expanding at the point of a clic
 
 A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension.
 
-### 9. Flag private data in captures
+### 9. Open Lens after saving
+
+On by default. A capture that is written opens the Lens menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a message that disappears. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures.
+
+### 10. Explain Smart Capture before it starts
+
+On by default. Before a walkthrough records anything, a short briefing explains how the recorder behaves — when each screenshot is taken, how fast you can click, what does and does not become a step — with **Start recording** and **Cancel**. Nothing is recorded until you press Start, and Cancel leaves nothing behind. The dialog carries its own **Don't show this again**.
+
+### 11. Watermark
+
+Lens draws a small mark in the corner of the images it saves — screenshots, recordings and the step images in a guide — picking black or white to suit what is behind it. It also tiles faintly through exported documents, PDF and self-contained HTML, and closes Markdown and clipboard copies with a line.
+
+A licence puts it under your control: your own wording and logo, or off entirely. Without one the mark stays. Nothing else Lens does is affected either way — see [the licence](https://docs.vectored.dev/lens/index.html).
+
+Where a guide came from is recorded separately and is never removed: the source page, the date and the author go into every export whatever the licence says. Only the visible mark is licensed.
+
+### 12. Flag private data in captures
 
 On by default. Checks each captured region for credentials before you save and offers to blur them — see [Capturing](https://docs.vectored.dev/lens/docs/capturing.html) for what the bar looks like and what it recognises. It reads the page structure in your browser: no AI, no network call, nothing sent anywhere.
 
-### 10. Also flag emails and card numbers
+### 13. Also flag emails and card numbers
 
 On by default, and only has an effect while the check above is on. Widens it past credentials to personal data. Card numbers are validated against their checksum, so order and reference numbers are not flagged.
 
-### 11. Build a guide from each recording
+### 14. Build a guide from each recording
 
 On by default. Any recording with clicks in it also produces a step-by-step guide, offered for review on the save screen — see [Guides](https://docs.vectored.dev/lens/docs/guides.html). Turn it off and recordings are just recordings.
 
-### 12. Walkthrough mode
+### 15. Walkthrough mode
 
 **Interactive** by default. As well as the screenshots and the words, Lens notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](https://docs.vectored.dev/lens/docs/guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup.
 
 The same setting sits under the **Record steps** button in the popup, as a checkbox. Both write the one value.
 
-### 13. Quote what you typed
+### 16. Quote what you typed
 
 On by default. A step for a field you filled in reads *Type "ACME-1024" into "Order number"* rather than *Type into "Order number"* — the difference between an instruction a reader can follow and one they cannot.
 
@@ -14337,31 +14511,31 @@ The option you pick from a dropdown is held to the same bar, and is recorded wha
 
 The screenshot for such a step is taken *after* you have typed, so what you entered is visible in the picture whether or not it is quoted in the text. That is the point of the step. Blur it in the editor, or delete the step, before the guide is saved.
 
-### 14. Auto-blur guide steps
+### 17. Auto-blur guide steps
 
 **Off**, and deliberately so. When on, anything the private-data check flags in a step screenshot is blurred without asking.
 
 This is the only place in Lens where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason.
 
-### 15. Guide marker colour
+### 18. Guide marker colour
 
 The colour of the numbered callout drawn on each step screenshot. Red by default. Pick something that stands out against the product you are documenting.
 
-### 16. Maximum steps per guide
+### 19. Maximum steps per guide
 
 Sixty by default. A flow longer than that is usually two guides, and the cap stops a stray click storm from producing a document nobody will read.
 
-### 17. Guide image format
+### 20. Guide image format
 
 **JPEG** by default here, rather than PNG. A sixty-step guide is sixty screenshots, and JPEG is what keeps that folder to a sane size. Switch to PNG if your steps are mostly small text.
 
-### 18. Merge clicks into animated steps
+### 21. Merge clicks into animated steps
 
 Off by default. When several clicks happen on one screen with no scrolling between them, they can be saved as one short animated step instead of a run of near-identical stills.
 
 The clip is cut from footage the recording already sampled, so nothing is captured twice. Three controls tune it: the longest gap between clicks that still counts as one run, the longest a merged step may be, and its frame rate. An animated step can always be split back into its individual clicks in the editor — each click kept its own still.
 
-### 19. AI models
+### 22. AI models
 
 **None configured** by default, which means every AI feature is off and Lens makes no network requests at all. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine.
 
@@ -14381,13 +14555,13 @@ An API key is stored in this browser only, in its own storage area, and is read 
 
 Connecting a model also puts buttons on the save screens — **Suggest name** on a screenshot, **Write steps from clicks** on a recording, **Rewrite with AI** on a guide — and opens the assistant in the guide editor. None of them runs on its own: you press them, per capture. See [Capturing](https://docs.vectored.dev/lens/docs/capturing.html), [Recording](https://docs.vectored.dev/lens/docs/recording.html) and [Guides](https://docs.vectored.dev/lens/docs/guides.html).
 
-### 20. Let the model sharpen redaction hints
+### 23. Let the model sharpen redaction hints
 
 Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console.
 
 The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one.
 
-### 21. File name pattern
+### 24. File name pattern
 
 Controls the name each capture is given before you edit it. The extension is added automatically.
 
@@ -14402,7 +14576,7 @@ Anything else in the pattern is kept as written. Characters a file system reject
 
 Clear the field and it returns to the default, {name}_{date}_{time}.
 
-### 22. Keyboard shortcuts
+### 25. Keyboard shortcuts
 
 The Settings page lists the shortcuts currently bound, read from Chrome rather than hardcoded, so it always reflects reality. See [Keyboard shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html) to change them.
 
@@ -15007,7 +15181,7 @@ Source: https://docs.vectored.dev/lens/support.html
 
 ## Lens Support
 
-Lens has not been released yet. Use this form to ask for early access, tell us what it needs to do, or report a problem with a build you already have.
+Lens is available for [Chrome and Edge](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). Use this form to report a problem, ask a question, or tell us what it should do next.
 
 ### Submit Feedback or Report an Issue
 
@@ -15131,15 +15305,15 @@ Approvals Leave & holidays Cost centers Worklog sync
 
 ![Lens logo](https://docs.vectored.dev/lens/assets/icon.png)
 
-#### Lens for Chrome
+#### Lens for Chrome & Edge
 
-COMING SOON
+AVAILABLE NOW
 
 Screenshot and screen recording for documentation — capture a region of any tab as PNG, a high-quality GIF or MP4, annotate and redact it, and file it straight into a local project folder with a metadata timeline. Completely offline, with no account and no subscription.
 
 Region capture High-quality GIF & MP4 Annotation & blur Local folders Fully offline No subscription
 
-[Documentation →](https://docs.vectored.dev/lens/) [Early access](https://docs.vectored.dev/lens/support.html)
+[Install →](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki) [Documentation](https://docs.vectored.dev/lens/)
 
 #### On the roadmap
 

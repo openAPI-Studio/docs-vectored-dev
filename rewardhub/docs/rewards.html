@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rewards &amp; Tremendous Setup — Recognition Hub Docs</title>
+  <meta name="description" content="Attach real monetary rewards to recognitions with Tremendous — API key, campaign, pools, and redemption">
+  <meta name="vc-updated" content="14 Sep 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://marketplace.atlassian.com/apps/564712405" rel="noopener" target="_blank">Now available on the Atlassian Marketplace →</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"></path></svg></div>
+      <h1 class="vc-h1">Rewards &amp; Tremendous Setup</h1>
+      <p class="vc-lede">Attach real, spendable rewards to recognitions — funded and fulfilled through Tremendous</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">How Rewards Work</h2>
+<p class="text-muted mb-4">With rewards enabled, someone giving recognition can attach a cash reward to it. The amount is entered <strong>per person</strong> — recognize five people at $10 each and $50 is drawn from the giver's pool. Each recipient's reward <strong>balance</strong> grows as they receive rewards, and they can redeem any part of it whenever they like. At redemption, Recognition Hub creates a Tremendous order and hands the recipient a <strong>redemption link</strong> where they choose their gift card brand, cash-out (PayPal, Venmo, and more, where available), or charity.</p>
+<p class="text-muted mb-4">Money is real and it moves through <strong>Tremendous</strong>. Recognition Hub keeps an internal ledger — pools and user balances — that always stays within your funded Tremendous balance; funds only actually leave Tremendous the moment a recipient redeems. This keeps the app out of money-movement scope while giving you full pool/limit control.</p>
+
+<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted"><strong class="text-text">Rewards leave the Atlassian platform.</strong> Reward fulfillment is handled by Tremendous, so a recipient's name and email and the reward amount are sent to Tremendous to issue the reward. Rewards are optional and off until an admin connects a Tremendous account — if you never connect one, no reward data ever leaves Atlassian.</p></div>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">What You'll Need</h2>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li>A <strong class="text-text">Tremendous account</strong> — sign up free at <a class="text-cta hover:underline" href="https://www.tremendous.com" rel="noopener" target="_blank">tremendous.com</a>. Use their sandbox (<span class="font-mono text-sm">testflight.tremendous.com</span>) to trial the flow with no real money.</li>
+<li>A <strong class="text-text">Tremendous API key</strong> (from the dashboard — see below).</li>
+<li>At least one <strong class="text-text">campaign</strong> in Tremendous, which defines the catalog of gift cards / payout options recipients can pick from.</li>
+<li><strong class="text-text">Funds</strong> in your Tremendous balance (added in the Tremendous dashboard) before anyone can redeem.</li>
+<li>Recognition Hub <strong class="text-text">admin</strong> access (Settings &gt; Recognition Hub).</li>
+</ul>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Step 1 — Get Your Tremendous API Key</h2>
+<ol class="list-decimal list-inside space-y-2 text-muted mb-4">
+<li>Sign in to <a class="text-cta hover:underline" href="https://app.tremendous.com" rel="noopener" target="_blank">app.tremendous.com</a> (or <span class="font-mono text-sm">testflight.tremendous.com</span> for sandbox).</li>
+<li>Open <strong>Team Settings → Developers → API keys</strong> (sometimes shown as <strong>Settings → API</strong>).</li>
+<li>Click <strong>Create API key</strong>, give it a name (e.g. <em>Recognition Hub</em>), and copy the key.</li>
+<li>Store it somewhere safe for a moment — you'll paste it into Recognition Hub once. It is shown only at creation time.</li>
+</ol>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><p class="text-sm text-muted"><strong class="text-text">Sandbox vs. production keys are different.</strong> A key created in the sandbox (<span class="font-mono text-sm">testflight.tremendous.com</span>) only works with the sandbox environment, and a production key only works with production. Match the key to the <strong class="text-text">Sandbox mode</strong> toggle in Recognition Hub (Step 3).</p></div>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Step 2 — Create a Campaign (Reward Catalog)</h2>
+<p class="text-muted mb-4">A <strong>campaign</strong> tells Tremendous which brands and payout options a recipient may choose from on the redemption page. Every reward order must reference one, so you need at least one campaign before rewards can be issued.</p>
+<ol class="list-decimal list-inside space-y-2 text-muted mb-4">
+<li>In the Tremendous dashboard, open <strong>Campaigns</strong> (under <strong>Rewards</strong> or <strong>Catalog</strong>, depending on your account).</li>
+<li>Click <strong>New campaign</strong>, name it (e.g. <em>Recognition Rewards</em>), and select the products you want available — specific gift-card brands, "recipient's choice", cash-out options, charity, and so on.</li>
+<li>Save. Most accounts already ship with a default campaign you can use as-is.</li>
+</ol>
+<p class="text-muted mb-4">You don't need to copy the campaign ID by hand — Recognition Hub fetches your campaigns automatically when you test the connection, and lets you pick one from a dropdown.</p>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Step 3 — Connect Tremendous in Recognition Hub</h2>
+<ol class="list-decimal list-inside space-y-2 text-muted mb-4">
+<li>Open <strong>Settings &gt; Recognition Hub &gt; Rewards</strong> (Confluence or Jira).</li>
+<li>Paste your <strong>API key</strong>.</li>
+<li>Set the <strong>Sandbox mode</strong> toggle to match your key — on for a <span class="font-mono text-sm">testflight</span> key, off for a production key.</li>
+<li>Click <strong>Save key</strong>. The key is write-only: it's stored encrypted and never shown again or sent to the browser.</li>
+<li>Click <strong>Test connection</strong>. This verifies the key, shows your live Tremendous balance, registers the status webhook, and loads your campaigns.</li>
+<li>Under <strong>Reward catalog</strong>, pick the campaign recipients should redeem against. Recognition Hub auto-selects one if only a default exists; change it any time.</li>
+</ol>
+<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted"><strong class="text-text">USD only, for now.</strong> Rewards require the workspace currency to be USD. If it isn't, the Rewards tab shows a warning and reward features stay hidden until the currency is set to USD.</p></div>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Step 4 — Fund Your Tremendous Balance</h2>
+<p class="text-muted mb-4">Recognition Hub allocates from your real Tremendous balance — it doesn't add money to Tremendous for you. Add funds once in the Tremendous dashboard:</p>
+<ol class="list-decimal list-inside space-y-2 text-muted mb-4">
+<li>In Tremendous, go to <strong>Billing → Payment methods</strong> and link a bank account or card (a one-time setup Tremendous requires on their side).</li>
+<li>Add funds to your <strong>balance</strong>. Bank transfers may take a few business days to fully settle; cards clear faster.</li>
+<li>Back in Recognition Hub, the <strong>Reward Pools</strong> tab shows your live Tremendous balance so you know how much is available to allocate.</li>
+</ol>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Step 5 — Create Pools, Load Money, Assign Givers</h2>
+<p class="text-muted mb-4">Pools are how you budget and control who can give rewards. Open <strong>Settings &gt; Recognition Hub &gt; Reward Pools</strong>.</p>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li><strong class="text-text">Create a pool</strong> — name it for a team, budget, or quarter (e.g. <em>Engineering Q3</em>).</li>
+<li><strong class="text-text">Load money</strong> — allocate an amount from your Tremendous balance into the pool. Recognition Hub only lets you allocate what's actually unallocated (Tremendous balance minus everything already committed to pools and unredeemed user balances), so you can never over-promise.</li>
+<li><strong class="text-text">Assign givers</strong> — add the people (or Atlassian groups) allowed to give rewards from this pool. A direct user assignment wins; otherwise the first matching group assignment applies. Each person or group belongs to one pool at a time.</li>
+</ul>
+<p class="text-muted mb-4">Only someone assigned to a pool with a positive balance sees the reward option in the composer. Everyone else gives recognition exactly as before.</p>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Step 6 — Give a Reward</h2>
+<p class="text-muted mb-4">An eligible giver opens the composer, adds recipients, and ticks <strong>Attach a reward</strong>. They enter an amount <strong>per person</strong>; the composer shows the live math — what each recipient gets, the total drawn from the pool, and the pool balance afterward — and blocks the post if it would overdraw the pool. On post, each recipient's balance is credited and the reward chip appears on the card (visible only to the giver and recipients, never broadcast).</p>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Step 7 — How Recipients Redeem</h2>
+<p class="text-muted mb-4">Anyone with a balance opens <strong>My rewards</strong> from their profile menu in the hub. They see their balance, redeem any amount (down to a $5 minimum), and get a <strong>redemption link</strong> to open right away — Tremendous also emails them the same link. On the Tremendous page they pick their gift card, cash-out option, or charity. The panel also shows their reward history, past redemptions with re-openable links, and lifetime achievements (totals plus Bronze/Silver/Gold badges).</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><p class="text-sm text-muted"><strong class="text-text">Failed orders are auto-refunded.</strong> If Tremendous can't complete an order, Recognition Hub credits the amount straight back to the recipient's balance — money is never lost in the gap. A background job and Tremendous webhooks keep every redemption's status in sync.</p></div>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Auditing &amp; Control</h2>
+<p class="text-muted mb-4">Every money-adjacent action — pool creation, loading funds, assignments, reward grants, redemptions, refunds, and provider events — is written to an immutable <strong>Audit Log</strong> under <strong>Settings &gt; Recognition Hub &gt; Audit Log</strong>, filterable by action type. Pool and user balances are always reconcilable from their underlying ledgers.</p>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Troubleshooting</h2>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li><strong class="text-text">"No reward catalogs found"</strong> — your Tremendous account has no campaign. Create one (Step 2), then run <strong>Test connection</strong> again.</li>
+<li><strong class="text-text">Redemption fails immediately</strong> — usually a key/environment mismatch (sandbox key with sandbox off, or vice versa) or an unselected campaign. Re-check Step 3; the recipient's balance is refunded automatically.</li>
+<li><strong class="text-text">Giver doesn't see the reward option</strong> — they aren't assigned to a pool, or their pool balance is zero. Assign them and load the pool (Step 5).</li>
+<li><strong class="text-text">Balance looks low right after funding</strong> — bank transfers to Tremendous can take a few business days to fully settle. The Reward Pools tab reflects the live Tremendous balance.</li>
+</ul>
+
+<div class="bg-cta/10 border border-cta/20 rounded-xl px-4 py-3 text-sm my-6"><a class="text-cta font-semibold hover:underline" href="https://marketplace.atlassian.com/apps/564712405" rel="noopener" target="_blank">Get Recognition Hub on the Atlassian Marketplace →</a></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

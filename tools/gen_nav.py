@@ -57,6 +57,7 @@ GROUPS = {
  'rewardhub': [
    ('Start here', ['getting-started']),
    ('Recognize', ['giving-recognition','ai-assist','reactions-comments','sharing-and-macro']),
+   ('Rewards', ['rewards']),
    ('Configure', ['company-values','email-notifications','moderation']),
  ],
 }

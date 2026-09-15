@@ -155,13 +155,14 @@
 - [Recognize — AI Assist](https://docs.vectored.dev/rewardhub/docs/ai-assist.html): Draft recognitions and rewrite messages with Atlassian-hosted AI, powered by Forge LLMs
 - [Recognize — Reactions & Comments](https://docs.vectored.dev/rewardhub/docs/reactions-comments.html): Celebrate posts with emoji reactions, confetti, and comments
 - [Recognize — Sharing & Page Macro](https://docs.vectored.dev/rewardhub/docs/sharing-and-macro.html): Direct links, email sharing, and embedding cards on pages
+- [Rewards — Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub/docs/rewards.html): Attach real monetary rewards to recognitions with Tremendous — API key, campaign, pools, and redemption
 - [Configure — Company Values](https://docs.vectored.dev/rewardhub/docs/company-values.html): Tag recognitions with the values your company celebrates
 - [Configure — Email Notifications](https://docs.vectored.dev/rewardhub/docs/email-notifications.html): AWS SES notifications with editable templates and smart values
 - [Configure — Moderation](https://docs.vectored.dev/rewardhub/docs/moderation.html): Flagging, review queue, and admin controls
 
 ## Lens
 
-- [Lens — Overview](https://docs.vectored.dev/lens/): Region screenshots, high-quality GIF and MP4 recording for Chrome, filed straight into your own local folders. Works completely offline — no account, no subscription. Coming soon from Vectored.
+- [Lens — Overview](https://docs.vectored.dev/lens/): Region screenshots, high-quality GIF and MP4 recording for Chrome and Edge, filed straight into your own local folders. Works completely offline — no account, no subscription. Free from Vectored, for Chrome and Edge.
 - [Start here — Getting Started](https://docs.vectored.dev/lens/docs/getting-started.html): Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording. Works completely offline, with no account and no subscription.
 - [Capture — Capturing a Region](https://docs.vectored.dev/lens/docs/capturing.html): Select a region of a page, annotate it with shapes, text and blur, then save it into your project folder.
 - [Capture — Recording GIF and MP4](https://docs.vectored.dev/lens/docs/recording.html): Record part of a tab as a high-quality animated GIF or MP4, with click-through interaction, navigation support and a converter that controls GIF framerate, speed and scale. Runs entirely offline.
