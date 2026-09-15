@@ -53,7 +53,7 @@ these end up on a public docs site.
 - [ ] `lens-project-folder.png`
       A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json
 - [ ] `lens-folder-access-lost.png`
-      The popup folder row showing the amber access lost flag and the Reconnect button
+      The popup folder row showing the amber paused flag and the Reconnect button
 ## Timeline and Dashboard
 
 - [ ] `lens-popup-timeline.png`

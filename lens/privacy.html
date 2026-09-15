@@ -62,14 +62,15 @@
 
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">3. What is stored, and where</h2>
-      <p class="text-muted mb-4">Everything Lens stores is local to your browser profile or written to a folder you chose. Nothing is stored by Vectored.</p>
+      <p class="text-muted mb-4">Everything Lens stores is local to your browser profile, and additionally written to a folder you chose if you linked one. Nothing is stored by Vectored.</p>
       <div class="tbl-wrap">
         <table>
           <thead><tr><th>What</th><th>Where it lives</th><th>Why</th></tr></thead>
           <tbody>
-            <tr><td>Captures — <span class="font-mono text-xs">.png</span>, <span class="font-mono text-xs">.jpg</span>, <span class="font-mono text-xs">.gif</span>, <span class="font-mono text-xs">.mp4</span></td><td>The project folder you picked, or your Downloads folder as a fallback</td><td>They are the product of the tool</td></tr>
-            <tr><td><span class="font-mono text-xs">project_metadata.json</span> — file name, page title, page URL, timestamp, captured region, your note</td><td>Alongside the captures, in the same folder</td><td>So the capture set is self-describing and readable by other tools</td></tr>
+            <tr><td>Captures — <span class="font-mono text-xs">.png</span>, <span class="font-mono text-xs">.jpg</span>, <span class="font-mono text-xs">.gif</span>, <span class="font-mono text-xs">.mp4</span></td><td>IndexedDB in your browser profile, and — if you linked a folder — written into that folder as well</td><td>They are the product of the tool. Keeping them in the profile is what lets a capture be saved when a folder is not reachable</td></tr>
+            <tr><td><span class="font-mono text-xs">project_metadata.json</span> — file name, page title, page URL, timestamp, captured region, your note</td><td>The same two places, alongside the captures</td><td>So the capture set is self-describing and readable by other tools</td></tr>
             <tr><td>Project list and folder handles</td><td>IndexedDB in your browser profile</td><td>To reopen your folder without asking you to pick it every time</td></tr>
+            <tr><td>Writes a linked folder has not taken yet — file paths only, never a second copy of the bytes</td><td>IndexedDB in your browser profile</td><td>So a capture taken while folder access had lapsed reaches the folder afterwards instead of being missed</td></tr>
             <tr><td>Settings</td><td><span class="font-mono text-xs">chrome.storage.local</span></td><td>To remember your preferences</td></tr>
             <tr><td>AI prompts and responses</td><td>Nowhere — held in memory for the length of the request</td><td>They are not needed after the answer arrives</td></tr>
             <tr><td>AI provider API key, only if you set one</td><td><span class="font-mono text-xs">chrome.storage.local</span>, in its own area, separate from your settings</td><td>So Lens can reach the provider you chose. Written by the settings screen, read only by the background worker, never by page-injected code</td></tr>
@@ -88,7 +89,8 @@
         <li>Permission is granted per folder and can lapse — after a browser restart, for example. Lens cannot restore it silently; it needs a click from you.</li>
         <li>Revoking access is done in Chrome, under the site and extension permission controls, and takes effect immediately.</li>
       </ul>
-      <p class="text-muted mt-4">If no folder is linked, or access has lapsed, captures fall back to your Downloads folder under <span class="font-mono text-sm">Lens-Captures/</span>. The extension tells you when this happens rather than failing quietly.</p>
+      <p class="text-muted mt-4">No folder need be linked at all. A project keeps its own captures inside your browser profile, so Lens is fully usable without granting access to any folder — and a capture taken while a folder's access has lapsed is stored and written out to the folder once you reconnect it, rather than being missed. The extension says which of these is happening rather than failing quietly.</p>
+      <p class="text-muted mt-4">Captures held in the profile stay on your machine exactly as folder captures do: no copy is sent anywhere, and Vectored never receives any of it. Removing the extension removes them, so link a folder for anything you need to outlive the install.</p>
     </section>
 
     <section class="mb-10">

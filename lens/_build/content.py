@@ -11,7 +11,7 @@ PAGES["getting-started"] = dict(
     desc="Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording. Works completely offline, with no account and no subscription.",
     icon="rocket",
     blocks=[
-        P("Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a folder on your own machine along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](guides.html). Nothing is uploaded — see [Privacy](../privacy.html)."),
+        P("Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a project — kept by the extension itself, and mirrored into a folder on your own machine if you link one — along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](guides.html). Nothing is uploaded — see [Privacy](../privacy.html)."),
         NOTE("**Lens works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](ai.html) you connect yourself, which is off on install and optional."),
 
         H("Install and pin"),
@@ -26,7 +26,7 @@ PAGES["getting-started"] = dict(
         P("Top to bottom: the header, the project, the capture actions, and this project's recent captures."),
         TABLE(["Where", "What it is"], [
             ["Header, right", "The arrow opens the full dashboard in a tab. **?** holds Docs, Support and Security. The gear goes straight to the dashboard's Settings"],
-            ["Project", "The dropdown switches project; the row under it names the linked folder, with **Link**, **Change** or **Reconnect** beside it"],
+            ["Project", "The dropdown switches project; the row under it names the linked folder, with **Link**, **Change** or **Reconnect** beside it. With no folder linked it reads *kept in the extension*"],
             ["Capture region", "The full-width button, because it is the one most people reach for"],
             ["Steps, GIF, Full tab", "The row of three under it. Each shows its own keyboard shortcut"],
             ["Interactive walkthrough", "A switch. On, a walkthrough also records which control each step points at, so it can be [played back](guides.html) against the live page. Off records the screenshots and the words only"],
@@ -34,14 +34,14 @@ PAGES["getting-started"] = dict(
             ["Footer", "**License** states the built-in free licence, which covers every feature and needs no key. **Privacy** opens the policy"],
         ]),
 
-        H("Link a project folder"),
-        P("A **project** is a name plus one folder on your computer. Captures for the active project are written straight into that folder, next to a `project_metadata.json` file that records what was captured, from which page, and when."),
+        H("Make a project"),
+        P("A **project** is a name, and the captures filed under it. Lens keeps those itself, so a project works straight away with nothing else set up. Linking a folder on your computer is optional: do it and every capture is *also* written there, next to a `project_metadata.json` file recording what was captured, from which page, and when."),
         STEPS([
-            "Open the popup and press **New project**|or press **Link** on the default project to give the existing one a folder.",
+            "Open the popup and press **New project**|the default project is already there if you would rather just start capturing.",
             "Name the project|for example, the documentation set or release you are capturing for.",
-            "Choose a folder|Chrome asks you to pick it and to grant read/write access. Lens can only ever see the folder you pick.",
+            "Press **Create**, or **Create & link folder**|the second asks Chrome for a folder and read/write access to it. Lens can only ever see the folder you pick.",
         ]),
-        NOTE("Without a linked folder Lens still works — captures fall back to your **Downloads** folder, under `Lens-Captures/`. The popup says which mode you are in."),
+        NOTE("A folder can be linked at any time afterwards, from **Link** in the popup or **Link folder** on the dashboard's project card. Lens offers to copy everything the project already holds into it, so a folder linked late still ends up complete."),
         SHOT("lens-folder-linked.png", "The popup project row with a folder linked, showing the folder name and the Change button"),
 
         H("Take your first capture"),
@@ -58,7 +58,7 @@ PAGES["getting-started"] = dict(
             "[Capturing a region](capturing.html) — selection, annotation and saving in detail.",
             "[Recording GIF and MP4](recording.html) — the recorder, its controls and the two output formats.",
             "[Step-by-step guides](guides.html) — click through a flow once and get a documented walkthrough out of it.",
-            "[Projects and folders](projects.html) — multiple projects, switching, and reconnecting folder access.",
+            "[Projects and folders](projects.html) — multiple projects, switching, linking folders and catching one up.",
             "[Settings](settings.html) — every preference and what it changes.",
         ]),
     ],
@@ -152,7 +152,7 @@ PAGES["capturing"] = dict(
         ]),
         P("If you have connected an AI provider, a **Suggest name** button appears above the name field. It reads the text inside the region you captured and fills in a file name and a one-line description of what the screenshot shows. The description is added to your note rather than replacing it, and everything it writes is yours to edit."),
         NOTE("This is the one still-capture feature that sends the region's text to your provider, because describing a screenshot is the task. It only ever runs when you press the button — never as part of saving. If your provider is the browser's built-in model or one on your own machine, that text does not leave the device either way."),
-        NOTE("The toast tells you the truth about where the file landed. If it says *Downloaded to Downloads*, the project folder was unavailable and the reason is in the message — most often folder access needs reconnecting."),
+        NOTE("The toast tells you the truth about where the file landed. *Saved to project folder* means it reached the linked folder as well; *Saved* on its own means the project has it and there is no folder linked; and if the folder needs reconnecting the toast says that — the capture is saved either way and the folder catches up later."),
     ],
 )
 
@@ -293,10 +293,10 @@ PAGES["guides"] = dict(
             ["Play", "Runs the guide against the live page. See **Guide Mode** below"],
             ["Open editor", "Opens the guide as a document in its own tab"],
             ["Export", "Self-contained HTML, Markdown, or the clipboard"],
-            ["Delete", "Removes the guide's folder on disk and the entry pointing at it. Asks first"],
+            ["Delete", "Removes the guide from the project, its folder on disk if one is linked, and the entry pointing at it. Asks first"],
         ]),
         P("Above the cards sit three actions that apply to the whole set: **Find guides on disk**, **Import guide** and **Export all guides**. The first two are covered under **Importing a guide** below, the third under **Exporting**."),
-        NOTE("Guides recorded while no folder was linked are held in the browser and listed below the others as **pending**. They are not lost — link a folder, make that project active, and write them from there."),
+        NOTE("A guide is written into its project the moment you approve it, whether or not a folder is linked. With a folder linked but unreachable, the guide is queued for it and written out when access comes back — see [Projects and folders](projects.html)."),
         SHOT("lens-guides-list.png", "The dashboard Guides tab with guide cards, each showing the site's logo, title, step count and the folder path it was written to"),
 
         H("Guide Mode: playing a guide back"),
@@ -395,9 +395,9 @@ PAGES["guides"] = dict(
             ["**Find guides on disk**", "Lists guide folders that are in a linked project folder but missing from its timeline"],
         ]),
         P("An import is always a **copy**: it is given a new id and its own folder, so importing the same bundle twice leaves two guides rather than quietly overwriting the first. Nothing already on disk is replaced. A `guide.json` that arrives without its screenshots imports anyway and says so — those steps keep their words and have no picture."),
-        P("Imports land in the **active project**, which must have a folder linked. What kind of file it is is read from its first bytes rather than its name, so a bundle fetched from a link works whatever the address ends in."),
+        P("Imports land in the **active project**. No folder need be linked — the project holds the guide itself, and a linked folder receives its copy like anything else. What kind of file it is is read from its first bytes rather than its name, so a bundle fetched from a link works whatever the address ends in."),
         NOTE("Importing from a link is the only time Lens reaches the network on its own. It downloads the address you paste and nothing else: no service in between, nothing of yours sent with the request, `http` and `https` only, and 50 MB or 30 seconds at the outside. See [Privacy](../privacy.html)."),
-        P("**Find guides on disk** walks every linked project, keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time."),
+        P("**Find guides on disk** walks each project — what Lens holds and any linked folder — keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time."),
 
         H("The assistant"),
         P("The editor has a chat panel, and it stays shut until you have configured a model **and** a test has actually reached it. See [AI features](ai.html) for setting one up."),
@@ -413,17 +413,25 @@ PAGES["guides"] = dict(
 
 PAGES["projects"] = dict(
     title="Projects and Folders",
-    lede="Organise captures into named projects, each writing to its own local folder.",
-    desc="Create projects, link local folders, switch the active project and reconnect folder access when Chrome drops it.",
+    lede="Organise captures into named projects, and mirror each one into a local folder if you want to.",
+    desc="Create projects, link local folders, switch the active project, catch a folder up after access lapses, and see how much storage Lens is using.",
     icon="folder",
     blocks=[
-        P("Every capture goes into the **active project**. A project is a name and, optionally, a folder on your machine that Lens has been granted access to."),
+        P("Every capture goes into the **active project**. A project is a name and the captures filed under it, which Lens keeps itself. A folder on your machine is optional — link one and the project is mirrored into it."),
 
         H("Creating a project"),
         STEPS([
             "Press **New project** in the popup, or **New project** on the dashboard|both open the same flow.",
             "Give it a name|this is what appears in the project dropdown and in `project_metadata.json`.",
-            "Pick a folder|Chrome asks for read/write access to that one folder.",
+            "Press **Create**|or **Create & link folder** to pick a folder at the same time. Chrome asks for read/write access to that one folder.",
+        ]),
+        NOTE("Cancelling the folder picker cancels the folder, not the project — you keep the name you just typed."),
+
+        H("Why the folder is optional"),
+        P("Chrome hands out folder permission for as long as the extension is running and takes it back when it stops. That used to mean a capture taken after a lapse had nowhere to go. Lens now keeps the project's captures itself, so the folder is a **copy**, not the destination: losing access costs you the copy for a while, never the capture."),
+        UL([
+            "**With no folder linked** — everything works. Captures, guides and the timeline live in the extension, and you get files out with **Copy** and **Save a copy** on any capture.",
+            "**With a folder linked** — the same, and every capture is written into the folder as well, so your files are on disk in a form any other tool can read.",
         ]),
 
         H("What Lens writes into the folder"),
@@ -434,17 +442,25 @@ PAGES["projects"] = dict(
         P("The metadata file is plain JSON and is meant to be read by other tools. Every entry and the file itself carry `\"createdBy\": \"Lens by Vectored\"`."),
         SHOT("lens-project-folder.png", "A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json"),
 
+        H("Linking a folder later"),
+        P("Press **Link** in the popup or **Link folder** on the project card. Lens counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is."),
+        P("The copy runs in the background and survives the browser being closed part way through — it picks up where it stopped. Files the folder already has at the same size are left alone, so relinking a folder Lens was already writing into costs a look rather than a rewrite. Say no and **Copy everything across** stays on the project card for later."),
+
         H("Switching the active project"),
         P("Use the dropdown at the top of the popup. Only the active project receives new captures; the others keep their files and history untouched."),
 
-        H("When folder access is lost"),
-        P("Chrome does not keep folder permission forever. After a browser restart or an extension reload it can lapse, and the extension's background worker is not allowed to ask for it back on its own."),
-        P("When that happens the popup shows **access lost** next to the folder name and the button changes to **Reconnect**. One click restores it. The dashboard shows the same state on the project card."),
-        WARN("While access is lost, captures do not fail — they fall back to the **Downloads** folder under `Lens-Captures/`, and the save toast says so. They still appear in the timeline, so nothing is silently dropped, but they are not in your project folder until you move them."),
-        SHOT("lens-folder-access-lost.png", "The popup folder row showing the amber access lost flag and the Reconnect button"),
+        H("When folder access lapses"),
+        P("After a browser restart or an extension reload, folder permission can lapse — and the extension's background worker is not allowed to ask for it back on its own, because that needs a click."),
+        P("The popup folder row then reads **paused**, with a **Reconnect** button; the dashboard card says the same and shows how many writes are waiting. One click restores access."),
+        NOTE("Captures taken while access was gone are **queued, not lost**. Reconnecting writes them out, and so does simply reopening the browser. **Catch up folder** on the project card does it on demand."),
+        SHOT("lens-folder-access-lost.png", "The popup folder row showing the amber paused flag and the Reconnect button"),
+
+        H("How much room Lens is using"),
+        P("Because a project holds its own captures, that storage is worth watching: a sixty-step guide is tens of megabytes, and a minute of GIF can be more. **Settings > Storage** shows what Lens is using against what your browser allows it, broken down per project, and warns when there is little room left."),
+        P("Linking a folder and deleting guides you have a copy of is the way to reclaim it. So is deleting a project you have finished with."),
 
         H("Deleting a project"),
-        P("Delete a project from the dashboard's project card. This removes it from Lens only — **files already written to disk are left alone**. The default project is protected and cannot be deleted."),
+        P("Delete a project from the dashboard's project card. Its captures are removed from Lens — **files already written to your folder are left alone**, because those are yours and in your own directory. The default project is protected and cannot be deleted."),
     ],
 )
 
@@ -459,19 +475,21 @@ PAGES["timeline"] = dict(
         H("The popup timeline"),
         P("Captures are grouped by day, newest first, with the time down the left. Each row shows a thumbnail, the file name, its type and the page title."),
         TABLE(["Control", "What it does"], [
-            ["Thumbnail", "Opens a larger preview with the page URL and capture time. The preview shows the real file, so a GIF plays"],
-            ["Copy", "Puts the image on the clipboard"],
-            ["Rename", "Renames the file on disk and in the metadata"],
+            ["Thumbnail", "Opens a larger preview with the page URL and capture time. The preview shows the real file, so a GIF plays and a recording gets a player"],
+            ["Copy", "Puts the capture itself on the clipboard — the file, not the thumbnail. A GIF copies as its first frame, which is all a clipboard holds; a recording cannot be copied and says so"],
+            ["Save a copy", "Writes the capture to your downloads. This is how a file leaves Lens when no folder is linked"],
+            ["Rename", "Renames the file and its metadata entry"],
             ["Delete", "Removes the entry from the timeline"],
             ["Search", "Filters by file name, page title or URL"],
             ["JSON", "Exports `project_metadata.json` for the active project"],
         ]),
+        NOTE("**Copy** re-encodes to PNG first. The clipboard accepts PNG everywhere and JPEG nowhere, so a JPEG copied as itself pastes nothing at all."),
         SHOT("lens-popup-timeline.png", "The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title"),
 
         H("The dashboard"),
         P("Open the dashboard from the arrow icon at the top right of the popup, or the gear beside it to land straight on Settings. It has four sections."),
         UL([
-            "**Projects** — every project as a card with its folder, capture count, last capture and access state.",
+            "**Projects** — every project as a card with its folder, capture count, last capture, access state, and anything the folder is waiting to receive.",
             "**Timeline** — every capture across all projects, grouped by project.",
             "**Guides** — every step-by-step guide, with import and export for the whole set. See [Guides](guides.html).",
             "**Settings** — all preferences, plus your keyboard shortcuts.",
@@ -493,10 +511,15 @@ PAGES["timeline"] = dict(
             "**JSON** in the popup, or **Export JSON** on a project card, writes that one project's `project_metadata.json`.",
         ]),
 
+        H("Opening a capture"),
+        P("The dashboard's detail view shows the file, what it is, and — under **Stored** — where it actually is: kept by Lens, and mirrored to a named folder when there is one. Alongside it sit **Copy**, **Save a copy** and, for a still image, **Edit image**."),
+        P("**Edit image** is hidden where it would not work. A recording cannot be opened by the image tools at all; a GIF can, but the tools open one frame and save one frame, so editing an animation would replace it with a still under the same name. Both are hidden rather than offered and then failing."),
+
         H("Thumbnails, and the file behind them"),
-        P("What the timeline shows beside each entry is a small JPEG of the **first frame**, held in extension storage so the list loads instantly. That is why a GIF sits still in the popup timeline and in the dashboard grid, and why a screenshot there is thumbnail-sized rather than full resolution."),
-        P("Open one and the preview reads the actual file out of the project folder instead: full size, and a recording that plays. Where no folder is linked, or its access has lapsed, the stored thumbnail stays up rather than the preview failing."),
-        P("**Settings > Clear cached previews** empties that cache. Files already written to disk are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place until you open one."),
+        P("What the timeline shows beside each entry is a small JPEG of the **first frame**, held in extension storage so the list loads instantly. That is why a GIF sits still in the popup timeline and in the dashboard grid, and why a screenshot there is thumbnail-sized rather than full resolution. A recording's thumbnail is taken from the recording itself when you save it."),
+        P("Open one and the preview reads the actual file instead: full size, a GIF that plays, a recording in a player. The project holds that file whether or not a folder is linked, so this works with nothing mounted."),
+        P("**Settings > Clear cached previews** empties that cache. The captures themselves are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place until you open one."),
+        NOTE("A recording saved before Lens took thumbnails from recordings has no picture on its row. Opening it still plays it."),
     ],
 )
 
@@ -623,7 +646,16 @@ PAGES["settings"] = dict(
         P("**PNG** keeps text crisp and is the right default for documentation. **JPEG** produces much smaller files but softens text and adds artefacts around high-contrast edges. The file extension follows the setting."),
 
         H("Write metadata file"),
-        P("On by default. When off, capture files are still written to the project folder but `project_metadata.json` is not updated — so those captures will not appear in the timeline read from that folder."),
+        P("On by default, and about the copy on disk only. When off, capture files are still written to a linked folder but its `project_metadata.json` is not updated. The project's own timeline is always kept — it is what the popup and the dashboard read, and a capture that exists and is listed nowhere would be worse than an extra file."),
+
+        H("Storage"),
+        P("Lens keeps each project's captures itself, so this panel is the disk that costs. It shows what Lens is using against what your browser allows it, a bar that turns amber past 80%, and a breakdown per project. **Refresh** re-measures."),
+        P("The figures are worth a look before a long session: a sixty-step guide in PNG runs to hundreds of megabytes, and the same guide in JPEG to tens. Link a folder and delete guides you have a copy of to reclaim room, or delete a project you have finished with."),
+        NOTE("Lens asks Chrome for persistent storage so these files are not cleared when the disk fills. If the browser has not granted it, the panel says so — link a folder for anything you cannot afford to lose."),
+
+        H("Hold on to the folder"),
+        P("**Off** by default. Chrome drops a folder's permission once nothing of Lens's is running, which is why a linked folder asks to be reconnected. Turning this on keeps Lens awake while a folder is linked, so that happens far less often — at the cost of some battery, and it makes the lapse rare rather than impossible, since a browser restart ends it regardless."),
+        P("It used to be on, because a lapse meant a capture that could not be saved. It no longer does: captures are kept by Lens and the folder catches up afterwards, so this only decides how promptly the copy on disk keeps up."),
 
         H("Copy to clipboard on capture"),
         P("Puts each capture on the clipboard as well as saving it. Because the clipboard only accepts PNG images, a JPEG capture is converted before copying. The save toast reports whether the copy succeeded."),
@@ -637,6 +669,7 @@ PAGES["settings"] = dict(
 
         H("Open Lens after saving"),
         P("On by default. A capture that is written opens the Lens menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a message that disappears. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures."),
+        NOTE("Because this opens the popup for you, a toolbar click straight afterwards is read by Chrome as *closing* the popup that is already open — a click that appears to do nothing. Clicking again, or switching tab first, opens it."),
 
         H("Explain Smart Capture before it starts"),
         P("On by default. Before a walkthrough records anything, a short briefing explains how the recorder behaves \u2014 when each screenshot is taken, how fast you can click, what does and does not become a step \u2014 with **Start recording** and **Cancel**. Nothing is recorded until you press Start, and Cancel leaves nothing behind. The dialog carries its own **Don't show this again**."),
@@ -762,7 +795,7 @@ PAGES["shortcuts"] = dict(
 PAGES["troubleshooting"] = dict(
     title="Troubleshooting",
     lede="What the errors mean and what to do about them.",
-    desc="Diagnose blocked pages, blank recordings, low-quality GIFs, lost folder access and captures missing from the timeline.",
+    desc="Diagnose blocked pages, blank recordings, low-quality GIFs, lapsed folder access, a popup that will not open and captures missing from the timeline.",
     icon="life-buoy",
     blocks=[
         P("Lens reports failures where it can — an in-page toast when a content script can run, and the toolbar icon badge when one cannot."),
@@ -783,27 +816,36 @@ PAGES["troubleshooting"] = dict(
         P("Tab capture succeeds on protected video but returns solid black — sites using DRM, such as YouTube and Netflix, are excluded from capture by design. Lens samples the recorded frames and warns you when they look blank, but still opens the converter so you can judge for yourself."),
         P("If a whole page records black, the page is blocking capture. If only a video player area is black, that player is protected and the rest of the page is fine."),
 
-        H("Captures are going to Downloads instead of my folder"),
-        P("Folder access has lapsed. Open the popup: the folder row shows **access lost** and a **Reconnect** button. One click fixes it."),
-        P("This happens because re-granting folder access requires a click, and the extension's background worker never has one — so it cannot recover on its own. See [Projects and folders](projects.html)."),
+        H("My captures are not appearing in my folder"),
+        P("Folder access has lapsed. Open the popup: the folder row reads **paused**, with a **Reconnect** button. One click fixes it, and everything taken meanwhile is written out straight afterwards."),
+        P("It lapses because re-granting access requires a click, and the extension's background worker never has one — so it cannot recover on its own. The captures are not lost in the meantime: Lens holds them, and the dashboard's project card says how many writes are waiting. See [Projects and folders](projects.html)."),
+        P("If the folder is connected and the card still shows writes waiting, press **Catch up folder** on the card and read the message it gives back — a full disk or a folder moved out from under Lens both report themselves there."),
+
+        H("I have no folder linked — where are my captures?"),
+        P("In the project, which is where every capture goes first. Open any capture from the popup timeline or the dashboard and use **Save a copy** to write it to your downloads, or **Copy** to put it on the clipboard. The dashboard's detail view names the location under **Stored**."),
+        P("To get everything onto disk at once, link a folder: Lens offers to copy the whole project across, and tells you how much that is."),
 
         H("A capture saved but is not in the timeline"),
-        P("The file was written but `project_metadata.json` could not be updated. The save toast says so explicitly. Two causes:"),
+        P("The capture was stored but its timeline entry could not be written. The save message says so explicitly. This is a storage failure rather than a folder one — check **Settings > Storage** for how much room is left."),
+        NOTE("**Write metadata file** being off does *not* cause this. That setting only governs `project_metadata.json` inside a linked folder; the project's own timeline is always kept."),
+
+        H("I clicked the toolbar icon and the popup did not open"),
+        P("Two causes, both harmless."),
         UL([
-            "**Write metadata file** is switched off in Settings — turn it back on.",
-            "The metadata file could not be written, usually a permission problem on the folder. Reconnect the folder.",
+            "**Lens had already opened it for you.** *Open Lens after saving* opens the popup after a capture, and a toolbar click while it is open is read by Chrome as closing it. Click again, or switch tab first.",
+            "**A permission bubble took the click.** Older builds asked for a lapsed folder back as the popup opened, and the bubble dismissed the popup. Fixed — Lens now highlights **Reconnect** and waits for you to press it. Update if you are seeing this.",
         ]),
-        NOTE("The timeline merges the folder's metadata with a local cache, so a capture that went to Downloads still appears — it is just not in your project folder."),
+        P("Neither produces an error anywhere, which is why nothing shows in the console or on `chrome://extensions`."),
 
         H("\"No frames were captured\""),
         P("The recording produced nothing to encode. Usually the tab was hidden or minimised for the whole recording — tab capture samples what is being drawn, and a tab that is not being drawn produces nothing. Check the tab stayed visible and record again."),
 
         H("My guide is not in the folder"),
-        P("A guide is written when you approve it on the save screen. If no folder was linked at that moment it is held in the browser instead and listed under **Dashboard > Guides** as **pending**. Link a folder, make that project active, and write it from there — nothing is lost in the meantime."),
+        P("A guide is written into the project the moment you approve it on the save screen, folder or no folder. If the folder was unreachable then, the guide is queued for it and written out when access comes back — **Catch up folder** on the project card does it now."),
 
         H("My guides have disappeared from the dashboard"),
-        P("The files are almost certainly still there. A guide is listed because `project_metadata.json` names it, so a metadata file that was lost, replaced or hand-edited takes every guide in that project out of the list while the folders sit untouched on disk."),
-        P("**Dashboard > Guides > Find guides on disk** walks every linked project and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason."),
+        P("The files are almost certainly still there. A guide is listed because a timeline entry names it, so a metadata file that was lost, replaced or hand-edited can take guides out of the list while the folders sit untouched."),
+        P("**Dashboard > Guides > Find guides on disk** walks each project — what Lens holds and any linked folder — and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason."),
 
         H("A dropdown step will not move on"),
         P("That is deliberate. Opening a dropdown is not choosing from it, so the step waits for the option the guide recorded — the panel names which one. Pick something else and the step stays put and tells you what to look for. Where the list is drawn in the page, the option itself is ringed; where the operating system draws it, as with a plain `<select>` on macOS, there is nothing in the page to ring and the tag names it instead."),
@@ -823,6 +865,12 @@ PAGES["troubleshooting"] = dict(
 
         H("Do I need an account or a subscription?"),
         P("No. Lens has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud [AI provider](ai.html) you connect with your own key — that is your account with that provider, not one with Vectored."),
+
+        H("An MP4 row has no picture on it"),
+        P("Recordings saved before Lens started taking a still from them have no thumbnail, and there is no way to make one after the fact — the extension's background worker cannot decode MP4. Opening the row still plays the recording. New recordings get their picture from the recording itself."),
+
+        H("Edit image is missing on a capture"),
+        P("It is hidden where it would not work. The image tools cannot open a recording at all. They can open a GIF, but they open one frame and save one frame, so editing an animation would quietly replace it with a still under the same name — so that is hidden too. **Copy** on a GIF copies its first frame, and says so."),
 
         H("The MP4 I recorded is a WebM"),
         P("Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an `.mp4` that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it."),

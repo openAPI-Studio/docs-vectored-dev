@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Troubleshooting — Lens Docs</title>
-  <meta name="description" content="Diagnose blocked pages, blank recordings, low-quality GIFs, lost folder access and captures missing from the timeline.">
-  <meta name="vc-updated" content="03 Sep 2026">
+  <meta name="description" content="Diagnose blocked pages, blank recordings, low-quality GIFs, lapsed folder access, a popup that will not open and captures missing from the timeline.">
+  <meta name="vc-updated" content="15 Sep 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -46,36 +46,47 @@
 <h2 class="text-2xl font-semibold mt-10 mb-4">2. The recording came out blank</h2>
 <p class="text-muted mb-4">Tab capture succeeds on protected video but returns solid black — sites using DRM, such as YouTube and Netflix, are excluded from capture by design. Lens samples the recorded frames and warns you when they look blank, but still opens the converter so you can judge for yourself.</p>
 <p class="text-muted mb-4">If a whole page records black, the page is blocking capture. If only a video player area is black, that player is protected and the rest of the page is fine.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">3. Captures are going to Downloads instead of my folder</h2>
-<p class="text-muted mb-4">Folder access has lapsed. Open the popup: the folder row shows <strong class="text-text">access lost</strong> and a <strong class="text-text">Reconnect</strong> button. One click fixes it.</p>
-<p class="text-muted mb-4">This happens because re-granting folder access requires a click, and the extension's background worker never has one — so it cannot recover on its own. See <a href="projects.html" class="text-cta hover:underline">Projects and folders</a>.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">4. A capture saved but is not in the timeline</h2>
-<p class="text-muted mb-4">The file was written but <span class="font-mono text-sm">project_metadata.json</span> could not be updated. The save toast says so explicitly. Two causes:</p>
-<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Write metadata file</strong> is switched off in Settings — turn it back on.</li><li class="mb-2">The metadata file could not be written, usually a permission problem on the folder. Reconnect the folder.</li></ul>
-<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The timeline merges the folder's metadata with a local cache, so a capture that went to Downloads still appears — it is just not in your project folder.</p></div>
-<h2 class="text-2xl font-semibold mt-10 mb-4">5. "No frames were captured"</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. My captures are not appearing in my folder</h2>
+<p class="text-muted mb-4">Folder access has lapsed. Open the popup: the folder row reads <strong class="text-text">paused</strong>, with a <strong class="text-text">Reconnect</strong> button. One click fixes it, and everything taken meanwhile is written out straight afterwards.</p>
+<p class="text-muted mb-4">It lapses because re-granting access requires a click, and the extension's background worker never has one — so it cannot recover on its own. The captures are not lost in the meantime: Lens holds them, and the dashboard's project card says how many writes are waiting. See <a href="projects.html" class="text-cta hover:underline">Projects and folders</a>.</p>
+<p class="text-muted mb-4">If the folder is connected and the card still shows writes waiting, press <strong class="text-text">Catch up folder</strong> on the card and read the message it gives back — a full disk or a folder moved out from under Lens both report themselves there.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. I have no folder linked — where are my captures?</h2>
+<p class="text-muted mb-4">In the project, which is where every capture goes first. Open any capture from the popup timeline or the dashboard and use <strong class="text-text">Save a copy</strong> to write it to your downloads, or <strong class="text-text">Copy</strong> to put it on the clipboard. The dashboard's detail view names the location under <strong class="text-text">Stored</strong>.</p>
+<p class="text-muted mb-4">To get everything onto disk at once, link a folder: Lens offers to copy the whole project across, and tells you how much that is.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. A capture saved but is not in the timeline</h2>
+<p class="text-muted mb-4">The capture was stored but its timeline entry could not be written. The save message says so explicitly. This is a storage failure rather than a folder one — check <strong class="text-text">Settings &gt; Storage</strong> for how much room is left.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted"><strong class="text-text">Write metadata file</strong> being off does <em>not</em> cause this. That setting only governs <span class="font-mono text-sm">project_metadata.json</span> inside a linked folder; the project's own timeline is always kept.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. I clicked the toolbar icon and the popup did not open</h2>
+<p class="text-muted mb-4">Two causes, both harmless.</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Lens had already opened it for you.</strong> <em>Open Lens after saving</em> opens the popup after a capture, and a toolbar click while it is open is read by Chrome as closing it. Click again, or switch tab first.</li><li class="mb-2"><strong class="text-text">A permission bubble took the click.</strong> Older builds asked for a lapsed folder back as the popup opened, and the bubble dismissed the popup. Fixed — Lens now highlights <strong class="text-text">Reconnect</strong> and waits for you to press it. Update if you are seeing this.</li></ul>
+<p class="text-muted mb-4">Neither produces an error anywhere, which is why nothing shows in the console or on <span class="font-mono text-sm">chrome://extensions</span>.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. "No frames were captured"</h2>
 <p class="text-muted mb-4">The recording produced nothing to encode. Usually the tab was hidden or minimised for the whole recording — tab capture samples what is being drawn, and a tab that is not being drawn produces nothing. Check the tab stayed visible and record again.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">6. My guide is not in the folder</h2>
-<p class="text-muted mb-4">A guide is written when you approve it on the save screen. If no folder was linked at that moment it is held in the browser instead and listed under <strong class="text-text">Dashboard &gt; Guides</strong> as <strong class="text-text">pending</strong>. Link a folder, make that project active, and write it from there — nothing is lost in the meantime.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">7. My guides have disappeared from the dashboard</h2>
-<p class="text-muted mb-4">The files are almost certainly still there. A guide is listed because <span class="font-mono text-sm">project_metadata.json</span> names it, so a metadata file that was lost, replaced or hand-edited takes every guide in that project out of the list while the folders sit untouched on disk.</p>
-<p class="text-muted mb-4"><strong class="text-text">Dashboard &gt; Guides &gt; Find guides on disk</strong> walks every linked project and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">8. A dropdown step will not move on</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. My guide is not in the folder</h2>
+<p class="text-muted mb-4">A guide is written into the project the moment you approve it on the save screen, folder or no folder. If the folder was unreachable then, the guide is queued for it and written out when access comes back — <strong class="text-text">Catch up folder</strong> on the project card does it now.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">9. My guides have disappeared from the dashboard</h2>
+<p class="text-muted mb-4">The files are almost certainly still there. A guide is listed because a timeline entry names it, so a metadata file that was lost, replaced or hand-edited can take guides out of the list while the folders sit untouched.</p>
+<p class="text-muted mb-4"><strong class="text-text">Dashboard &gt; Guides &gt; Find guides on disk</strong> walks each project — what Lens holds and any linked folder — and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">10. A dropdown step will not move on</h2>
 <p class="text-muted mb-4">That is deliberate. Opening a dropdown is not choosing from it, so the step waits for the option the guide recorded — the panel names which one. Pick something else and the step stays put and tells you what to look for. Where the list is drawn in the page, the option itself is ringed; where the operating system draws it, as with a plain <span class="font-mono text-sm">&lt;select&gt;</span> on macOS, there is nothing in the page to ring and the tag names it instead.</p>
 <p class="text-muted mb-4"><strong class="text-text">Next</strong> moves on regardless, if you want to skip it.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">9. Guide Mode is not highlighting anything</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">11. Guide Mode is not highlighting anything</h2>
 <p class="text-muted mb-4">Look at the label beside the step number in the panel.</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Not on this page</strong> — the control could not be found. Either you are not on the page that step is about, or the page has changed since the guide was recorded. Lens keeps looking, so if the control is behind a menu, opening that menu will ring it.</li><li class="mb-2"><strong class="text-text">Nothing at all</strong> — that step has no control to point at. A page load and a scroll are instructions to follow, not things to click; press <strong class="text-text">Next</strong> when you have done it.</li><li class="mb-2"><strong class="text-text">Plain walkthrough</strong> — the guide was recorded with <strong class="text-text">Walkthrough mode</strong> set to Plain, so nothing was written down about the page's controls. Guides recorded that way show their words and pictures only. Re-record with Interactive to get the highlighting.</li></ul>
-<h2 class="text-2xl font-semibold mt-10 mb-4">10. My GIF came out blurry or soft</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">12. My GIF came out blurry or soft</h2>
 <p class="text-muted mb-4">The converter's <strong class="text-text">Quality / scale</strong> control was below 100%. At 75% or 50% every captured pixel is resampled, which softens text first. Re-encode from the converter at 100%, and raise the framerate to 30 if motion also looked choppy — see <strong class="text-text">Getting the highest-quality GIF</strong> on the <a href="recording.html" class="text-cta hover:underline">Recording</a> page.</p>
 <p class="text-muted mb-4">If the recording itself looked soft on screen, the region was captured on a scaled display. Recording at 100% scale keeps whatever the tab actually rendered; it cannot add detail that was never drawn.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">11. Do I need an account or a subscription?</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">13. Do I need an account or a subscription?</h2>
 <p class="text-muted mb-4">No. Lens has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud <a href="ai.html" class="text-cta hover:underline">AI provider</a> you connect with your own key — that is your account with that provider, not one with Vectored.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">12. The MP4 I recorded is a WebM</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">14. An MP4 row has no picture on it</h2>
+<p class="text-muted mb-4">Recordings saved before Lens started taking a still from them have no thumbnail, and there is no way to make one after the fact — the extension's background worker cannot decode MP4. Opening the row still plays the recording. New recordings get their picture from the recording itself.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">15. Edit image is missing on a capture</h2>
+<p class="text-muted mb-4">It is hidden where it would not work. The image tools cannot open a recording at all. They can open a GIF, but they open one frame and save one frame, so editing an animation would quietly replace it with a still under the same name — so that is hidden too. <strong class="text-text">Copy</strong> on a GIF copies its first frame, and says so.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">16. The MP4 I recorded is a WebM</h2>
 <p class="text-muted mb-4">Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an <span class="font-mono text-sm">.mp4</span> that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">13. Nothing happened when I pressed the shortcut</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">17. Nothing happened when I pressed the shortcut</h2>
 <p class="text-muted mb-4">See <a href="shortcuts.html" class="text-cta hover:underline">Keyboard shortcuts</a> — the usual causes are a restricted page, a conflicting binding, or a page that has not finished loading.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">14. Still stuck</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">18. Still stuck</h2>
 <p class="text-muted mb-4"><a href="../support.html" class="text-cta hover:underline">Open a support ticket</a> and include what you were capturing, which browser version you are on, and what the toast or tooltip said. No account is needed.</p>
       </article>
 

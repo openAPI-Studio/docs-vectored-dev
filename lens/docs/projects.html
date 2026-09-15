@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects and Folders — Lens Docs</title>
-  <meta name="description" content="Create projects, link local folders, switch the active project and reconnect folder access when Chrome drops it.">
-  <meta name="vc-updated" content="03 Sep 2026">
+  <meta name="description" content="Create projects, link local folders, switch the active project, catch a folder up after access lapses, and see how much storage Lens is using.">
+  <meta name="vc-updated" content="15 Sep 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -33,15 +33,19 @@
       <div data-vc="crumbs"></div>
       <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
       <h1 class="vc-h1">Projects and Folders</h1>
-      <p class="vc-lede">Organise captures into named projects, each writing to its own local folder.</p>
+      <p class="vc-lede">Organise captures into named projects, and mirror each one into a local folder if you want to.</p>
       <div data-vc="meta"></div>
       <div data-vc="contents"></div>
 
       <article class="vc-doc">
-<p class="text-muted mb-4">Every capture goes into the <strong class="text-text">active project</strong>. A project is a name and, optionally, a folder on your machine that Lens has been granted access to.</p>
+<p class="text-muted mb-4">Every capture goes into the <strong class="text-text">active project</strong>. A project is a name and the captures filed under it, which Lens keeps itself. A folder on your machine is optional — link one and the project is mirrored into it.</p>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Creating a project</h2>
-<ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press <strong class="text-text">New project</strong> in the popup, or <strong class="text-text">New project</strong> on the dashboard</strong> <span class="text-muted">both open the same flow.</span></li><li class="mb-3"><strong class="text-text">Give it a name</strong> <span class="text-muted">this is what appears in the project dropdown and in <span class="font-mono text-sm">project_metadata.json</span>.</span></li><li class="mb-3"><strong class="text-text">Pick a folder</strong> <span class="text-muted">Chrome asks for read/write access to that one folder.</span></li></ol>
-<h2 class="text-2xl font-semibold mt-10 mb-4">2. What Lens writes into the folder</h2>
+<ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press <strong class="text-text">New project</strong> in the popup, or <strong class="text-text">New project</strong> on the dashboard</strong> <span class="text-muted">both open the same flow.</span></li><li class="mb-3"><strong class="text-text">Give it a name</strong> <span class="text-muted">this is what appears in the project dropdown and in <span class="font-mono text-sm">project_metadata.json</span>.</span></li><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Create</strong></strong> <span class="text-muted">or <strong class="text-text">Create &amp; link folder</strong> to pick a folder at the same time. Chrome asks for read/write access to that one folder.</span></li></ol>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Cancelling the folder picker cancels the folder, not the project — you keep the name you just typed.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">2. Why the folder is optional</h2>
+<p class="text-muted mb-4">Chrome hands out folder permission for as long as the extension is running and takes it back when it stops. That used to mean a capture taken after a lapse had nowhere to go. Lens now keeps the project's captures itself, so the folder is a <strong class="text-text">copy</strong>, not the destination: losing access costs you the copy for a while, never the capture.</p>
+<ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">With no folder linked</strong> — everything works. Captures, guides and the timeline live in the extension, and you get files out with <strong class="text-text">Copy</strong> and <strong class="text-text">Save a copy</strong> on any capture.</li><li class="mb-2"><strong class="text-text">With a folder linked</strong> — the same, and every capture is written into the folder as well, so your files are on disk in a form any other tool can read.</li></ul>
+<h2 class="text-2xl font-semibold mt-10 mb-4">3. What Lens writes into the folder</h2>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">The capture files themselves — <span class="font-mono text-sm">.png</span>, <span class="font-mono text-sm">.jpg</span>, <span class="font-mono text-sm">.gif</span>, <span class="font-mono text-sm">.mp4</span> or <span class="font-mono text-sm">.webm</span>.</li><li class="mb-2"><span class="font-mono text-sm">project_metadata.json</span> — a timeline entry per capture recording the file name, page title, page URL, timestamp, the captured region and your note.</li></ul>
 <p class="text-muted mb-4">The metadata file is plain JSON and is meant to be read by other tools. Every entry and the file itself carry <span class="font-mono text-sm">"createdBy": "Lens by Vectored"</span>.</p>
 <figure class="shot mb-6">
@@ -56,26 +60,32 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">3. Switching the active project</h2>
+<h2 class="text-2xl font-semibold mt-10 mb-4">4. Linking a folder later</h2>
+<p class="text-muted mb-4">Press <strong class="text-text">Link</strong> in the popup or <strong class="text-text">Link folder</strong> on the project card. Lens counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is.</p>
+<p class="text-muted mb-4">The copy runs in the background and survives the browser being closed part way through — it picks up where it stopped. Files the folder already has at the same size are left alone, so relinking a folder Lens was already writing into costs a look rather than a rewrite. Say no and <strong class="text-text">Copy everything across</strong> stays on the project card for later.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">5. Switching the active project</h2>
 <p class="text-muted mb-4">Use the dropdown at the top of the popup. Only the active project receives new captures; the others keep their files and history untouched.</p>
-<h2 class="text-2xl font-semibold mt-10 mb-4">4. When folder access is lost</h2>
-<p class="text-muted mb-4">Chrome does not keep folder permission forever. After a browser restart or an extension reload it can lapse, and the extension's background worker is not allowed to ask for it back on its own.</p>
-<p class="text-muted mb-4">When that happens the popup shows <strong class="text-text">access lost</strong> next to the folder name and the button changes to <strong class="text-text">Reconnect</strong>. One click restores it. The dashboard shows the same state on the project card.</p>
-<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted">While access is lost, captures do not fail — they fall back to the <strong class="text-text">Downloads</strong> folder under <span class="font-mono text-sm">Lens-Captures/</span>, and the save toast says so. They still appear in the timeline, so nothing is silently dropped, but they are not in your project folder until you move them.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">6. When folder access lapses</h2>
+<p class="text-muted mb-4">After a browser restart or an extension reload, folder permission can lapse — and the extension's background worker is not allowed to ask for it back on its own, because that needs a click.</p>
+<p class="text-muted mb-4">The popup folder row then reads <strong class="text-text">paused</strong>, with a <strong class="text-text">Reconnect</strong> button; the dashboard card says the same and shows how many writes are waiting. One click restores access.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Captures taken while access was gone are <strong class="text-text">queued, not lost</strong>. Reconnecting writes them out, and so does simply reopening the browser. <strong class="text-text">Catch up folder</strong> on the project card does it on demand.</p></div>
 <figure class="shot mb-6">
-        <img src="../assets/lens-folder-access-lost.png" alt="The popup folder row showing the amber access lost flag and the Reconnect button" loading="lazy"
+        <img src="../assets/lens-folder-access-lost.png" alt="The popup folder row showing the amber paused flag and the Reconnect button" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
           <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           <p class="text-sm text-muted">Screenshot needed</p>
           <p class="font-mono text-xs text-cta break-all">lens-folder-access-lost.png</p>
-          <p class="text-xs text-muted max-w-md">The popup folder row showing the amber access lost flag and the Reconnect button</p>
+          <p class="text-xs text-muted max-w-md">The popup folder row showing the amber paused flag and the Reconnect button</p>
         </div>
-        <figcaption class="text-xs text-muted mt-2">The popup folder row showing the amber access lost flag and the Reconnect button</figcaption>
+        <figcaption class="text-xs text-muted mt-2">The popup folder row showing the amber paused flag and the Reconnect button</figcaption>
       </figure>
-<h2 class="text-2xl font-semibold mt-10 mb-4">5. Deleting a project</h2>
-<p class="text-muted mb-4">Delete a project from the dashboard's project card. This removes it from Lens only — <strong class="text-text">files already written to disk are left alone</strong>. The default project is protected and cannot be deleted.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">7. How much room Lens is using</h2>
+<p class="text-muted mb-4">Because a project holds its own captures, that storage is worth watching: a sixty-step guide is tens of megabytes, and a minute of GIF can be more. <strong class="text-text">Settings &gt; Storage</strong> shows what Lens is using against what your browser allows it, broken down per project, and warns when there is little room left.</p>
+<p class="text-muted mb-4">Linking a folder and deleting guides you have a copy of is the way to reclaim it. So is deleting a project you have finished with.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">8. Deleting a project</h2>
+<p class="text-muted mb-4">Delete a project from the dashboard's project card. Its captures are removed from Lens — <strong class="text-text">files already written to your folder are left alone</strong>, because those are yours and in your own directory. The default project is protected and cannot be deleted.</p>
       </article>
 
       <div data-vc="pagefoot"></div>

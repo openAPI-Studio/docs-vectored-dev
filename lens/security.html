@@ -51,8 +51,9 @@
             <tr><td><span class="font-mono text-xs">host_permissions</span> for all sites</td><td>Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Lens has no code that does so.</td></tr>
             <tr><td><span class="font-mono text-xs">tabs</span></td><td>Reading the active tab's title and URL to record alongside a capture, and bringing a recording's tab forward when you stop it from the popup.</td></tr>
             <tr><td><span class="font-mono text-xs">activeTab</span></td><td>Capturing the visible area of the current tab for still screenshots.</td></tr>
-            <tr><td><span class="font-mono text-xs">downloads</span></td><td>The fallback path when no project folder is linked or access has lapsed.</td></tr>
+            <tr><td><span class="font-mono text-xs">downloads</span></td><td>Writing a copy of a capture to your downloads when you ask for one.</td></tr>
             <tr><td><span class="font-mono text-xs">storage</span></td><td>Settings, the project list and cached thumbnails.</td></tr>
+            <tr><td><span class="font-mono text-xs">unlimitedStorage</span></td><td>A project keeps its own captures in the browser profile. This exempts them from being cleared when the disk fills — without it the browser may evict the lot, which here would mean deleting captures.</td></tr>
             <tr><td><span class="font-mono text-xs">offscreen</span></td><td>A hidden document that holds the recording stream, because a Manifest V3 service worker cannot.</td></tr>
           </tbody>
         </table>
