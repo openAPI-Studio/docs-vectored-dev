@@ -137,10 +137,20 @@
     var html = '<a class="vc-back" href="' + u(product.dir + '/') + '">' +
       '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>' +
       esc(product.homeLabel) + '</a>';
+    // Item hrefs are stored relative to <product>/docs/, but this sidebar also
+    // renders on pages that sit at the product root — privacy, security and
+    // support. Resolving each one against the site root keeps both depths
+    // working from a single registry, and makes the active page a comparison of
+    // paths rather than of file names, which a ../ href never matched.
+    var here = location.pathname.replace(/\/index\.html$/, '/');
     product.groups.forEach(function (g) {
       html += '<div class="vc-grp"><span class="vc-label">' + esc(g.title) + '</span><div class="vc-grp-links">' +
         g.items.map(function (it) {
-          return '<a href="' + esc(it.h) + '"' + (it.h === file ? ' class="active" aria-current="page"' : '') + '>' + esc(it.l) + '</a>';
+          var href = it.h.indexOf('../') === 0
+            ? u(product.dir + '/' + it.h.slice(3))
+            : u(product.dir + '/docs/' + it.h);
+          var on = new URL(href, location.href).pathname === here;
+          return '<a href="' + esc(href) + '"' + (on ? ' class="active" aria-current="page"' : '') + '>' + esc(it.l) + '</a>';
         }).join('') + '</div></div>';
     });
     side.innerHTML = html;

@@ -30,10 +30,15 @@
 <script src="../assets/nav.js"></script>
 <script src="../assets/header.js"></script>
 
-  <main class="pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-    <a href="index.html" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; Back to Lens</a>
-    <h1 class="text-3xl sm:text-4xl font-bold mt-4 mb-2">Security</h1>
-    <p class="text-sm text-muted mb-10">Lens by Vectored &middot; Last updated: August 2026</p>
+  <div class="vc-shell">
+    <aside class="vc-side" data-noprint="1"></aside>
+
+    <main class="vc-main">
+      <div class="vc-col">
+        <h1 class="vc-h1">Security</h1>
+<p class="vc-lede">Lens by Vectored &middot; Last updated: August 2026</p>
+
+        <article class="vc-doc">
 
     <div class="bg-cta/10 border border-cta/20 rounded-xl p-5 mb-10">
       <p class="text-sm text-muted"><strong class="text-text">Threat model in one line.</strong> Lens runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in <a href="#ai" class="text-cta hover:underline">section 4</a>.</p>
@@ -150,9 +155,16 @@
       <h2 class="text-xl font-semibold mb-4">8. Related</h2>
       <p class="text-muted"><a href="privacy.html" class="text-cta hover:underline">Lens privacy policy</a> &middot; <a href="../security.html" class="text-cta hover:underline">Vectored site security</a> &middot; <a href="support.html" class="text-cta hover:underline">Support</a></p>
     </section>
-  </main>
+        </article>
+      </div>
+    </main>
+
+    <aside class="vc-rail" data-noprint="1"></aside>
+  </div>
+
   <div id="vc-footer"></div>
 <script src="../assets/footer.js"></script>
+<script src="../assets/docs.js"></script>
 
 </body>
 </html>

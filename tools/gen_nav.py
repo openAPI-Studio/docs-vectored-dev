@@ -52,7 +52,12 @@ GROUPS = {
    ('Organise', ['projects','timeline']),
    ('Configure', ['settings','shortcuts']),
    ('AI', ['ai']),
-   ('Help', ['troubleshooting']),
+   ('Help', ['troubleshooting','../support']),
+   # Lens keeps these at the product root rather than under docs/, unlike
+   # timesheets which has privacy-security as an ordinary page. A leading ../
+   # says so: the file is looked for beside the product's index.html, and the
+   # entry is kept out of prev/next because it is not part of the reading order.
+   ('About', ['../privacy','../security']),
  ],
  'rewardhub': [
    ('Start here', ['getting-started']),
@@ -119,14 +124,24 @@ def build():
         for gtitle, slugs in GROUPS[p['key']]:
             items = []
             for slug in slugs:
-                fp = os.path.join(ROOT, d, 'docs', slug + '.html')
+                # A ../ slug is a page at the product root, not under docs/. It
+                # is listed in the sidebar but left out of the prev/next chain
+                # and out of the doc-page count, which is what `x` marks.
+                outside = slug.startswith('../')
+                name = slug[3:] if outside else slug
+                fp = os.path.join(ROOT, d, name + '.html') if outside \
+                    else os.path.join(ROOT, d, 'docs', name + '.html')
                 if not os.path.exists(fp):
                     raise SystemExit('missing page: ' + fp)
                 title, desc = page_meta(fp)
                 label = LABELS.get((p['key'], slug), title)
-                items.append({'h': slug + '.html', 'l': label,
-                              't': (label + ' ' + desc).lower()})
-                seen.add(slug)
+                item = {'h': ('../' if outside else '') + name + '.html', 'l': label,
+                        't': (label + ' ' + desc).lower()}
+                if outside:
+                    item['x'] = 1
+                else:
+                    seen.add(name)
+                items.append(item)
             groups.append({'title': gtitle, 'items': items})
         actual = {os.path.basename(f)[:-5] for f in glob.glob(os.path.join(ROOT, d, 'docs', '*.html'))}
         actual.discard('print')  # the generated full-guide export, not a doc page
@@ -167,7 +182,9 @@ js = """/* Vectored docs — product registry.
      docsHome   where "<Product> docs" links to — the directory when it has an
                 index.html, otherwise the first page in nav order
      count      number of doc pages, shown in the switcher
-     groups     [{ title, items: [{ h: href, l: label, t: search text }] }]
+     groups     [{ title, items: [{ h: href, l: label, t: search text,
+                x: 1 when the page sits outside docs/ and is left out of
+                   the prev/next reading order }] }]
 */
 window.VC_PRODUCTS = [
 %s
@@ -182,11 +199,15 @@ window.VC_PRODUCT_FOR = function (path) {
   return null;
 };
 
-/* Flat page list for a product, in sidebar order — drives prev/next. */
+/* Flat page list for a product, in sidebar order — drives prev/next.
+
+   Items marked x are in the sidebar but not in the reading order: a privacy
+   policy is somewhere you go on purpose, not the page that follows
+   troubleshooting. */
 window.VC_PAGES = function (p) {
   var out = [];
   p.groups.forEach(function (g) {
-    g.items.forEach(function (it) { out.push(it); });
+    g.items.forEach(function (it) { if (!it.x) out.push(it); });
   });
   return out;
 };
