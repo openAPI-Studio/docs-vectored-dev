@@ -61,6 +61,7 @@ PAGES = [(s, BY_SLUG[s]) for s in ORDER]
 
 INTRO = [
     P("TimeSheets is time tracking, approvals, leave and billing for Jira Cloud. It runs entirely on Atlassian Forge — nothing to host, and no data leaves your Atlassian site except email."),
+    P("**It is free for everyone** — every feature, no paid tier, no per-seat charge, no trial and no upgrade prompt. If it saves your team time, you can [buy the developer a coffee](https://ko-fi.com/openpost); nothing in the app changes either way."),
     H("What it does"),
     UL([
         "**Log time** against projects and cost centres, with or without a Jira issue.",

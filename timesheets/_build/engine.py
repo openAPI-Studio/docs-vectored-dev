@@ -98,6 +98,15 @@ HEAD = """  <meta charset="UTF-8">
 
 BANNER = '  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; TimeSheets is in active development.</div>'
 
+# Ko-fi pill, fixed bottom-right on every page — same markup and position the
+# API Studio pages already use, so the two products do not each invent their
+# own. TimeSheets is free, and this is the whole of its funding model.
+KOFI = ('<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" '
+        'class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] '
+        'text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" '
+        'title="TimeSheets is free — support the developer on Ko-fi">'
+        '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>')
+
 # The theme toggle, sidebar, search and on-this-page nav that used to be
 # emitted after every page's content now live in the shared assets, so there
 # is no tail script left to write.
@@ -266,6 +275,7 @@ def doc_page(slug, p, pages):
 <div id="vc-footer"></div>
 <script src="../../assets/footer.js"></script>
 <script src="../../assets/docs.js"></script>
+{KOFI}
 </body>
 </html>
 """
@@ -305,6 +315,7 @@ def landing(pages, intro_blocks):
 
 <div id="vc-footer"></div>
 <script src="../assets/footer.js"></script>
+{KOFI}
 </body>
 </html>
 """

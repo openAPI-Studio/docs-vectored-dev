@@ -5,36 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TimeSheets — Time tracking &amp; approvals for Jira | Vectored</title>
   <meta name="description" content="Timesheets, approvals, leave, billing and reporting for Jira Cloud teams, from Vectored">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="../assets/tailwind-config.js"></script>
-  <style>
-table{width:100%;border-collapse:collapse}
-    th,td{text-align:left;padding:0.5rem 0.75rem;border-bottom:1px solid var(--border);vertical-align:top;font-size:0.875rem}
-    th{font-weight:600;color:var(--tx)}
-    td{color:var(--muted)}
-    .tbl-wrap{overflow-x:auto;margin-bottom:1.5rem}
-    .shot img{width:100%;height:auto;display:block;border-radius:0.5rem}
-  </style>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
     var d=document.documentElement;d.dataset.theme=light?'light':'dark';
     d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/tailwind-config.js"></script>
   <link rel="stylesheet" href="../assets/tokens.css">
 </head>
-<body class="min-h-screen">
+<body>
 
-  <div id="vc-header"></div>
+<div id="vc-header"></div>
 <script src="../assets/nav.js"></script>
 <script src="../assets/header.js"></script>
   <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; TimeSheets is in active development.</div>
 
-  <main class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16">
+  <main class="vc-page">
     <h1 class="text-4xl font-bold mb-3">TimeSheets</h1>
     <p class="text-lg text-muted mb-10">Time tracking, approvals, leave and billing for Jira Cloud.</p>
 
       <p class="text-muted mb-4">TimeSheets is time tracking, approvals, leave and billing for Jira Cloud. It runs entirely on Atlassian Forge — nothing to host, and no data leaves your Atlassian site except email.</p>
+      <p class="text-muted mb-4"><strong class="text-text">It is free for everyone</strong> — every feature, no paid tier, no per-seat charge, no trial and no upgrade prompt. If it saves your team time, you can <a href="https://ko-fi.com/openpost" class="text-cta hover:underline">buy the developer a coffee</a>; nothing in the app changes either way.</p>
       <h2 class="text-2xl font-semibold mt-10 mb-4">1. What it does</h2>
       <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Log time</strong> against projects and cost centres, with or without a Jira issue.</li><li><strong class="text-text">Approve</strong> it per entry or per week, with delegation for when an approver is away.</li><li><strong class="text-text">Book leave</strong>, with balances, half-days and per-project approval.</li><li><strong class="text-text">Report</strong> on teams and cost centres, and export to Excel or PDF.</li><li><strong class="text-text">Bill</strong> approved work: clients, layered rates, and immutable numbered invoices.</li><li><strong class="text-text">Govern</strong> it: retention windows, personal-data export, and erasure.</li></ul>
       <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">New here? Start with <a href="docs/getting-started.html" class="text-cta hover:underline">Getting Started</a>. Evaluating the app for a security or privacy review? Go straight to <a href="docs/privacy-security.html" class="text-cta hover:underline">Privacy &amp; Data Handling</a>.</p></div>
@@ -194,8 +187,8 @@ table{width:100%;border-collapse:collapse}
     </div>
   </main>
 
-  
 <div id="vc-footer"></div>
 <script src="../assets/footer.js"></script>
+<a href="https://ko-fi.com/openpost" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" title="TimeSheets is free — support the developer on Ko-fi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>Ko-fi</a>
 </body>
 </html>
