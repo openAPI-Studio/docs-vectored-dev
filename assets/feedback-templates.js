@@ -163,6 +163,26 @@
       nextSteps: [{ label: 'Recognition Hub documentation', href: 'https://docs.vectored.dev/rewardhub/' }],
     },
 
+    'rewardhub-monday': {
+      id: 'rewardhub-monday',
+      name: 'Recognition Hub',
+      platform: 'for monday.com',
+      tagline: 'Peer recognition that lives where the work happens.',
+      badge: 'LIVE',
+      docs: 'https://docs.vectored.dev/rewardhub-monday/',
+      marketplace: 'https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install',
+      icon: 'rewardhub-monday/assets/logo.png',
+      accent: '#22C55E',
+      initial: 'R',
+      ratingLabel: 'How would you rate Recognition Hub?',
+      areas: ['Kudos feed', 'Card templates', 'Recognizing from a board item', 'Company values', 'GIFs & reactions', 'Rewards', 'AI assist', 'Email notifications', 'Admin settings', 'Something else'],
+      questions: [
+        { id: 'surface', label: 'Where do you open it?', type: 'select', options: ['Left navigation', 'A board view', 'A dashboard widget', 'The item menu', 'A mix'] },
+        { id: 'teamSize', label: 'How many people use it?', type: 'select', options: ['Under 25', '25–100', '100–500', '500+'] },
+      ],
+      nextSteps: [{ label: 'Recognition Hub for monday.com documentation', href: 'https://docs.vectored.dev/rewardhub-monday/' }],
+    },
+
     timesheets: {
       id: 'timesheets',
       name: 'TimeSheets',
@@ -247,7 +267,7 @@
   };
 
   // Order the dropdown deliberately: live products first, then upcoming, then catch-alls.
-  var ORDER = ['macrotoolkit', 'forms', 'apistudio', 'rewardhub', 'timesheets', 'lens', 'frontdoor', 'docs'];
+  var ORDER = ['macrotoolkit', 'forms', 'apistudio', 'rewardhub', 'rewardhub-monday', 'timesheets', 'lens', 'frontdoor', 'docs'];
 
   // Aliases so old links, marketplace slugs and in-app links all resolve.
   var ALIASES = {

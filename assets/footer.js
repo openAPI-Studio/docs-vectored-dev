@@ -71,7 +71,7 @@
       '<div class="vc-ft-in">' +
         '<div class="vc-ft-grid">' +
           '<div class="vc-ft-brand">' +
-            '<b>Vectored</b>' +
+            '<img src="' + u('assets/logo.png') + '" alt="vectored.dev" width="229" height="52">' +
             '<p>Production-grade tools for Atlassian, VS Code, and the command line.</p>' +
             '<div class="vc-ft-social">' +
               '<a href="' + GITHUB + '" target="_blank" rel="noopener" aria-label="GitHub">' +

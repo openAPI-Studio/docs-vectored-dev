@@ -7,7 +7,6 @@ the registry can be regenerated whenever pages are added or renamed.
 import re, os, json, glob, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = '/Users/akshaykg/Documents/tst/open-tools/docs-site'
 
 GROUPS = {
  'apistudio': [
@@ -65,6 +64,15 @@ GROUPS = {
    ('Rewards', ['rewards']),
    ('Configure', ['company-values','email-notifications','moderation']),
  ],
+ # The monday.com build. Same product, different platform: the page macro has
+ # no monday counterpart and is gone, while the board-item action and the plans
+ # page have no Atlassian counterpart. The rest is the same reading order.
+ 'rewardhub-monday': [
+   ('Start here', ['getting-started','plans']),
+   ('Recognize', ['giving-recognition','recognize-from-an-item','ai-assist','reactions-comments','sharing']),
+   ('Rewards', ['rewards']),
+   ('Configure', ['company-values','email-notifications','moderation','privacy-security']),
+ ],
 }
 
 # Label overrides where the <title> is not the right sidebar label.
@@ -73,6 +81,8 @@ LABELS = {
  ('macrotoolkit','index'): 'All macros',
  ('timesheets','cost-centers'): 'Cost Centres',
  ('timesheets','privacy-security'): 'Privacy & Data Handling',
+ ('rewardhub-monday','recognize-from-an-item'): 'From a Board Item',
+ ('rewardhub-monday','privacy-security'): 'Privacy & Data Handling',
 }
 
 PRODUCTS = [
@@ -96,6 +106,14 @@ PRODUCTS = [
       dir='rewardhub', icon='rewardhub/assets/logo-64.png',
       cta='https://marketplace.atlassian.com/apps/564712405',
       ctaLabel='Try free', homeLabel='Recognition Hub Overview'),
+ dict(key='rewardhub-monday', label='Recognition Hub for monday', blurb='Recognition on monday.com',
+      dir='rewardhub-monday', icon='rewardhub-monday/assets/logo-64.png',
+      cta='https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install',
+      ctaLabel='Add to monday', homeLabel='Recognition Hub Overview',
+      # monday publishes its own install button and asks that it be used as
+      # supplied. Where a product provides one, the header renders it instead of
+      # the house CTA; ctaLabel stays as the accessible name.
+      ctaImage='https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/uploads/Tal/4b5d9548-0598-436e-a5b6-9bc5f29ee1d9_Group12441.png'),
  dict(key='lens', label='Lens', blurb='Screenshots, GIF & guides',
       dir='lens', icon='lens/assets/icon-64.png',
       cta='https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki',
@@ -157,6 +175,7 @@ def build():
         out.append({
             'key': p['key'], 'label': p['label'], 'blurb': p['blurb'], 'dir': d,
             'icon': p['icon'], 'cta': p['cta'], 'ctaLabel': p['ctaLabel'],
+            **({'ctaImage': p['ctaImage']} if p.get('ctaImage') else {}),
             'homeLabel': p['homeLabel'], 'docsHome': docs_home,
             'count': len(actual), 'groups': groups,
         })

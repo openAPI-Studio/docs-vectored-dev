@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy &amp; Data Handling — Recognition Hub Docs</title>
+  <meta name="description" content="What Recognition Hub stores on monday.com, what leaves the platform, and how export, erasure and retention work">
+  <meta name="vc-updated" content="24 Sep 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your monday.com account →</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+      <h1 class="vc-h1">Privacy &amp; Data Handling</h1>
+      <p class="vc-lede">What is stored, what leaves monday.com, and how erasure, export and retention work</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">What Recognition Hub stores, where it goes, and how export, erasure and retention work on monday.com.</p>
+
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">In short.</strong> monday.com does not offer an app database this product can use, so Recognition Hub runs its own PostgreSQL. Your recognitions live there rather than in monday.com storage, which means you choose the provider, the region and the jurisdiction. If your policy requires employee data to stay within monday.com&rsquo;s own infrastructure, that is worth weighing early — the rest of this page sets out exactly what is held and where it goes.</p></div>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Where the data lives</h2>
+<p class="text-muted mb-4">monday.com does not offer an app database this product can use — the managed option is MongoDB, exposed only as a short-lived read-only credential for inspection. Recognition Hub therefore brings its own PostgreSQL database, and that database is the system of record.</p>
+<p class="text-muted mb-4">Held in that database, per account:</p>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li><strong class="text-text">Recognitions</strong> — title, message, the author and recipient monday user ids, company value, GIF reference, timestamps.</li>
+<li><strong class="text-text">Reactions and comments</strong> — the emoji or text, and who left it.</li>
+<li><strong class="text-text">Cached profiles</strong> — display name and avatar URL, refreshed from the monday API so the feed can render without a lookup per card.</li>
+<li><strong class="text-text">Rewards</strong> — pools, balances, ledgers, redemption records and their status.</li>
+<li><strong class="text-text">Badges, preferences and the audit log.</strong></li>
+</ul>
+<p class="text-muted mb-4">Board data is <em>not</em> stored. The only board information the app ever reads is who is assigned on an item, read in your browser on your own monday session at the moment you open the composer from that item, and used to prefill the recipient field. It is never written to the database.</p>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Where data goes beyond monday.com</h2>
+<div class="overflow-x-auto my-6"><table class="w-full text-sm"><thead><tr class="border-b border-border text-left"><th class="py-2 pr-4 font-semibold">Destination</th><th class="py-2 pr-4 font-semibold">What is sent</th><th class="py-2 font-semibold">When</th></tr></thead><tbody class="text-muted">
+<tr class="border-b border-border/50"><td class="py-2 pr-4"><strong class="text-text">The app&rsquo;s PostgreSQL</strong></td><td class="py-2 pr-4">Everything listed above</td><td class="py-2">Always</td></tr>
+<tr class="border-b border-border/50"><td class="py-2 pr-4"><strong class="text-text">AWS SES</strong></td><td class="py-2 pr-4">Recipient email address, recognition title, message, value, GIF still, deep link</td><td class="py-2">When notification email is enabled</td></tr>
+<tr class="border-b border-border/50"><td class="py-2 pr-4"><strong class="text-text">Anthropic</strong></td><td class="py-2 pr-4">The occasion or message you type, plus your company-value names</td><td class="py-2">Only when an admin connects an Anthropic key and someone uses AI Assist</td></tr>
+<tr class="border-b border-border/50"><td class="py-2 pr-4"><strong class="text-text">GIF provider</strong></td><td class="py-2 pr-4">Your search terms. No recognition content.</td><td class="py-2">When the GIF picker is used</td></tr>
+<tr><td class="py-2 pr-4"><strong class="text-text">Tremendous</strong></td><td class="py-2 pr-4">Recipient name, email address, reward amount</td><td class="py-2">Only when rewards are connected and a reward is redeemed</td></tr>
+</tbody></table></div>
+<p class="text-muted mb-4">Every destination except the database is optional and off until an admin turns it on. Email and AI can both be pointed at credentials you own — your own AWS SES account, your own Anthropic key — so that path runs through infrastructure you control.</p>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Access and permissions</h2>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li><strong class="text-text">Every request is authenticated.</strong> The browser never asserts who it is: it sends a short-lived session token signed by monday.com, and the server verifies the signature and reads the acting user and account from the signed claims.</li>
+<li><strong class="text-text">Admin rights are resolved server-side</strong> against the monday API, not taken from the page or inferred from which screen an action came from. monday&rsquo;s account settings view is reachable by any user, so placement authorizes nothing.</li>
+<li><strong class="text-text">Accounts are isolated.</strong> Every query is scoped to the acting account, and the OAuth token stored for an account is verified to belong to it before it is saved.</li>
+<li><strong class="text-text">Credentials are encrypted at rest</strong> — the monday token, the Anthropic key, the Tremendous key and the SES credentials are all stored encrypted and never returned to the browser.</li>
+</ul>
+<p class="text-muted mb-4">OAuth scopes requested: <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">me:read</code>, <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">users:read</code>, <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">account:read</code>, <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">teams:read</code>, <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">ai:consume</code> and <code class="bg-surface px-1.5 py-0.5 rounded text-sm font-mono">boards:read</code>. Boards are read, never written.</p>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Data-subject requests</h2>
+<p class="text-muted mb-4">Under GDPR your organisation is the data controller and this app is a processor, so both of these run as <strong class="text-text">admin</strong> actions — an employee&rsquo;s request goes to you, and you action it here. The app never acts on a request from a data subject directly, because it has no way to authenticate one.</p>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li><strong class="text-text">Export</strong> (Art. 15) — everything held about one person, as a JSON file an admin can hand over. Live redemption links are deliberately excluded: they are bearer URLs to spendable value, and an access request is not a reason to put one in an email attachment.</li>
+<li><strong class="text-text">Erasure</strong> (Art. 17) — the person&rsquo;s identifiers are replaced with a fresh random pseudonym, so recognitions written <em>by</em> and <em>about</em> them stay coherent for everyone else while ceasing to identify them.</li>
+</ul>
+<p class="text-muted mb-4">Both live under <strong class="text-text">Settings &gt; Privacy &amp; Data</strong>.</p>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Retention and deletion</h2>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li><strong class="text-text">Retention</strong> is configurable per account, and a scheduled job prunes past the window you set. The audit log has a floor of 365 days — it is itself a security control, and a short retention on it would defeat the point.</li>
+<li><strong class="text-text">Uninstalling erases the account.</strong> monday.com notifies the app on uninstall and every table belonging to that account is purged. A registry test fails the build if a new table is added without being registered for the purge, which is what keeps that promise true as the schema grows.</li>
+</ul>
+
+<h2 class="text-2xl font-semibold mt-10 mb-4">Keeping the footprint small</h2>
+<p class="text-muted mb-4">The database is a fixed part of the architecture, but almost everything about it is yours to decide: run your own PostgreSQL in the region and jurisdiction that suit you, connect your own AWS SES, bring your own Anthropic key, and leave rewards and GIFs disconnected until you want them. Configured that way, the only parties handling your data are ones you already have a direct relationship with.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

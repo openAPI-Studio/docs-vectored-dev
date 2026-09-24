@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moderation — Recognition Hub Docs</title>
+  <meta name="description" content="Flagging, review queue, and admin controls">
+  <meta name="vc-updated" content="21 Jul 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your monday.com account →</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+      <h1 class="vc-h1">Moderation</h1>
+      <p class="vc-lede">Flagging, review queue, and admin controls</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<h2 class="text-2xl font-semibold mt-10 mb-4">Flagging</h2>
+<p class="text-muted mb-4">Every card has a flag button (<span class="inline-flex items-center gap-1 align-middle text-cta"><svg class="w-4 h-4 inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" x2="4" y1="22" y2="15"></line></svg><span class="sr-only">flag icon</span></span>). Any user can flag a recognition as potentially offensive, picking a reason (offensive/inappropriate, spam, other). A flagged recognition is <strong>hidden from everyone immediately</strong> — the mural and deep links both treat it as under review.</p>
+<img alt="The flag and hide dialog with reason options" class="rounded-xl border border-border my-6 w-full" src="../assets/flag and hide popup.png"/>
+<h2 class="text-2xl font-semibold mt-10 mb-4">Review Queue</h2>
+<p class="text-muted mb-4">Admins resolve flags under <strong>Settings &gt; Moderation</strong>. The queue shows each flagged card with its author, recipients, date, who flagged it, and the reason. <strong>Unflag</strong> restores it everywhere; <strong>Delete</strong> removes it permanently along with its reactions and comments.</p>
+<img alt="The moderation review queue" class="rounded-xl border border-border my-6 w-full" src="../assets/Moderation settings pahe.png"/>
+<h2 class="text-2xl font-semibold mt-10 mb-4">Finding Any Recognition</h2>
+<p class="text-muted mb-4">The same screen searches <em>all</em> recognitions by title or message (not just flagged ones), so admins can locate and remove any post on request.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

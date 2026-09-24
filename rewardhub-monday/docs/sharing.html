@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharing — Recognition Hub Docs</title>
+  <meta name="description" content="Direct links and email sharing">
+  <meta name="vc-updated" content="21 Jul 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your monday.com account →</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" x2="15.4" y1="10.5" y2="6.5"></line><line x1="8.6" x2="15.4" y1="13.5" y2="17.5"></line></svg></div>
+      <h1 class="vc-h1">Sharing</h1>
+      <p class="vc-lede">Direct links and email sharing</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<h2 class="text-2xl font-semibold mt-10 mb-4">Share Dialog</h2>
+<p class="text-muted mb-4">Every card has a share button (<span class="inline-flex items-center gap-1 align-middle text-cta"><svg class="w-4 h-4 inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" x2="15.4" y1="10.5" y2="6.5"></line><line x1="8.6" x2="15.4" y1="13.5" y2="17.5"></line></svg><span class="sr-only">share icon</span></span>) opening two tabs: <strong>Direct link</strong> and <strong>Email</strong>.</p>
+<img alt="The share dialog with Direct link and Email tabs" class="rounded-xl border border-border my-6 w-full" src="../assets/share recognition popup.png"/>
+<h2 class="text-2xl font-semibold mt-10 mb-4">Direct Links</h2>
+<p class="text-muted mb-4">The direct link deep-links into the hub and opens that recognition as a popup over the mural — same link used in notification emails' “View this recognition” button. Anyone with access to your monday.com site can open it.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">Sharing by Email</h2>
+<p class="text-muted mb-4">The Email tab lets you send the recognition to teammates on your site (searchable picker) <em>and</em> to raw email addresses for people the picker can't find. Sends use your configured email provider and the same rich template as notifications.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Where your data is stored.</strong> Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. <a class="text-cta hover:underline" href="privacy-security.html">Privacy &amp; Data Handling</a> has the full picture.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">Embedding a card on a page</h2>
+<p class="text-muted mb-4">Not available on monday.com. The Confluence build of Recognition Hub can embed a live card inside a wiki page through a page macro; monday.com has no equivalent inline-content surface, so the card lives in the hub and is shared by link or email instead.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

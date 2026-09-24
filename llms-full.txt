@@ -8024,6 +8024,8 @@ Time tracking, approvals, leave and billing for Jira Cloud.
 
 TimeSheets is time tracking, approvals, leave and billing for Jira Cloud. It runs entirely on Atlassian Forge — nothing to host, and no data leaves your Atlassian site except email.
 
+**It is free for everyone** — every feature, no paid tier, no per-seat charge, no trial and no upgrade prompt. If it saves your team time, you can [buy the developer a coffee](https://ko-fi.com/openpost); nothing in the app changes either way.
+
 ### 1. What it does
 
 - **Log time** against projects and cost centres, with or without a Jira issue.
@@ -8232,15 +8234,13 @@ Install TimeSheets and log your first entry
 
 TimeSheets adds time tracking, approvals, leave and billing to Jira Cloud. It runs entirely on Atlassian Forge, so there is nothing to host and no data leaves your Atlassian site except email.
 
-This page takes you from a fresh install to a first logged entry. It should take about ten minutes. Steps 1 and 2 are for an administrator and must both be done before anyone else opens the app.
+This page takes you from a fresh install to a first logged entry. It should take about ten minutes.
 
 ### 1. Install the app
 
 Install TimeSheets from the Atlassian Marketplace. On first load the app creates its own tables, which takes a few seconds; if a screen looks empty immediately after installing, reload it once.
 
-You need to be a **Jira site administrator** to install and to reach the admin screens.
-
-Do not hand the app to your team yet. Nobody can log a single entry until an administrator has created a cost centre and assigned it to a project — step 2. A person who opens the Hub before that finds an empty project list and no way forward.
+You need to be a **Jira site administrator** to install and to reach the admin screens. Everyone else can start logging time straight away.
 
 ![The TimeSheets listing on the Atlassian Marketplace, with the Get it now button](https://docs.vectored.dev/timesheets/assets/timesheets-marketplace-install.png)
 
@@ -8252,29 +8252,7 @@ The TimeSheets listing on the Atlassian Marketplace, with the Get it now button
 
 The TimeSheets listing on the Atlassian Marketplace, with the Get it now button
 
-### 2. Create a cost centre and attach it to a project
-
-This is the one step that cannot be skipped. Every worklog entry carries exactly one **cost centre** — the label that says how the work is classified for reporting and billing — and a cost centre is only offered on projects it has been attached to. A project with none attached does not appear in the Log time dialog at all.
-
-Do both halves before anyone else opens the app:
-
-1. Create the cost centre — go to **Admin Settings → Cost Centers** and add one. A name is all that is required; code, parent, billable, hour allotment and budget are optional and can be filled in later. One general cost centre is enough to get started — you can add the real structure once people are logging.
-
-2. Attach it to your projects — open **Project Settings → Cost centres** for each project that will track time, and assign the cost centres that may be used there. Repeat for every project; nothing is attached automatically, including projects created after the cost centre.
-
-![The cost centres section of Project Settings, with a cost centre assigned to the project](https://docs.vectored.dev/timesheets/assets/timesheets-project-cost-centre-assign.png)
-
-Screenshot needed
-
-timesheets-project-cost-centre-assign.png
-
-The cost centres section of Project Settings, with a cost centre assigned to the project
-
-The cost centres section of Project Settings, with a cost centre assigned to the project
-
-Detaching a cost centre later stops it being used for **new** entries only; existing entries keep theirs. Full detail in [Cost Centers](https://docs.vectored.dev/timesheets/docs/cost-centers.html) and [Project Settings](https://docs.vectored.dev/timesheets/docs/project-settings.html).
-
-### 3. Open the Hub
+### 2. Open the Hub
 
 Everything a person needs day to day lives in one place, called the **Hub**. Find it under **Apps → TimeSheets** in the Jira top navigation.
 
@@ -8300,7 +8278,7 @@ The TimeSheets Hub with the Dashboard tab open, showing the tab bar across the t
 
 The TimeSheets Hub with the Dashboard tab open, showing the tab bar across the top
 
-### 4. Log your first entry
+### 3. Log your first entry
 
 1. Open the Hub — and stay on the Dashboard, or go to the Calendar.
 
@@ -8324,21 +8302,23 @@ The Log time dialog with a project, cost centre, date and duration filled in
 
 The Log time dialog with a project, cost centre, date and duration filled in
 
-If the project you want is not in the list, it almost always has no cost centres attached yet — go back to step 2. The other cause is that you cannot browse the project in Jira. Both are fixed by an administrator — see [Project Settings](https://docs.vectored.dev/timesheets/docs/project-settings.html).
+If the project you want is not in the list, it either has no cost centres assigned to it yet, or you cannot browse it in Jira. Both are fixed by an administrator — see [Project Settings](https://docs.vectored.dev/timesheets/docs/project-settings.html).
 
-### 5. What an administrator should set up next
+### 4. What an administrator should set up next
 
-Cost centres are already in place from step 2. Beyond them, three things are worth deciding early because they shape everything else:
+TimeSheets works out of the box, but four things are worth deciding early because they shape everything else:
 
-1. **Approvals.** Whether time needs approving at all, per entry or per week, and who approves it — see [Approvals](https://docs.vectored.dev/timesheets/docs/approvals.html).
+1. **Cost centres.** How work is classified. Nothing can be logged until at least one is assigned to a project — see [Cost Centers](https://docs.vectored.dev/timesheets/docs/cost-centers.html).
 
-2. **Working hours and days.** The basis for capacity, missing-day detection and leave — see [Admin Settings](https://docs.vectored.dev/timesheets/docs/admin-settings.html).
+2. **Approvals.** Whether time needs approving at all, per entry or per week, and who approves it — see [Approvals](https://docs.vectored.dev/timesheets/docs/approvals.html).
 
-3. **Leave types.** Which categories your organisation uses. Health-related types arrive switched off on purpose — see [Leave Management](https://docs.vectored.dev/timesheets/docs/leave.html).
+3. **Working hours and days.** The basis for capacity, missing-day detection and leave — see [Admin Settings](https://docs.vectored.dev/timesheets/docs/admin-settings.html).
+
+4. **Leave types.** Which categories your organisation uses. Health-related types arrive switched off on purpose — see [Leave Management](https://docs.vectored.dev/timesheets/docs/leave.html).
 
 Billing is entirely optional and off until you add a client and a rate. If you only want timesheets, you can ignore it.
 
-### 6. Where to go next
+### 5. Where to go next
 
 - Logging in bulk, copying weeks and using templates — [Logging Time](https://docs.vectored.dev/timesheets/docs/logging-time.html)
 
@@ -13464,6 +13444,610 @@ Admins resolve flags under **Settings > Moderation**. The queue shows each flagg
 
 The same screen searches *all* recognitions by title or message (not just flagged ones), so admins can locate and remove any post on request.
 
+# Recognition Hub for monday
+
+## Recognition Hub
+
+Source: https://docs.vectored.dev/rewardhub-monday/
+
+[← All Tools](https://docs.vectored.dev/)
+
+![Recognition Hub logo](https://docs.vectored.dev/rewardhub-monday/assets/logo.png)
+
+## Recognition Hub
+
+by Vectored · for monday.com
+
+LIVE
+
+Peer recognition that lives where your team already works. A live mural of kudos cards in monday.com — templates, company values, GIFs, reactions and comments, rich email notifications, and built-in moderation. Recognize straight from a board item, or from the hub in your left nav. Free for teams up to 20.
+
+[![Add to monday.com](https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/uploads/Tal/4b5d9548-0598-436e-a5b6-9bc5f29ee1d9_Group12441.png)](https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install) [Read the Docs](https://docs.vectored.dev/rewardhub-monday/docs/getting-started.html)
+
+![The Recognition Hub recognition mural in monday.com](https://docs.vectored.dev/rewardhub-monday/assets/recognition dashboard.png)
+
+5
+
+Card templates
+
+16
+
+Reaction emojis
+
+10
+
+Custom company values
+
+Free
+
+For teams up to 20 users
+
+### What’s Inside
+
+Everything Recognition Hub ships with — click any card for the documentation.
+
+[
+
+#### Giving Recognition
+
+Card templates, recipients, company values, and GIFs.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/giving-recognition.html) [
+
+#### AI Assist
+
+Draft recognitions and rewrite messages with monday-hosted AI.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/ai-assist.html) [
+
+#### Reactions & Comments
+
+Celebrate posts with emoji reactions, confetti, and comments.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/reactions-comments.html) [
+
+#### Sharing
+
+Direct links and email sharing.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/sharing.html) [
+
+#### Email Notifications
+
+AWS SES notifications with editable templates and smart values.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/email-notifications.html) [
+
+#### Company Values
+
+Tag recognitions with the values your company celebrates.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/company-values.html) [
+
+#### Moderation
+
+Flagging, review queue, and admin controls.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/moderation.html) [
+
+#### From a Board Item
+
+Recognize straight from an item, with recipients already filled in.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/recognize-from-an-item.html) [
+
+#### Plans
+
+What each plan includes, and what happens if one lapses.
+
+](https://docs.vectored.dev/rewardhub-monday/docs/plans.html)
+
+GIF search in the composer is![Powered by GIPHY](https://docs.vectored.dev/rewardhub-monday/assets/giphy-attribution-dark.svg)with an admin-set workplace content-rating ceiling.
+
+### How It Works
+
+1. Open **Recognition Hub** from your monday.com left navigation, or use **Recognize** on any board item
+
+2. Click **+ Give recognition** and pick a card template
+
+3. Or describe the occasion and let **AI** draft the title, message, value and GIF for you
+
+4. Search teammates, write your kudos, tag a company value, add a GIF
+
+5. Post — the card lands on the live mural and recipients get a rich email
+
+6. The team reacts with emoji and comments; share cards by link or email
+
+## Getting Started
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/getting-started.html
+
+Install Recognition Hub and post your first recognition
+
+### 1. Installation
+
+Recognition Hub is available on the **monday.com marketplace** for monday.com Cloud. Install it from the Marketplace listing, authorize the app for your site, and it appears under **Apps** in your monday.com navigation. Free for teams of up to 10 users.
+
+### 2. Opening the Hub
+
+Navigate to **Apps > Recognition Hub** from the monday.com top navigation. The hub is a live mural of recognition cards — it auto-refreshes every 30 seconds, loads more as you scroll, and follows your monday.com light/dark theme automatically.
+
+![The Recognition Hub recognition mural](https://docs.vectored.dev/rewardhub-monday/assets/recognition dashboard.png)
+
+### 3. Posting Your First Recognition
+
+Click **+ Give recognition** in the header. Pick a card template, search for the teammates you want to recognize, write a short title and message, optionally tag a company value and attach a GIF, then post. The card appears at the top of the mural instantly and recipients are notified by email.
+
+**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
+
+![Posting a recognition](https://docs.vectored.dev/rewardhub-monday/assets/posting recognition page.png)
+
+### 4. Admin Setup
+
+Site admins configure Recognition Hub under **Settings > Recognition Hub** (monday.com): connect a GIPHY key, define company values, set up email notifications, manage moderation, and — optionally — connect Tremendous to attach real monetary rewards to recognitions.
+
+![GIPHY connection settings](https://docs.vectored.dev/rewardhub-monday/assets/GIPHY configuration settingfspage.png)
+
+#### Turn on GIFs
+
+GIFs are **off by default**. To enable the GIF picker in the composer, open **Settings > Connections**, make sure a GIPHY key is present (the app can ship a built-in key, or you can paste your own workspace key), then switch on **Enable GIFs in the composer**. The toggle stays disabled until a key exists. Use **Test connection** to confirm the key is healthy, then reload the hub — the GIF button appears in the composer. Full details in [Giving Recognition](https://docs.vectored.dev/rewardhub-monday/docs/giving-recognition.html).
+
+**Don't see GIFs?** The most common cause is the **Enable GIFs in the composer** toggle still being off, or the page not yet reloaded after enabling it. A key alone is not enough — the toggle must be on.
+
+#### Rewards (optional)
+
+Recognition Hub can attach real, spendable rewards to recognitions — funded and fulfilled through **Tremendous**. Recipients redeem their balance for a gift card of their choice, PayPal, and more. Setting it up is a one-time admin task: connect a Tremendous API key, pick a reward catalog, create funding pools, and choose who can give rewards. See [Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub-monday/docs/rewards.html) for the full step-by-step.
+
+[Get Recognition Hub on the monday.com marketplace →](https://monday.com/marketplace)
+
+## Plans
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/plans.html
+
+What each plan includes, and what happens if one lapses
+
+**Draft.** Plan names and prices are still being finalised with monday.com. Treat the figures below as placeholders until the listing is live.
+
+### Free
+
+Up to 20 users. The recognition feed, posting, reactions and comments, company values, guidelines, badges, GIFs, email notifications, moderation and analytics — the whole product except rewards.
+
+### Premium
+
+Everything in Free, for accounts above 20 users. Priced per seat and billed by monday.com.
+
+### Enterprise
+
+Everything in Premium, plus **rewards** — funding reward pools, connecting Tremendous, and attaching real money to a recognition. See [Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub-monday/docs/rewards.html).
+
+### Billing
+
+Plans are bought and billed through monday.com, from **Settings > Integrations** or the app's marketplace listing. Recognition Hub never asks for payment details itself.
+
+### If a plan lapses
+
+Nothing you already have is taken away. The feed, every past recognition, reward balances, redemption history and data exports all stay available. What stops is the paid *action* — granting new rewards — and a recognition with a reward attached still posts, without the reward. Money already funded into a pool remains yours to redeem.
+
+## Giving Recognition
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/giving-recognition.html
+
+Card templates, recipients, company values, and GIFs
+
+### Card Templates
+
+Every recognition starts from a template that shapes how the card renders on the mural: **Classic** (accent bar), **Spotlight** (GIF-forward, double width), **Milestone** (celebratory), **Minimal Quote** (short shout-outs), and **Team Shout** (group recognitions, double width).
+
+![The recognition composer with templates, recipients, values and GIFs](https://docs.vectored.dev/rewardhub-monday/assets/posting recognition page.png)
+
+### Recipients
+
+Search any teammate by name (monday.com) and add up to 20 recipients per recognition. Self-recognition is blocked — recognition is for celebrating *others*. For multi-recipient posts, everyone is included on one notification email.
+
+**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
+
+### Company Values
+
+Optionally tag the recognition with one of your company's values. The value renders as a colored chip on the card and in the notification email, and can be curated by admins (up to 10 values).
+
+### GIFs
+
+GIF search is powered by GIPHY ![Powered by GIPHY](https://docs.vectored.dev/rewardhub-monday/assets/giphy-attribution-dark.svg) — the composer offers a searchable picker with trending GIFs and full search. GIFs render full-size on cards and appear as a still frame in notification emails.
+
+**GIFs are off until an admin turns them on.** Even with a GIPHY key in place, the GIF picker stays hidden until an admin ticks **Enable GIFs in the composer** under **Settings > Connections**. Save a key (or use the built-in one), then flip the toggle — the picker appears in the composer after the next reload.
+
+#### How the GIPHY integration works
+
+- **Enable the toggle first** — GIFs ship **off**. Under **Settings > Connections**, ensure a key is present (built-in or your own), then turn on **Enable GIFs in the composer**. The toggle can’t be switched on until a key exists.
+
+- **Built-in or workspace key** — GIFs can run on the app’s built-in GIPHY key; admins can override it with their own workspace key under **Settings > Connections** (write-only, stored encrypted, with a test-connection button).
+
+- **Content-rating ceiling** — admins cap results at G, PG, or PG-13 (the workplace maximum). Every GIPHY request is filtered to that rating or stricter.
+
+- **Hotlinked, never re-hosted** — GIF media is served straight from GIPHY’s CDN per GIPHY’s terms of service. Nothing is copied or stored by the app; only the GIF URL and attribution metadata are saved.
+
+- **Attribution everywhere** — the mandatory “Powered by GIPHY” mark is shown in the picker, on card media, and in emails. Admins can disable GIFs entirely at any time.
+
+![GIPHY connection settings with content rating and test connection](https://docs.vectored.dev/rewardhub-monday/assets/GIPHY configuration settingfspage.png)
+
+## Recognizing from a board item
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/recognize-from-an-item.html
+
+Give recognition where the work happened, without leaving the board
+
+Recognition Hub adds a **Recognize** action to monday.com board items. It is the fastest way to thank someone for work you are already looking at.
+
+**Screenshot placeholder.** The item **⋯** menu with Recognize under Apps.
+
+### From one item
+
+Hover an item, click the **⋯** menu, and choose **Recognize**. The composer opens in a window over the board with the people assigned on that item already in the recipient field — so the question it usually opens on is answered before you start typing.
+
+### From several items at once
+
+Tick two or more items and choose **Recognize** from the batch action bar. Everyone assigned across the selection is gathered into one recognition, with duplicates removed — the same owner on five items is one recipient, not five.
+
+**Screenshot placeholder.** The batch action bar with several items selected and Recognize showing.
+
+### If the recipients are not filled in
+
+Reading who is assigned needs the **boards:read** permission, which is granted when an admin connects the app. If the picker opens empty, the connection predates that permission: an admin should reconnect under **Settings > Integrations**, on the monday connection. Recognition itself works either way — only the prefill is affected, and you can always search for people yourself.
+
+### What the item contributes
+
+Only who was working on it. Recognitions are account-wide rather than board-scoped: a recognition posted from an item appears in the same hub feed as every other one, and is not attached to the board, the item, or its updates. Nothing is written back to the board.
+
+## AI Assist
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/ai-assist.html
+
+Draft recognitions and polish messages, on your own Anthropic key
+
+Your own key Bring an Anthropic API key. Usage is billed to your own account.
+
+AI Assist runs on **your own Anthropic API key**, which an admin adds under **Settings > Integrations**. Usage is billed to your Anthropic account, and nothing is sent anywhere until a key is connected. It adds two things to the composer: a **Draft with AI** starting point and a one-click **Quick rewrite** for the message.
+
+**Running on monday AI credits instead** — with no key to manage — is coming through the monday connection. Until then, an Anthropic key is how AI Assist is switched on.
+
+### Draft with AI
+
+When AI Assist is on, **Give recognition** opens with a Draft with AI panel above the card templates (the button also picks up a ✨ sparkle). Describe what someone did in plain language and Recognition Hub drafts the whole card for you:
+
+- **Title** — a short, punchy headline.
+
+- **Message** — a warm note written in the second person.
+
+- **Company value** — the best-matching value from your workspace, auto-selected (or none).
+
+- **GIF** — a mood-appropriate GIF search runs automatically and the top result is pre-selected.
+
+The draft lands on the compose step with everything filled in and the cursor parked on the **recipient** field — you just add the people and post. Nothing is submitted automatically, and every field stays fully editable. Press ⌘/Ctrl + Enter in the description box to draft without reaching for the mouse.
+
+![The Give recognition dialog with the Draft with AI panel above the card templates](https://docs.vectored.dev/rewardhub-monday/assets/New give recognition popup with draft with ai showing.png)
+
+### Quick rewrite
+
+Already wrote a message but want it tighter or warmer? Click **✨ Quick rewrite** next to the Message field. AI Assist returns a polished version — keeping your meaning and any names — as a suggestion you can preview, then **Use this** to drop it into the card or **Dismiss** to keep your original.
+
+![The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions](https://docs.vectored.dev/rewardhub-monday/assets/AI description rewrite screen shot.png)
+
+### Admin controls
+
+AI Assist sits under **Settings > Integrations**, beside the monday connection and the other service credentials. Admins can turn it off account-wide at any time, which immediately hides Draft with AI and Quick rewrite for everyone.
+
+- **Enable AI assist in the composer** — the single on/off switch for the whole site.
+
+- **Anthropic API key** — write-only, exactly like the GIF and Tremendous credentials. It is never shown again after saving.
+
+- **Test AI** — a live check that the key works and the model is reachable.
+
+- **Graceful fallback** — with no key connected, or if the model is unreachable, the AI controls quietly disappear and the composer works exactly as before.
+
+![The AI Assist admin tab with the enable toggle, Test AI button, and availability status](https://docs.vectored.dev/rewardhub-monday/assets/AI assistant settings.png)
+
+### Privacy & billing
+
+- **Goes to Anthropic** — requests are sent to Anthropic under your own API key and their terms. This is the one AI path that leaves monday.com, and it exists only once an admin connects a key.
+
+- **Only what you type** — the model sees the occasion or message you provide plus your workspace's company-value names, nothing more.
+
+- **Billed to you** — usage is charged to your Anthropic account, not to your Recognition Hub plan.
+
+## Reactions & Comments
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/reactions-comments.html
+
+Celebrate posts with emoji reactions, confetti, and comments
+
+### Reactions
+
+Every card shows three quick reactions (🎉 👏 ❤️) plus a **+** button that opens a 16-emoji palette. Reactions are persisted, counted across the team, and toggling one fires a confetti burst contained inside the card. Counts update live for everyone via the feed's 30-second refresh.
+
+### Comments
+
+Add short congratulation comments under any card. Comments are persisted, show the author's name and avatar, and are included in the live refresh so conversations stay current without reloading.
+
+### Live Updates
+
+The mural polls every 30 seconds (pausing while the tab is hidden) and offers a manual refresh button next to the “Updated just now” indicator. New cards slide in with an entrance animation; existing cards update reaction and comment counts in place.
+
+## Sharing
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/sharing.html
+
+Direct links and email sharing
+
+### Share Dialog
+
+Every card has a share button (share icon) opening two tabs: **Direct link** and **Email**.
+
+![The share dialog with Direct link and Email tabs](https://docs.vectored.dev/rewardhub-monday/assets/share recognition popup.png)
+
+### Direct Links
+
+The direct link deep-links into the hub and opens that recognition as a popup over the mural — same link used in notification emails' “View this recognition” button. Anyone with access to your monday.com site can open it.
+
+### Sharing by Email
+
+The Email tab lets you send the recognition to teammates on your site (searchable picker) *and* to raw email addresses for people the picker can't find. Sends use your configured email provider and the same rich template as notifications.
+
+**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
+
+### Embedding a card on a page
+
+Not available on monday.com. The Confluence build of Recognition Hub can embed a live card inside a wiki page through a page macro; monday.com has no equivalent inline-content surface, so the card lives in the hub and is shared by link or email instead.
+
+## Rewards & Tremendous Setup
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/rewards.html
+
+Attach real, spendable rewards to recognitions — funded and fulfilled through Tremendous
+
+### How Rewards Work
+
+With rewards enabled, someone giving recognition can attach a cash reward to it. The amount is entered **per person** — recognize five people at $10 each and $50 is drawn from the giver's pool. Each recipient's reward **balance** grows as they receive rewards, and they can redeem any part of it whenever they like. At redemption, Recognition Hub creates a Tremendous order and hands the recipient a **redemption link** where they choose their gift card brand, cash-out (PayPal, Venmo, and more, where available), or charity.
+
+Money is real and it moves through **Tremendous**. Recognition Hub keeps an internal ledger — pools and user balances — that always stays within your funded Tremendous balance; funds only actually leave Tremendous the moment a recipient redeems. This keeps the app out of money-movement scope while giving you full pool/limit control.
+
+**Rewards leave the monday.com platform.** Reward fulfillment is handled by Tremendous, so a recipient's name and email and the reward amount are sent to Tremendous to issue the reward. Rewards are optional and off until an admin connects a Tremendous account. Note that reward balances and ledgers are held in the app’s own database whether or not Tremendous is connected — connecting it adds Tremendous as a second destination, it does not move the data out of monday.com for the first time.
+
+### What You'll Need
+
+- A **Tremendous account** — sign up free at [tremendous.com](https://www.tremendous.com). Use their sandbox (testflight.tremendous.com) to trial the flow with no real money.
+
+- A **Tremendous API key** (from the dashboard — see below).
+
+- At least one **campaign** in Tremendous, which defines the catalog of gift cards / payout options recipients can pick from.
+
+- **Funds** in your Tremendous balance (added in the Tremendous dashboard) before anyone can redeem.
+
+- Recognition Hub **admin** access (Settings > Recognition Hub).
+
+### Step 1 — Get Your Tremendous API Key
+
+1. Sign in to [app.tremendous.com](https://app.tremendous.com) (or testflight.tremendous.com for sandbox).
+
+2. Open **Team Settings → Developers → API keys** (sometimes shown as **Settings → API**).
+
+3. Click **Create API key**, give it a name (e.g. *Recognition Hub*), and copy the key.
+
+4. Store it somewhere safe for a moment — you'll paste it into Recognition Hub once. It is shown only at creation time.
+
+**Sandbox vs. production keys are different.** A key created in the sandbox (testflight.tremendous.com) only works with the sandbox environment, and a production key only works with production. Match the key to the **Sandbox mode** toggle in Recognition Hub (Step 3).
+
+### Step 2 — Create a Campaign (Reward Catalog)
+
+A **campaign** tells Tremendous which brands and payout options a recipient may choose from on the redemption page. Every reward order must reference one, so you need at least one campaign before rewards can be issued.
+
+1. In the Tremendous dashboard, open **Campaigns** (under **Rewards** or **Catalog**, depending on your account).
+
+2. Click **New campaign**, name it (e.g. *Recognition Rewards*), and select the products you want available — specific gift-card brands, "recipient's choice", cash-out options, charity, and so on.
+
+3. Save. Most accounts already ship with a default campaign you can use as-is.
+
+You don't need to copy the campaign ID by hand — Recognition Hub fetches your campaigns automatically when you test the connection, and lets you pick one from a dropdown.
+
+### Step 3 — Connect Tremendous in Recognition Hub
+
+1. Open **Settings > Recognition Hub > Rewards** (monday.com).
+
+2. Paste your **API key**.
+
+3. Set the **Sandbox mode** toggle to match your key — on for a testflight key, off for a production key.
+
+4. Click **Save key**. The key is write-only: it's stored encrypted and never shown again or sent to the browser.
+
+5. Click **Test connection**. This verifies the key, shows your live Tremendous balance, registers the status webhook, and loads your campaigns.
+
+6. Under **Reward catalog**, pick the campaign recipients should redeem against. Recognition Hub auto-selects one if only a default exists; change it any time.
+
+**USD only, for now.** Rewards require the workspace currency to be USD. If it isn't, the Rewards tab shows a warning and reward features stay hidden until the currency is set to USD.
+
+### Step 4 — Fund Your Tremendous Balance
+
+Recognition Hub allocates from your real Tremendous balance — it doesn't add money to Tremendous for you. Add funds once in the Tremendous dashboard:
+
+1. In Tremendous, go to **Billing → Payment methods** and link a bank account or card (a one-time setup Tremendous requires on their side).
+
+2. Add funds to your **balance**. Bank transfers may take a few business days to fully settle; cards clear faster.
+
+3. Back in Recognition Hub, the **Reward Pools** tab shows your live Tremendous balance so you know how much is available to allocate.
+
+### Step 5 — Create Pools, Load Money, Assign Givers
+
+Pools are how you budget and control who can give rewards. Open **Settings > Recognition Hub > Reward Pools**.
+
+- **Create a pool** — name it for a team, budget, or quarter (e.g. *Engineering Q3*).
+
+- **Load money** — allocate an amount from your Tremendous balance into the pool. Recognition Hub only lets you allocate what's actually unallocated (Tremendous balance minus everything already committed to pools and unredeemed user balances), so you can never over-promise.
+
+- **Assign givers** — add the people (or monday.com groups) allowed to give rewards from this pool. A direct user assignment wins; otherwise the first matching group assignment applies. Each person or group belongs to one pool at a time.
+
+Only someone assigned to a pool with a positive balance sees the reward option in the composer. Everyone else gives recognition exactly as before.
+
+### Step 6 — Give a Reward
+
+An eligible giver opens the composer, adds recipients, and ticks **Attach a reward**. They enter an amount **per person**; the composer shows the live math — what each recipient gets, the total drawn from the pool, and the pool balance afterward — and blocks the post if it would overdraw the pool. On post, each recipient's balance is credited and the reward chip appears on the card (visible only to the giver and recipients, never broadcast).
+
+### Step 7 — How Recipients Redeem
+
+Anyone with a balance opens **My rewards** from their profile menu in the hub. They see their balance, redeem any amount (down to a $5 minimum), and get a **redemption link** to open right away — Tremendous also emails them the same link. On the Tremendous page they pick their gift card, cash-out option, or charity. The panel also shows their reward history, past redemptions with re-openable links, and lifetime achievements (totals plus Bronze/Silver/Gold badges).
+
+**Failed orders are auto-refunded.** If Tremendous can't complete an order, Recognition Hub credits the amount straight back to the recipient's balance — money is never lost in the gap. A background job and Tremendous webhooks keep every redemption's status in sync.
+
+### Auditing & Control
+
+Every money-adjacent action — pool creation, loading funds, assignments, reward grants, redemptions, refunds, and provider events — is written to an immutable **Audit Log** under **Settings > Recognition Hub > Audit Log**, filterable by action type. Pool and user balances are always reconcilable from their underlying ledgers.
+
+### Troubleshooting
+
+- **"No reward catalogs found"** — your Tremendous account has no campaign. Create one (Step 2), then run **Test connection** again.
+
+- **Redemption fails immediately** — usually a key/environment mismatch (sandbox key with sandbox off, or vice versa) or an unselected campaign. Re-check Step 3; the recipient's balance is refunded automatically.
+
+- **Giver doesn't see the reward option** — they aren't assigned to a pool, or their pool balance is zero. Assign them and load the pool (Step 5).
+
+- **Balance looks low right after funding** — bank transfers to Tremendous can take a few business days to fully settle. The Reward Pools tab reflects the live Tremendous balance.
+
+[Get Recognition Hub on the monday.com marketplace →](https://monday.com/marketplace)
+
+## Company Values
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/company-values.html
+
+Tag recognitions with the values your company celebrates
+
+### What They Are
+
+Company values are the tags your team celebrates — *Ownership*, *Customer Obsession*, *Craftsmanship*, and whatever else defines your culture. A tagged recognition shows the value as a colored chip on the card and in the email.
+
+### Managing Values
+
+Admins manage values under **Settings > Company Values**: add (up to 10), rename inline, toggle active, or delete. Colors are assigned automatically from a curated palette so the set always looks coherent — no color picking required.
+
+![Company Values admin settings](https://docs.vectored.dev/rewardhub-monday/assets/company value settings page.png)
+
+### Defaults
+
+New installations start with five sensible defaults you can keep, rename, or replace entirely.
+
+## Email Notifications
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/email-notifications.html
+
+AWS SES notifications with editable templates and smart values
+
+### How Notifications Work
+
+When a recognition is posted, one email goes out per recognition: all recognized users in **To**, the sender in **Cc**. The email is a rich, branded card — title, message, value chip, GIF still frame, and a deep link back to the recognition. Self-recognitions never send mail.
+
+### AWS SES
+
+Delivery uses **AWS SES**. The app ships with built-in credentials so email works out of the box, and admins can override with their own AWS access key, region, and SES-verified from-address under **Settings > Email** (credentials are write-only and stored encrypted). A test-send button verifies the setup.
+
+**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
+
+![AWS SES email settings with test send](https://docs.vectored.dev/rewardhub-monday/assets/ses configuration settings page.png)
+
+### Editable Templates
+
+Under **Settings > Email Templates**, each template opens in a full-screen editor (subject, HTML body, plain-text body) with a click-to-copy **smart values** panel — placeholders like `{{senderName}}`, `{{recipientNames}}`, `{{currentDate}}` that resolve at send time. Conditional sections show content only when a value exists. One click restores the shipped defaults.
+
+## Moderation
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/moderation.html
+
+Flagging, review queue, and admin controls
+
+### Flagging
+
+Every card has a flag button (flag icon). Any user can flag a recognition as potentially offensive, picking a reason (offensive/inappropriate, spam, other). A flagged recognition is **hidden from everyone immediately** — the mural and deep links both treat it as under review.
+
+![The flag and hide dialog with reason options](https://docs.vectored.dev/rewardhub-monday/assets/flag and hide popup.png)
+
+### Review Queue
+
+Admins resolve flags under **Settings > Moderation**. The queue shows each flagged card with its author, recipients, date, who flagged it, and the reason. **Unflag** restores it everywhere; **Delete** removes it permanently along with its reactions and comments.
+
+![The moderation review queue](https://docs.vectored.dev/rewardhub-monday/assets/Moderation settings pahe.png)
+
+### Finding Any Recognition
+
+The same screen searches *all* recognitions by title or message (not just flagged ones), so admins can locate and remove any post on request.
+
+## Privacy & Data Handling
+
+Source: https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html
+
+What is stored, what leaves monday.com, and how erasure, export and retention work
+
+What Recognition Hub stores, where it goes, and how export, erasure and retention work on monday.com.
+
+**In short.** monday.com does not offer an app database this product can use, so Recognition Hub runs its own PostgreSQL. Your recognitions live there rather than in monday.com storage, which means you choose the provider, the region and the jurisdiction. If your policy requires employee data to stay within monday.com’s own infrastructure, that is worth weighing early — the rest of this page sets out exactly what is held and where it goes.
+
+### Where the data lives
+
+monday.com does not offer an app database this product can use — the managed option is MongoDB, exposed only as a short-lived read-only credential for inspection. Recognition Hub therefore brings its own PostgreSQL database, and that database is the system of record.
+
+Held in that database, per account:
+
+- **Recognitions** — title, message, the author and recipient monday user ids, company value, GIF reference, timestamps.
+
+- **Reactions and comments** — the emoji or text, and who left it.
+
+- **Cached profiles** — display name and avatar URL, refreshed from the monday API so the feed can render without a lookup per card.
+
+- **Rewards** — pools, balances, ledgers, redemption records and their status.
+
+- **Badges, preferences and the audit log.**
+
+Board data is *not* stored. The only board information the app ever reads is who is assigned on an item, read in your browser on your own monday session at the moment you open the composer from that item, and used to prefill the recipient field. It is never written to the database.
+
+### Where data goes beyond monday.com
+
+| Destination | What is sent | When |
+| --- | --- | --- |
+| **The app’s PostgreSQL** | Everything listed above | Always |
+| **AWS SES** | Recipient email address, recognition title, message, value, GIF still, deep link | When notification email is enabled |
+| **Anthropic** | The occasion or message you type, plus your company-value names | Only when an admin connects an Anthropic key and someone uses AI Assist |
+| **GIF provider** | Your search terms. No recognition content. | When the GIF picker is used |
+| **Tremendous** | Recipient name, email address, reward amount | Only when rewards are connected and a reward is redeemed |
+
+Every destination except the database is optional and off until an admin turns it on. Email and AI can both be pointed at credentials you own — your own AWS SES account, your own Anthropic key — so that path runs through infrastructure you control.
+
+### Access and permissions
+
+- **Every request is authenticated.** The browser never asserts who it is: it sends a short-lived session token signed by monday.com, and the server verifies the signature and reads the acting user and account from the signed claims.
+
+- **Admin rights are resolved server-side** against the monday API, not taken from the page or inferred from which screen an action came from. monday’s account settings view is reachable by any user, so placement authorizes nothing.
+
+- **Accounts are isolated.** Every query is scoped to the acting account, and the OAuth token stored for an account is verified to belong to it before it is saved.
+
+- **Credentials are encrypted at rest** — the monday token, the Anthropic key, the Tremendous key and the SES credentials are all stored encrypted and never returned to the browser.
+
+OAuth scopes requested: `me:read`, `users:read`, `account:read`, `teams:read`, `ai:consume` and `boards:read`. Boards are read, never written.
+
+### Data-subject requests
+
+Under GDPR your organisation is the data controller and this app is a processor, so both of these run as **admin** actions — an employee’s request goes to you, and you action it here. The app never acts on a request from a data subject directly, because it has no way to authenticate one.
+
+- **Export** (Art. 15) — everything held about one person, as a JSON file an admin can hand over. Live redemption links are deliberately excluded: they are bearer URLs to spendable value, and an access request is not a reason to put one in an email attachment.
+
+- **Erasure** (Art. 17) — the person’s identifiers are replaced with a fresh random pseudonym, so recognitions written *by* and *about* them stay coherent for everyone else while ceasing to identify them.
+
+Both live under **Settings > Privacy & Data**.
+
+### Retention and deletion
+
+- **Retention** is configurable per account, and a scheduled job prunes past the window you set. The audit log has a floor of 365 days — it is itself a security control, and a short retention on it would defeat the point.
+
+- **Uninstalling erases the account.** monday.com notifies the app on uninstall and every table belonging to that account is purged. A registry test fails the build if a new table is added without being registered for the purge, which is what keeps that promise true as the schema grows.
+
+### Keeping the footprint small
+
+The database is a fixed part of the architecture, but almost everything about it is yours to decide: run your own PostgreSQL in the region and jurisdiction that suit you, connect your own AWS SES, bring your own Anthropic key, and leave rewards and GIFs disconnected until you want them. Configured that way, the only parties handling your data are ones you already have a direct relationship with.
+
 # Lens
 
 ## Lens
@@ -14943,13 +15527,360 @@ See [Keyboard shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html) —
 
 [Open a support ticket](https://docs.vectored.dev/lens/support.html) and include what you were capturing, which browser version you are on, and what the toast or tooltip said. No account is needed.
 
+## Lens Support
+
+Source: https://docs.vectored.dev/lens/docs/../support.html
+
+Lens is available for [Chrome and Edge](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). Use this form to report a problem, ask a question, or tell us what it should do next.
+
+### Submit Feedback or Report an Issue
+
+No login and no subscription required. Your submission creates a ticket that our team reviews.
+
+Type *
+
+Subject *
+
+Description *
+
+Name (optional)
+
+Company (optional)
+
+Email (optional, but required if you want early access)
+
+Thank you!
+
+Your ticket is with our team. If you left an email, we'll reply there.
+
+### Give Detailed Feedback
+
+The long-form feedback page asks Lens-specific questions — which capture type and output format, your Chrome version, and what you were capturing — which makes a bug far quicker to place. [Open the Lens feedback form →](https://docs.vectored.dev/lens/docs/feedback.html?tool=lens)
+
+### Before You Report a Bug
+
+A few problems have known causes and an immediate fix:
+
+- **Captures not appearing in your folder** — folder access has lapsed. Open the popup and press **Reconnect**; everything taken meanwhile is written out straight afterwards.
+
+- **A black recording** — the page uses protected video, which the browser excludes from capture.
+
+- **A WebM instead of an MP4** — your Chrome build cannot encode MP4, so Lens named the file for what it actually wrote.
+
+- The full list is in [Troubleshooting](https://docs.vectored.dev/lens/docs/../docs/troubleshooting.html).
+
+### Other Ways to Get Help
+
+- Read the [documentation](https://docs.vectored.dev/lens/docs/../docs/getting-started.html)
+
+- Email us at [support@vectored.dev](mailto:support@vectored.dev)
+
+- Issues are triaged and addressed on a best-effort basis
+
+### Security Issues
+
+If you discover a security vulnerability, please **do not** describe it in this form. Email [security@vectored.dev](mailto:security@vectored.dev) directly — see the [security page](https://docs.vectored.dev/lens/docs/../security.html) for what to include and what to expect.
+
+## Privacy Policy
+
+Source: https://docs.vectored.dev/lens/docs/../privacy.html
+
+Lens by Vectored · Last updated: August 2026
+
+**The short version.** Lens has no account, no subscription, no server and no analytics. As installed it makes no network requests at all — it is a completely offline tool. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it — that last part stays true no matter what you turn on. The one thing that can change it is you connecting an AI provider of your own, which is off by default and covered in [section 7](#ai).
+
+### 1. Who this covers
+
+This policy covers the Lens browser extension for Chrome, published by Vectored. It does not cover the documentation site you are reading, which is covered by the [site privacy policy](https://docs.vectored.dev/lens/docs/privacy.html).
+
+### 2. What Lens does not collect
+
+Lens does not collect, transmit or receive any of the following:
+
+- Your screenshots, recordings or any part of them
+
+- The pages you visit, their titles, URLs or contents
+
+- Your project names, folder names or folder paths
+
+- Usage analytics, telemetry, crash reports or feature counters
+
+- An email address, name, account or device identifier
+
+- Cookies or any advertising or tracking identifier
+
+The extension contains no analytics SDK, no remote configuration and no update-check call of its own. Extension updates are delivered by the Chrome Web Store, not by us.
+
+This list is about Vectored, and it holds unconditionally. If you connect an AI provider, Lens talks to *that provider* using *your* key — not to us, and we learn nothing about it. See [section 7](#ai) and the [AI features documentation](https://docs.vectored.dev/lens/docs/../docs/ai.html).
+
+**One thing to be clear about: this documentation website is not Lens.** The site you are reading right now (docs.vectored.dev) uses cookieless analytics to count page views, described in the [main privacy policy](https://docs.vectored.dev/lens/docs/privacy.html#website). That measures *documentation pages* only. It collects nothing from the Lens extension, sees none of your captures, projects or settings, and does not change anything above — installing and using Lens still sends us nothing.
+
+### 3. What is stored, and where
+
+Everything Lens stores is local to your browser profile, and additionally written to a folder you chose if you linked one. Nothing is stored by Vectored.
+
+| What | Where it lives | Why |
+| --- | --- | --- |
+| Captures — .png, .jpg, .gif, .mp4 | IndexedDB in your browser profile, and — if you linked a folder — written into that folder as well | They are the product of the tool. Keeping them in the profile is what lets a capture be saved when a folder is not reachable |
+| project_metadata.json — file name, page title, page URL, timestamp, captured region, your note | The same two places, alongside the captures | So the capture set is self-describing and readable by other tools |
+| Project list and folder handles | IndexedDB in your browser profile | To reopen your folder without asking you to pick it every time |
+| Writes a linked folder has not taken yet — file paths only, never a second copy of the bytes | IndexedDB in your browser profile | So a capture taken while folder access had lapsed reaches the folder afterwards instead of being missed |
+| Settings | chrome.storage.local | To remember your preferences |
+| AI prompts and responses | Nowhere — held in memory for the length of the request | They are not needed after the answer arrives |
+| AI provider API key, only if you set one | chrome.storage.local, in its own area, separate from your settings | So Lens can reach the provider you chose. Written by the settings screen, read only by the background worker, never by page-injected code |
+| Preview thumbnails, capped and downscaled | chrome.storage.local | So the timeline renders without reading every file from disk |
+| In-progress recording state | chrome.storage.session | So a recording survives navigation; cleared when the browser closes |
+
+### 4. Access to your file system
+
+Lens uses the browser's File System Access API. This has specific and deliberately narrow properties:
+
+- Lens can only read or write inside folders **you explicitly picked** in the browser's own folder picker. It cannot browse your disk, and it cannot reach a folder you did not choose.
+
+- Permission is granted per folder and can lapse — after a browser restart, for example. Lens cannot restore it silently; it needs a click from you.
+
+- Revoking access is done in Chrome, under the site and extension permission controls, and takes effect immediately.
+
+No folder need be linked at all. A project keeps its own captures inside your browser profile, so Lens is fully usable without granting access to any folder — and a capture taken while a folder's access has lapsed is stored and written out to the folder once you reconnect it, rather than being missed. The extension says which of these is happening rather than failing quietly.
+
+Captures held in the profile stay on your machine exactly as folder captures do: no copy is sent anywhere, and Vectored never receives any of it. Removing the extension removes them, so link a folder for anything you need to outlive the install.
+
+### 5. Access to page content
+
+To draw the selection overlay and capture a region, Lens injects its capture interface into the tab you are capturing — but only at the moment you start a capture, and only into that tab. There is no content script running in the background on every page you visit.
+
+Captured pixels are held in memory long enough to crop, annotate and encode them, then written to your chosen folder. They are not copied anywhere else.
+
+### 6. Redaction
+
+Before a capture is saved, Lens checks the captured region for things that usually should not be shared — password fields, API keys, tokens, private keys, and optionally emails and card numbers — and offers to blur each one. That check reads the page structure in your own browser. It uses no AI, makes no network call, and is on by default. It only ever suggests: nothing is blurred until you ask for it.
+
+The blur tool rewrites the underlying image data rather than drawing an opaque shape over it. Once a blurred capture is saved, the original pixels are not recoverable from that file by removing a layer. This is intentional: a redaction that can be peeled off is not a redaction. Check the result before saving, because it cannot be undone after the fact.
+
+### 7. AI features and your own provider
+
+**Every AI feature is off when you install Lens.** Until you pick a provider, none of this applies and Lens makes no network requests.
+
+Lens has no AI service of its own and never will — there is no Vectored model, no Vectored endpoint and no Vectored proxy in the path. Instead you choose who does the work, and the choice determines whether anything leaves your machine:
+
+| Provider you choose | Where it runs | What leaves your machine |
+| --- | --- | --- |
+| **None** — the default | Nowhere; AI features are off | Nothing |
+| **Your browser's built-in model** (Edge, Chrome) | On your device, inside the browser | Nothing |
+| **A model on your machine** (Ollama, LM Studio) | On your device, on a port you name | Nothing |
+| **Claude** (Anthropic) or **OpenAI** | That company's servers | The prompt for the feature you enabled, sent directly from your browser using your API key |
+
+Choosing a provider that runs in the cloud asks you to confirm first, because it genuinely changes what the extension does.
+
+#### What is actually sent
+
+Only what the feature you pressed actually needs, and never the thing a feature is protecting. Each feature is listed below with exactly what its prompt carries. Captured images are not sent to any provider.
+
+| Feature | How it runs | What the prompt contains |
+| --- | --- | --- |
+| **Sharpen the private-data check** | Automatically, only if you switch it on | The *type* of each flagged region — "an AWS access key", "a password field" — plus the page title and heading. **Never the flagged text itself.** |
+| **Suggest name & description** | A button you press, per capture | The page title and heading, the names of controls in the region, and **the text inside the region you captured** — describing a screenshot is the task, so this one needs its content. |
+| **Write steps from clicks** | A button you press, per recording | The page title and the names of the controls you clicked, as a screen reader would announce them. Never anything you typed into a field. This feature also works with no provider at all, from the click list alone. |
+
+The distinction is deliberate. Sending an API key to a model to ask whether it is an API key would defeat the point of the check that found it — so the check never does. Asking a model to describe a screenshot without giving it the content would be pointless, so that one does, and it only ever happens because you pressed the button on the capture in front of you.
+
+Captured images are not sent to any provider.
+
+#### Your API key
+
+- It is stored in your browser profile, in its own storage area, separate from your other settings.
+
+- It is only ever read by the extension's background worker, never by the code Lens injects into a page — that code shares a process with the page, so a key must not be readable there.
+
+- The settings screen can tell you a key is saved but cannot show it back to you.
+
+- It is sent only to the provider it belongs to. Vectored never receives it, and there is nowhere for it to be sent to us.
+
+- Clearing the field removes it; uninstalling the extension removes it along with everything else.
+
+#### Whose policy applies
+
+Once a prompt reaches a hosted provider, that company's privacy policy and terms govern it, including how long they keep it and whether they train on it. That relationship is between you and them — you supplied the key, you chose the provider, and Vectored is not a party to it and cannot see it. Check their terms before enabling a cloud provider on work that is confidential.
+
+#### What Lens itself keeps
+
+Nothing. Prompts and responses are held in memory for the length of the request and are not written to disk, to extension storage or to a log. Generated text becomes yours the moment it lands in a field you can edit — Lens keeps no separate copy of it, and no record that a feature was used.
+
+#### Accuracy
+
+Generated text can be wrong, and the private-data check finds known shapes rather than everything that might be sensitive. Neither is a guarantee, and neither removes your responsibility to read a capture before you share it. See the [AI features documentation](https://docs.vectored.dev/lens/docs/../docs/ai.html) for what each feature does and does not do.
+
+#### Turning it back off
+
+Setting the provider back to **None** stops every AI feature immediately and returns the extension to making no network requests. Clearing the API key field removes the key. Neither affects any capture you have already saved.
+
+### 8. Third parties
+
+Lens bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin. As installed it sends nothing to anyone.
+
+The one third party Lens can ever talk to on its own is an AI provider you chose and configured yourself, and only for a feature you turned on — see [section 7](#ai). There is no third party Lens contacts on its own initiative.
+
+One other request exists, and you make it happen: **importing a guide from a link**. Paste an address into the dashboard and Lens downloads it from that address and no other — no service of ours in between, and nothing about you, your captures or your projects sent with the request. Whoever hosts the file sees an ordinary download, as they would from any browser. Only http and https addresses are accepted. Importing from a file on your machine makes no request at all.
+
+If you choose to contact us through the [support form](https://docs.vectored.dev/lens/docs/../support.html), that is a separate, voluntary act: only what you type into the form is sent, and only then. The extension is not involved.
+
+### 9. Retention and deletion
+
+- **Captures and metadata** are ordinary files. Delete them as you would any file; Lens keeps no second copy.
+
+- **Cached thumbnails** can be cleared from the dashboard under Settings, without touching the files on disk.
+
+- **Projects, settings and folder handles** are removed when you uninstall the extension, along with everything else in its browser storage.
+
+Because Vectored holds none of your data, there is nothing for us to delete on request and no data export for us to produce — you already hold the only copy.
+
+### 10. GDPR and international transfers
+
+Lens performs no processing of personal data on behalf of Vectored: no personal data is transmitted to or held by us, and as installed there is no international transfer of your data because there is no transfer at all. Where you capture content containing personal data, you remain the controller of the resulting files, which stay on infrastructure you control.
+
+If you connect a cloud AI provider, you are the one instructing a processor of your choosing, under your own account with them. Vectored is not a party to that arrangement and cannot see it — but it is a transfer, and if the content is subject to GDPR it is yours to assess.
+
+### 11. Children's privacy
+
+Lens is a developer and documentation tool, not directed at children, and collects no personal information from anyone.
+
+### 12. Changes to this policy
+
+If this policy changes, the updated version will be posted here with a new "Last updated" date. Any change to what can leave your machine will be called out in the extension's release notes, not only here — and any new way for data to leave will arrive switched off, the way the AI providers in [section 7](#ai) did.
+
+### 13. Contact
+
+Questions about this policy: [support@vectored.dev](mailto:support@vectored.dev), or use the [support form](https://docs.vectored.dev/lens/docs/../support.html). For security reports, see the [security page](https://docs.vectored.dev/lens/docs/../security.html).
+
+## Security
+
+Source: https://docs.vectored.dev/lens/docs/../security.html
+
+Lens by Vectored · Last updated: August 2026
+
+**Threat model in one line.** Lens runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in [section 4](#ai).
+
+### 1. Permissions, and why each one exists
+
+A screen-capture extension necessarily asks for broad permissions. Here is what each is used for, so you can judge whether the trade is one you want to make.
+
+| Permission | What it is used for |
+| --- | --- |
+| tabCapture | The video stream a GIF or MP4 recording is made from. Only for the tab you started recording on, and only while recording. |
+| scripting | Injecting the selection overlay and editor into the tab at the moment you start a capture. Nothing is injected before that. |
+| host_permissions for all sites | Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Lens has no code that does so. |
+| tabs | Reading the active tab's title and URL to record alongside a capture, and bringing a recording's tab forward when you stop it from the popup. |
+| activeTab | Capturing the visible area of the current tab for still screenshots. |
+| downloads | Writing a copy of a capture to your downloads when you ask for one. |
+| storage | Settings, the project list and cached thumbnails. |
+| unlimitedStorage | A project keeps its own captures in the browser profile. This exempts them from being cleared when the disk fills — without it the browser may evict the lot, which here would mean deleting captures. |
+| offscreen | A hidden document that holds the recording stream, because a Manifest V3 service worker cannot. |
+
+Lens requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.
+
+The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Lens contacts no host on its own initiative — see [section 4](#ai).
+
+The same permission covers one other request, and only when you ask for it: **importing a guide from a link**. Lens fetches the address you paste and nothing else, over http or https only, capped at 50 MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.
+
+### 2. File system scope
+
+Lens writes through the File System Access API, which is scoped by design:
+
+- It can only touch folders picked by you in the browser's own picker. There is no path entry, and no way for the extension to name a folder you did not choose.
+
+- A granted handle is stored in the extension's IndexedDB, but the grant itself is held by the browser and is revocable there.
+
+- Re-granting lapsed access requires a click from you. The background service worker has no user activation and therefore *cannot* restore access on its own, by design of the platform — so silent re-acquisition is not possible.
+
+### 3. No remote code
+
+Everything Lens executes ships inside the extension package and is reviewable in the Chrome Web Store listing:
+
+- No script is loaded from a CDN or any remote origin at runtime, which Manifest V3 forbids and Lens does not attempt.
+
+- The GIF encoder is implemented in the extension rather than pulled from a third-party bundle, so there is no external package in the capture path.
+
+- MP4 and WebM encoding is done by Chrome's own MediaRecorder, not by bundled codec code.
+
+- The shutter sound is synthesised at runtime rather than shipped as an audio asset.
+
+### 4. AI providers and key handling
+
+AI features are off on install and there is no Vectored model, endpoint or proxy anywhere in the path. The [AI features documentation](https://docs.vectored.dev/lens/docs/../docs/ai.html) covers setup and what each feature sends. When you enable them you pick who does the work — the browser's built-in model, a model on your own machine, or Claude or OpenAI with a key you supply. The first two keep everything on the device; the last two are an outbound request from your browser straight to that company.
+
+#### Where the key lives, and why
+
+- Requests to a keyed provider are made by the extension's **background service worker**, never by the code Lens injects into the page. Injected code shares a process with the page it is injected into, so a page-side compromise must not be able to read a key — it is never put there.
+
+- The key is stored under its own storage area, separate from the settings the page-side code is allowed to read, so it cannot be picked up as a side effect of reading preferences.
+
+- The settings screen writes keys but cannot read them back; it can only tell you whether one is saved.
+
+- A key is sent to exactly one place: the provider it belongs to. It never reaches Vectored, and there is no Vectored endpoint for it to reach.
+
+#### What is in a prompt
+
+Only what the feature actually needs, and the amount differs by feature. The private-data check is the one that matters most: when a model is allowed to sharpen its results, it receives the *type* of each flagged region and the page title and heading — never the flagged text. A model is never asked to look at a credential to decide whether it is one.
+
+**Suggest name & description** is the widest: it sends the text inside the captured region, because describing a screenshot is the task. It is a button you press per capture, never something that happens on save. **Write steps from clicks** sends only the accessible names of the controls that were clicked, never anything typed into a field, and works with no provider at all. Captured images are not sent to any provider.
+
+Model output can only re-rank and relabel what the local rules already found. It can never add a region, and it can never blur one — blurring stays a click you make. A provider that is slow, unreachable or answers badly leaves the local results exactly as they were.
+
+#### Model output is treated as untrusted
+
+The page being captured is the same page whose title and headings go into the prompt that examines it. A hostile page can therefore write text aimed at the model — including text intended to talk it out of flagging that page's own credential fields. Lens is built on the assumption that this will be attempted:
+
+- **A high-confidence finding cannot be cleared by the model.** A password field, or text matching a known key format, stays selected whatever the response says. The model can promote a lower-confidence finding but never demote a high one.
+
+- **A demoted finding is still shown.** Nothing is ever removed from the list — at most it is left unticked, in front of you.
+
+- **Nothing generated is executed.** Model output only ever becomes text in a field you can edit, or the order of a list. It is never run, never used to build a request, and never written to disk without passing through you.
+
+- **A suggested file name is sanitised** like any other name Lens writes — extension stripped, path separators and filesystem-rejected characters replaced, length capped — so a name cannot direct a write outside your project folder.
+
+The check that finds the regions in the first place runs on the page structure with no model involved, so with no provider configured none of this applies at all.
+
+### 5. What Lens deliberately cannot capture
+
+Some limits are Chrome's and are worth knowing, because they are security boundaries rather than bugs:
+
+- Browser pages — chrome://, about:, the Web Store, DevTools, other extensions' pages — cannot be captured by any extension.
+
+- DRM-protected video is excluded from tab capture by the platform and records as solid black. Lens detects this and warns rather than handing you a black file without explanation.
+
+- file:// URLs require you to enable file access for the extension explicitly.
+
+### 6. Handling sensitive captures
+
+- Lens flags likely credentials in the captured region before you save and offers to blur them. That check runs on page structure in your browser, with no AI and no network call, and is on by default. Treat it as a safety net, not a guarantee — it looks for known shapes, so read the capture as well.
+
+- Use the **blur** tool for anything the check missed. It rewrites pixels rather than covering them, so the original cannot be recovered from the saved file.
+
+- Remember that a capture records the page **URL and title** into project_metadata.json. If the URL itself is sensitive — a signed link, a token in a query string — treat the metadata file with the same care as the image, or turn off **Write metadata file** in Settings.
+
+- Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Lens inherits the protection of the folder you choose and adds none of its own.
+
+### 7. Reporting a vulnerability
+
+If you find a security issue, please **do not** open a public issue or describe it in the support form. Email [security@vectored.dev](mailto:security@vectored.dev) directly.
+
+Useful things to include: the extension version, your Chrome version and platform, what an attacker would gain, and the smallest reproduction you can manage.
+
+- We aim to acknowledge a report within three working days.
+
+- We will tell you whether we consider it in scope, and why, rather than going silent.
+
+- We will credit you in the release notes when a fix ships, unless you would rather we did not.
+
+- Please give us a reasonable window to ship a fix before disclosing publicly.
+
+### 8. Related
+
+[Lens privacy policy](https://docs.vectored.dev/lens/docs/../privacy.html) · [Vectored site security](https://docs.vectored.dev/lens/docs/security.html) · [Support](https://docs.vectored.dev/lens/docs/../support.html)
+
 ## Privacy Policy
 
 Source: https://docs.vectored.dev/lens/privacy.html
-
-[← Back to Lens](https://docs.vectored.dev/lens/index.html)
-
-## Privacy Policy
 
 Lens by Vectored · Last updated: August 2026
 
@@ -15122,10 +16053,6 @@ Questions about this policy: [support@vectored.dev](mailto:support@vectored.dev)
 
 Source: https://docs.vectored.dev/lens/security.html
 
-[← Back to Lens](https://docs.vectored.dev/lens/index.html)
-
-## Security
-
 Lens by Vectored · Last updated: August 2026
 
 **Threat model in one line.** Lens runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in [section 4](#ai).
@@ -15251,10 +16178,6 @@ Useful things to include: the extension version, your Chrome version and platfor
 ## Lens Support
 
 Source: https://docs.vectored.dev/lens/support.html
-
-[← Back to Lens](https://docs.vectored.dev/lens/index.html)
-
-## Lens Support
 
 Lens is available for [Chrome and Edge](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). Use this form to report a problem, ask a question, or tell us what it should do next.
 

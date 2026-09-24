@@ -48,7 +48,7 @@
           '<svg class="vc-ico-panel" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M9 4v16"></path></svg>' +
           '<svg class="vc-ico-burger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>' +
         '</button>' +
-        '<a class="vc-wordmark" href="' + u('') + '"><b>Vectored</b><span>Docs</span></a>' +
+        '<a class="vc-wordmark" href="' + u('') + '"><img src="' + u('assets/logo.png') + '" alt="vectored.dev" width="176" height="40"><span>Docs</span></a>' +
         '<div class="vc-vdiv"></div>' +
         '<div class="vc-switch-wrap">' +
           '<button id="vc-switch" class="vc-switch" aria-expanded="false" aria-haspopup="true" aria-controls="vc-switch-panel">' +
@@ -82,7 +82,12 @@
             '<svg id="icon-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>' +
             '<svg id="icon-dark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>' +
           '</button>' +
-          (ctx ? '<a class="vc-cta" href="' + esc(ctaHref(ctx)) + '" data-store="' + esc(ctx.key) + '"' + (/^https?:/.test(ctx.cta) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(ctx.ctaLabel) + '</a>' : '') +
+          (ctx ? '<a class="vc-cta' + (ctx.ctaImage ? ' vc-cta-img' : '') + '" href="' + esc(ctaHref(ctx)) + '" data-store="' + esc(ctx.key) + '"' + (/^https?:/.test(ctx.cta) ? ' target="_blank" rel="noopener"' : '') + ' aria-label="' + esc(ctx.ctaLabel) + '">' +
+            // A product may ship its own install button (monday does, and asks
+            // that it be used as supplied). The label stays as the accessible
+            // name so the control reads the same to a screen reader either way.
+            (ctx.ctaImage ? '<img src="' + esc(ctx.ctaImage) + '" alt="' + esc(ctx.ctaLabel) + '" width="356" height="82">' : esc(ctx.ctaLabel)) +
+          '</a>' : '') +
         '</div>' +
       '</div>' +
     '</header>';

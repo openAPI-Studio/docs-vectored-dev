@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recognizing from a board item — Recognition Hub Docs</title>
+  <meta name="description" content="Recognize a teammate straight from a monday.com board item, with the recipients already filled in">
+  <meta name="vc-updated" content="24 Sep 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your monday.com account →</a></div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+      <h1 class="vc-h1">Recognizing from a board item</h1>
+      <p class="vc-lede">Give recognition where the work happened, without leaving the board</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-muted mb-4">Recognition Hub adds a <strong class="text-text">Recognize</strong> action to monday.com board items. It is the fastest way to thank someone for work you are already looking at.</p>
+<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Screenshot placeholder.</strong> The item <strong>⋯</strong> menu with Recognize under Apps.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">From one item</h2>
+<p class="text-muted mb-4">Hover an item, click the <strong class="text-text">⋯</strong> menu, and choose <strong class="text-text">Recognize</strong>. The composer opens in a window over the board with the people assigned on that item already in the recipient field — so the question it usually opens on is answered before you start typing.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">From several items at once</h2>
+<p class="text-muted mb-4">Tick two or more items and choose <strong class="text-text">Recognize</strong> from the batch action bar. Everyone assigned across the selection is gathered into one recognition, with duplicates removed — the same owner on five items is one recipient, not five.</p>
+<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Screenshot placeholder.</strong> The batch action bar with several items selected and Recognize showing.</p></div>
+<h2 class="text-2xl font-semibold mt-10 mb-4">If the recipients are not filled in</h2>
+<p class="text-muted mb-4">Reading who is assigned needs the <strong class="text-text">boards:read</strong> permission, which is granted when an admin connects the app. If the picker opens empty, the connection predates that permission: an admin should reconnect under <strong class="text-text">Settings &gt; Integrations</strong>, on the monday connection. Recognition itself works either way — only the prefill is affected, and you can always search for people yourself.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">What the item contributes</h2>
+<p class="text-muted mb-4">Only who was working on it. Recognitions are account-wide rather than board-scoped: a recognition posted from an item appears in the same hub feed as every other one, and is not attached to the board, the item, or its updates. Nothing is written back to the board.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

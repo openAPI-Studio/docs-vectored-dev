@@ -160,6 +160,22 @@
 - [Configure — Email Notifications](https://docs.vectored.dev/rewardhub/docs/email-notifications.html): AWS SES notifications with editable templates and smart values
 - [Configure — Moderation](https://docs.vectored.dev/rewardhub/docs/moderation.html): Flagging, review queue, and admin controls
 
+## Recognition Hub for monday
+
+- [Recognition Hub for monday — Overview](https://docs.vectored.dev/rewardhub-monday/): Peer recognition and kudos for monday.com teams, from Vectored
+- [Start here — Getting Started](https://docs.vectored.dev/rewardhub-monday/docs/getting-started.html): Install Recognition Hub and post your first recognition
+- [Start here — Plans](https://docs.vectored.dev/rewardhub-monday/docs/plans.html): What each Recognition Hub plan includes
+- [Recognize — Giving Recognition](https://docs.vectored.dev/rewardhub-monday/docs/giving-recognition.html): Card templates, recipients, company values, and GIFs
+- [Recognize — From a Board Item](https://docs.vectored.dev/rewardhub-monday/docs/recognize-from-an-item.html): Recognize a teammate straight from a monday.com board item, with the recipients already filled in
+- [Recognize — AI Assist](https://docs.vectored.dev/rewardhub-monday/docs/ai-assist.html): Draft recognitions and rewrite messages with AI, on your own Anthropic API key
+- [Recognize — Reactions & Comments](https://docs.vectored.dev/rewardhub-monday/docs/reactions-comments.html): Celebrate posts with emoji reactions, confetti, and comments
+- [Recognize — Sharing](https://docs.vectored.dev/rewardhub-monday/docs/sharing.html): Direct links and email sharing
+- [Rewards — Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub-monday/docs/rewards.html): Attach real monetary rewards to recognitions with Tremendous — API key, campaign, pools, and redemption
+- [Configure — Company Values](https://docs.vectored.dev/rewardhub-monday/docs/company-values.html): Tag recognitions with the values your company celebrates
+- [Configure — Email Notifications](https://docs.vectored.dev/rewardhub-monday/docs/email-notifications.html): AWS SES notifications with editable templates and smart values
+- [Configure — Moderation](https://docs.vectored.dev/rewardhub-monday/docs/moderation.html): Flagging, review queue, and admin controls
+- [Configure — Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html): What Recognition Hub stores on monday.com, what leaves the platform, and how export, erasure and retention work
+
 ## Lens
 
 - [Lens — Overview](https://docs.vectored.dev/lens/): Region screenshots, high-quality GIF and MP4 recording for Chrome and Edge, filed into projects and mirrored into your own local folders. Works completely offline — no account, no subscription. Free from Vectored, for Chrome and Edge.
@@ -173,6 +189,9 @@
 - [Configure — Keyboard Shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html): Lens keyboard shortcuts for region capture, GIF recording and full-tab capture, and how to remap them in Chrome.
 - [AI — AI Features](https://docs.vectored.dev/lens/docs/ai.html): Lens AI features, the providers you can connect, exactly what each feature sends, and how your API key is stored.
 - [Help — Troubleshooting](https://docs.vectored.dev/lens/docs/troubleshooting.html): Diagnose blocked pages, blank recordings, low-quality GIFs, lapsed folder access, a popup that will not open and captures missing from the timeline.
+- [Help — Support](https://docs.vectored.dev/lens/docs/../support.html): Get help with Lens by Vectored. Ask for early access, report a bug, or request a feature. No login and no subscription required.
+- [About — Privacy Policy](https://docs.vectored.dev/lens/docs/../privacy.html): Privacy policy for Lens by Vectored. No account, no subscription, no server, no analytics. Captures never leave your machine, and Lens makes no network calls unless you connect an AI provider of your own.
+- [About — Security](https://docs.vectored.dev/lens/docs/../security.html): Security model for Lens by Vectored: what each Chrome permission is used for, how folder access is scoped, and how to report a vulnerability.
 - [Lens — Privacy Policy](https://docs.vectored.dev/lens/privacy.html): Privacy policy for Lens by Vectored. No account, no subscription, no server, no analytics. Captures never leave your machine, and Lens makes no network calls unless you connect an AI provider of your own.
 - [Lens — Security](https://docs.vectored.dev/lens/security.html): Security model for Lens by Vectored: what each Chrome permission is used for, how folder access is scoped, and how to report a vulnerability.
 - [Lens — Support](https://docs.vectored.dev/lens/support.html): Get help with Lens by Vectored. Ask for early access, report a bug, or request a feature. No login and no subscription required.
