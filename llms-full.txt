@@ -14365,7 +14365,7 @@ Source: https://docs.vectored.dev/lens/
 
 by Vectored · for Chrome & Edge
 
-AVAILABLE NOW
+LIVE
 
 Capture a region of any tab as a PNG, a high-quality animated GIF or an MP4, or click through a flow and get a step-by-step guide out of it — annotated, named, and filed straight into a folder on your own machine with a metadata timeline beside it. GIFs record at up to 30 frames a second and encode at full captured resolution. Everything runs completely offline: no account, no subscription, no upload, no server.
 
@@ -16570,13 +16570,15 @@ Form builder Automation Jira · Slack · Teams CSV export
 
 [Documentation →](https://docs.vectored.dev/forms/) [Automation guide](https://docs.vectored.dev/forms/docs/automation.html) [Marketplace](https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&tab=overview)
 
+BYOAI*
+
 #### API Studio for VS Code & CLI
 
 LIVE
 
 API development, testing, and documentation without leaving your editor — plus a scriptable CLI for CI pipelines.
 
-REST client Docs generation CI-ready CLI
+Supports AI REST client Docs generation CI-ready CLI
 
 [Documentation →](https://docs.vectored.dev/apistudio/) [GitHub](https://github.com/openAPI-Studio)
 
@@ -16588,9 +16590,23 @@ LIVE
 
 Peer recognition that lives in Confluence and Jira — a live mural of kudos cards with templates, company values, GIFs, reactions, rich email notifications, and page embedding.
 
-Recognition mural Email notifications Page macro
+Supports AI Recognition mural Email notifications Page macro
 
 [Documentation →](https://docs.vectored.dev/rewardhub/) [Marketplace](https://marketplace.atlassian.com/apps/564712405)
+
+BYOAI*
+
+![Recognition Hub logo](https://docs.vectored.dev/rewardhub-monday/assets/logo.png)
+
+#### Recognition Hub for monday.com
+
+LIVE
+
+Peer recognition that lives where your team already works — a live mural of kudos cards in monday.com, with templates, company values, GIFs, reactions, email notifications, and recognition straight from a board item.
+
+Supports AI Recognition mural From a board item Free up to 20 users
+
+[Documentation →](https://docs.vectored.dev/rewardhub-monday/) [Add to monday](https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install)
 
 ![TimeSheets logo](https://docs.vectored.dev/timesheets/assets/icon.png)
 
@@ -16604,15 +16620,17 @@ Approvals Leave & holidays Cost centers Worklog sync
 
 [Documentation →](https://docs.vectored.dev/timesheets/)
 
+BYOAI*
+
 ![Lens logo](https://docs.vectored.dev/lens/assets/icon.png)
 
 #### Lens for Chrome & Edge
 
-AVAILABLE NOW
+LIVE
 
 Screenshot and screen recording for documentation — capture a region of any tab as PNG, a high-quality GIF or MP4, annotate and redact it, and file it straight into a local project folder with a metadata timeline. Completely offline, with no account and no subscription.
 
-Region capture High-quality GIF & MP4 Annotation & blur Local folders Fully offline No subscription
+Supports AI Region capture High-quality GIF & MP4 Annotation & blur Local folders Fully offline No subscription
 
 [Install →](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki) [Documentation](https://docs.vectored.dev/lens/)
 
@@ -16621,6 +16639,8 @@ Region capture High-quality GIF & MP4 Annotation & blur Local folders Fully offl
 - **Front Door** — customizable landing pages and portals for Confluence spaces.
 
 Want early access or to influence the roadmap? [Tell us what you need.](https://docs.vectored.dev/macrotoolkit/support.html)
+
+BYOAI* — **Bring Your Own AI.** These products work with an AI provider you already use: plug in your own API key (or connect your own AI assistant, in API Studio's case) and AI requests go to that provider under your own account and terms. You choose the provider, and usage is billed by them — never through a Vectored plan. Tiles marked *Supports AI* have AI features; Recognition Hub for Confluence uses Atlassian-hosted AI, so no key is needed there.
 
 ### Built for the platforms you use
 
