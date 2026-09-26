@@ -106,10 +106,10 @@ PRODUCTS = [
       dir='rewardhub', icon='rewardhub/assets/logo-64.png',
       cta='https://marketplace.atlassian.com/apps/564712405',
       ctaLabel='Try free', homeLabel='Recognition Hub Overview'),
- dict(key='rewardhub-monday', label='Recognition Hub for monday', blurb='Recognition on monday.com',
+ dict(key='rewardhub-monday', label='Recognition Hub for Monday', blurb='Recognition on Monday.com',
       dir='rewardhub-monday', icon='rewardhub-monday/assets/logo-64.png',
       cta='https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install',
-      ctaLabel='Add to monday', homeLabel='Recognition Hub Overview',
+      ctaLabel='Add to Monday', homeLabel='Recognition Hub Overview',
       # monday publishes its own install button and asks that it be used as
       # supplied. Where a product provides one, the header renders it instead of
       # the house CTA; ctaLabel stays as the accessible name.

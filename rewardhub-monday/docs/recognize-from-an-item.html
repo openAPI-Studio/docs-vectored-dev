@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recognizing from a board item — Recognition Hub Docs</title>
-  <meta name="description" content="Recognize a teammate straight from a monday.com board item, with the recipients already filled in">
+  <meta name="description" content="Recognize a teammate straight from a Monday.com board item, with the recipients already filled in">
   <meta name="vc-updated" content="24 Sep 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
@@ -22,7 +22,7 @@
 <script src="../../assets/nav.js"></script>
 <script src="../../assets/header.js"></script>
 
-<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your monday.com account →</a></div>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your Monday.com account →</a></div>
 
 <div class="vc-shell">
   <aside class="vc-side" data-noprint="1"></aside>
@@ -38,15 +38,37 @@
       <div data-vc="contents"></div>
 
       <article class="vc-doc">
-<p class="text-muted mb-4">Recognition Hub adds a <strong class="text-text">Recognize</strong> action to monday.com board items. It is the fastest way to thank someone for work you are already looking at.</p>
-<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Screenshot placeholder.</strong> The item <strong>⋯</strong> menu with Recognize under Apps.</p></div>
+<p class="text-muted mb-4">Recognition Hub adds a <strong class="text-text">Recognize</strong> action to Monday.com board items. It is the fastest way to thank someone for work you are already looking at.</p>
+<figure class="shot mb-6">
+  <img src="../assets/monday-item-menu-recognize.png" alt="The three-dot menu on a Monday board item, with Recognize listed under Apps" loading="lazy"
+       class="rounded-lg border border-border"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+    <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <p class="text-sm text-muted">Screenshot needed</p>
+    <p class="font-mono text-xs text-cta break-all">monday-item-menu-recognize.png</p>
+    <p class="text-xs text-muted max-w-md">The three-dot menu on a Monday board item, with Recognize listed under Apps</p>
+  </div>
+  <figcaption class="text-xs text-muted mt-2">The three-dot menu on a Monday board item, with Recognize listed under Apps</figcaption>
+</figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">From one item</h2>
 <p class="text-muted mb-4">Hover an item, click the <strong class="text-text">⋯</strong> menu, and choose <strong class="text-text">Recognize</strong>. The composer opens in a window over the board with the people assigned on that item already in the recipient field — so the question it usually opens on is answered before you start typing.</p>
 <h2 class="text-2xl font-semibold mt-10 mb-4">From several items at once</h2>
 <p class="text-muted mb-4">Tick two or more items and choose <strong class="text-text">Recognize</strong> from the batch action bar. Everyone assigned across the selection is gathered into one recognition, with duplicates removed — the same owner on five items is one recipient, not five.</p>
-<div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Screenshot placeholder.</strong> The batch action bar with several items selected and Recognize showing.</p></div>
+<figure class="shot mb-6">
+  <img src="../assets/monday-batch-action-recognize.png" alt="Several board items selected, with Recognize in the batch action bar at the bottom of the screen" loading="lazy"
+       class="rounded-lg border border-border"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+    <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <p class="text-sm text-muted">Screenshot needed</p>
+    <p class="font-mono text-xs text-cta break-all">monday-batch-action-recognize.png</p>
+    <p class="text-xs text-muted max-w-md">Several board items selected, with Recognize in the batch action bar at the bottom of the screen</p>
+  </div>
+  <figcaption class="text-xs text-muted mt-2">Several board items selected, with Recognize in the batch action bar at the bottom of the screen</figcaption>
+</figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">If the recipients are not filled in</h2>
-<p class="text-muted mb-4">Reading who is assigned needs the <strong class="text-text">boards:read</strong> permission, which is granted when an admin connects the app. If the picker opens empty, the connection predates that permission: an admin should reconnect under <strong class="text-text">Settings &gt; Integrations</strong>, on the monday connection. Recognition itself works either way — only the prefill is affected, and you can always search for people yourself.</p>
+<p class="text-muted mb-4">Reading who is assigned needs the <strong class="text-text">boards:read</strong> permission, which is granted when an admin connects the app. If the picker opens empty, the connection predates that permission: an admin should reconnect under <strong class="text-text">Settings &gt; Integrations</strong>, on the Monday connection. Recognition itself works either way — only the prefill is affected, and you can always search for people yourself.</p>
 <h2 class="text-2xl font-semibold mt-10 mb-4">What the item contributes</h2>
 <p class="text-muted mb-4">Only who was working on it. Recognitions are account-wide rather than board-scoped: a recognition posted from an item appears in the same hub feed as every other one, and is not attached to the board, the item, or its updates. Nothing is written back to the board.</p>
       </article>

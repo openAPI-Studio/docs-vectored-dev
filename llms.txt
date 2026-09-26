@@ -160,21 +160,22 @@
 - [Configure — Email Notifications](https://docs.vectored.dev/rewardhub/docs/email-notifications.html): AWS SES notifications with editable templates and smart values
 - [Configure — Moderation](https://docs.vectored.dev/rewardhub/docs/moderation.html): Flagging, review queue, and admin controls
 
-## Recognition Hub for monday
+## Recognition Hub for Monday
 
-- [Recognition Hub for monday — Overview](https://docs.vectored.dev/rewardhub-monday/): Peer recognition and kudos for monday.com teams, from Vectored
+- [Recognition Hub for Monday — Overview](https://docs.vectored.dev/rewardhub-monday/): Peer recognition and kudos for Monday.com teams, from Vectored
 - [Start here — Getting Started](https://docs.vectored.dev/rewardhub-monday/docs/getting-started.html): Install Recognition Hub and post your first recognition
-- [Start here — Plans](https://docs.vectored.dev/rewardhub-monday/docs/plans.html): What each Recognition Hub plan includes
+- [Start here — Plans & Pricing](https://docs.vectored.dev/rewardhub-monday/docs/plans.html): Recognition Hub pricing: Free, Premium and Enterprise plans, what each includes, and how billing and trials work
 - [Recognize — Giving Recognition](https://docs.vectored.dev/rewardhub-monday/docs/giving-recognition.html): Card templates, recipients, company values, and GIFs
-- [Recognize — From a Board Item](https://docs.vectored.dev/rewardhub-monday/docs/recognize-from-an-item.html): Recognize a teammate straight from a monday.com board item, with the recipients already filled in
-- [Recognize — AI Assist](https://docs.vectored.dev/rewardhub-monday/docs/ai-assist.html): Draft recognitions and rewrite messages with AI, on your own Anthropic API key
+- [Recognize — From a Board Item](https://docs.vectored.dev/rewardhub-monday/docs/recognize-from-an-item.html): Recognize a teammate straight from a Monday.com board item, with the recipients already filled in
+- [Recognize — AI Assist](https://docs.vectored.dev/rewardhub-monday/docs/ai-assist.html): Draft recognitions and rewrite messages with AI, on your Monday AI credits or your own Anthropic key
 - [Recognize — Reactions & Comments](https://docs.vectored.dev/rewardhub-monday/docs/reactions-comments.html): Celebrate posts with emoji reactions, confetti, and comments
 - [Recognize — Sharing](https://docs.vectored.dev/rewardhub-monday/docs/sharing.html): Direct links and email sharing
 - [Rewards — Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub-monday/docs/rewards.html): Attach real monetary rewards to recognitions with Tremendous — API key, campaign, pools, and redemption
 - [Configure — Company Values](https://docs.vectored.dev/rewardhub-monday/docs/company-values.html): Tag recognitions with the values your company celebrates
 - [Configure — Email Notifications](https://docs.vectored.dev/rewardhub-monday/docs/email-notifications.html): AWS SES notifications with editable templates and smart values
 - [Configure — Moderation](https://docs.vectored.dev/rewardhub-monday/docs/moderation.html): Flagging, review queue, and admin controls
-- [Configure — Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html): What Recognition Hub stores on monday.com, what leaves the platform, and how export, erasure and retention work
+- [Configure — Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html): What Recognition Hub stores on Monday.com, what leaves the platform, and how export, erasure and retention work
+- [Recognition Hub for Monday — Terms of Use](https://docs.vectored.dev/rewardhub-monday/terms.html): Terms of use for Recognition Hub for Monday.com: licence, plans and billing, rewards, AI features, liability and termination.
 
 ## Lens
 

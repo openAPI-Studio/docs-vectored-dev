@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recognition Hub — Recognition for monday.com | Vectored</title>
-  <meta name="description" content="Peer recognition and kudos for monday.com teams, from Vectored">
+  <title>Recognition Hub — Recognition for Monday.com | Vectored</title>
+  <meta name="description" content="Peer recognition and kudos for Monday.com teams, from Vectored">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="../assets/tailwind-config.js"></script>
@@ -22,7 +22,7 @@
   <div id="vc-header"></div>
 <script src="../assets/nav.js"></script>
 <script src="../assets/header.js"></script>
-  <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your monday.com account →</a></div>
+  <div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your Monday.com account →</a></div>
 
   <main class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16">
     <a href="../" class="text-sm text-muted hover:text-cta transition-colors duration-200 cursor-pointer">&larr; All Tools</a>
@@ -33,20 +33,31 @@
         <img src="assets/logo.png" alt="Recognition Hub logo" class="w-16 h-16 rounded-2xl object-contain" onerror="this.outerHTML='&lt;div class=\'w-16 h-16 rounded-2xl bg-cta flex items-center justify-center text-bg font-bold text-3xl font-mono\'&gt;R&lt;/div&gt;'">
         <div>
           <h1 class="text-4xl sm:text-5xl font-bold">Recognition Hub</h1>
-          <p class="font-mono text-xs text-cta tracking-widest uppercase mt-2">by Vectored · for monday.com</p>
+          <p class="font-mono text-xs text-cta tracking-widest uppercase mt-2">by Vectored · for Monday.com</p>
         </div>
         <span class="ml-auto shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-3 py-1.5 rounded-full">LIVE</span>
       </div>
-      <p class="text-lg text-muted max-w-2xl mb-8">Peer recognition that lives where your team already works. A live mural of kudos cards in monday.com — templates, company values, GIFs, reactions and comments, rich email notifications, and built-in moderation. Recognize straight from a board item, or from the hub in your left nav. Free for teams up to 20.</p>
+      <p class="text-lg text-muted max-w-2xl mb-8">Peer recognition that lives where your team already works. A live mural of kudos cards in Monday.com — templates, company values, GIFs, reactions and comments, rich email notifications, and built-in moderation. Recognize straight from a board item, or from the hub in your left nav. Free for teams up to 20.</p>
       <!-- Both buttons share one box size. 50px is the height the bordered
            button computes to (py-3 + 24px line-height + 1px borders), and 220px
            is what the monday mark needs at that height given its 356x82 source,
            so neither is distorted and the pair lines up. -->
       <div class="flex flex-wrap gap-3">
-        <a href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" target="_blank" rel="noopener" class="inline-flex items-center justify-center h-[50px] w-[220px] rounded-lg cursor-pointer"><img alt="Add to monday.com" width="356" height="82" class="max-h-full max-w-full w-auto object-contain" src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/uploads/Tal/4b5d9548-0598-436e-a5b6-9bc5f29ee1d9_Group12441.png"/></a>
+        <a href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" target="_blank" rel="noopener" class="inline-flex items-center justify-center h-[50px] w-[220px] rounded-lg cursor-pointer"><img alt="Add to Monday.com" width="356" height="82" class="max-h-full max-w-full w-auto object-contain" src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/uploads/Tal/4b5d9548-0598-436e-a5b6-9bc5f29ee1d9_Group12441.png"/></a>
         <a href="docs/getting-started.html" class="inline-flex items-center justify-center h-[50px] w-[220px] border border-border text-text font-semibold rounded-lg hover:bg-surface transition-colors duration-200 cursor-pointer">Read the Docs</a>
       </div>
-      <img src="assets/recognition dashboard.png" alt="The Recognition Hub recognition mural in monday.com" class="rounded-2xl border border-border mt-10 w-full">
+            <figure class="shot mb-6">
+        <img src="assets/monday-recognition-feed.png" alt="The Recognition Hub recognition mural in Monday.com" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">monday-recognition-feed.png</p>
+          <p class="text-xs text-muted max-w-md">The Recognition Hub recognition mural in Monday.com</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Recognition Hub recognition mural in Monday.com</figcaption>
+      </figure>
 
       <!-- Stats band -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
@@ -70,7 +81,7 @@
         <a href="docs/ai-assist.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
           <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 18H3"/></svg></div>
           <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">AI Assist</h3>
-          <p class="text-sm text-muted mt-2">Draft recognitions and rewrite messages with monday-hosted AI.</p>
+          <p class="text-sm text-muted mt-2">Draft recognitions and rewrite messages with Monday-hosted AI.</p>
         </a>
         <a href="docs/reactions-comments.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
           <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.9 2.3 2.1.9-2.1.9L19 21l-.9-1.9-2.1-.9 2.1-.9z"/></svg></div>
@@ -104,8 +115,8 @@
         </a>
         <a href="docs/plans.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
           <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Plans</h3>
-          <p class="text-sm text-muted mt-2">What each plan includes, and what happens if one lapses.</p>
+          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">Plans &amp; Pricing</h3>
+          <p class="text-sm text-muted mt-2">Free, Premium at $4 and Enterprise at $7 per user a month.</p>
         </a>
       </div>
           <div class="flex items-center gap-3 mt-6 text-sm text-muted"><span>GIF search in the composer is</span><span class="inline-flex items-center bg-black/80 rounded-md px-2 py-1 align-middle"><img src="assets/giphy-attribution-dark.svg" alt="Powered by GIPHY" class="h-[18px] w-auto"></span><span>with an admin-set workplace content-rating ceiling.</span></div>
@@ -115,7 +126,7 @@
     <section class="mb-16">
       <h2 class="text-2xl font-bold mb-6">How It Works</h2>
       <ol class="list-decimal list-inside space-y-3 text-muted">
-        <li>Open <strong class="text-text">Recognition Hub</strong> from your monday.com left navigation, or use <strong class="text-text">Recognize</strong> on any board item</li>
+        <li>Open <strong class="text-text">Recognition Hub</strong> from your Monday.com left navigation, or use <strong class="text-text">Recognize</strong> on any board item</li>
         <li>Click <strong class="text-text">+ Give recognition</strong> and pick a card template</li>
         <li>Or describe the occasion and let <strong class="text-text">AI</strong> draft the title, message, value and GIF for you</li>
         <li>Search teammates, write your kudos, tag a company value, add a GIF</li>

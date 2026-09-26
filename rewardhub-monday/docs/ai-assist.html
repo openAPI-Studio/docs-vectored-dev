@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Assist — Recognition Hub Docs</title>
-  <meta name="description" content="Draft recognitions and rewrite messages with AI, on your own Anthropic API key">
+  <meta name="description" content="Draft recognitions and rewrite messages with AI, on your Monday AI credits or your own Anthropic key">
   <meta name="vc-updated" content="21 Jul 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
@@ -22,7 +22,7 @@
 <script src="../../assets/nav.js"></script>
 <script src="../../assets/header.js"></script>
 
-<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your monday.com account →</a></div>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your Monday.com account →</a></div>
 
 <div class="vc-shell">
   <aside class="vc-side" data-noprint="1"></aside>
@@ -33,7 +33,7 @@
       <div data-vc="crumbs"></div>
       <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center mt-6"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4M22 5h-4M4 17v2M5 18H3"></path></svg></div>
       <h1 class="vc-h1">AI Assist</h1>
-      <p class="vc-lede">Draft recognitions and polish messages, on your own Anthropic key</p>
+      <p class="vc-lede">Draft recognitions and polish messages, on Monday AI or your own Anthropic key</p>
       <div data-vc="meta"></div>
       <div data-vc="contents"></div>
 
@@ -41,12 +41,19 @@
 <div class="flex items-center gap-2 mb-8 text-sm">
 <span class="inline-flex items-center gap-1.5 bg-cta/10 border border-cta/20 text-cta rounded-full px-3 py-1 font-medium">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path></svg>
-          Your own key
+          Nothing to set up
         </span>
-<span class="text-muted">Bring an Anthropic API key. Usage is billed to your own account.</span>
+<span class="text-muted">Runs on your Monday AI credits by default. No key required.</span>
 </div>
-<p class="text-muted mb-4">AI Assist runs on <strong class="text-text">your own Anthropic API key</strong>, which an admin adds under <strong class="text-text">Settings &gt; Integrations</strong>. Usage is billed to your Anthropic account, and nothing is sent anywhere until a key is connected. It adds two things to the composer: a <strong class="text-text">Draft with AI</strong> starting point and a one-click <strong class="text-text">Quick rewrite</strong> for the message.</p>
-<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Running on monday AI credits instead</strong> — with no key to manage — is coming through the monday connection. Until then, an Anthropic key is how AI Assist is switched on.</p></div>
+<p class="text-muted mb-4">AI Assist adds two things to the composer: a <strong class="text-text">Draft with AI</strong> starting point, and a one-click <strong class="text-text">Quick rewrite</strong> for the message. It works as soon as the app is connected to Monday — there is no key to obtain and nothing to configure.</p>
+<h2 class="text-2xl font-semibold mt-10 mb-4">Which models answer</h2>
+<p class="text-muted mb-4">Two choices, under <strong class="text-text">Settings &gt; Integrations &gt; AI assist</strong>:</p>
+<ul class="list-disc list-inside space-y-2 text-muted mb-4">
+<li><strong class="text-text">Monday AI</strong> (default) — runs on Monday&rsquo;s own models through the connection you already have. Usage draws on your account&rsquo;s Monday AI credits and appears in Monday&rsquo;s usage dashboard. Nothing to set up.</li>
+<li><strong class="text-text">Your own Anthropic key</strong> — an admin pastes a key and usage is billed to your Anthropic account instead. Choose this if you would rather own the model relationship, or your Monday AI credits are spoken for.</li>
+</ul>
+<p class="text-muted mb-4">The key field only appears when the Anthropic option is selected, and the choice can be changed at any time.</p>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Running on Monday AI credits instead</strong> — with no key to manage — is coming through the Monday connection. Until then, an Anthropic key is how AI Assist is switched on.</p></div>
 <h2 class="text-2xl font-semibold mt-10 mb-4">Draft with AI</h2>
 <p class="text-muted mb-4">When AI Assist is on, <strong class="text-text">Give recognition</strong> opens with a Draft with AI panel above the card templates (the button also picks up a ✨ sparkle). Describe what someone did in plain language and Recognition Hub drafts the whole card for you:</p>
 <ul class="list-disc list-inside space-y-2 text-muted mb-4">
@@ -56,24 +63,59 @@
 <li><strong class="text-text">GIF</strong> — a mood-appropriate GIF search runs automatically and the top result is pre-selected.</li>
 </ul>
 <p class="text-muted mb-4">The draft lands on the compose step with everything filled in and the cursor parked on the <strong class="text-text">recipient</strong> field — you just add the people and post. Nothing is submitted automatically, and every field stays fully editable. Press <span class="font-mono text-sm">⌘/Ctrl + Enter</span> in the description box to draft without reaching for the mouse.</p>
-<img alt="The Give recognition dialog with the Draft with AI panel above the card templates" class="rounded-xl border border-border my-6 w-full" src="../assets/New give recognition popup with draft with ai showing.png"/>
+<figure class="shot mb-6">
+  <img src="../assets/monday-composer-ai-draft.png" alt="The Give recognition dialog with the Draft with AI panel above the card templates" loading="lazy"
+       class="rounded-lg border border-border"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+    <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <p class="text-sm text-muted">Screenshot needed</p>
+    <p class="font-mono text-xs text-cta break-all">monday-composer-ai-draft.png</p>
+    <p class="text-xs text-muted max-w-md">The Give recognition dialog with the Draft with AI panel above the card templates</p>
+  </div>
+  <figcaption class="text-xs text-muted mt-2">The Give recognition dialog with the Draft with AI panel above the card templates</figcaption>
+</figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">Quick rewrite</h2>
 <p class="text-muted mb-4">Already wrote a message but want it tighter or warmer? Click <strong class="text-text">✨ Quick rewrite</strong> next to the Message field. AI Assist returns a polished version — keeping your meaning and any names — as a suggestion you can preview, then <strong class="text-text">Use this</strong> to drop it into the card or <strong class="text-text">Dismiss</strong> to keep your original.</p>
-<img alt="The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions" class="rounded-xl border border-border my-6 w-full" src="../assets/AI description rewrite screen shot.png"/>
+<figure class="shot mb-6">
+  <img src="../assets/monday-ai-quick-rewrite.png" alt="The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions" loading="lazy"
+       class="rounded-lg border border-border"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+    <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <p class="text-sm text-muted">Screenshot needed</p>
+    <p class="font-mono text-xs text-cta break-all">monday-ai-quick-rewrite.png</p>
+    <p class="text-xs text-muted max-w-md">The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions</p>
+  </div>
+  <figcaption class="text-xs text-muted mt-2">The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions</figcaption>
+</figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">Admin controls</h2>
-<p class="text-muted mb-4">AI Assist sits under <strong class="text-text">Settings &gt; Integrations</strong>, beside the monday connection and the other service credentials. Admins can turn it off account-wide at any time, which immediately hides Draft with AI and Quick rewrite for everyone.</p>
+<p class="text-muted mb-4">AI Assist sits under <strong class="text-text">Settings &gt; Integrations</strong>, beside the Monday connection and the other service credentials. Admins can turn it off account-wide at any time, which immediately hides Draft with AI and Quick rewrite for everyone.</p>
 <ul class="list-disc list-inside space-y-2 text-muted mb-4">
 <li><strong class="text-text">Enable AI assist in the composer</strong> — the single on/off switch for the whole site.</li>
-<li><strong class="text-text">Anthropic API key</strong> — write-only, exactly like the GIF and Tremendous credentials. It is never shown again after saving.</li>
-<li><strong class="text-text">Test AI</strong> — a live check that the key works and the model is reachable.</li>
-<li><strong class="text-text">Graceful fallback</strong> — with no key connected, or if the model is unreachable, the AI controls quietly disappear and the composer works exactly as before.</li>
+<li><strong class="text-text">Where AI runs</strong> — Monday AI or your own Anthropic key.</li>
+<li><strong class="text-text">Anthropic API key</strong> — only on that option. Write-only, exactly like the GIF and Tremendous credentials, and never shown again after saving.</li>
+<li><strong class="text-text">Test AI</strong> — a live check that the chosen provider answers. On Monday AI it verifies the connection and that credits are available; on Anthropic, that the key works.</li>
+<li><strong class="text-text">Graceful fallback</strong> — if the chosen provider cannot run, the AI controls quietly disappear and the composer works exactly as before.</li>
 </ul>
-<img alt="The AI Assist admin tab with the enable toggle, Test AI button, and availability status" class="rounded-xl border border-border my-6 w-full" src="../assets/AI assistant settings.png"/>
+<figure class="shot mb-6">
+  <img src="../assets/monday-settings-ai-assist.png" alt="The AI Assist admin tab with the enable toggle, Test AI button, and availability status" loading="lazy"
+       class="rounded-lg border border-border"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+    <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <p class="text-sm text-muted">Screenshot needed</p>
+    <p class="font-mono text-xs text-cta break-all">monday-settings-ai-assist.png</p>
+    <p class="text-xs text-muted max-w-md">The AI Assist admin tab with the enable toggle, Test AI button, and availability status</p>
+  </div>
+  <figcaption class="text-xs text-muted mt-2">The AI Assist admin tab with the enable toggle, Test AI button, and availability status</figcaption>
+</figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">Privacy &amp; billing</h2>
 <ul class="list-disc list-inside space-y-2 text-muted mb-4">
-<li><strong class="text-text">Goes to Anthropic</strong> — requests are sent to Anthropic under your own API key and their terms. This is the one AI path that leaves monday.com, and it exists only once an admin connects a key.</li>
+<li><strong class="text-text">On Monday AI, the prompt stays with Monday</strong> — requests go to Monday&rsquo;s Models API under your own account, on the connection you already granted.</li>
+<li><strong class="text-text">On Anthropic, the prompt goes to Anthropic</strong> — under your own API key and their terms. That is the one AI path that leaves Monday.com, and it exists only when an admin selects that option and connects a key.</li>
 <li><strong class="text-text">Only what you type</strong> — the model sees the occasion or message you provide plus your workspace's company-value names, nothing more.</li>
-<li><strong class="text-text">Billed to you</strong> — usage is charged to your Anthropic account, not to your Recognition Hub plan.</li>
+<li><strong class="text-text">Billed to you either way</strong> — to your Monday AI credits, or to your Anthropic account. Never to your Recognition Hub plan.</li>
 </ul>
       </article>
 

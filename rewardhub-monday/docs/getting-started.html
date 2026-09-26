@@ -22,7 +22,7 @@
 <script src="../../assets/nav.js"></script>
 <script src="../../assets/header.js"></script>
 
-<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your monday.com account →</a></div>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><a class="text-cta hover:underline" href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" rel="noopener" target="_blank">Add Recognition Hub to your Monday.com account →</a></div>
 
 <div class="vc-shell">
   <aside class="vc-side" data-noprint="1"></aside>
@@ -39,23 +39,56 @@
 
       <article class="vc-doc">
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Installation</h2>
-<p class="text-muted mb-4">Recognition Hub is available on the <strong>monday.com marketplace</strong> for monday.com Cloud. Install it from the Marketplace listing, authorize the app for your site, and it appears under <strong>Apps</strong> in your monday.com navigation. Free for teams of up to 10 users.</p>
+<p class="text-muted mb-4">Recognition Hub is available on the <strong>Monday.com marketplace</strong> for Monday.com Cloud. Install it from the Marketplace listing, authorize the app for your site, and it appears under <strong>Apps</strong> in your Monday.com navigation. Free for teams of up to 10 users.</p>
 <h2 class="text-2xl font-semibold mt-10 mb-4">2. Opening the Hub</h2>
-<p class="text-muted mb-4">Navigate to <strong>Apps &gt; Recognition Hub</strong> from the monday.com top navigation. The hub is a live mural of recognition cards — it auto-refreshes every 30 seconds, loads more as you scroll, and follows your monday.com light/dark theme automatically.</p>
-<img alt="The Recognition Hub recognition mural" class="rounded-xl border border-border my-6 w-full" src="../assets/recognition dashboard.png"/>
+<p class="text-muted mb-4">Navigate to <strong>Apps &gt; Recognition Hub</strong> from the Monday.com top navigation. The hub is a live mural of recognition cards — it auto-refreshes every 30 seconds, loads more as you scroll, and follows your Monday.com light/dark theme automatically.</p>
+<figure class="shot mb-6">
+  <img src="../assets/monday-recognition-feed.png" alt="The Recognition Hub recognition mural" loading="lazy"
+       class="rounded-lg border border-border"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+    <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <p class="text-sm text-muted">Screenshot needed</p>
+    <p class="font-mono text-xs text-cta break-all">monday-recognition-feed.png</p>
+    <p class="text-xs text-muted max-w-md">The Recognition Hub recognition mural</p>
+  </div>
+  <figcaption class="text-xs text-muted mt-2">The Recognition Hub recognition mural</figcaption>
+</figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">3. Posting Your First Recognition</h2>
 <p class="text-muted mb-4">Click <strong>+ Give recognition</strong> in the header. Pick a card template, search for the teammates you want to recognize, write a short title and message, optionally tag a company value and attach a GIF, then post. The card appears at the top of the mural instantly and recipients are notified by email.</p>
-<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Where your data is stored.</strong> Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. <a class="text-cta hover:underline" href="privacy-security.html">Privacy &amp; Data Handling</a> has the full picture.</p></div>
-<img alt="Posting a recognition" class="rounded-xl border border-border my-6 w-full" src="../assets/posting recognition page.png"/>
+<div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><p class="text-sm text-muted"><strong class="text-text">Where your data is stored.</strong> Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in Monday.com storage, so you choose the provider and region. <a class="text-cta hover:underline" href="privacy-security.html">Privacy &amp; Data Handling</a> has the full picture.</p></div>
+<figure class="shot mb-6">
+  <img src="../assets/monday-composer.png" alt="Posting a recognition" loading="lazy"
+       class="rounded-lg border border-border"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+    <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <p class="text-sm text-muted">Screenshot needed</p>
+    <p class="font-mono text-xs text-cta break-all">monday-composer.png</p>
+    <p class="text-xs text-muted max-w-md">Posting a recognition</p>
+  </div>
+  <figcaption class="text-xs text-muted mt-2">Posting a recognition</figcaption>
+</figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">4. Admin Setup</h2>
-<p class="text-muted mb-4">Site admins configure Recognition Hub under <strong>Settings &gt; Recognition Hub</strong> (monday.com): connect a GIPHY key, define company values, set up email notifications, manage moderation, and — optionally — connect Tremendous to attach real monetary rewards to recognitions.</p>
-<img alt="GIPHY connection settings" class="rounded-xl border border-border my-6 w-full" src="../assets/GIPHY configuration settingfspage.png"/>
+<p class="text-muted mb-4">Site admins configure Recognition Hub under <strong>Settings &gt; Recognition Hub</strong> (Monday.com): connect a GIPHY key, define company values, set up email notifications, manage moderation, and — optionally — connect Tremendous to attach real monetary rewards to recognitions.</p>
+<figure class="shot mb-6">
+  <img src="../assets/monday-settings-gif.png" alt="GIPHY connection settings" loading="lazy"
+       class="rounded-lg border border-border"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+    <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <p class="text-sm text-muted">Screenshot needed</p>
+    <p class="font-mono text-xs text-cta break-all">monday-settings-gif.png</p>
+    <p class="text-xs text-muted max-w-md">GIPHY connection settings</p>
+  </div>
+  <figcaption class="text-xs text-muted mt-2">GIPHY connection settings</figcaption>
+</figure>
 <h3 class="text-lg font-semibold mt-6 mb-3">Turn on GIFs</h3>
 <p class="text-muted mb-4">GIFs are <strong>off by default</strong>. To enable the GIF picker in the composer, open <strong>Settings &gt; Connections</strong>, make sure a GIPHY key is present (the app can ship a built-in key, or you can paste your own workspace key), then switch on <strong>Enable GIFs in the composer</strong>. The toggle stays disabled until a key exists. Use <strong>Test connection</strong> to confirm the key is healthy, then reload the hub — the GIF button appears in the composer. Full details in <a class="text-cta hover:underline" href="giving-recognition.html">Giving Recognition</a>.</p>
 <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted"><strong class="text-text">Don't see GIFs?</strong> The most common cause is the <strong class="text-text">Enable GIFs in the composer</strong> toggle still being off, or the page not yet reloaded after enabling it. A key alone is not enough — the toggle must be on.</p></div>
 <h3 class="text-lg font-semibold mt-6 mb-3">Rewards (optional)</h3>
 <p class="text-muted mb-4">Recognition Hub can attach real, spendable rewards to recognitions — funded and fulfilled through <strong>Tremendous</strong>. Recipients redeem their balance for a gift card of their choice, PayPal, and more. Setting it up is a one-time admin task: connect a Tremendous API key, pick a reward catalog, create funding pools, and choose who can give rewards. See <a class="text-cta hover:underline" href="rewards.html">Rewards &amp; Tremendous Setup</a> for the full step-by-step.</p>
-<div class="bg-cta/10 border border-cta/20 rounded-xl px-4 py-3 text-sm my-6"><a class="text-cta font-semibold hover:underline" href="https://monday.com/marketplace" rel="noopener" target="_blank">Get Recognition Hub on the monday.com marketplace →</a></div>
+<div class="bg-cta/10 border border-cta/20 rounded-xl px-4 py-3 text-sm my-6"><a class="text-cta font-semibold hover:underline" href="https://monday.com/marketplace" rel="noopener" target="_blank">Get Recognition Hub on the Monday.com marketplace →</a></div>
       </article>
 
       <div data-vc="pagefoot"></div>

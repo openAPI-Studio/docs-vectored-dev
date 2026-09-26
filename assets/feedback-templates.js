@@ -166,7 +166,7 @@
     'rewardhub-monday': {
       id: 'rewardhub-monday',
       name: 'Recognition Hub',
-      platform: 'for monday.com',
+      platform: 'for Monday.com',
       tagline: 'Peer recognition that lives where the work happens.',
       badge: 'LIVE',
       docs: 'https://docs.vectored.dev/rewardhub-monday/',
@@ -180,7 +180,7 @@
         { id: 'surface', label: 'Where do you open it?', type: 'select', options: ['Left navigation', 'A board view', 'A dashboard widget', 'The item menu', 'A mix'] },
         { id: 'teamSize', label: 'How many people use it?', type: 'select', options: ['Under 25', '25–100', '100–500', '500+'] },
       ],
-      nextSteps: [{ label: 'Recognition Hub for monday.com documentation', href: 'https://docs.vectored.dev/rewardhub-monday/' }],
+      nextSteps: [{ label: 'Recognition Hub for Monday.com documentation', href: 'https://docs.vectored.dev/rewardhub-monday/' }],
     },
 
     timesheets: {

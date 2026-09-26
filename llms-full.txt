@@ -13444,7 +13444,7 @@ Admins resolve flags under **Settings > Moderation**. The queue shows each flagg
 
 The same screen searches *all* recognitions by title or message (not just flagged ones), so admins can locate and remove any post on request.
 
-# Recognition Hub for monday
+# Recognition Hub for Monday
 
 ## Recognition Hub
 
@@ -13456,15 +13456,23 @@ Source: https://docs.vectored.dev/rewardhub-monday/
 
 ## Recognition Hub
 
-by Vectored · for monday.com
+by Vectored · for Monday.com
 
 LIVE
 
-Peer recognition that lives where your team already works. A live mural of kudos cards in monday.com — templates, company values, GIFs, reactions and comments, rich email notifications, and built-in moderation. Recognize straight from a board item, or from the hub in your left nav. Free for teams up to 20.
+Peer recognition that lives where your team already works. A live mural of kudos cards in Monday.com — templates, company values, GIFs, reactions and comments, rich email notifications, and built-in moderation. Recognize straight from a board item, or from the hub in your left nav. Free for teams up to 20.
 
-[![Add to monday.com](https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/uploads/Tal/4b5d9548-0598-436e-a5b6-9bc5f29ee1d9_Group12441.png)](https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install) [Read the Docs](https://docs.vectored.dev/rewardhub-monday/docs/getting-started.html)
+[![Add to Monday.com](https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/uploads/Tal/4b5d9548-0598-436e-a5b6-9bc5f29ee1d9_Group12441.png)](https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install) [Read the Docs](https://docs.vectored.dev/rewardhub-monday/docs/getting-started.html)
 
-![The Recognition Hub recognition mural in monday.com](https://docs.vectored.dev/rewardhub-monday/assets/recognition dashboard.png)
+![The Recognition Hub recognition mural in Monday.com](https://docs.vectored.dev/rewardhub-monday/assets/monday-recognition-feed.png)
+
+Screenshot needed
+
+monday-recognition-feed.png
+
+The Recognition Hub recognition mural in Monday.com
+
+The Recognition Hub recognition mural in Monday.com
 
 5
 
@@ -13496,7 +13504,7 @@ Card templates, recipients, company values, and GIFs.
 
 #### AI Assist
 
-Draft recognitions and rewrite messages with monday-hosted AI.
+Draft recognitions and rewrite messages with Monday-hosted AI.
 
 ](https://docs.vectored.dev/rewardhub-monday/docs/ai-assist.html) [
 
@@ -13536,9 +13544,9 @@ Recognize straight from an item, with recipients already filled in.
 
 ](https://docs.vectored.dev/rewardhub-monday/docs/recognize-from-an-item.html) [
 
-#### Plans
+#### Plans & Pricing
 
-What each plan includes, and what happens if one lapses.
+Free, Premium at $4 and Enterprise at $7 per user a month.
 
 ](https://docs.vectored.dev/rewardhub-monday/docs/plans.html)
 
@@ -13546,7 +13554,7 @@ GIF search in the composer is![Powered by GIPHY](https://docs.vectored.dev/rewar
 
 ### How It Works
 
-1. Open **Recognition Hub** from your monday.com left navigation, or use **Recognize** on any board item
+1. Open **Recognition Hub** from your Monday.com left navigation, or use **Recognize** on any board item
 
 2. Click **+ Give recognition** and pick a card template
 
@@ -13566,27 +13574,51 @@ Install Recognition Hub and post your first recognition
 
 ### 1. Installation
 
-Recognition Hub is available on the **monday.com marketplace** for monday.com Cloud. Install it from the Marketplace listing, authorize the app for your site, and it appears under **Apps** in your monday.com navigation. Free for teams of up to 10 users.
+Recognition Hub is available on the **Monday.com marketplace** for Monday.com Cloud. Install it from the Marketplace listing, authorize the app for your site, and it appears under **Apps** in your Monday.com navigation. Free for teams of up to 10 users.
 
 ### 2. Opening the Hub
 
-Navigate to **Apps > Recognition Hub** from the monday.com top navigation. The hub is a live mural of recognition cards — it auto-refreshes every 30 seconds, loads more as you scroll, and follows your monday.com light/dark theme automatically.
+Navigate to **Apps > Recognition Hub** from the Monday.com top navigation. The hub is a live mural of recognition cards — it auto-refreshes every 30 seconds, loads more as you scroll, and follows your Monday.com light/dark theme automatically.
 
-![The Recognition Hub recognition mural](https://docs.vectored.dev/rewardhub-monday/assets/recognition dashboard.png)
+![The Recognition Hub recognition mural](https://docs.vectored.dev/rewardhub-monday/assets/monday-recognition-feed.png)
+
+Screenshot needed
+
+monday-recognition-feed.png
+
+The Recognition Hub recognition mural
+
+The Recognition Hub recognition mural
 
 ### 3. Posting Your First Recognition
 
 Click **+ Give recognition** in the header. Pick a card template, search for the teammates you want to recognize, write a short title and message, optionally tag a company value and attach a GIF, then post. The card appears at the top of the mural instantly and recipients are notified by email.
 
-**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
+**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in Monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
 
-![Posting a recognition](https://docs.vectored.dev/rewardhub-monday/assets/posting recognition page.png)
+![Posting a recognition](https://docs.vectored.dev/rewardhub-monday/assets/monday-composer.png)
+
+Screenshot needed
+
+monday-composer.png
+
+Posting a recognition
+
+Posting a recognition
 
 ### 4. Admin Setup
 
-Site admins configure Recognition Hub under **Settings > Recognition Hub** (monday.com): connect a GIPHY key, define company values, set up email notifications, manage moderation, and — optionally — connect Tremendous to attach real monetary rewards to recognitions.
+Site admins configure Recognition Hub under **Settings > Recognition Hub** (Monday.com): connect a GIPHY key, define company values, set up email notifications, manage moderation, and — optionally — connect Tremendous to attach real monetary rewards to recognitions.
 
-![GIPHY connection settings](https://docs.vectored.dev/rewardhub-monday/assets/GIPHY configuration settingfspage.png)
+![GIPHY connection settings](https://docs.vectored.dev/rewardhub-monday/assets/monday-settings-gif.png)
+
+Screenshot needed
+
+monday-settings-gif.png
+
+GIPHY connection settings
+
+GIPHY connection settings
 
 #### Turn on GIFs
 
@@ -13598,35 +13630,77 @@ GIFs are **off by default**. To enable the GIF picker in the composer, open **Se
 
 Recognition Hub can attach real, spendable rewards to recognitions — funded and fulfilled through **Tremendous**. Recipients redeem their balance for a gift card of their choice, PayPal, and more. Setting it up is a one-time admin task: connect a Tremendous API key, pick a reward catalog, create funding pools, and choose who can give rewards. See [Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub-monday/docs/rewards.html) for the full step-by-step.
 
-[Get Recognition Hub on the monday.com marketplace →](https://monday.com/marketplace)
+[Get Recognition Hub on the Monday.com marketplace →](https://monday.com/marketplace)
 
-## Plans
+## Plans & Pricing
 
 Source: https://docs.vectored.dev/rewardhub-monday/docs/plans.html
 
-What each plan includes, and what happens if one lapses
+Every plan gets the whole recognition product. The only thing a plan adds is rewards.
 
-**Draft.** Plan names and prices are still being finalised with monday.com. Treat the figures below as placeholders until the listing is live.
+### Pricing
 
-### Free
+#### Free
 
-Up to 20 users. The recognition feed, posting, reactions and comments, company values, guidelines, badges, GIFs, email notifications, moderation and analytics — the whole product except rewards.
+$0 for up to 20 users
 
-### Premium
+For small teams getting started with recognition.
 
-Everything in Free, for accounts above 20 users. Priced per seat and billed by monday.com.
+The whole product except rewards.
 
-### Enterprise
+#### Premium
 
-Everything in Premium, plus **rewards** — funding reward pools, connecting Tremendous, and attaching real money to a recognition. See [Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub-monday/docs/rewards.html).
+$4 per user / month
+
+For teams above 20 users. Starts with a one-month free trial.
+
+Everything in Free, with no user limit.
+
+#### Enterprise
+
+$7 per user / month
+
+For companies that attach real money to recognition. Starts with a one-month free trial.
+
+Everything in Premium, plus rewards.
+
+Prices are in US dollars. Plans are bought and billed through Monday.com, which adds any applicable tax.
+
+### Compare plans
+
+| Feature | Free | Premium | Enterprise |
+| --- | --- | --- | --- |
+| Price | $0 | $4 / user / month | $7 / user / month |
+| Users | Up to 20 | Unlimited | Unlimited |
+| Free trial | — | 1 month | 1 month |
+| Recognition feed, posting and card templates | ✓ | ✓ | ✓ |
+| Reactions, confetti and comments | ✓ | ✓ | ✓ |
+| Company values and guidelines | ✓ | ✓ | ✓ |
+| Badges and achievements | ✓ | ✓ | ✓ |
+| GIFs (GIPHY) | ✓ | ✓ | ✓ |
+| Recognize from a board item | ✓ | ✓ | ✓ |
+| AI Assist (on your own Anthropic key) | ✓ | ✓ | ✓ |
+| Email notifications (AWS SES) | ✓ | ✓ | ✓ |
+| Moderation and review queue | ✓ | ✓ | ✓ |
+| Analytics | ✓ | ✓ | ✓ |
+| Data export, erasure and retention | ✓ | ✓ | ✓ |
+| Rewards, reward pools and Tremendous | — | — | ✓ |
+
+Rewards are the only feature a plan unlocks. See [Rewards & Tremendous Setup](https://docs.vectored.dev/rewardhub-monday/docs/rewards.html) for how pools are funded and how people redeem.
+
+### Free trial
+
+Premium and Enterprise each start with a one-month free trial. The admin **Integrations** tab shows which plan you are on and how many days are left, and warns you in the last two weeks. If the trial ends without a plan being chosen, nothing you set up is deleted. The paid features stop until you subscribe.
 
 ### Billing
 
-Plans are bought and billed through monday.com, from **Settings > Integrations** or the app's marketplace listing. Recognition Hub never asks for payment details itself.
+Plans are bought and billed through Monday.com, from **Settings > Integrations** or the app's marketplace listing. Admins can also open plan selection from the plan card in Recognition Hub's admin **Integrations** tab. Recognition Hub never asks for payment details itself. Fees, renewals and refunds are covered by the [Terms of Use](https://docs.vectored.dev/rewardhub-monday/terms.html).
+
+Reward money is separate from the plan price. Funds you load into a reward pool go through Tremendous and are paid out as rewards, not to Recognition Hub.
 
 ### If a plan lapses
 
-Nothing you already have is taken away. The feed, every past recognition, reward balances, redemption history and data exports all stay available. What stops is the paid *action* — granting new rewards — and a recognition with a reward attached still posts, without the reward. Money already funded into a pool remains yours to redeem.
+Nothing you already have is taken away. The feed, every past recognition, reward balances, redemption history and data exports all stay available. What stops is the paid *action*: granting new rewards. A recognition with a reward attached still posts, without the reward. Money already funded into a pool remains yours to redeem.
 
 ## Giving Recognition
 
@@ -13638,13 +13712,21 @@ Card templates, recipients, company values, and GIFs
 
 Every recognition starts from a template that shapes how the card renders on the mural: **Classic** (accent bar), **Spotlight** (GIF-forward, double width), **Milestone** (celebratory), **Minimal Quote** (short shout-outs), and **Team Shout** (group recognitions, double width).
 
-![The recognition composer with templates, recipients, values and GIFs](https://docs.vectored.dev/rewardhub-monday/assets/posting recognition page.png)
+![The recognition composer with templates, recipients, values and GIFs](https://docs.vectored.dev/rewardhub-monday/assets/monday-composer.png)
+
+Screenshot needed
+
+monday-composer.png
+
+The recognition composer with templates, recipients, values and GIFs
+
+The recognition composer with templates, recipients, values and GIFs
 
 ### Recipients
 
-Search any teammate by name (monday.com) and add up to 20 recipients per recognition. Self-recognition is blocked — recognition is for celebrating *others*. For multi-recipient posts, everyone is included on one notification email.
+Search any teammate by name (Monday.com) and add up to 20 recipients per recognition. Self-recognition is blocked — recognition is for celebrating *others*. For multi-recipient posts, everyone is included on one notification email.
 
-**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
+**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in Monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
 
 ### Company Values
 
@@ -13668,7 +13750,15 @@ GIF search is powered by GIPHY ![Powered by GIPHY](https://docs.vectored.dev/rew
 
 - **Attribution everywhere** — the mandatory “Powered by GIPHY” mark is shown in the picker, on card media, and in emails. Admins can disable GIFs entirely at any time.
 
-![GIPHY connection settings with content rating and test connection](https://docs.vectored.dev/rewardhub-monday/assets/GIPHY configuration settingfspage.png)
+![GIPHY connection settings with content rating and test connection](https://docs.vectored.dev/rewardhub-monday/assets/monday-settings-gif.png)
+
+Screenshot needed
+
+monday-settings-gif.png
+
+GIPHY connection settings with content rating and test connection
+
+GIPHY connection settings with content rating and test connection
 
 ## Recognizing from a board item
 
@@ -13676,9 +13766,17 @@ Source: https://docs.vectored.dev/rewardhub-monday/docs/recognize-from-an-item.h
 
 Give recognition where the work happened, without leaving the board
 
-Recognition Hub adds a **Recognize** action to monday.com board items. It is the fastest way to thank someone for work you are already looking at.
+Recognition Hub adds a **Recognize** action to Monday.com board items. It is the fastest way to thank someone for work you are already looking at.
 
-**Screenshot placeholder.** The item **⋯** menu with Recognize under Apps.
+![The three-dot menu on a Monday board item, with Recognize listed under Apps](https://docs.vectored.dev/rewardhub-monday/assets/monday-item-menu-recognize.png)
+
+Screenshot needed
+
+monday-item-menu-recognize.png
+
+The three-dot menu on a Monday board item, with Recognize listed under Apps
+
+The three-dot menu on a Monday board item, with Recognize listed under Apps
 
 ### From one item
 
@@ -13688,11 +13786,19 @@ Hover an item, click the **⋯** menu, and choose **Recognize**. The composer op
 
 Tick two or more items and choose **Recognize** from the batch action bar. Everyone assigned across the selection is gathered into one recognition, with duplicates removed — the same owner on five items is one recipient, not five.
 
-**Screenshot placeholder.** The batch action bar with several items selected and Recognize showing.
+![Several board items selected, with Recognize in the batch action bar at the bottom of the screen](https://docs.vectored.dev/rewardhub-monday/assets/monday-batch-action-recognize.png)
+
+Screenshot needed
+
+monday-batch-action-recognize.png
+
+Several board items selected, with Recognize in the batch action bar at the bottom of the screen
+
+Several board items selected, with Recognize in the batch action bar at the bottom of the screen
 
 ### If the recipients are not filled in
 
-Reading who is assigned needs the **boards:read** permission, which is granted when an admin connects the app. If the picker opens empty, the connection predates that permission: an admin should reconnect under **Settings > Integrations**, on the monday connection. Recognition itself works either way — only the prefill is affected, and you can always search for people yourself.
+Reading who is assigned needs the **boards:read** permission, which is granted when an admin connects the app. If the picker opens empty, the connection predates that permission: an admin should reconnect under **Settings > Integrations**, on the Monday connection. Recognition itself works either way — only the prefill is affected, and you can always search for people yourself.
 
 ### What the item contributes
 
@@ -13702,13 +13808,23 @@ Only who was working on it. Recognitions are account-wide rather than board-scop
 
 Source: https://docs.vectored.dev/rewardhub-monday/docs/ai-assist.html
 
-Draft recognitions and polish messages, on your own Anthropic key
+Draft recognitions and polish messages, on Monday AI or your own Anthropic key
 
-Your own key Bring an Anthropic API key. Usage is billed to your own account.
+Nothing to set up Runs on your Monday AI credits by default. No key required.
 
-AI Assist runs on **your own Anthropic API key**, which an admin adds under **Settings > Integrations**. Usage is billed to your Anthropic account, and nothing is sent anywhere until a key is connected. It adds two things to the composer: a **Draft with AI** starting point and a one-click **Quick rewrite** for the message.
+AI Assist adds two things to the composer: a **Draft with AI** starting point, and a one-click **Quick rewrite** for the message. It works as soon as the app is connected to Monday — there is no key to obtain and nothing to configure.
 
-**Running on monday AI credits instead** — with no key to manage — is coming through the monday connection. Until then, an Anthropic key is how AI Assist is switched on.
+### Which models answer
+
+Two choices, under **Settings > Integrations > AI assist**:
+
+- **Monday AI** (default) — runs on Monday’s own models through the connection you already have. Usage draws on your account’s Monday AI credits and appears in Monday’s usage dashboard. Nothing to set up.
+
+- **Your own Anthropic key** — an admin pastes a key and usage is billed to your Anthropic account instead. Choose this if you would rather own the model relationship, or your Monday AI credits are spoken for.
+
+The key field only appears when the Anthropic option is selected, and the choice can be changed at any time.
+
+**Running on Monday AI credits instead** — with no key to manage — is coming through the Monday connection. Until then, an Anthropic key is how AI Assist is switched on.
 
 ### Draft with AI
 
@@ -13724,35 +13840,63 @@ When AI Assist is on, **Give recognition** opens with a Draft with AI panel abov
 
 The draft lands on the compose step with everything filled in and the cursor parked on the **recipient** field — you just add the people and post. Nothing is submitted automatically, and every field stays fully editable. Press ⌘/Ctrl + Enter in the description box to draft without reaching for the mouse.
 
-![The Give recognition dialog with the Draft with AI panel above the card templates](https://docs.vectored.dev/rewardhub-monday/assets/New give recognition popup with draft with ai showing.png)
+![The Give recognition dialog with the Draft with AI panel above the card templates](https://docs.vectored.dev/rewardhub-monday/assets/monday-composer-ai-draft.png)
+
+Screenshot needed
+
+monday-composer-ai-draft.png
+
+The Give recognition dialog with the Draft with AI panel above the card templates
+
+The Give recognition dialog with the Draft with AI panel above the card templates
 
 ### Quick rewrite
 
 Already wrote a message but want it tighter or warmer? Click **✨ Quick rewrite** next to the Message field. AI Assist returns a polished version — keeping your meaning and any names — as a suggestion you can preview, then **Use this** to drop it into the card or **Dismiss** to keep your original.
 
-![The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions](https://docs.vectored.dev/rewardhub-monday/assets/AI description rewrite screen shot.png)
+![The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions](https://docs.vectored.dev/rewardhub-monday/assets/monday-ai-quick-rewrite.png)
+
+Screenshot needed
+
+monday-ai-quick-rewrite.png
+
+The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions
+
+The Quick rewrite suggestion shown beneath the message field with Use this and Dismiss actions
 
 ### Admin controls
 
-AI Assist sits under **Settings > Integrations**, beside the monday connection and the other service credentials. Admins can turn it off account-wide at any time, which immediately hides Draft with AI and Quick rewrite for everyone.
+AI Assist sits under **Settings > Integrations**, beside the Monday connection and the other service credentials. Admins can turn it off account-wide at any time, which immediately hides Draft with AI and Quick rewrite for everyone.
 
 - **Enable AI assist in the composer** — the single on/off switch for the whole site.
 
-- **Anthropic API key** — write-only, exactly like the GIF and Tremendous credentials. It is never shown again after saving.
+- **Where AI runs** — Monday AI or your own Anthropic key.
 
-- **Test AI** — a live check that the key works and the model is reachable.
+- **Anthropic API key** — only on that option. Write-only, exactly like the GIF and Tremendous credentials, and never shown again after saving.
 
-- **Graceful fallback** — with no key connected, or if the model is unreachable, the AI controls quietly disappear and the composer works exactly as before.
+- **Test AI** — a live check that the chosen provider answers. On Monday AI it verifies the connection and that credits are available; on Anthropic, that the key works.
 
-![The AI Assist admin tab with the enable toggle, Test AI button, and availability status](https://docs.vectored.dev/rewardhub-monday/assets/AI assistant settings.png)
+- **Graceful fallback** — if the chosen provider cannot run, the AI controls quietly disappear and the composer works exactly as before.
+
+![The AI Assist admin tab with the enable toggle, Test AI button, and availability status](https://docs.vectored.dev/rewardhub-monday/assets/monday-settings-ai-assist.png)
+
+Screenshot needed
+
+monday-settings-ai-assist.png
+
+The AI Assist admin tab with the enable toggle, Test AI button, and availability status
+
+The AI Assist admin tab with the enable toggle, Test AI button, and availability status
 
 ### Privacy & billing
 
-- **Goes to Anthropic** — requests are sent to Anthropic under your own API key and their terms. This is the one AI path that leaves monday.com, and it exists only once an admin connects a key.
+- **On Monday AI, the prompt stays with Monday** — requests go to Monday’s Models API under your own account, on the connection you already granted.
+
+- **On Anthropic, the prompt goes to Anthropic** — under your own API key and their terms. That is the one AI path that leaves Monday.com, and it exists only when an admin selects that option and connects a key.
 
 - **Only what you type** — the model sees the occasion or message you provide plus your workspace's company-value names, nothing more.
 
-- **Billed to you** — usage is charged to your Anthropic account, not to your Recognition Hub plan.
+- **Billed to you either way** — to your Monday AI credits, or to your Anthropic account. Never to your Recognition Hub plan.
 
 ## Reactions & Comments
 
@@ -13782,21 +13926,29 @@ Direct links and email sharing
 
 Every card has a share button (share icon) opening two tabs: **Direct link** and **Email**.
 
-![The share dialog with Direct link and Email tabs](https://docs.vectored.dev/rewardhub-monday/assets/share recognition popup.png)
+![The share dialog with Direct link and Email tabs](https://docs.vectored.dev/rewardhub-monday/assets/monday-share-dialog.png)
+
+Screenshot needed
+
+monday-share-dialog.png
+
+The share dialog with Direct link and Email tabs
+
+The share dialog with Direct link and Email tabs
 
 ### Direct Links
 
-The direct link deep-links into the hub and opens that recognition as a popup over the mural — same link used in notification emails' “View this recognition” button. Anyone with access to your monday.com site can open it.
+The direct link deep-links into the hub and opens that recognition as a popup over the mural — same link used in notification emails' “View this recognition” button. Anyone with access to your Monday.com site can open it.
 
 ### Sharing by Email
 
 The Email tab lets you send the recognition to teammates on your site (searchable picker) *and* to raw email addresses for people the picker can't find. Sends use your configured email provider and the same rich template as notifications.
 
-**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
+**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in Monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
 
 ### Embedding a card on a page
 
-Not available on monday.com. The Confluence build of Recognition Hub can embed a live card inside a wiki page through a page macro; monday.com has no equivalent inline-content surface, so the card lives in the hub and is shared by link or email instead.
+Not available on Monday.com. The Confluence build of Recognition Hub can embed a live card inside a wiki page through a page macro; Monday.com has no equivalent inline-content surface, so the card lives in the hub and is shared by link or email instead.
 
 ## Rewards & Tremendous Setup
 
@@ -13810,7 +13962,7 @@ With rewards enabled, someone giving recognition can attach a cash reward to it.
 
 Money is real and it moves through **Tremendous**. Recognition Hub keeps an internal ledger — pools and user balances — that always stays within your funded Tremendous balance; funds only actually leave Tremendous the moment a recipient redeems. This keeps the app out of money-movement scope while giving you full pool/limit control.
 
-**Rewards leave the monday.com platform.** Reward fulfillment is handled by Tremendous, so a recipient's name and email and the reward amount are sent to Tremendous to issue the reward. Rewards are optional and off until an admin connects a Tremendous account. Note that reward balances and ledgers are held in the app’s own database whether or not Tremendous is connected — connecting it adds Tremendous as a second destination, it does not move the data out of monday.com for the first time.
+**Rewards leave the Monday.com platform.** Reward fulfillment is handled by Tremendous, so a recipient's name and email and the reward amount are sent to Tremendous to issue the reward. Rewards are optional and off until an admin connects a Tremendous account. Note that reward balances and ledgers are held in the app’s own database whether or not Tremendous is connected — connecting it adds Tremendous as a second destination, it does not move the data out of Monday.com for the first time.
 
 ### What You'll Need
 
@@ -13850,7 +14002,7 @@ You don't need to copy the campaign ID by hand — Recognition Hub fetches your 
 
 ### Step 3 — Connect Tremendous in Recognition Hub
 
-1. Open **Settings > Recognition Hub > Rewards** (monday.com).
+1. Open **Settings > Recognition Hub > Rewards** (Monday.com).
 
 2. Paste your **API key**.
 
@@ -13882,7 +14034,7 @@ Pools are how you budget and control who can give rewards. Open **Settings > Rec
 
 - **Load money** — allocate an amount from your Tremendous balance into the pool. Recognition Hub only lets you allocate what's actually unallocated (Tremendous balance minus everything already committed to pools and unredeemed user balances), so you can never over-promise.
 
-- **Assign givers** — add the people (or monday.com groups) allowed to give rewards from this pool. A direct user assignment wins; otherwise the first matching group assignment applies. Each person or group belongs to one pool at a time.
+- **Assign givers** — add the people (or Monday.com groups) allowed to give rewards from this pool. A direct user assignment wins; otherwise the first matching group assignment applies. Each person or group belongs to one pool at a time.
 
 Only someone assigned to a pool with a positive balance sees the reward option in the composer. Everyone else gives recognition exactly as before.
 
@@ -13910,7 +14062,7 @@ Every money-adjacent action — pool creation, loading funds, assignments, rewar
 
 - **Balance looks low right after funding** — bank transfers to Tremendous can take a few business days to fully settle. The Reward Pools tab reflects the live Tremendous balance.
 
-[Get Recognition Hub on the monday.com marketplace →](https://monday.com/marketplace)
+[Get Recognition Hub on the Monday.com marketplace →](https://monday.com/marketplace)
 
 ## Company Values
 
@@ -13926,7 +14078,15 @@ Company values are the tags your team celebrates — *Ownership*, *Customer Obse
 
 Admins manage values under **Settings > Company Values**: add (up to 10), rename inline, toggle active, or delete. Colors are assigned automatically from a curated palette so the set always looks coherent — no color picking required.
 
-![Company Values admin settings](https://docs.vectored.dev/rewardhub-monday/assets/company value settings page.png)
+![Company Values admin settings](https://docs.vectored.dev/rewardhub-monday/assets/monday-settings-company-values.png)
+
+Screenshot needed
+
+monday-settings-company-values.png
+
+Company Values admin settings
+
+Company Values admin settings
 
 ### Defaults
 
@@ -13946,9 +14106,17 @@ When a recognition is posted, one email goes out per recognition: all recognized
 
 Delivery uses **AWS SES**. The app ships with built-in credentials so email works out of the box, and admins can override with their own AWS access key, region, and SES-verified from-address under **Settings > Email** (credentials are write-only and stored encrypted). A test-send button verifies the setup.
 
-**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
+**Where your data is stored.** Recognition Hub keeps its own PostgreSQL database — recognitions, comments, reactions, reward ledgers and cached profiles live there rather than in Monday.com storage, so you choose the provider and region. [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html) has the full picture.
 
-![AWS SES email settings with test send](https://docs.vectored.dev/rewardhub-monday/assets/ses configuration settings page.png)
+![AWS SES email settings with test send](https://docs.vectored.dev/rewardhub-monday/assets/monday-settings-email.png)
+
+Screenshot needed
+
+monday-settings-email.png
+
+AWS SES email settings with test send
+
+AWS SES email settings with test send
 
 ### Editable Templates
 
@@ -13964,13 +14132,29 @@ Flagging, review queue, and admin controls
 
 Every card has a flag button (flag icon). Any user can flag a recognition as potentially offensive, picking a reason (offensive/inappropriate, spam, other). A flagged recognition is **hidden from everyone immediately** — the mural and deep links both treat it as under review.
 
-![The flag and hide dialog with reason options](https://docs.vectored.dev/rewardhub-monday/assets/flag and hide popup.png)
+![The flag and hide dialog with reason options](https://docs.vectored.dev/rewardhub-monday/assets/monday-flag-dialog.png)
+
+Screenshot needed
+
+monday-flag-dialog.png
+
+The flag and hide dialog with reason options
+
+The flag and hide dialog with reason options
 
 ### Review Queue
 
 Admins resolve flags under **Settings > Moderation**. The queue shows each flagged card with its author, recipients, date, who flagged it, and the reason. **Unflag** restores it everywhere; **Delete** removes it permanently along with its reactions and comments.
 
-![The moderation review queue](https://docs.vectored.dev/rewardhub-monday/assets/Moderation settings pahe.png)
+![The moderation review queue](https://docs.vectored.dev/rewardhub-monday/assets/monday-settings-moderation.png)
+
+Screenshot needed
+
+monday-settings-moderation.png
+
+The moderation review queue
+
+The moderation review queue
 
 ### Finding Any Recognition
 
@@ -13980,51 +14164,52 @@ The same screen searches *all* recognitions by title or message (not just flagge
 
 Source: https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html
 
-What is stored, what leaves monday.com, and how erasure, export and retention work
+What is stored, what leaves Monday.com, and how erasure, export and retention work
 
-What Recognition Hub stores, where it goes, and how export, erasure and retention work on monday.com.
+What Recognition Hub stores, where it goes, and how export, erasure and retention work on Monday.com.
 
-**In short.** monday.com does not offer an app database this product can use, so Recognition Hub runs its own PostgreSQL. Your recognitions live there rather than in monday.com storage, which means you choose the provider, the region and the jurisdiction. If your policy requires employee data to stay within monday.com’s own infrastructure, that is worth weighing early — the rest of this page sets out exactly what is held and where it goes.
+**In short.** Monday.com does not offer an app database this product can use, so Recognition Hub runs its own PostgreSQL. Your recognitions live there rather than in Monday.com storage, which means you choose the provider, the region and the jurisdiction. If your policy requires employee data to stay within Monday.com’s own infrastructure, that is worth weighing early — the rest of this page sets out exactly what is held and where it goes.
 
 ### Where the data lives
 
-monday.com does not offer an app database this product can use — the managed option is MongoDB, exposed only as a short-lived read-only credential for inspection. Recognition Hub therefore brings its own PostgreSQL database, and that database is the system of record.
+Monday.com does not offer an app database this product can use — the managed option is MongoDB, exposed only as a short-lived read-only credential for inspection. Recognition Hub therefore brings its own PostgreSQL database, and that database is the system of record.
 
 Held in that database, per account:
 
-- **Recognitions** — title, message, the author and recipient monday user ids, company value, GIF reference, timestamps.
+- **Recognitions** — title, message, the author and recipient Monday user ids, company value, GIF reference, timestamps.
 
 - **Reactions and comments** — the emoji or text, and who left it.
 
-- **Cached profiles** — display name and avatar URL, refreshed from the monday API so the feed can render without a lookup per card.
+- **Cached profiles** — display name and avatar URL, refreshed from the Monday API so the feed can render without a lookup per card.
 
 - **Rewards** — pools, balances, ledgers, redemption records and their status.
 
 - **Badges, preferences and the audit log.**
 
-Board data is *not* stored. The only board information the app ever reads is who is assigned on an item, read in your browser on your own monday session at the moment you open the composer from that item, and used to prefill the recipient field. It is never written to the database.
+Board data is *not* stored. The only board information the app ever reads is who is assigned on an item, read in your browser on your own Monday session at the moment you open the composer from that item, and used to prefill the recipient field. It is never written to the database.
 
-### Where data goes beyond monday.com
+### Where data goes beyond Monday.com
 
 | Destination | What is sent | When |
 | --- | --- | --- |
 | **The app’s PostgreSQL** | Everything listed above | Always |
 | **AWS SES** | Recipient email address, recognition title, message, value, GIF still, deep link | When notification email is enabled |
-| **Anthropic** | The occasion or message you type, plus your company-value names | Only when an admin connects an Anthropic key and someone uses AI Assist |
+| **Monday Models API** | The occasion or message you type, plus your company-value names | When someone uses AI Assist — this is the default provider |
+| **Anthropic** | The same, when Anthropic is the selected provider | Only when an admin chooses that option and connects a key |
 | **GIF provider** | Your search terms. No recognition content. | When the GIF picker is used |
 | **Tremendous** | Recipient name, email address, reward amount | Only when rewards are connected and a reward is redeemed |
 
-Every destination except the database is optional and off until an admin turns it on. Email and AI can both be pointed at credentials you own — your own AWS SES account, your own Anthropic key — so that path runs through infrastructure you control.
+Every destination except the database is optional and off until an admin turns it on. AI is the one worth reading twice: by default it runs on **Monday’s own Models API**, so the prompt stays with Monday and the usage draws on your Monday AI credits. An admin can switch it to your own Anthropic key instead, which moves that traffic to Anthropic under your account and their terms. Email can likewise be pointed at your own AWS SES.
 
 ### Access and permissions
 
-- **Every request is authenticated.** The browser never asserts who it is: it sends a short-lived session token signed by monday.com, and the server verifies the signature and reads the acting user and account from the signed claims.
+- **Every request is authenticated.** The browser never asserts who it is: it sends a short-lived session token signed by Monday.com, and the server verifies the signature and reads the acting user and account from the signed claims.
 
-- **Admin rights are resolved server-side** against the monday API, not taken from the page or inferred from which screen an action came from. monday’s account settings view is reachable by any user, so placement authorizes nothing.
+- **Admin rights are resolved server-side** against the Monday API, not taken from the page or inferred from which screen an action came from. Monday’s account settings view is reachable by any user, so placement authorizes nothing.
 
 - **Accounts are isolated.** Every query is scoped to the acting account, and the OAuth token stored for an account is verified to belong to it before it is saved.
 
-- **Credentials are encrypted at rest** — the monday token, the Anthropic key, the Tremendous key and the SES credentials are all stored encrypted and never returned to the browser.
+- **Credentials are encrypted at rest** — the Monday token, the Anthropic key, the Tremendous key and the SES credentials are all stored encrypted and never returned to the browser.
 
 OAuth scopes requested: `me:read`, `users:read`, `account:read`, `teams:read`, `ai:consume` and `boards:read`. Boards are read, never written.
 
@@ -14042,11 +14227,129 @@ Both live under **Settings > Privacy & Data**.
 
 - **Retention** is configurable per account, and a scheduled job prunes past the window you set. The audit log has a floor of 365 days — it is itself a security control, and a short retention on it would defeat the point.
 
-- **Uninstalling erases the account.** monday.com notifies the app on uninstall and every table belonging to that account is purged. A registry test fails the build if a new table is added without being registered for the purge, which is what keeps that promise true as the schema grows.
+- **Uninstalling erases the account.** Monday.com notifies the app on uninstall and every table belonging to that account is purged. A registry test fails the build if a new table is added without being registered for the purge, which is what keeps that promise true as the schema grows.
 
 ### Keeping the footprint small
 
-The database is a fixed part of the architecture, but almost everything about it is yours to decide: run your own PostgreSQL in the region and jurisdiction that suit you, connect your own AWS SES, bring your own Anthropic key, and leave rewards and GIFs disconnected until you want them. Configured that way, the only parties handling your data are ones you already have a direct relationship with.
+The database is a fixed part of the architecture, but almost everything about it is yours to decide: run your own PostgreSQL in the region and jurisdiction that suit you, connect your own AWS SES, and leave rewards and GIFs disconnected until you want them. AI adds no new third party unless you want one — on the default setting it stays with Monday, and the Anthropic option exists for accounts that would rather own that relationship. Configured this way, the only parties handling your data are ones you already have a direct relationship with.
+
+## Terms of Use
+
+Source: https://docs.vectored.dev/rewardhub-monday/terms.html
+
+[← Back to Recognition Hub](https://docs.vectored.dev/rewardhub-monday/index.html)
+
+## Terms of Use
+
+Recognition Hub for Monday.com · Last updated: September 2026
+
+**Draft.** These terms are under review and may change before the Marketplace listing goes live.
+
+These terms are between Vectored ("we", "us") and the organisation that installs or uses Recognition Hub ("the App") on Monday.com ("you"). By installing or using the App you agree to them. If you are agreeing on behalf of an organisation, you confirm you have authority to bind it.
+
+### 1. Licence
+
+We grant you a non-exclusive, non-transferable, revocable licence to use the App on your Monday.com accounts for your internal business purposes, for as long as it is installed and, for paid plans, your subscription is active.
+
+The App remains our proprietary software. These terms do not transfer ownership of it to you.
+
+### 2. Restrictions
+
+You may not: reverse engineer, decompile or attempt to derive source code except where that restriction is unenforceable by law; resell, sublicense or provide the App as a service to third parties; remove proprietary notices; or use the App to build a competing product.
+
+### 3. Plans, fees and billing
+
+The App is offered on the plans described on the [Plans & Pricing](https://docs.vectored.dev/rewardhub-monday/docs/plans.html) page: **Free** (up to 20 users), **Premium** (USD 4 per user per month) and **Enterprise** (USD 7 per user per month). Premium and Enterprise each begin with a one-month free trial.
+
+Paid plans are purchased, billed and renewed through Monday.com. **We do not collect or store payment details.** Fees are exclusive of taxes, which Monday.com may add. Subscriptions renew for successive periods unless cancelled through Monday.com before renewal.
+
+**Refunds.** Fees are non-refundable, including for partial billing periods, unused seats or downgrades, except where refunds are required by applicable law.
+
+If a trial ends without a plan being chosen, or a paid plan lapses, your data is not deleted; features that require the paid plan stop until you subscribe again.
+
+We may change prices or plan contents. Changes apply from your next renewal after notice under section 15, and never retroactively to a period you have already paid for.
+
+Costs you incur with third parties are your own and are not paid to us: your Monday.com subscription, funds you load into your reward provider, and any AWS charges for sending email.
+
+### 4. Your responsibilities
+
+You are responsible for:
+
+- **Content.** Everything your users write. You will not use the App for unlawful, harassing, discriminatory or infringing content, and you will operate the moderation tools the App provides.
+
+- **Lawful basis and notice.** Having a lawful basis for processing your personnel's data and telling them about it.
+
+- **Configuration.** Retention periods, whether individual-level reporting is enabled, who has administrative access, and any consultation your local law requires before monitoring or ranking employees.
+
+- **Third-party accounts.** Your own GIPHY, Tremendous, AWS and Anthropic credentials, and compliance with those providers' terms.
+
+- **Rewards and tax.** See section 7.
+
+### 5. Data protection
+
+You are the controller of the personal data processed through the App; we are the processor. Our Data Processing Addendum forms part of these terms and is available on request from legal@vectored.dev. What the App stores, where it goes, and how export, erasure and retention work is described in [Privacy & Data Handling](https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html).
+
+**Uninstalling the App permanently deletes your data.** Export anything you need first.
+
+### 6. Third-party services
+
+The App integrates with GIPHY, Tremendous, Amazon SES and Anthropic, each optional and each using credentials you supply. Those services are governed by their own terms, which you accept directly with them. We are not responsible for their availability, content or acts.
+
+GIF content is supplied by GIPHY and is not reviewed by us. The App applies the content rating you select and provides flagging and deletion tools. If you believe content accessible through the App infringes your rights, contact legal@vectored.dev and we will act on valid notices, including removal.
+
+### 7. Rewards
+
+Rewards are available on the Enterprise plan. Where you enable them:
+
+- You contract directly with the reward provider and fund your own account with them. **We do not hold, receive or transmit funds.**
+
+- Reward balances shown in the App are an internal record of entitlement under your programme. They are not money, have no cash value, are not transferable, and are forfeited on termination of employment, of the programme, or of these terms.
+
+- **You are solely responsible for the tax treatment of rewards**, including characterisation as compensation, withholding and reporting. We provide no tax advice and no payroll integration.
+
+- You are responsible for the rules of your own programme and for communicating them to your personnel.
+
+### 8. AI features
+
+The App can generate suggested recognition text using Anthropic's Claude, on an API key you supply. Output is a suggestion for a human to review, edit and publish. **You are responsible for anything your users choose to post.** AI output may be inaccurate. Administrators may disable the feature. See [AI Assist](https://docs.vectored.dev/rewardhub-monday/docs/ai-assist.html).
+
+### 9. Support
+
+Support is provided at support@vectored.dev on a reasonable-efforts basis. Unless agreed in writing, we offer no service-level commitment, guaranteed response time or uptime guarantee.
+
+### 10. Intellectual property
+
+We retain all rights in the App. You retain all rights in your content. You grant us only the limited rights needed to operate the App for you.
+
+### 11. Warranty disclaimer
+
+The App is provided "as is". To the maximum extent permitted by law we disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose and non-infringement. We do not warrant uninterrupted or error-free operation, nor the accuracy of AI-generated output.
+
+### 12. Limitation of liability
+
+To the maximum extent permitted by law, neither party is liable for indirect, incidental, special, consequential or punitive damages, or for lost profits, revenue or data. Our aggregate liability arising out of or relating to the App is limited to the fees you paid for the App in the twelve months before the event giving rise to the claim.
+
+Nothing in these terms excludes liability that cannot lawfully be excluded, including for death or personal injury caused by negligence, or for fraud.
+
+### 13. Indemnity
+
+You will indemnify us against claims arising from your content, your use of the App in breach of these terms, or your failure to meet your obligations under section 4 or section 7.
+
+### 14. Term and termination
+
+These terms apply while the App is installed. You may stop using the App at any time by cancelling your plan through Monday.com and uninstalling it. Either party may terminate for material breach not cured within 30 days. On termination, uninstall the App; doing so deletes your data as described in section 5.
+
+### 15. Changes
+
+We may update these terms and will give notice of material changes on this page, on the Monday.com Marketplace listing or in the App. Continued use after the effective date is acceptance.
+
+### 16. General
+
+These terms are governed by the laws of New South Wales, Australia, and the courts of New South Wales have exclusive jurisdiction. Where these terms conflict with the Monday.com Marketplace terms or Monday.com's own customer terms, those prevail. If a provision is unenforceable, the rest survives. These terms, with the Data Processing Addendum, are the entire agreement between us regarding the App.
+
+### Contact
+
+Questions about these terms: legal@vectored.dev
 
 # Lens
 
