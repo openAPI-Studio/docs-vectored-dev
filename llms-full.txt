@@ -16550,7 +16550,13 @@ Vectored builds production-grade apps for Atlassian Confluence & Jira, VS Code, 
 
 Everything ships with full documentation, a support channel, and Marketplace-managed billing where applicable.
 
-#### Macro Toolkit for Confluence
+7 products · 6 live
+
+Atlassian Cloud 4 apps
+
+#### Macro Toolkit
+
+for Confluence
 
 LIVE
 
@@ -16560,31 +16566,21 @@ Diagrams Polls Charts Markdown OpenAPI
 
 [Documentation →](https://docs.vectored.dev/macrotoolkit/) [Marketplace](https://marketplace.atlassian.com/apps/3972300183)
 
-#### Forms & Frontdoor for Confluence
+#### Forms & Frontdoor
+
+for Confluence
 
 LIVE
 
 Visual form builder with 13 field types, theming, access control, multi-section navigation — and a post-submit automation canvas that creates Confluence pages, opens Jira issues, and posts to Slack or Teams.
 
-Form builder Automation Jira · Slack · Teams CSV export
+Supports AI Form builder Automation Jira · Slack · Teams CSV export
 
 [Documentation →](https://docs.vectored.dev/forms/) [Automation guide](https://docs.vectored.dev/forms/docs/automation.html) [Marketplace](https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&tab=overview)
 
-BYOAI*
+#### Recognition Hub
 
-#### API Studio for VS Code & CLI
-
-LIVE
-
-API development, testing, and documentation without leaving your editor — plus a scriptable CLI for CI pipelines.
-
-Supports AI REST client Docs generation CI-ready CLI
-
-[Documentation →](https://docs.vectored.dev/apistudio/) [GitHub](https://github.com/openAPI-Studio)
-
-![Recognition Hub logo](https://docs.vectored.dev/rewardhub/assets/logo.png)
-
-#### Recognition Hub for Confluence & Jira
+for Confluence & Jira
 
 LIVE
 
@@ -16594,23 +16590,9 @@ Supports AI Recognition mural Email notifications Page macro
 
 [Documentation →](https://docs.vectored.dev/rewardhub/) [Marketplace](https://marketplace.atlassian.com/apps/564712405)
 
-BYOAI*
+#### TimeSheets
 
-![Recognition Hub logo](https://docs.vectored.dev/rewardhub-monday/assets/logo.png)
-
-#### Recognition Hub for monday.com
-
-LIVE
-
-Peer recognition that lives where your team already works — a live mural of kudos cards in monday.com, with templates, company values, GIFs, reactions, email notifications, and recognition straight from a board item.
-
-Supports AI Recognition mural From a board item Free up to 20 users
-
-[Documentation →](https://docs.vectored.dev/rewardhub-monday/) [Add to monday](https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install)
-
-![TimeSheets logo](https://docs.vectored.dev/timesheets/assets/icon.png)
-
-#### TimeSheets for Jira
+for Jira
 
 COMING SOON
 
@@ -16620,11 +16602,45 @@ Approvals Leave & holidays Cost centers Worklog sync
 
 [Documentation →](https://docs.vectored.dev/timesheets/)
 
-BYOAI*
+VS Code & CLI 1 app
 
-![Lens logo](https://docs.vectored.dev/lens/assets/icon.png)
+[BYOAI*](#byoai)
 
-#### Lens for Chrome & Edge
+#### API Studio
+
+for VS Code & CLI
+
+LIVE
+
+API development, testing, and documentation without leaving your editor — plus a scriptable CLI for CI pipelines.
+
+Supports AI REST client Docs generation CI-ready CLI
+
+[Documentation →](https://docs.vectored.dev/apistudio/) [GitHub](https://github.com/openAPI-Studio)
+
+monday.com 1 app
+
+[BYOAI*](#byoai)
+
+#### Recognition Hub
+
+for monday.com
+
+LIVE
+
+Peer recognition that lives where your team already works — a live mural of kudos cards in monday.com, with templates, company values, GIFs, reactions, email notifications, and recognition straight from a board item.
+
+Supports AI Recognition mural From a board item Free up to 20 users
+
+[Documentation →](https://docs.vectored.dev/rewardhub-monday/) [Add to monday](https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&response_type=install)
+
+Browser 1 app
+
+[BYOAI*](#byoai)
+
+#### Lens
+
+for Chrome & Edge
 
 LIVE
 
@@ -16634,13 +16650,13 @@ Supports AI Region capture High-quality GIF & MP4 Annotation & blur Local folder
 
 [Install →](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki) [Documentation](https://docs.vectored.dev/lens/)
 
-#### On the roadmap
+BYOAI* — **Bring Your Own AI.** These products work with an AI provider you already use: plug in your own API key (or connect your own AI assistant, in API Studio's case) and AI requests go to that provider under your own account and terms. You choose the provider, and usage is billed by them — never through a Vectored plan. Tiles marked *Supports AI* have AI features; Recognition Hub for Confluence uses Atlassian-hosted AI, so no key is needed there.
 
-- **Front Door** — customizable landing pages and portals for Confluence spaces.
+On the roadmap
+
+**Front Door** — customizable landing pages and portals for Confluence spaces.
 
 Want early access or to influence the roadmap? [Tell us what you need.](https://docs.vectored.dev/macrotoolkit/support.html)
-
-BYOAI* — **Bring Your Own AI.** These products work with an AI provider you already use: plug in your own API key (or connect your own AI assistant, in API Studio's case) and AI requests go to that provider under your own account and terms. You choose the provider, and usage is billed by them — never through a Vectored plan. Tiles marked *Supports AI* have AI features; Recognition Hub for Confluence uses Atlassian-hosted AI, so no key is needed there.
 
 ### Built for the platforms you use
 
@@ -16655,6 +16671,18 @@ Forms automation creates and updates Jira issues from submissions today; dedicat
 #### VS Code & CLI
 
 API Studio brings request building, testing, and doc generation into the editor, with a CLI that slots into any CI pipeline.
+
+![monday.com](https://docs.vectored.dev/assets/monday-logo.png)
+
+#### monday.com
+
+Recognition Hub brings peer recognition into monday.com — a live kudos mural, templates, and recognition straight from a board item.
+
+![Chrome Web Store](https://docs.vectored.dev/assets/chrome-logo.png)
+
+#### Chrome Web Store
+
+Lens installs from the Chrome Web Store and runs in Chrome and Edge — capture, annotate, and file screenshots and recordings, fully offline.
 
 ### Security & trust
 
@@ -17063,8 +17091,6 @@ Phone / handle (if not email)
 Add an email above so we can actually reach you.
 
 You may quote this feedback (first name and company only) in marketing material.
-
-Website
 
 We never sell or share this. See the [privacy policy](https://docs.vectored.dev/macrotoolkit/privacy.html).
 

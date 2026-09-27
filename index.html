@@ -14,15 +14,80 @@
   <script src="assets/tailwind-config.js"></script>
   <style>
 .hero-glow{background:radial-gradient(ellipse 60% 50% at 50% -10%,rgba(34,197,94,0.13),transparent)}
-    /* BYOAI corner ribbon. Tiles that carry it get position:relative and
-       overflow:hidden so the band clips cleanly to the rounded corner. */
-    .byoai-ribbon{position:absolute;top:20px;right:-40px;width:150px;transform:rotate(45deg);text-align:center;
-      font:700 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:#fff;padding:6px 0;
-      background:linear-gradient(90deg,#3B5BFF,#1E90FF 55%,#10C99A);box-shadow:0 2px 8px rgba(0,0,0,.35);pointer-events:none}
-    .ai-pill{display:inline-flex;align-items:center;gap:4px;color:#7FB2FF;border-color:rgba(59,130,246,.45)!important;
-      background:linear-gradient(90deg,rgba(59,91,255,.12),rgba(16,201,154,.12))!important}
+    /* ---- Products, grouped by platform ---- */
+    .pgroups{display:grid;grid-template-columns:minmax(0,1fr);gap:48px 20px}
+    @media(min-width:900px){.pgroups{grid-template-columns:repeat(3,minmax(0,1fr))}.pgrp-wide{grid-column:1/-1}}
+    .pgrp{min-width:0;display:flex;flex-direction:column}
+    .pgrp-head{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    .pgrp-title{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+    .pgrp-rule{flex:1;height:1px;background:var(--border)}
+    .pgrp-count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+    .pgrp-more{display:inline-flex;align-items:center;gap:8px;font:500 13px 'IBM Plex Sans',sans-serif;color:var(--tx);background:var(--surface);
+      border:1px solid var(--border);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap}
+    .pgrp-more[hidden]{display:none}
+    .pgrp-more:hover{border-color:var(--greenLine);color:var(--green)}
+    .pgrp-more svg{transition:transform .35s ease}
+    .pgrp-more.back svg{transform:rotate(180deg)}
+    /* Clip the sliding track, but leave room for the BYOAI ribbon, which
+       wraps past the card's corner. */
+    .pgrp-view{flex:1;display:flex;overflow:hidden;overflow:clip;overflow-clip-margin:14px}
+    .pgrp-track{--v:1;flex:1;min-width:0;display:flex;gap:20px;align-items:stretch;transition:transform .6s cubic-bezier(.65,0,.25,1)}
+    @media(min-width:640px){.pgrp-wide .pgrp-track{--v:2}}
+    @media(min-width:1024px){.pgrp-wide .pgrp-track{--v:3}}
+    .pcard{position:relative;flex:0 0 calc((100% - (var(--v) - 1) * 20px) / var(--v));box-sizing:border-box;min-width:0;
+      background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column;
+      transition:border-color .2s,opacity .4s}
+    .pcard:hover{border-color:color-mix(in srgb,var(--green) 40%,transparent)}
+    .pcard.off{opacity:.25}
+    .pcard-icon{width:44px;height:44px;object-fit:contain;border-radius:10px;display:block;margin-bottom:16px}
+    .pcard h3{font-size:18px;line-height:1.3;font-weight:600;margin:0}
+    .pcard-platform{font-size:12px;color:var(--muted);margin-top:2px}
+    .pcard-status{margin:12px 0 14px}
+    .pstatus{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 9px;border-radius:999px;
+      border:1px solid var(--greenLine);background:var(--greenSoft);color:var(--green)}
+    .pstatus.soon{border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.1);color:#fbbf24}
+    html.light .pstatus.soon{color:#b45309}
+    .pcard-desc{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 16px}
+    .pcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+    .ptag{font-size:12px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:3px 10px}
+    .ai-pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#7FB2FF;border:1px solid rgba(59,130,246,.45);
+      background:linear-gradient(90deg,rgba(59,91,255,.12),rgba(16,201,154,.12));border-radius:999px;padding:3px 10px}
     .ai-pill svg{width:12px;height:12px}
     html.light .ai-pill{color:#2554D6}
+    .pcard-links{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:14px}
+    .plink-primary{color:var(--green);font-weight:600}
+    .plink{color:var(--muted)}
+    .plink:hover{color:var(--tx);text-decoration:none}
+
+    /* BYOAI ribbon: a folded band that wraps the card's top-right corner. */
+    .byoai-ribbon{position:absolute;top:0;right:0;z-index:5;font-size:20px;width:10em;height:2.5em;line-height:2em;display:block;
+      text-align:center;text-decoration:none;user-select:none;transform:translate(2.35em,1.4em) rotate(45deg);
+      filter:drop-shadow(0 .5em .5em rgba(0,0,0,.3))}
+    .byoai-ribbon:hover{text-decoration:none;filter:drop-shadow(0 .5em .5em rgba(0,0,0,.3)) brightness(1.08)}
+    .byoai-ribbon::before,.byoai-ribbon::after{content:'';position:absolute;box-sizing:border-box;
+      clip-path:polygon(2em 0,8em 0,10em 2em,10em 2.5em,9.5em 2em,.5em 2em,0 2.5em,0 2em)}
+    .byoai-ribbon::before{left:0;right:0;top:.1em;height:1.8em;border-top:2px dotted rgba(255,255,255,.45);border-bottom:2px dotted rgba(255,255,255,.45)}
+    .byoai-ribbon::after{inset:0;z-index:-1;background-color:#1E90FF;
+      background-image:linear-gradient(to top,rgba(0,0,0,.3),rgba(0,0,0,.12) 1.25em),linear-gradient(90deg,#3B5BFF,#1E90FF 55%,#10C99A);
+      border-bottom:.5em solid #0f2458}
+    .byoai-ribbon span{font:700 13px/40px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.4)}
+
+    .pnotes{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;margin-top:48px}
+    @media(min-width:900px){.pnotes{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}}
+    .pnote{border:1px solid var(--border);border-radius:16px;padding:24px}
+    .pnote p{line-height:1.65;margin:0}
+    .pnote-road{background:var(--surface);border-style:dashed;display:flex;flex-direction:column;gap:12px}
+    .plat-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+    .plat-track{display:flex;gap:20px;width:max-content;animation:plat-scroll 45s linear infinite}
+    .plat-marquee:hover .plat-track{animation-play-state:paused}
+    .plat-card{flex:0 0 300px;box-sizing:border-box;transition:border-color .2s}
+    .plat-card:hover{border-color:color-mix(in srgb,var(--green) 40%,transparent)}
+    @keyframes plat-scroll{to{transform:translateX(calc(-50% - 10px))}}
+    @media(prefers-reduced-motion:reduce){
+      .plat-marquee{-webkit-mask-image:none;mask-image:none}
+      .plat-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+      .plat-dup{display:none}
+    }
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
@@ -56,184 +121,201 @@
     <!-- Products -->
     <section id="products" class="px-4 sm:px-6 lg:px-8 py-16">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-2">Products</h2>
-        <p class="text-muted mb-10">Everything ships with full documentation, a support channel, and Marketplace-managed billing where applicable.</p>
-
-        <div class="grid md:grid-cols-2 gap-5">
-
-          <!-- Macro Toolkit -->
-          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div class="flex items-center gap-3">
-                <img src="macrotoolkit/assets/icon_lite.png" alt="" class="w-9 h-9 shrink-0 object-contain rounded-lg">
-                <h3 class="text-lg font-semibold">Macro Toolkit <span class="block text-xs font-normal text-muted mt-0.5">for Confluence</span></h3>
-              </div>
-              <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
-            </div>
-            <p class="text-sm text-muted mb-4">15 macros for pages that do more — Mermaid, PlantUML, draw.io and Excalidraw diagrams, polls, mood boards, charts, markdown, Swagger/OpenAPI viewers, carousels, and more.</p>
-            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Diagrams</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Polls</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Charts</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Markdown</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">OpenAPI</span>
-            </div>
-            <div class="mt-auto flex flex-wrap gap-3 text-sm">
-              <a href="macrotoolkit/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
-              <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Marketplace</a>
-            </div>
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-2">Products</h2>
+            <p class="text-muted max-w-2xl">Everything ships with full documentation, a support channel, and Marketplace-managed billing where applicable.</p>
           </div>
+          <span class="font-mono text-xs text-muted tracking-wider uppercase">7 products · 6 live</span>
+        </div>
 
-          <!-- Forms -->
-          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div class="flex items-center gap-3">
-                <img src="forms/assets/icon.png" alt="" class="w-9 h-9 shrink-0 object-contain rounded-lg">
-                <h3 class="text-lg font-semibold">Forms &amp; Frontdoor <span class="block text-xs font-normal text-muted mt-0.5">for Confluence</span></h3>
-              </div>
-              <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
-            </div>
-            <p class="text-sm text-muted mb-4">Visual form builder with 13 field types, theming, access control, multi-section navigation — and a post-submit automation canvas that creates Confluence pages, opens Jira issues, and posts to Slack or Teams.</p>
-            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Form builder</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Automation</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Jira · Slack · Teams</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">CSV export</span>
-            </div>
-            <div class="mt-auto flex flex-wrap gap-3 text-sm">
-              <a href="forms/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
-              <a href="forms/docs/automation.html" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Automation guide</a>
-              <a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Marketplace</a>
-            </div>
+        <!-- Grouped by platform. Atlassian spans the full row and slides when it
+             holds more apps than fit; the other platforms sit three across. -->
+        <div class="pgroups">
+        <div class="pgrp pgrp-wide" data-group="atl">
+          <div class="pgrp-head">
+            <span class="pgrp-title">Atlassian Cloud</span>
+            <span class="pgrp-rule"></span>
+            <span class="pgrp-count">4 apps</span>
+            <button type="button" class="pgrp-more" hidden><span>More</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
           </div>
-
-          <!-- API Studio -->
-          <div class="relative overflow-hidden bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
-            <span class="byoai-ribbon" aria-label="Bring your own AI, see note below">BYOAI*</span>
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div class="flex items-center gap-3">
-                <img src="apistudio/assets/chat.png" alt="" class="w-9 h-9 shrink-0 rounded-lg">
-                <h3 class="text-lg font-semibold">API Studio <span class="block text-xs font-normal text-muted mt-0.5">for VS Code &amp; CLI</span></h3>
-              </div>
-              <span class="shrink-0 mr-8 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
+          <div class="pgrp-view">
+            <div class="pgrp-track">
+              <article class="pcard" data-status="LIVE">
+                <img src="macrotoolkit/assets/icon_lite.png" alt="" class="pcard-icon">
+                <h3>Macro Toolkit</h3>
+                <span class="pcard-platform">for Confluence</span>
+                <div class="pcard-status"><span class="pstatus">LIVE</span></div>
+                <p class="pcard-desc">15 macros for pages that do more — Mermaid, PlantUML, draw.io and Excalidraw diagrams, polls, mood boards, charts, markdown, Swagger/OpenAPI viewers, carousels, and more.</p>
+                <div class="pcard-tags">
+                  <span class="ptag">Diagrams</span>
+                  <span class="ptag">Polls</span>
+                  <span class="ptag">Charts</span>
+                  <span class="ptag">Markdown</span>
+                  <span class="ptag">OpenAPI</span>
+                </div>
+                <div class="pcard-links">
+                  <a href="macrotoolkit/" class="plink-primary">Documentation &rarr;</a>
+                  <a href="https://marketplace.atlassian.com/apps/3972300183" target="_blank" rel="noopener" class="plink">Marketplace</a>
+                </div>
+              </article>
+              <article class="pcard" data-status="LIVE">
+                <img src="forms/assets/icon.png" alt="" class="pcard-icon">
+                <h3>Forms &amp; Frontdoor</h3>
+                <span class="pcard-platform">for Confluence</span>
+                <div class="pcard-status"><span class="pstatus">LIVE</span></div>
+                <p class="pcard-desc">Visual form builder with 13 field types, theming, access control, multi-section navigation — and a post-submit automation canvas that creates Confluence pages, opens Jira issues, and posts to Slack or Teams.</p>
+                <div class="pcard-tags">
+                  <span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
+                  <span class="ptag">Form builder</span>
+                  <span class="ptag">Automation</span>
+                  <span class="ptag">Jira · Slack · Teams</span>
+                  <span class="ptag">CSV export</span>
+                </div>
+                <div class="pcard-links">
+                  <a href="forms/" class="plink-primary">Documentation &rarr;</a>
+                  <a href="forms/docs/automation.html" class="plink">Automation guide</a>
+                  <a href="https://marketplace.atlassian.com/apps/2466520058/forms-frontdoor-by-vectored?hosting=cloud&amp;tab=overview" target="_blank" rel="noopener" class="plink">Marketplace</a>
+                </div>
+              </article>
+              <article class="pcard" data-status="LIVE">
+                <img src="rewardhub/assets/logo.png" alt="" class="pcard-icon">
+                <h3>Recognition Hub</h3>
+                <span class="pcard-platform">for Confluence &amp; Jira</span>
+                <div class="pcard-status"><span class="pstatus">LIVE</span></div>
+                <p class="pcard-desc">Peer recognition that lives in Confluence and Jira — a live mural of kudos cards with templates, company values, GIFs, reactions, rich email notifications, and page embedding.</p>
+                <div class="pcard-tags">
+                  <span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
+                  <span class="ptag">Recognition mural</span>
+                  <span class="ptag">Email notifications</span>
+                  <span class="ptag">Page macro</span>
+                </div>
+                <div class="pcard-links">
+                  <a href="rewardhub/" class="plink-primary">Documentation &rarr;</a>
+                  <a href="https://marketplace.atlassian.com/apps/564712405" target="_blank" rel="noopener" class="plink">Marketplace</a>
+                </div>
+              </article>
+              <article class="pcard" data-status="COMING SOON">
+                <img src="timesheets/assets/icon.png" alt="" class="pcard-icon">
+                <h3>TimeSheets</h3>
+                <span class="pcard-platform">for Jira</span>
+                <div class="pcard-status"><span class="pstatus soon">COMING SOON</span></div>
+                <p class="pcard-desc">Time tracking that lives inside Jira — log against hierarchical cost centers and issues, route entries through per-project approvers, manage leave and holidays, lock past periods, and report on it all with native worklog sync.</p>
+                <div class="pcard-tags">
+                  <span class="ptag">Approvals</span>
+                  <span class="ptag">Leave &amp; holidays</span>
+                  <span class="ptag">Cost centers</span>
+                  <span class="ptag">Worklog sync</span>
+                </div>
+                <div class="pcard-links">
+                  <a href="timesheets/" class="plink-primary">Documentation &rarr;</a>
+                </div>
+              </article>
             </div>
-            <p class="text-sm text-muted mb-4">API development, testing, and documentation without leaving your editor — plus a scriptable CLI for CI pipelines.</p>
-            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
-              <span class="ai-pill border rounded-full px-2.5 py-1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">REST client</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Docs generation</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">CI-ready CLI</span>
-            </div>
-            <div class="mt-auto flex flex-wrap gap-3 text-sm">
-              <a href="apistudio/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
-              <a href="https://github.com/openAPI-Studio" target="_blank" rel="noopener" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">GitHub</a>
-            </div>
-          </div>
-
-          <!-- Recognition Hub -->
-          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div class="flex items-center gap-3">
-                <img src="rewardhub/assets/logo.png" alt="Recognition Hub logo" class="w-9 h-9 shrink-0 rounded-lg object-contain" onerror="this.outerHTML='&lt;div class=\'w-9 h-9 shrink-0 rounded-lg bg-cta flex items-center justify-center text-bg font-bold font-mono\'&gt;R&lt;/div&gt;'">
-                <h3 class="text-lg font-semibold">Recognition Hub <span class="block text-xs font-normal text-muted mt-0.5">for Confluence &amp; Jira</span></h3>
-              </div>
-              <span class="shrink-0 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
-            </div>
-            <p class="text-sm text-muted mb-4">Peer recognition that lives in Confluence and Jira — a live mural of kudos cards with templates, company values, GIFs, reactions, rich email notifications, and page embedding.</p>
-            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
-              <span class="ai-pill border rounded-full px-2.5 py-1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Recognition mural</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Email notifications</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Page macro</span>
-            </div>
-            <div class="mt-auto flex flex-wrap gap-3 text-sm">
-              <a href="rewardhub/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
-              <a href="https://marketplace.atlassian.com/apps/564712405" target="_blank" rel="noopener" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Marketplace</a>
-            </div>
-          </div>
-
-          <!-- Recognition Hub for monday -->
-          <div class="relative overflow-hidden bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
-            <span class="byoai-ribbon" aria-label="Bring your own AI, see note below">BYOAI*</span>
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div class="flex items-center gap-3">
-                <img src="rewardhub-monday/assets/logo.png" alt="Recognition Hub logo" class="w-9 h-9 shrink-0 rounded-lg object-contain">
-                <h3 class="text-lg font-semibold">Recognition Hub <span class="block text-xs font-normal text-muted mt-0.5">for monday.com</span></h3>
-              </div>
-              <span class="shrink-0 mr-8 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
-            </div>
-            <p class="text-sm text-muted mb-4">Peer recognition that lives where your team already works — a live mural of kudos cards in monday.com, with templates, company values, GIFs, reactions, email notifications, and recognition straight from a board item.</p>
-            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
-              <span class="ai-pill border rounded-full px-2.5 py-1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Recognition mural</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">From a board item</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Free up to 20 users</span>
-            </div>
-            <div class="mt-auto flex flex-wrap gap-3 text-sm">
-              <a href="rewardhub-monday/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
-              <a href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" target="_blank" rel="noopener" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Add to monday</a>
-            </div>
-          </div>
-
-          <!-- TimeSheets -->
-          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div class="flex items-center gap-3">
-                <img src="timesheets/assets/icon.png" alt="TimeSheets logo" class="w-9 h-9 shrink-0 object-contain rounded-lg">
-                <h3 class="text-lg font-semibold">TimeSheets <span class="block text-xs font-normal text-muted mt-0.5">for Jira</span></h3>
-              </div>
-              <span class="shrink-0 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono px-2.5 py-1 rounded-full">COMING SOON</span>
-            </div>
-            <p class="text-sm text-muted mb-4">Time tracking that lives inside Jira — log against hierarchical cost centers and issues, route entries through per-project approvers, manage leave and holidays, lock past periods, and report on it all with native worklog sync.</p>
-            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Approvals</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Leave &amp; holidays</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Cost centers</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Worklog sync</span>
-            </div>
-            <div class="mt-auto flex flex-wrap gap-3 text-sm">
-              <a href="timesheets/" class="text-cta font-semibold hover:underline cursor-pointer">Documentation &rarr;</a>
-            </div>
-          </div>
-
-          <!-- Lens -->
-          <div class="relative overflow-hidden bg-surface border border-border rounded-2xl p-6 flex flex-col hover:border-cta/40 transition-all duration-200">
-            <span class="byoai-ribbon" aria-label="Bring your own AI, see note below">BYOAI*</span>
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div class="flex items-center gap-3">
-                <img src="lens/assets/icon.png" alt="Lens logo" class="w-9 h-9 shrink-0 object-contain rounded-lg" onerror="this.outerHTML='&lt;div class=\'w-9 h-9 shrink-0 rounded-lg bg-cta flex items-center justify-center text-bg font-bold font-mono\'&gt;L&lt;/div&gt;'">
-                <h3 class="text-lg font-semibold">Lens <span class="block text-xs font-normal text-muted mt-0.5">for Chrome &amp; Edge</span></h3>
-              </div>
-              <span class="shrink-0 mr-8 bg-cta/10 border border-cta/30 text-cta text-xs font-mono px-2.5 py-1 rounded-full">LIVE</span>
-            </div>
-            <p class="text-sm text-muted mb-4">Screenshot and screen recording for documentation — capture a region of any tab as PNG, a high-quality GIF or MP4, annotate and redact it, and file it straight into a local project folder with a metadata timeline. Completely offline, with no account and no subscription.</p>
-            <div class="flex flex-wrap gap-2 text-xs text-muted mb-5">
-              <span class="ai-pill border rounded-full px-2.5 py-1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Region capture</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">High-quality GIF &amp; MP4</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Annotation &amp; blur</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Local folders</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">Fully offline</span>
-              <span class="bg-bg border border-border rounded-full px-2.5 py-1">No subscription</span>
-            </div>
-            <div class="mt-auto flex flex-wrap gap-3 text-sm">
-              <a href="https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki" data-store="lens" target="_blank" rel="noopener" class="text-cta font-semibold hover:underline cursor-pointer">Install &rarr;</a>
-              <a href="lens/" class="text-muted hover:text-text transition-colors duration-200 cursor-pointer">Documentation</a>
-            </div>
-          </div>
-
-          <!-- Coming soon -->
-          <div class="bg-surface border border-border rounded-2xl p-6 flex flex-col">
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <h3 class="text-lg font-semibold text-muted">On the roadmap</h3>
-            </div>
-            <ul class="text-sm text-muted space-y-3">
-              <li><strong class="text-text">Front Door</strong> — customizable landing pages and portals for Confluence spaces.</li>
-            </ul>
-            <p class="text-xs text-muted mt-auto pt-4">Want early access or to influence the roadmap? <a href="macrotoolkit/support.html" class="text-cta hover:underline cursor-pointer">Tell us what you need.</a></p>
           </div>
         </div>
-        <p id="byoai" class="mt-8 text-sm text-muted max-w-3xl"><span class="font-mono font-bold text-text">BYOAI*</span> — <strong class="text-text">Bring Your Own AI.</strong> These products work with an AI provider you already use: plug in your own API key (or connect your own AI assistant, in API Studio's case) and AI requests go to that provider under your own account and terms. You choose the provider, and usage is billed by them — never through a Vectored plan. Tiles marked <em>Supports AI</em> have AI features; Recognition Hub for Confluence uses Atlassian-hosted AI, so no key is needed there.</p>
+        <div class="pgrp" data-group="vsc">
+          <div class="pgrp-head">
+            <span class="pgrp-title">VS Code &amp; CLI</span>
+            <span class="pgrp-rule"></span>
+            <span class="pgrp-count">1 app</span>
+          </div>
+          <div class="pgrp-view">
+            <div class="pgrp-track">
+              <article class="pcard" data-status="LIVE">
+                <a class="byoai-ribbon" href="#byoai" aria-label="Bring your own AI, see note below"><span>BYOAI*</span></a>
+                <img src="apistudio/assets/chat.png" alt="" class="pcard-icon">
+                <h3>API Studio</h3>
+                <span class="pcard-platform">for VS Code &amp; CLI</span>
+                <div class="pcard-status"><span class="pstatus">LIVE</span></div>
+                <p class="pcard-desc">API development, testing, and documentation without leaving your editor — plus a scriptable CLI for CI pipelines.</p>
+                <div class="pcard-tags">
+                  <span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
+                  <span class="ptag">REST client</span>
+                  <span class="ptag">Docs generation</span>
+                  <span class="ptag">CI-ready CLI</span>
+                </div>
+                <div class="pcard-links">
+                  <a href="apistudio/" class="plink-primary">Documentation &rarr;</a>
+                  <a href="https://github.com/openAPI-Studio" target="_blank" rel="noopener" class="plink">GitHub</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="pgrp" data-group="mon">
+          <div class="pgrp-head">
+            <span class="pgrp-title">monday.com</span>
+            <span class="pgrp-rule"></span>
+            <span class="pgrp-count">1 app</span>
+          </div>
+          <div class="pgrp-view">
+            <div class="pgrp-track">
+              <article class="pcard" data-status="LIVE">
+                <a class="byoai-ribbon" href="#byoai" aria-label="Bring your own AI, see note below"><span>BYOAI*</span></a>
+                <img src="rewardhub-monday/assets/logo.png" alt="" class="pcard-icon">
+                <h3>Recognition Hub</h3>
+                <span class="pcard-platform">for monday.com</span>
+                <div class="pcard-status"><span class="pstatus">LIVE</span></div>
+                <p class="pcard-desc">Peer recognition that lives where your team already works — a live mural of kudos cards in monday.com, with templates, company values, GIFs, reactions, email notifications, and recognition straight from a board item.</p>
+                <div class="pcard-tags">
+                  <span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
+                  <span class="ptag">Recognition mural</span>
+                  <span class="ptag">From a board item</span>
+                  <span class="ptag">Free up to 20 users</span>
+                </div>
+                <div class="pcard-links">
+                  <a href="rewardhub-monday/" class="plink-primary">Documentation &rarr;</a>
+                  <a href="https://auth.monday.com/oauth2/authorize?client_id=3207a1a78ef1d540e09dfad3459f2302&amp;response_type=install" target="_blank" rel="noopener" class="plink">Add to monday</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="pgrp" data-group="web">
+          <div class="pgrp-head">
+            <span class="pgrp-title">Browser</span>
+            <span class="pgrp-rule"></span>
+            <span class="pgrp-count">1 app</span>
+          </div>
+          <div class="pgrp-view">
+            <div class="pgrp-track">
+              <article class="pcard" data-status="LIVE">
+                <a class="byoai-ribbon" href="#byoai" aria-label="Bring your own AI, see note below"><span>BYOAI*</span></a>
+                <img src="lens/assets/icon.png" alt="" class="pcard-icon">
+                <h3>Lens</h3>
+                <span class="pcard-platform">for Chrome &amp; Edge</span>
+                <div class="pcard-status"><span class="pstatus">LIVE</span></div>
+                <p class="pcard-desc">Screenshot and screen recording for documentation — capture a region of any tab as PNG, a high-quality GIF or MP4, annotate and redact it, and file it straight into a local project folder with a metadata timeline. Completely offline, with no account and no subscription.</p>
+                <div class="pcard-tags">
+                  <span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm6.5 11l.95 2.55L22 16.5l-2.55.95L18.5 20l-.95-2.55L15 16.5l2.55-.95L18.5 13z"/></svg>Supports AI</span>
+                  <span class="ptag">Region capture</span>
+                  <span class="ptag">High-quality GIF &amp; MP4</span>
+                  <span class="ptag">Annotation &amp; blur</span>
+                  <span class="ptag">Local folders</span>
+                  <span class="ptag">Fully offline</span>
+                  <span class="ptag">No subscription</span>
+                </div>
+                <div class="pcard-links">
+                  <a href="https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki" target="_blank" rel="noopener" data-store="lens" class="plink-primary">Install &rarr;</a>
+                  <a href="lens/" class="plink">Documentation</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="pnotes">
+          <div id="byoai" class="pnote">
+            <p class="text-sm text-muted"><span class="font-mono font-bold text-text">BYOAI*</span> — <strong class="text-text">Bring Your Own AI.</strong> These products work with an AI provider you already use: plug in your own API key (or connect your own AI assistant, in API Studio's case) and AI requests go to that provider under your own account and terms. You choose the provider, and usage is billed by them — never through a Vectored plan. Tiles marked <em>Supports AI</em> have AI features; Recognition Hub for Confluence uses Atlassian-hosted AI, so no key is needed there.</p>
+          </div>
+          <div class="pnote pnote-road">
+            <span class="font-mono text-xs text-muted tracking-widest uppercase">On the roadmap</span>
+            <p class="text-sm text-muted"><strong class="text-text">Front Door</strong> — customizable landing pages and portals for Confluence spaces.</p>
+            <p class="text-xs text-muted mt-auto">Want early access or to influence the roadmap? <a href="macrotoolkit/support.html" class="text-cta hover:underline">Tell us what you need.</a></p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -241,21 +323,60 @@
     <section id="platforms" class="px-4 sm:px-6 lg:px-8 py-16 bg-bg">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-2xl sm:text-3xl font-bold mb-10">Built for the platforms you use</h2>
-        <div class="grid sm:grid-cols-3 gap-5">
-          <div class="bg-surface border border-border rounded-2xl p-6">
+      </div>
+      <!-- A slow marquee: the set is rendered twice and the track slides by
+           exactly one set, so the loop is seamless. Hover pauses it. -->
+      <div class="plat-marquee max-w-6xl mx-auto">
+        <div class="plat-track">
+          <div class="plat-card bg-surface border border-border rounded-2xl p-6">
             <svg class="w-8 h-8 mb-4" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.1186 14.0842C10.9735 13.8943 10.7399 13.7941 10.5025 13.8199C10.265 13.8457 10.0584 13.9938 9.95749 14.2105L4.07422 25.9816C3.96525 26.1998 3.9769 26.4588 4.10501 26.6662C4.23312 26.8737 4.45943 27 4.70312 27H12.8953C13.1633 27.0062 13.4099 26.8537 13.5242 26.611C15.2913 22.9568 14.2203 17.4006 11.1186 14.0842Z" fill="url(#atl-g)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.4339 3.37762C12.4515 7.96969 12.1073 13.7944 14.528 18.7062L18.4776 26.6108C18.5966 26.8492 18.8401 26.9998 19.1064 26.9998H27.2971C27.5408 26.9998 27.7671 26.8735 27.8952 26.6661C28.0233 26.4586 28.035 26.1996 27.926 25.9815C27.926 25.9815 16.9068 3.92489 16.6299 3.3732C16.5181 3.14406 16.2853 2.99906 16.0305 3C15.7757 3.00095 15.5439 3.14765 15.4339 3.37762Z" fill="#2684FF"/><defs><linearGradient id="atl-g" x1="14.3428" y1="15.9009" x2="6.09079" y2="24.759" gradientUnits="userSpaceOnUse"><stop stop-color="#0052CC"/><stop offset="0.923" stop-color="#2684FF"/></linearGradient></defs></svg>
             <h3 class="font-semibold mb-2">Atlassian Confluence</h3>
             <p class="text-sm text-muted">Macro Toolkit and Forms extend the pages your teams write every day — diagrams, data collection, and automation without leaving Confluence.</p>
           </div>
-          <div class="bg-surface border border-border rounded-2xl p-6">
+          <div class="plat-card bg-surface border border-border rounded-2xl p-6">
             <svg class="w-8 h-8 mb-4" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.6647 15.2165L17.2075 3.1679L16 2L6.62269 11.0697L2.33526 15.2165C1.88825 15.6494 1.88825 16.3506 2.33526 16.7835L10.9025 25.0697L16 30L25.3773 20.9303L25.5225 20.7899L29.6647 16.7835C30.1118 16.3506 30.1118 15.6494 29.6647 15.2165ZM16 20.1394L11.7202 16L16 11.8606L20.2798 16L16 20.1394Z" fill="#2684FF"/></svg>
             <h3 class="font-semibold mb-2">Atlassian Jira</h3>
             <p class="text-sm text-muted">Forms automation creates and updates Jira issues from submissions today; dedicated Jira apps like Time Log are on the roadmap.</p>
           </div>
-          <div class="bg-surface border border-border rounded-2xl p-6">
+          <div class="plat-card bg-surface border border-border rounded-2xl p-6">
             <svg class="w-8 h-8 mb-4 text-[#007ACC]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
             <h3 class="font-semibold mb-2">VS Code &amp; CLI</h3>
             <p class="text-sm text-muted">API Studio brings request building, testing, and doc generation into the editor, with a CLI that slots into any CI pipeline.</p>
+          </div>
+          <div class="plat-card bg-surface border border-border rounded-2xl p-6">
+            <img src="assets/monday-logo.png" alt="monday.com" class="w-8 h-8 mb-4 object-contain">
+            <h3 class="font-semibold mb-2">monday.com</h3>
+            <p class="text-sm text-muted">Recognition Hub brings peer recognition into monday.com — a live kudos mural, templates, and recognition straight from a board item.</p>
+          </div>
+          <div class="plat-card bg-surface border border-border rounded-2xl p-6">
+            <img src="assets/chrome-logo.png" alt="Chrome Web Store" class="w-8 h-8 mb-4 object-contain">
+            <h3 class="font-semibold mb-2">Chrome Web Store</h3>
+            <p class="text-sm text-muted">Lens installs from the Chrome Web Store and runs in Chrome and Edge — capture, annotate, and file screenshots and recordings, fully offline.</p>
+          </div>
+          <div class="plat-card plat-dup bg-surface border border-border rounded-2xl p-6" aria-hidden="true">
+            <svg class="w-8 h-8 mb-4" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.1186 14.0842C10.9735 13.8943 10.7399 13.7941 10.5025 13.8199C10.265 13.8457 10.0584 13.9938 9.95749 14.2105L4.07422 25.9816C3.96525 26.1998 3.9769 26.4588 4.10501 26.6662C4.23312 26.8737 4.45943 27 4.70312 27H12.8953C13.1633 27.0062 13.4099 26.8537 13.5242 26.611C15.2913 22.9568 14.2203 17.4006 11.1186 14.0842Z" fill="url(#atl-g)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.4339 3.37762C12.4515 7.96969 12.1073 13.7944 14.528 18.7062L18.4776 26.6108C18.5966 26.8492 18.8401 26.9998 19.1064 26.9998H27.2971C27.5408 26.9998 27.7671 26.8735 27.8952 26.6661C28.0233 26.4586 28.035 26.1996 27.926 25.9815C27.926 25.9815 16.9068 3.92489 16.6299 3.3732C16.5181 3.14406 16.2853 2.99906 16.0305 3C15.7757 3.00095 15.5439 3.14765 15.4339 3.37762Z" fill="#2684FF"/><defs><linearGradient id="atl-g" x1="14.3428" y1="15.9009" x2="6.09079" y2="24.759" gradientUnits="userSpaceOnUse"><stop stop-color="#0052CC"/><stop offset="0.923" stop-color="#2684FF"/></linearGradient></defs></svg>
+            <h3 class="font-semibold mb-2">Atlassian Confluence</h3>
+            <p class="text-sm text-muted">Macro Toolkit and Forms extend the pages your teams write every day — diagrams, data collection, and automation without leaving Confluence.</p>
+          </div>
+          <div class="plat-card plat-dup bg-surface border border-border rounded-2xl p-6" aria-hidden="true">
+            <svg class="w-8 h-8 mb-4" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.6647 15.2165L17.2075 3.1679L16 2L6.62269 11.0697L2.33526 15.2165C1.88825 15.6494 1.88825 16.3506 2.33526 16.7835L10.9025 25.0697L16 30L25.3773 20.9303L25.5225 20.7899L29.6647 16.7835C30.1118 16.3506 30.1118 15.6494 29.6647 15.2165ZM16 20.1394L11.7202 16L16 11.8606L20.2798 16L16 20.1394Z" fill="#2684FF"/></svg>
+            <h3 class="font-semibold mb-2">Atlassian Jira</h3>
+            <p class="text-sm text-muted">Forms automation creates and updates Jira issues from submissions today; dedicated Jira apps like Time Log are on the roadmap.</p>
+          </div>
+          <div class="plat-card plat-dup bg-surface border border-border rounded-2xl p-6" aria-hidden="true">
+            <svg class="w-8 h-8 mb-4 text-[#007ACC]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+            <h3 class="font-semibold mb-2">VS Code &amp; CLI</h3>
+            <p class="text-sm text-muted">API Studio brings request building, testing, and doc generation into the editor, with a CLI that slots into any CI pipeline.</p>
+          </div>
+          <div class="plat-card plat-dup bg-surface border border-border rounded-2xl p-6" aria-hidden="true">
+            <img src="assets/monday-logo.png" alt="monday.com" class="w-8 h-8 mb-4 object-contain">
+            <h3 class="font-semibold mb-2">monday.com</h3>
+            <p class="text-sm text-muted">Recognition Hub brings peer recognition into monday.com — a live kudos mural, templates, and recognition straight from a board item.</p>
+          </div>
+          <div class="plat-card plat-dup bg-surface border border-border rounded-2xl p-6" aria-hidden="true">
+            <img src="assets/chrome-logo.png" alt="Chrome Web Store" class="w-8 h-8 mb-4 object-contain">
+            <h3 class="font-semibold mb-2">Chrome Web Store</h3>
+            <p class="text-sm text-muted">Lens installs from the Chrome Web Store and runs in Chrome and Edge — capture, annotate, and file screenshots and recordings, fully offline.</p>
           </div>
         </div>
       </div>
@@ -310,6 +431,45 @@
       </div>
     </section>
   </main>
+
+<script>
+/* Product group sliders. A group whose apps outnumber the cards that fit
+   shows a More button; each press slides one card, and the last press turns it
+   into Back. Cards outside the window are dimmed rather than hidden, so the
+   next one is visible as a hint. */
+(function () {
+  document.querySelectorAll('.pgrp').forEach(function (g) {
+    var track = g.querySelector('.pgrp-track');
+    var btn = g.querySelector('.pgrp-more');
+    var cards = [].slice.call(track.children);
+    var off = 0;
+    function visible() { return parseInt(getComputedStyle(track).getPropertyValue('--v'), 10) || 1; }
+    function render() {
+      var v = visible(), max = Math.max(0, cards.length - v);
+      off = Math.min(off, max);
+      track.style.transform = off ? 'translateX(calc(' + -off + ' * ((100% - ' + (v - 1) * 20 + 'px) / ' + v + ' + 20px)))' : '';
+      cards.forEach(function (c, i) {
+        var on = i >= off && i < off + v;
+        c.classList.toggle('off', !on);
+        c.inert = !on;
+      });
+      if (!btn) return;
+      btn.hidden = max === 0;
+      var atEnd = off >= max, next = cards[v + off];
+      btn.classList.toggle('back', atEnd);
+      btn.firstChild.textContent = atEnd ? 'Back' : (next && next.dataset.status !== 'LIVE' ? 'Coming soon' : 'More');
+      btn.setAttribute('aria-label', btn.firstChild.textContent);
+    }
+    if (btn) btn.addEventListener('click', function () {
+      var max = Math.max(0, cards.length - visible());
+      off = off >= max ? 0 : off + 1;
+      render();
+    });
+    window.addEventListener('resize', render);
+    render();
+  });
+})();
+</script>
 
   <!-- Footer -->
   <div id="vc-footer"></div>

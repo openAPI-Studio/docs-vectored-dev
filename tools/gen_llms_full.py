@@ -24,6 +24,8 @@ BASE = 'https://docs.vectored.dev/'
 SKIP_TREE = {'script', 'style', 'svg', 'nav', 'noscript', 'button', 'select'}
 BLOCK = {'p', 'div', 'section', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
          'ul', 'ol', 'li', 'table', 'tr', 'pre', 'figure', 'figcaption', 'header'}
+# Elements that never have a closing tag, so they cannot open a hidden subtree.
+VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
 HEADING = {'h1': '#', 'h2': '##', 'h3': '###', 'h4': '####', 'h5': '#####', 'h6': '######'}
 
 
@@ -36,6 +38,9 @@ class ToMarkdown(HTMLParser):
         self.heading_offset = heading_offset
         self.out = []
         self.skip_depth = 0
+        # Open elements inside an aria-hidden subtree (e.g. the duplicate set a
+        # marquee renders to loop seamlessly). Screen readers skip it; so do we.
+        self.hidden_depth = 0
         self.pre_depth = 0
         self.list_stack = []      # 'ul' or ['ol', counter]
         self.row = None           # cells of the table row being built
@@ -73,6 +78,10 @@ class ToMarkdown(HTMLParser):
     # --- parser hooks ------------------------------------------------------
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
+        if self.hidden_depth or (a.get('aria-hidden') == 'true' and tag not in VOID and tag not in SKIP_TREE):
+            if tag not in VOID:
+                self.hidden_depth += 1
+            return
         if self.skip_depth or tag in SKIP_TREE:
             if tag in SKIP_TREE:
                 self.skip_depth += 1
@@ -140,6 +149,10 @@ class ToMarkdown(HTMLParser):
             self.nl(2)
 
     def handle_endtag(self, tag):
+        if self.hidden_depth:
+            if tag not in VOID:
+                self.hidden_depth -= 1
+            return
         if tag in SKIP_TREE:
             if self.skip_depth:
                 self.skip_depth -= 1
@@ -184,7 +197,7 @@ class ToMarkdown(HTMLParser):
             self.nl(2)
 
     def handle_data(self, data):
-        if self.skip_depth:
+        if self.skip_depth or self.hidden_depth:
             return
         if self.pre_depth:
             self.out.append(data)
