@@ -6583,7 +6583,7 @@ Load-test only local, staging or explicitly approved targets. Never point a load
 
 [Reports & Metrics →](https://docs.vectored.dev/apistudio/docs/cli-reports.html) [CI/CD Integration →](https://docs.vectored.dev/apistudio/docs/cicd.html)
 
-## Reports &amp; Metrics
+## Reports & Metrics
 
 Source: https://docs.vectored.dev/apistudio/docs/cli-reports.html
 
@@ -7122,14 +7122,14 @@ Commit the generated files so everyone on the team, and every agent, gets the sa
 
 Shared files such as AGENTS.md get a marked block that install replaces and uninstall removes, leaving your own content untouched.
 
-### Claude Code Plugin
+### Claude Code Plugin & Kiro Power
 
 ```
-/plugin marketplace add openAPI-Studio/api-studio
-/plugin install openpost@api-studio
+/plugin marketplace add openAPI-Studio/openpost-skills
+/plugin install openpost@openpost-skills
 ```
 
-Installs the skill as a Claude Code plugin instead of copying files into the project
+Installs the skill as a Claude Code plugin instead of copying files into the project. Kiro users can import `https://github.com/openAPI-Studio/openpost-skills` as a power (Powers → Add Custom Power → Import power from GitHub).
 
 ### Try It
 
