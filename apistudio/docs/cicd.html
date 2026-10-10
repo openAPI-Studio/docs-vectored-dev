@@ -63,6 +63,16 @@ npx openpost run "My API" --env production</code></pre>
 <p class="text-xs text-gray-500 dark:text-muted">Pin the version in CI (<code class="font-mono">npm install -g openpost@1.2.3</code>) so a new release cannot change pipeline behaviour without a commit.</p>
 </section>
 
+<!-- Test files -->
+<section class="mb-12 scroll-mt-28" id="test-files">
+<h2 class="text-xl font-semibold mb-4">Running API test files</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Besides collections, the CLI runs <a class="text-cta hover:underline" href="cli-api-tests.html">API test files</a> checked into the repository, and writes JUnit, HTML and JSON <a class="text-cta hover:underline" href="cli-reports.html">reports</a>. <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">openpost init</code> generates a GitHub Actions workflow (or <code class="font-mono bg-gray-100 dark:bg-surface rounded px-1">--ci gitlab</code>) built around this step:</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-4">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>npx --yes openpost test api-tests --env local -r junit,html,json --report-dir reports</code></pre>
+</div>
+<p class="text-xs text-gray-500 dark:text-muted">Add <code class="font-mono">openpost perf api-tests -c 20 -n 500 -t "p95&lt;300"</code> to fail the build on a <a class="text-cta hover:underline" href="cli-perf.html">latency regression</a>.</p>
+</section>
+
 <!-- Exit codes -->
 <section class="mb-12 scroll-mt-28" id="exit-codes">
 <h2 class="text-xl font-semibold mb-4">Exit codes</h2>

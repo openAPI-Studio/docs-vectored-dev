@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Test Files — API Studio Docs</title>
+  <meta name="description" content="Git-friendly *.api.yaml test files for the openpost CLI — requests, assertions, captures, environments, data-driven rows, secrets and docs generation.">
+  <meta name="vc-updated" content="10 Oct 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">API Test Files</h1>
+      <p class="vc-lede">Write API tests as YAML files in your repository, run them with <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost test</code>, and reuse the same files for load tests, documentation and CI.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">CLI</p>
+
+<!-- Why test files -->
+<section class="mb-12 scroll-mt-28" id="why">
+<h2 class="text-xl font-semibold mb-4">Why test files</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">An API test file (<code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">*.api.yaml</code>) is a plain YAML file that lives in your repository next to the code it tests. It replaces the one-off Python, JavaScript or curl scripts people write to poke at a local API: the same file is the test, the load test, the documentation source and the CI check.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Reviewable</strong> — diffs read like the API change they cover</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">No secrets in git</strong> — tokens come from <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{$env.NAME}}</code> or a gitignored <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">.env</code></span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Editor autocomplete</strong> — a JSON Schema ships with the CLI (<code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost schema</code>)</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Works for AI agents</strong> — see <a class="text-cta hover:underline" href="ai-agent-skills.html">AI Agent Skills</a></span></div>
+</div>
+</section>
+<!-- Quick Start -->
+<section class="mb-12 scroll-mt-28" id="quick-start">
+<h2 class="text-xl font-semibold mb-4">Quick Start</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>npx openpost init</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">Creates api-tests/example.api.yaml, .env.example, a CI workflow and .gitignore entries</p>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>npx openpost send GET http://localhost:3000/health -e status=200</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">One request with an assertion — a scriptable curl with checks</p>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>npx openpost send GET localhost:3000/tasks -e status=200 -e &quot;$.length&gt;0&quot; \
+  --save api-tests/tasks.api.yaml --name &quot;List tasks&quot;</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">Saves the request into a test file; literal tokens are moved to {{$env.NAME}}</p>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>npx openpost test</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">Runs every file under ./api-tests</p>
+</div>
+</section>
+<!-- File Format -->
+<section class="mb-12 scroll-mt-28" id="file-format">
+<h2 class="text-xl font-semibold mb-4">File Format</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">A file describes one API or resource. Requests run in order, so later requests can use values captured by earlier ones.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code># api-tests/tasks.api.yaml
+name: Tasks API
+description: CRUD over tasks, protected by a bearer token.
+baseUrl: &quot;{{baseUrl}}&quot;
+vars:
+  baseUrl: http://localhost:3000
+environments:
+  local:   { baseUrl: http://localhost:3000 }
+  staging: { baseUrl: https://staging.example.com }
+defaults:
+  auth: { bearer: &quot;{{token}}&quot; }
+requests:
+  - name: Login
+    method: POST
+    url: /auth/login
+    auth: null
+    once: true                      # load tests: run once, share the token
+    json: { username: admin, password: &quot;{{$env.API_PASSWORD}}&quot; }
+    expect: { status: 200, body: { $.token: { type: string } } }
+    capture: { token: $.token }
+
+  - name: Create task
+    method: POST
+    url: /tasks
+    json: { title: &quot;Write docs {{$randomInt(1,999)}}&quot; }
+    expect:
+      status: 201
+      time: &quot;&lt; 500&quot;
+      body:
+        $.id: { type: integer }
+        $.done: false
+    capture: { taskId: $.id }
+
+  - name: Get task
+    url: /tasks/{{taskId}}
+    expect:
+      status: 200
+      schema:
+        type: object
+        required: [id, title, done]
+
+  - name: Unauthorized without token
+    url: /tasks
+    auth: null
+    expect: { status: 401 }</code></pre>
+</div>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Request key</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Meaning</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">name</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Unique within the file; used by --grep, reports and docs</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">method / url</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">GET by default; url is absolute or relative to baseUrl</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">query / headers</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Maps; headers merge over defaults.headers</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">json / body / form / graphql</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">One request body type</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">auth</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">bearer, basic or apiKey; null turns off defaults.auth</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">expect</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Assertions (see below). Without expect.status any status ≥ 400 fails</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">capture</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">name: selector — saved for later requests</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">data</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Inline rows or a .csv/.json file: run the request once per row</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">retries / delay / timeout</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Per-request overrides, e.g. polling for eventual consistency</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">once</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Load tests only: run once before the load (login, setup)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">tags / skip / only</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Filtering</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">doc</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Markdown shown in generated docs</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Variables &amp; Secrets -->
+<section class="mb-12 scroll-mt-28" id="variables">
+<h2 class="text-xl font-semibold mb-4">Variables &amp; Secrets</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4"><code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{name}}</code> resolves from <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">vars</code>, then the selected environment, then <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--env-file</code>, then <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--var name=value</code>, then the data row, then captures. <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{$env.NAME}}</code> reads a process environment variable; values in <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--env-file</code> fill both forms.</p>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Built-in</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Value</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">{{$uuid}}</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Random UUID</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">{{$timestamp}} / {{$isoTimestamp}}</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Current time</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">{{$randomInt(1,100)}}</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Random integer in range</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">{{$randomEmail}} / {{$randomString(12)}}</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Random test data</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">{{$iteration}}</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Data row or load-test iteration index</td></tr>
+</tbody>
+</table>
+</div>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>A request with an unresolved variable is not sent; the error names the variable and where to define it</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>If a captured value is missing because an earlier request failed, the error names that request</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Reports mask secret values; <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--show-secrets</code> turns masking off for local debugging</span></div>
+</div>
+</section>
+<!-- Assertions -->
+<section class="mb-12 scroll-mt-28" id="assertions">
+<h2 class="text-xl font-semibold mb-4">Assertions</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Every failed assertion prints the selector, the rule and the actual value. Selectors are JSONPath-style: <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">$.user.name</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">$.items[0]</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">$.items[*].id</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">$..id</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">$.items.length</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">header.location</code>.</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>expect:
+  status: 201                  # or [200, 201], &quot;2xx&quot;, &quot;&lt; 400&quot;
+  time: &quot;&lt; 500&quot;                # total ms
+  headers:
+    content-type: { contains: json }
+  body:
+    $.id: { type: integer, gt: 0 }
+    $.status: active           # literal = equality
+    $.email: &quot;/^[^@]+@example\\.com$/&quot;
+    $.items: { type: array, length: { between: [1, 50] } }
+    $.items[*].price: { every: { gt: 0 } }
+    $.deletedAt: { exists: false }
+  schema:                      # JSON Schema for the whole body
+    type: object
+    required: [id, items]</code></pre>
+</div>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Matcher</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Passes when</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">eq, ne</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Equal / not equal</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">gt, gte, lt, lte, between</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Numeric comparison</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">contains, notContains</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Substring, array element or partial object</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">startsWith, endsWith, matches</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">String prefix, suffix or regex</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">in, notIn</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Value is (not) in a list</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">exists, empty, type, length</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Presence, emptiness, JSON type, size</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">schema</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">JSON Schema for this value</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">every, some</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Matcher for every / at least one array item</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Running Tests -->
+<section class="mb-12 scroll-mt-28" id="running">
+<h2 class="text-xl font-semibold mb-4">Running Tests</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost validate api-tests/                      # schema + typo check, no requests sent
+openpost test api-tests/ --env staging           # run everything against staging
+openpost test --grep &quot;Get task&quot;                   # one request plus the ones it depends on
+openpost test --env-file api-tests/.env -r html,junit --report-dir reports
+openpost test --json &gt; result.json                # machine-readable result</code></pre>
+</div>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Exit code</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Meaning</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">0</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">All assertions passed</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">1</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Assertions or thresholds failed</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">2</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Invalid file, bad flags, or nothing matched</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4"><code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--grep</code> matches names by substring, glob (<code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">Get*</code>) or <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">/regex/</code>, and automatically includes earlier requests whose captures the selected ones need. <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">validate</code> treats unknown keys and typos as errors and suggests the key you probably meant.</p>
+</section>
+<!-- Documentation from Tests -->
+<section class="mb-12 scroll-mt-28" id="docs">
+<h2 class="text-xl font-semibold mb-4">Documentation from Tests</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost docs api-tests/ --format md      --out docs/API.md
+openpost docs api-tests/ --format html    --out docs/api.html --run   # embeds real example responses
+openpost docs api-tests/ --format openapi --out openapi.json</code></pre>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Add a <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">description</code> to each file and a Markdown <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">doc</code> field to requests. One file per resource gives one docs section each, and request names like "Create task" read as operations. OpenAPI output merges requests with the same path shape (for example <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">/tasks/1</code> and <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">/tasks/{{id}}</code>) and lists negative cases as extra responses.</p>
+</section>
+<!-- Working with Collections -->
+<section class="mb-12 scroll-mt-28" id="collections">
+<h2 class="text-xl font-semibold mb-4">Working with Collections</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost export tests &quot;My Collection&quot; -o api-tests/my-collection.api.yaml
+openpost import tests api-tests/tasks.api.yaml</code></pre>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Export turns a collection built in the app into a test file, moving secrets to <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{$env.*}}</code>; import brings a test file back into the app. GUI test rules and set-variable rules map to <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">expect</code> and <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">capture</code>.</p>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="cli-reports.html">Reports &amp; Metrics →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="cli-perf.html">Load Testing →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="ai-agent-skills.html">AI Agent Skills →</a>
+</div>
+</section>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Load Testing — API Studio Docs</title>
+  <meta name="description" content="Load and batch testing with openpost perf — virtual users, ramp-up, rate pacing, data rows, thresholds on latency percentiles and error rate, and HTML reports.">
+  <meta name="vc-updated" content="10 Oct 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Load Testing</h1>
+      <p class="vc-lede">Run the same API test files under load with <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost perf</code>, with thresholds that fail the build when latency or error rate regresses.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">CLI</p>
+
+<!-- Basic Usage -->
+<section class="mb-12 scroll-mt-28" id="usage">
+<h2 class="text-xl font-semibold mb-4">Basic Usage</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost perf api-tests/tasks.api.yaml -c 20 -n 1000 -t &quot;p95&lt;250&quot;</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">20 virtual users run the file's flow 1,000 times; fails if p95 latency is 250 ms or more</p>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost perf api-tests/ --grep &quot;List tasks&quot; -c 50 -d 30s --ramp-up 5s --rps 200 -r html</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">One endpoint for 30 seconds, ramping up over 5 seconds, paced at 200 iterations per second</p>
+</div>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Each iteration runs the selected requests in order, so a load test exercises a real user flow</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Requests marked <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">once: true</code> (login, setup) run once before the load and share their captures</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Data rows rotate across iterations, so each virtual user sends different inputs</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Captures still work inside an iteration: create → get → delete</span></div>
+</div>
+</section>
+<!-- Options -->
+<section class="mb-12 scroll-mt-28" id="options">
+<h2 class="text-xl font-semibold mb-4">Options</h2>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Flag</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">-c, --concurrency</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Virtual users running in parallel</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">-n, --iterations</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Total iterations across all users</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">-d, --duration</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run for a time instead, e.g. 30s or 2m</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--ramp-up</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Start users gradually over this time</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--rps</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Pace iterations to this rate</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">--warmup</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Iterations to run before measuring</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">-t, --threshold</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Pass/fail rule (repeatable)</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">All <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">test</code> flags also apply: <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--env</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--env-file</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--grep</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--tag</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">-r</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--report-dir</code> and <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--json</code>. Defaults can live in the file under <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">perf:</code>.</p>
+</section>
+<!-- Thresholds -->
+<section class="mb-12 scroll-mt-28" id="thresholds">
+<h2 class="text-xl font-semibold mb-4">Thresholds</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>perf:
+  concurrency: 10
+  iterations: 200
+  thresholds: { p95: &quot;&lt; 300&quot;, errorRate: &quot;&lt; 1%&quot; }
+requests:
+  - name: List tasks
+    url: /tasks
+    perf:
+      thresholds: { p95: &quot;&lt; 200&quot; }     # per endpoint</code></pre>
+</div>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Metric</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Example</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">p50 p90 p95 p99 max avg</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">p95<300</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">ttfb_p95</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">ttfb_p95<100</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">errorRate</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">errorRate<1%</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">errors / count</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">errors==0</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">rps</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">rps>=500</td></tr>
+</tbody>
+</table>
+</div>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Any failed threshold makes the run exit with code 1</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>An <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">errorRate &lt; 1%</code> threshold applies by default unless you set your own error threshold</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>A <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">-t</code> rule on the command line replaces a file threshold on the same metric</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Failed runs print one sample failure per endpoint with the reason</span></div>
+</div>
+</section>
+<!-- Load Test Report -->
+<section class="mb-12 scroll-mt-28" id="report">
+<h2 class="text-xl font-semibold mb-4">Load Test Report</h2>
+<img alt="openpost load test HTML report" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm" src="../assets/openpost perf report html.png"/>
+<p class="text-xs text-gray-400 dark:text-muted mt-2 mb-5">The HTML report from <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost perf -r html</code>: thresholds, latency distribution, status codes, then throughput and p95 over time and per-endpoint metrics</p>
+</section>
+<!-- Safety -->
+<section class="mb-12 scroll-mt-28" id="safety">
+<h2 class="text-xl font-semibold mb-4">Safety</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Load-test only local, staging or explicitly approved targets. Never point a load test at production or a third-party API without permission from its owner.</p>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="cli-reports.html">Reports &amp; Metrics →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="cicd.html">CI/CD Integration →</a>
+</div>
+</section>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
+</body>
+</html>

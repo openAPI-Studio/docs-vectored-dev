@@ -21,7 +21,7 @@ GROUPS = {
    ('Mock servers', ['creating-mock-servers','mock-routes','mock-request-log','mock-swagger']),
    ('MCP servers', ['collection-mcp','mock-mcp','management-mcp','connecting-ai-clients']),
    ('Secret vault', ['creating-vault','managing-secrets','secret-sets','certificates']),
-   ('CLI', ['cli-overview','cli-run','cli-import-export','cli-vault','cli-serve']),
+   ('CLI', ['cli-overview','cli-api-tests','cli-perf','cli-reports','cli-run','cli-import-export','cli-vault','cli-serve','ai-agent-skills']),
    ('Team & CI/CD', ['version-control','cicd']),
    ('Code export', ['code-export-languages','ai-prompts']),
    ('Settings & data', ['settings','proxy','data-storage','keyboard-shortcuts','license','support-us']),
