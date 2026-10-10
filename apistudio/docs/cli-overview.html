@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLI Overview — API Studio Docs</title>
   <meta name="description" content="Install and use the openpost CLI to run collections, manage environments, import/export, and integrate with CI/CD pipelines.">
-  <meta name="vc-updated" content="5 Jul 2026">
+  <meta name="vc-updated" content="10 Oct 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -93,6 +93,12 @@
 <table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
 <thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Command</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Description</th></tr></thead>
 <tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost test [paths]</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run <code>*.api.yaml</code> test files with assertions and reports — <a class="text-cta hover:underline" href="cli-api-tests.html">guide</a></td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost send &lt;method&gt; &lt;url&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">One request with assertions; <code>--save</code> keeps it as a test — <a class="text-cta hover:underline" href="cli-api-tests.html">guide</a></td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost validate|docs|init|schema</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Check test files, generate Markdown/HTML/OpenAPI docs, scaffold a project — <a class="text-cta hover:underline" href="cli-api-tests.html">guide</a></td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost perf [paths]</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Load test with virtual users and latency/error thresholds — <a class="text-cta hover:underline" href="cli-perf.html">guide</a></td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost report &lt;json…&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Re-render or merge saved reports — <a class="text-cta hover:underline" href="cli-reports.html">guide</a></td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost agent install</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Install the API-testing skill for AI coding agents — <a class="text-cta hover:underline" href="ai-agent-skills.html">guide</a></td></tr>
 <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost run &lt;collection&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Run all requests in a collection</td></tr>
 <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost list collections|requests|environments</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">List resources</td></tr>
 <tr><td class="px-4 py-2.5 font-mono text-cta text-xs">openpost import curl|openapi &lt;input&gt;</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Import from cURL or OpenAPI spec</td></tr>
@@ -147,6 +153,7 @@ await op.dispose();</code></pre>
 <section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
 <h3 class="font-semibold mb-2">Next</h3>
 <div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="cli-api-tests.html">API Test Files →</a>
 <a class="text-sm text-cta font-medium hover:underline" href="cli-run.html">Running Collections →</a>
 <a class="text-sm text-cta font-medium hover:underline" href="cli-import-export.html">CLI Import &amp; Export →</a>
 </div>

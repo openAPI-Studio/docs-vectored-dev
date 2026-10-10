@@ -6237,6 +6237,12 @@ All available CLI commands:
 
 | Command | Description |
 | --- | --- |
+| openpost test [paths] | Run `*.api.yaml` test files with assertions and reports — [guide](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html) |
+| openpost send <method> <url> | One request with assertions; `--save` keeps it as a test — [guide](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html) |
+| openpost validate\|docs\|init\|schema | Check test files, generate Markdown/HTML/OpenAPI docs, scaffold a project — [guide](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html) |
+| openpost perf [paths] | Load test with virtual users and latency/error thresholds — [guide](https://docs.vectored.dev/apistudio/docs/cli-perf.html) |
+| openpost report <json…> | Re-render or merge saved reports — [guide](https://docs.vectored.dev/apistudio/docs/cli-reports.html) |
+| openpost agent install | Install the API-testing skill for AI coding agents — [guide](https://docs.vectored.dev/apistudio/docs/ai-agent-skills.html) |
 | openpost run <collection> | Run all requests in a collection |
 | openpost list collections\|requests\|environments | List resources |
 | openpost import curl\|openapi <input> | Import from cURL or OpenAPI spec |
@@ -6281,7 +6287,381 @@ Use in test frameworks (Jest, Mocha) or custom scripts. The programmatic API use
 
 #### Next
 
-[Running Collections →](https://docs.vectored.dev/apistudio/docs/cli-run.html) [CLI Import & Export →](https://docs.vectored.dev/apistudio/docs/cli-import-export.html)
+[API Test Files →](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html) [Running Collections →](https://docs.vectored.dev/apistudio/docs/cli-run.html) [CLI Import & Export →](https://docs.vectored.dev/apistudio/docs/cli-import-export.html)
+
+## API Test Files
+
+Source: https://docs.vectored.dev/apistudio/docs/cli-api-tests.html
+
+Write API tests as YAML files in your repository, run them with `openpost test`, and reuse the same files for load tests, documentation and CI.
+
+CLI
+
+### Why test files
+
+An API test file (`*.api.yaml`) is a plain YAML file that lives in your repository next to the code it tests. It replaces the one-off Python, JavaScript or curl scripts people write to poke at a local API: the same file is the test, the load test, the documentation source and the CI check.
+
+- **Reviewable** — diffs read like the API change they cover
+
+- **No secrets in git** — tokens come from `{{$env.NAME}}` or a gitignored `.env`
+
+- **Editor autocomplete** — a JSON Schema ships with the CLI (`openpost schema`)
+
+- **Works for AI agents** — see [AI Agent Skills](https://docs.vectored.dev/apistudio/docs/ai-agent-skills.html)
+
+### Quick Start
+
+```
+npx openpost init
+```
+
+Creates api-tests/example.api.yaml, .env.example, a CI workflow and .gitignore entries
+
+```
+npx openpost send GET http://localhost:3000/health -e status=200
+```
+
+One request with an assertion — a scriptable curl with checks
+
+```
+npx openpost send GET localhost:3000/tasks -e status=200 -e "$.length>0" \
+  --save api-tests/tasks.api.yaml --name "List tasks"
+```
+
+Saves the request into a test file; literal tokens are moved to {{$env.NAME}}
+
+```
+npx openpost test
+```
+
+Runs every file under ./api-tests
+
+### File Format
+
+A file describes one API or resource. Requests run in order, so later requests can use values captured by earlier ones.
+
+```
+# api-tests/tasks.api.yaml
+name: Tasks API
+description: CRUD over tasks, protected by a bearer token.
+baseUrl: "{{baseUrl}}"
+vars:
+  baseUrl: http://localhost:3000
+environments:
+  local:   { baseUrl: http://localhost:3000 }
+  staging: { baseUrl: https://staging.example.com }
+defaults:
+  auth: { bearer: "{{token}}" }
+requests:
+- name: Login
+    method: POST
+    url: /auth/login
+    auth: null
+    once: true                      # load tests: run once, share the token
+    json: { username: admin, password: "{{$env.API_PASSWORD}}" }
+    expect: { status: 200, body: { $.token: { type: string } } }
+    capture: { token: $.token }
+
+- name: Create task
+    method: POST
+    url: /tasks
+    json: { title: "Write docs {{$randomInt(1,999)}}" }
+    expect:
+      status: 201
+      time: "< 500"
+      body:
+        $.id: { type: integer }
+        $.done: false
+    capture: { taskId: $.id }
+
+- name: Get task
+    url: /tasks/{{taskId}}
+    expect:
+      status: 200
+      schema:
+        type: object
+        required: [id, title, done]
+
+- name: Unauthorized without token
+    url: /tasks
+    auth: null
+    expect: { status: 401 }
+```
+
+| Request key | Meaning |
+| --- | --- |
+| name | Unique within the file; used by --grep, reports and docs |
+| method / url | GET by default; url is absolute or relative to baseUrl |
+| query / headers | Maps; headers merge over defaults.headers |
+| json / body / form / graphql | One request body type |
+| auth | bearer, basic or apiKey; null turns off defaults.auth |
+| expect | Assertions (see below). Without expect.status any status ≥ 400 fails |
+| capture | name: selector — saved for later requests |
+| data | Inline rows or a .csv/.json file: run the request once per row |
+| retries / delay / timeout | Per-request overrides, e.g. polling for eventual consistency |
+| once | Load tests only: run once before the load (login, setup) |
+| tags / skip / only | Filtering |
+| doc | Markdown shown in generated docs |
+
+### Variables & Secrets
+
+`{{name}}` resolves from `vars`, then the selected environment, then `--env-file`, then `--var name=value`, then the data row, then captures. `{{$env.NAME}}` reads a process environment variable; values in `--env-file` fill both forms.
+
+| Built-in | Value |
+| --- | --- |
+| {{$uuid}} | Random UUID |
+| {{$timestamp}} / {{$isoTimestamp}} | Current time |
+| {{$randomInt(1,100)}} | Random integer in range |
+| {{$randomEmail}} / {{$randomString(12)}} | Random test data |
+| {{$iteration}} | Data row or load-test iteration index |
+
+- A request with an unresolved variable is not sent; the error names the variable and where to define it
+
+- If a captured value is missing because an earlier request failed, the error names that request
+
+- Reports mask secret values; `--show-secrets` turns masking off for local debugging
+
+### Assertions
+
+Every failed assertion prints the selector, the rule and the actual value. Selectors are JSONPath-style: `$.user.name`, `$.items[0]`, `$.items[*].id`, `$..id`, `$.items.length`, `header.location`.
+
+```
+expect:
+  status: 201                  # or [200, 201], "2xx", "< 400"
+  time: "< 500"                # total ms
+  headers:
+    content-type: { contains: json }
+  body:
+    $.id: { type: integer, gt: 0 }
+    $.status: active           # literal = equality
+    $.email: "/^[^@]+@example\\.com$/"
+    $.items: { type: array, length: { between: [1, 50] } }
+    $.items[*].price: { every: { gt: 0 } }
+    $.deletedAt: { exists: false }
+  schema:                      # JSON Schema for the whole body
+    type: object
+    required: [id, items]
+```
+
+| Matcher | Passes when |
+| --- | --- |
+| eq, ne | Equal / not equal |
+| gt, gte, lt, lte, between | Numeric comparison |
+| contains, notContains | Substring, array element or partial object |
+| startsWith, endsWith, matches | String prefix, suffix or regex |
+| in, notIn | Value is (not) in a list |
+| exists, empty, type, length | Presence, emptiness, JSON type, size |
+| schema | JSON Schema for this value |
+| every, some | Matcher for every / at least one array item |
+
+### Running Tests
+
+```
+openpost validate api-tests/                      # schema + typo check, no requests sent
+openpost test api-tests/ --env staging           # run everything against staging
+openpost test --grep "Get task"                   # one request plus the ones it depends on
+openpost test --env-file api-tests/.env -r html,junit --report-dir reports
+openpost test --json > result.json                # machine-readable result
+```
+
+| Exit code | Meaning |
+| --- | --- |
+| 0 | All assertions passed |
+| 1 | Assertions or thresholds failed |
+| 2 | Invalid file, bad flags, or nothing matched |
+
+`--grep` matches names by substring, glob (`Get*`) or `/regex/`, and automatically includes earlier requests whose captures the selected ones need. `validate` treats unknown keys and typos as errors and suggests the key you probably meant.
+
+### Documentation from Tests
+
+```
+openpost docs api-tests/ --format md      --out docs/API.md
+openpost docs api-tests/ --format html    --out docs/api.html --run   # embeds real example responses
+openpost docs api-tests/ --format openapi --out openapi.json
+```
+
+Add a `description` to each file and a Markdown `doc` field to requests. One file per resource gives one docs section each, and request names like "Create task" read as operations. OpenAPI output merges requests with the same path shape (for example `/tasks/1` and `/tasks/{{id}}`) and lists negative cases as extra responses.
+
+### Working with Collections
+
+```
+openpost export tests "My Collection" -o api-tests/my-collection.api.yaml
+openpost import tests api-tests/tasks.api.yaml
+```
+
+Export turns a collection built in the app into a test file, moving secrets to `{{$env.*}}`; import brings a test file back into the app. GUI test rules and set-variable rules map to `expect` and `capture`.
+
+#### Next
+
+[Reports & Metrics →](https://docs.vectored.dev/apistudio/docs/cli-reports.html) [Load Testing →](https://docs.vectored.dev/apistudio/docs/cli-perf.html) [AI Agent Skills →](https://docs.vectored.dev/apistudio/docs/ai-agent-skills.html)
+
+## Load Testing
+
+Source: https://docs.vectored.dev/apistudio/docs/cli-perf.html
+
+Run the same API test files under load with `openpost perf`, with thresholds that fail the build when latency or error rate regresses.
+
+CLI
+
+### Basic Usage
+
+```
+openpost perf api-tests/tasks.api.yaml -c 20 -n 1000 -t "p95<250"
+```
+
+20 virtual users run the file's flow 1,000 times; fails if p95 latency is 250 ms or more
+
+```
+openpost perf api-tests/ --grep "List tasks" -c 50 -d 30s --ramp-up 5s --rps 200 -r html
+```
+
+One endpoint for 30 seconds, ramping up over 5 seconds, paced at 200 iterations per second
+
+- Each iteration runs the selected requests in order, so a load test exercises a real user flow
+
+- Requests marked `once: true` (login, setup) run once before the load and share their captures
+
+- Data rows rotate across iterations, so each virtual user sends different inputs
+
+- Captures still work inside an iteration: create → get → delete
+
+### Options
+
+| Flag | Description |
+| --- | --- |
+| -c, --concurrency | Virtual users running in parallel |
+| -n, --iterations | Total iterations across all users |
+| -d, --duration | Run for a time instead, e.g. 30s or 2m |
+| --ramp-up | Start users gradually over this time |
+| --rps | Pace iterations to this rate |
+| --warmup | Iterations to run before measuring |
+| -t, --threshold | Pass/fail rule (repeatable) |
+
+All `test` flags also apply: `--env`, `--env-file`, `--grep`, `--tag`, `-r`, `--report-dir` and `--json`. Defaults can live in the file under `perf:`.
+
+### Thresholds
+
+```
+perf:
+  concurrency: 10
+  iterations: 200
+  thresholds: { p95: "< 300", errorRate: "< 1%" }
+requests:
+- name: List tasks
+    url: /tasks
+    perf:
+      thresholds: { p95: "< 200" }     # per endpoint
+```
+
+| Metric | Example |
+| --- | --- |
+| p50 p90 p95 p99 max avg | p95<300 |
+| ttfb_p95 | ttfb_p95<100 |
+| errorRate | errorRate<1% |
+| errors / count | errors==0 |
+| rps | rps>=500 |
+
+- Any failed threshold makes the run exit with code 1
+
+- An `errorRate < 1%` threshold applies by default unless you set your own error threshold
+
+- A `-t` rule on the command line replaces a file threshold on the same metric
+
+- Failed runs print one sample failure per endpoint with the reason
+
+### Load Test Report
+
+![openpost load test HTML report](https://docs.vectored.dev/apistudio/assets/openpost perf report html.png)
+
+The HTML report from `openpost perf -r html`: thresholds, latency distribution, status codes, then throughput and p95 over time and per-endpoint metrics
+
+### Safety
+
+Load-test only local, staging or explicitly approved targets. Never point a load test at production or a third-party API without permission from its owner.
+
+#### Next
+
+[Reports & Metrics →](https://docs.vectored.dev/apistudio/docs/cli-reports.html) [CI/CD Integration →](https://docs.vectored.dev/apistudio/docs/cicd.html)
+
+## Reports &amp; Metrics
+
+Source: https://docs.vectored.dev/apistudio/docs/cli-reports.html
+
+Every `openpost test`, `perf` and `run` can write a shareable HTML dashboard, JUnit XML for CI, Markdown for pull requests and JSON for scripts.
+
+CLI
+
+![openpost HTML test report](https://docs.vectored.dev/apistudio/assets/openpost test report html.png)
+
+The HTML report from `openpost test -r html`
+
+### Report Formats
+
+```
+openpost test api-tests/ -r html,junit,md,json --report-dir reports
+```
+
+| Format | File | Use it for |
+| --- | --- | --- |
+| html | reports/report.html | A self-contained dashboard to open, share or attach. Light and dark themes, works offline |
+| junit | reports/junit.xml | CI test tabs (GitHub, GitLab, Jenkins, Azure) |
+| md | reports/report.md | Pasting into a pull request or issue |
+| json | reports/report.json | Scripts, dashboards and AI agents |
+
+`name:path` sets a file, for example `-r junit:out/junit.xml`. `openpost run` accepts the same `-r` and `--report-dir` flags for collections saved in the app.
+
+### What the HTML Report Shows
+
+- **Verdict and KPIs** — pass/fail, request and assertion counts, pass rate, p50/p95/p99 latency, throughput, error rate
+
+- **Latency histogram and status-code breakdown** — plus throughput and p95 over time and the slowest endpoints for load tests
+
+- **Per-endpoint metrics** — count, failures, min, mean, percentiles and max
+
+- **Every request** — assertions with expected and actual values, captured variables, timings (TTFB and download) and request and response headers and bodies, with failed requests listed first
+
+### Metrics
+
+| Metric | Meaning |
+| --- | --- |
+| p50 / p90 / p95 / p99 | Latency percentiles of total request time |
+| ttfb_p95 | 95th percentile time to first byte |
+| throughput | Requests per second over the run's wall time |
+| errorRate | Share of requests that errored or failed an assertion |
+| histogram / timeline | Latency buckets, and requests and errors per second (load tests) |
+
+### Secrets in Reports
+
+Reports and console output replace secret values with `••••••`: `authorization`, `cookie` and API-key headers, every `{{$env.*}}` and `--env-file` value, password and token fields, and captured tokens. Pass `--show-secrets` only when debugging locally.
+
+### Merging and Re-rendering
+
+```
+openpost report shard-1.json shard-2.json -r html,junit --report-dir reports
+```
+
+Combine JSON reports from sharded CI jobs into one report, or re-render a saved report in another format
+
+In GitHub Actions, the Markdown summary is also written to the job summary automatically (turn off with `--no-gh-summary`).
+
+### JSON Output
+
+```
+{
+  "ok": false,
+  "kind": "test",
+  "summary": { "requests": 8, "passed": 7, "failed": 1, "passRate": 87.5, "durationMs": 48 },
+  "metrics": { "overall": { "latency": { "p50": 2, "p95": 14, "p99": 19 }, "throughput": 166.7, "errorRate": 0.125 } },
+  "suites": [ { "name": "Tasks API", "requests": [ {
+    "name": "List tasks", "status": 200, "ok": false,
+    "assertions": [ { "target": "body $[*].title", "rule": "contains \"x\"", "passed": false, "actual": ["a", "b"] } ]
+  } ] } ]
+}
+```
+
+#### Next
+
+[Load Testing →](https://docs.vectored.dev/apistudio/docs/cli-perf.html) [CI/CD Integration →](https://docs.vectored.dev/apistudio/docs/cicd.html)
 
 ## Running Collections
 
@@ -6692,6 +7072,88 @@ The server runs in the background while the AI agent connects via MCP and execut
 
 [CLI Overview →](https://docs.vectored.dev/apistudio/docs/cli-overview.html) [Connecting AI Clients →](https://docs.vectored.dev/apistudio/docs/connecting-ai-clients.html)
 
+## AI Agent Skills
+
+Source: https://docs.vectored.dev/apistudio/docs/ai-agent-skills.html
+
+Teach Claude Code, Cursor, Kiro, Copilot, Windsurf, Codex, Gemini and Cline to test, load-test and document your APIs with the openpost CLI.
+
+CLI
+
+### Why
+
+When you ask an AI coding agent to "check the API works", it usually writes a throwaway Python or curl script that nobody can rerun. The openpost skill teaches the agent to write [API test files](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html) instead, run them with the CLI, read failures from the output, and leave behind tests, reports and docs that stay in the repository.
+
+- Quick checks with `openpost send`, saved as tests with `--save`
+
+- Happy path and negative cases per endpoint, secrets kept in environment variables
+
+- Load tests with thresholds, HTML and JUnit reports, and docs generated from the tests
+
+### Install
+
+```
+npx openpost agent install
+```
+
+Detects which agents the project uses and installs the skill for each
+
+```
+npx openpost agent install --platform claude,cursor,kiro
+npx openpost agent install --platform claude --global    # all projects (Claude Code)
+npx openpost agent list                                   # platforms and install status
+npx openpost agent uninstall --platform cursor
+```
+
+Commit the generated files so everyone on the team, and every agent, gets the same instructions. Running install again updates them in place.
+
+### Supported Platforms
+
+| Platform | Files written |
+| --- | --- |
+| claude | .claude/skills/openpost-api-testing/SKILL.md + reference.md |
+| cursor | .cursor/rules/openpost-api-testing.mdc |
+| kiro | .kiro/steering/openpost-api-testing.md + openpost-api-reference.md |
+| copilot | .github/instructions/openpost-api-testing.instructions.md, plus a block in .github/copilot-instructions.md |
+| windsurf | .windsurf/rules/openpost-api-testing.md + openpost-api-reference.md |
+| codex | A block in AGENTS.md pointing to .agents/skills/openpost-api-testing/ (also read by Jules, Amp, opencode, Zed and Aider) |
+| gemini | A block in GEMINI.md pointing to .agents/skills/openpost-api-testing/ |
+| cline | .clinerules/openpost-api-testing.md (Cline and Roo) |
+
+Shared files such as AGENTS.md get a marked block that install replaces and uninstall removes, leaving your own content untouched.
+
+### Claude Code Plugin
+
+```
+/plugin marketplace add openAPI-Studio/api-studio
+/plugin install openpost@api-studio
+```
+
+Installs the skill as a Claude Code plugin instead of copying files into the project
+
+### Try It
+
+After installing, ask your agent something like:
+
+```
+Test the /tasks endpoints of the API running on localhost:3000.
+Cover create, get, list and delete, plus 401 and 404 cases.
+Then run a short load test and give me the HTML report.
+```
+
+The agent writes `api-tests/tasks.api.yaml`, runs `openpost validate` and `openpost test`, fixes or reports failures, and tells you the command to rerun and where the report is.
+
+### Read the Skill
+
+```
+npx openpost agent print            # SKILL.md
+npx openpost agent print --reference  # full syntax reference
+```
+
+#### Next
+
+[API Test Files →](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html) [Connecting AI Clients →](https://docs.vectored.dev/apistudio/docs/connecting-ai-clients.html)
+
 ## Version Control & Team Workflow
 
 Source: https://docs.vectored.dev/apistudio/docs/version-control.html
@@ -6886,6 +7348,16 @@ npx openpost run "My API" --env production
 ```
 
 Pin the version in CI (`npm install -g openpost@1.2.3`) so a new release cannot change pipeline behaviour without a commit.
+
+### Running API test files
+
+Besides collections, the CLI runs [API test files](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html) checked into the repository, and writes JUnit, HTML and JSON [reports](https://docs.vectored.dev/apistudio/docs/cli-reports.html). `openpost init` generates a GitHub Actions workflow (or `--ci gitlab`) built around this step:
+
+```
+npx --yes openpost test api-tests --env local -r junit,html,json --report-dir reports
+```
+
+Add `openpost perf api-tests -c 20 -n 500 -t "p95<300"` to fail the build on a [latency regression](https://docs.vectored.dev/apistudio/docs/cli-perf.html).
 
 ### Exit codes
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Skills — API Studio Docs</title>
+  <meta name="description" content="Install the openpost API-testing skill for Claude Code, Cursor, Kiro, GitHub Copilot, Windsurf, Codex (AGENTS.md), Gemini CLI and Cline so AI agents write rerunnable API tests instead of throwaway scripts.">
+  <meta name="vc-updated" content="10 Oct 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">AI Agent Skills</h1>
+      <p class="vc-lede">Teach Claude Code, Cursor, Kiro, Copilot, Windsurf, Codex, Gemini and Cline to test, load-test and document your APIs with the openpost CLI.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">CLI</p>
+
+<!-- Why -->
+<section class="mb-12 scroll-mt-28" id="why">
+<h2 class="text-xl font-semibold mb-4">Why</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">When you ask an AI coding agent to "check the API works", it usually writes a throwaway Python or curl script that nobody can rerun. The openpost skill teaches the agent to write <a class="text-cta hover:underline" href="cli-api-tests.html">API test files</a> instead, run them with the CLI, read failures from the output, and leave behind tests, reports and docs that stay in the repository.</p>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Quick checks with <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost send</code>, saved as tests with <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--save</code></span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Happy path and negative cases per endpoint, secrets kept in environment variables</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Load tests with thresholds, HTML and JUnit reports, and docs generated from the tests</span></div>
+</div>
+</section>
+<!-- Install -->
+<section class="mb-12 scroll-mt-28" id="install">
+<h2 class="text-xl font-semibold mb-4">Install</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>npx openpost agent install</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">Detects which agents the project uses and installs the skill for each</p>
+</div>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>npx openpost agent install --platform claude,cursor,kiro
+npx openpost agent install --platform claude --global    # all projects (Claude Code)
+npx openpost agent list                                   # platforms and install status
+npx openpost agent uninstall --platform cursor</code></pre>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Commit the generated files so everyone on the team, and every agent, gets the same instructions. Running install again updates them in place.</p>
+</section>
+<!-- Supported Platforms -->
+<section class="mb-12 scroll-mt-28" id="platforms">
+<h2 class="text-xl font-semibold mb-4">Supported Platforms</h2>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Platform</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Files written</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">claude</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">.claude/skills/openpost-api-testing/SKILL.md + reference.md</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">cursor</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">.cursor/rules/openpost-api-testing.mdc</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">kiro</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">.kiro/steering/openpost-api-testing.md + openpost-api-reference.md</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">copilot</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">.github/instructions/openpost-api-testing.instructions.md, plus a block in .github/copilot-instructions.md</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">windsurf</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">.windsurf/rules/openpost-api-testing.md + openpost-api-reference.md</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">codex</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">A block in AGENTS.md pointing to .agents/skills/openpost-api-testing/ (also read by Jules, Amp, opencode, Zed and Aider)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">gemini</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">A block in GEMINI.md pointing to .agents/skills/openpost-api-testing/</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">cline</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">.clinerules/openpost-api-testing.md (Cline and Roo)</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Shared files such as AGENTS.md get a marked block that install replaces and uninstall removes, leaving your own content untouched.</p>
+</section>
+<!-- Claude Code Plugin -->
+<section class="mb-12 scroll-mt-28" id="claude-plugin">
+<h2 class="text-xl font-semibold mb-4">Claude Code Plugin</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>/plugin marketplace add openAPI-Studio/api-studio
+/plugin install openpost@api-studio</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">Installs the skill as a Claude Code plugin instead of copying files into the project</p>
+</div>
+</section>
+<!-- Try It -->
+<section class="mb-12 scroll-mt-28" id="try">
+<h2 class="text-xl font-semibold mb-4">Try It</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">After installing, ask your agent something like:</p>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>Test the /tasks endpoints of the API running on localhost:3000.
+Cover create, get, list and delete, plus 401 and 404 cases.
+Then run a short load test and give me the HTML report.</code></pre>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">The agent writes <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">api-tests/tasks.api.yaml</code>, runs <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost validate</code> and <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost test</code>, fixes or reports failures, and tells you the command to rerun and where the report is.</p>
+</section>
+<!-- Read the Skill -->
+<section class="mb-12 scroll-mt-28" id="print">
+<h2 class="text-xl font-semibold mb-4">Read the Skill</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>npx openpost agent print            # SKILL.md
+npx openpost agent print --reference  # full syntax reference</code></pre>
+</div>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="cli-api-tests.html">API Test Files →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="connecting-ai-clients.html">Connecting AI Clients →</a>
+</div>
+</section>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
+</body>
+</html>

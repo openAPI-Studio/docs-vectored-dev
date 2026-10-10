@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports &amp; Metrics — API Studio Docs</title>
+  <meta name="description" content="HTML, JUnit, Markdown and JSON reports from the openpost CLI — latency percentiles, throughput, error rate, per-endpoint metrics and secret masking.">
+  <meta name="vc-updated" content="10 Oct 2026">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../../assets/header.js"></script>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <h1 class="vc-h1">Reports &amp; Metrics</h1>
+      <p class="vc-lede">Every <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost test</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">perf</code> and <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">run</code> can write a shareable HTML dashboard, JUnit XML for CI, Markdown for pull requests and JSON for scripts.</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+<p class="text-xs text-gray-400 dark:text-muted mt-4 mb-1 uppercase tracking-wider">CLI</p>
+
+<img alt="openpost HTML test report" class="w-full rounded-xl border border-gray-200 dark:border-border shadow-sm" src="../assets/openpost test report html.png"/>
+<p class="text-xs text-gray-400 dark:text-muted mt-2 mb-5">The HTML report from <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost test -r html</code></p>
+<!-- Report Formats -->
+<section class="mb-12 scroll-mt-28" id="formats">
+<h2 class="text-xl font-semibold mb-4">Report Formats</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost test api-tests/ -r html,junit,md,json --report-dir reports</code></pre>
+</div>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Format</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">File</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Use it for</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">html</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">reports/report.html</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">A self-contained dashboard to open, share or attach. Light and dark themes, works offline</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">junit</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">reports/junit.xml</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">CI test tabs (GitHub, GitLab, Jenkins, Azure)</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">md</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">reports/report.md</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Pasting into a pull request or issue</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">reports/report.json</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Scripts, dashboards and AI agents</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4"><code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">name:path</code> sets a file, for example <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">-r junit:out/junit.xml</code>. <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">openpost run</code> accepts the same <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">-r</code> and <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--report-dir</code> flags for collections saved in the app.</p>
+</section>
+<!-- What the HTML Report Shows -->
+<section class="mb-12 scroll-mt-28" id="html">
+<h2 class="text-xl font-semibold mb-4">What the HTML Report Shows</h2>
+<div class="space-y-2 text-sm text-gray-600 dark:text-muted mb-5">
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Verdict and KPIs</strong> — pass/fail, request and assertion counts, pass rate, p50/p95/p99 latency, throughput, error rate</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Latency histogram and status-code breakdown</strong> — plus throughput and p95 over time and the slowest endpoints for load tests</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Per-endpoint metrics</strong> — count, failures, min, mean, percentiles and max</span></div>
+<div class="flex gap-2 items-start"><svg class="w-4 h-4 text-cta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span><strong class="text-gray-900 dark:text-text">Every request</strong> — assertions with expected and actual values, captured variables, timings (TTFB and download) and request and response headers and bodies, with failed requests listed first</span></div>
+</div>
+</section>
+<!-- Metrics -->
+<section class="mb-12 scroll-mt-28" id="metrics">
+<h2 class="text-xl font-semibold mb-4">Metrics</h2>
+<div class="overflow-x-auto mb-5">
+<table class="w-full text-sm border border-gray-200 dark:border-border rounded-lg overflow-hidden">
+<thead class="bg-gray-50 dark:bg-surface"><tr><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Metric</th><th class="text-left px-4 py-2.5 font-semibold border-b border-gray-200 dark:border-border">Meaning</th></tr></thead>
+<tbody class="divide-y divide-gray-100 dark:divide-border/50">
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">p50 / p90 / p95 / p99</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Latency percentiles of total request time</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">ttfb_p95</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">95th percentile time to first byte</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">throughput</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Requests per second over the run's wall time</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">errorRate</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Share of requests that errored or failed an assertion</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-cta text-xs">histogram / timeline</td><td class="px-4 py-2.5 text-xs text-gray-500 dark:text-muted">Latency buckets, and requests and errors per second (load tests)</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Secrets in Reports -->
+<section class="mb-12 scroll-mt-28" id="secrets">
+<h2 class="text-xl font-semibold mb-4">Secrets in Reports</h2>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">Reports and console output replace secret values with <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">••••••</code>: <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">authorization</code>, <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">cookie</code> and API-key headers, every <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">{{$env.*}}</code> and <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--env-file</code> value, password and token fields, and captured tokens. Pass <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--show-secrets</code> only when debugging locally.</p>
+</section>
+<!-- Merging and Re-rendering -->
+<section class="mb-12 scroll-mt-28" id="merge">
+<h2 class="text-xl font-semibold mb-4">Merging and Re-rendering</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-sm font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>openpost report shard-1.json shard-2.json -r html,junit --report-dir reports</code></pre>
+<p class="text-xs text-gray-500 dark:text-muted mt-2">Combine JSON reports from sharded CI jobs into one report, or re-render a saved report in another format</p>
+</div>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">In GitHub Actions, the Markdown summary is also written to the job summary automatically (turn off with <code class="font-mono text-xs bg-gray-100 dark:bg-surface rounded px-1">--no-gh-summary</code>).</p>
+</section>
+<!-- JSON Output -->
+<section class="mb-12 scroll-mt-28" id="json">
+<h2 class="text-xl font-semibold mb-4">JSON Output</h2>
+<div class="p-4 rounded-lg bg-gray-50 dark:bg-surface border border-gray-200 dark:border-border mb-5">
+<pre class="text-xs font-mono text-gray-700 dark:text-muted overflow-x-auto"><code>{
+  &quot;ok&quot;: false,
+  &quot;kind&quot;: &quot;test&quot;,
+  &quot;summary&quot;: { &quot;requests&quot;: 8, &quot;passed&quot;: 7, &quot;failed&quot;: 1, &quot;passRate&quot;: 87.5, &quot;durationMs&quot;: 48 },
+  &quot;metrics&quot;: { &quot;overall&quot;: { &quot;latency&quot;: { &quot;p50&quot;: 2, &quot;p95&quot;: 14, &quot;p99&quot;: 19 }, &quot;throughput&quot;: 166.7, &quot;errorRate&quot;: 0.125 } },
+  &quot;suites&quot;: [ { &quot;name&quot;: &quot;Tasks API&quot;, &quot;requests&quot;: [ {
+    &quot;name&quot;: &quot;List tasks&quot;, &quot;status&quot;: 200, &quot;ok&quot;: false,
+    &quot;assertions&quot;: [ { &quot;target&quot;: &quot;body $[*].title&quot;, &quot;rule&quot;: &quot;contains \&quot;x\&quot;&quot;, &quot;passed&quot;: false, &quot;actual&quot;: [&quot;a&quot;, &quot;b&quot;] } ]
+  } ] } ]
+}</code></pre>
+</div>
+</section>
+<!-- Next -->
+<section class="p-6 rounded-xl border border-cta/20 bg-cta/5">
+<h3 class="font-semibold mb-2">Next</h3>
+<div class="flex flex-wrap gap-4">
+<a class="text-sm text-cta font-medium hover:underline" href="cli-perf.html">Load Testing →</a>
+<a class="text-sm text-cta font-medium hover:underline" href="cicd.html">CI/CD Integration →</a>
+</div>
+</section>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+<a class="fixed bottom-5 right-5 z-50 flex items-center gap-1.5 px-3 py-2 bg-[#FF5E5B] text-white text-xs font-semibold rounded-full shadow-lg hover:bg-[#FF5E5B]/90 transition" data-noprint="1" href="https://ko-fi.com/openpost" rel="noopener" target="_blank" title="Support us on Ko-fi"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"></path></svg>Ko-fi</a>
+</body>
+</html>
