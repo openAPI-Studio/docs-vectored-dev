@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-65 screenshots. Save each one into `depotex/assets/` using the
+67 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -105,7 +105,11 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `vibe-settings.png`
       Settings → Repositories → Vibe artifacts with the switch on, and Vibe in the left menu
 - [ ] `vibe-browser.png`
-      The Vibe browser, before any project is published
+      The Vibe page, which a check-in's link opens until project pages arrive
+- [ ] `vibe-repository-create.png`
+      A new repository in a space, with the Vibe artifacts format: only Hosted is offered
+- [ ] `vibe-repository-usage.png`
+      A vibe artifacts repository's page: Use this repository → Publish lists the three push requests
 
 ## SBOMs
 
