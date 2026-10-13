@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-63 screenshots. Save each one into `depotex/assets/` using the
+65 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -99,6 +99,13 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `blocklist-rules.png`
       Settings → Block list: the installation's rules
+
+## Vibe artifacts
+
+- [ ] `vibe-settings.png`
+      Settings → Repositories → Vibe artifacts with the switch on, and Vibe in the left menu
+- [ ] `vibe-browser.png`
+      The Vibe browser, before any project is published
 
 ## SBOMs
 

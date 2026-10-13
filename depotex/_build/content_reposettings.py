@@ -9,7 +9,7 @@ REPO_SETTINGS = [
         keywords=["repository settings", "max artifact size", "timeout", "retries", "proxy", "outbound proxy", "no proxy", "trust store", "ca certificate", "tls", "certificate"],
         blocks=[
             H("Overview"),
-            P("**Settings → Repositories → Defaults and network** holds defaults for every repository and how Depotex reaches remote registries such as Maven Central, npm or Docker Hub: the upstreams that proxy repositories fetch from, and the **Test connection** of an upstream. Super admins only; available on every license tier. Changes reach every server within a few seconds. The **Repositories** group in Settings also holds [Quarantine](quarantine.html), the [Block list](blocklist.html) and [Integrity](integrity.html)."),
+            P("**Settings → Repositories → Defaults and network** holds defaults for every repository and how Depotex reaches remote registries such as Maven Central, npm or Docker Hub: the upstreams that proxy repositories fetch from, and the **Test connection** of an upstream. Super admins only; available on every license tier. Changes reach every server within a few seconds. The **Repositories** group in Settings also holds [Quarantine](quarantine.html), the [Block list](blocklist.html), [Integrity](integrity.html) and, on Enterprise, [Vibe artifacts](vibe-artifacts.html)."),
             SHOT("repository-settings.png", "Settings → Repositories: largest artifact, timeouts, retries, outbound proxy and a connection test"),
 
             H("Artifacts"),
