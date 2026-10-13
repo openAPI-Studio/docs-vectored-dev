@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NuGet repositories — Depotex Docs</title>
+  <meta name="description" content=".NET packages for dotnet, Visual Studio, Rider and nuget.exe: a NuGet v3 source with push, unlist and search">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+      <h1 class="vc-h1">NuGet repositories</h1>
+      <p class="vc-lede">.NET packages for dotnet, Visual Studio, Rider and nuget.exe: a NuGet v3 source with push, unlist and search</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">NuGet repositories are NuGet v3 package sources for <span class="font-mono text-sm break-words">dotnet restore</span>, <span class="font-mono text-sm break-words">dotnet add package</span>, <span class="font-mono text-sm break-words">dotnet nuget push</span>, <span class="font-mono text-sm break-words">nuget.exe</span>, Visual Studio and Rider. Hosted repositories take the packages you push; proxy repositories cache nuget.org or another v3 feed. The source address is the repository's service index, <span class="font-mono text-sm break-words">https://&lt;depotex&gt;/repository/&lt;space&gt;/&lt;repository&gt;/index.json</span>.</p>
+      <h2 id="add-the-source" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Add the source</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">dotnet nuget add source https://depotex.example.com/repository/my-space/nuget/index.json --name depotex \
+  --username me --password &quot;$DEPOTEX_TOKEN&quot; --store-password-in-clear-text
+dotnet add package Acme.Tools --version 1.0.0</code></pre>
+      <p class="text-muted mb-4">Or in <span class="font-mono text-sm break-words">nuget.config</span>, with the token from the environment:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">&lt;configuration&gt;
+  &lt;packageSources&gt;
+    &lt;add key=&quot;depotex&quot; value=&quot;https://depotex.example.com/repository/my-space/nuget/index.json&quot; /&gt;
+  &lt;/packageSources&gt;
+  &lt;packageSourceCredentials&gt;
+    &lt;depotex&gt;
+      &lt;add key=&quot;Username&quot; value=&quot;me&quot; /&gt;
+      &lt;add key=&quot;ClearTextPassword&quot; value=&quot;%DEPOTEX_TOKEN%&quot; /&gt;
+    &lt;/depotex&gt;
+  &lt;/packageSourceCredentials&gt;
+&lt;/configuration&gt;</code></pre>
+      <p class="text-muted mb-4">With a NuGet <a href="repository-groups.html" class="text-cta hover:underline">group</a> as the space's default, <span class="font-mono text-sm break-words">https://depotex.example.com/repository/my-space/nuget/index.json</span> is one source for your packages and nuget.org's (through a proxy member), and takes pushes.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Using a hosted source and a nuget.org source side by side lets a public package with one of your private IDs win (dependency confusion). Use one group as the only source, or NuGet's package source mapping (<span class="font-mono text-sm break-words">&lt;packageSourceMapping&gt;</span>) to tie your own ID prefixes to the hosted source, and block your prefixes on the nuget.org proxy with the <a href="blocklist.html" class="text-cta hover:underline">block list</a>.</p></div>
+      <h2 id="publish-a-package" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Publish a package</h2>
+      <p class="text-muted mb-4">Push with an API token as the API key (Publish permission):</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">dotnet pack -c Release
+dotnet nuget push bin/Release/Acme.Tools.1.0.0.nupkg \
+  --source https://depotex.example.com/repository/my-space/nuget/index.json --api-key &quot;$DEPOTEX_TOKEN&quot;</code></pre>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The package must hold one <span class="font-mono text-sm break-words">.nuspec</span> at its root with a valid ID and version; Depotex reads it to answer version lists, package details and search.</li><li>IDs and versions are case-insensitive, and versions are normalized as nuget.org does: <span class="font-mono text-sm break-words">1.0</span> is <span class="font-mono text-sm break-words">1.0.0</span>, <span class="font-mono text-sm break-words">1.0.0.0</span> is <span class="font-mono text-sm break-words">1.0.0</span>, and build metadata after <span class="font-mono text-sm break-words">+</span> is dropped.</li><li>A version can't be replaced once published, as on nuget.org: new NuGet repositories publish <strong class="text-text">once</strong>. Pushing a version that's already there answers 409 (conflict), so <span class="font-mono text-sm break-words">dotnet nuget push --skip-duplicate</span> skips it.</li><li>The API key is an API token from Profile → API tokens; it's sent in the <span class="font-mono text-sm break-words">X-NuGet-ApiKey</span> header, which Depotex accepts for API tokens only.</li></ul>
+      <h2 id="unlist-or-delete-a-version" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Unlist or delete a version</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">dotnet nuget delete Acme.Tools 1.0.0 --source … --api-key …</span> <strong class="text-text">unlists</strong> the version by default, as nuget.org does: it leaves search and the version lists in Visual Studio, but projects that reference it exactly still restore it. Unlist and relist from the version's page in the <a href="browse.html" class="text-cta hover:underline">browser</a> too (<strong class="text-text">Unlist</strong>, <strong class="text-text">Relist</strong>), with Overwrite permission.</p>
+      <p class="text-muted mb-4">To have <span class="font-mono text-sm break-words">dotnet nuget delete</span> remove the package instead, a repository admin sets <strong class="text-text">When a package is deleted with dotnet nuget delete</strong> to <strong class="text-text">Delete it</strong> in the repository's <strong class="text-text">Settings</strong> (hosted repositories). Unlisting and relisting raise <span class="font-mono text-sm break-words">nuget.package.list</span>, and changing the setting raises <span class="font-mono text-sm break-words">nuget.settings.update</span>; organization <a href="policies.html" class="text-cta hover:underline">policies</a> can refuse either.</p>
+      <h2 id="versions-and-policies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Versions and policies</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each package version is a version in Depotex: it shows in the <strong class="text-text">Versions</strong> tab, and cleanup policies, quotas, <a href="quarantine.html" class="text-cta hover:underline">quarantine</a> and the <a href="blocklist.html" class="text-cta hover:underline">block list</a> apply to it. Cleanup moves versions to the trash; it doesn't unlist them.</li><li>Block-list rules name the package ID in any case, and ranges compare versions as NuGet does (<span class="font-mono text-sm break-words">[1.0,2.0)</span> covers <span class="font-mono text-sm break-words">1.5.0.1</span>; pre-releases come before their release).</li><li>Blocked versions are left out of version lists, package details and search, and their packages are refused; quarantined versions too when the repository hides them.</li></ul>
+      <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Proxy repositories</h2>
+      <p class="text-muted mb-4">Add an upstream with the <strong class="text-text">nuget.org</strong> preset (<span class="font-mono text-sm break-words">https://api.nuget.org/v3/index.json</span>) or another v3 feed's service index, allow it for the space, then create a proxy repository with it. Depotex reads the upstream's service index to find its packages, details and search, caches version lists and details (re-checked after the metadata age) and packages (kept), and forwards search to the upstream. Feeds that serve details or packages from other hosts work; like Helm, other hosts are only reached by host name over HTTPS, and the upstream's credentials only go to its own server. A proxy can also reach a NuGet repository of another Depotex (<a href="upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
+      <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. In the artifact browser</h2>
+      <p class="text-muted mb-4">Packages show by ID, then their versions. The <strong class="text-text">Install</strong> bar shows <span class="font-mono text-sm break-words">dotnet add package</span> for the version, and <strong class="text-text">Registry setup</strong> shows the <span class="font-mono text-sm break-words">PackageReference</span> line. Unlisted versions are marked <strong class="text-text">Unlisted</strong>.</p>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Symbol packages (<span class="font-mono text-sm break-words">.snupkg</span>) and the old NuGet v2 (OData) protocol aren't served.</li><li>Package signatures aren't checked or shown.</li><li>Search through a group asks every member, so very deep result pages are slower, and the total count can be approximate.</li><li>The browser doesn't show the <span class="font-mono text-sm break-words">.nuspec</span> details or dependencies yet.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

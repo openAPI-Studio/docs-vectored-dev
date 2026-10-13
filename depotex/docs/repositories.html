@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repositories — Depotex Docs</title>
+  <meta name="description" content="Create and manage artifact repositories">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+      <h1 class="vc-h1">Repositories</h1>
+      <p class="vc-lede">Create and manage artifact repositories</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">A repository holds artifacts of one format and belongs to a <a href="spaces.html" class="text-cta hover:underline">space</a>. Its address is <span class="font-mono text-sm break-words">/repository/&lt;space&gt;/&lt;repository&gt;/</span>, so the name only has to be unique within its space. There are three types: <strong class="text-text">hosted</strong> (stores what is published to it), <strong class="text-text">proxy</strong> (fetches from an upstream such as Maven Central and keeps a copy; Pro license or higher) and <strong class="text-text">group</strong> (combines repositories of the format behind one address; see <a href="repository-groups.html" class="text-cta hover:underline">Repository groups</a>).</p>
+      <h2 id="create-a-repository" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Create a repository</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the space</span> &mdash; Choose <strong class="text-text">Spaces</strong> in the sidebar, open the space and its <strong class="text-text">Repositories</strong> tab.</li><li class="pl-2"><span class="text-text font-medium">Select New repository</span> &mdash; You need the space's <strong class="text-text">Maintainer</strong> or <strong class="text-text">Owner</strong> role, or to be a super admin.</li><li class="pl-2"><span class="text-text font-medium">Enter a name</span> &mdash; 2–64 characters: lowercase letters, digits, dots, underscores or hyphens, starting with a letter or digit. It is part of every artifact address and can't be changed later. Format names (<span class="font-mono text-sm break-words">npm</span>, <span class="font-mono text-sm break-words">maven</span>, …) are reserved: <span class="font-mono text-sm break-words">/repository/&lt;space&gt;/&lt;format&gt;/</span> is the space's universal address for that format.</li><li class="pl-2"><span class="text-text font-medium">Pick a format and a type</span> &mdash; Only the formats the space allows are offered (see <a href="formats.html" class="text-cta hover:underline">Supported formats</a>); the format can't be changed later. A proxy repository also needs an upstream from the space's list; a group needs its members, in the order they're asked, and the member uploads go to, and can become the space's universal address for the format.</li><li class="pl-2"><span class="text-text font-medium">Add a description</span> &mdash; optional.</li><li class="pl-2"><span class="text-text font-medium">Select Create repository</span> &mdash; It appears in the list and can be used at once.</li></ol>
+      <p class="text-muted mb-4">A repository opens on <strong class="text-text">Browse</strong>, with its address, setup instructions for its package manager and its contents; <strong class="text-text">Versions</strong>, <strong class="text-text">Settings</strong> and <strong class="text-text">Access</strong> are beside it. See <a href="spaces.html#repositories" class="text-cta hover:underline">Spaces → Repositories</a> for settings, access, upload rules and cleanup.</p>
+      <h2 id="every-repository" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Every repository</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Repositories</strong> in the sidebar (super admins) lists every repository of the installation, grouped by space: its format, type, whether it can be published to and overwritten, and when it last changed. Filter by format, type, space or name; <strong class="text-text">Browse</strong> opens a repository in the <a href="browse.html" class="text-cta hover:underline">artifact browser</a>, <strong class="text-text">Open space</strong> opens its space.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/repositories-list.png" alt="Repositories: every repository, grouped by space, for administrators" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">repositories-list.png</p>
+          <p class="text-xs text-muted max-w-md">Repositories: every repository, grouped by space, for administrators</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Repositories: every repository, grouped by space, for administrators</figcaption>
+      </figure>
+      <h2 id="delete-a-repository" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Delete a repository</h2>
+      <p class="text-muted mb-4">Choose the bin next to a repository, in its space or in the list above, and confirm. The repository and everything in it are deleted; this can't be undone. A repository that belongs to a group is taken out of it; if it was where the group's uploads went, the group has no upload target until you choose one.</p>
+      <h2 id="permissions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Permissions</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who has it</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">spaces:repos:write</span></td><td>Space Maintainer and Owner</td><td>Create, change and delete the space's repositories</td></tr><tr><td><span class="font-mono text-sm break-words">depot:read</span></td><td>Super admins</td><td>See every repository of the installation</td></tr><tr><td><span class="font-mono text-sm break-words">depot:write</span></td><td>Super admins</td><td>Delete any repository from the list of every repository</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Creating a repository raises the <span class="font-mono text-sm break-words">depot.repository.create</span> event, so a <a href="policies.html" class="text-cta hover:underline">policy</a> can restrict names or formats (the <strong class="text-text">Allowed repository formats</strong> template).</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

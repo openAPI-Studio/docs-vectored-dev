@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started — Depotex Docs</title>
+  <meta name="description" content="Install Depotex and complete the setup wizard">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg></div>
+      <h1 class="vc-h1">Getting Started</h1>
+      <p class="vc-lede">Install Depotex and complete the setup wizard</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Depotex is a self-hosted platform. It needs PostgreSQL. Redis is optional for a single node and required for a cluster. On Kubernetes, use the container images and Helm chart: see <a href="kubernetes.html" class="text-cta hover:underline">Docker &amp; Kubernetes</a>.</p>
+      <h2 id="first-boot" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. First boot</h2>
+      <p class="text-muted mb-4">Set <span class="font-mono text-sm break-words">DATABASE_URL</span> and <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>, then start the server. After the first boot the database URL is saved encrypted on the node, so later boots only need the encryption key.</p>
+      <h2 id="the-setup-key" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. The setup key</h2>
+      <p class="text-muted mb-4">A fresh installation starts in setup mode and prints a one-time setup key in its log, in a line like <span class="font-mono text-sm break-words">open the setup wizard … setup_url=https://…/setup?token=…</span>. Open that URL: setup only proceeds with the key, so nobody else who can reach the server can take it over before you do. The page removes the key from the address bar as soon as it has read it and keeps it only for that browser tab, so it doesn't stay in your history; reloading the tab keeps working, a new tab needs the link again.</p>
+      <p class="text-muted mb-4">The key changes each time the server restarts. Set <span class="font-mono text-sm break-words">SETUP_TOKEN</span> to choose it yourself, for example when several nodes share the setup.</p>
+      <h2 id="setup-wizard" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Setup wizard</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard.png" alt="The setup wizard&#x27;s first step: the installation ID to request a license with, and the license" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard.png</p>
+          <p class="text-xs text-muted max-w-md">The setup wizard's first step: the installation ID to request a license with, and the license</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The setup wizard's first step: the installation ID to request a license with, and the license</figcaption>
+      </figure>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">License</span> &mdash; paste the license token issued for this installation.</li><li class="pl-2"><span class="text-text font-medium">Database</span> &mdash; confirm the PostgreSQL connection.</li><li class="pl-2"><span class="text-text font-medium">Storage</span> &mdash; choose local, S3, MinIO or Azure.</li><li class="pl-2"><span class="text-text font-medium">Cache</span> &mdash; add a Redis URL (one server, a Sentinel group or a Redis Cluster: see <a href="deployment-modes.html#redis" class="text-cta hover:underline">Single Node &amp; Cluster</a>), or skip it for a single node.</li><li class="pl-2"><span class="text-text font-medium">Admin user</span> &mdash; create the first administrator, or choose <strong class="text-text">Restore from a backup</strong> to bring back a lost installation (see <a href="backups.html#disaster-recovery" class="text-cta hover:underline">Backups → Disaster recovery</a>).</li></ol>
+      <p class="text-muted mb-4">Use the language menu at the top of the wizard to set it up in your language. The administrator account you create keeps that language; change it later from the profile menu.</p>
+      <p class="text-muted mb-4">Credentials entered in the wizard are stored encrypted in the database, not in environment variables.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted"><span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span> is required on every start and protects every stored credential. Use a long random value (for example <span class="font-mono text-sm break-words">openssl rand -base64 32</span>) and keep it somewhere safe: without it the installation cannot start.</p></div>
+      <h2 id="unattended-setup" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Unattended setup</h2>
+      <p class="text-muted mb-4">To set up without the wizard — for scripts, containers or configuration management — describe the installation in a YAML file and pass it at first start:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">chmod 600 setup.yaml
+CONFIG_ENCRYPTION_KEY=... ADMIN_PASSWORD=... ./server --setup-config setup.yaml</code></pre>
+      <p class="text-muted mb-4">The file has the same sections as the wizard: <span class="font-mono text-sm break-words">database</span>, <span class="font-mono text-sm break-words">cache</span>, <span class="font-mono text-sm break-words">storage</span>, <span class="font-mono text-sm break-words">license</span> and <span class="font-mono text-sm break-words">admin</span>. Write secrets as <span class="font-mono text-sm break-words">${VARIABLE}</span> and pass them in the environment, so they never sit in the file. An example ships as <span class="font-mono text-sm break-words">setup.example.yaml</span>.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The file is only read on a fresh installation. Delete it afterwards.</li><li>It must not be readable by other users (<span class="font-mono text-sm break-words">chmod 600</span>), and unknown keys are rejected so typos don't go unnoticed.</li><li>If anything is wrong the server stops with an error explaining what to fix.</li><li>Run <span class="font-mono text-sm break-words">./server --machine-id</span> to get the installation ID for your license request.</li></ul>
+      <h2 id="behind-a-proxy" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Behind a proxy</h2>
+      <p class="text-muted mb-4">Set <span class="font-mono text-sm break-words">TRUSTED_PROXIES</span> to the addresses of your load balancer and any other proxy in front of Depotex (IPs or CIDRs, comma-separated). The default trusts only the same host. Client addresses are used for IP allowlists, <a href="rate-limits.html" class="text-cta hover:underline">rate limits</a> and audit logs: without the right setting, everyone behind the proxy shares one address and one budget.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Tell the web frontend a proxy is in front.</strong> Set <span class="font-mono text-sm break-words">FRONTEND_BEHIND_PROXY=true</span> on the web frontend when a reverse proxy or load balancer in front of it sets <span class="font-mono text-sm break-words">X-Forwarded-For</span>, <span class="font-mono text-sm break-words">X-Forwarded-Host</span> and <span class="font-mono text-sm break-words">X-Forwarded-Proto</span> (Caddy does by default, the nginx example below does, as do Kubernetes ingress controllers and cloud load balancers). The frontend then passes them on to the server. Without it the frontend ignores them, because anyone who reaches its port directly could send their own: every browser then counts as one address for rate limits, the sign-in lockout and the audit log, and repository addresses in package metadata (npm, PyPI) are built from the <span class="font-mono text-sm break-words">Host</span> header the browser sent. The <a href="kubernetes.html" class="text-cta hover:underline">Helm chart</a> sets it when its ingress is enabled.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">With <span class="font-mono text-sm break-words">FRONTEND_BEHIND_PROXY=true</span>, only the proxy may reach the frontend's port (3000 by default): a client that reaches it directly can choose the address Depotex sees.</p></div>
+      <p class="text-muted mb-4"><strong class="text-text">Request size.</strong> The web frontend refuses API requests (<span class="font-mono text-sm break-words">/api</span>) larger than <span class="font-mono text-sm break-words">FRONTEND_API_BODY_LIMIT</span> bytes with <span class="font-mono text-sm break-words">413 payload_too_large</span> before they reach the server. The default, <span class="font-mono text-sm break-words">33554432</span> (32 MiB), is the largest the server takes there: an SBOM upload (<span class="font-mono text-sm break-words">BROWSE_GUARD_MAX_SBOM</span>). Raise it with <span class="font-mono text-sm break-words">BROWSE_GUARD_MAX_SBOM</span>, or when <span class="font-mono text-sm break-words">PLUGIN_MAX_PACKAGE_SIZE</span> goes above 31 MiB. Uploads to repositories, from the browser or a package manager, aren't affected. The proxy must allow bodies at least this large (nginx: <span class="font-mono text-sm break-words">client_max_body_size</span>).</p>
+      <p class="text-muted mb-4"><strong class="text-text">Route live updates to the backend.</strong> Alerts arrive instantly over a WebSocket at <span class="font-mono text-sm break-words">/api/ws</span> on the same address as the app. The web frontend can't pass that connection on, so the proxy in front of Depotex must send <span class="font-mono text-sm break-words">/api/ws</span> (and paths under it) straight to the backend with WebSocket upgrades allowed, and everything else to the frontend:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Path</th><th>Goes to</th><th>Notes</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">/api/ws</span>, <span class="font-mono text-sm break-words">/api/ws/…</span></td><td>Backend (port 8080 by default)</td><td>Allow the WebSocket upgrade; keep idle connections open for at least an hour</td></tr><tr><td>Everything else</td><td>Frontend (port 3000 by default)</td><td></td></tr></tbody></table></div>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted"># Caddy
+depotex.example.com {
+    @live path /api/ws /api/ws/*
+    reverse_proxy @live 127.0.0.1:8080
+    reverse_proxy 127.0.0.1:3000
+}
+
+# nginx (inside server { … })
+location /api/ws {
+    proxy_pass http://127.0.0.1:8080;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection &quot;upgrade&quot;;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 1h;
+}
+location / {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}</code></pre>
+      <p class="text-muted mb-4">Cloud load balancers (AWS ALB, Azure Application Gateway, Google Cloud Load Balancing) pass WebSockets through; add a path rule for <span class="font-mono text-sm break-words">/api/ws*</span> to the backend and raise the idle timeout. Without this route nothing breaks: alerts refresh every 30 seconds instead, and the system check shows a <strong class="text-text">Live updates</strong> warning until it's fixed.</p>
+      <h2 id="after-an-update" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. After an update</h2>
+      <p class="text-muted mb-4">When Depotex is updated, pages people already have open notice within a few minutes, or as soon as they return to the tab, and show <strong class="text-text">A new version is available</strong> with <strong class="text-text">Reload</strong> and <strong class="text-text">Later</strong>. Nothing reloads on its own, so unsaved work isn't lost. During a rolling upgrade of several servers the message appears once the new version is serving. Proxies and CDNs must not cache the <span class="font-mono text-sm break-words">/app-version</span> address. It answers anyone, signed in or not, with the build identifier of the running frontend; that is intended (open pages compare it) and it tells nothing else about the installation.</p>
+      <h2 id="security-headers" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Security headers</h2>
+      <p class="text-muted mb-4">Pages are served with security headers (frames from other sites are refused, the referrer is trimmed, HSTS). A Content-Security-Policy is sent in report-only mode by default; violations are logged by the frontend as <span class="font-mono text-sm break-words">[csp]</span> lines. Set <span class="font-mono text-sm break-words">CSP_ENFORCE=true</span> on the frontend once the log stays quiet.</p>
+      <h2 id="help-menu-and-footer" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Help menu and footer</h2>
+      <p class="text-muted mb-4">Once signed in, everyone has a <strong class="text-text">?</strong> (Help) menu at the top of every page and a footer at the bottom:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Where</th><th>What</th></tr></thead><tbody><tr><td><strong class="text-text">? menu</strong></td><td><strong class="text-text">Documentation</strong>, <strong class="text-text">Getting started</strong>, <strong class="text-text">What's new</strong>, <strong class="text-text">Send feedback</strong>, <strong class="text-text">Report a bug</strong>, <strong class="text-text">Contact support</strong>, and <strong class="text-text">About</strong></td></tr><tr><td><strong class="text-text">About</strong></td><td>The version, build, build date and which server answered; <strong class="text-text">Copy details</strong> copies them, with the page and browser, for a support request</td></tr><tr><td><strong class="text-text">Footer</strong></td><td>On the left, the version, build and the server that answered the page (with several servers it can change between pages), whether Depotex runs as a cluster or a single server, and a button that copies these details for a support request. On the right, the Documentation, What's new, Support and Report a bug links your administrators set, the language (when more than one is installed), and a switch between the light, dark and high-contrast themes.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Neither is shown on the sign-in page. When <strong class="text-text">Report a bug</strong> or <strong class="text-text">Contact support</strong> is an email address, the new message already holds the version and server details.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Point the links elsewhere.</strong> Under <strong class="text-text">Settings → General → Help menu</strong> (<span class="font-mono text-sm break-words">settings:write</span>, every license tier) set each link to an <span class="font-mono text-sm break-words">https://</span> address or a <span class="font-mono text-sm break-words">mailto:</span> email address, for example your own wiki or service desk. Leave a link empty to hide its item, and <strong class="text-text">Reset to defaults</strong> to go back. Changes raise the <span class="font-mono text-sm break-words">site.help.update</span> event.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

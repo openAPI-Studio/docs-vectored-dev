@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helm chart repositories — Depotex Docs</title>
+  <meta name="description" content="Kubernetes Helm charts for helm repo add, install and pull, published with a PUT or helm cm-push">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Helm chart repositories</h1>
+      <p class="vc-lede">Kubernetes Helm charts for helm repo add, install and pull, published with a PUT or helm cm-push</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Helm repositories are classic chart repositories: an <span class="font-mono text-sm break-words">index.yaml</span> and packaged charts, as <span class="font-mono text-sm break-words">helm repo add</span>, <span class="font-mono text-sm break-words">helm search repo</span>, <span class="font-mono text-sm break-words">helm install</span>, <span class="font-mono text-sm break-words">helm pull</span> and <span class="font-mono text-sm break-words">helm show</span> expect, and as Argo CD and Flux read them. Hosted repositories take the charts you publish; proxy repositories cache Bitnami, a project's chart repository or another Depotex.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Charts kept in OCI registries (<span class="font-mono text-sm break-words">helm push oci://…</span>, <span class="font-mono text-sm break-words">helm install oci://…</span>) go in a <a href="docker.html" class="text-cta hover:underline">Docker repository</a> instead: an OCI chart is stored like an image.</p></div>
+      <h2 id="add-the-repository" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Add the repository</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">helm repo add depotex https://depotex.example.com/repository/my-space/helm/ --username me --password &quot;$DEPOTEX_TOKEN&quot;
+helm repo update
+helm search repo depotex/
+helm install demo depotex/my-chart --version 1.0.0</code></pre>
+      <p class="text-muted mb-4">With a Helm <a href="repository-groups.html" class="text-cta hover:underline">group</a> as the space's default, <span class="font-mono text-sm break-words">https://depotex.example.com/repository/my-space/helm/</span> lists the charts of every member in one <span class="font-mono text-sm break-words">index.yaml</span>: your hosted charts and a proxy's.</p>
+      <h2 id="publish-a-chart" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Publish a chart</h2>
+      <p class="text-muted mb-4">Package the chart, then upload it with Publish permission, either with a <span class="font-mono text-sm break-words">PUT</span> of the file or as ChartMuseum and the helm-push plugin do (<span class="font-mono text-sm break-words">POST api/charts</span>):</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">helm package ./my-chart
+curl -f -u &quot;me:$DEPOTEX_TOKEN&quot; --upload-file my-chart-1.0.0.tgz https://depotex.example.com/repository/my-space/helm/my-chart-1.0.0.tgz
+
+# or, with the helm-push plugin
+helm cm-push my-chart-1.0.0.tgz depotex</code></pre>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The archive is checked: one top-level folder with a <span class="font-mono text-sm break-words">Chart.yaml</span> (apiVersion v1 or v2, a name and a SemVer version), and its name and version must match the file name (<span class="font-mono text-sm break-words">my-chart-1.0.0.tgz</span>).</li><li>A provenance file (<span class="font-mono text-sm break-words">my-chart-1.0.0.tgz.prov</span>) uploaded next to the chart is served for <span class="font-mono text-sm break-words">helm verify</span> and <span class="font-mono text-sm break-words">helm install --verify</span>; with <span class="font-mono text-sm break-words">POST api/charts</span>, send it in a form part named <span class="font-mono text-sm break-words">prov</span> beside the <span class="font-mono text-sm break-words">chart</span> part.</li><li>A version can't be replaced once published: every index that lists it pins its digest. New Helm repositories publish <strong class="text-text">once</strong>.</li><li><span class="font-mono text-sm break-words">index.yaml</span> is generated from the charts published, with each version's digest, and can't be uploaded. Delete a version with <span class="font-mono text-sm break-words">DELETE api/charts/&lt;name&gt;/&lt;version&gt;</span> (Delete permission), as ChartMuseum does.</li></ul>
+      <h2 id="versions-and-policies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Versions and policies</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each chart version is a version in Depotex: it shows in the <strong class="text-text">Versions</strong> tab, and cleanup policies, quotas, <a href="quarantine.html" class="text-cta hover:underline">quarantine</a> and the <a href="blocklist.html" class="text-cta hover:underline">block list</a> apply to it.</li><li>Block-list ranges compare chart versions by semver, with or without a leading <span class="font-mono text-sm break-words">v</span>.</li><li>Blocked versions are left out of <span class="font-mono text-sm break-words">index.yaml</span> and their archives refused; quarantined versions too when the repository hides them.</li></ul>
+      <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Proxy repositories</h2>
+      <p class="text-muted mb-4">Add an upstream with the <strong class="text-text">Bitnami Helm charts</strong> preset (<span class="font-mono text-sm break-words">https://charts.bitnami.com/bitnami</span>) or the address of any chart repository (the folder that holds its <span class="font-mono text-sm break-words">index.yaml</span>), allow it for the space, then create a proxy repository with it. Its <span class="font-mono text-sm break-words">index.yaml</span> is re-checked after the metadata age, and each chart is fetched from the address the index lists when first asked for, checked against the index's digest, and kept. <span class="font-mono text-sm break-words">helm pull</span> works without a <span class="font-mono text-sm break-words">helm repo update</span> first. A proxy can also reach a Helm repository of another Depotex (<a href="upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Chart repositories often host their charts somewhere else, such as GitHub releases. Depotex fetches charts from the index's own server, or from another server only by host name over HTTPS: links to IP addresses, <span class="font-mono text-sm break-words">localhost</span> or single-word host names are refused, so an index can't point Depotex at your internal network. The upstream's credentials are only sent to its own server.</p></div>
+      <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. In the artifact browser</h2>
+      <p class="text-muted mb-4">Charts show by name, then their versions. The <strong class="text-text">Install</strong> bar shows <span class="font-mono text-sm break-words">helm install</span> for the version, and <strong class="text-text">Registry setup</strong> shows <span class="font-mono text-sm break-words">helm pull</span>.</p>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Provenance files are stored and served, not checked: <span class="font-mono text-sm break-words">helm verify</span> checks them on your side.</li><li>The browser doesn't show <span class="font-mono text-sm break-words">Chart.yaml</span> details or chart dependencies yet.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

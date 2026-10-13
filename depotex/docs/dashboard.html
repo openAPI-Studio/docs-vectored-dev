@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Depotex Docs</title>
+  <meta name="description" content="What needs a look across Depotex, the installation's figures, the fullest spaces, the state of every part of the system and what was quarantined lately">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Dashboard</h1>
+      <p class="vc-lede">What needs a look across Depotex, the installation's figures, the fullest spaces, the state of every part of the system and what was quarantined lately</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Dashboard</strong> is the first page after signing in. Administrators (with the <span class="font-mono text-sm break-words">depot:read</span> permission) see the whole installation; everyone else sees their own spaces, what's new in them and their access (see <strong class="text-text">Your dashboard</strong> below). The greeting follows the time of day on your own computer.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/dashboard-overview.png" alt="Dashboard: what needs attention, the installation&#x27;s figures, spaces by size and the system&#x27;s health" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">dashboard-overview.png</p>
+          <p class="text-xs text-muted max-w-md">Dashboard: what needs attention, the installation's figures, spaces by size and the system's health</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Dashboard: what needs attention, the installation's figures, spaces by size and the system's health</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Every part of the page shows only what you're allowed to open: a row or link for something you have no permission for is left out rather than shown and refused. Figures are at most 30 seconds old.</p>
+      <h2 id="needs-attention" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Needs attention</h2>
+      <p class="text-muted mb-4">The list at the top is what someone should look at now, worst first, each with a button to where it's fixed. When nothing needs you, it says so. For administrators it can hold:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Item</th><th>Shown to</th><th>Button</th></tr></thead><tbody><tr><td>An upstream is paused after repeated failures, or failing, with how many proxy repositories use it</td><td><span class="font-mono text-sm break-words">upstreams:read</span></td><td>Opens the upstream</td></tr><tr><td>Broken files in storage found by the integrity check</td><td><span class="font-mono text-sm break-words">integrity:admin</span></td><td>Opens Integrity</td></tr><tr><td>A space is past its quota's warning, or full</td><td><span class="font-mono text-sm break-words">depot:read</span></td><td>Opens the space's quota</td></tr><tr><td>A scheduled job failed three times in a row</td><td><span class="font-mono text-sm break-words">scheduler:read</span></td><td>Opens Scheduled jobs</td></tr><tr><td>The license expires within 45 days, has expired or isn't valid</td><td><span class="font-mono text-sm break-words">licenses:admin</span></td><td>Opens Licensing</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Members see versions held in quarantine in their spaces (with <strong class="text-text">Review</strong> when they may release them, <strong class="text-text">View versions</strong> otherwise), their own API tokens that expire within a week (the button opens the tokens in your profile settings), and spaces they own that are nearly full.</p>
+      <h2 id="your-dashboard" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Your dashboard</h2>
+      <p class="text-muted mb-4">Without administrator rights the dashboard is about you. <strong class="text-text">Browse packages</strong> at the top opens Browse.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Your spaces</strong>: a card for each space you're a member of (up to eight; <strong class="text-text">All spaces</strong> lists every space you can see), with your role, how many repositories it has and how many versions are quarantined, its storage against the quota, and when something last changed. <strong class="text-text">Browse</strong> opens Browse showing only that space. A space where you can use only some repositories is marked <strong class="text-text">Limited</strong>, with how many you can see.</li><li><strong class="text-text">New in your spaces</strong>: the six newest versions in your spaces, with their repository, downloads and when they were published; a quarantined, blocked or broken version is marked. <strong class="text-text">See more in Browse</strong> opens Browse.</li><li><strong class="text-text">Your access</strong>: your active API tokens and how many expire within a week, your signed-in sessions (both open your profile settings), the upstreams your spaces fetch from, naming any that can't be reached, and your groups.</li></ul>
+      <h2 id="figures" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Figures</h2>
+      <p class="text-muted mb-4">Four figures sum up the installation: <strong class="text-text">Spaces</strong> (public, internal and private), <strong class="text-text">Repositories</strong> (hosted, proxy, group, and how many are offline), <strong class="text-text">Storage used</strong> (and how many spaces have a quota) and <strong class="text-text">Quarantined now</strong> (versions held, in how many spaces, and how many block rules are on). Select one to open where it's managed. Blocked versions aren't counted: whether a version is blocked is decided when someone downloads it.</p>
+      <h2 id="spaces" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Spaces</h2>
+      <p class="text-muted mb-4">The six fullest spaces (share of their quota), or the six with the latest change: switch with <strong class="text-text">Fullest first</strong> and <strong class="text-text">Latest change</strong>. Each row shows repositories, members, storage against the quota (amber from the quota's warning, red when full), versions quarantined and when something last changed. <strong class="text-text">All spaces</strong> opens the full list. On a phone each space is a card.</p>
+      <h2 id="system" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. System</h2>
+      <p class="text-muted mb-4">One row per part of the installation, with a coloured dot (green fine, amber needs a look, red a problem, grey not checked yet) and a link to where it's managed:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Row</th><th>Shows</th><th>Permission</th></tr></thead><tbody><tr><td>Cluster</td><td>Servers running, the leader, and servers that stopped or are behind on heartbeats</td><td><span class="font-mono text-sm break-words">cluster:read</span></td></tr><tr><td>Database</td><td>Reachable, its PostgreSQL version and how fast it answered</td><td><span class="font-mono text-sm break-words">settings:write</span></td></tr><tr><td>File storage</td><td>Where files are stored, and whether the storage ID check passed on the server that answered</td><td><span class="font-mono text-sm break-words">storage:admin</span></td></tr><tr><td>Search index</td><td>Up to date, rebuilding or behind, and how many versions it holds</td><td><span class="font-mono text-sm break-words">depot:read</span></td></tr><tr><td>Upstreams</td><td>How many are healthy, paused or failing</td><td><span class="font-mono text-sm break-words">upstreams:read</span></td></tr><tr><td>Scheduled jobs</td><td>How many jobs, how many are failing and how many ran fine in the last day</td><td><span class="font-mono text-sm break-words">scheduler:read</span></td></tr><tr><td>Integrity</td><td>Broken files and the last integrity run</td><td><span class="font-mono text-sm break-words">integrity:admin</span></td></tr><tr><td>Event deliveries</td><td>Failed deliveries waiting, and deliveries running late</td><td><span class="font-mono text-sm break-words">events:admin</span></td></tr></tbody></table></div>
+      <p class="text-muted mb-4">With the system check (Pro license, <span class="font-mono text-sm break-words">settings:write</span>), the top of the page also shows how its latest run went, for example <strong class="text-text">System check: 2 warnings · 14 minutes ago</strong>; select it to open the <a href="system-check.html" class="text-cta hover:underline">system check</a>. The dashboard reads what is already known and never runs a test itself; the system check makes the deeper tests on every server.</p>
+      <h2 id="recently-quarantined" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Recently quarantined</h2>
+      <p class="text-muted mb-4">The five versions quarantined most recently anywhere in the installation, with where they are, why (by hand, by a rule or by a guard) and when. Shown with Enterprise to whoever manages quarantine (<span class="font-mono text-sm break-words">artifacts:quarantine:manage</span>); <strong class="text-text">See all</strong> opens Settings → Quarantine.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

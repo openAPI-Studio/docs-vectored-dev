@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker &amp; Kubernetes — Depotex Docs</title>
+  <meta name="description" content="Run Depotex from its container images, on Kubernetes with the Helm chart">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Docker &amp; Kubernetes</h1>
+      <p class="vc-lede">Run Depotex from its container images, on Kubernetes with the Helm chart</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Depotex ships as two container images: the server (API) and the web app. A Helm chart deploys them on Kubernetes, with PostgreSQL, Redis and MinIO built in, and each of them can be switched off for a managed service. A script creates every Kubernetes Secret outside the chart, and writes the installation's keys to a private file you keep.</p>
+      <h2 id="the-images" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. The images</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Server:</strong> one program on a minimal base image, with no shell or package manager, plus the PostgreSQL client tools <span class="font-mono text-sm break-words">pg_dump</span> and <span class="font-mono text-sm break-words">pg_restore</span> 18 for <a href="backups.html" class="text-cta hover:underline">backups</a> (they work with PostgreSQL 18 and older). It runs as an unprivileged user (UID 65532) and needs only its data folder and <span class="font-mono text-sm break-words">/tmp</span> writable.</li><li><strong class="text-text">Web app:</strong> the Next.js server on the same kind of base image.</li><li>Neither image contains a key, licence or configuration: they come from the environment at run time.</li></ul>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Images aren't published to a public registry yet. Build them from the source and push them to your own registry, then set <span class="font-mono text-sm break-words">backend.image</span> and <span class="font-mono text-sm break-words">frontend.image</span> in the chart's values.</p></div>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">docker build -f deploy/docker/backend.Dockerfile  -t registry.example.com/depotex-backend:1.0.0 --build-arg VERSION=1.0.0 .
+docker build -f deploy/docker/frontend.Dockerfile -t registry.example.com/depotex-frontend:1.0.0 .
+docker push registry.example.com/depotex-backend:1.0.0
+docker push registry.example.com/depotex-frontend:1.0.0</code></pre>
+      <h2 id="install-on-kubernetes" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Install on Kubernetes</h2>
+      <p class="text-muted mb-4">You need <span class="font-mono text-sm break-words">kubectl</span> and Helm 3, a namespace, an ingress controller for the Depotex address, and a licence (the licence is bound to the installation ID, which you read after the first start).</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Create the secrets</span> &mdash; <span class="font-mono text-sm break-words">deploy/helm/prime-secrets.sh init -n depotex -r depotex --public-url https://depotex.example.com</span>. It generates every password and key, creates the Secrets in the namespace, and writes <span class="font-mono text-sm break-words">depotex-&lt;namespace&gt;-&lt;release&gt;-install-keys.txt</span> (readable only by you). Add <span class="font-mono text-sm break-words">--database-url</span>, <span class="font-mono text-sm break-words">--redis-url</span> (or <span class="font-mono text-sm break-words">--no-redis</span>) and the <span class="font-mono text-sm break-words">--storage-*-key</span> options to use managed services instead of the built-in ones.</li><li class="pl-2"><span class="text-text font-medium">Install the chart</span> &mdash; <span class="font-mono text-sm break-words">helm install depotex deploy/helm/depotex -n depotex -f my-values.yaml</span>, with at least <span class="font-mono text-sm break-words">publicUrl</span> and the images. Without a licence yet, Depotex starts the setup wizard.</li><li class="pl-2"><span class="text-text font-medium">Get the licence</span> &mdash; <span class="font-mono text-sm break-words">prime-secrets.sh installation-id -n depotex -r depotex</span> prints the installation ID (and records it in the keys file). Request a licence for it, then store it: <span class="font-mono text-sm break-words">prime-secrets.sh license license.json -n depotex -r depotex</span>.</li><li class="pl-2"><span class="text-text font-medium">Finish setup</span> &mdash; <span class="font-mono text-sm break-words">helm upgrade</span> with the same values. With the licence in the secret, Depotex sets itself up unattended from the values (administrator, database, Redis, storage). Or open the setup link from the keys file and use the wizard.</li><li class="pl-2"><span class="text-text font-medium">After setup</span> &mdash; Set <span class="font-mono text-sm break-words">setup.mode: none</span> and upgrade once more: the server then no longer gets the setup key.</li></ol>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Keep the keys file safe, outside the cluster. It holds <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>, the setup and recovery keys and the first administrator's password. Depotex's stored settings can only be read with that encryption key: never run <span class="font-mono text-sm break-words">init --force</span> on an installed instance, and back the key up with your database backups.</p></div>
+      <p class="text-muted mb-4">To keep secrets in Git (Sealed Secrets, SOPS or an external secret store), run <span class="font-mono text-sm break-words">init --manifest</span>: it prints the Secret manifests instead of creating them.</p>
+      <h2 id="first-boot-setup" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. First-boot setup</h2>
+      <div class="tbl-wrap"><table><thead><tr><th><span class="font-mono text-sm break-words">setup.mode</span></th><th>What happens</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">auto</span> (default)</td><td>Unattended setup once the licence is stored in the secret; the setup wizard until then</td></tr><tr><td><span class="font-mono text-sm break-words">passive</span></td><td>Unattended setup from the values and the secrets</td></tr><tr><td><span class="font-mono text-sm break-words">wizard</span></td><td>Open <span class="font-mono text-sm break-words">&lt;address&gt;/setup?token=&lt;setup key&gt;</span> and fill it in (see <a href="getting-started.html" class="text-cta hover:underline">Getting Started</a>)</td></tr><tr><td><span class="font-mono text-sm break-words">none</span></td><td>Already set up: no setup file, and the server no longer receives the setup key</td></tr></tbody></table></div>
+      <h2 id="built-in-or-managed-services" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Built-in or managed services</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Service</th><th>Built in</th><th>Managed instead</th></tr></thead><tbody><tr><td>PostgreSQL</td><td><span class="font-mono text-sm break-words">postgresql.enabled: true</span>: a database owned by a non-superuser role that may create the roles plugins need</td><td><span class="font-mono text-sm break-words">postgresql.enabled: false</span> and <span class="font-mono text-sm break-words">init --database-url 'postgres://…'</span> (RDS, Cloud SQL, Azure Database…)</td></tr><tr><td>Redis</td><td><span class="font-mono text-sm break-words">redis.enabled: true</span>: password set, admin commands disabled</td><td><span class="font-mono text-sm break-words">redis.enabled: false</span> and <span class="font-mono text-sm break-words">init --redis-url …</span>, or <span class="font-mono text-sm break-words">--no-redis</span> for a single node</td></tr><tr><td>Artifact storage</td><td><span class="font-mono text-sm break-words">minio.enabled: true</span>: MinIO with the bucket and a user that can only use that bucket</td><td><span class="font-mono text-sm break-words">storage.backend</span>: <span class="font-mono text-sm break-words">s3</span>, <span class="font-mono text-sm break-words">minio</span> (an external endpoint), <span class="font-mono text-sm break-words">azure</span>, or <span class="font-mono text-sm break-words">local</span> with a ReadWriteMany claim (<span class="font-mono text-sm break-words">storage.local.existingClaim</span>) mounted on every server pod</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The built-in services are single instances. For high availability use managed ones; <span class="font-mono text-sm break-words">deploy/helm/depotex/values-external.yaml</span> is an example with managed PostgreSQL, Redis and S3, three server replicas and TLS.</p>
+      <h2 id="clustering" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Clustering</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The server runs as a StatefulSet: each pod keeps its name, because Depotex derives a server's identity, and the installation ID your licence is bound to, from it. Don't rename the release of an installed instance.</li><li>More than one server replica (<span class="font-mono text-sm break-words">backend.replicas</span>) is a cluster: it needs a Pro licence or higher, Redis, and shared storage. Start with one replica until setup has finished; pods start one after another. See <a href="deployment-modes.html" class="text-cta hover:underline">Single Node &amp; Cluster</a>.</li><li>The web app (<span class="font-mono text-sm break-words">frontend.replicas</span>, 2 by default) is stateless.</li></ul>
+      <h2 id="network-and-security" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Network and security</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The ingress sends live updates (<span class="font-mono text-sm break-words">/api/ws</span>) to the server and everything else to the web app, which forwards API and package-manager traffic. Set <span class="font-mono text-sm break-words">ingress.className</span>, <span class="font-mono text-sm break-words">ingress.tls</span> and your controller's annotations; for large uploads, raise its body size and timeouts (the values file shows the nginx annotations).</li><li>Every pod runs as a non-root user with all capabilities dropped, a read-only root filesystem and no Kubernetes API token.</li><li>Network policies (<span class="font-mono text-sm break-words">networkPolicy.enabled</span>) let only the server reach PostgreSQL, Redis and MinIO, and only the ingress controller reach the apps. The server may reach the internet by default (upstream registries, single sign-on, email, webhooks); set <span class="font-mono text-sm break-words">networkPolicy.backendInternetEgress: false</span> to allow only DNS, the built-in services and <span class="font-mono text-sm break-words">extraEgress</span>.</li><li>The web app never receives the setup or recovery key.</li><li>With the ingress enabled the web app runs with <span class="font-mono text-sm break-words">FRONTEND_BEHIND_PROXY=true</span>, so the client address the ingress controller sets reaches the server; the network policy keeps everything but the controller away from the web app. Behind a proxy of your own instead, set <span class="font-mono text-sm break-words">frontend.env.FRONTEND_BEHIND_PROXY: "true"</span> only if that proxy sets the forwarded headers.</li></ul>
+      <h2 id="monitoring" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Monitoring</h2>
+      <p class="text-muted mb-4">Set <span class="font-mono text-sm break-words">backend.metrics.enabled: true</span> to expose each server pod's <a href="monitoring.html" class="text-cta hover:underline">Prometheus metrics</a> on port 9090 (<span class="font-mono text-sm break-words">backend.metrics.port</span>). The port is on the server's Service, never on the ingress, and the network policy lets Prometheus reach it: set <span class="font-mono text-sm break-words">backend.metrics.prometheusNamespaceSelector</span> (for example <span class="font-mono text-sm break-words">kubernetes.io/metadata.name: monitoring</span>) to allow only its namespace. With the Prometheus Operator, <span class="font-mono text-sm break-words">backend.metrics.serviceMonitor.enabled: true</span> adds a ServiceMonitor (<span class="font-mono text-sm break-words">interval</span>, <span class="font-mono text-sm break-words">scrapeTimeout</span> and <span class="font-mono text-sm break-words">labels</span> for your Prometheus's selector).</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">backend:
+  metrics:
+    enabled: true
+    prometheusNamespaceSelector:
+      kubernetes.io/metadata.name: monitoring
+    serviceMonitor:
+      enabled: true
+      labels: { release: prometheus }</code></pre>
+      <p class="text-muted mb-4">Rate limits and download quotas are shared by the server pods through Redis; tune them in <strong class="text-text">Settings → Security → Rate limits</strong> or with <span class="font-mono text-sm break-words">backend.env</span> (see <a href="rate-limits.html#environment-variables" class="text-cta hover:underline">Rate limits</a>). Keep <span class="font-mono text-sm break-words">backend.trustedProxies</span> covering the web app's and the ingress controller's pod addresses, or every visitor shares one address and one budget.</p>
+      <h2 id="test-environment" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Test environment</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">values-dev.yaml</span> (with <span class="font-mono text-sm break-words">init --dev</span>) adds MailHog to catch email, Keycloak with an OIDC and a SAML client, OpenLDAP with test users and groups, and a mock Okta, and <span class="font-mono text-sm break-words">deploy/helm/scripts/dev-port-forward.sh</span> opens them on localhost.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Never use the test environment in production: it has test users, plain HTTP and relaxed security settings.</p></div>
+      <h2 id="backups" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Backups</h2>
+      <p class="text-muted mb-4">The server stages each <a href="backups.html" class="text-cta hover:underline">backup</a> in the pod's <span class="font-mono text-sm break-words">/tmp</span> before writing it to storage. The chart gives <span class="font-mono text-sm break-words">/tmp</span> 2 GiB: set <span class="font-mono text-sm break-words">backend.tmpSize</span> larger than a compressed dump of your database plus the platform files, or point <span class="font-mono text-sm break-words">BACKUP_TEMP_DIR</span> (in <span class="font-mono text-sm break-words">backend.env</span>) at a larger volume. Back up the artifact storage itself with your storage platform's tools.</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">backend:
+  tmpSize: 20Gi</code></pre>
+      <h2 id="upgrades" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Upgrades</h2>
+      <p class="text-muted mb-4">Build and push the new images, then <span class="font-mono text-sm break-words">helm upgrade</span> with the new tags. Server pods restart one at a time; database changes run once, on the first server to start.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Check — Depotex Docs</title>
+  <meta name="description" content="Check the database, Redis, storage, email, directories, identity providers, license, servers, jobs and event delivery, with alerts when something breaks, and each server's health every minute">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+      <h1 class="vc-h1">System Check</h1>
+      <p class="vc-lede">Check the database, Redis, storage, email, directories, identity providers, license, servers, jobs and event delivery, with alerts when something breaks, and each server's health every minute</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">The system check tests that Depotex and everything it depends on work, and how long each answers: the database, Redis, file storage, the mail server, synced directories, identity providers, the license, every server of a cluster, scheduled jobs and the delivery of events to policies, automation and plugins. It runs every hour and whenever you select <strong class="text-text">Run now</strong>, and tells administrators when something gets worse or recovers. Pro license or higher; the <span class="font-mono text-sm break-words">settings:write</span> permission (super admins).</p>
+      <figure class="shot mb-6">
+        <img src="../assets/system-check.png" alt="Settings → System check: what needs attention and every check&#x27;s result" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">system-check.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → System check: what needs attention and every check's result</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → System check: what needs attention and every check's result</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Open it under <strong class="text-text">Settings → Advanced → System check</strong>. The top of the page shows the overall result of the run (all checks pass, how many need a look, or how many problems) with its time and how many checks are OK, warnings and problems. Beside it, a strip of bars shows the last 12 runs, oldest to newest: short and green when everything passed, tall and amber or red when something didn't. Select a bar to see that run, and <strong class="text-text">Back to the latest run</strong> to return.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Needs attention</strong> lists every warning and problem first, problems on top, with where it happened (shared services or a server) and a button to the settings that fix it, such as <strong class="text-text">Open Email settings</strong>. <strong class="text-text">Shared services</strong> lists the checks made once for the whole installation; select a row for its details. <strong class="text-text">Each server</strong> shows the checks every server makes side by side, one column per server; select a cell for that server's details. While a run is in progress, servers that haven't reported yet show <strong class="text-text">Running</strong>.</p>
+      <h2 id="what-is-checked" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. What is checked</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Check</th><th>Warning</th><th>Problem</th></tr></thead><tbody><tr><td>Database</td><td>Slow to answer</td><td>Unreachable, or a migration stopped half way</td></tr><tr><td>License</td><td>Expires within 30 days, 90 % of seats used, or in the grace period</td><td>Expired, invalid or missing</td></tr><tr><td>Servers</td><td>A server stopped or stopped reporting, or servers run different versions</td><td></td></tr><tr><td>Redis (each server)</td><td>Slow</td><td>Unreachable from that server</td></tr><tr><td>File storage (each server)</td><td>Slow</td><td>Can't write or read back a test file</td></tr><tr><td>Artifact storage integrity</td><td>Broken files, or the last integrity check failed, was skipped or is over a week old</td><td>—</td></tr><tr><td>Backup target (each server)</td><td>Backups are kept in the installation's own storage (see <a href="backups.html#backup-target" class="text-cta hover:underline">Backups</a>)</td><td>The backup target can't be reached, its marker is wrong, or a test file can't be written and read back</td></tr><tr><td>Test restores</td><td>The last test restore failed, or none passed in 15 days (Enterprise)</td><td></td></tr><tr><td>Shared storage (each server)</td><td>Not checked yet</td><td>The server's storage doesn't hold this installation's storage ID: not the cluster's shared storage, or another installation's (see <a href="storage.html" class="text-cta hover:underline">Storage</a>)</td></tr><tr><td>Disk space (each server)</td><td>Less than 15 % free where logs are written</td><td>Less than 5 % free</td></tr><tr><td>Mail server</td><td>Slow</td><td>Can't connect, secure the connection or sign in (nothing is sent)</td></tr><tr><td>Email queue</td><td>Messages failed in the last 24 hours</td><td>Most messages failed</td></tr><tr><td>Synced directories</td><td>The last sync failed or was blocked</td><td>A directory can't be reached or read</td></tr><tr><td>Identity providers</td><td>A SAML signing certificate expires within 30 days</td><td>Discovery or metadata can't be read, or the certificate expired</td></tr><tr><td>Scheduled jobs</td><td>A job's last run failed or it's overdue</td><td>A job failed three times in a row</td></tr><tr><td>Event delivery</td><td>Deliveries late or failed for good in the last 24 hours</td><td>More than 100 deliveries late</td></tr><tr><td>Audit log (each server)</td><td>Entries waiting to be written</td><td>Entries were lost</td></tr><tr><td>Log file (each server)</td><td></td><td>The log file can't be written</td></tr><tr><td>Live updates</td><td>Browsers can't open live updates through the Depotex address: the reverse proxy doesn't route <span class="font-mono text-sm break-words">/api/ws</span> to the backend (alerts then refresh every 30 seconds). See Getting Started → Behind a proxy</td><td></td></tr><tr><td>Secure cookies (each server)</td><td><span class="font-mono text-sm break-words">AUTH_COOKIE_SECURE=false</span> while Depotex is reached at an address other than localhost, so session cookies could travel over plain HTTP. Serve Depotex over HTTPS (or terminate TLS in a reverse proxy in front of it) and remove the setting</td><td></td></tr></tbody></table></div>
+      <p class="text-muted mb-4">A check that doesn't answer within its time limit (usually 20 seconds) counts as a problem. A server that doesn't report within five minutes is marked as not reporting.</p>
+      <h2 id="notifications" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Notifications</h2>
+      <p class="text-muted mb-4">Under <strong class="text-text">Notifications</strong> at the bottom of the page, choose an in-app alert and/or email (email must be set up), for super admins and/or organization admins (with a notification on, choose at least one), then <strong class="text-text">Save</strong> in the bar that appears at the bottom. You're told when a check gets worse than in the previous run, and once when everything is OK again; an unchanged problem doesn't notify every hour. Each run raises <span class="font-mono text-sm break-words">system.check.completed</span> and each change <span class="font-mono text-sm break-words">system.check.changed</span>, so <a href="automation.html" class="text-cta hover:underline">automation</a> can also send a webhook to your chat or paging tool.</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Run it once</span> &mdash; Open <strong class="text-text">Settings → Advanced → System check</strong> and select <strong class="text-text">Run now</strong>. Results appear within seconds; other servers add theirs within a minute.</li><li class="pl-2"><span class="text-text font-medium">Fix what's red</span> &mdash; Open <strong class="text-text">Details</strong> for the error, fix the cause (for example the mail password), and run again.</li><li class="pl-2"><span class="text-text font-medium">Choose notifications</span> &mdash; Tick <strong class="text-text">In-app alert</strong> and/or <strong class="text-text">Email</strong> and the roles, then <strong class="text-text">Save</strong>.</li><li class="pl-2"><span class="text-text font-medium">Adjust the schedule (optional)</span> &mdash; Change the <span class="font-mono text-sm break-words">system-check</span> job under <strong class="text-text">Settings → Advanced → Scheduled jobs</strong>, or set <span class="font-mono text-sm break-words">SYSTEM_CHECK_INTERVAL</span>.</li></ol>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Runs are kept for 30 days. The check never sends email, syncs directories or changes data; it only connects, signs in and reads.</p></div>
+      <h2 id="cluster-health" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Cluster health</h2>
+      <p class="text-muted mb-4">Besides the hourly run, every server checks itself every minute and reports to the others, and once a minute Depotex decides one health status for the whole installation. This tells you within a couple of minutes that a server has a problem, and which one. Pro license or higher; it works the same with one server or many.</p>
+      <p class="text-muted mb-4">See it under <strong class="text-text">Settings → Clustering</strong> (permission <span class="font-mono text-sm break-words">cluster:read</span>). <strong class="text-text">Cluster health</strong> at the top shows the status (Healthy, Warnings or Problems), when it was last checked, and the first five things that need attention, each with the server it's on. Select <strong class="text-text">View server</strong> to open that server's row. The table's <strong class="text-text">Health</strong> column shows each server's own status (<strong class="text-text">No report</strong> when it hasn't reported for three minutes), and a server's details list every check of its latest report, problems first, with a button to the settings that fix it and a link to the full system check.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Cluster health looks at</th><th>Warning</th><th>Problem</th></tr></thead><tbody><tr><td>Each server's own checks (Redis, file storage, shared storage, disk space, audit log, log file, secure cookies)</td><td>A check warns</td><td>A check fails</td></tr><tr><td>Health reports</td><td>A server hasn't reported for three minutes</td><td></td></tr><tr><td>Heartbeats</td><td>A server's heartbeat is more than two minutes old, or a server stopped</td><td></td></tr><tr><td>Versions and leader</td><td>Servers run different versions, or no server is the leader</td><td></td></tr><tr><td>License</td><td></td><td>More servers are active than the license allows</td></tr><tr><td>Redis</td><td>Redis can't be reached, so reports are read from the database</td><td></td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Storage checks run every five minutes, the others every minute. The checks of shared services (mail, identity providers, directories, jobs, events) stay in the hourly system check.</p>
+      <p class="text-muted mb-4">Notifications use the same choices as the system check (<strong class="text-text">Notifications</strong> on this page: in-app alert and/or email, and the roles). You're told once when the status changes and has held for two minutes: to Warnings, to Problems, or back to Healthy. A new alert replaces the previous one. A problem moving to another server while the status stays the same doesn't notify again. Each change raises <span class="font-mono text-sm break-words">cluster.health.changed</span>.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">When Redis is down the reports are read from the database, so cluster health keeps working and shows a warning about Redis.</p></div>
+      <h2 id="configuration" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Configuration</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Variable</th><th>Default</th><th>What it does</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">SYSTEM_CHECK_INTERVAL</span></td><td><span class="font-mono text-sm break-words">1h</span></td><td>How often the scheduled check runs</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The cluster health jobs (<span class="font-mono text-sm break-words">node-health-report</span> on every server, <span class="font-mono text-sm break-words">cluster-health</span> once per cluster) run every minute; <span class="font-mono text-sm break-words">cluster-health</span> can be turned off under <strong class="text-text">Settings → Advanced → Scheduled jobs</strong>.</p>
+      <h2 id="events" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Events</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">system.check.completed</span> (every run: status and counts), <span class="font-mono text-sm break-words">system.check.changed</span> (what got worse or recovered), <span class="font-mono text-sm break-words">cluster.health.changed</span> (the cluster health status changed and held for two minutes: the new and previous status and what needs attention) and <span class="font-mono text-sm break-words">system_check.settings.update</span> (notification settings; can be blocked by subscribers). See <a href="events.html" class="text-cta hover:underline">Events</a>.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storage integrity — Depotex Docs</title>
+  <meta name="description" content="Check that every stored file is really in storage and unchanged, hide broken files, and delete them after a while">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+      <h1 class="vc-h1">Storage integrity</h1>
+      <p class="vc-lede">Check that every stored file is really in storage and unchanged, hide broken files, and delete them after a while</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Files in repositories are recorded in the database and kept in storage. The integrity check, under <strong class="text-text">Settings → Repositories → Integrity</strong> (super admins), makes sure the two agree. It runs every night and whenever you select <strong class="text-text">Check now</strong>. Every license tier; automatic deletion needs <strong class="text-text">Enterprise</strong>.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/integrity.png" alt="Settings → Integrity: status, settings and recent checks" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">integrity.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Integrity: status, settings and recent checks</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Integrity: status, settings and recent checks</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Finding</th><th>What happens</th></tr></thead><tbody><tr><td>A file's content is missing from storage, or has the wrong size (or checksum, with checksum verification on)</td><td>The file is <strong class="text-text">broken</strong>: hidden, not downloadable (404) and no longer counted in the space's usage. It stays listed under <strong class="text-text">Broken files</strong>.</td></tr><tr><td>The content of a broken file is back (a storage restore, or someone uploads the same file again)</td><td>The file is whole again, at the next check or at once on upload.</td></tr><tr><td>Storage holds content that no file uses and the database doesn't know (older than a day)</td><td>Counted as <strong class="text-text">orphaned</strong> content.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">A download that finds a file's content missing also hides the file straight away.</p>
+      <h2 id="repair" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Repair</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Broken files are kept for <strong class="text-text">Keep broken files for</strong> days (7 by default), in case their content comes back. After that, the nightly check deletes them, with versions left empty, and removes orphaned content, when <strong class="text-text">Delete broken files and orphaned content automatically</strong> is on (Enterprise).</li><li><strong class="text-text">Check and delete broken files</strong> does it now, on any tier: every broken file is deleted whatever its age. You're asked to confirm.</li></ul>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Checks and deletions only run when the server's storage is verified as this installation's (Settings → Storage). On the wrong storage every file would look missing, so the check is skipped instead.</p></div>
+      <h2 id="settings" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Settings</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Verify checksums</strong> re-reads every file and compares its SHA-256; slow on large storage. Off, sizes are compared.</li><li>The nightly time is the <span class="font-mono text-sm break-words">artifact-integrity-check</span> job under <strong class="text-text">Settings → Advanced → Scheduled jobs</strong>.</li></ul>
+      <p class="text-muted mb-4"><strong class="text-text">Recent checks</strong> lists each run: what it checked, found (missing, changed, orphaned, healed) and deleted. The system check warns when files are broken, or the last check failed, was skipped or is over a week old.</p>
+      <h2 id="events" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Events</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">artifact.integrity.broken</span> (after) is raised when a check finds missing or changed content, so automation can alert someone; <span class="font-mono text-sm break-words">artifact.integrity.repair</span> (before and after) wraps deleting. Repairs and setting changes are recorded in the audit log. See <a href="events.html" class="text-cta hover:underline">Events</a>.</p>
+      <h2 id="permissions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Permissions</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">integrity:admin</span></td><td>Super admins only</td><td>Running the check and repair, and changing its settings</td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

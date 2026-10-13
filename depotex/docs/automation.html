@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation — Depotex Docs</title>
+  <meta name="description" content="Send alerts, call webhooks or send emails automatically when something happens">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+      <h1 class="vc-h1">Automation</h1>
+      <p class="vc-lede">Send alerts, call webhooks or send emails automatically when something happens</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Automation rules act after something happens in Depotex. A rule watches one kind of event (a repository being created, a job failing), optionally checks a condition, and then runs its steps: send an alert, call a webhook in another system, or send an email.</p>
+      <p class="text-muted mb-4"><strong class="text-text">License:</strong> Pro or higher to create and change rules; built-in rules run on every license. <strong class="text-text">Permissions:</strong> <span class="font-mono text-sm break-words">automation:read</span> to view, <span class="font-mono text-sm break-words">automation:write</span> to create and change your organization's rules, <span class="font-mono text-sm break-words">automation:platform</span> for platform rules. Organization admins can view and write rules; platform rules need a super admin.</p>
+      <p class="text-muted mb-4">Rules never slow down or block the action itself: they run in the background a few seconds later. To stop an action, use a <a href="policies.html" class="text-cta hover:underline">policy</a> instead.</p>
+      <h2 id="managing-rules" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Managing rules</h2>
+      <p class="text-muted mb-4">Go to <strong class="text-text">Settings → Automation</strong>. The list shows each rule with a switch to turn it on or off, its event and condition (<strong class="text-text">When</strong>), what it does (<strong class="text-text">Then</strong>: alerts, webhooks, emails) and its last run, with the status when that run didn't finish cleanly (<strong class="text-text">Failed · 3 days ago</strong>). Click a rule to open it.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/automation-rules.png" alt="Settings → Automation: the rules with their on/off switch, event and condition, steps and last run" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">automation-rules.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Automation: the rules with their on/off switch, event and condition, steps and last run</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Automation: the rules with their on/off switch, event and condition, steps and last run</figcaption>
+      </figure>
+      <p class="text-muted mb-4">A rule's page has two tabs: <strong class="text-text">Settings</strong> (the editor) and <strong class="text-text">Runs</strong>.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/automation-rule.png" alt="A rule&#x27;s settings: When, Only if and Then, with Try it beside them" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">automation-rule.png</p>
+          <p class="text-xs text-muted max-w-md">A rule's settings: When, Only if and Then, with Try it beside them</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A rule's settings: When, Only if and Then, with Try it beside them</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">When:</strong> choose the event from the list, grouped by area, or type to search it. Events only platform rules can use are shown but can't be picked in an organization rule. Under the event, <strong class="text-text">Fields you can use</strong> lists its fields: click one to add it to the condition.</li><li><strong class="text-text">Only if:</strong> an optional condition (see <a href="#conditions" class="text-cta hover:underline">Conditions</a>).</li><li><strong class="text-text">Then:</strong> the steps, run in order. Move a step up or down with its arrows, or remove it. In an alert or email message, <strong class="text-text">Insert a field</strong> adds an event field such as <span class="font-mono text-sm break-words">{{name}}</span>.</li><li><strong class="text-text">Try it:</strong> check the condition against a sample event before saving. When it matches, it lists the steps that would run.</li><li><strong class="text-text">Rule is on</strong>, <strong class="text-text">Discard</strong> and <strong class="text-text">Save changes</strong> stay at the bottom of the form while you scroll. Save is available once something changed.</li><li><strong class="text-text">Runs:</strong> each time the rule ran, whether it succeeded, how many steps finished, how many attempts it took, and the error if one failed.</li><li>Switch a rule off (in the list or with <strong class="text-text">Rule is on</strong>) instead of deleting it. <strong class="text-text">Delete rule</strong> asks first and also deletes its run history; built-in rules can't be deleted.</li></ul>
+      <h2 id="steps" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Steps</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Step</th><th>What it does</th></tr></thead><tbody><tr><td><strong class="text-text">Send an alert</strong></td><td>Creates an in-app alert. Title and message can include event fields, such as <span class="font-mono text-sm break-words">New repository {{name}}</span>. Organization rules alert specific users of the organization; platform rules can also alert everyone with a role, or everyone.</td></tr><tr><td><strong class="text-text">Call a webhook</strong></td><td>Sends the event as JSON to an https URL in a signed POST request, with up to 20 extra headers of your own (see <a href="#webhook-headers" class="text-cta hover:underline">Webhook headers</a>).</td></tr><tr><td><strong class="text-text">Send an email</strong></td><td>Emails up to 20 addresses. Subject and message can include event fields. Offered only while email is set up and on under <a href="email.html" class="text-cta hover:underline">Settings → Email</a> (see <a href="#email-steps" class="text-cta hover:underline">Email steps</a>).</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">A rule can have up to 10 steps, run in order. If a step fails (for example the webhook is down), Depotex retries the rule later, starting at the step that failed, so earlier steps aren't repeated.</p>
+      <h2 id="conditions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Conditions</h2>
+      <p class="text-muted mb-4">Conditions use the same language as policies (CEL). They see the event's result as <span class="font-mono text-sm break-words">payload</span> (never passwords or secrets), <span class="font-mono text-sm break-words">actor.id</span> and <span class="font-mono text-sm break-words">now</span>. Leave the condition empty to run for every event.</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">payload.format == &quot;docker&quot;                  // only Docker repositories
+payload.consecutive_failures &gt;= 5            // on scheduler.job.unhealthy (platform rule)</code></pre>
+      <h2 id="organization-and-platform-rules" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Organization and platform rules</h2>
+      <div class="tbl-wrap"><table><thead><tr><th></th><th>Organization rule</th><th>Platform rule</th></tr></thead><tbody><tr><td>Who can manage</td><td><span class="font-mono text-sm break-words">automation:write</span> (organization admins)</td><td><span class="font-mono text-sm break-words">automation:platform</span> (super admins)</td></tr><tr><td>Events it sees</td><td>Events in its organization, for events that support organization rules</td><td>Every organization's events, and system events such as failing jobs</td></tr><tr><td>Alert recipients</td><td>Specific users of the organization</td><td>Users, roles or everyone</td></tr></tbody></table></div>
+      <h2 id="built-in-rules" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Built-in rules</h2>
+      <p class="text-muted mb-4">Depotex ships two platform rules: an alert when a scheduled job keeps failing, and one when it recovers. Super admins can change their recipients or wording, or switch them off, under Settings → Automation; they can't be deleted.</p>
+      <h2 id="webhooks" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Webhooks</h2>
+      <p class="text-muted mb-4">When you save a rule with a webhook step, Depotex shows its <strong class="text-text">signing secret</strong> once. Copy it into the receiving system. Each webhook step then shows <strong class="text-text">A signing secret is set</strong>; <strong class="text-text">Rotate secret</strong> there replaces it (after you confirm) and shows the new one once.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Header</th><th>Meaning</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">Depotex-Event</span></td><td>The event name, e.g. <span class="font-mono text-sm break-words">depot.repository.create</span></td></tr><tr><td><span class="font-mono text-sm break-words">Depotex-Delivery</span></td><td>Unique for the event and rule, the same on retries: use it to ignore duplicates</td></tr><tr><td><span class="font-mono text-sm break-words">Depotex-Timestamp</span></td><td>Unix time the request was signed</td></tr><tr><td><span class="font-mono text-sm break-words">Depotex-Signature</span></td><td><span class="font-mono text-sm break-words">sha256=</span> and the hex HMAC-SHA256 of <span class="font-mono text-sm break-words">&lt;timestamp&gt;.&lt;body&gt;</span> with the secret</td></tr></tbody></table></div>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">{
+  &quot;id&quot;: &quot;1042-7&quot;,
+  &quot;event&quot;: &quot;depot.repository.create&quot;,
+  &quot;occurredAt&quot;: &quot;2026-09-30T12:00:00Z&quot;,
+  &quot;orgId&quot;: 1,
+  &quot;actor&quot;: &quot;user:12&quot;,
+  &quot;payload&quot;: {&quot;id&quot;: 55, &quot;name&quot;: &quot;images&quot;, &quot;format&quot;: &quot;docker&quot;},
+  &quot;rule&quot;: {&quot;id&quot;: 7, &quot;name&quot;: &quot;Tell ops about Docker repositories&quot;}
+}</code></pre>
+      <h2 id="webhook-headers" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Webhook headers</h2>
+      <p class="text-muted mb-4">A webhook step can send up to 20 extra headers, for example an <span class="font-mono text-sm break-words">Authorization</span> header or an API key your receiver checks. Under the step's URL, choose <strong class="text-text">Add header</strong> and enter a name and a value.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/automation-webhook-headers.png" alt="A webhook step with two extra headers; values are hidden as you type" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">automation-webhook-headers.png</p>
+          <p class="text-xs text-muted max-w-md">A webhook step with two extra headers; values are hidden as you type</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A webhook step with two extra headers; values are hidden as you type</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Values are write-only.</strong> They are stored encrypted and never shown again, in the editor, the API or the audit log. A saved value shows <strong class="text-text">Saved (leave empty to keep)</strong>: leave it empty to keep it, or type a new one to replace it.</li><li><strong class="text-text">A saved value stays with its receiver.</strong> If you change the URL to a different host (or from https to http), every header needs its value again, so a saved credential can't be sent somewhere new.</li><li><strong class="text-text">Names Depotex sets itself can't be used:</strong> <span class="font-mono text-sm break-words">Host</span>, <span class="font-mono text-sm break-words">Content-Length</span>, <span class="font-mono text-sm break-words">Content-Type</span>, <span class="font-mono text-sm break-words">Transfer-Encoding</span>, connection headers (<span class="font-mono text-sm break-words">Connection</span>, <span class="font-mono text-sm break-words">Keep-Alive</span>, <span class="font-mono text-sm break-words">Upgrade</span>, <span class="font-mono text-sm break-words">TE</span>, <span class="font-mono text-sm break-words">Trailer</span>, <span class="font-mono text-sm break-words">Proxy-*</span>), <span class="font-mono text-sm break-words">Expect</span> and any name starting with <span class="font-mono text-sm break-words">Depotex-</span>. Depotex's own headers are always set last, so the signature can't be replaced.</li><li>Names use the characters allowed in HTTP header names (letters, digits and the symbols HTTP allows), up to 100 characters. Values are up to 4096 characters, without line breaks or other control characters. Each name may appear once.</li></ul>
+      <p class="text-muted mb-4">Any response other than 2xx counts as a failure and is retried with increasing delays (up to <span class="font-mono text-sm break-words">EVENT_MAX_ATTEMPTS</span>, 8 by default); redirects aren't followed. Check the signature and reject old timestamps in your receiver.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Webhooks can only reach public https addresses. Private, loopback and link-local addresses are refused, even if a hostname later points there. For internal receivers, the operator can set <span class="font-mono text-sm break-words">AUTOMATION_WEBHOOK_ALLOW_PRIVATE=true</span> (and <span class="font-mono text-sm break-words">AUTOMATION_WEBHOOK_ALLOW_HTTP=true</span> for plain http).</p></div>
+      <h2 id="email-steps" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Email steps</h2>
+      <p class="text-muted mb-4">An email step sends a message to a list of addresses when the rule runs, through the mail server set up under <a href="email.html" class="text-cta hover:underline">Settings → Email</a>. The step is offered only while email is set up and turned on there; until then the editor explains why it's missing.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/automation-email-step.png" alt="An email step with two addresses, a subject and a message using event fields" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">automation-email-step.png</p>
+          <p class="text-xs text-muted max-w-md">An email step with two addresses, a subject and a message using event fields</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">An email step with two addresses, a subject and a message using event fields</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Field</th><th>Rules</th></tr></thead><tbody><tr><td><strong class="text-text">Email addresses</strong></td><td>1 to 20 addresses, separated by commas, each once</td></tr><tr><td><strong class="text-text">Subject</strong></td><td>Required, up to 200 characters. Can use event fields, such as <span class="font-mono text-sm break-words">New repository {{name}}</span>; if the fields leave it empty, the rule's name is used</td></tr><tr><td><strong class="text-text">Message</strong></td><td>Optional, up to 5000 characters, with event fields too</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Each address gets its own email, with the rule's name, the event and a link to the rule. All of a step's emails are queued together; they are then sent and retried like every other Depotex email.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">If email is turned off after a rule was saved, its email step fails and the run shows the error <strong class="text-text">email isn't set up (Settings → Email)</strong>. That run isn't retried: turning email back on applies to the next events.</p></div>
+      <h2 id="loops" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Loops</h2>
+      <p class="text-muted mb-4">A rule's steps can cause new events, for example an alert step raises <span class="font-mono text-sm break-words">alert.create</span>. Depotex counts how many rules led to an event and stops after <span class="font-mono text-sm break-words">AUTOMATION_MAX_DEPTH</span> (3 by default); the run shows <strong class="text-text">Stopped (loop)</strong>.</p>
+      <h2 id="performance" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Performance</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>An event with no rules for its organization costs nothing extra.</li><li>Each matching event writes one run and runs the steps in the background; the action itself isn't slowed down.</li><li><strong class="text-text">Broad rules on busy events add up.</strong> A rule without a condition on a frequent event runs for every one of them, and every webhook call waits up to <span class="font-mono text-sm break-words">AUTOMATION_WEBHOOK_TIMEOUT</span>. Keep conditions specific.</li><li>Changes to rules take effect immediately on all servers with Redis, and within <span class="font-mono text-sm break-words">AUTOMATION_CACHE_TTL</span> (10 s) without it.</li></ul>
+      <h2 id="api" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. API</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><span class="font-mono text-sm break-words">/api/automation/events</span></td><td><span class="font-mono text-sm break-words">automation:read</span></td><td>Events rules can use, with their fields, and <span class="font-mono text-sm break-words">emailAvailable</span> (whether email steps can be saved)</td></tr><tr><td>GET / POST</td><td><span class="font-mono text-sm break-words">/api/automation/rules</span></td><td>read / write</td><td>List / create (the response includes <span class="font-mono text-sm break-words">webhookSecret</span> once; header values are never returned, only <span class="font-mono text-sm break-words">{"name", "set": true}</span>)</td></tr><tr><td>GET / PUT / DELETE</td><td><span class="font-mono text-sm break-words">/api/automation/rules/{id}</span></td><td>read / write / write</td><td>View / change (send the <span class="font-mono text-sm break-words">version</span> you edited; a header sent without <span class="font-mono text-sm break-words">value</span> keeps its saved value while the URL stays on the same host) / delete</td></tr><tr><td>POST</td><td><span class="font-mono text-sm break-words">/api/automation/rules/{id}/rotate-secret</span></td><td>write</td><td>New webhook signing secret</td></tr><tr><td>GET</td><td><span class="font-mono text-sm break-words">/api/automation/rules/{id}/runs</span></td><td>read</td><td>Runs, newest first (paginated)</td></tr><tr><td>POST</td><td><span class="font-mono text-sm break-words">/api/automation/test</span></td><td>write</td><td>Try a draft rule's condition on a sample event</td></tr></tbody></table></div>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">curl -X POST /api/automation/rules -H &quot;Content-Type: application/json&quot; -d &#x27;{
+  &quot;name&quot;: &quot;Tell ops about Docker repositories&quot;,
+  &quot;event&quot;: &quot;depot.repository.create&quot;,
+  &quot;condition&quot;: &quot;payload.format == \&quot;docker\&quot;&quot;,
+  &quot;steps&quot;: [
+    {&quot;type&quot;: &quot;alert&quot;, &quot;alert&quot;: {&quot;severity&quot;: &quot;info&quot;, &quot;targetType&quot;: &quot;user&quot;, &quot;targetValue&quot;: [&quot;12&quot;], &quot;title&quot;: &quot;New Docker repository {{name}}&quot;, &quot;message&quot;: &quot;Created in your organization.&quot;}},
+    {&quot;type&quot;: &quot;webhook&quot;, &quot;webhook&quot;: {&quot;url&quot;: &quot;https://hooks.example.com/depotex&quot;, &quot;headers&quot;: [{&quot;name&quot;: &quot;Authorization&quot;, &quot;value&quot;: &quot;Bearer &lt;token&gt;&quot;}]}},
+    {&quot;type&quot;: &quot;email&quot;, &quot;email&quot;: {&quot;to&quot;: [&quot;ops@example.com&quot;], &quot;subject&quot;: &quot;New Docker repository {{name}}&quot;, &quot;message&quot;: &quot;Created in your organization.&quot;}}
+  ]
+}&#x27;</code></pre>
+      <h2 id="settings" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">12. Settings</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Variable</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">AUTOMATION_MAX_DEPTH</span></td><td><span class="font-mono text-sm break-words">3</span></td><td>How many rules in a row may cause each other before Depotex stops (loop protection)</td></tr><tr><td><span class="font-mono text-sm break-words">AUTOMATION_CACHE_TTL</span></td><td><span class="font-mono text-sm break-words">10s</span></td><td>How quickly a server picks up rule changes when Redis isn't available</td></tr><tr><td><span class="font-mono text-sm break-words">AUTOMATION_COST_LIMIT</span></td><td><span class="font-mono text-sm break-words">10000</span></td><td>Maximum size of a condition's work</td></tr><tr><td><span class="font-mono text-sm break-words">AUTOMATION_WEBHOOK_TIMEOUT</span></td><td><span class="font-mono text-sm break-words">10s</span></td><td>How long a webhook call may take</td></tr><tr><td><span class="font-mono text-sm break-words">AUTOMATION_WEBHOOK_ALLOW_PRIVATE</span></td><td><span class="font-mono text-sm break-words">false</span></td><td>Allow webhooks to private or loopback addresses</td></tr><tr><td><span class="font-mono text-sm break-words">AUTOMATION_WEBHOOK_ALLOW_HTTP</span></td><td><span class="font-mono text-sm break-words">false</span></td><td>Allow plain http webhook URLs</td></tr><tr><td><span class="font-mono text-sm break-words">AUTOMATION_RUN_RETENTION_DAYS</span></td><td><span class="font-mono text-sm break-words">30</span></td><td>How long runs are kept (cleaned up by the automation-run-cleanup job)</td></tr><tr><td><span class="font-mono text-sm break-words">AUTOMATION_RUN_CLEANUP_SCHEDULE</span></td><td><span class="font-mono text-sm break-words">50 4 * * *</span></td><td>When the cleanup job runs</td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

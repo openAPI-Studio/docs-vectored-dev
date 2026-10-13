@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hugging Face repositories — Depotex Docs</title>
+  <meta name="description" content="Models, datasets and Spaces for huggingface_hub, the hf command, transformers and datasets">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Hugging Face repositories</h1>
+      <p class="vc-lede">Models, datasets and Spaces for huggingface_hub, the hf command, transformers and datasets</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Hugging Face repositories are endpoints for the <span class="font-mono text-sm break-words">huggingface_hub</span> library, the <span class="font-mono text-sm break-words">hf</span> command and everything built on them (transformers, datasets, diffusers). Point <span class="font-mono text-sm break-words">HF_ENDPOINT</span> at a Depotex repository and models, datasets and Spaces live there instead of on huggingface.co. One Depotex repository holds any number of Hugging Face repositories (<span class="font-mono text-sm break-words">org/name</span>). Hosted repositories keep a real history (commits, branches and tags); proxy repositories cache the Hugging Face Hub or another Depotex; groups combine them.</p>
+      <p class="text-muted mb-4">Each commit's model card becomes an <strong class="text-text">AI BOM</strong>: the model or dataset, its base models and training datasets, and its license, as an SBOM in the browser's Signatures &amp; SBOMs tab and in <a href="sbom.html#models-and-datasets-ai-bom" class="text-cta hover:underline">Components</a> search.</p>
+      <h2 id="set-up" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Set up</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">export HF_ENDPOINT=https://depotex.example.com/repository/my-space/hf
+export HF_TOKEN=&quot;$DEPOTEX_TOKEN&quot;     # an API token
+export HF_HUB_DISABLE_XET=1          # for uploads, when hf_xet is installed</code></pre>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">hf repos create acme/demo
+hf upload acme/demo ./model .
+hf download acme/demo
+hf repos tag create acme/demo v1.0</code></pre>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">from huggingface_hub import snapshot_download
+snapshot_download(&quot;acme/demo&quot;, revision=&quot;v1.0&quot;)   # reads HF_ENDPOINT and HF_TOKEN</code></pre>
+      <p class="text-muted mb-4">Libraries that load from the Hub (<span class="font-mono text-sm break-words">from_pretrained</span>, <span class="font-mono text-sm break-words">load_dataset</span>) use the same variables. The repository's <strong class="text-text">Usage</strong> tab shows them with your address filled in.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Depotex doesn't offer Xet storage. Downloads fall back to plain HTTP on their own, but uploads of large files need <span class="font-mono text-sm break-words">HF_HUB_DISABLE_XET=1</span> when the <span class="font-mono text-sm break-words">hf_xet</span> package is installed, so they go through Git LFS.</p></div>
+      <h2 id="repositories-branches-and-tags" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Repositories, branches and tags</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Creating a repository needs Publish permission and makes its first commit on <span class="font-mono text-sm break-words">main</span>. Uploads are commits: small files go inside the commit, larger ones (over <span class="font-mono text-sm break-words">HUGGINGFACE_REGULAR_MAX_SIZE</span>, 10 MiB by default) through Git LFS.</li><li>Branches and tags are created and deleted as on the Hub (<span class="font-mono text-sm break-words">hf repos branch create</span>, <span class="font-mono text-sm break-words">hf repos tag create</span>). A commit is refused if its branch moved since the client read it, so two uploads can't overwrite each other.</li><li>Downloads carry the headers the client's cache needs (<span class="font-mono text-sm break-words">X-Repo-Commit</span>, <span class="font-mono text-sm break-words">ETag</span> and, for large files, <span class="font-mono text-sm break-words">X-Linked-Etag</span>), and a cached file is revalidated with a 304 when it hasn't changed.</li><li>Creating, deleting, changing a repository's private flag, and creating or deleting branches and tags raise the <span class="font-mono text-sm break-words">huggingface.repo.update</span> <a href="events.html" class="text-cta hover:underline">event</a>, so policies can refuse them.</li></ul>
+      <h2 id="versions-and-policies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Versions and policies</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Each commit is a version</strong>: cleanup policies, quotas, <a href="quarantine.html" class="text-cta hover:underline">quarantine</a> and the <a href="blocklist.html" class="text-cta hover:underline">block list</a> act on commits. Downloading at a quarantined or blocked commit is refused.</li><li>A file's content is stored once per Hugging Face repository, whatever commits use it. Content no commit uses any more is removed by the nightly <span class="font-mono text-sm break-words">huggingface-gc</span> job after <span class="font-mono text-sm break-words">HUGGINGFACE_GC_GRACE</span> (24 hours).</li></ul>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Cleanup sees commits, not branches: a rule can remove the commit a branch points to, and the branch then answers 404 until it moves. Keep cleanup rules away from Hugging Face repositories whose branches must stay readable, or keep enough recent versions.</p></div>
+      <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Proxy repositories</h2>
+      <p class="text-muted mb-4">Add an upstream with the <strong class="text-text">Hugging Face Hub</strong> preset (<span class="font-mono text-sm break-words">https://huggingface.co</span>), allow it for the space, then create a proxy repository with it. A proxy caches each file by commit, checked against the Hub's SHA-256 for large files; listings, trees and history are forwarded live. Proxies are read-only. A proxy can also reach a Hugging Face repository of another Depotex (<a href="upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
+      <h2 id="groups" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Groups</h2>
+      <p class="text-muted mb-4">A Hugging Face <a href="repository-groups.html" class="text-cta hover:underline">group</a> merges the lists of models, datasets and Spaces of its members, reads each repository from the first member that has it, and sends writes to its write member.</p>
+      <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. In the artifact browser</h2>
+      <p class="text-muted mb-4">Models, datasets and Spaces show by id, with their commits as versions. The <strong class="text-text">Install</strong> bar shows <span class="font-mono text-sm break-words">hf download</span> and <span class="font-mono text-sm break-words">snapshot_download</span> at that commit.</p>
+      <h2 id="server-settings" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Server settings</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Variable</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">HUGGINGFACE_REGULAR_MAX_SIZE</span></td><td><span class="font-mono text-sm break-words">10485760</span></td><td>Largest file sent inside a commit (1 KiB–100 MiB); larger ones go through Git LFS</td></tr><tr><td><span class="font-mono text-sm break-words">HUGGINGFACE_UPLOAD_LINK_TTL</span></td><td><span class="font-mono text-sm break-words">2h</span></td><td>How long a large-file upload link works (1m–48h)</td></tr><tr><td><span class="font-mono text-sm break-words">HUGGINGFACE_GC_GRACE</span></td><td><span class="font-mono text-sm break-words">24h</span></td><td>How long content no commit uses is kept before it's removed (1h–30 days)</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The artifact size limit (<strong class="text-text">Settings → Repositories</strong>) applies to every file.</p>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>No Xet storage (see above).</li><li>No moving repositories, pull requests, discussions or the Hub's conversions.</li><li>Through a proxy, a revision with <span class="font-mono text-sm break-words">/</span> in its name (other than <span class="font-mono text-sm break-words">refs/pr/N</span>) may not resolve: use the commit id.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

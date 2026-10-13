@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quarantine — Depotex Docs</title>
+  <meta name="description" content="Hold back new or suspect versions until someone releases them: rules for uploads and proxied files, by hand, and age rules against freshly published packages">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+      <h1 class="vc-h1">Quarantine</h1>
+      <p class="vc-lede">Hold back new or suspect versions until someone releases them: rules for uploads and proxied files, by hand, and age rules against freshly published packages</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">A quarantined version stays listed in its repository but can't be downloaded until someone releases it. Builds that need it fail with a clear <strong class="text-text">quarantined</strong> error and the reason, instead of quietly using something else. Versions are quarantined by <strong class="text-text">rules</strong>, as they are published or fetched by a proxy repository, or <strong class="text-text">by hand</strong>. Needs an <strong class="text-text">Enterprise</strong> license.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Downloads, <span class="font-mono text-sm break-words">HEAD</span> requests and checksum files of a quarantined version answer <strong class="text-text">403</strong> with the reason <span class="font-mono text-sm break-words">quarantined</span> and the rule's reason.</li><li>Another Depotex linked to the repository (<a href="upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>) is refused too, and removes copies it cached.</li><li>Quarantined versions stay in the version lists clients resolve from (such as <span class="font-mono text-sm break-words">maven-metadata.xml</span> and npm package documents). Turn on <strong class="text-text">Hide quarantined versions</strong> in a repository's <strong class="text-text">Settings</strong> to leave them out, so builds pick another version. <span class="font-mono text-sm break-words">npm audit</span> reports quarantined versions as high advisories.</li><li>A released version is never quarantined again by a rule; it can still be quarantined by hand.</li><li>Depotex also quarantines versions carrying unsafe content (oversized or hostile SBOMs, attestations or metadata) by itself, on every license tier: see <a href="browse.html#unsafe-content-is-quarantined" class="text-cta hover:underline">Browse</a>. They show as <strong class="text-text">Refused content (automatic)</strong>.</li><li>A <a href="sbom.html#policies-on-sboms" class="text-cta hover:underline">policy on SBOMs</a> that denies what a version's SBOM lists (severe vulnerabilities, forbidden licenses) quarantines it too; those show as <strong class="text-text">Refused by policy</strong> with the policy's message.</li></ul>
+      <h2 id="quarantine-rules" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Quarantine rules</h2>
+      <p class="text-muted mb-4">Rules apply to new versions when their first file is published or fetched. There are rules at two levels:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Space rules</strong>, in the space's <strong class="text-text">Settings</strong> under <strong class="text-text">Quarantine rules</strong> (maintainers and owners), with its other policies. A space rule can be narrowed to one repository.</li><li><strong class="text-text">Installation rules</strong>, under <strong class="text-text">Settings → Repositories → Quarantine</strong> (super admins), for every repository of every space.</li></ul>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Meaning</th></tr></thead><tbody><tr><td><strong class="text-text">Applies to</strong></td><td>Uploads and proxied files, uploads only (hosted repositories), or proxied files only.</td></tr><tr><td><strong class="text-text">Formats</strong></td><td>Which formats; none ticked means all.</td></tr><tr><td><strong class="text-text">Namespace</strong>, <strong class="text-text">Name</strong>, <strong class="text-text">Version</strong></td><td>Patterns the version must match; <span class="font-mono text-sm break-words">*</span> matches anything, <span class="font-mono text-sm break-words">?</span> one character, case doesn't matter; empty matches everything. A Maven name is <span class="font-mono text-sm break-words">groupId:artifactId</span> (so <span class="font-mono text-sm break-words">com.acme:*</span>), an npm name may have its <span class="font-mono text-sm break-words">@scope</span>, and a PyPI name matches however it is written (<span class="font-mono text-sm break-words">Acme_Internal*</span> matches <span class="font-mono text-sm break-words">acme-internal-tools</span>). For example, version <span class="font-mono text-sm break-words">*-rc*</span> holds back release candidates.</td></tr><tr><td><strong class="text-text">Published less than (days)</strong></td><td>Only versions published less than this many days ago: proxied files by the upstream's date, uploads from when they're uploaded. Their quarantine ends by itself when they are old enough. This holds back freshly published packages, the way malicious ones usually arrive.</td></tr><tr><td><strong class="text-text">Reason</strong></td><td>Shown to anyone whose download is refused, and in the quarantine list.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Every setting you fill in must match. When several rules match, one without an age limit wins; otherwise the one ending last.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">When a proxied file's upstream doesn't say when it was published, an age rule treats it as just published.</p></div>
+      <h2 id="quarantined-versions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Quarantined versions</h2>
+      <p class="text-muted mb-4">The space's <strong class="text-text">Quarantine</strong> tab lists its quarantined versions, newest first, and <strong class="text-text">Settings → Repositories → Quarantine</strong> lists every space's. Show the versions held, released or all, and search by name, version or repository (on the installation-wide list, also by space). Select several to release them together.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/quarantine.png" alt="Settings → Quarantine: versions held back in every space, and the installation&#x27;s rules" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">quarantine.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Quarantine: versions held back in every space, and the installation's rules</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Quarantine: versions held back in every space, and the installation's rules</figcaption>
+      </figure>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Release</span> &mdash; Tick the versions, or choose <strong class="text-text">Release</strong> on one, add a note if you like (it goes in the audit log), and confirm. They can be downloaded again at once.</li><li class="pl-2"><span class="text-text font-medium">Quarantine by hand</span> &mdash; In a repository's <strong class="text-text">Versions</strong> tab, choose <strong class="text-text">Quarantine</strong> next to a version and give a reason. <strong class="text-text">Release</strong> there does the opposite.</li></ol>
+      <p class="text-muted mb-4">AI agents can quarantine and release versions too, through <a href="plugins.html#write-tools" class="text-cta hover:underline">write tools</a>, once an administrator allows it. They act as the person using them, need the same rights in the space, and are recorded in the audit log with <span class="font-mono text-sm break-words">via: mcp:&lt;plugin&gt;/&lt;application&gt;</span>.</p>
+      <p class="text-muted mb-4">Versions held by an age rule show until when; once that time passes they're downloadable again and are listed as ended.</p>
+      <h2 id="without-enterprise" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Without Enterprise</h2>
+      <p class="text-muted mb-4">Rules don't apply and nothing new can be quarantined, but versions already quarantined stay quarantined, and you can still list and release them and delete rules.</p>
+      <h2 id="events" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Events</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">artifact.quarantine</span> is raised when a version is quarantined (by hand: before and after, so policies can refuse it; by a rule: after). <span class="font-mono text-sm break-words">artifact.release</span> is raised when one is released (by hand: before, refused if a policy or plugin fails, and after; when an age rule ends: after). <span class="font-mono text-sm break-words">quarantine.rule.create</span>, <span class="font-mono text-sm break-words">.update</span> and <span class="font-mono text-sm break-words">.delete</span> wrap rule changes. Use <a href="automation.html" class="text-cta hover:underline">automation</a> to notify someone when versions are quarantined. Everything is recorded in the audit log. See <a href="events.html" class="text-cta hover:underline">Events</a>.</p>
+      <h2 id="permissions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Permissions</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">spaces:quarantine:manage</span></td><td>Space maintainers and owners</td><td>The space's quarantine list, quarantining and releasing its versions, and its rules</td></tr><tr><td><span class="font-mono text-sm break-words">artifacts:quarantine:manage</span></td><td>Super admins only</td><td>Settings → Repositories → Quarantine: every space's quarantined versions and the installation rules</td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

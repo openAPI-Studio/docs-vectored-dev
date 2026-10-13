@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker repositories — Depotex Docs</title>
+  <meta name="description" content="Container images and OCI artifacts for docker, BuildKit, Helm, ORAS and other OCI tools">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Docker repositories</h1>
+      <p class="vc-lede">Container images and OCI artifacts for docker, BuildKit, Helm, ORAS and other OCI tools</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Docker repositories are OCI registries for docker, BuildKit, containerd and other OCI tools (Helm, ORAS, crane, skopeo, cosign). An image's name is the Depotex address, the space, the repository and the image: <span class="font-mono text-sm break-words">depotex.example.com/my-space/images/my-app:1.0</span>.</p>
+      <h2 id="sign-in-push-and-pull" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Sign in, push and pull</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">echo &quot;$DEPOTEX_TOKEN&quot; | docker login depotex.example.com -u me --password-stdin
+docker tag my-app depotex.example.com/my-space/images/my-app:1.0
+docker push depotex.example.com/my-space/images/my-app:1.0
+docker pull depotex.example.com/my-space/dockerhub/nginx:latest</code></pre>
+      <p class="text-muted mb-4">With a Docker <a href="repository-groups.html" class="text-cta hover:underline">group</a> as the space's default, <span class="font-mono text-sm break-words">depotex.example.com/my-space/docker/&lt;image&gt;</span> pulls from the group's members in order (your repositories, then a Docker Hub proxy) and takes pushes, which go to the repository the group's write rules choose by image name.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">push</strong> (Publish permission), <strong class="text-text">pull</strong> by tag or digest, <strong class="text-text">build --push</strong> with multi-platform images and attestations, <strong class="text-text">manifest</strong>, <strong class="text-text">buildx imagetools</strong> and <strong class="text-text">search</strong> work as with any registry.</li><li>Layers already in another repository you can read aren't uploaded again.</li><li>Helm charts pushed to OCI registries (<span class="font-mono text-sm break-words">helm push oci://…</span>), ORAS artifacts and other OCI artifacts are stored like images. For classic chart repositories (<span class="font-mono text-sm break-words">helm repo add</span>, <span class="font-mono text-sm break-words">index.yaml</span>), use a <a href="helm.html" class="text-cta hover:underline">Helm repository</a>.</li></ul>
+      <h2 id="tags-and-policies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Tags and policies</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each <strong class="text-text">tag</strong> is a version: it shows in the <strong class="text-text">Versions</strong> tab, and cleanup policies, quotas, quarantine and the block list apply to tags. Pulling a blocked or quarantined tag's digest is refused too.</li><li><strong class="text-text">Moving a tag</strong> needs Overwrite permission; with publishing set to <strong class="text-text">Allow once</strong>, tags can't be moved (pushing the same image again is fine).</li><li>Layers and manifests no tag uses any more are removed a day later (the <strong class="text-text">docker-gc</strong> job).</li></ul>
+      <h2 id="signatures-and-sboms" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Signatures and SBOMs</h2>
+      <p class="text-muted mb-4">Signatures and SBOMs pushed with cosign, notation or ORAS are kept as referrers of the image (the OCI referrers API). Build attestations from <span class="font-mono text-sm break-words">docker buildx build --attest</span> or <span class="font-mono text-sm break-words">--sbom</span> stay in the image index. The <a href="browse.html" class="text-cta hover:underline">browser</a> lists both, with SBOM summaries (SPDX and CycloneDX) and provenance.</p>
+      <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Proxy repositories</h2>
+      <p class="text-muted mb-4">A proxy repository of Docker Hub (preset <strong class="text-text">Docker Hub</strong>), GHCR or another registry fetches and caches images. Docker Hub's official images are reached without <span class="font-mono text-sm break-words">library/</span> (<span class="font-mono text-sm break-words">…/dockerhub/nginx</span>). Give the upstream a Docker Hub username and access token to avoid its anonymous pull limits.</p>
+      <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. In the artifact browser</h2>
+      <p class="text-muted mb-4">Images show by path, then their tags. The Overview shows the digest, kind (image or index), source and, per platform, size, build date, user, entrypoint, command, ports, environment and labels; the Layers tab lists each platform's layers with sizes and digests. The quick facts show <span class="font-mono text-sm break-words">docker pull</span> by tag and by digest.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Docker needs HTTPS for registries other than localhost: serve Depotex over HTTPS, or add it to the Docker daemon's insecure registries for testing. Behind a load balancer, route <span class="font-mono text-sm break-words">/v2/</span> and <span class="font-mono text-sm break-words">/v1/search</span> to Depotex's backend.</p></div>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Docker references are lower case: spaces and repositories with upper-case names can't be addressed.</li><li>Docker Content Trust (Notary) isn't provided; sign images with cosign or notation instead.</li><li>The block list and quarantine refuse manifests (tags and digests); a layer pulled by its digest alone is still served.</li><li>Layers a proxy fetched stay until the repository is deleted (cleanup acts on tags).</li><li>A proxy's tag list is the upstream's first page (Docker Hub returns up to 100 by default).</li><li>Uploads sent in several chunks cost a copy per chunk; docker and BuildKit send one.</li><li>Depotex link upstreams aren't available for Docker yet.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Go module repositories — Depotex Docs</title>
+  <meta name="description" content="Go modules for the go command: a GOPROXY for go get, go mod download and builds">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><polyline points="15 2 15 7 20 7"/></svg></div>
+      <h1 class="vc-h1">Go module repositories</h1>
+      <p class="vc-lede">Go modules for the go command: a GOPROXY for go get, go mod download and builds</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Go repositories serve the module proxy protocol (GOPROXY) the go command uses for <span class="font-mono text-sm break-words">go get</span>, <span class="font-mono text-sm break-words">go mod download</span>, <span class="font-mono text-sm break-words">go list -m</span> and builds. Hosted repositories hold the versions you publish; proxy repositories cache proxy.golang.org, Athens or another module proxy.</p>
+      <h2 id="set-up-the-go-command" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Set up the go command</h2>
+      <p class="text-muted mb-4">Put Depotex first in <span class="font-mono text-sm break-words">GOPROXY</span>, and list your own modules in <span class="font-mono text-sm break-words">GONOSUMDB</span> so go doesn't look them up in the public checksum database (it doesn't know them). The go command reads credentials for the address from <span class="font-mono text-sm break-words">~/.netrc</span>, with an API token as the password:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">go env -w GOPROXY=https://depotex.example.com/repository/my-space/go/,https://proxy.golang.org,direct
+go env -w GONOSUMDB=example.com/acme/*
+
+# ~/.netrc
+machine depotex.example.com login me password &lt;API token&gt;</code></pre>
+      <p class="text-muted mb-4">With a Go <a href="repository-groups.html" class="text-cta hover:underline">group</a> as the space's default, <span class="font-mono text-sm break-words">https://depotex.example.com/repository/my-space/go/</span> downloads your modules and public ones (through a proxy member) from one address: <span class="font-mono text-sm break-words">GOPROXY=https://depotex.example.com/repository/my-space/go/</span> alone is enough.</p>
+      <h2 id="publish-a-version" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Publish a version</h2>
+      <p class="text-muted mb-4">A version is published by uploading its module zip. Let the go command build the zip from a tagged version of your repository, then upload it with Publish permission:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">ZIP=$(GOPROXY=direct go mod download -json example.com/acme/tools@v1.2.0 | jq -r .Zip)
+curl -f -u &quot;me:$DEPOTEX_TOKEN&quot; --upload-file &quot;$ZIP&quot; \
+  https://depotex.example.com/repository/my-space/go/example.com/acme/tools/@v/v1.2.0.zip</code></pre>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The zip is checked the way the go command checks module zips (every file under <span class="font-mono text-sm break-words">module@version/</span>, the go command's size and name limits), and its <span class="font-mono text-sm break-words">go.mod</span> must name the module. That <span class="font-mono text-sm break-words">go.mod</span> becomes the version's <span class="font-mono text-sm break-words">.mod</span> file; you can also upload <span class="font-mono text-sm break-words">.mod</span> and <span class="font-mono text-sm break-words">.info</span> yourself.</li><li>Module paths with capital letters are written the way the go command does in addresses: <span class="font-mono text-sm break-words">github.com/!azure/…</span> for <span class="font-mono text-sm break-words">github.com/Azure/…</span>.</li><li>A version can't be replaced once published: every <span class="font-mono text-sm break-words">go.sum</span> that uses it pins its content. New Go repositories publish <strong class="text-text">once</strong>.</li><li>The version list (<span class="font-mono text-sm break-words">@v/list</span>) and <span class="font-mono text-sm break-words">@latest</span> are generated from what the repository holds. The list has tagged versions only; <span class="font-mono text-sm break-words">@latest</span> is the highest release, or the highest pre-release when there's no release.</li></ul>
+      <h2 id="versions-and-policies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Versions and policies</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each module version is a version in Depotex: it shows in the <strong class="text-text">Versions</strong> tab, and cleanup policies, quotas, <a href="quarantine.html" class="text-cta hover:underline">quarantine</a> and the <a href="blocklist.html" class="text-cta hover:underline">block list</a> apply to it.</li><li>Block-list ranges compare versions by semver, with or without the leading <span class="font-mono text-sm break-words">v</span> (<span class="font-mono text-sm break-words">[v1.2.0,v1.4.0)</span> and <span class="font-mono text-sm break-words">[1.2.0,1.4.0)</span> are the same).</li><li>Blocked versions are left out of the version list and <span class="font-mono text-sm break-words">@latest</span>, and their files are refused. Quarantined versions are refused too, and left out when the repository hides them.</li><li>Cleanup policies warn before removing hosted Go versions: builds whose <span class="font-mono text-sm break-words">go.mod</span> still requires a removed version fail.</li></ul>
+      <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Proxy repositories</h2>
+      <p class="text-muted mb-4">Add an upstream with the <strong class="text-text">Go module proxy</strong> preset (<span class="font-mono text-sm break-words">https://proxy.golang.org</span>), or the address of Athens, Artifactory or another module proxy, allow it for the space, then create a proxy repository with it. Module files are fetched on first request and kept; version lists, <span class="font-mono text-sm break-words">@latest</span> and branch or commit queries (<span class="font-mono text-sm break-words">@v/main.info</span>) are re-checked after the metadata age. Checksum-database requests (<span class="font-mono text-sm break-words">sumdb/</span>) pass through to the upstream, so <span class="font-mono text-sm break-words">GOSUMDB</span> keeps working through Depotex. Downloads are still checked by the go command against <span class="font-mono text-sm break-words">go.sum</span> and the checksum database.</p>
+      <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. In the artifact browser</h2>
+      <p class="text-muted mb-4">Modules show by path, then their versions with their files (<span class="font-mono text-sm break-words">.zip</span>, <span class="font-mono text-sm break-words">.mod</span>, <span class="font-mono text-sm break-words">.info</span>). The <strong class="text-text">Install</strong> bar shows <span class="font-mono text-sm break-words">go get</span> for the version, with the repository as <span class="font-mono text-sm break-words">GOPROXY</span>.</p>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Hosted modules aren't in a checksum database: list them in <span class="font-mono text-sm break-words">GONOSUMDB</span> (or <span class="font-mono text-sm break-words">GOPRIVATE</span>). A Depotex checksum database isn't available yet.</li><li>Hosted repositories can't resolve branches or commits (<span class="font-mono text-sm break-words">go get example.com/acme/tools@main</span>): publish a tagged version, or use a proxy of a source that can.</li><li>The browser doesn't read <span class="font-mono text-sm break-words">go.mod</span> requirements yet (no Dependencies tab), and retracted versions aren't marked.</li><li>Depotex link upstreams aren't available for Go yet.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

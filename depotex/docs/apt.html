@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APT repositories (Debian packages) — Depotex Docs</title>
+  <meta name="description" content="Debian and Ubuntu packages for apt and apt-get, with signed indexes, published with a PUT or POST">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">APT repositories (Debian packages)</h1>
+      <p class="vc-lede">Debian and Ubuntu packages for apt and apt-get, with signed indexes, published with a PUT or POST</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">APT repositories serve Debian archives to <span class="font-mono text-sm break-words">apt</span>, <span class="font-mono text-sm break-words">apt-get</span>, <span class="font-mono text-sm break-words">apt-cache</span>, <span class="font-mono text-sm break-words">apt-file</span> and <span class="font-mono text-sm break-words">apt-get source</span>. Hosted repositories take <span class="font-mono text-sm break-words">.deb</span> and <span class="font-mono text-sm break-words">.udeb</span> packages and source packages, and generate every distribution's indexes (<span class="font-mono text-sm break-words">Release</span>, <span class="font-mono text-sm break-words">InRelease</span>, <span class="font-mono text-sm break-words">Packages</span>, <span class="font-mono text-sm break-words">Sources</span>, <span class="font-mono text-sm break-words">Contents</span>), signed with the repository's own key. Proxy repositories cache Debian, Ubuntu or a vendor's archive; groups combine them and sign the merged indexes with the group's key.</p>
+      <h2 id="add-the-repository" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Add the repository</h2>
+      <p class="text-muted mb-4">The repository writes the configuration for you, with its signing key included. On the machine that installs packages:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">sudo curl -fsSL -u &quot;me:$DEPOTEX_TOKEN&quot; -o /etc/apt/sources.list.d/depotex.sources \
+  &quot;https://depotex.example.com/repository/my-space/apt/depotex.sources?distribution=bookworm&amp;components=main&quot;
+sudo apt-get update
+sudo apt-get install hello</code></pre>
+      <p class="text-muted mb-4">Prefer the one-line format? Download the key to <span class="font-mono text-sm break-words">/etc/apt/keyrings/depotex.asc</span> from <span class="font-mono text-sm break-words">…/public.key</span> and use <span class="font-mono text-sm break-words">…/depotex.list?distribution=bookworm&amp;components=main</span> instead. For a private space, put the credentials in <span class="font-mono text-sm break-words">/etc/apt/auth.conf.d/</span> rather than in the address. The repository's <strong class="text-text">Usage</strong> tab shows these commands with your address filled in.</p>
+      <h2 id="publish-a-package" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Publish a package</h2>
+      <p class="text-muted mb-4">Upload with Publish permission. Choose the distribution and component with the query (<span class="font-mono text-sm break-words">?distribution=bookworm&amp;component=main</span>; several distributions comma-separated) or with <span class="font-mono text-sm break-words">;deb.distribution=…;deb.component=…</span> matrix parameters as JFrog clients send them; without them a package goes to <span class="font-mono text-sm break-words">stable</span>/<span class="font-mono text-sm break-words">main</span>.</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">curl -f -u &quot;me:$DEPOTEX_TOKEN&quot; --upload-file hello_1.0-1_amd64.deb \
+  &quot;https://depotex.example.com/repository/my-space/apt/pool/main/h/hello/hello_1.0-1_amd64.deb?distribution=bookworm&amp;component=main&quot;
+
+# or as Nexus clients do: POST the package, Depotex files it under pool/
+curl -f -u &quot;me:$DEPOTEX_TOKEN&quot; -H &quot;Content-Type: application/vnd.debian.binary-package&quot; \
+  --data-binary @hello_1.0-1_amd64.deb &quot;https://depotex.example.com/repository/my-space/apt/?distribution=bookworm&quot;</code></pre>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The package is read: a bad <span class="font-mono text-sm break-words">.deb</span> or <span class="font-mono text-sm break-words">.dsc</span> is refused. Packages for <span class="font-mono text-sm break-words">all</span> architectures show in every architecture's index.</li><li>For a source package, upload its <span class="font-mono text-sm break-words">.orig.tar.*</span> and <span class="font-mono text-sm break-words">.debian.tar.*</span> (or <span class="font-mono text-sm break-words">.diff.gz</span>) first, then the <span class="font-mono text-sm break-words">.dsc</span>; <span class="font-mono text-sm break-words">apt-get source</span> then finds it.</li><li>Uploading the same file again with another distribution adds that distribution; a different file at the same path is refused. New APT repositories publish <strong class="text-text">once</strong>.</li><li>The indexes under <span class="font-mono text-sm break-words">dists/</span> and <span class="font-mono text-sm break-words">public.key</span> are generated and can't be uploaded. They update on the next <span class="font-mono text-sm break-words">apt-get update</span> after an upload.</li></ul>
+      <h2 id="signing-key" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Signing key</h2>
+      <p class="text-muted mb-4">Every hosted APT repository and group signs its indexes with its own OpenPGP key, created the first time it's needed. On the repository's <strong class="text-text">Settings</strong> tab, <strong class="text-text">Signing key</strong> shows its fingerprint and lets those who administer the repository <strong class="text-text">rotate</strong> it or <strong class="text-text">import</strong> their own (an armored private key, with its passphrase if it has one). After a change, clients need the new public key: download <span class="font-mono text-sm break-words">public.key</span> (or the <span class="font-mono text-sm break-words">.sources</span> file) again. Rotating and importing raise <span class="font-mono text-sm break-words">repository.signing_key.update</span>, so a policy can require approval.</p>
+      <h2 id="versions-and-policies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Versions and policies</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each package version is a version in Depotex, compared the way <span class="font-mono text-sm break-words">dpkg</span> does (<span class="font-mono text-sm break-words">~</span> sorts first and marks a pre-release). Cleanup policies, quotas, <a href="quarantine.html" class="text-cta hover:underline">quarantine</a> and the <a href="blocklist.html" class="text-cta hover:underline">block list</a> apply to it.</li><li>Blocked versions are left out of the indexes and their files refused; quarantined versions too when the repository hides them.</li></ul>
+      <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Proxy repositories</h2>
+      <p class="text-muted mb-4">Add an upstream with the <strong class="text-text">Debian archive</strong>, <strong class="text-text">Debian security updates</strong> or <strong class="text-text">Ubuntu archive</strong> preset, or any archive's address (the folder that holds <span class="font-mono text-sm break-words">dists/</span>), allow it for the space, then create a proxy repository. Its <span class="font-mono text-sm break-words">Release</span> files pass through untouched, so clients keep trusting the upstream's own key (its <span class="font-mono text-sm break-words">.sources</span> file names no Depotex key); packages are fetched when first asked for and kept, and <span class="font-mono text-sm break-words">by-hash</span> files are checked against the hash in their name. A proxy can also reach an APT repository of another Depotex (<a href="upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
+      <h2 id="groups" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Groups</h2>
+      <p class="text-muted mb-4">An APT <a href="repository-groups.html" class="text-cta hover:underline">group</a> merges its members' indexes into its own, signed with the group's key, keeping each package version from the first member that has it. A group of a full mirror would merge every architecture: on the group's <strong class="text-text">Settings</strong> tab, <strong class="text-text">Architectures</strong> limits it to the ones your machines use (<span class="font-mono text-sm break-words">all</span> is always included). Uploads to a group go to the member its rules choose.</p>
+      <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. In the artifact browser</h2>
+      <p class="text-muted mb-4">Packages show by name, then their versions, with each file's checksums.</p>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Groups don't merge <span class="font-mono text-sm break-words">Contents</span> or translation files: <span class="font-mono text-sm break-words">apt-file</span> through a group finds nothing.</li><li>Versions that differ only by epoch (<span class="font-mono text-sm break-words">1:2.0-1</span> and <span class="font-mono text-sm break-words">2.0-1</span>) count as one version for cleanup, quotas and the browser.</li><li>Proxies serve the upstream's signatures without checking them; <span class="font-mono text-sm break-words">apt</span> checks them on your machines.</li><li>The browser doesn't show a package's control fields or dependencies yet.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

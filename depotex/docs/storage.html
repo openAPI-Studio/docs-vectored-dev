@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storage — Depotex Docs</title>
+  <meta name="description" content="Where Depotex keeps files, storage credentials, upload limits, and the check that every server uses the same storage">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Storage</h1>
+      <p class="vc-lede">Where Depotex keeps files, storage credentials, upload limits, and the check that every server uses the same storage</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Depotex keeps files — artifacts, logos, avatars, plugin packages, log exports — in one storage location chosen during setup: a directory on the server, Amazon S3, MinIO or another S3-compatible service, or Azure Blob Storage. Super admins can change it later under <strong class="text-text">Settings → Storage</strong>. Every server of a cluster uses the same storage. Available on every license tier.</p>
+      <h2 id="change-the-settings" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Change the settings</h2>
+      <p class="text-muted mb-4">The top of the page shows the storage in use: its backend, where it points, a status (<strong class="text-text">Healthy</strong>, <strong class="text-text">Not shared</strong>, <strong class="text-text">Another installation</strong> or <strong class="text-text">Not checked</strong>) and the storage ID, which you can copy. Below it are the settings to change.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/storage-settings.png" alt="Settings → Storage: the storage in use with its status and Test connection, then the backend cards, location, credentials and upload limits" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">storage-settings.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Storage: the storage in use with its status and Test connection, then the backend cards, location, credentials and upload limits</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Storage: the storage in use with its status and Test connection, then the backend cards, location, credentials and upload limits</figcaption>
+      </figure>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Backend and location</span> &mdash; Pick the backend from its card (Local disk, Amazon S3, MinIO or Azure Blob) and say where the files are: a directory, a bucket and region, an endpoint and bucket, or a storage account and container.</li><li class="pl-2"><span class="text-text font-medium">Credentials</span> &mdash; Access keys for S3 and MinIO, an account key for Azure. They're stored encrypted and never shown again; leave a key empty to keep the saved one. On AWS and Azure you can leave them empty to use the server's IAM role or managed identity: clear the S3 access key (the saved secret key goes with it) or choose <strong class="text-text">Remove saved key</strong> for Azure. For S3 you can also give a role to assume (below).</li><li class="pl-2"><span class="text-text font-medium">Uploads</span> &mdash; The default upload limit (50 MB) applies to logos, avatars, plugins and other uploads; repositories have their own limit under <strong class="text-text">Settings → Repositories → Defaults and network</strong>. The part size (5 MB) is how large files are sent to S3 and Azure: larger parts mean fewer requests and more memory per upload in progress.</li><li class="pl-2"><span class="text-text font-medium">Test</span> &mdash; <strong class="text-text">Test connection</strong>, beside the storage in use, writes a small file with the settings below (without saving them), reads it back and deletes it, so a key without write, read or delete access is caught before you save. The result shows under the storage in use.</li><li class="pl-2"><span class="text-text font-medium">Save</span> &mdash; The bar at the bottom says when there are unsaved changes, and reminds you to test first when you switch backend. Saving runs the same test. The server you're on switches at once; the others within a minute, without a restart.</li></ol>
+      <p class="text-muted mb-4">An upload over its limit is stopped as soon as it passes the limit, and nothing of it is kept.</p>
+      <h2 id="using-an-iam-role-for-s3" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Using an IAM role for S3</h2>
+      <p class="text-muted mb-4">Depotex can reach S3 without stored keys, with the AWS credentials the server already has: an EC2 instance profile, an ECS task role, or an EKS service account role (IRSA or Pod Identity). Leave <strong class="text-text">Access key ID</strong> and <strong class="text-text">Secret access key</strong> empty and choose <strong class="text-text">Test connection</strong>.</p>
+      <p class="text-muted mb-4">Under <strong class="text-text">Assume a role (optional)</strong>, give a <strong class="text-text">Role ARN</strong> to make Depotex assume that role — with the keys, or with the server's own role when there are none. Use it for a bucket in another AWS account or a role narrower than the server's. Add an <strong class="text-text">External ID</strong> when the role's trust policy asks for one. Depotex renews the role's temporary credentials before they expire.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Every server of a cluster needs the same access: the same instance or task role, or permission to assume the role (<span class="font-mono text-sm break-words">sts:AssumeRole</span>).</li><li>The role (or the server's role) needs <span class="font-mono text-sm break-words">s3:PutObject</span>, <span class="font-mono text-sm break-words">s3:GetObject</span>, <span class="font-mono text-sm break-words">s3:DeleteObject</span> and <span class="font-mono text-sm break-words">s3:ListBucket</span> on the bucket.</li><li>Running Depotex in Docker on EC2 with IMDSv2: set the instance's metadata hop limit to 2, or containers can't reach the instance role.</li><li>When credentials can't be had, the test says so: the server has no role, or the role can't be assumed (check its trust policy and the external ID).</li></ul>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">storage:
+  backend: s3
+  s3:
+    bucket: depotex-files
+    region: eu-west-1
+    role_arn: arn:aws:iam::123456789012:role/depotex-storage   # optional
+    external_id: depotex-prod                                  # optional</code></pre>
+      <p class="text-muted mb-4">The same fields are in the setup wizard and in the setup configuration file (<span class="font-mono text-sm break-words">role_arn</span>, <span class="font-mono text-sm break-words">external_id</span>).</p>
+      <h2 id="the-storage-id" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. The storage ID</h2>
+      <p class="text-muted mb-4">Each installation writes a storage ID to its storage (in a <span class="font-mono text-sm break-words">.depotex</span> folder) and to its database. A server checks the two match when it starts, and the status beside the storage in use shows the result:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Situation</th><th>What happens</th></tr></thead><tbody><tr><td>A second server of a cluster can't find the ID</td><td>Its storage isn't the cluster's shared storage — for example a local directory that isn't a shared volume. The server refuses to start; mount the shared volume or bucket and start it again.</td></tr><tr><td>The storage holds another installation's ID</td><td>Two installations must never share storage. In a cluster the server refuses to start; on a single server it starts so you can fix the settings, the system check reports a problem, and file repairs are disabled.</td></tr><tr><td>The only server finds no ID</td><td>The storage is new or was emptied; the ID is written again.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The system check tests this on every server (<strong class="text-text">Shared storage</strong>).</p>
+      <h2 id="moving-to-another-location" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Moving to another location</h2>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Changing the location doesn't move files. Copy every file to the new location first, including the <span class="font-mono text-sm break-words">.depotex</span> folder, then save the new settings.</p></div>
+      <p class="text-muted mb-4">If the new location doesn't hold this installation's storage ID, the test (or saving) says so and <strong class="text-text">Confirm the new location</strong> appears: tick that the files were copied there (or that there are none yet) before <strong class="text-text">Save</strong> works. A location holding another installation's ID is always refused.</p>
+      <h2 id="events" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Events</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">storage.settings.update</span> (before and after, blocking) is raised when the settings change; it carries the backend, location, endpoint, region and limits, never credentials. See <a href="events.html" class="text-cta hover:underline">Events</a>.</p>
+      <h2 id="permissions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Permissions</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">storage:admin</span></td><td>Super admins only</td><td>Viewing, testing and changing the storage settings</td></tr></tbody></table></div>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Every change and every test is recorded in the audit log.</p></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

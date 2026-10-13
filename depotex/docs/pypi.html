@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyPI repositories — Depotex Docs</title>
+  <meta name="description" content="Python packages for pip, uv, Poetry, PDM and Pipenv; publishing with twine, uv, Poetry, Hatch and Flit">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+      <h1 class="vc-h1">PyPI repositories</h1>
+      <p class="vc-lede">Python packages for pip, uv, Poetry, PDM and Pipenv; publishing with twine, uv, Poetry, Hatch and Flit</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">PyPI repositories serve Python packages to pip, uv, Poetry, PDM and Pipenv, and take uploads from twine, <span class="font-mono text-sm break-words">uv publish</span>, Poetry, Hatch and Flit. Install from the repository's <span class="font-mono text-sm break-words">simple/</span> address and publish to its <span class="font-mono text-sm break-words">legacy/</span> address; sign in with <span class="font-mono text-sm break-words">__token__</span> as the user name and an API token as the password.</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">pip install --index-url https://__token__:${DEPOTEX_TOKEN}@depotex.example.com/repository/my-space/py/simple/ my-package
+twine upload --repository-url https://depotex.example.com/repository/my-space/py/legacy/ -u __token__ -p &quot;$DEPOTEX_TOKEN&quot; dist/*</code></pre>
+      <h2 id="set-up-your-tools" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Set up your tools</h2>
+      <p class="text-muted mb-4">Each example installs from a repository <span class="font-mono text-sm break-words">py</span> in the space <span class="font-mono text-sm break-words">my-space</span> and publishes to it; <span class="font-mono text-sm break-words">DEPOTEX_TOKEN</span> holds an API token. Keep tokens out of files you commit: each tool below reads them from the environment.</p>
+      <p class="text-muted mb-4">With a PyPI <a href="repository-groups.html" class="text-cta hover:underline">group</a> as the space's default, <span class="font-mono text-sm break-words">https://depotex.example.com/repository/my-space/pypi/simple/</span> is one index for your hosted repositories and PyPI, and <span class="font-mono text-sm break-words">https://depotex.example.com/repository/my-space/pypi/legacy/</span> takes uploads from twine and <span class="font-mono text-sm break-words">uv publish</span>, sent to the repository the group's write rules choose by project name.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Tool</th><th>Install from Depotex</th><th>Publish to Depotex</th></tr></thead><tbody><tr><td>pip</td><td><span class="font-mono text-sm break-words">pip.conf</span> (<span class="font-mono text-sm break-words">~/.config/pip/pip.conf</span>, or the file in <span class="font-mono text-sm break-words">PIP_CONFIG_FILE</span>): <span class="font-mono text-sm break-words">[global]</span> <span class="font-mono text-sm break-words">index-url = https://__token__:&lt;token&gt;@depotex.example.com/repository/my-space/py/simple/</span>, or the same address in <span class="font-mono text-sm break-words">PIP_INDEX_URL</span></td><td>—</td></tr><tr><td>twine</td><td>—</td><td><span class="font-mono text-sm break-words">twine upload --repository-url https://depotex.example.com/repository/my-space/py/legacy/ -u __token__ -p $DEPOTEX_TOKEN dist/*</span>, or a <span class="font-mono text-sm break-words">[depotex]</span> entry in <span class="font-mono text-sm break-words">~/.pypirc</span></td></tr><tr><td>uv</td><td>In <span class="font-mono text-sm break-words">pyproject.toml</span>: <span class="font-mono text-sm break-words">[[tool.uv.index]]</span> with <span class="font-mono text-sm break-words">name = "depotex"</span>, <span class="font-mono text-sm break-words">url = "https://depotex.example.com/repository/my-space/py/simple/"</span> and <span class="font-mono text-sm break-words">default = true</span>; credentials in <span class="font-mono text-sm break-words">UV_INDEX_DEPOTEX_USERNAME=__token__</span> and <span class="font-mono text-sm break-words">UV_INDEX_DEPOTEX_PASSWORD</span>. <span class="font-mono text-sm break-words">uv.lock</span> never stores them.</td><td><span class="font-mono text-sm break-words">uv publish --publish-url https://…/legacy/ --username __token__ --password $DEPOTEX_TOKEN</span></td></tr><tr><td>Poetry</td><td><span class="font-mono text-sm break-words">poetry source add --priority=primary depotex https://…/simple/</span>; credentials in <span class="font-mono text-sm break-words">POETRY_HTTP_BASIC_DEPOTEX_USERNAME</span> and <span class="font-mono text-sm break-words">POETRY_HTTP_BASIC_DEPOTEX_PASSWORD</span></td><td><span class="font-mono text-sm break-words">POETRY_REPOSITORIES_DEPOTEX_URL=https://…/legacy/</span>, then <span class="font-mono text-sm break-words">poetry publish --build -r depotex</span> (same credentials)</td></tr><tr><td>PDM</td><td><span class="font-mono text-sm break-words">[[tool.pdm.source]]</span> with <span class="font-mono text-sm break-words">url = "https://${DEPOTEX_USER}:${DEPOTEX_TOKEN}@depotex.example.com/repository/my-space/py/simple/"</span> (PDM fills in the variables)</td><td><span class="font-mono text-sm break-words">pdm publish -r https://…/legacy/ -u __token__ -P $DEPOTEX_TOKEN</span></td></tr></tbody></table></div>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Installing from your hosted repository and a pypi.org proxy together can let someone hijack a private name (dependency confusion): pip's <span class="font-mono text-sm break-words">--extra-index-url</span> takes the highest version from either index, so a package published on pypi.org under one of your private names can win. Guard against it: with uv, list the hosted repository first (uv takes a package from the first index that has it); with Poetry, make the hosted repository the primary source; with PDM, limit each source with <span class="font-mono text-sm break-words">include_packages</span> or <span class="font-mono text-sm break-words">exclude_packages</span>; and add a <a href="blocklist.html" class="text-cta hover:underline">block list</a> rule on the pypi.org proxy for your private names, so they're never fetched from it.</p></div>
+      <h2 id="install" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Install</h2>
+      <p class="text-muted mb-4">These work against hosted and proxy repositories, and are tested with the real tools:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><span class="font-mono text-sm break-words">pip install</span> with pins, ranges, extras (<span class="font-mono text-sm break-words">pkg[extra]</span>), environment markers and <span class="font-mono text-sm break-words">--pre</span>; source distributions are built by the installer as usual.</li><li><span class="font-mono text-sm break-words">pip download</span>, <span class="font-mono text-sm break-words">pip wheel</span>, <span class="font-mono text-sm break-words">pip install --require-hashes</span>, <span class="font-mono text-sm break-words">pip install --dry-run --report</span>, <span class="font-mono text-sm break-words">pip lock</span>, <span class="font-mono text-sm break-words">pip index versions</span>, <span class="font-mono text-sm break-words">pip list --outdated</span>.</li><li><span class="font-mono text-sm break-words">uv pip install</span>, <span class="font-mono text-sm break-words">uv pip compile</span>, <span class="font-mono text-sm break-words">uv add</span>, <span class="font-mono text-sm break-words">uv lock</span>, <span class="font-mono text-sm break-words">uv sync</span>; <span class="font-mono text-sm break-words">poetry add</span> and <span class="font-mono text-sm break-words">poetry install</span>; <span class="font-mono text-sm break-words">pdm add</span> and <span class="font-mono text-sm break-words">pdm install</span>.</li><li><strong class="text-text">pip search</strong> works against the repository (<span class="font-mono text-sm break-words">pip search --index https://…/repository/my-space/py/pypi term</span>), although pypi.org turned it off.</li></ul>
+      <p class="text-muted mb-4">Every file is listed with its SHA-256, its Python requirement and its core metadata (PEP 658), so installers resolve without downloading every wheel. The JSON API (<span class="font-mono text-sm break-words">/pypi/{project}/json</span>) answers tools such as pip-audit.</p>
+      <h2 id="publish" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Publish</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Wheels and source distributions, with Publish permission. Depotex checks the file's own metadata against its name and refuses unreadable or unsafe files.</li><li>A file can't be replaced once published: new PyPI repositories publish <strong class="text-text">once</strong>, like pypi.org, and publishing a file again answers that it already exists.</li><li>Signatures and PEP 740 attestations sent with an upload are kept.</li></ul>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">twine 7 allows <span class="font-mono text-sm break-words">--skip-existing</span> only for pypi.org. Use <span class="font-mono text-sm break-words">uv publish --check-url &lt;the simple/ address&gt;</span> to skip files the repository already has, or older twine (it skips on the "already exists" answer).</p></div>
+      <h2 id="yank-a-release" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Yank a release</h2>
+      <p class="text-muted mb-4">A yanked release stays available but installers skip it unless it's pinned exactly, and show the reason. Yank and un-yank from the release's page in the <a href="browse.html" class="text-cta hover:underline">browser</a> (<strong class="text-text">Yank</strong> in the quick facts), or with the API, in hosted repositories with Overwrite permission:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">curl -X PUT -H &quot;Authorization: Bearer $DEPOTEX_TOKEN&quot; -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;yanked&quot;: true, &quot;reason&quot;: &quot;Broken build&quot;}&#x27; \
+  https://depotex.example.com/api/spaces/my-space/repositories/py/pypi/releases/my-package/1.2.0</code></pre>
+      <h2 id="versions-and-policies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Versions and policies</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each release (project and version) is a version: it shows in the <strong class="text-text">Versions</strong> tab, and cleanup policies, quotas, quarantine and the block list apply to it.</li><li>Names match however they're written: <span class="font-mono text-sm break-words">Foo_Bar</span>, <span class="font-mono text-sm break-words">foo.bar</span> and <span class="font-mono text-sm break-words">foo-bar</span> are one project, in installs and in quarantine and block-list rules.</li><li>Block-list ranges compare versions as pip does (<span class="font-mono text-sm break-words">1.0.post1</span> after <span class="font-mono text-sm break-words">1.0</span>, <span class="font-mono text-sm break-words">1.1.dev0</span> before <span class="font-mono text-sm break-words">1.1</span>) and accept Python specifiers such as <span class="font-mono text-sm break-words">&gt;=2.0,&lt;2.3</span>.</li><li>Blocked releases are left out of the index; quarantined ones stay listed and their downloads are refused with the reason, unless the repository hides quarantined versions.</li></ul>
+      <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Proxy repositories</h2>
+      <p class="text-muted mb-4">A proxy repository of pypi.org (preset <strong class="text-text">Python Package Index</strong>, <span class="font-mono text-sm break-words">https://pypi.org/simple</span>) or another index (devpi, Artifactory, Nexus: give its <span class="font-mono text-sm break-words">…/simple</span> address) fetches each project's page and files when they're first asked for and keeps them. Every file is checked against the hash the index gives. Files are only fetched from the index's own server, or for pypi.org from files.pythonhosted.org; links elsewhere are refused, and the upstream's credentials are never sent to another server. A proxy can also proxy a PyPI repository of another Depotex (<a href="upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
+      <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. In the artifact browser</h2>
+      <p class="text-muted mb-4">Projects show with their releases. The Overview shows the summary, license, required Python version, authors, links, keywords, extras, classifiers, distributions (wheel tags and sdists) and whether the release is yanked; the README tab shows the project description; Dependencies lists <span class="font-mono text-sm break-words">Requires-Dist</span> by scope (<span class="font-mono text-sm break-words">runtime</span>, or the extra that needs it); PEP 740 attestations show under Signatures &amp; SBOMs.</p>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Trusted publishing (publishing from CI with an OIDC identity instead of a token) isn't available yet.</li><li><span class="font-mono text-sm break-words">.tar.xz</span> source distributions aren't accepted.</li><li>A proxy repository's project list holds only projects someone has already fetched through it.</li><li>Environment markers are shown, not evaluated, in the browser's Dependencies tab.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

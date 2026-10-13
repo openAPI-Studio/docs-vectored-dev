@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maven repositories — Depotex Docs</title>
+  <meta name="description" content="Java and JVM packages for mvn, Gradle and other Maven clients">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg></div>
+      <h1 class="vc-h1">Maven repositories</h1>
+      <p class="vc-lede">Java and JVM packages for mvn, Gradle and other Maven clients</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Maven repositories serve the Maven 2 layout that mvn, Gradle, sbt, Ivy and every other Maven client use. Hosted repositories take deploys; proxy repositories cache Maven Central or another Maven repository.</p>
+      <h2 id="set-up-maven" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Set up Maven</h2>
+      <p class="text-muted mb-4">Put an API token in <span class="font-mono text-sm break-words">~/.m2/settings.xml</span> as the password of a server, then point <span class="font-mono text-sm break-words">&lt;repositories&gt;</span> (to download) or <span class="font-mono text-sm break-words">&lt;distributionManagement&gt;</span> (to deploy) at the repository with the same id:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">&lt;server&gt;
+  &lt;id&gt;depotex&lt;/id&gt;
+  &lt;username&gt;me&lt;/username&gt;
+  &lt;password&gt;${env.DEPOTEX_TOKEN}&lt;/password&gt;
+&lt;/server&gt;</code></pre>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">&lt;repositories&gt;
+  &lt;repository&gt;
+    &lt;id&gt;depotex&lt;/id&gt;
+    &lt;url&gt;https://depotex.example.com/repository/my-space/maven/&lt;/url&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;
+
+&lt;distributionManagement&gt;
+  &lt;repository&gt;
+    &lt;id&gt;depotex&lt;/id&gt;
+    &lt;url&gt;https://depotex.example.com/repository/my-space/releases/&lt;/url&gt;
+  &lt;/repository&gt;
+  &lt;snapshotRepository&gt;
+    &lt;id&gt;depotex&lt;/id&gt;
+    &lt;url&gt;https://depotex.example.com/repository/my-space/snapshots/&lt;/url&gt;
+  &lt;/snapshotRepository&gt;
+&lt;/distributionManagement&gt;</code></pre>
+      <p class="text-muted mb-4">To send every download through Depotex, add a mirror for <span class="font-mono text-sm break-words">*</span> to <span class="font-mono text-sm break-words">settings.xml</span> pointing at a proxy repository of Maven Central.</p>
+      <p class="text-muted mb-4">With a <a href="repository-groups.html" class="text-cta hover:underline">group</a> as the space's default for Maven, one address does everything: <span class="font-mono text-sm break-words">https://depotex.example.com/repository/my-space/maven/</span> downloads from the group's members in order (your releases and snapshots, then Maven Central) and takes deploys, which go to the releases or snapshots repository by the group's write rules. Use it for <span class="font-mono text-sm break-words">&lt;repositories&gt;</span>, both <span class="font-mono text-sm break-words">&lt;distributionManagement&gt;</span> entries, and the <span class="font-mono text-sm break-words">*</span> mirror.</p>
+      <h2 id="set-up-gradle" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Set up Gradle</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">repositories {
+    maven {
+        url = uri(&quot;https://depotex.example.com/repository/my-space/maven/&quot;)
+        credentials {
+            username = System.getenv(&quot;USER&quot;)
+            password = System.getenv(&quot;DEPOTEX_TOKEN&quot;)
+        }
+    }
+}</code></pre>
+      <p class="text-muted mb-4">Publish with the <span class="font-mono text-sm break-words">maven-publish</span> plugin and the same <span class="font-mono text-sm break-words">repositories { maven { … } }</span> block under <span class="font-mono text-sm break-words">publishing</span>.</p>
+      <h2 id="download-and-deploy" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Download and deploy</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">mvn deploy -DaltDeploymentRepository=depotex::https://depotex.example.com/repository/my-space/releases
+mvn dependency:get -DremoteRepositories=https://depotex.example.com/repository/my-space/maven/ -Dartifact=com.acme:app:1.0</code></pre>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Versions</strong>: each <span class="font-mono text-sm break-words">groupId:artifactId</span> version is one version in Depotex (the <strong class="text-text">Versions</strong> tab, cleanup policies, quotas). All builds of a snapshot (<span class="font-mono text-sm break-words">1.0-SNAPSHOT</span>) are one version.</li><li><strong class="text-text">Version policy</strong>: a <strong class="text-text">Release</strong> repository refuses snapshot versions, a <strong class="text-text">Snapshot</strong> repository refuses releases, <strong class="text-text">Mixed</strong> takes both. Proxy repositories apply it too: a release proxy doesn't fetch snapshots.</li><li><strong class="text-text">maven-metadata.xml</strong> of hosted repositories is generated from what they hold: the versions in Maven's order, with the latest and the latest release, and for snapshots the newest build of each file. Blocked versions are left out, and the metadata's checksum files match.</li><li><strong class="text-text">Checksum files</strong> that mvn uploads next to each file are checked against it; a mismatch is refused. <span class="font-mono text-sm break-words">.sha1</span>, <span class="font-mono text-sm break-words">.md5</span>, <span class="font-mono text-sm break-words">.sha256</span> and <span class="font-mono text-sm break-words">.sha512</span> downloads are always answered.</li><li><strong class="text-text">Publishing once</strong> (<strong class="text-text">Allow once</strong>) stops a file from being overwritten, but metadata is rewritten freely, as every deploy needs.</li><li><strong class="text-text">Strict layout</strong> refuses paths outside the Maven layout (<span class="font-mono text-sm break-words">group/artifact/version/artifact-version[-classifier].ext</span>); <strong class="text-text">permissive</strong> stores them like raw files.</li></ul>
+      <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Proxy repositories</h2>
+      <p class="text-muted mb-4">Add an upstream with the <strong class="text-text">Maven Central</strong> preset (<span class="font-mono text-sm break-words">https://repo1.maven.org/maven2</span>) or your mirror's address, allow it for the space, then create a proxy repository with it. Files are fetched on first request, checked against the upstream's checksums and kept; see <a href="spaces.html#proxy-repositories" class="text-cta hover:underline">Proxy repositories</a> for cache settings. Blocked versions are also left out of proxied <span class="font-mono text-sm break-words">maven-metadata.xml</span>.</p>
+      <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. In the artifact browser</h2>
+      <p class="text-muted mb-4">Maven packages show as group folders, then artifacts and their versions. The Overview shows the POM (name, description, packaging, parent, licenses, source code, organization, developers), Dependencies lists them by scope with properties filled in, and SBOMs published as classifiers (<span class="font-mono text-sm break-words">-cyclonedx.json</span>, <span class="font-mono text-sm break-words">.spdx.json</span>) and <span class="font-mono text-sm break-words">.asc</span> signatures appear under Signatures &amp; SBOMs.</p>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Plugin-prefix metadata (<span class="font-mono text-sm break-words">group/maven-metadata.xml</span>) is served as uploaded, not generated.</li><li>No archetype catalog and no Maven Indexer export.</li><li>A proxy serves its upstream's <span class="font-mono text-sm break-words">maven-metadata.xml</span> as is, apart from leaving out blocked versions.</li><li>Generated metadata lists at most 10,000 versions per artifact.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

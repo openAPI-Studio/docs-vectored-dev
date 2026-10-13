@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branding &amp; Banners — Depotex Docs</title>
+  <meta name="description" content="Your app name, brand colors, logos and browser icons per theme, and scheduled announcement banners">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
+      <h1 class="vc-h1">Branding &amp; Banners</h1>
+      <p class="vc-lede">Your app name, brand colors, logos and browser icons per theme, and scheduled announcement banners</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Make Depotex look like your own product, and tell people about maintenance or incidents with banners across the top of every page. Changes reach every server within about 30 seconds; nothing needs a restart. Both are under <strong class="text-text">Settings</strong>, for people with <span class="font-mono text-sm break-words">settings:write</span> (super admins).</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Feature</th><th>Where</th><th>License</th></tr></thead><tbody><tr><td>App name, brand colors, logos, browser icons</td><td>Settings → Appearance</td><td>Enterprise</td></tr><tr><td>Banners</td><td>Settings → Banners</td><td>Every tier</td></tr><tr><td>Your own links in the Help (?) menu</td><td>Settings → General → Help menu</td><td>Every tier</td></tr></tbody></table></div>
+      <h2 id="appearance" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Appearance</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/branding-appearance.png" alt="Settings → Appearance: application name and, per theme, brand color, logo and browser icon, with a preview" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">branding-appearance.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Appearance: application name and, per theme, brand color, logo and browser icon, with a preview</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Appearance: application name and, per theme, brand color, logo and browser icon, with a preview</figcaption>
+      </figure>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Name</span> &mdash; <strong class="text-text">Application name</strong> replaces Depotex in the browser tab, the header, the sign-in page (as “&lt;name&gt; package registry” on its brand panel, with Depotex kept next to the logo), the About box and emails. Leave it empty for the product's name.</li><li class="pl-2"><span class="text-text font-medium">Brand color</span> &mdash; Under <strong class="text-text">Brand per theme</strong>, pick <strong class="text-text">Light</strong>, <strong class="text-text">Dark</strong> or <strong class="text-text">High contrast</strong> to edit that theme; a preview beside the fields shows its header with your name, logo and icon, a button and a link. Set a color for the <strong class="text-text">light</strong> and <strong class="text-text">dark</strong> themes (<strong class="text-text">Use default</strong> clears it). Depotex works out the hover shade and whether text on the color should be white or dark, and refuses a color people couldn't read: text on it must reach a 4.5:1 contrast, and it must stand out from the theme's background (3:1), since links and focus outlines use it too. The page shows both numbers as you choose.</li><li class="pl-2"><span class="text-text font-medium">High contrast</span> &mdash; The high-contrast theme keeps its accessible colors unless you tick <strong class="text-text">Use a brand color in the high-contrast theme too</strong>. Logos apply to it either way.</li><li class="pl-2"><span class="text-text font-medium">Logos and browser icons</span> &mdash; Upload per theme (SVG, PNG, WebP, ICO or JPEG, up to 512 KB). A theme without its own uses the light theme's. The header shows the logo; the sign-in page shows it on its dark panel, so it uses the dark theme's logo there (or the light one when there's none). The browser tab shows the icon for the theme each person chose, and changes when they switch.</li><li class="pl-2"><span class="text-text font-medium">Save</span> &mdash; Changes wait in a bar at the bottom of the page: <strong class="text-text">Save</strong> applies them, <strong class="text-text">Discard</strong> drops them. A color that fails the contrast rules can't be saved. Open pages show the change when they're next loaded. <strong class="text-text">Reset to defaults</strong> clears all branding in the form; save to apply it.</li></ol>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Uploaded images are served from addresses that change with their content, so browsers keep them cached for a year and a new upload shows at once. SVG files can't run scripts: they're served in a sandbox. Images you replaced are deleted a day later.</p></div>
+      <h2 id="banners" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Banners</h2>
+      <p class="text-muted mb-4">Under <strong class="text-text">Settings → Banners</strong>, select <strong class="text-text">Add banner</strong> or a banner in the list. Each opens its own page with a preview of the banner at the top, as it will appear on every page:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Choices</th></tr></thead><tbody><tr><td>Message</td><td>Up to 500 characters of plain text. Write <span class="font-mono text-sm break-words"><a href="https://…" class="text-cta hover:underline">link text</a></span> for a link</td></tr><tr><td>Level</td><td><strong class="text-text">Information</strong>, <strong class="text-text">Warning</strong> or <strong class="text-text">Problem</strong>, in the theme's colors (problems are announced to screen readers at once)</td></tr><tr><td>Who sees it</td><td><strong class="text-text">Signed-in people</strong>, <strong class="text-text">Everyone, also on the sign-in page</strong>, or <strong class="text-text">Super admins only</strong></td></tr><tr><td>Show from / Until</td><td>When it appears and, optionally, when it ends; in your time zone. Without an end it shows until you turn it off</td></tr><tr><td>People can close it</td><td>When on, a closed banner stays closed in that browser until you edit it. When off, it can't be closed</td></tr><tr><td>On</td><td>Turn it off without deleting it</td></tr></tbody></table></div>
+      <figure class="shot mb-6">
+        <img src="../assets/banners-list.png" alt="Settings → Banners: each banner&#x27;s status, message, audience and schedule" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">banners-list.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Banners: each banner's status, message, audience and schedule</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Banners: each banner's status, message, audience and schedule</figcaption>
+      </figure>
+      <figure class="shot mb-6">
+        <img src="../assets/banner-bar.png" alt="A warning banner at the top of the page, with a link and a close button" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">banner-bar.png</p>
+          <p class="text-xs text-muted max-w-md">A warning banner at the top of the page, with a link and a close button</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A warning banner at the top of the page, with a link and a close button</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Several banners show together, problems first. Pages ask for banners when they open, when people come back to the tab, and every few minutes, so a new or ended banner shows within a few minutes. The list shows each banner's status (<strong class="text-text">Showing</strong>, <strong class="text-text">Scheduled</strong>, <strong class="text-text">Ended</strong> or <strong class="text-text">Off</strong>), message, level, who sees it and when; filter it with <strong class="text-text">All</strong>, <strong class="text-text">Showing</strong>, <strong class="text-text">Scheduled</strong> and <strong class="text-text">Off or ended</strong>. To delete a banner, open it and select <strong class="text-text">Delete…</strong> at the bottom of its page.</p>
+      <h2 id="license-expiry-banner" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. License expiry banner</h2>
+      <p class="text-muted mb-4">Super admins get an automatic banner about the license, with a <strong class="text-text">Manage license</strong> link: from 30 days before it expires as information, as a warning in the last 14 days, and as a problem in the last 7 days, while it's in its grace period, after it expired, and when it isn't valid. Information and warnings can be closed for the day; problems stay until the license is renewed. Other people never see it.</p>
+      <p class="text-muted mb-4">Operators change when it starts with <span class="font-mono text-sm break-words">LICENSE_BANNER_DAYS</span> on every server (days, 0 to 365; 0 turns it off). An invalid value stops the server at startup with a message saying so.</p>
+      <h2 id="help-menu-links" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Help menu links</h2>
+      <p class="text-muted mb-4">Under <strong class="text-text">Settings → General → Help menu</strong>, add up to five of your own links, each with a title and an <span class="font-mono text-sm break-words">https://</span> or <span class="font-mono text-sm break-words">mailto:</span> address (your service desk, an internal wiki, a status page). They appear in their own group in the Help (?) menu.</p>
+      <h2 id="events" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Events</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">branding.update</span> (blocking: policies can refuse a change) and <span class="font-mono text-sm break-words">banner.create</span>, <span class="font-mono text-sm break-words">banner.update</span>, <span class="font-mono text-sm break-words">banner.delete</span>. Changes are in the audit log.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
