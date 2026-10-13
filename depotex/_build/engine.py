@@ -97,7 +97,9 @@ HEAD = """  <meta charset="UTF-8">
   <script src="{up}assets/tailwind-config.js"></script>
   <link rel="stylesheet" href="{up}assets/tokens.css">"""
 
-BANNER = '  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-sm font-medium text-amber-400">Coming soon &mdash; Depotex is in active development: features and these docs may still change.</div>'
+BANNER = ('  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}'
+          'html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>\n'
+          '  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>')
 
 # The theme toggle, sidebar, search and on-this-page nav that used to be
 # emitted after every page's content now live in the shared assets, so there
@@ -274,45 +276,13 @@ def doc_page(slug, p, pages):
 
 
 def landing(pages, intro_blocks):
-    cards = []
-    for slug, p in pages:
-        cards.append(f"""        <a href="docs/{slug}.html" class="block bg-surface border border-border rounded-2xl p-6 hover:border-cta/40 transition-all duration-200 cursor-pointer group">
-          <div class="text-cta mb-3"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{ICONS[p["icon"]]}</svg></div>
-          <h3 class="font-semibold group-hover:text-cta transition-colors duration-200">{p["label"]}</h3>
-          <p class="text-sm text-muted mt-2">{p["desc"]}.</p>
-        </a>""")
-    return f"""<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-{HEAD.format(title="Depotex — Self-hosted artifact repository docs | Vectored", desc="Depotex: a self-hosted artifact repository for 15 package formats, with SBOMs, quarantine and policies, on one server or a cluster. From Vectored", favicon="../favicon.svg", up="../")}
-</head>
-<body>
-
-<div id="vc-header"></div>
-<script src="../assets/nav.js"></script>
-<script src="assets/nav-local.js"></script>
-<script src="../assets/header.js"></script>
-{BANNER}
-
-  <main class="vc-page">
-    <h1 class="text-4xl font-bold mb-3">Depotex</h1>
-    <p class="text-lg text-muted mb-10">Self-hosted artifact repository for every package your teams build and use, on one server or many.</p>
-
-    <article class="vc-doc">
-{render_blocks(intro_blocks, "Overview").replace('src="../assets/', 'src="assets/')}
-    </article>
-
-    <h2 class="text-2xl font-bold mb-6 mt-14">Documentation</h2>
-    <div class="grid sm:grid-cols-2 gap-4">
-{chr(10).join(cards)}
-    </div>
-  </main>
-
-<div id="vc-footer"></div>
-<script src="../assets/footer.js"></script>
-</body>
-</html>
-"""
+    # The overview page has its own design (landing.py); intro_blocks is kept
+    # for the build's signature.
+    import landing as page
+    head = HEAD.format(title="Depotex: self-hosted artifact repository | Vectored",
+                       desc="Depotex: a self-hosted artifact repository for 15 package formats, with SBOMs, quarantine and policies, on one server or a cluster. From Vectored",
+                       favicon="../favicon.svg", up="../")
+    return page.render(head, BANNER, {slug for slug, _ in pages})
 
 
 def build(pages, intro_blocks, handwritten=()):

@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-64 screenshots. Save each one into `depotex/assets/` using the
+63 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -220,8 +220,3 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `api-tokens.png`
       Profile → API tokens: your tokens and your rate limits
-
-## Overview
-
-- [ ] `dashboard-overview.png`
-      The dashboard: what needs attention, the installation's figures, spaces by size and the health of every part of the system
