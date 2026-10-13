@@ -93,10 +93,10 @@ html{scroll-behavior:smooth}
 .dx a{color:var(--green);text-decoration:none}.dx a:hover{text-decoration:underline}
 .dx .dx-mono{font-family:'JetBrains Mono',monospace}
 .dx .dx-muted{color:var(--muted)}.dx .dx-12{font-size:12px}
-.dx-sec{max-width:1240px;margin:0 auto;padding:112px 48px 0;box-sizing:border-box}
+.dx-sec{max-width:1240px;margin:0 auto;padding:clamp(72px,10vw,112px) clamp(20px,5vw,48px) 0;box-sizing:border-box}
 .dx-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
 .dx-h2{font-size:clamp(28px,3.6vw,40px);line-height:1.15;font-weight:700;letter-spacing:-.03em;margin:0;color:var(--tx)}
-.dx-h3{font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.025em;margin:0 0 16px;color:var(--tx)}
+.dx-h3{font-size:clamp(24px,3.4vw,30px);line-height:1.2;font-weight:700;letter-spacing:-.025em;margin:0 0 16px;color:var(--tx)}
 .dx-body{font-size:17px;line-height:1.7;color:var(--body);margin:0;text-wrap:pretty}
 .dx-mb24{margin-bottom:24px}
 .dx-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:var(--onGreen)!important;font-weight:600;font-size:16px;padding:12px 20px;border-radius:10px}
@@ -108,11 +108,11 @@ html{scroll-behavior:smooth}
 .dx-soon{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber)}
 @keyframes dxpulse{0%,100%{opacity:1}50%{opacity:.35}}
 @keyframes dxmarq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.dx-marq{display:flex;flex-direction:column;gap:12px;margin:0 -48px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.dx-marq{display:flex;flex-direction:column;gap:12px;margin:0 calc(-1 * clamp(20px,5vw,48px));overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .dx-marq-row{display:flex;gap:12px;width:max-content;padding-right:12px;animation-name:dxmarq;animation-timing-function:linear;animation-iteration-count:infinite}
 .dx-marq-row:hover,.dx-marq-row:focus-within{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){.dx-marq-row{animation:none}.dx-marq{overflow-x:auto}.dx-dot{animation:none}}
-.dx-chip{flex-shrink:0;display:flex;align-items:baseline;gap:12px;padding:16px 22px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--tx)!important;white-space:nowrap}
+.dx-chip{flex-shrink:0;display:flex;align-items:baseline;gap:12px;padding:clamp(12px,2.4vw,16px) clamp(16px,3vw,22px);border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--tx)!important;white-space:nowrap}
 .dx-chip:hover{border-color:var(--greenLine);text-decoration:none!important}
 .dx-chip-name{font-size:17px;font-weight:600}.dx-chip-client{font-size:13px;color:var(--muted)}
 .dx-slot{display:flex;align-items:center;justify-content:center;align-self:center;flex-shrink:0;height:18px}
@@ -121,7 +121,9 @@ html{scroll-behavior:smooth}
 html[data-theme="light"] .dx-dark{display:none!important}
 html:not([data-theme="light"]) .dx-light{display:none!important}
 html:not([data-theme="light"]) .dx-invert{filter:invert(1)}
-.dx-feature{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:56px;align-items:center}
+.dx-feature{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(28px,5vw,56px);align-items:center}
+/* One column: the text first, then its screenshot, in every row. */
+@media (max-width:900px){.dx-feature>.dx-frame{order:2}}
 .dx-frame{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px}
 .dx-frame-img{width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top left;display:block;border-radius:7px}
 .dx-links{display:flex;flex-direction:column;border-top:1px solid var(--border)}
@@ -130,10 +132,10 @@ html:not([data-theme="light"]) .dx-invert{filter:invert(1)}
 .dx-card{border:1px solid var(--border);border-radius:12px;padding:20px;background:var(--surface);display:flex;flex-direction:column;gap:8px}
 .dx-card-t{font-size:18px;font-weight:600;color:var(--tx)}.dx-card-b{font-size:14.5px;line-height:1.6;color:var(--body)}
 .dx-dl{margin:0;border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.dx-dl>div{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border)}
+.dx-dl>div{display:grid;grid-template-columns:minmax(88px,140px) minmax(0,1fr);gap:16px;padding:13px clamp(14px,3vw,20px);border-bottom:1px solid var(--border)}
 .dx-dl>div:last-child{border-bottom:0}
 .dx-dl dt{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted)}.dx-dl dd{margin:0;font-size:15px;color:var(--tx)}
-.dx-tier{border:1px solid var(--border);border-radius:16px;padding:28px;background:var(--surface);display:flex;flex-direction:column;gap:14px}
+.dx-tier{border:1px solid var(--border);border-radius:16px;padding:clamp(20px,4vw,28px);background:var(--surface);display:flex;flex-direction:column;gap:14px}
 .dx-tier-n{font-size:22px;font-weight:700;color:var(--tx)}.dx-tier-b{font-size:15.5px;line-height:1.65;color:var(--body)}
 .dx-doc-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:6px}
 .dx-doc-title{font-size:17px;font-weight:600;color:var(--tx)}
@@ -142,7 +144,6 @@ html:not([data-theme="light"]) .dx-invert{filter:invert(1)}
 .dx-doc:hover{background:var(--surface);text-decoration:none!important}
 .dx-doc-l{font-size:15px;font-weight:500}.dx-doc-d{font-size:13.5px;line-height:1.5;color:var(--muted)}
 .dx code.dx-code{font-family:'JetBrains Mono',monospace;font-size:.88em;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1px 6px;color:var(--tx)}
-@media (max-width:640px){.dx-sec{padding:80px 16px 0}.dx-hero{padding:48px 16px 0!important}.dx-marq{margin:0 -16px}.dx-dl>div{grid-template-columns:96px 1fr}.dx-cta{padding:28px!important}}
 """
 
 
@@ -183,18 +184,18 @@ def render(head, banner, slugs):
 {banner}
 
 <main class="dx">
-  <section class="dx-hero" style="max-width:1240px;margin:0 auto;padding:72px 48px 0;box-sizing:border-box">
+  <section class="dx-hero" style="max-width:1240px;margin:0 auto;padding:clamp(40px,7vw,72px) clamp(20px,5vw,48px) 0;box-sizing:border-box">
     <div style="max-width:820px">
       <div class="dx-pill"><span class="dx-dot"></span><span class="dx-soon">Coming soon</span><span style="width:1px;height:12px;background:var(--amberLine)"></span><span style="font-size:13px;color:var(--body)">In active development</span></div>
       <h1 style="font-size:clamp(40px,6vw,64px);line-height:1.04;font-weight:700;letter-spacing:-.038em;margin:0 0 22px;text-wrap:balance;color:var(--tx)">Every package your teams build and use, on a server you run.</h1>
-      <p style="font-size:20px;line-height:1.6;color:var(--body);margin:0 0 34px;max-width:680px;text-wrap:pretty">Depotex is a self-hosted artifact repository for 15 package formats. It caches the public registries your builds depend on and gives security teams SBOMs, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.</p>
+      <p style="font-size:clamp(17px,2.4vw,20px);line-height:1.6;color:var(--body);margin:0 0 34px;max-width:680px;text-wrap:pretty">Depotex is a self-hosted artifact repository for 15 package formats. It caches the public registries your builds depend on and gives security teams SBOMs, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
         <a href="{D}getting-started.html" class="dx-btn">Read Getting Started <span aria-hidden="true">→</span></a>
         <a href="{D}kubernetes.html" class="dx-btn2">Docker &amp; Kubernetes</a>
-        <span class="dx-mono dx-muted" style="font-size:13px;margin-left:8px">Container images · Helm chart · setup wizard</span>
+        <span class="dx-mono dx-muted" style="font-size:13px">Container images · Helm chart · setup wizard</span>
       </div>
     </div>
-    <figure style="margin:64px 0 0">
+    <figure style="margin:clamp(40px,6vw,64px) 0 0">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px;box-shadow:var(--shadow)">
         <div style="display:flex;align-items:center;gap:6px;padding:2px 6px 12px" aria-hidden="true">
           <span style="width:10px;height:10px;border-radius:50%;background:var(--border)"></span><span style="width:10px;height:10px;border-radius:50%;background:var(--border)"></span><span style="width:10px;height:10px;border-radius:50%;background:var(--border)"></span>
@@ -211,14 +212,14 @@ def render(head, banner, slugs):
       <div style="max-width:640px">
         <div class="dx-eyebrow">15 formats</div>
         <h2 class="dx-h2" style="margin-bottom:14px">Works with the tools developers already use.</h2>
-        <p class="dx-body">Point your package manager at Depotex and keep your existing commands. Each space has one address per format: <code class="dx-code">/repository/&lt;space&gt;/&lt;format&gt;/</code></p>
+        <p class="dx-body" style="overflow-wrap:anywhere">Point your package manager at Depotex and keep your existing commands. Each space has one address per format: <code class="dx-code">/repository/&lt;space&gt;/&lt;format&gt;/</code></p>
       </div>
       <a href="{D}formats.html" style="font-size:15px;font-weight:500">All supported formats →</a>
     </div>
     <div class="dx-marq">{rows}</div>
   </section>
 
-  <section class="dx-sec" style="display:flex;flex-direction:column;gap:96px">{features}</section>
+  <section class="dx-sec" style="display:flex;flex-direction:column;gap:clamp(64px,9vw,96px)">{features}</section>
 
   <section class="dx-sec">
     <div class="dx-eyebrow">How it's organised</div>
@@ -232,7 +233,7 @@ def render(head, banner, slugs):
     <p style="font-size:16px;line-height:1.7;color:var(--muted);margin:20px 0 0;max-width:820px">Permissions come from a person's system role and their role in each space. Tokens and applications never do more than the person behind them.</p>
   </section>
 
-  <section class="dx-sec" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:56px">
+  <section class="dx-sec" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(32px,5vw,56px)">
     <div>
       <div class="dx-eyebrow">For admins</div>
       <h2 class="dx-h2" style="margin-bottom:16px">Runs where you do, and looks after itself.</h2>
@@ -263,8 +264,8 @@ def render(head, banner, slugs):
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:48px 56px">{docs_groups(slugs)}</div>
   </section>
 
-  <section class="dx-sec" style="padding-bottom:96px">
-    <div class="dx-cta" style="border:1px solid var(--border);border-radius:20px;background:var(--surface);padding:48px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px">
+  <section class="dx-sec" style="padding-bottom:clamp(64px,8vw,96px)">
+    <div class="dx-cta" style="border:1px solid var(--border);border-radius:20px;background:var(--surface);padding:clamp(24px,5vw,48px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px">
       <div style="max-width:620px">
         <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:16px"><span style="width:7px;height:7px;border-radius:50%;background:var(--amber)"></span><span class="dx-soon">Coming soon</span></div>
         <h2 style="font-size:clamp(26px,3vw,34px);line-height:1.2;font-weight:700;letter-spacing:-.025em;margin:0 0 12px;color:var(--tx)">Install, enter the setup key, and follow the wizard.</h2>
