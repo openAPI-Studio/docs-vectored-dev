@@ -1,6 +1,6 @@
 """Vibe artifacts page. Keep in step with
 apps/depotex/backend/internal/vibe in the depotex repo."""
-from engine import H, P, UL, TABLE, NOTE, STEPS, SHOT, CODE
+from engine import H, P, UL, TABLE, NOTE, WARN, STEPS, SHOT, CODE
 
 VIBE = [
     ("vibe-artifacts", dict(
@@ -19,8 +19,39 @@ VIBE = [
                 "Turn them on|Turn on **Turn on vibe artifacts**. **Vibe** appears in the left menu for everyone signed in, on every server at once.",
                 "Turn them off|Clear the switch. The Vibe entry disappears for everyone; what was published is kept and comes back when you turn it on again.",
             ]),
-            SHOT("vibe-settings.png", "Settings → Repositories → Vibe artifacts with the switch on, and Vibe in the left menu"),
-            P("The page shows when the switch last changed. Each change is recorded in the audit log (`vibe:update_settings`)."),
+            SHOT("vibe-settings.png", "Settings → Repositories → Vibe artifacts: the switch, the checks on every push and the package list"),
+            P("The page shows when the switch last changed. Each change on the page is recorded in the audit log (`vibe:update_settings`, with what changed)."),
+
+            H("Choose what refuses a push"),
+            P("Under **Checks on every push** on the same page, two switches decide whether a secret or hidden characters refuse a push (see [What every push is checked for](#what-every-push-is-checked-for)). Both are on by default."),
+            UL([
+                "**Refuse pushes with a secret**: a private key, a token or an `.env` file with secret values refuses the push. Turned off, the push is stored and the secret shows as a **high** finding naming the file and line (never the secret itself). The secret is then stored in the check-in, so anyone who can read the project's files can read it.",
+                "**Refuse hidden characters in AI instruction files**: characters that don't show in AI instruction files refuse the push. Turned off, they show as a high finding instead.",
+                "Turning a switch back on applies to the next push: a check-in that builds on one stored while it was off is refused again until the file is fixed.",
+                "To stop anyone turning them off, a [policy](policies.html) on `vibe.settings.update` can deny the change.",
+            ]),
+            SHOT("vibe-settings-refusals-off.png", "Checks on every push with secrets no longer refusing a push, and the warning the page shows"),
+            WARN("Turn these off only for a short while, for example to publish a project whose test keys are fake. Real secrets in a check-in should be revoked."),
+
+            H("Keep the typosquat list current"),
+            P("The check that flags packages one letter off a popular one compares names with a list of popular npm and PyPI packages. Depotex has a list built in; set **List address** under **Package list for typosquats** to download a newer one from a list your organization or vendor keeps (`https` only)."),
+            UL([
+                "Depotex downloads the list when you save the address, every night with the `vibe-package-list` job in [Scheduler](scheduler.html) (02:20, while vibe artifacts are on), and when you press **Update now**. One server downloads it for the whole cluster.",
+                "The request goes through the installation's outbound proxy and trusted certificates (**Settings → Repositories**) and carries the installation ID in the `X-Depotex-Installation-ID` header, so the list's server can tell which installation is asking. It sends `If-None-Match`, so an unchanged list isn't downloaded again.",
+                "The page shows where the list in use came from (built in or downloaded, with its version and how many names), when it was last checked and why the last download failed (not reachable, refused, not found, an error, too large, not a valid list).",
+                "If a download fails, the last list downloaded from the same address keeps being used; with no list from that address, the built-in list is. Clearing the address goes back to the built-in list.",
+                "The downloaded list replaces the built-in one; it doesn't add to it. It isn't signed: only use an address you trust.",
+            ]),
+            P("The list is a JSON file:"),
+            CODE("""{
+  "format": 1,
+  "version": "2026-10-14",
+  "packages": {
+    "npm": ["react", "express", "lodash"],
+    "pypi": ["requests", "numpy", "django"]
+  }
+}"""),
+            P("Names are compared in lower case (PyPI names normalized); names that aren't valid package names are skipped. Answer `401` or `403` to an installation the server doesn't know, and `304` to a matching `If-None-Match`. Each change to these settings is recorded as `vibe:update_settings`; **Update now** as `vibe:refresh_package_list`, marked failed when the download fails."),
 
             H("Find projects in the Vibe browser"),
             P("Open **Vibe** in the left menu. One search box looks through project names, descriptions and tags, milestones, what each check-in changed, and screenshot captions; every word you type must match, and the start of a word is enough (`stre` finds \"Streaks work\")."),
@@ -93,11 +124,11 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
             NOTE("The link uses the address in **Settings → General → Public URL** when one is set, so it works for the people you send it to."),
 
             H("What every push is checked for"),
-            P("Depotex reads every push before it stores it. A push with a secret in it, or with hidden characters in a file AI tools follow, is refused: nothing is stored and the push gets no link. Everything else the check finds is stored with the check-in as **findings**, shown on its page and in the commit's answer."),
+            P("Depotex reads every push before it stores it. A push with a secret in it, or with hidden characters in a file AI tools follow, is refused: nothing is stored and the push gets no link (an administrator can turn either refusal into a finding, see [Choose what refuses a push](#choose-what-refuses-a-push)). Everything else the check finds is stored with the check-in as **findings**, shown on its page and in the commit's answer."),
             TABLE(["Check", "What happens"], [
-                ["Private keys, tokens (AWS, GitHub, GitLab, Slack, Stripe live keys, OpenAI, Anthropic, npm, Depotex, Supabase service role keys) and `.env` files with secret values", "The push is refused (`vibe_secret_found`), naming the file and line, never the secret. Remove the secret, revoke it (it was on your computer in plain text), and push again"],
-                ["Characters that don't show (zero-width, text-direction and tag characters) in instruction files: `AGENTS.md`, `CLAUDE.md`, the memory and known gaps files, `.cursor/rules`, Copilot instructions", "The push is refused (`vibe_hidden_unicode`): hidden text can give an AI tool instructions nobody sees. Emoji, flags and other languages are fine"],
-                ["Packages that don't exist, were first published in the last 14 days, or are one letter off a popular package (`package.json`, `requirements.txt`, `pyproject.toml`)", "High finding. Packages are looked up through the space's own npm and PyPI group or proxy repositories, with the pusher's access"],
+                ["Private keys, tokens (AWS, GitHub, GitLab, Slack, Stripe live keys, OpenAI, Anthropic, npm, Depotex, Supabase service role keys) and `.env` files with secret values", "The push is refused (`vibe_secret_found`), naming the file and line, never the secret. Remove the secret, revoke it (it was on your computer in plain text), and push again. With **Refuse pushes with a secret** off, a high finding instead"],
+                ["Characters that don't show (zero-width, text-direction and tag characters) in instruction files: `AGENTS.md`, `CLAUDE.md`, the memory and known gaps files, `.cursor/rules`, Copilot instructions", "The push is refused (`vibe_hidden_unicode`): hidden text can give an AI tool instructions nobody sees. Emoji, flags and other languages are fine. With **Refuse hidden characters in AI instruction files** off, a high finding instead"],
+                ["Packages that don't exist, were first published in the last 14 days, or are one letter off a popular package (`package.json`, `requirements.txt`, `pyproject.toml`)", "High finding. Popular packages come from the [package list](#keep-the-typosquat-list-current). Packages are looked up through the space's own npm and PyPI group or proxy repositories, with the pusher's access"],
                 ["Supabase tables without row-level security, Firebase rules that let anyone read or write, public storage buckets", "High finding"],
                 ["No lockfile next to `package.json`, Google API keys, addresses with a password, text-direction characters in code", "Medium finding"],
                 ["Python requirements not pinned to one version", "Low finding"],
@@ -109,7 +140,7 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
                 "**Findings from the AI tool.** A push can send its own findings (`findings`: `severity` high, medium, low or hint, a one-line `message`, and optionally `path`, `line` and `source` `agent` or `person`), up to 100. They show beside the check's, marked **From the AI tool** or **From a person**. Findings belong in the project's known gaps file too: the commit's answer tells the AI tool to add them.",
                 "**Unchanged files** keep their findings from the check-in a push builds on and aren't read again; packages and database rules are checked again on every push.",
                 "**Known vulnerabilities.** Lockfiles in a check-in (`package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `poetry.lock`, `uv.lock`, `Pipfile.lock`, pinned `requirements.txt`, `Cargo.lock`, `go.mod`, `composer.lock`, `Gemfile.lock`) become the check-in's [SBOM](sbom.html), checked against known vulnerabilities like any other version, so [SBOM policies](sbom.html) apply to check-ins too.",
-                "**Policies.** Two [policy](policies.html) templates under Repositories refuse pushes by what the check found: **Refuse vibe check-ins with severe findings** (pick the severities) and **Refuse vibe check-ins with some findings** (pick the findings). Start them in dry run. Secrets and hidden characters are always refused; no policy can let them through.",
+                "**Policies.** Two [policy](policies.html) templates under Repositories refuse pushes by what the check found: **Refuse vibe check-ins with severe findings** (pick the severities) and **Refuse vibe check-ins with some findings** (pick the findings). Start them in dry run. Whether secrets and hidden characters refuse a push is set only in Settings ([Choose what refuses a push](#choose-what-refuses-a-push)); no policy can let them through while they are on.",
             ]),
             CODE("""{
   "code": 422,
@@ -167,18 +198,22 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
                 ["`VIBE_SCAN_PACKAGE_TIMEOUT`", "`15s`", "How long one push's package lookups may take in all (1s to 5m); the rest show as not checked"],
                 ["`VIBE_SCAN_PACKAGE_WORKERS`", "`8`", "Lookups at once (1 to 64)"],
                 ["`VIBE_SCAN_NEW_PACKAGE_DAYS`", "`14`", "A package first published within this many days is new (0 to 365; 0 turns it off)"],
+                ["`VIBE_PACKAGE_LIST_URL`", "*(none)*", "The package list address used until one is saved in Settings (`https` only); empty means the built-in list"],
+                ["`VIBE_PACKAGE_LIST_MAX_SIZE`", "`16777216`", "Largest package list in bytes (64 KiB to 256 MiB)"],
+                ["`VIBE_PACKAGE_LIST_TIMEOUT`", "`1m`", "How long one package list download may take (5s to 10m)"],
                 ["`VIBE_GC_GRACE`", "`24h`", "How long uploads no check-in uses are kept before the `vibe-gc` job removes them (1h to 30d)"],
             ]),
-            P("The largest file is the repository's size limit, else the installation's (**Settings → Repositories**). Every server of a cluster must use the same values. The `vibe-gc` job runs daily in [Scheduler](scheduler.html); it removes only uploads no check-in uses."),
+            P("The largest file is the repository's size limit, else the installation's (**Settings → Repositories**). Every server of a cluster must use the same values. The `vibe-gc` job runs daily in [Scheduler](scheduler.html); it removes only uploads no check-in uses. The `vibe-package-list` job downloads the package list daily; you can turn it off, change when it runs or run it now there."),
 
             H("Events"),
-            P("`vibe.settings.update` is raised when vibe artifacts are turned on or off, before (so a [policy](policies.html) or plugin can refuse it) and after, with `enabled` and `previous_enabled`. Use [automation](automation.html) to tell someone when it changes."),
+            P("`vibe.settings.update` is raised when a setting on the Vibe artifacts page changes, before (so a [policy](policies.html) or plugin can refuse it) and after, with `enabled`, `refuse_secrets`, `refuse_hidden_unicode` and `package_list_url`, each with its `previous_` value. Use a policy to stop the refusals being turned off, and [automation](automation.html) to tell someone when they are. Downloading the package list raises no event."),
             P("`vibe.checkin.push` is raised for every push the check doesn't refuse: before, with what the check found (`findings` counts per severity, `max_finding_severity`, `finding_rules`), so a policy can refuse it (for example pushes with high findings, without a milestone, or to a space you name), and after, with the check-in's number, what changed and its link, so [automation](automation.html) can post the link to a chat. `vibe.project.delete` is raised when a project is deleted. Each added or changed file also raises `artifact.upload`. Pushes are recorded in the audit log as `vibe:push` (with their finding counts), refused ones as `vibe:push_refused`, deletions as `vibe:delete_project`; a push from an AI tool raises the same events and its audit entry names the plugin and AI app (`via: mcp:depotex-mcp/<app>`). Searching and pulling, from the browser or an AI tool, raise no events. See [Events](events.html)."),
 
             H("API"),
             TABLE(["Route", "Who", "What"], [
-                ["`GET /api/vibe/settings`", "Enterprise, `repository_settings:manage`", "Whether vibe artifacts are on (`enabled`) and when that last changed (`updated_at`)"],
-                ["`PUT /api/vibe/settings`", "Enterprise, `repository_settings:manage`", "`{\"enabled\": true}` turns them on, `false` off"],
+                ["`GET /api/vibe/settings`", "Enterprise, `repository_settings:manage`", "Whether vibe artifacts are on (`enabled`), whether secrets and hidden characters refuse a push (`refuse_secrets`, `refuse_hidden_unicode`), the package list in use (`package_list`: address, source, version, name counts, last download and error) and when the settings last changed (`updated_at`)"],
+                ["`PUT /api/vibe/settings`", "Enterprise, `repository_settings:manage`", "Changes any of `enabled`, `refuse_secrets`, `refuse_hidden_unicode` and `package_list_url` (`\"\"` goes back to the built-in list); a new address is downloaded at once. `vibe_invalid_package_list_url` for an address that isn't `https`"],
+                ["`POST /api/vibe/settings/package-list/refresh`", "Enterprise, `repository_settings:manage`", "Downloads the package list now and answers with `package_list`; `vibe_package_list_not_set` (422) when no address is set"],
                 ["`GET /api/features`", "Anyone signed in", "The optional features this installation has now; `vibe` is listed while vibe artifacts are on"],
                 ["`GET /api/vibe/projects`", "Enterprise, signed in", "Projects with a check-in matching the search (`q`, `project`, `milestones`, `milestone`, `from`, `to`, `screenshots`), newest match first, paged with `cursor` and `limit`"],
                 ["`GET /api/vibe/checkins`", "Enterprise, signed in", "Matching check-ins, newest first (the Timeline view), same filters"],

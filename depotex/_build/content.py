@@ -41,6 +41,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-14", "Vibe artifacts", "Enterprise: Settings can let pushes with secrets or hidden characters through as high findings, and download the typosquat check's popular-package list from an address you set, daily or on demand, falling back to the built-in list."),
     ("2026-10-14", "Vibe artifacts", "Enterprise: every push is checked: secrets and hidden characters in AI instruction files refuse it, and packages that don't exist or are new, open database rules, lockfile vulnerabilities and risky code show as findings on the check-in's new Findings tab."),
     ("2026-10-14", "Vibe artifacts", "Enterprise: AI coding tools can search, pull, compare and publish vibe projects through the Depotex AI tools (MCP); every publish answers with the check-in's link in the Vibe browser."),
     ("2026-10-14", "Vibe artifacts", "Enterprise: the Vibe browser searches projects, milestones, what changed and screenshot captions, with project and check-in pages, a timeline, a screenshot wall and a zip download of each check-in."),
