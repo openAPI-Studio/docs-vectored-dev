@@ -41,6 +41,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-14", "Vibe artifacts", "Enterprise: the Vibe browser searches projects, milestones, what changed and screenshot captions, with project and check-in pages, a timeline, a screenshot wall and a zip download of each check-in."),
     ("2026-10-13", "Vibe artifacts", "Enterprise: vibe artifact repositories hold projects pushed as numbered check-ins with files and screenshots; every push answers with a link to the check-in in the Vibe browser."),
     ("2026-10-13", "Vibe artifacts", "Enterprise: turn on vibe artifacts in Settings → Repositories → Vibe artifacts to add the Vibe browser to the menu, beside Browse."),
 ]

@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-67 screenshots. Save each one into `depotex/assets/` using the
+74 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -105,7 +105,21 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `vibe-settings.png`
       Settings → Repositories → Vibe artifacts with the switch on, and Vibe in the left menu
 - [ ] `vibe-browser.png`
-      The Vibe page, which a check-in's link opens until project pages arrive
+      The Vibe browser: search, filters and the Projects view, newest check-in first
+- [ ] `vibe-browser-timeline.png`
+      The Timeline view: check-ins grouped by day, milestones marked
+- [ ] `vibe-browser-screenshots.png`
+      The Screenshots view: every screenshot with its caption, project and check-in
+- [ ] `vibe-browser-phone.png`
+      The Vibe browser on a phone
+- [ ] `vibe-project.png`
+      A project's page: the latest check-in, how to run it, milestones and every check-in
+- [ ] `vibe-checkin.png`
+      A check-in's page: screenshots, details, how to run it, and the actions to pick it up
+- [ ] `vibe-checkin-gaps.png`
+      A check-in's What's unfinished tab: its known gaps file
+- [ ] `browse-vibe-notice.png`
+      Browse with the line that opens the Vibe browser
 - [ ] `vibe-repository-create.png`
       A new repository in a space, with the Vibe artifacts format: only Hosted is offered
 - [ ] `vibe-repository-usage.png`
