@@ -620,6 +620,19 @@ PAGES["ai"] = dict(
         ]),
         NOTE("Every one of these leaves your capture exactly as it was. No AI failure can lose work, block a capture, or change an image."),
 
+        H("Letting a browser agent drive Lens"),
+        P("An AI agent that works in your browser, such as Claude in Chrome, can use Lens too. It can record GIFs and guides, take and annotate screenshots, file them into a project, and export or replay a guide. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it."),
+        STEPS([
+            "Turn on Allow browser agents to drive Lens in Settings|it is off by default. While it is on, any script on a page can ask Lens to capture that page, so leave it off unless you use an agent.",
+            "Reload any tab that was already open|so it picks up the change.",
+            "Give your agent the lens-capture-agent skill|it teaches the agent how to drive Lens, and it is published at [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills).",
+        ]),
+        TABLE(["Agent", "How to install the skill"], [
+            ["Claude Code", "`/plugin marketplace add openAPI-Studio/lens-skills`, then `/plugin install lens@lens-skills`"],
+            ["Kiro", "Powers → Add Custom Power → Import power from GitHub, with `https://github.com/openAPI-Studio/lens-skills`"],
+        ]),
+        P("Before anything is captured, the agent can ask Lens to find secrets on screen and cover them with a grey bar. It is told what kind of secret was found and where, never the value. A page can only reach the captures and guides taken of its own site."),
+
         H("Where to read the rest"),
         P("The [privacy policy](../privacy.html#ai) sets out what each feature sends and whose terms apply to it. The [security page](../security.html#ai) covers key handling and why the request is made where it is."),
     ],
@@ -733,6 +746,9 @@ PAGES["settings"] = dict(
         H("Let the model sharpen redaction hints"),
         P("Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console."),
         P("The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one."),
+
+        H("Allow browser agents to drive Lens"),
+        P("Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [Letting a browser agent drive Lens](ai.html#letting-a-browser-agent-drive-lens) for the skill that teaches it how."),
 
         H("File name pattern"),
         P("Controls the name each capture is given before you edit it. The extension is added automatically."),
