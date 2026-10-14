@@ -11,7 +11,7 @@ VIBE = [
             H("Overview"),
             P("Vibe artifacts are projects that AI coding tools publish to Depotex: the code with its memory file, known gaps and screenshots. The **Vibe** browser, beside [Browse](browse.html) in the left menu, is a simple place to find them by project, milestone, date or screenshot. Browse keeps working as before for every other repository type."),
             NOTE("Vibe artifacts need an **Enterprise** license, and an administrator turns them on for the whole installation. On Standard and Pro nothing about them shows: no menu entry, no settings page, and their API answers `402` with the reason `vibe_requires_enterprise`."),
-            NOTE("Publishing straight from AI coding tools comes in a later release; until then a check-in is pushed with three HTTP requests (see [Push a check-in](#push-a-check-in))."),
+            NOTE("AI coding tools publish and pull projects through the Depotex AI tools (MCP), see [Use vibe projects from AI tools](#use-vibe-projects-from-ai-tools); scripts push with three HTTP requests (see [Push a check-in](#push-a-check-in))."),
 
             H("Turn vibe artifacts on or off"),
             STEPS([
@@ -64,7 +64,7 @@ VIBE = [
             P("Space roles decide who does what, by path in the repository as for any format: readers download, developers push, maintainers delete projects. A check-in is a version of its project (`todo-app`, version `3`), so [cleanup policies](spaces.html#cleanup), [quarantine](quarantine.html) and the [block list](blocklist.html) work on check-ins, and [upload rules](spaces.html#upload-rules) judge each added or changed file by its path in the project. Vibe repositories are left out of [Browse](browse.html): they are found in the Vibe browser."),
 
             H("Push a check-in"),
-            P("Pushing is three requests. For now they are `curl` calls (or your own script) with an [API token](api-tokens.html); a later release lets AI coding tools send them for you. `checkin.json` describes the whole check-in:"),
+            P("Pushing is three requests: `curl` calls (or your own script) with an [API token](api-tokens.html). AI coding tools can use the [AI tools](#use-vibe-projects-from-ai-tools) instead, which make the same requests for the person. `checkin.json` describes the whole check-in:"),
             CODE("""{
   "milestone": "Login works",
   "summary": "Adds the sign-in page",
@@ -92,6 +92,25 @@ curl -f --upload-file src/app.tsx "<address from the answer>"
 curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/json" -d @checkin.json $R/todo-app/push/commit"""),
             NOTE("The link uses the address in **Settings → General → Public URL** when one is set, so it works for the people you send it to."),
 
+            H("Use vibe projects from AI tools"),
+            P("The Depotex AI tools plugin (`depotex-mcp`, see [MCP servers for AI applications](plugins.html#mcp-servers-for-ai-applications)) gives AI coding tools such as Claude Code, Cursor or VS Code tools to find, pull and publish vibe projects. They act as the person who connected the AI app, with that person's access, and they are listed only while vibe artifacts are on (Enterprise): on other tiers, or with the switch off, the AI app doesn't see them at all."),
+            TABLE(["Tool", "What it does"], [
+                ["`vibe_search`", "Find projects or check-ins by words, project, milestone, date or screenshots, the same search as the Vibe browser"],
+                ["`vibe_versions`", "A project's check-ins, newest first"],
+                ["`vibe_pull`", "One check-in (the latest by default): what changed, how to run and test it, the screenshot captions, the memory file and known gaps as text, and a short-lived link to download every file as a zip"],
+                ["`vibe_list_files`, `vibe_get_file`", "A check-in's files, and one file's text (files that aren't text, or are over 256 KiB, come as a short-lived download link)"],
+                ["`vibe_diff`", "What changed between two check-ins, and for one file a line-by-line diff"],
+                ["`vibe_push_begin`, `vibe_push_commit`", "Publish a new check-in: begin lists the files to upload, each with an address; commit saves the check-in and answers with its link in the Vibe browser, which the AI app is told to show you"],
+            ]),
+            UL([
+                "**Permissions:** the AI app needs the plugin's permission **Find and pull the vibe projects you can see** (`mcp:depotex:vibe`) to read, and **Publish vibe projects as new check-ins** (`mcp:depotex:vibe:push`) to publish. The person's space role still decides what each tool may do, as it does for a push over HTTP.",
+                "**Publishing is a write tool.** `vibe_push_begin` and `vibe_push_commit` show only when an administrator turns on **Allow write tools for AI agents**, the plugin is **Read-write** and the AI app's access is **Read and change** (see [Write tools](plugins.html#write-tools)).",
+                "**Every publish answers with the browser link** (`https://<your Depotex address>/vibe/<space>/<repository>/<project>/<n>`), so you can open the check-in straight away. Set **Settings → General → Public URL** so the link works for others.",
+                "**Download links** from `vibe_pull` and `vibe_get_file` work without a token for `VIBE_PULL_LINK_TTL` (15 minutes), for that file or archive only.",
+                "Through the AI tools a check-in can list up to about 5,000 files; push bigger projects with the HTTP requests above.",
+                "What a project holds (memory files, known gaps, code) was written by someone else, so results carry a notice telling the AI app to treat them as data, not instructions.",
+            ]),
+
             H("Read and download"),
             TABLE(["Request", "Answers"], [
                 ["`GET <repository URL>`", "The projects you can see, by name"],
@@ -110,6 +129,7 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
             H("Limits and server settings"),
             TABLE(["Setting", "Default", "What"], [
                 ["`VIBE_UPLOAD_LINK_TTL`", "`1h`", "How long upload addresses work (1m to 48h)"],
+                ["`VIBE_PULL_LINK_TTL`", "`15m`", "How long download links from the AI tools work (1m to 24h)"],
                 ["`VIBE_MAX_FILES`", "`20000`", "Most files in a check-in"],
                 ["`VIBE_MAX_SCREENSHOTS`", "`10`", "Most screenshots in a check-in (0 to 100)"],
                 ["`VIBE_MAX_SCREENSHOT_SIZE`", "`10485760`", "Largest screenshot in bytes (64 KiB to 100 MiB); PNG, JPEG or GIF"],
@@ -119,7 +139,7 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
 
             H("Events"),
             P("`vibe.settings.update` is raised when vibe artifacts are turned on or off, before (so a [policy](policies.html) or plugin can refuse it) and after, with `enabled` and `previous_enabled`. Use [automation](automation.html) to tell someone when it changes."),
-            P("`vibe.checkin.push` is raised for every push: before, so a policy can refuse it (for example pushes without a milestone, or to a space you name), and after, with the check-in's number, what changed and its link, so [automation](automation.html) can post the link to a chat. `vibe.project.delete` is raised when a project is deleted. Each added or changed file also raises `artifact.upload`. Pushes are recorded in the audit log as `vibe:push`, deletions as `vibe:delete_project`. See [Events](events.html)."),
+            P("`vibe.checkin.push` is raised for every push: before, so a policy can refuse it (for example pushes without a milestone, or to a space you name), and after, with the check-in's number, what changed and its link, so [automation](automation.html) can post the link to a chat. `vibe.project.delete` is raised when a project is deleted. Each added or changed file also raises `artifact.upload`. Pushes are recorded in the audit log as `vibe:push`, deletions as `vibe:delete_project`; a push from an AI tool raises the same events and its audit entry names the plugin and AI app (`via: mcp:depotex-mcp/<app>`). Searching and pulling, from the browser or an AI tool, raise no events. See [Events](events.html)."),
 
             H("API"),
             TABLE(["Route", "Who", "What"], [

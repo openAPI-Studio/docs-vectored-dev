@@ -106,6 +106,8 @@ PLUGINS = [
                 ["`get_download_link`", "A short-lived link to download one file of a version"],
                 ["`search_docs`, `get_doc`, `list_doc_sources`", "Search and read the documentation inside artifacts, and see what is indexed"],
                 ["`quarantine_version`, `release_from_quarantine`", "Write tools: quarantine or release a version, with a reason (its settings add a prefix such as \"AI agent: \")"],
+                ["`vibe_search`, `vibe_versions`, `vibe_pull`, `vibe_list_files`, `vibe_get_file`, `vibe_diff`", "Enterprise, while vibe artifacts are on: find, pull and compare vibe projects (see [Vibe artifacts](vibe-artifacts.html#use-vibe-projects-from-ai-tools))"],
+                ["`vibe_push_begin`, `vibe_push_commit`", "Write tools, Enterprise: publish a vibe project as a new check-in; the answer has the check-in's link in the Vibe browser"],
             ]),
             H("Connect an AI app"),
             P("Right after you activate a plugin with AI tools, the setup guide shows the plugin's own **Connect an AI app** step: it asks which AI app people will use (Claude, Claude Code, VS Code, Cursor, or another one) and registers it. **Connect an AI app** in the plugin's panel on its page does the same later. You need permission to manage applications (`oauth_apps:manage`); otherwise the step says an administrator must register one."),
