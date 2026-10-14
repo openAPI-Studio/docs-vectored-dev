@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-79 screenshots. Save each one into `depotex/assets/` using the
+81 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -94,6 +94,10 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `quarantine.png`
       Settings → Quarantine: versions held back in every space, and the installation's rules
+- [ ] `quarantine-block.png`
+      Delete and block: choosing where the block applies, every version, and the reason
+- [ ] `repository-quarantine.png`
+      A repository's Quarantine tab: its quarantined versions and its own rules
 
 ## Block list
 

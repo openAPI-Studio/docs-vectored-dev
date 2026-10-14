@@ -195,6 +195,7 @@ SPACES = [
                 ["`repo:add`", "Publishing to a new path"],
                 ["`repo:edit`", "Overwriting a file"],
                 ["`repo:delete`", "Deleting files"],
+                ["`repo:quarantine`", "The repository's **Quarantine** tab: quarantining, releasing and blocking its versions, and its own quarantine and block-list rules (repository admins; Enterprise)"],
                 ["`repo:admin`", "Changing the repository's settings and who has access"],
             ]),
 

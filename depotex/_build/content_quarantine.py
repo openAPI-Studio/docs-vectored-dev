@@ -6,8 +6,8 @@ from engine import H, P, UL, TABLE, NOTE, STEPS, SHOT
 QUARANTINE = [
     ("quarantine", dict(
         label="Quarantine", title="Quarantine", icon="shield",
-        desc="Hold back new or suspect versions until someone releases them: rules for uploads and proxied files, by hand, and age rules against freshly published packages",
-        keywords=["quarantine", "release", "hold", "review", "firewall", "malicious", "new packages", "age", "dependency age", "block", "approve"],
+        desc="Hold back new or suspect versions until someone releases them, blocks them or deletes and blocks them: rules for uploads and proxied files, by hand, and age rules against freshly published packages",
+        keywords=["quarantine", "release", "hold", "review", "firewall", "malicious", "new packages", "age", "dependency age", "block", "approve", "delete and block", "reject", "repository admin"],
         blocks=[
             H("Overview"),
             P("A quarantined version stays listed in its repository but can't be downloaded until someone releases it. Builds that need it fail with a clear **quarantined** error and the reason, instead of quietly using something else. Versions are quarantined by **rules**, as they are published or fetched by a proxy repository, or **by hand**. Needs an **Enterprise** license."),
@@ -43,19 +43,47 @@ QUARANTINE = [
                 "Release|Tick the versions, or choose **Release** on one, add a note if you like (it goes in the audit log), and confirm. They can be downloaded again at once.",
                 "Quarantine by hand|In a repository's **Versions** tab, choose **Quarantine** next to a version and give a reason. **Release** there does the opposite.",
             ]),
+            P("A version blocked from quarantine (see below) leaves the held list for **Blocked**, marked with the rule that blocks it."),
             P("AI agents can quarantine and release versions too, through [write tools](plugins.html#write-tools), once an administrator allows it. They act as the person using them, need the same rights in the space, and are recorded in the audit log with `via: mcp:<plugin>/<application>`."),
             P("Versions held by an age rule show until when; once that time passes they're downloadable again and are listed as ended."),
 
+            H("Block, or Delete and block"),
+            P("When a quarantined version must never be used, don't release it: choose **Block…** or **Delete and block…** from the **⋯** menu next to it (or select several). Both add a rule to the [block list](blocklist.html) that refuses downloads, uploads and proxy fetches of the version from then on, including a rebuilt copy published again under the same version, and the same files under another name (by their SHA-256)."),
+            TABLE(["Action", "What happens"], [
+                ["**Block**", "The version stays stored and quarantined, listed under **Blocked**. Releasing it is refused. **Unblock** (from the same menu) deletes its block-list rule and puts it back in quarantine, held until someone releases it."],
+                ["**Delete and block**", "The version and its files are deleted at once (there is no trash; storage is freed later), and the rule keeps refusing it. The rule records where the version was, why it was quarantined, and that it was deleted. Needs the right to delete versions. You type the version to confirm."],
+            ]),
+            SHOT("quarantine-block.png", "Delete and block: choosing where the block applies, every version, and the reason"),
+            P("In the dialog you choose:"),
+            UL([
+                "**Where**: this repository only, every repository in the space (the default), or every space. You see only the places you may block in: the space and its repositories with the space's block-list permission, every space with the installation's.",
+                "**Every version of the name**, not only this one. Other stored versions are then refused too, but they aren't deleted; the dialog says how many there are.",
+                "**Reason** (required): shown to anyone whose download or upload is refused, and kept with the rule.",
+            ]),
+            NOTE("Blocking needs an Enterprise license. Files under 128 bytes, checksum files and a Docker image's layers aren't compared by content."),
+
+            H("Repository Quarantine tab"),
+            P("Each repository has a **Quarantine** tab for its admins (`repo:quarantine`, part of the repository **Admin** role) and for the space's quarantine managers. It lists the repository's quarantined versions with the same actions, and the repository's own quarantine rules."),
+            UL([
+                "Repository admins can quarantine, block, and delete and block the repository's versions, with blocks in that repository only.",
+                "They can release only what was quarantined by hand or by the repository's own rules. A version held by a space or installation rule, by a policy, or automatically needs a space quarantine manager.",
+                "Their rules apply to that repository only.",
+            ]),
+            SHOT("repository-quarantine.png", "A repository's Quarantine tab: its quarantined versions and its own rules"),
+
             H("Without Enterprise"),
-            P("Rules don't apply and nothing new can be quarantined, but versions already quarantined stay quarantined, and you can still list and release them and delete rules."),
+            P("Rules don't apply and nothing new can be quarantined or blocked, but versions already quarantined or blocked stay so, and you can still list and release them, unblock them and delete rules."),
 
             H("Events"),
-            P("`artifact.quarantine` is raised when a version is quarantined (by hand: before and after, so policies can refuse it; by a rule: after). `artifact.release` is raised when one is released (by hand: before, refused if a policy or plugin fails, and after; when an age rule ends: after). `quarantine.rule.create`, `.update` and `.delete` wrap rule changes. Use [automation](automation.html) to notify someone when versions are quarantined. Everything is recorded in the audit log. See [Events](events.html)."),
+            P("`artifact.quarantine` is raised when a version is quarantined (by hand: before and after, so policies can refuse it; by a rule: after). `artifact.release` is raised when one is released (by hand: before, refused if a policy or plugin fails, and after; when an age rule ends: after). `quarantine.rule.create`, `.update` and `.delete` wrap rule changes. `artifact.block` and `artifact.reject` (Delete and block) are raised before and after blocking a quarantined version, so policies can refuse them, followed by `blocklist.rule.create` and, when deleting, `artifact.delete` for each file. Use [automation](automation.html) to notify someone when versions are quarantined. Everything is recorded in the audit log. See [Events](events.html)."),
 
             H("Permissions"),
             TABLE(["Permission", "Who", "Allows"], [
                 ["`spaces:quarantine:manage`", "Space maintainers and owners", "The space's quarantine list, quarantining and releasing its versions, and its rules"],
                 ["`artifacts:quarantine:manage`", "Super admins only", "Settings → Repositories → Quarantine: every space's quarantined versions and the installation rules"],
+                ["`repo:quarantine`", "Repository admins", "The repository's Quarantine tab, as above"],
+                ["`spaces:blocklist:manage`, `artifacts:blocklist:manage`", "Space maintainers and owners; super admins", "Blocking in the space and its repositories; in every space"],
+                ["`spaces:artifacts:delete`, `repo:delete`", "Space maintainers and owners; repository maintainers and admins", "Delete and block"],
             ]),
         ],
     )),
