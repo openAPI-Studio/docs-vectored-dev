@@ -211,6 +211,14 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
             P("`DELETE <repository URL>/todo-app` (maintainers) deletes the project with every check-in and screenshot. Its name can be used again; the new project starts at check-in 1."),
 
             H("Limits and server settings"),
+            P("Settings on the **Settings → Repositories → Vibe artifacts** page apply to every server at once and need no restart:"),
+            TABLE(["Setting", "Default", "Change it"], [
+                ["**Turn on vibe artifacts**", "Off", "[Turn vibe artifacts on or off](#turn-vibe-artifacts-on-or-off)"],
+                ["**Refuse pushes with a secret**", "On", "[Choose what refuses a push](#choose-what-refuses-a-push)"],
+                ["**Refuse hidden characters in AI instruction files**", "On", "[Choose what refuses a push](#choose-what-refuses-a-push)"],
+                ["**Package list for typosquats → List address**", "Empty (the built-in list)", "The same page; `VIBE_PACKAGE_LIST_URL` gives the address used until one is saved there"],
+            ]),
+            P("The limits below are environment variables of the server. Set them where you run it, for example `backend.env` in the Helm chart's values (see [Kubernetes](kubernetes.html)) or the `environment:` of the server's service in Docker Compose, then restart each server: they are read when it starts. A value that isn't a number or is outside its range stops the server from starting, with a message naming the variable and the range it accepts."),
             TABLE(["Setting", "Default", "What"], [
                 ["`VIBE_UPLOAD_LINK_TTL`", "`1h`", "How long upload addresses work (1m to 48h)"],
                 ["`VIBE_PULL_LINK_TTL`", "`15m`", "How long download links from the AI tools work (1m to 24h)"],
@@ -229,6 +237,7 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
                 ["`VIBE_GC_GRACE`", "`24h`", "How long uploads no check-in uses are kept before the `vibe-gc` job removes them (1h to 30d)"],
             ]),
             P("The largest file is the repository's size limit, else the installation's (**Settings → Repositories**). Every server of a cluster must use the same values. The `vibe-gc` job runs daily in [Scheduler](scheduler.html); it removes only uploads no check-in uses. The `vibe-package-list` job downloads the package list daily; you can turn it off, change when it runs or run it now there."),
+            P("Some limits are fixed: a check-in keeps at most 500 findings (100 per check, 20 hints per check), and a screenshot may be at most 16,384 pixels a side and 50 megapixels, checked before the image is decoded. The software bill of materials built from a check-in's lockfiles uses the [Browse](browse.html#configuration) reading limits (`BROWSE_GUARD_*`)."),
 
             H("Events"),
             P("`vibe.settings.update` is raised when a setting on the Vibe artifacts page changes, before (so a [policy](policies.html) or plugin can refuse it) and after, with `enabled`, `refuse_secrets`, `refuse_hidden_unicode` and `package_list_url`, each with its `previous_` value. Use a policy to stop the refusals being turned off, and [automation](automation.html) to tell someone when they are. Downloading the package list raises no event."),
