@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-63 screenshots. Save each one into `depotex/assets/` using the
+79 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -99,6 +99,41 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `blocklist-rules.png`
       Settings → Block list: the installation's rules
+
+## Vibe artifacts
+
+- [ ] `vibe-settings.png`
+      Settings → Repositories → Vibe artifacts: the switch, the checks on every push and the package list
+- [ ] `vibe-settings-refusals-off.png`
+      Checks on every push with secrets no longer refusing a push, and the warning the page shows
+- [ ] `vibe-browser.png`
+      The Vibe browser: search, filters and the Projects view, newest check-in first
+- [ ] `vibe-browser-timeline.png`
+      The Timeline view: check-ins grouped by day, milestones marked
+- [ ] `vibe-browser-screenshots.png`
+      The Screenshots view: every screenshot with its caption, project and check-in
+- [ ] `vibe-browser-phone.png`
+      The Vibe browser on a phone
+- [ ] `vibe-project.png`
+      A project's page: the latest check-in, how to run it, milestones and every check-in
+- [ ] `vibe-checkin.png`
+      A check-in's page: screenshots, details, how to run it, and the actions to pick it up
+- [ ] `vibe-checkin-gaps.png`
+      A check-in's What's unfinished tab: its known gaps file
+- [ ] `browse-vibe-notice.png`
+      Browse with the line that opens the Vibe browser
+- [ ] `vibe-repository-create.png`
+      A new repository in a space, with the Vibe artifacts format: only Hosted is offered
+- [ ] `vibe-repository-usage.png`
+      A vibe artifacts repository's page: Use this repository → Publish lists the three push requests
+- [ ] `vibe-checkin-keep-working.png`
+      A check-in's page: what must keep working and the environment it needs, with the outside service marked as not in the files
+- [ ] `vibe-project-last-passing.png`
+      A project's page after a check-in whose tests failed: the last passing check-in, with the rollback prompt
+- [ ] `vibe-milestone-dialog.png`
+      Naming a check-in's milestone from its page
+- [ ] `vibe-checkin-findings.png`
+      A check-in's Findings tab: what the check found, worst first, with the file and line, and one finding from the AI tool
 
 ## SBOMs
 

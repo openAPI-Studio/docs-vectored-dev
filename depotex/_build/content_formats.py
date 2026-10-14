@@ -28,6 +28,7 @@ FORMATS = [
                 ["[Composer](composer.html)", "PHP packages", "composer 2", "Packagist"],
                 ["[Docker](docker.html)", "Container images and other OCI artifacts", "docker, BuildKit, containerd, Helm, ORAS, crane, skopeo, cosign", "Docker Hub"],
                 ["[Raw](raw.html)", "Any file", "curl, wget, browsers, scripts", "—"],
+                ["[Vibe artifacts](vibe-artifacts.html)", "Projects AI coding tools push: check-ins with files, milestones and screenshots (Enterprise)", "HTTP (curl, an AI coding tool)", "— (hosted only)"],
             ]),
             H("What each format supports"),
             TABLE(["", "Maven", "npm", "PyPI", "Go", "Helm", "NuGet", "Cargo", "APT", "YUM", "Docker", "Raw"], [

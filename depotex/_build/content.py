@@ -26,6 +26,7 @@ from content_backups import BACKUPS
 from content_integrity import INTEGRITY
 from content_quarantine import QUARANTINE
 from content_blocklist import BLOCKLIST
+from content_vibe import VIBE
 from content_sbom import SBOM
 from content_reposettings import REPO_SETTINGS
 from content_browse import BROWSE
@@ -40,6 +41,13 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-14", "Vibe artifacts", "Enterprise: check-ins record what must keep working, the environment they need and whether their tests passed; the project page offers the last passing check-in to go back to, and milestones can be named or renamed from the Vibe browser."),
+    ("2026-10-14", "Vibe artifacts", "Enterprise: Settings can let pushes with secrets or hidden characters through as high findings, and download the typosquat check's popular-package list from an address you set, daily or on demand, falling back to the built-in list."),
+    ("2026-10-14", "Vibe artifacts", "Enterprise: every push is checked: secrets and hidden characters in AI instruction files refuse it, and packages that don't exist or are new, open database rules, lockfile vulnerabilities and risky code show as findings on the check-in's new Findings tab."),
+    ("2026-10-14", "Vibe artifacts", "Enterprise: AI coding tools can search, pull, compare and publish vibe projects through the Depotex AI tools (MCP); every publish answers with the check-in's link in the Vibe browser."),
+    ("2026-10-14", "Vibe artifacts", "Enterprise: the Vibe browser searches projects, milestones, what changed and screenshot captions, with project and check-in pages, a timeline, a screenshot wall and a zip download of each check-in."),
+    ("2026-10-13", "Vibe artifacts", "Enterprise: vibe artifact repositories hold projects pushed as numbered check-ins with files and screenshots; every push answers with a link to the check-in in the Vibe browser."),
+    ("2026-10-13", "Vibe artifacts", "Enterprise: turn on vibe artifacts in Settings → Repositories → Vibe artifacts to add the Vibe browser to the menu, beside Browse."),
 ]
 
 PAGES = [
@@ -199,6 +207,7 @@ location / {
     *INTEGRITY,
     *QUARANTINE,
     *BLOCKLIST,
+    *VIBE,
     *SBOM,
     *DIRECTORIES,
     *SSO,
@@ -253,7 +262,7 @@ location / {
             TABLE(["Tier", "Adds, for example"], [
                 ["**Standard**", "Spaces with hosted and group repositories in every format, the artifact browser, users and groups, backups, email and viewing scheduled jobs"],
                 ["**Pro**", "Proxy repositories, clustering (several servers), the [system check](system-check.html), the audit log, [policies](policies.html), [automation](automation.html), [plugins](plugins.html), API token IP allowlists and rotation"],
-                ["**Enterprise**", "[Single sign-on](single-sign-on.html), [quarantine](quarantine.html), the [block list](blocklist.html), [branding](branding-and-banners.html) and managing everyone's API tokens"],
+                ["**Enterprise**", "[Single sign-on](single-sign-on.html), [quarantine](quarantine.html), the [block list](blocklist.html), [branding](branding-and-banners.html), [vibe artifacts](vibe-artifacts.html) and managing everyone's API tokens"],
             ]),
             P("Each feature's page says which tier it needs. A feature the license doesn't cover shows what it would need instead of its settings, and its API answers `402 license_required`."),
             P("**Settings → Application → Licensing** (the `licenses:admin` permission) shows the license at a glance: its tier and status, who it's issued to, when it expires, and how many users and servers are in use against its limits (amber from 80%, red at the limit). Below are the features it turns on, its license ID, and the installation ID to quote when requesting a new license (**Copy** puts it on the clipboard)."),
