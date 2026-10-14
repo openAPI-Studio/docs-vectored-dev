@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-76 screenshots. Save each one into `depotex/assets/` using the
+79 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -126,6 +126,12 @@ realistic but fictional names and figures rather than real people's data.
       A new repository in a space, with the Vibe artifacts format: only Hosted is offered
 - [ ] `vibe-repository-usage.png`
       A vibe artifacts repository's page: Use this repository → Publish lists the three push requests
+- [ ] `vibe-checkin-keep-working.png`
+      A check-in's page: what must keep working and the environment it needs, with the outside service marked as not in the files
+- [ ] `vibe-project-last-passing.png`
+      A project's page after a check-in whose tests failed: the last passing check-in, with the rollback prompt
+- [ ] `vibe-milestone-dialog.png`
+      Naming a check-in's milestone from its page
 - [ ] `vibe-checkin-findings.png`
       A check-in's Findings tab: what the check found, worst first, with the file and line, and one finding from the AI tool
 

@@ -123,6 +123,29 @@ curl -f --upload-file src/app.tsx "<address from the answer>"
 curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/json" -d @checkin.json $R/todo-app/push/commit"""),
             NOTE("The link uses the address in **Settings → General → Public URL** when one is set, so it works for the people you send it to."),
 
+            H("Keep a project working"),
+            P("Each check-in can say what must keep working, what it needs to run and whether its tests passed, so whoever picks it up next (a person or an AI tool) knows what not to break and where to go back to."),
+            UL([
+                "**Must keep working.** A short list of what each change must not break (\"Sign-in works\", \"Streaks count up\"): `keep_working` in `checkin.json`, up to 30 one-line items. When a push sends none, Depotex takes the list items under a **Must keep working** heading in the project's memory file (`AGENTS.md`, `CLAUDE.md` or `README.md`). The check-in's page lists them under **Must keep working** beside the details, and AI tools get them with every pull.",
+                "**Tests.** `test` is how to test the project and `test_passed` whether the tests passed just before the push. A push without a test command, or without a must keep working list, gets a low finding; a push whose tests failed gets a medium one.",
+                "**Environment.** `environment` lists the runtimes and their versions, the names of the environment variables the project reads, and the outside services it needs (a database, sign-in, payments…). The check-in's page shows them under **Set it up again**; services aren't part of the files, so it marks each one **Not in the files**: whoever runs the project must set them up again. Send variable names only: a push with a value (`API_KEY=…`) is refused (`vibe_environment_value`) and the value isn't stored or repeated.",
+            ]),
+            CODE("""{
+  "keep_working": ["Sign-in works", "Streaks count up"],
+  "test": "npm test",
+  "test_passed": true,
+  "environment": {
+    "runtimes": [{"name": "node", "version": "22"}],
+    "variables": ["SUPABASE_URL", "SUPABASE_ANON_KEY"],
+    "services": [{"name": "Supabase", "kind": "database", "note": "Create a project and run supabase/schema.sql"}]
+  }
+}"""),
+            SHOT("vibe-checkin-keep-working.png", "A check-in's page: what must keep working and the environment it needs, with the outside service marked as not in the files"),
+            P("**Go back to the last passing check-in.** When the latest check-in's tests failed, the project's page shows **Last check-in whose tests passed**, with a button to open it and **Copy rollback prompt** for an AI tool. `passing` names that check-in wherever `latest` works (`…/checkins/passing`), and the AI tools' `vibe_pull` takes `passing` too; a pull of a check-in whose tests failed says which one passed last."),
+            SHOT("vibe-project-last-passing.png", "A project's page after a check-in whose tests failed: the last passing check-in, with the rollback prompt"),
+            P("**Name a milestone later.** On a check-in's page, **Name as milestone** (or **Rename milestone**) gives a check-in a milestone name after it was pushed, changes it or removes it. People who can push to the project can do it; the Vibe browser's search finds the new name at once. Each change is recorded in the audit log (`vibe:update_milestone`) and raises `vibe.milestone.update`, so a [policy](policies.html) can refuse it."),
+            SHOT("vibe-milestone-dialog.png", "Naming a check-in's milestone from its page"),
+
             H("What every push is checked for"),
             P("Depotex reads every push before it stores it. A push with a secret in it, or with hidden characters in a file AI tools follow, is refused: nothing is stored and the push gets no link (an administrator can turn either refusal into a finding, see [Choose what refuses a push](#choose-what-refuses-a-push)). Everything else the check finds is stored with the check-in as **findings**, shown on its page and in the commit's answer."),
             TABLE(["Check", "What happens"], [
@@ -132,6 +155,8 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
                 ["Supabase tables without row-level security, Firebase rules that let anyone read or write, public storage buckets", "High finding"],
                 ["No lockfile next to `package.json`, Google API keys, addresses with a password, text-direction characters in code", "Medium finding"],
                 ["Python requirements not pinned to one version", "Low finding"],
+                ["Tests that failed just before the push (`test_passed: false`)", "Medium finding; the last passing check-in is offered to go back to (see [Keep a project working](#keep-a-project-working))"],
+                ["No must keep working list, or no test command", "Low finding"],
                 ["HTML put into a page unescaped, code run from a string, SQL built from strings, any website allowed to call the server, debug mode on", "Hint"],
             ]),
             SHOT("vibe-checkin-findings.png", "A check-in's Findings tab: what the check found, worst first, with the file and line, and one finding from the AI tool"),
@@ -155,8 +180,8 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
             P("The Depotex AI tools plugin (`depotex-mcp`, see [MCP servers for AI applications](plugins.html#mcp-servers-for-ai-applications)) gives AI coding tools such as Claude Code, Cursor or VS Code tools to find, pull and publish vibe projects. They act as the person who connected the AI app, with that person's access, and they are listed only while vibe artifacts are on (Enterprise): on other tiers, or with the switch off, the AI app doesn't see them at all."),
             TABLE(["Tool", "What it does"], [
                 ["`vibe_search`", "Find projects or check-ins by words, project, milestone, date or screenshots, the same search as the Vibe browser"],
-                ["`vibe_versions`", "A project's check-ins, newest first"],
-                ["`vibe_pull`", "One check-in (the latest by default): what changed, how to run and test it, the screenshot captions, the memory file and known gaps as text, the check-in's findings and known vulnerabilities, and a short-lived link to download every file as a zip"],
+                ["`vibe_versions`", "A project's check-ins, newest first, with whether their tests passed and the last passing one"],
+                ["`vibe_pull`", "One check-in (the latest by default, or with `passing` the last one whose tests passed): what changed, how to run and test it, what must keep working, the environment, the screenshot captions, the memory file and known gaps as text, the check-in's findings and known vulnerabilities, and a short-lived link to download every file as a zip; for a check-in whose tests failed, which check-in passed last"],
                 ["`vibe_list_files`, `vibe_get_file`", "A check-in's files, and one file's text (files that aren't text, or are over 256 KiB, come as a short-lived download link)"],
                 ["`vibe_diff`", "What changed between two check-ins, and for one file a line-by-line diff"],
                 ["`vibe_push_begin`, `vibe_push_commit`", "Publish a new check-in: begin lists the files to upload, each with an address; commit saves the check-in and answers with its link in the Vibe browser, which the AI app is told to show you, and what the check found; begin can carry the AI tool's own findings"],
@@ -173,9 +198,9 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
             H("Read and download"),
             TABLE(["Request", "Answers"], [
                 ["`GET <repository URL>`", "The projects you can see, by name"],
-                ["`GET …/todo-app`", "The project: description, tags, latest check-in and its link"],
+                ["`GET …/todo-app`", "The project: description, tags, latest check-in, last passing check-in (`passing`) and its link"],
                 ["`GET …/todo-app/checkins`", "Its check-ins, newest first (`?before=` the number to page)"],
-                ["`GET …/todo-app/checkins/3` (or `latest`)", "The check-in's manifest: every file with its SHA-256, size and mode, the screenshots and the details"],
+                ["`GET …/todo-app/checkins/3` (or `latest`, or `passing`)", "The check-in's manifest: every file with its SHA-256, size and mode, the screenshots and the details"],
                 ["`GET …/todo-app/checkins/3/files/src/app.tsx`", "A file at that check-in, as a download"],
                 ["`GET …/todo-app/checkins/3/screenshots/1`", "A screenshot (1 is the first); add `/thumbnail` for a small preview"],
                 ["`GET …/todo-app/checkins/3/archive`", "Every file of the check-in as a zip, with the files' modes"],
@@ -207,7 +232,7 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
 
             H("Events"),
             P("`vibe.settings.update` is raised when a setting on the Vibe artifacts page changes, before (so a [policy](policies.html) or plugin can refuse it) and after, with `enabled`, `refuse_secrets`, `refuse_hidden_unicode` and `package_list_url`, each with its `previous_` value. Use a policy to stop the refusals being turned off, and [automation](automation.html) to tell someone when they are. Downloading the package list raises no event."),
-            P("`vibe.checkin.push` is raised for every push the check doesn't refuse: before, with what the check found (`findings` counts per severity, `max_finding_severity`, `finding_rules`), so a policy can refuse it (for example pushes with high findings, without a milestone, or to a space you name), and after, with the check-in's number, what changed and its link, so [automation](automation.html) can post the link to a chat. `vibe.project.delete` is raised when a project is deleted. Each added or changed file also raises `artifact.upload`. Pushes are recorded in the audit log as `vibe:push` (with their finding counts), refused ones as `vibe:push_refused`, deletions as `vibe:delete_project`; a push from an AI tool raises the same events and its audit entry names the plugin and AI app (`via: mcp:depotex-mcp/<app>`). Searching and pulling, from the browser or an AI tool, raise no events. See [Events](events.html)."),
+            P("`vibe.checkin.push` is raised for every push the check doesn't refuse: before, with what the check found (`findings` counts per severity, `max_finding_severity`, `finding_rules`), so a policy can refuse it (for example pushes with high findings, without a milestone, or to a space you name), and after, with the check-in's number, what changed and its link, so [automation](automation.html) can post the link to a chat. `vibe.checkin.push` also carries `test_passed`. `vibe.milestone.update` is raised when a milestone is named, renamed or cleared from the Vibe browser, before (a policy can refuse it) and after, with the check-in and the new and previous name. `vibe.project.delete` is raised when a project is deleted. Each added or changed file also raises `artifact.upload`. Pushes are recorded in the audit log as `vibe:push` (with their finding counts), refused ones as `vibe:push_refused`, deletions as `vibe:delete_project`, milestone changes as `vibe:update_milestone`; a push from an AI tool raises the same events and its audit entry names the plugin and AI app (`via: mcp:depotex-mcp/<app>`). Searching and pulling, from the browser or an AI tool, raise no events. See [Events](events.html)."),
 
             H("API"),
             TABLE(["Route", "Who", "What"], [
@@ -219,8 +244,9 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
                 ["`GET /api/vibe/checkins`", "Enterprise, signed in", "Matching check-ins, newest first (the Timeline view), same filters"],
                 ["`GET /api/vibe/screenshots`", "Enterprise, signed in", "Matching screenshots, newest first (the Screenshots view)"],
                 ["`GET /api/vibe/filters`", "Enterprise, signed in", "The projects and milestone names the filters offer"],
-                ["`GET /api/vibe/projects/{space}/{repository}/{project}`", "`repo:browse` on the project", "A project's page: latest check-in and milestones"],
-                ["`GET …/{project}/checkins`, `…/checkins/{n}`, `…/checkins/{n}/files`", "`repo:browse` (screenshots and files: `repo:read`)", "Its check-ins, one check-in's page (with `finding_counts`; `findings`, `scan` and `vulnerabilities` for those who may read files), and the check-in's files"],
+                ["`GET /api/vibe/projects/{space}/{repository}/{project}`", "`repo:browse` on the project", "A project's page: latest check-in, milestones and the last check-in whose tests passed (`last_passing`)"],
+                ["`GET …/{project}/checkins`, `…/checkins/{n}`, `…/checkins/{n}/files`", "`repo:browse` (screenshots and files: `repo:read`)", "Its check-ins, one check-in's page (with `finding_counts`, `keep_working`, `environment` and `can_name`; `findings`, `scan` and `vulnerabilities` for those who may read files), and the check-in's files"],
+                ["`PUT …/{project}/checkins/{n}/milestone`", "`repo:add` on the project (who may push)", "Names, renames or clears (`\"\"`) a check-in's milestone with `{\"milestone\": \"…\"}` and answers with the check-in's page; `vibe_milestone_too_long` over 100 characters, `rejected_by_hook` or `policy_denied` when a policy or plugin refuses it"],
             ]),
         ],
     )),
