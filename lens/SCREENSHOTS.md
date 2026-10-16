@@ -15,9 +15,9 @@ these end up on a public docs site.
 ## Getting Started
 
 - [ ] `lens-popup-first-run.png`
-      The Lens popup on first run, showing the default project, no folder linked, and the three capture actions
+      The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
 - [ ] `lens-folder-linked.png`
-      The popup project row with a folder linked, showing the folder name and the Change button
+      The popup project card with a folder linked, showing the folder name under the project and the Change folder button
 - [ ] `lens-region-selection.png`
       A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below
 ## Capturing a Region
@@ -53,11 +53,11 @@ these end up on a public docs site.
 - [ ] `lens-project-folder.png`
       A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json
 - [ ] `lens-folder-access-lost.png`
-      The popup folder row showing the amber paused flag and the Reconnect button
+      The popup project card showing the amber paused flag on the folder line and the Reconnect button
 ## Timeline and Dashboard
 
 - [ ] `lens-popup-timeline.png`
-      The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title
+      The popup timeline with captures grouped under project headings, the active one open, each row showing thumbnail, page title, type badge and time
 - [ ] `lens-dashboard-projects.png`
       The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges
 - [ ] `lens-dashboard-timeline.png`
