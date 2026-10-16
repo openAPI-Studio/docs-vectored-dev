@@ -15971,7 +15971,7 @@ The model is told the **type** of each flagged region and the page title and hea
 
 ### 26. Allow browser agents to drive Lens
 
-Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [Letting a browser agent drive Lens](https://docs.vectored.dev/lens/docs/ai.html#letting-a-browser-agent-drive-lens) for the skill that teaches it how.
+Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [AI Agent Skill](https://docs.vectored.dev/lens/docs/agent-skill.html) for how to set up Claude and other agents.
 
 ### 27. File name pattern
 
@@ -16182,24 +16182,105 @@ Every one of these leaves your capture exactly as it was. No AI failure can lose
 
 ### 10. Letting a browser agent drive Lens
 
-An AI agent that works in your browser, such as Claude in Chrome, can use Lens too. It can record GIFs and guides, take and annotate screenshots, file them into a project, and export or replay a guide. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it.
-
-1. **Turn on Allow browser agents to drive Lens in Settings** it is off by default. While it is on, any script on a page can ask Lens to capture that page, so leave it off unless you use an agent.
-
-2. **Reload any tab that was already open** so it picks up the change.
-
-3. **Give your agent the lens-capture-agent skill** it teaches the agent how to drive Lens, and it is published at [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills).
-
-| Agent | How to install the skill |
-| --- | --- |
-| Claude Code | /plugin marketplace add openAPI-Studio/lens-skills, then /plugin install lens@lens-skills |
-| Kiro | Powers → Add Custom Power → Import power from GitHub, with https://github.com/openAPI-Studio/lens-skills |
-
-Before anything is captured, the agent can ask Lens to find secrets on screen and cover them with a grey bar. It is told what kind of secret was found and where, never the value. A page can only reach the captures and guides taken of its own site.
+An AI agent that works in your browser, such as Claude in Chrome, can use Lens too: record GIFs and guides, take and annotate screenshots, and mask secrets before anything is captured. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it. [AI Agent Skill](https://docs.vectored.dev/lens/docs/agent-skill.html) explains how to set it up in Claude and other agents.
 
 ### 11. Where to read the rest
 
 The [privacy policy](https://docs.vectored.dev/lens/privacy.html#ai) sets out what each feature sends and whose terms apply to it. The [security page](https://docs.vectored.dev/lens/security.html#ai) covers key handling and why the request is made where it is.
+
+## AI Agent Skill
+
+Source: https://docs.vectored.dev/lens/docs/agent-skill.html
+
+Let Claude, or another AI agent working in your browser, capture with Lens for you.
+
+AI agents that drive a browser, such as Claude in Chrome, act through the page: they click, type and run scripts in it. They cannot press Lens's shortcuts or open its popup. The **lens-capture-agent** skill teaches an agent to drive Lens another way, through an opt-in bridge on the page.
+
+With the skill, an agent can:
+
+- take a screenshot of a region or a full page, and annotate it with boxes, arrows, text or blur;
+
+- record a GIF of a flow;
+
+- record a step-by-step guide, export it as Markdown, HTML or a bundle, check that each step still matches the page, and replay it in Guide Mode;
+
+- find secrets on screen and mask them before anything is captured;
+
+- file everything into a Lens project, and pick up the saved file afterwards.
+
+The skill is free and open source (MIT): [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills).
+
+### 1. Before you start
+
+1. **Install Lens 1.24.0 or later** full-page screenshots need 1.24.0.
+
+2. **Turn on Allow browser agents to drive Lens** in the Lens dashboard, under Settings. It is off by default.
+
+3. **Reload the tabs that were already open** they pick up the setting when they load.
+
+While the setting is on, any script on a page you open can ask Lens to capture that page. Turn it on when you use an agent, and off again when you are done.
+
+### 2. Claude Code with Chrome
+
+The most complete setup: Claude Code drives your Chrome through the Claude in Chrome extension, and loads the skill as a plugin.
+
+1. **Install the Claude in Chrome extension** from the Chrome Web Store, and sign in. Claude Code needs a Pro, Max, Team or Enterprise plan for this.
+
+2. **Add the skill to Claude Code** run /plugin marketplace add openAPI-Studio/lens-skills, then /plugin install lens@lens-skills.
+
+3. **Start Claude Code with Chrome** run claude --chrome, or turn it on inside a session with /chrome.
+
+To install the skill without the plugin, copy the skills/lens-capture-agent folder from the repository into ~/.claude/skills/ for every project, or into a project's .claude/skills/ to share it with your team. See Anthropic's [Claude in Chrome guide](https://code.claude.com/docs/en/chrome) for more on the browser connection.
+
+### 3. The Claude app
+
+On claude.ai and in the Claude desktop app, skills are uploaded as a ZIP.
+
+1. **Download the skill folder** get skills/lens-capture-agent from [lens-skills](https://github.com/openAPI-Studio/lens-skills) and zip that folder, keeping its name.
+
+2. **Open Settings → Capabilities** turn on **Code execution and file creation**, which skills need.
+
+3. **Under Skills, choose Upload skill** pick the ZIP and switch the skill on.
+
+Skills need a Pro, Max, Team or Enterprise plan. On Team and Enterprise, an owner can add the skill once for the whole organisation. See Anthropic's [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude).
+
+### 4. Kiro
+
+Kiro imports the repository as a power: **Powers → Add Custom Power → Import power from GitHub**, then enter https://github.com/openAPI-Studio/lens-skills.
+
+### 5. Other agents
+
+Any agent that reads skills or instruction files can use it. Copy skills/lens-capture-agent/ into the folder your agent loads skills from, for example .agents/skills/, and point its instruction file (such as AGENTS.md) at SKILL.md if it does not find skills on its own.
+
+Whatever the agent, it has to be able to run a script in the page it is driving, which is how it talks to Lens. Coding agents with no browser can still read the skill, but they have no page to run it in.
+
+### 6. Try it
+
+Open the page you want captured, then ask your agent something like:
+
+- "Record a GIF of signing up on this page and save it to a new Lens project called Onboarding."
+
+- "Take a full-page screenshot of this page, mask any secrets first, and box the pricing table."
+
+- "Write a step-by-step guide for creating an API key here, export it as Markdown, and give me the file."
+
+The agent picks or creates a project, scans for secrets and masks them, captures, saves, and tells you the file name, the project and what it masked.
+
+### 7. What the agent can and cannot see
+
+- It is told what kind of secret was found and where, never the value.
+
+- A page can only reach captures and guides taken of its own site, so one tab cannot read a recording made of another.
+
+- Lens sends nothing to the agent's provider. Captures stay on your device and in the folders you link.
+
+- A project an agent creates has no folder until you link one, because only you can answer the folder picker.
+
+Recordings an agent starts run at about 4 frames a second, because Chrome only allows the smoother 15 fps capture after you have clicked the Lens icon on that tab. Click it once before asking for a GIF if motion matters.
+
+### 8. Where to read the rest
+
+The skill's [command reference](https://github.com/openAPI-Studio/lens-skills/blob/main/skills/lens-capture-agent/references/commands.md) lists every command the bridge accepts. [AI Features](https://docs.vectored.dev/lens/docs/ai.html) covers the separate models Lens itself can use.
 
 ## Troubleshooting
 
