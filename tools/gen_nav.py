@@ -50,7 +50,7 @@ GROUPS = {
    ('Capture', ['capturing','recording','guides']),
    ('Organise', ['projects','timeline']),
    ('Configure', ['settings','shortcuts']),
-   ('AI', ['ai']),
+   ('AI', ['ai','agent-skill']),
    ('Help', ['troubleshooting','../support']),
    # Lens keeps these at the product root rather than under docs/, unlike
    # timesheets which has privacy-security as an ordinary page. A leading ../

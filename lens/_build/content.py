@@ -631,20 +631,83 @@ PAGES["ai"] = dict(
         NOTE("Every one of these leaves your capture exactly as it was. No AI failure can lose work, block a capture, or change an image."),
 
         H("Letting a browser agent drive Lens"),
-        P("An AI agent that works in your browser, such as Claude in Chrome, can use Lens too. It can record GIFs and guides, take and annotate screenshots, including whole pages, file them into a project, and export or replay a guide. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it."),
-        STEPS([
-            "Turn on Allow browser agents to drive Lens in Settings|it is off by default. While it is on, any script on a page can ask Lens to capture that page, so leave it off unless you use an agent.",
-            "Reload any tab that was already open|so it picks up the change.",
-            "Give your agent the lens-capture-agent skill|it teaches the agent how to drive Lens, and it is published at [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills).",
-        ]),
-        TABLE(["Agent", "How to install the skill"], [
-            ["Claude Code", "`/plugin marketplace add openAPI-Studio/lens-skills`, then `/plugin install lens@lens-skills`"],
-            ["Kiro", "Powers → Add Custom Power → Import power from GitHub, with `https://github.com/openAPI-Studio/lens-skills`"],
-        ]),
-        P("Before anything is captured, the agent can ask Lens to find secrets on screen and cover them with a grey bar. It is told what kind of secret was found and where, never the value. A page can only reach the captures and guides taken of its own site."),
+        P("An AI agent that works in your browser, such as Claude in Chrome, can use Lens too: record GIFs and guides, take and annotate screenshots, including whole pages, and mask secrets before anything is captured. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it. [AI Agent Skill](agent-skill.html) explains how to set it up in Claude and other agents."),
 
         H("Where to read the rest"),
         P("The [privacy policy](../privacy.html#ai) sets out what each feature sends and whose terms apply to it. The [security page](../security.html#ai) covers key handling and why the request is made where it is."),
+    ],
+)
+
+PAGES["agent-skill"] = dict(
+    title="AI Agent Skill",
+    lede="Let Claude, or another AI agent working in your browser, capture with Lens for you.",
+    desc="Set up the lens-capture-agent skill so Claude Code with Chrome, the Claude app, Kiro and other AI agents can take screenshots, record GIFs and write guides with Lens, masking secrets first.",
+    icon="sparkles",
+    blocks=[
+        P("AI agents that drive a browser, such as Claude in Chrome, act through the page: they click, type and run scripts in it. They cannot press Lens's shortcuts or open its popup. The **lens-capture-agent** skill teaches an agent to drive Lens another way, through an opt-in bridge on the page."),
+        P("With the skill, an agent can:"),
+        UL([
+            "take a screenshot of a region or a full page, and annotate it with boxes, arrows, text or blur;",
+            "record a GIF of a flow;",
+            "record a step-by-step guide, export it as Markdown, HTML or a bundle, check that each step still matches the page, and replay it in Guide Mode;",
+            "find secrets on screen and mask them before anything is captured;",
+            "file everything into a Lens project, and pick up the saved file afterwards.",
+        ]),
+        P("The skill is free and open source (MIT): [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills)."),
+
+        H("Before you start"),
+        STEPS([
+            "Install Lens 1.24.0 or later|full-page screenshots need 1.24.0.",
+            "Turn on Allow browser agents to drive Lens|in the Lens dashboard, under Settings. It is off by default.",
+            "Reload the tabs that were already open|they pick up the setting when they load.",
+        ]),
+        WARN("While the setting is on, any script on a page you open can ask Lens to capture that page. Turn it on when you use an agent, and off again when you are done."),
+
+        H("Claude Code with Chrome"),
+        P("The most complete setup: Claude Code drives your Chrome through the Claude in Chrome extension, and loads the skill as a plugin."),
+        STEPS([
+            "Install the Claude in Chrome extension|from the Chrome Web Store, and sign in. Claude Code needs a Pro, Max, Team or Enterprise plan for this.",
+            "Add the skill to Claude Code|run `/plugin marketplace add openAPI-Studio/lens-skills`, then `/plugin install lens@lens-skills`.",
+            "Start Claude Code with Chrome|run `claude --chrome`, or turn it on inside a session with `/chrome`.",
+        ]),
+        P("To install the skill without the plugin, copy the `skills/lens-capture-agent` folder from the repository into `~/.claude/skills/` for every project, or into a project's `.claude/skills/` to share it with your team. See Anthropic's [Claude in Chrome guide](https://code.claude.com/docs/en/chrome) for more on the browser connection."),
+
+        H("The Claude app"),
+        P("On claude.ai and in the Claude desktop app, skills are uploaded as a ZIP."),
+        STEPS([
+            "Download the skill folder|get `skills/lens-capture-agent` from [lens-skills](https://github.com/openAPI-Studio/lens-skills) and zip that folder, keeping its name.",
+            "Open Settings → Capabilities|turn on **Code execution and file creation**, which skills need.",
+            "Under Skills, choose Upload skill|pick the ZIP and switch the skill on.",
+        ]),
+        NOTE("Skills need a Pro, Max, Team or Enterprise plan. On Team and Enterprise, an owner can add the skill once for the whole organisation. See Anthropic's [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude)."),
+
+        H("Kiro"),
+        P("Kiro imports the repository as a power: **Powers → Add Custom Power → Import power from GitHub**, then enter `https://github.com/openAPI-Studio/lens-skills`."),
+
+        H("Other agents"),
+        P("Any agent that reads skills or instruction files can use it. Copy `skills/lens-capture-agent/` into the folder your agent loads skills from, for example `.agents/skills/`, and point its instruction file (such as `AGENTS.md`) at `SKILL.md` if it does not find skills on its own."),
+        P("Whatever the agent, it has to be able to run a script in the page it is driving, which is how it talks to Lens. Coding agents with no browser can still read the skill, but they have no page to run it in."),
+
+        H("Try it"),
+        P("Open the page you want captured, then ask your agent something like:"),
+        UL([
+            "\"Record a GIF of signing up on this page and save it to a new Lens project called Onboarding.\"",
+            "\"Take a full-page screenshot of this page, mask any secrets first, and box the pricing table.\"",
+            "\"Write a step-by-step guide for creating an API key here, export it as Markdown, and give me the file.\"",
+        ]),
+        P("The agent picks or creates a project, scans for secrets and masks them, captures, saves, and tells you the file name, the project and what it masked."),
+
+        H("What the agent can and cannot see"),
+        UL([
+            "It is told what kind of secret was found and where, never the value.",
+            "A page can only reach captures and guides taken of its own site, so one tab cannot read a recording made of another.",
+            "Lens sends nothing to the agent's provider. Captures stay on your device and in the folders you link.",
+            "A project an agent creates has no folder until you link one, because only you can answer the folder picker.",
+        ]),
+        NOTE("Recordings an agent starts run at about 4 frames a second, because Chrome only allows the smoother 15 fps capture after you have clicked the Lens icon on that tab. Click it once before asking for a GIF if motion matters."),
+
+        H("Where to read the rest"),
+        P("The skill's [command reference](https://github.com/openAPI-Studio/lens-skills/blob/main/skills/lens-capture-agent/references/commands.md) lists every command the bridge accepts. [AI Features](ai.html) covers the separate models Lens itself can use."),
     ],
 )
 
@@ -761,7 +824,7 @@ PAGES["settings"] = dict(
         P("The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one."),
 
         H("Allow browser agents to drive Lens"),
-        P("Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [Letting a browser agent drive Lens](ai.html#10-letting-a-browser-agent-drive-lens) for the skill that teaches it how."),
+        P("Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [AI Agent Skill](agent-skill.html) for how to set up Claude and other agents."),
 
         H("File name pattern"),
         P("Controls the name each capture is given before you edit it. The extension is added automatically."),
@@ -922,6 +985,7 @@ ORDER = [
     "timeline",
     "settings",
     "ai",
+    "agent-skill",
     "shortcuts",
     "troubleshooting",
 ]
