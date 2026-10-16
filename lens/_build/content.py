@@ -20,17 +20,17 @@ PAGES["getting-started"] = dict(
             "Pin it to the toolbar|click the puzzle-piece icon in Chrome's toolbar and press the pin next to Lens. The toolbar icon is where recording status and capture errors are reported.",
             "Open the popup|click the Lens icon. This is where you pick the active project and start a capture.",
         ]),
-        SHOT("lens-popup-first-run.png", "The Lens popup on first run, showing the default project, no folder linked, and the three capture actions"),
+        SHOT("lens-popup-first-run.png", "The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles"),
 
         H("What is in the popup"),
-        P("Top to bottom: the header, the project, the capture actions, and this project's recent captures."),
+        P("Top to bottom: the header, the project card, the capture tiles, and the timeline."),
         TABLE(["Where", "What it is"], [
-            ["Header, right", "The arrow opens the full dashboard in a tab. **?** holds Docs, Support and Security. The gear goes straight to the dashboard's Settings"],
-            ["Project", "The dropdown switches project; the row under it names the linked folder, with **Link**, **Change** or **Reconnect** beside it. With no folder linked it reads *kept in the extension*"],
-            ["Capture region", "The full-width button, because it is the one most people reach for"],
-            ["Steps, GIF, Full tab", "The row of three under it. Each shows its own keyboard shortcut"],
-            ["Interactive walkthrough", "A switch. On, a walkthrough also records which control each step points at, so it can be [played back](guides.html) against the live page. Off records the screenshots and the words only"],
-            ["Timeline", "This project's captures, newest first. See [Timeline and dashboard](timeline.html)"],
+            ["Header, right", "**?** holds Docs, Support and Security. The gear goes straight to the dashboard's Settings"],
+            ["Project card", "The project's name opens a menu of every project, to switch to another. Under it are the linked folder and how many captures the project holds. **Dashboard** beside it opens the full dashboard in a tab"],
+            ["New project, Link folder", "The two buttons along the bottom of the card. With a folder linked the second reads **Change folder**, or **Reconnect** when access has lapsed"],
+            ["Capture, Smart Capture, GIF, Full page", "Four tiles in a row, each with a moving preview of what it does and its keyboard shortcut. **Capture** is a region screenshot, **Smart Capture** records a [step-by-step guide](guides.html), **GIF** [records](recording.html), and **Full page** [scrolls and stitches](capturing.html#3-capturing-a-whole-page) the whole page"],
+            ["Interactive walkthrough", "A switch under the tiles. On, a walkthrough also records which control each step points at, so it can be [played back](guides.html) against the live page. Off records the screenshots and the words only"],
+            ["Timeline", "Captures grouped by project, with the active project open. See [Timeline and dashboard](timeline.html)"],
             ["Footer", "**License** states the built-in free licence, which covers every feature and needs no key. **Privacy** opens the policy"],
         ]),
 
@@ -41,12 +41,12 @@ PAGES["getting-started"] = dict(
             "Name the project|for example, the documentation set or release you are capturing for.",
             "Press **Create**, or **Create & link folder**|the second asks Chrome for a folder and read/write access to it. Lens can only ever see the folder you pick.",
         ]),
-        NOTE("A folder can be linked at any time afterwards, from **Link** in the popup or **Link folder** on the dashboard's project card. Lens offers to copy everything the project already holds into it, so a folder linked late still ends up complete."),
-        SHOT("lens-folder-linked.png", "The popup project row with a folder linked, showing the folder name and the Change button"),
+        NOTE("A folder can be linked at any time afterwards, from **Link folder** in the popup or **Link folder** on the dashboard's project card. Lens offers to copy everything the project already holds into it, so a folder linked late still ends up complete."),
+        SHOT("lens-folder-linked.png", "The popup project card with a folder linked, showing the folder name under the project and the Change folder button"),
 
         H("Take your first capture"),
         STEPS([
-            "Press **Capture region**|or use the keyboard shortcut. The page dims and the cursor becomes a crosshair.",
+            "Press **Capture**|or use the keyboard shortcut. The page dims and the cursor becomes a crosshair.",
             "Drag a rectangle|over the area you want. Drag the handles to resize, or drag from the middle to move it.",
             "Press **Capture Image**|the save screen opens with your capture loaded, its tools down the left and the file name on the right.",
             "Annotate if you want to, then name it and save|the file lands in the project folder and appears in the popup timeline.",
@@ -55,7 +55,7 @@ PAGES["getting-started"] = dict(
 
         H("Where to go next"),
         UL([
-            "[Capturing a region](capturing.html) — selection, annotation and saving in detail.",
+            "[Capturing a region](capturing.html) — selection, whole-page captures, annotation and saving in detail.",
             "[Recording GIF and MP4](recording.html) — the recorder, its controls and the two output formats.",
             "[Step-by-step guides](guides.html) — click through a flow once and get a documented walkthrough out of it.",
             "[Projects and folders](projects.html) — multiple projects, switching, linking folders and catching one up.",
@@ -67,13 +67,13 @@ PAGES["getting-started"] = dict(
 PAGES["capturing"] = dict(
     title="Capturing a Region",
     lede="Select, annotate and save a still image from any tab.",
-    desc="Select a region of a page, annotate it with shapes, text and blur, then save it into your project folder.",
+    desc="Select a region of a page or capture the whole scrolling page, annotate it with shapes, text and blur, then save it into your project folder.",
     icon="crop",
     blocks=[
         P("A still capture is one screen after the selection: the picture, the tools that change it, and the name it will be saved under are all in front of you at once. Nothing is written until you press Save."),
 
         H("Selecting the region"),
-        P("Start a capture from the popup's **Capture region** button or the keyboard shortcut. The page dims, and the region you drag stays bright."),
+        P("Start a capture from the popup's **Capture** tile or the keyboard shortcut. The page dims, and the region you drag stays bright."),
         TABLE(["Action", "How"], [
             ["Draw a region", "Click and drag anywhere on the page"],
             ["Resize", "Drag any of the eight handles on the selection edge"],
@@ -97,8 +97,17 @@ PAGES["capturing"] = dict(
         NOTE("Native dropdowns \u2014 a plain `<select>` \u2014 are drawn by the operating system rather than by the page, so Chrome cannot photograph them and they will not appear. Menus, tooltips, hover states and focus rings built in HTML and CSS, which is the great majority, all capture normally."),
         WARN("The region is fixed to the screen, not to the page. If you scroll during the delay, the capture takes whatever has moved under the box."),
 
-        H("Capture full tab"),
-        P("**Full tab** skips the selection step and captures the whole visible area of the tab. It does not capture below the fold — only what is on screen."),
+        H("Capturing a whole page"),
+        P("**Full page** in the popup, or **Alt+Shift+F** (**⌥⇧F** on a Mac), scrolls the page from the top to the bottom, takes a screenshot of each screen and stitches them into one tall picture. There is no selection step. A pill at the bottom of the page counts the screens, with **Stop** beside it. The picture opens in the save screen like any other capture, fitted to the width, and scrolls."),
+        UL([
+            "**Anything you do stops it.** Scrolling, clicking, a key press, switching tabs or resizing the window stops the run before the next screen. You get the picture down to where it stopped, with a note saying why. If you scrolled, the page stays where you took it; otherwise it goes back to where it was.",
+            "**Lazy pages are waited for.** Each screen waits for its images to load and the page to stop growing, up to a second and a half. Scroll animations are switched off for the run. If an image was still blank when its screen was taken, the save screen says how many were.",
+            "**Pages that never end stop at a limit.** 30 screens by default; set it from 10 to 100 under *Full page: most screenshots* in [Settings](settings.html). A page that stalls outright is stopped after two seconds per allowed screen.",
+            "**Headers and chat bubbles appear once.** Anything pinned to the screen is in the first screen and hidden for the rest, so it does not repeat down the picture.",
+            "**Apps that scroll a panel** — Gmail, Notion, Slack, most dashboards — are handled too. When the page itself does not scroll, Lens scrolls the panel in the middle of the screen, and the header and sidebars come from the first screen.",
+            "**Very long pages are scaled down** to fit the largest picture the browser can hold, and the save screen says so.",
+        ]),
+        NOTE("The private-data check runs over the whole stitched picture, not only the first screen, so a key three screens down is flagged like any other."),
 
         H("The private-data check"),
         P("As the save screen opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered."),
@@ -443,17 +452,17 @@ PAGES["projects"] = dict(
         SHOT("lens-project-folder.png", "A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json"),
 
         H("Linking a folder later"),
-        P("Press **Link** in the popup or **Link folder** on the project card. Lens counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is."),
+        P("Press **Link folder** in the popup or on the dashboard's project card. Lens counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is."),
         P("The copy runs in the background and survives the browser being closed part way through — it picks up where it stopped. Files the folder already has at the same size are left alone, so relinking a folder Lens was already writing into costs a look rather than a rewrite. Say no and **Copy everything across** stays on the project card for later."),
 
         H("Switching the active project"),
-        P("Use the dropdown at the top of the popup. Only the active project receives new captures; the others keep their files and history untouched."),
+        P("Click the project's name on the card at the top of the popup and pick another from the menu. Only the active project receives new captures; the others keep their files and history untouched, and stay listed in the popup timeline."),
 
         H("When folder access lapses"),
         P("After a browser restart or an extension reload, folder permission can lapse — and the extension's background worker is not allowed to ask for it back on its own, because that needs a click."),
-        P("The popup folder row then reads **paused**, with a **Reconnect** button; the dashboard card says the same and shows how many writes are waiting. One click restores access."),
+        P("The folder line on the popup's project card then reads **paused**, with a **Reconnect** button; the dashboard card says the same and shows how many writes are waiting. One click restores access."),
         NOTE("Captures taken while access was gone are **queued, not lost**. Reconnecting writes them out, and so does simply reopening the browser. **Catch up folder** on the project card does it on demand."),
-        SHOT("lens-folder-access-lost.png", "The popup folder row showing the amber paused flag and the Reconnect button"),
+        SHOT("lens-folder-access-lost.png", "The popup project card showing the amber paused flag on the folder line and the Reconnect button"),
 
         H("How much room Lens is using"),
         P("Because a project holds its own captures, that storage is worth watching: a sixty-step guide is tens of megabytes, and a minute of GIF can be more. **Settings > Storage** shows what Lens is using against what your browser allows it, broken down per project, and warns when there is little room left."),
@@ -467,27 +476,28 @@ PAGES["projects"] = dict(
 PAGES["timeline"] = dict(
     title="Timeline and Dashboard",
     lede="Review, search and export everything you have captured.",
-    desc="Browse captures in the popup timeline and the dashboard master timeline, search and filter them, and export the metadata as JSON.",
+    desc="Browse captures in the popup timeline and the dashboard master timeline, search and filter them, and export the metadata as JSON from the dashboard.",
     icon="list",
     blocks=[
-        P("Lens keeps two views of what you have captured: a compact timeline in the popup for the active project, and a master timeline on the dashboard covering every project."),
+        P("Lens keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project."),
 
         H("The popup timeline"),
-        P("Captures are grouped by day, newest first, with the time down the left. Each row shows a thumbnail, the file name, its type and the page title."),
+        P("Captures are grouped by project. The active project is open at the top and marked **Active**; the others are listed under it, and open with a click. Inside each one captures are newest first, and each row shows a thumbnail, the page title, its type and when it was taken."),
         TABLE(["Control", "What it does"], [
             ["Thumbnail", "Opens a larger preview with the page URL and capture time. The preview shows the real file, so a GIF plays and a recording gets a player"],
             ["Copy", "Puts the capture itself on the clipboard — the file, not the thumbnail. A GIF copies as its first frame, which is all a clipboard holds; a recording cannot be copied and says so"],
-            ["Save a copy", "Writes the capture to your downloads. This is how a file leaves Lens when no folder is linked"],
-            ["Rename", "Renames the file and its metadata entry"],
+            ["Edit", "Opens a screenshot in the image tools, or a guide in the guide editor. Recordings and GIFs cannot be edited"],
             ["Delete", "Removes the entry from the timeline"],
-            ["Search", "Filters by file name, page title or URL"],
-            ["JSON", "Exports `project_metadata.json` for the active project"],
+            ["More (⋮)", "**Rename** the file and its metadata entry, **Save a copy** to your downloads (how a file leaves Lens when no folder is linked), or **Show in folder**"],
+            ["Search", "The magnifier beside the heading. Filters every project by file name, page title or URL"],
+            ["View all in dashboard", "Opens the dashboard's master timeline"],
         ]),
+        P("The buttons on a row work on that row's own project, so a capture in a project that is not active can be copied, edited, renamed or deleted without switching to it."),
         NOTE("**Copy** re-encodes to PNG first. The clipboard accepts PNG everywhere and JPEG nowhere, so a JPEG copied as itself pastes nothing at all."),
-        SHOT("lens-popup-timeline.png", "The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title"),
+        SHOT("lens-popup-timeline.png", "The popup timeline with captures grouped under project headings, the active one open, each row showing thumbnail, page title, type badge and time"),
 
         H("The dashboard"),
-        P("Open the dashboard from the arrow icon at the top right of the popup, or the gear beside it to land straight on Settings. It has four sections."),
+        P("Open the dashboard from **Dashboard** on the popup's project card, or the gear at the top right to land straight on Settings. It has four sections."),
         UL([
             "**Projects** — every project as a card with its folder, capture count, last capture, access state, and anything the folder is waiting to receive.",
             "**Timeline** — every capture across all projects, grouped by project.",
@@ -508,7 +518,7 @@ PAGES["timeline"] = dict(
         H("Exporting"),
         UL([
             "**Export timeline JSON** on the dashboard writes every capture across all projects to a single file.",
-            "**JSON** in the popup, or **Export JSON** on a project card, writes that one project's `project_metadata.json`.",
+            "**Export JSON** on a project card writes that one project's `project_metadata.json`. The popup no longer has a JSON button.",
         ]),
 
         H("Opening a capture"),
@@ -621,7 +631,7 @@ PAGES["ai"] = dict(
         NOTE("Every one of these leaves your capture exactly as it was. No AI failure can lose work, block a capture, or change an image."),
 
         H("Letting a browser agent drive Lens"),
-        P("An AI agent that works in your browser, such as Claude in Chrome, can use Lens too. It can record GIFs and guides, take and annotate screenshots, file them into a project, and export or replay a guide. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it."),
+        P("An AI agent that works in your browser, such as Claude in Chrome, can use Lens too. It can record GIFs and guides, take and annotate screenshots, including whole pages, file them into a project, and export or replay a guide. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it."),
         STEPS([
             "Turn on Allow browser agents to drive Lens in Settings|it is off by default. While it is on, any script on a page can ask Lens to capture that page, so leave it off unless you use an agent.",
             "Reload any tab that was already open|so it picks up the change.",
@@ -654,6 +664,9 @@ PAGES["settings"] = dict(
 
         H("Maximum GIF recording length"),
         P("One to ten minutes. A recording stops at the cap and opens the converter as though you had pressed stop. This exists because a long recording at 15 frames a second becomes a very large GIF."),
+
+        H("Full page: most screenshots"),
+        P("10, 20, 30, 50, 75 or 100; 30 by default. A [full-page capture](capturing.html#3-capturing-a-whole-page) takes one screenshot per screen and stops after this many, keeping what it has. A page that loads more as you scroll never reaches its end, and this is where it stops. Lower it for quick captures; raise it for long articles and reports."),
 
         H("Still image format"),
         P("**PNG** keeps text crisp and is the right default for documentation. **JPEG** produces much smaller files but softens text and adds artefacts around high-contrast edges. The file extension follows the setting."),
@@ -703,7 +716,7 @@ PAGES["settings"] = dict(
 
         H("Walkthrough mode"),
         P("**Interactive** by default. As well as the screenshots and the words, Lens notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup."),
-        P("The same setting sits under the **Record steps** button in the popup, as a checkbox. Both write the one value."),
+        P("The same setting sits under the capture tiles in the popup, as a switch. Both write the one value."),
 
         H("Quote what you typed"),
         P("On by default. A step for a field you filled in reads *Type \"ACME-1024\" into \"Order number\"* rather than *Type into \"Order number\"* — the difference between an instruction a reader can follow and one they cannot."),
@@ -748,7 +761,7 @@ PAGES["settings"] = dict(
         P("The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one."),
 
         H("Allow browser agents to drive Lens"),
-        P("Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [Letting a browser agent drive Lens](ai.html#letting-a-browser-agent-drive-lens) for the skill that teaches it how."),
+        P("Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [Letting a browser agent drive Lens](ai.html#10-letting-a-browser-agent-drive-lens) for the skill that teaches it how."),
 
         H("File name pattern"),
         P("Controls the name each capture is given before you edit it. The extension is added automatically."),
@@ -769,13 +782,13 @@ PAGES["settings"] = dict(
 PAGES["shortcuts"] = dict(
     title="Keyboard Shortcuts",
     lede="The default bindings, and how to change them.",
-    desc="Lens keyboard shortcuts for region capture, GIF recording and full-tab capture, and how to remap them in Chrome.",
+    desc="Lens keyboard shortcuts for region capture, step recording, GIF recording and full-page capture, and how to remap them in Chrome.",
     icon="keyboard",
     blocks=[
         P("Lens registers four commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension."),
         TABLE(["Command", "macOS", "Windows / Linux", "What it does"], [
             ["Capture region", "⌘⇧S", "Alt+Shift+S", "Opens the region selector"],
-            ["Capture full tab", "⌘⇧F", "Alt+Shift+F", "Captures the visible tab with no selection step"],
+            ["Capture full page", "⌥⇧F", "Alt+Shift+F", "Scrolls the page top to bottom and stitches one tall screenshot"],
             ["Record steps", "⌘⇧E", "Alt+Shift+E", "Starts a walkthrough — a screenshot per click, no video, no time limit"],
             ["Record GIF region", "⌘⇧R", "Alt+Shift+R", "Opens the region selector ready to record"],
         ]),

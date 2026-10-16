@@ -14981,28 +14981,28 @@ Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **J
 
 3. **Open the popup** click the Lens icon. This is where you pick the active project and start a capture.
 
-![The Lens popup on first run, showing the default project, no folder linked, and the three capture actions](https://docs.vectored.dev/lens/assets/lens-popup-first-run.png)
+![The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles](https://docs.vectored.dev/lens/assets/lens-popup-first-run.png)
 
 Screenshot needed
 
 lens-popup-first-run.png
 
-The Lens popup on first run, showing the default project, no folder linked, and the three capture actions
+The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
 
-The Lens popup on first run, showing the default project, no folder linked, and the three capture actions
+The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
 
 ### 2. What is in the popup
 
-Top to bottom: the header, the project, the capture actions, and this project's recent captures.
+Top to bottom: the header, the project card, the capture tiles, and the timeline.
 
 | Where | What it is |
 | --- | --- |
-| Header, right | The arrow opens the full dashboard in a tab. **?** holds Docs, Support and Security. The gear goes straight to the dashboard's Settings |
-| Project | The dropdown switches project; the row under it names the linked folder, with **Link**, **Change** or **Reconnect** beside it. With no folder linked it reads *kept in the extension* |
-| Capture region | The full-width button, because it is the one most people reach for |
-| Steps, GIF, Full tab | The row of three under it. Each shows its own keyboard shortcut |
-| Interactive walkthrough | A switch. On, a walkthrough also records which control each step points at, so it can be [played back](https://docs.vectored.dev/lens/docs/guides.html) against the live page. Off records the screenshots and the words only |
-| Timeline | This project's captures, newest first. See [Timeline and dashboard](https://docs.vectored.dev/lens/docs/timeline.html) |
+| Header, right | **?** holds Docs, Support and Security. The gear goes straight to the dashboard's Settings |
+| Project card | The project's name opens a menu of every project, to switch to another. Under it are the linked folder and how many captures the project holds. **Dashboard** beside it opens the full dashboard in a tab |
+| New project, Link folder | The two buttons along the bottom of the card. With a folder linked the second reads **Change folder**, or **Reconnect** when access has lapsed |
+| Capture, Smart Capture, GIF, Full page | Four tiles in a row, each with a moving preview of what it does and its keyboard shortcut. **Capture** is a region screenshot, **Smart Capture** records a [step-by-step guide](https://docs.vectored.dev/lens/docs/guides.html), **GIF**[records](https://docs.vectored.dev/lens/docs/recording.html), and **Full page**[scrolls and stitches](https://docs.vectored.dev/lens/docs/capturing.html#3-capturing-a-whole-page) the whole page |
+| Interactive walkthrough | A switch under the tiles. On, a walkthrough also records which control each step points at, so it can be [played back](https://docs.vectored.dev/lens/docs/guides.html) against the live page. Off records the screenshots and the words only |
+| Timeline | Captures grouped by project, with the active project open. See [Timeline and dashboard](https://docs.vectored.dev/lens/docs/timeline.html) |
 | Footer | **License** states the built-in free licence, which covers every feature and needs no key. **Privacy** opens the policy |
 
 ### 3. Make a project
@@ -15015,21 +15015,21 @@ A **project** is a name, and the captures filed under it. Lens keeps those itsel
 
 3. **Press **Create**, or **Create & link folder**** the second asks Chrome for a folder and read/write access to it. Lens can only ever see the folder you pick.
 
-A folder can be linked at any time afterwards, from **Link** in the popup or **Link folder** on the dashboard's project card. Lens offers to copy everything the project already holds into it, so a folder linked late still ends up complete.
+A folder can be linked at any time afterwards, from **Link folder** in the popup or **Link folder** on the dashboard's project card. Lens offers to copy everything the project already holds into it, so a folder linked late still ends up complete.
 
-![The popup project row with a folder linked, showing the folder name and the Change button](https://docs.vectored.dev/lens/assets/lens-folder-linked.png)
+![The popup project card with a folder linked, showing the folder name under the project and the Change folder button](https://docs.vectored.dev/lens/assets/lens-folder-linked.png)
 
 Screenshot needed
 
 lens-folder-linked.png
 
-The popup project row with a folder linked, showing the folder name and the Change button
+The popup project card with a folder linked, showing the folder name under the project and the Change folder button
 
-The popup project row with a folder linked, showing the folder name and the Change button
+The popup project card with a folder linked, showing the folder name under the project and the Change folder button
 
 ### 4. Take your first capture
 
-1. **Press **Capture region**** or use the keyboard shortcut. The page dims and the cursor becomes a crosshair.
+1. **Press **Capture**** or use the keyboard shortcut. The page dims and the cursor becomes a crosshair.
 
 2. **Drag a rectangle** over the area you want. Drag the handles to resize, or drag from the middle to move it.
 
@@ -15049,7 +15049,7 @@ A region selected on a web page, with the dimension pill above it and the Cancel
 
 ### 5. Where to go next
 
-- [Capturing a region](https://docs.vectored.dev/lens/docs/capturing.html) — selection, annotation and saving in detail.
+- [Capturing a region](https://docs.vectored.dev/lens/docs/capturing.html) — selection, whole-page captures, annotation and saving in detail.
 
 - [Recording GIF and MP4](https://docs.vectored.dev/lens/docs/recording.html) — the recorder, its controls and the two output formats.
 
@@ -15069,7 +15069,7 @@ A still capture is one screen after the selection: the picture, the tools that c
 
 ### 1. Selecting the region
 
-Start a capture from the popup's **Capture region** button or the keyboard shortcut. The page dims, and the region you drag stays bright.
+Start a capture from the popup's **Capture** tile or the keyboard shortcut. The page dims, and the region you drag stays bright.
 
 | Action | How |
 | --- | --- |
@@ -15111,9 +15111,23 @@ Native dropdowns — a plain <select> — are drawn by the operating system rath
 
 The region is fixed to the screen, not to the page. If you scroll during the delay, the capture takes whatever has moved under the box.
 
-### 3. Capture full tab
+### 3. Capturing a whole page
 
-**Full tab** skips the selection step and captures the whole visible area of the tab. It does not capture below the fold — only what is on screen.
+**Full page** in the popup, or **Alt+Shift+F** (**⌥⇧F** on a Mac), scrolls the page from the top to the bottom, takes a screenshot of each screen and stitches them into one tall picture. There is no selection step. A pill at the bottom of the page counts the screens, with **Stop** beside it. The picture opens in the save screen like any other capture, fitted to the width, and scrolls.
+
+- **Anything you do stops it.** Scrolling, clicking, a key press, switching tabs or resizing the window stops the run before the next screen. You get the picture down to where it stopped, with a note saying why. If you scrolled, the page stays where you took it; otherwise it goes back to where it was.
+
+- **Lazy pages are waited for.** Each screen waits for its images to load and the page to stop growing, up to a second and a half. Scroll animations are switched off for the run. If an image was still blank when its screen was taken, the save screen says how many were.
+
+- **Pages that never end stop at a limit.** 30 screens by default; set it from 10 to 100 under *Full page: most screenshots* in [Settings](https://docs.vectored.dev/lens/docs/settings.html). A page that stalls outright is stopped after two seconds per allowed screen.
+
+- **Headers and chat bubbles appear once.** Anything pinned to the screen is in the first screen and hidden for the rest, so it does not repeat down the picture.
+
+- **Apps that scroll a panel** — Gmail, Notion, Slack, most dashboards — are handled too. When the page itself does not scroll, Lens scrolls the panel in the middle of the screen, and the header and sidebars come from the first screen.
+
+- **Very long pages are scaled down** to fit the largest picture the browser can hold, and the save screen says so.
+
+The private-data check runs over the whole stitched picture, not only the first screen, so a key three screens down is flagged like any other.
 
 ### 4. The private-data check
 
@@ -15673,31 +15687,31 @@ A project folder in Finder showing captured PNG and GIF files alongside project_
 
 ### 4. Linking a folder later
 
-Press **Link** in the popup or **Link folder** on the project card. Lens counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is.
+Press **Link folder** in the popup or on the dashboard's project card. Lens counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is.
 
 The copy runs in the background and survives the browser being closed part way through — it picks up where it stopped. Files the folder already has at the same size are left alone, so relinking a folder Lens was already writing into costs a look rather than a rewrite. Say no and **Copy everything across** stays on the project card for later.
 
 ### 5. Switching the active project
 
-Use the dropdown at the top of the popup. Only the active project receives new captures; the others keep their files and history untouched.
+Click the project's name on the card at the top of the popup and pick another from the menu. Only the active project receives new captures; the others keep their files and history untouched, and stay listed in the popup timeline.
 
 ### 6. When folder access lapses
 
 After a browser restart or an extension reload, folder permission can lapse — and the extension's background worker is not allowed to ask for it back on its own, because that needs a click.
 
-The popup folder row then reads **paused**, with a **Reconnect** button; the dashboard card says the same and shows how many writes are waiting. One click restores access.
+The folder line on the popup's project card then reads **paused**, with a **Reconnect** button; the dashboard card says the same and shows how many writes are waiting. One click restores access.
 
 Captures taken while access was gone are **queued, not lost**. Reconnecting writes them out, and so does simply reopening the browser. **Catch up folder** on the project card does it on demand.
 
-![The popup folder row showing the amber paused flag and the Reconnect button](https://docs.vectored.dev/lens/assets/lens-folder-access-lost.png)
+![The popup project card showing the amber paused flag on the folder line and the Reconnect button](https://docs.vectored.dev/lens/assets/lens-folder-access-lost.png)
 
 Screenshot needed
 
 lens-folder-access-lost.png
 
-The popup folder row showing the amber paused flag and the Reconnect button
+The popup project card showing the amber paused flag on the folder line and the Reconnect button
 
-The popup folder row showing the amber paused flag and the Reconnect button
+The popup project card showing the amber paused flag on the folder line and the Reconnect button
 
 ### 7. How much room Lens is using
 
@@ -15715,37 +15729,39 @@ Source: https://docs.vectored.dev/lens/docs/timeline.html
 
 Review, search and export everything you have captured.
 
-Lens keeps two views of what you have captured: a compact timeline in the popup for the active project, and a master timeline on the dashboard covering every project.
+Lens keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project.
 
 ### 1. The popup timeline
 
-Captures are grouped by day, newest first, with the time down the left. Each row shows a thumbnail, the file name, its type and the page title.
+Captures are grouped by project. The active project is open at the top and marked **Active**; the others are listed under it, and open with a click. Inside each one captures are newest first, and each row shows a thumbnail, the page title, its type and when it was taken.
 
 | Control | What it does |
 | --- | --- |
 | Thumbnail | Opens a larger preview with the page URL and capture time. The preview shows the real file, so a GIF plays and a recording gets a player |
 | Copy | Puts the capture itself on the clipboard — the file, not the thumbnail. A GIF copies as its first frame, which is all a clipboard holds; a recording cannot be copied and says so |
-| Save a copy | Writes the capture to your downloads. This is how a file leaves Lens when no folder is linked |
-| Rename | Renames the file and its metadata entry |
+| Edit | Opens a screenshot in the image tools, or a guide in the guide editor. Recordings and GIFs cannot be edited |
 | Delete | Removes the entry from the timeline |
-| Search | Filters by file name, page title or URL |
-| JSON | Exports project_metadata.json for the active project |
+| More (⋮) | **Rename** the file and its metadata entry, **Save a copy** to your downloads (how a file leaves Lens when no folder is linked), or **Show in folder** |
+| Search | The magnifier beside the heading. Filters every project by file name, page title or URL |
+| View all in dashboard | Opens the dashboard's master timeline |
+
+The buttons on a row work on that row's own project, so a capture in a project that is not active can be copied, edited, renamed or deleted without switching to it.
 
 **Copy** re-encodes to PNG first. The clipboard accepts PNG everywhere and JPEG nowhere, so a JPEG copied as itself pastes nothing at all.
 
-![The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title](https://docs.vectored.dev/lens/assets/lens-popup-timeline.png)
+![The popup timeline with captures grouped under project headings, the active one open, each row showing thumbnail, page title, type badge and time](https://docs.vectored.dev/lens/assets/lens-popup-timeline.png)
 
 Screenshot needed
 
 lens-popup-timeline.png
 
-The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title
+The popup timeline with captures grouped under project headings, the active one open, each row showing thumbnail, page title, type badge and time
 
-The popup timeline with captures grouped under Today and Yesterday, each row showing thumbnail, file name, type badge and page title
+The popup timeline with captures grouped under project headings, the active one open, each row showing thumbnail, page title, type badge and time
 
 ### 2. The dashboard
 
-Open the dashboard from the arrow icon at the top right of the popup, or the gear beside it to land straight on Settings. It has four sections.
+Open the dashboard from **Dashboard** on the popup's project card, or the gear at the top right to land straight on Settings. It has four sections.
 
 - **Projects** — every project as a card with its folder, capture count, last capture, access state, and anything the folder is waiting to receive.
 
@@ -15791,7 +15807,7 @@ The dashboard master timeline with the filter bar and capture cards grouped unde
 
 - **Export timeline JSON** on the dashboard writes every capture across all projects to a single file.
 
-- **JSON** in the popup, or **Export JSON** on a project card, writes that one project's project_metadata.json.
+- **Export JSON** on a project card writes that one project's project_metadata.json. The popup no longer has a JSON button.
 
 ### 6. Opening a capture
 
@@ -15829,15 +15845,19 @@ These are not on the Settings page — they live in the converter that opens whe
 
 One to ten minutes. A recording stops at the cap and opens the converter as though you had pressed stop. This exists because a long recording at 15 frames a second becomes a very large GIF.
 
-### 4. Still image format
+### 4. Full page: most screenshots
+
+10, 20, 30, 50, 75 or 100; 30 by default. A [full-page capture](https://docs.vectored.dev/lens/docs/capturing.html#3-capturing-a-whole-page) takes one screenshot per screen and stops after this many, keeping what it has. A page that loads more as you scroll never reaches its end, and this is where it stops. Lower it for quick captures; raise it for long articles and reports.
+
+### 5. Still image format
 
 **PNG** keeps text crisp and is the right default for documentation. **JPEG** produces much smaller files but softens text and adds artefacts around high-contrast edges. The file extension follows the setting.
 
-### 5. Write metadata file
+### 6. Write metadata file
 
 On by default, and about the copy on disk only. When off, capture files are still written to a linked folder but its project_metadata.json is not updated. The project's own timeline is always kept — it is what the popup and the dashboard read, and a capture that exists and is listed nowhere would be worse than an extra file.
 
-### 6. Storage
+### 7. Storage
 
 Lens keeps each project's captures itself, so this panel is the disk that costs. It shows what Lens is using against what your browser allows it, a bar that turns amber past 80%, and a breakdown per project. **Refresh** re-measures.
 
@@ -15845,17 +15865,17 @@ The figures are worth a look before a long session: a sixty-step guide in PNG ru
 
 Lens asks Chrome for persistent storage so these files are not cleared when the disk fills. If the browser has not granted it, the panel says so — link a folder for anything you cannot afford to lose.
 
-### 7. Hold on to the folder
+### 8. Hold on to the folder
 
 **Off** by default. Chrome drops a folder's permission once nothing of Lens's is running, which is why a linked folder asks to be reconnected. Turning this on keeps Lens awake while a folder is linked, so that happens far less often — at the cost of some battery, and it makes the lapse rare rather than impossible, since a browser restart ends it regardless.
 
 It used to be on, because a lapse meant a capture that could not be saved. It no longer does: captures are kept by Lens and the folder catches up afterwards, so this only decides how promptly the copy on disk keeps up.
 
-### 8. Copy to clipboard on capture
+### 9. Copy to clipboard on capture
 
 Puts each capture on the clipboard as well as saving it. Because the clipboard only accepts PNG images, a JPEG capture is converted before copying. The save toast reports whether the copy succeeded.
 
-### 9. Visualise clicks
+### 10. Visualise clicks
 
 Draws a marker at each click while recording, so a walkthrough shows where you clicked. Markers are only drawn **inside** the recorded region — a marker outside it would never appear in the output.
 
@@ -15869,21 +15889,21 @@ A recording in progress with a red click marker expanding at the point of a clic
 
 A recording in progress with a red click marker expanding at the point of a click inside the recorded region
 
-### 10. Play shutter sound
+### 11. Play shutter sound
 
 A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension.
 
-### 11. Open Lens after saving
+### 12. Open Lens after saving
 
 On by default. A capture that is written opens the Lens menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a message that disappears. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures.
 
 Because this opens the popup for you, a toolbar click straight afterwards is read by Chrome as *closing* the popup that is already open — a click that appears to do nothing. Clicking again, or switching tab first, opens it.
 
-### 12. Explain Smart Capture before it starts
+### 13. Explain Smart Capture before it starts
 
 On by default. Before a walkthrough records anything, a short briefing explains how the recorder behaves — when each screenshot is taken, how fast you can click, what does and does not become a step — with **Start recording** and **Cancel**. Nothing is recorded until you press Start, and Cancel leaves nothing behind. The dialog carries its own **Don't show this again**.
 
-### 13. Watermark
+### 14. Watermark
 
 Lens draws a small mark in the corner of the images it saves — screenshots, recordings and the step images in a guide — picking black or white to suit what is behind it. It also tiles faintly through exported documents, PDF and self-contained HTML, and closes Markdown and clipboard copies with a line.
 
@@ -15891,25 +15911,25 @@ A licence puts it under your control: your own wording and logo, or off entirely
 
 Where a guide came from is recorded separately and is never removed: the source page, the date and the author go into every export whatever the licence says. Only the visible mark is licensed.
 
-### 14. Flag private data in captures
+### 15. Flag private data in captures
 
 On by default. Checks each captured region for credentials before you save and offers to blur them — see [Capturing](https://docs.vectored.dev/lens/docs/capturing.html) for what the bar looks like and what it recognises. It reads the page structure in your browser: no AI, no network call, nothing sent anywhere.
 
-### 15. Also flag emails and card numbers
+### 16. Also flag emails and card numbers
 
 On by default, and only has an effect while the check above is on. Widens it past credentials to personal data. Card numbers are validated against their checksum, so order and reference numbers are not flagged.
 
-### 16. Build a guide from each recording
+### 17. Build a guide from each recording
 
 On by default. Any recording with clicks in it also produces a step-by-step guide, offered for review on the save screen — see [Guides](https://docs.vectored.dev/lens/docs/guides.html). Turn it off and recordings are just recordings.
 
-### 17. Walkthrough mode
+### 18. Walkthrough mode
 
 **Interactive** by default. As well as the screenshots and the words, Lens notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](https://docs.vectored.dev/lens/docs/guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup.
 
-The same setting sits under the **Record steps** button in the popup, as a checkbox. Both write the one value.
+The same setting sits under the capture tiles in the popup, as a switch. Both write the one value.
 
-### 18. Quote what you typed
+### 19. Quote what you typed
 
 On by default. A step for a field you filled in reads *Type "ACME-1024" into "Order number"* rather than *Type into "Order number"* — the difference between an instruction a reader can follow and one they cannot.
 
@@ -15919,31 +15939,31 @@ The option you pick from a dropdown is held to the same bar, and is recorded wha
 
 The screenshot for such a step is taken *after* you have typed, so what you entered is visible in the picture whether or not it is quoted in the text. That is the point of the step. Blur it in the editor, or delete the step, before the guide is saved.
 
-### 19. Auto-blur guide steps
+### 20. Auto-blur guide steps
 
 **Off**, and deliberately so. When on, anything the private-data check flags in a step screenshot is blurred without asking.
 
 This is the only place in Lens where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason.
 
-### 20. Guide marker colour
+### 21. Guide marker colour
 
 The colour of the numbered callout drawn on each step screenshot. Red by default. Pick something that stands out against the product you are documenting.
 
-### 21. Maximum steps per guide
+### 22. Maximum steps per guide
 
 Sixty by default. A flow longer than that is usually two guides, and the cap stops a stray click storm from producing a document nobody will read.
 
-### 22. Guide image format
+### 23. Guide image format
 
 **JPEG** by default here, rather than PNG. A sixty-step guide is sixty screenshots, and JPEG is what keeps that folder to a sane size. Switch to PNG if your steps are mostly small text.
 
-### 23. Merge clicks into animated steps
+### 24. Merge clicks into animated steps
 
 Off by default. When several clicks happen on one screen with no scrolling between them, they can be saved as one short animated step instead of a run of near-identical stills.
 
 The clip is cut from footage the recording already sampled, so nothing is captured twice. Three controls tune it: the longest gap between clicks that still counts as one run, the longest a merged step may be, and its frame rate. An animated step can always be split back into its individual clicks in the editor — each click kept its own still.
 
-### 24. AI models
+### 25. AI models
 
 **None configured** by default, which means every AI feature is off and Lens makes no network requests at all. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine.
 
@@ -15963,17 +15983,17 @@ An API key is stored in this browser only, in its own storage area, and is read 
 
 Connecting a model also puts buttons on the save screens — **Suggest name** on a screenshot, **Write steps from clicks** on a recording, **Rewrite with AI** on a guide — and opens the assistant in the guide editor. None of them runs on its own: you press them, per capture. See [Capturing](https://docs.vectored.dev/lens/docs/capturing.html), [Recording](https://docs.vectored.dev/lens/docs/recording.html) and [Guides](https://docs.vectored.dev/lens/docs/guides.html).
 
-### 25. Let the model sharpen redaction hints
+### 26. Let the model sharpen redaction hints
 
 Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console.
 
 The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one.
 
-### 26. Allow browser agents to drive Lens
+### 27. Allow browser agents to drive Lens
 
-Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [Letting a browser agent drive Lens](https://docs.vectored.dev/lens/docs/ai.html#letting-a-browser-agent-drive-lens) for the skill that teaches it how.
+Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [Letting a browser agent drive Lens](https://docs.vectored.dev/lens/docs/ai.html#10-letting-a-browser-agent-drive-lens) for the skill that teaches it how.
 
-### 27. File name pattern
+### 28. File name pattern
 
 Controls the name each capture is given before you edit it. The extension is added automatically.
 
@@ -15988,7 +16008,7 @@ Anything else in the pattern is kept as written. Characters a file system reject
 
 Clear the field and it returns to the default, {name}_{date}_{time}.
 
-### 28. Keyboard shortcuts
+### 29. Keyboard shortcuts
 
 The Settings page lists the shortcuts currently bound, read from Chrome rather than hardcoded, so it always reflects reality. See [Keyboard shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html) to change them.
 
@@ -16003,7 +16023,7 @@ Lens registers four commands. Chrome owns the bindings, so they are changed in C
 | Command | macOS | Windows / Linux | What it does |
 | --- | --- | --- | --- |
 | Capture region | ⌘⇧S | Alt+Shift+S | Opens the region selector |
-| Capture full tab | ⌘⇧F | Alt+Shift+F | Captures the visible tab with no selection step |
+| Capture full page | ⌥⇧F | Alt+Shift+F | Scrolls the page top to bottom and stitches one tall screenshot |
 | Record steps | ⌘⇧E | Alt+Shift+E | Starts a walkthrough — a screenshot per click, no video, no time limit |
 | Record GIF region | ⌘⇧R | Alt+Shift+R | Opens the region selector ready to record |
 
@@ -16182,7 +16202,7 @@ Every one of these leaves your capture exactly as it was. No AI failure can lose
 
 ### 10. Letting a browser agent drive Lens
 
-An AI agent that works in your browser, such as Claude in Chrome, can use Lens too. It can record GIFs and guides, take and annotate screenshots, file them into a project, and export or replay a guide. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it.
+An AI agent that works in your browser, such as Claude in Chrome, can use Lens too. It can record GIFs and guides, take and annotate screenshots, including whole pages, file them into a project, and export or replay a guide. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it.
 
 1. **Turn on Allow browser agents to drive Lens in Settings** it is off by default. While it is on, any script on a page can ask Lens to capture that page, so leave it off unless you use an agent.
 
