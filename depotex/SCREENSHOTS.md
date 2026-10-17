@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-81 screenshots. Save each one into `depotex/assets/` using the
+86 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -53,6 +53,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `upstreams-list.png`
       Upstreams: each registry's format, address, the spaces that use it and its health
+- [ ] `upstreams-linked-source.png`
+      Add upstream from a linked instance: its spaces and repositories, loaded live
 
 ## Repository settings
 
@@ -174,6 +176,14 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `oauth-applications.png`
       Settings → Applications: registered applications and the addresses they use
+- [ ] `applications-add-choice.png`
+      Add application: a custom application, or another Depotex instance
+- [ ] `applications-link-wizard.png`
+      Link a Depotex instance: the other installation as it describes itself, the directions and what the link acts as
+- [ ] `applications-link-request.png`
+      The other installation's Link request page: the application it creates for the installation that asked
+- [ ] `applications-linked-instances.png`
+      Linked instances: an active link both ways, as a service account and as each person
 - [ ] `service-accounts.png`
       Settings → Service accounts
 

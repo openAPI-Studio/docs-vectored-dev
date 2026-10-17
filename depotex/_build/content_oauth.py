@@ -6,7 +6,7 @@ OAUTH = [
     ("oauth-applications", dict(
         label="OAuth Applications", title="OAuth Applications", icon="link",
         desc="Connect pipelines, integrations, command-line tools and AI agents to Depotex: people approve once, or applications act as service accounts, without personal API tokens",
-        keywords=["ai agent", "mcp", "mcp keys", "headless agents", "rate limit", "write tools", "model context protocol", "claude", "cursor", "resource indicator", "device flow", "device code", "cli", "command line", "workload identity", "federation", "github actions", "gitlab", "kubernetes", "oidc token", "secretless", "service accounts", "client credentials", "machine access", "bot", "oauth", "oauth2", "applications", "integrations", "ci/cd", "pipeline", "connected apps", "authorization code", "pkce", "refresh token", "consent", "client id", "client secret"],
+        keywords=["linked instance", "link depotex", "application link", "another depotex", "impersonation", "connect account", "ai agent", "mcp", "mcp keys", "headless agents", "rate limit", "write tools", "model context protocol", "claude", "cursor", "resource indicator", "device flow", "device code", "cli", "command line", "workload identity", "federation", "github actions", "gitlab", "kubernetes", "oidc token", "secretless", "service accounts", "client credentials", "machine access", "bot", "oauth", "oauth2", "applications", "integrations", "ci/cd", "pipeline", "connected apps", "authorization code", "pkce", "refresh token", "consent", "client id", "client secret"],
         blocks=[
             H("Overview"),
             P("Depotex is an OAuth 2.0 authorization server. An application — a CI/CD server, a chat bot, an integration — sends a person to Depotex; they sign in and allow it; the application then gets short-lived access tokens and refresh tokens that act for that person. Nobody has to create or paste a personal API token, and the person can disconnect the application at any time. Pro license or higher."),
@@ -21,6 +21,7 @@ OAUTH = [
                 ["An AI application (Claude, Cursor, an IDE agent) uses a plugin's tools for a person", "An **AI agent** application and the plugin's MCP address", "Pro"],
                 ["An AI agent with no person, such as a CI job, uses a plugin's tools", "An AI agent with machine access, asking for one MCP server ([Headless AI agents](#headless-ai-agents))", "Pro"],
                 ["An AI agent that can't sign in with OAuth at all", "An [MCP key](#mcp-keys), if an administrator allows them (less secure)", "Pro"],
+                ["Another Depotex installation uses this one, or this one uses it", "A [linked instance](#link-another-depotex): both sides set up in one go, no secrets copied by hand", "Pro (proxying through it: Enterprise)"],
             ]),
 
             H("Register an application"),
@@ -37,6 +38,24 @@ OAUTH = [
                 "Copy the credentials|Depotex shows the **Client ID** and, for server applications, the **Client secret**. The secret is shown only once; **New secret** replaces it (the old one stops working; tokens already issued keep working).",
             ]),
             P("The page lists the addresses to configure in the application. Most OAuth libraries need only the discovery address, `https://<your Depotex address>/.well-known/oauth-authorization-server`."),
+
+            H("Link another Depotex"),
+            P("Two Depotex installations, such as a branch office and headquarters, can trust each other without anyone copying client IDs and secrets between them. **Add application** offers two choices: **Custom application** (the form above) and **Depotex instance**. A link can go one way or both: this installation uses the other one (its upstreams proxy the other's repositories), the other uses this one, or both. Pro license or higher on both; proxying through a link needs Enterprise on the side that proxies."),
+            SHOT("applications-add-choice.png", "Add application: a custom application, or another Depotex instance"),
+            STEPS([
+                "Paste its address|Choose **Depotex instance**, enter the other installation's address as people open it in a browser, and choose **Look up**. Depotex reads what the other installation says about itself (its name, icon and version) and shows it. Set this installation's own address under **Settings → General** first: the other side needs it to send you back.",
+                "Choose the directions|**This installation uses …** lets upstreams here proxy the other's repositories. **… uses this installation** makes an application here for the other side.",
+                "Choose what it acts as|**Service account**: requests act as a service account on the side being used; what it can read is what the link can read. Downloads and background checks use it. **Each person (impersonation)**: people connect their own account on the other side once, and see and download only what that account may there. Choose either or both. For the other side using this one with a service account, pick which service account here it acts as.",
+                "Who administers the other side|**I do**: **Continue on …** opens the other installation's **Link request** page with the application already filled in. Sign in there if needed, choose the service account it acts as, and select **Create and go back**: you come back here and the link is active on both sides. **Another administrator**: see below.",
+            ]),
+            SHOT("applications-link-wizard.png", "Link a Depotex instance: the other installation as it describes itself, the directions and what the link acts as"),
+            P("On the other installation, the **Link request** page shows who asks and what for, the application it will create (its name, what it may ask for, and that it is pre-approved when people connect their own accounts), and the service account it acts as. Only what the asking installation says about itself is shown, read by the other server; nothing from the address bar."),
+            SHOT("applications-link-request.png", "The other installation's Link request page: the application it creates for the installation that asked"),
+            P("**When someone else administers the other installation**, choose **Another administrator** and **Prepare the link**. Depotex shows what to send them: the application to create there (name, homepage, redirect address, what it may ask for, whether it needs machine access and pre-approval), and a link they can open instead, which fills in their form and finishes everything by itself. If the other side may use this one, the credentials of the application made here are shown once, for them to enter. When they send you the client ID and secret of the application they made, enter them with **Enter credentials** on the link, or tick **I already have the credentials** when you start it."),
+            P("**Linked instances** on Settings → Applications lists each link with its direction, what it acts as, whether it's **Active** or **Waiting**, and how many people connected their account. **Test** checks the other side answers and accepts the credentials; **Delete** removes the link, the application made here for the other side (its requests stop at once) and people's connections through it. Remove the link on the other installation too."),
+            SHOT("applications-linked-instances.png", "Linked instances: an active link both ways, as a service account and as each person"),
+            P("**Connecting your own account.** When a link acts as each person, **Profile → Connected apps → Linked installations** lists it with **Connect to …**. You sign in on the other installation if you aren't already, and come straight back: the application is pre-approved, so nobody is asked to approve it. The upstream dialog offers the same when you choose such a link. **Disconnect** forgets the connection here."),
+            NOTE("Nothing secret travels through the browser: the other side sends back a one-time code that only this server can exchange, server to server, for the credentials."),
 
             H("Device sign-in for command-line tools"),
             P("For tools that run in a terminal or on a device without a browser (RFC 8628). Turn on **Allow device sign-in** on the application (usually a **Desktop, mobile or browser app**)."),
@@ -184,7 +203,9 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://depotex.example.com/api/us
                 ["`service_account.create`, `service_account.update`, `service_account.delete`", "A service account is created, renamed, gets another role, is turned off or on, or is deleted. Org policies can, for example, forbid organization-admin service accounts"],
                 ["`mcp.key.create`, `mcp.key.revoke`", "A person makes an MCP key, or a key is revoked by its owner or an administrator. Policies can refuse them, for example forbid keys that can change Depotex"],
                 ["`ai_agents.mcp_keys.update`", "MCP keys are allowed or stopped for the installation"],
+                ["`applink.create`, `applink.update`, `applink.delete`", "A link with another installation is started here or accepted from the other side, becomes active or gets new credentials, or is removed"],
+                ["`applink.connect`", "A person connects their own account on a linked installation. Org policies can refuse it"],
             ]),
-            P("Audit entries record registrations, secret changes, approvals and revocations, and every action an application takes for someone is recorded with `via: oauth:<application name>`. MCP keys add `mcp_keys:create`, `mcp_keys:revoke` and `mcp_keys:update_settings`."),
+            P("Audit entries record registrations, secret changes, approvals and revocations, and every action an application takes for someone is recorded with `via: oauth:<application name>`. MCP keys add `mcp_keys:create`, `mcp_keys:revoke` and `mcp_keys:update_settings`. Links add `app_links:create`, `app_links:update`, `app_links:delete`, `app_links:connect` and `app_links:disconnect`."),
         ])),
 ]

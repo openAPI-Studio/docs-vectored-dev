@@ -6,7 +6,7 @@ UPSTREAMS = [
     ("upstreams", dict(
         label="Upstreams", title="Upstreams", icon="link",
         desc="External registries such as Maven Central, or repositories on another Depotex, that spaces may proxy, with their credentials and which spaces may use them",
-        keywords=["upstream", "proxy", "remote", "mirror", "maven central", "npmjs", "docker hub", "credentials", "allow-list", "depotex link", "oauth", "client credentials", "quarantine"],
+        keywords=["linked instance", "impersonation", "upstream", "proxy", "remote", "mirror", "maven central", "npmjs", "docker hub", "credentials", "allow-list", "depotex link", "oauth", "client credentials", "quarantine"],
         blocks=[
             H("Overview"),
             P("An upstream is an external registry, such as Maven Central, the npm public registry, Docker Hub or your own internal mirror, or a repository on another Depotex installation (a **Depotex link**). Super admins register each one once for the whole installation under **Upstreams** in the sidebar, then choose which spaces may proxy it; proxy repositories in those spaces fetch from it. Registries are available on every license tier (proxy repositories need Pro); Depotex links need Enterprise."),
@@ -29,6 +29,15 @@ UPSTREAMS = [
 
             H("Depotex link"),
             P("A Depotex link proxies a repository of another Depotex installation, for example a central one at headquarters. Files come with their checksums, which are verified. The other installation's quarantine and block list apply here too: a file it refuses is refused here, never served from the cache, and copies cached before it refused them are removed. Needs an Enterprise license on this installation."),
+            P("**From a linked instance (simplest).** Link the two installations first under **Settings → Applications → Add application → Depotex instance** ([how](oauth-applications.html#link-another-depotex)). Then choose **Add upstream**, kind **Another Depotex**, and under **Connection** keep **Linked instance**:"),
+            STEPS([
+                "Linked instance|Choose the linked installation. Only links that let this installation use the other one are listed; **Link a Depotex instance** opens Settings → Applications.",
+                "Space and repository|Both lists are loaded live from the other installation and show what you may use there. Choosing a repository fills in the format, and a name and key you can change.",
+                "Save|The link holds the address and the credentials; there's nothing to paste. **Test connection** checks the repository through the link.",
+            ]),
+            SHOT("upstreams-linked-source.png", "Add upstream from a linked instance: its spaces and repositories, loaded live"),
+            P("When the link acts **as each person**, the lists show what your own account on the other installation may see, and you're asked to connect it first (**Connect your account on …**; you come straight back). Downloads through such an upstream are for people signed in here whose own account there may read the repository, files already cached included: others get **403** (connect your account, or no access there) or **401** when not signed in. The answer is reused for up to a minute, so a change of access on the other side applies within a minute. When the link also has a service account, files are fetched with it; otherwise with the person's own account."),
+            P("**By hand.** Choose **Address and credentials** under **Connection** instead:"),
             STEPS([
                 "On the other Depotex|Create a service account that can read the repository (a space or repository role, or a content selector), and an application under **Settings → Applications** whose machine access acts as it. Note its client ID and secret. An API token of an account that can read the repository works too.",
                 "Here|Choose **Add upstream**, kind **Another Depotex (Depotex link)**. Enter the other Depotex's address (as people open it in a browser), the space key and the repository name there, and the format of that repository.",
