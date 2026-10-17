@@ -41,6 +41,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-17", "Plugins", "Connect an AI agent in the profile menu has a Vibepack skill tab to download the agent skill and see how to use it, and plugin screens can offer a .zip from their package to download."),
     ("2026-10-17", "Vibe artifacts", "Enterprise: the vibepack skill connects an AI agent with the Depotex AI tools or a saved API token, asks for the project's name, status and other details before its first save, and offers screenshots, captured pages or mock-ups; its script saves a check-in from a terminal without an agent, asking the same questions step by step."),
     ("2026-10-14", "Quarantine", "Enterprise: quarantined versions can be blocked (kept, and refused from then on) or deleted and blocked, in their repository, their space or every space, for one version or every version of the name; repository admins get a Quarantine tab for their repository."),
     ("2026-10-14", "Block list", "Block-list rules now refuse uploads and proxy caching of the versions they match too, and rules made from quarantine also refuse their files' content under any name."),

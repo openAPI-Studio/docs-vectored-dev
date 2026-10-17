@@ -196,7 +196,15 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
             ]),
 
             H("Save with the vibepack skill"),
-            P("The vibepack skill teaches an AI coding agent (Claude Code, Cursor and others that read skills) to save a project as a check-in and to pick one up again. Copy its `skill` folder into your agent's skills folder as `vibepack` (Claude Code: `~/.claude/skills/vibepack`), then ask the agent to set up vibepack. Every time it is used, the agent first checks how it can reach Depotex:"),
+            P("The vibepack skill teaches an AI coding agent (Claude Code, Cursor and others that read skills) to save a project as a check-in and to pick one up again. With the Depotex AI tools plugin installed, everyone signed in can download it:"),
+            STEPS([
+                "Download it|Open the profile menu, choose **Connect an AI agent**, go to the **Vibepack skill** tab and click **Download the skill (.zip)**.",
+                "Install it|Unzip it into your agent's skills folder; it holds one folder, `vibepack`. For Claude Code: `unzip vibepack-skill.zip -d ~/.claude/skills/`. Agents without a skills folder (Cursor, VS Code) can keep the `vibepack` folder in the project and follow `vibepack/SKILL.md`.",
+                "Connect the agent|Add Depotex to your AI app as the **Connect** tab shows. Connected, the skill needs no token.",
+                "Start|Ask the agent to set up vibepack, and later to save a check-in.",
+            ]),
+            SHOT("vibe-skill-download.png", "Profile menu → Connect an AI agent → Vibepack skill: the download button, the install and use steps, and the commands for saving without an agent"),
+            P("Every time it is used, the agent first checks how it can reach Depotex:"),
             UL([
                 "**With the Depotex AI tools connected,** it uses them and needs nothing else: the tools act as you, and their upload and download links need no token.",
                 "**Otherwise** it asks for your vibe collection's address (open the collection in Depotex and copy the address, such as `https://depotex.example.com/repository/apps/projects`) and shows how to create an API token. You save the token yourself, in your own terminal, so it never goes through the chat.",
