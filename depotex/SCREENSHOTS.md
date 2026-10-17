@@ -88,7 +88,7 @@ realistic but fictional names and figures rather than real people's data.
 ## Integrity
 
 - [ ] `integrity.png`
-      Settings → Integrity: status, settings and recent checks
+      Settings → Integrity: status, broken files, recent checks and settings
 
 ## Quarantine
 
