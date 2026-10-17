@@ -98,12 +98,13 @@ DIRECTORIES = [
             UL([
                 "Searching people: the Settings → Users list and the people pickers of groups, spaces and repositories.",
                 "Opening a user's page.",
+                "Seeing who is in a group, a space or a repository. Every space role, Viewer included, also gives it for that space, so a space's members always see each other and who has access to its repositories. Someone who can only read a space (an internal or public one) without a role there sees that it has members, not who they are.",
                 "Seeing other people's profile pictures, only those of people in your organization (super admins: every organization). Your own picture never needs it.",
             ]),
-            P("Someone without `profiles:view` sees initials instead of other people's pictures, and no search box for adding people. An [API token](api-tokens.html) that lists or opens users needs `profiles:view` among its permissions; tokens created before it existed must be re-created with it."),
+            P("Someone without `profiles:view` sees initials instead of other people's pictures, no search box for adding people, and a note instead of member lists they may not see. An [API token](api-tokens.html) that lists or opens users, or lists members, needs `profiles:view` among its permissions, even where a space role gives it to its owner; tokens created before it existed must be re-created with it."),
 
             H("Groups"),
-            P("**Settings → Groups** lists your organization's groups with their member counts and where they come from. A group's page shows its members, how each one got there (**Added by hand**, or **From** a directory) and the directories that sync into it. Viewing needs `groups:read`; creating, editing, deleting and managing members needs `groups:write`."),
+            P("**Settings → Groups** lists your organization's groups with their member counts and where they come from. A group's page shows its members, how each one got there (**Added by hand**, or **From** a directory) and the directories that sync into it. Viewing needs `groups:read`, and seeing its members also `profiles:view`; creating, editing, deleting and managing members needs `groups:write`."),
             SHOT("groups-group.png", "A group: its directories and members"),
             H("Creating a group"),
             STEPS([
