@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-81 screenshots. Save each one into `depotex/assets/` using the
+82 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -138,6 +138,8 @@ realistic but fictional names and figures rather than real people's data.
       Naming a check-in's milestone from its page
 - [ ] `vibe-checkin-findings.png`
       A check-in's Findings tab: what the check found, worst first, with the file and line, and one finding from the AI tool
+- [ ] `vibe-get-api-token.gif`
+      Creating an API token for the vibepack skill: your picture → API Tokens → New token, the permissions to tick, and saving it with vibepack.py login
 
 ## SBOMs
 
