@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-85 screenshots. Save each one into `depotex/assets/` using the
+86 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -243,6 +243,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `plugins-list.png`
       Settings → Plugins: plugins that need attention, the list by status, the upload area and the side column
+- [ ] `plugins-mcp-ai-tools.png`
+      A plugin's AI tools tab: tools by permission with switches, the server address and the mode
 - [ ] `plugins-connect-ai-app-form.png`
       Connect an AI app: the Add an application form filled in for Claude Code and the plugin
 - [ ] `plugins-connect-ai-agent.png`
