@@ -108,7 +108,7 @@ SPACES = [
                 "**Repository roles**: Viewer (browse and download), Deployer (also publish), Maintainer (also overwrite and delete), Admin (also settings and access), for a user, service account or group.",
                 "**Path access**: a repository role on the paths a content selector matches, for example deploy only under `com/acme/team-x/**`.",
             ]),
-            P("People with only repository access see the space with just those repositories. Access only ever adds to what space roles give."),
+            P("People with only repository access see the space with just those repositories. Access only ever adds to what space roles give. A repository admin with no role in the space sees the **Access** tab's people only if their own role includes `profiles:view`."),
             H("Content selectors"),
             P("Space owners manage content selectors in the space's **Settings**: a name and path patterns, one per line. `**` matches across folders, `*` within one folder, `?` one character; patterns don't start with a slash. They can also give path access in every repository of the space from there."),
             UL([
@@ -159,12 +159,12 @@ SPACES = [
             H("Members"),
             P("Open a space and choose **Members** to see who has a role there, filtered by people, groups or service accounts. **Compare roles** shows what each role can do. Owners (and super admins) can:"),
             STEPS([
-                "Add|Search for a person, service account or group of your organization by name or email, pick a role and choose **Add**.",
+                "Add|Search for a person, service account or group of your organization by name or email, pick a role and choose **Add**. Searching needs `profiles:view`, which every signed-in role has by default (see [Profile pictures and finding people](users-and-directories.html#profile-pictures-and-finding-people)).",
                 "Change a role|Choose another role next to the member. The change applies at once on every server.",
                 "Remove|Choose the bin next to the member. Roles they have through a group stay.",
             ]),
             SHOT("spaces-members.png", "A space's Members tab: add people, groups and service accounts, and change their role"),
-            P("Everyone who can see the space can see its members. Each change raises `access.grant` or `access.revoke` and is recorded in the audit log."),
+            P("The space's members, whatever their role, see who else is a member, each with their profile picture or initials: every space role includes `profiles:view` for its space. People who can see an internal or public space without a role in it see how many members it has, but not who they are, unless their own role includes `profiles:view` (every signed-in role does by default). Each change raises `access.grant` or `access.revoke` and is recorded in the audit log."),
 
             H("Change or delete a space"),
             P("A space's **Settings** shows one section at a time, picked from the menu on the left: **General**; the rules (**Upload rules**, **Quarantine rules**, **Block list**, **Cleanup**); **Content selectors**; for super admins **Storage quota** and **Upstreams**; and **Delete space**. You see the sections your role allows, and each saves on its own."),
@@ -175,6 +175,7 @@ SPACES = [
             TABLE(["Permission", "Granted by", "Allows"], [
                 ["`spaces:create`", "Super admins only", "Creating spaces"],
                 ["`quotas:write`", "Super admins only", "Setting and removing spaces' storage quotas"],
+                ["`profiles:view`", "Viewer", "Seeing who the space's members are, and who has access to its repositories (on this space only)"],
                 ["`spaces:read`", "Viewer", "Seeing a space and downloading from it"],
                 ["`spaces:push`", "Developer", "Publishing new artifacts"],
                 ["`spaces:sbom:write`", "Developer", "Registering [applications](sbom.html#applications) and uploading, linking and deleting their SBOMs (Enterprise)"],
