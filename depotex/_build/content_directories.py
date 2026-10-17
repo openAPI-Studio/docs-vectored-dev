@@ -53,7 +53,7 @@ DIRECTORIES = [
             P("There is nothing to configure: the setup wizard creates the Local directory and your first administrator in it. People in the Local directory sign in with their **email address**, which is their username. Email addresses are unique within a directory regardless of case: `Ann@example.com` and `ann@example.com` are the same account."),
 
             H("Managing users"),
-            P("**Settings → Users** lists everyone in your organization: name, email, directory, role, status and last sign-in. Search by email, name or username, and filter by directory or status (Active, Disabled, Locked, Invited, Anonymized). Select a user to see their details, account status and sign-in history."),
+            P("**Settings → Users** lists everyone in your organization: profile picture, name, email, directory, role, status and last sign-in. Search by email, name or username, and filter by directory or status (Active, Disabled, Locked, Invited, Anonymized). Select a user to see their details, account status and sign-in history. Seeing users needs `users:read` and `profiles:view` (see [Profile pictures and finding people](#profile-pictures-and-finding-people))."),
             SHOT("users-list.png", "Settings → Users: everyone who can sign in, their directory, role, status and last sign-in"),
             TABLE(["Badge", "Meaning"], [
                 ["**Active**", "Can sign in"],
@@ -91,6 +91,16 @@ DIRECTORIES = [
                 ["**Sign out everywhere**", "Ends every session on every device; the user can sign in again", "`users:write`"],
             ]),
             P("Organization admins can't act on super admins. Every action is recorded in the audit log."),
+
+            H("Profile pictures and finding people"),
+            P("Wherever Depotex lists people, it shows each person's profile picture, or their initials when they haven't chosen one: Settings → Users and a user's page, a group's members and **Add members**, a space's or repository's members and the search for people to add, and the audit log. People choose their picture under **Profile** (a built-in picture or an upload of up to 2 MB)."),
+            P("Looking people up needs the `profiles:view` permission. Every signed-in role holds it by default; super admins hold every permission. It covers:"),
+            UL([
+                "Searching people: the Settings → Users list and the people pickers of groups, spaces and repositories.",
+                "Opening a user's page.",
+                "Seeing other people's profile pictures, only those of people in your organization (super admins: every organization). Your own picture never needs it.",
+            ]),
+            P("Someone without `profiles:view` sees initials instead of other people's pictures, and no search box for adding people. An [API token](api-tokens.html) that lists or opens users needs `profiles:view` among its permissions; tokens created before it existed must be re-created with it."),
 
             H("Groups"),
             P("**Settings → Groups** lists your organization's groups with their member counts and where they come from. A group's page shows its members, how each one got there (**Added by hand**, or **From** a directory) and the directories that sync into it. Viewing needs `groups:read`; creating, editing, deleting and managing members needs `groups:write`."),

@@ -159,12 +159,12 @@ SPACES = [
             H("Members"),
             P("Open a space and choose **Members** to see who has a role there, filtered by people, groups or service accounts. **Compare roles** shows what each role can do. Owners (and super admins) can:"),
             STEPS([
-                "Add|Search for a person, service account or group of your organization by name or email, pick a role and choose **Add**.",
+                "Add|Search for a person, service account or group of your organization by name or email, pick a role and choose **Add**. Searching needs `profiles:view`, which every signed-in role has by default (see [Profile pictures and finding people](users-and-directories.html#profile-pictures-and-finding-people)).",
                 "Change a role|Choose another role next to the member. The change applies at once on every server.",
                 "Remove|Choose the bin next to the member. Roles they have through a group stay.",
             ]),
             SHOT("spaces-members.png", "A space's Members tab: add people, groups and service accounts, and change their role"),
-            P("Everyone who can see the space can see its members. Each change raises `access.grant` or `access.revoke` and is recorded in the audit log."),
+            P("Everyone who can see the space can see its members, each with their profile picture or initials. Each change raises `access.grant` or `access.revoke` and is recorded in the audit log."),
 
             H("Change or delete a space"),
             P("A space's **Settings** shows one section at a time, picked from the menu on the left: **General**; the rules (**Upload rules**, **Quarantine rules**, **Block list**, **Cleanup**); **Content selectors**; for super admins **Storage quota** and **Upstreams**; and **Delete space**. You see the sections your role allows, and each saves on its own."),
