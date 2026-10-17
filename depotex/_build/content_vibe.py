@@ -195,6 +195,37 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
                 "What a project holds (memory files, known gaps, code) was written by someone else, so results carry a notice telling the AI app to treat them as data, not instructions.",
             ]),
 
+            H("Save with the vibepack skill"),
+            P("The vibepack skill teaches an AI coding agent (Claude Code, Cursor and others that read skills) to save a project as a check-in and to pick one up again. With the Depotex AI tools plugin installed, everyone signed in can download it:"),
+            STEPS([
+                "Download it|Open the profile menu, choose **Connect an AI agent**, go to the **Vibepack skill** tab and click **Download the skill (.zip)**.",
+                "Install it|Unzip it into your agent's skills folder; it holds one folder, `vibepack`. For Claude Code: `unzip vibepack-skill.zip -d ~/.claude/skills/`. Agents without a skills folder (Cursor, VS Code) can keep the `vibepack` folder in the project and follow `vibepack/SKILL.md`.",
+                "Connect the agent|Add Depotex to your AI app as the **Connect** tab shows. Connected, the skill needs no token.",
+                "Start|Ask the agent to set up vibepack, and later to save a check-in.",
+            ]),
+            SHOT("vibe-skill-download.png", "Profile menu → Connect an AI agent → Vibepack skill: the download button, the install and use steps, and the commands for saving without an agent"),
+            P("Every time it is used, the agent first checks how it can reach Depotex:"),
+            UL([
+                "**With the Depotex AI tools connected,** it uses them and needs nothing else: the tools act as you, and their upload and download links need no token.",
+                "**Otherwise** it asks for your vibe collection's address (open the collection in Depotex and copy the address, such as `https://depotex.example.com/repository/apps/projects`) and shows how to create an API token. You save the token yourself, in your own terminal, so it never goes through the chat.",
+            ]),
+            STEPS([
+                "Open API Tokens|In Depotex, click your picture (top right) and choose **API Tokens**.",
+                "Create the token|Click **New token**, name it after your computer, tick `spaces:read`, `spaces:push`, `depot:read`, `repo:browse`, `repo:read` and `repo:add`, pick an expiry and click **Create token**.",
+                "Copy it|The token is shown once.",
+                "Save it on your computer|Run `python3 vibepack.py login` in your terminal and paste the token at the hidden prompt. It is saved for that Depotex address, readable by you only.",
+            ]),
+            SHOT("vibe-get-api-token.gif", "Creating an API token for the vibepack skill: your picture → API Tokens → New token, the permissions to tick, and saving it with vibepack.py login"),
+            NOTE("Creating API tokens needs a role that allows it; by default only super admins have one. If you don't see **New token**, ask an administrator."),
+            P("Then the agent asks about the project, one question at a time: the collection, the project's name, one line on what it is, its status (`idea`, `prototype`, `in-progress`, `working`, `shipped` or `paused`), tags, and how to run and test it. It keeps the answers in `vibepack.json` in the project, which travels with every check-in. The status becomes the tag `status:<status>`, so you can find projects by it in the Vibe browser."),
+            P("When you ask it to save, it asks what changed and whether this check-in is a milestone, runs the tests, and offers screenshots: send it your own, let it capture the pages of a web app, or, when neither works, it draws a self-contained mock-up page of each screen, which travels with the files and is marked as a mock-up."),
+            H("Save without an agent"),
+            P("The skill's script does the same in a terminal, asking the same questions step by step, without spending an AI agent's time:"),
+            CODE("""python3 vibepack.py login     # once per computer
+cd my-project
+python3 vibepack.py save      # asks what changed, the status, milestone, tests and screenshots, then pushes"""),
+            P("`python3 vibepack.py save --yes --summary \"Fixes the totals\"` asks nothing, for scripts and CI. There, set the token in `VIBEPACK_TOKEN` instead of saving it."),
+
             H("Read and download"),
             TABLE(["Request", "Answers"], [
                 ["`GET <repository URL>`", "The projects you can see, by name"],
