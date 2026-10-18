@@ -26,15 +26,15 @@ REPO_SETTINGS = [
             P("Turn on **Reach remote registries through an HTTP proxy** when servers can only reach the internet through a proxy. Enter it as `http://host:port` (or `https://`), with a username and password when it needs them; the password is stored encrypted and never shown again. **Don't use the proxy for** lists hosts that are reached directly, one per line: a host (`nexus.corp`), a domain and its subdomains (`.corp.example`), an IP address or range (`10.0.0.0/8`). Local addresses never use the proxy."),
 
             H("Test a connection"),
-            P("Enter a registry's URL and select **Test**. Depotex sends a request with the settings on the page — saved or not — through the proxy and trusted certificates, and reports the time and HTTP status, or what failed: an untrusted, expired or mismatched certificate, the proxy unreachable or refusing the password, the host name not found, no connection, or no answer in time. Any HTTP answer, even 401 or 404, means the path works."),
+            P("The **Test a connection** panel beside the settings takes a registry's URL (or one of the shortcuts: Maven Central, npm, Docker Hub); select **Test**. Under it, **The test uses** shows the route (the proxy, or direct), the timeouts, retries and how many certificates you added.  Depotex sends a request with the settings on the page — saved or not — through the proxy and trusted certificates, and reports the time and HTTP status, or what failed: an untrusted, expired or mismatched certificate, the proxy unreachable or refusing the password, the host name not found, no connection, or no answer in time. Any HTTP answer, even 401 or 404, means the path works."),
 
             H("Trusted certificates"),
             P("Depotex trusts the operating system's CA certificates. To reach registries whose certificates are signed by your organization's own CA, add that CA here."),
             STEPS([
                 "Paste PEM|Paste one certificate (`-----BEGIN CERTIFICATE-----`) and, optionally, a name. Private keys are refused.",
-                "Or load from a server|Enter a host, host:port or URL and select **Load**. Depotex shows the certificates the server presents, without trusting them; select **Trust** on the CA that signed it (usually the last one).",
+                "Or load from a server|Enter a host, host:port or URL and select **Load**. Depotex shows the certificates the server presents, numbered from the server's own, each with its issuer, expiry and SHA-256 fingerprint, without trusting them; select **Trust** on the CA that signed it (usually the last one).",
             ]),
-            P("Each certificate shows its subject, issuer, expiry and SHA-256 fingerprint. Removing one stops trusting registries it signed. Up to 100 certificates."),
+            P("Each certificate is marked **Valid**, **Expires in N days** (30 days or less) or **Expired**; select it to see its subject, issuer, expiry and SHA-256 fingerprint. **Add certificate** opens the paste and load-from-a-server forms. Removing one stops trusting registries it signed. Up to 100 certificates."),
             WARN("**Load from a server** connects directly, not through the outbound proxy. Check the fingerprint with the registry's owner before trusting a certificate."),
 
             H("Defaults for operators"),

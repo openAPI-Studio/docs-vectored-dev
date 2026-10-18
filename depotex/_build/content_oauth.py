@@ -25,7 +25,8 @@ OAUTH = [
 
             H("Register an application"),
             P("Under **Settings → Access management → Applications** (`oauth_apps:manage`, super admins). Set the Depotex address under **Settings → General** first: applications reach Depotex at it."),
-            SHOT("oauth-applications.png", "Settings → Applications: registered applications and the addresses they use"),
+            P("The page lists the applications on the left (find one by name or client ID, or show only API or endpoint applications) and opens the selected one beside the list: its connections, when it was last used and its client ID, what it may do, sign-in, tokens and, for server applications, its secret and machine access. Turn it on or off, change its approval, device sign-in, token lifetimes and machine access there and select **Save**; **Edit name, scopes and redirects** opens the full form. **OAuth addresses** at the top shows the addresses applications use, with a copy button each."),
+            SHOT("oauth-applications.png", "Settings → Applications: the list of applications and the selected one beside it"),
             STEPS([
                 "Add application|Select **Add application** and enter its name and description (people see them on the approval screen).",
                 "Choose the kind|**API** for applications that call the Depotex API (everything on this page except the next section). **AI agent** for AI applications that use plugins' MCP tools (see [AI agents](#ai-agents)). The kind can't be changed later.",

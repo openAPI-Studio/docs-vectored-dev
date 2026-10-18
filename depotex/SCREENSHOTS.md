@@ -177,7 +177,7 @@ realistic but fictional names and figures rather than real people's data.
 ## OAuth Applications
 
 - [ ] `oauth-applications.png`
-      Settings → Applications: registered applications and the addresses they use
+      Settings → Applications: the list of applications and the selected one beside it
 - [ ] `service-accounts.png`
       Settings → Service accounts
 
