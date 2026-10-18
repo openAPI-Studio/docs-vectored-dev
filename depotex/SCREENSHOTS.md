@@ -21,7 +21,7 @@ realistic but fictional names and figures rather than real people's data.
 ## Spaces
 
 - [ ] `spaces-list.png`
-      Spaces: every space you can see, with its repositories, formats, members and storage
+      Spaces as tiles: who can see each space, your role, its formats with how many repositories use each, and its last change, quarantined versions and storage
 - [ ] `spaces-space.png`
       A space's overview: figures, recently published versions, what needs attention, formats and upstreams
 - [ ] `spaces-create.png`
