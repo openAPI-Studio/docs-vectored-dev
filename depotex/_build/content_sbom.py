@@ -19,10 +19,12 @@ SBOM = [
 
             H("In the browser"),
             UL([
-                "A version's **Signatures & SBOMs** tab lists each SBOM with a **Components** section: the components it lists (name, version, ecosystem, type, supplier, licenses), searchable by name or package URL, and the **Vulnerabilities** among them, worst first, each with its severity and CVSS score, aliases, the components it affects and the version that fixes it, and links to the advisory.",
+                "A version's **Signatures & SBOMs** tab lists each SBOM with a **Components** section: the components it lists (name, version, ecosystem, type, supplier, licenses), searchable by name or package URL, and the **Vulnerabilities** among them, worst first. Each shows what you need to judge it without leaving the page: its severity and CVSS score, aliases, the **weakness** it is (its CWE with the name, such as CWE-502 Deserialization of Untrusted Data), what an attacker needs and what they can affect in plain words (\"with local access, low privileges, no user action; high impact on confidentiality, integrity, and availability\"), the components it affects with the versions it covers for each (\"vulnerable from 11.0.0, fixed in 11.5.50\"), its **Description** (folded; long ones continue on the advisory's page) and its references, advisories and fix commits first.",
                 "The version's header and side panel show how many known vulnerabilities it carries, by severity, or that it has none among the components checked.",
                 "On **Browse**, the **Vulnerabilities** filter keeps artifacts whose newest version matches any advisory, or one of a given worst severity; rows show the worst severity as a badge.",
             ]),
+            P("The fixed version is the one for the release line your component is on. Many advisories name a fix per line (PHPUnit's GHSA-vvj3-c3rp-c85p: 8.5.52, 9.6.33, 10.5.62, 11.5.50 and 12.5.8), so phpunit 11.2.7 is told to move to 11.5.50, not 8.5.52. When an advisory's versions can't place the component's, no fix is shown rather than another line's."),
+            SHOT("sbom-finding-details.png", "A vulnerability in an SBOM: severity, the weakness by name, what an attacker needs and can affect, the affected component with its range and fix, the folded description and the references"),
 
             H("How complete is an SBOM?"),
             P("Every SBOM shows a **completeness** score against the NTIA minimum elements: how many of its components carry a supplier, a name, a version and a unique identifier (a package URL or a hash), and whether the document records dependency relationships, who made it and when. The chip lists what is missing. It measures the document, not the software: a complete SBOM of vulnerable software scores 100."),
@@ -86,13 +88,14 @@ SBOM = [
             P("AI agents connected through the [MCP plugin](plugins.html#mcp-servers-for-ai-applications) read the same store, as the person who signed in: `get_sbom` lists a version's SBOMs and their components, `get_vulnerabilities` what is known about them with the assessments, `search_components` finds a component across every SBOM the person can see, `get_advisory` what a CVE affects. Pro features (search, advisories) and spaces the person can't open are refused to the agent as they would be in the browser."),
 
             H("Finding a component everywhere"),
-            P("**Browse → Components** searches every SBOM you can see at once, stored with artifacts or uploaded for applications: type part of a name (`log4j`) or a package URL (`pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1`; without a version, every version of the package), and narrow to an ecosystem. Each result is one component version with how many SBOMs list it, how many of those belong to artifacts and to applications, and the worst vulnerability it matches; **Show where** opens the list, linking to each artifact version or application version. An advisory's id, wherever it appears, opens its page: what it says, its references, and everything you can see that it affects with the fixing version. Needs **Pro**."),
+            P("**Browse → Components** searches every SBOM you can see at once, stored with artifacts or uploaded for applications: type part of a name (`log4j`) or a package URL (`pkg:maven/org.apache.logging.log4j/log4j-core@2.14.1`; without a version, every version of the package), and narrow to an ecosystem. Each result is one component version with how many SBOMs list it, how many of those belong to artifacts and to applications, and the worst vulnerability it matches; **Show where** opens the list, linking to each artifact version or application version. An advisory's id, wherever it appears, opens its page: the weakness and the CVSS vector in plain words, its references, the **affected versions** of every release line (the lines in what you can see are marked), its description, and everything you can see that it affects with the version that fixes each one's line. Needs **Pro**."),
             SHOT("browse-components.png", "Browse → Components: find every SBOM that lists a component"),
+            SHOT("advisory-page.png", "An advisory's page: the weakness, what an attacker needs and can affect, its references, the affected versions of each release line with the one in use marked, and what it affects"),
             NOTE("The search covers repositories you can browse whole and spaces you can read. Access limited to part of a repository (a content selector) doesn't bring its SBOMs into the search. Version ranges (\"below 2.17\") aren't supported yet: search by name and read the versions."),
             TABLE(["Request", "Returns"], [
                 ["`GET /api/browse/components?q=&purl=&ecosystem=`", "Components across every SBOM you can see, with counts and the worst severity; `q` of at least two characters, or a package URL"],
                 ["`GET /api/browse/components/holders?ecosystem=&namespace=&name=&version=`", "What holds one component: artifact versions (with their browser address) and application versions"],
-                ["`GET /api/browse/advisories/{id}`", "An advisory and everything you can see that it affects, with fixing versions"],
+                ["`GET /api/browse/advisories/{id}`", "An advisory (with its whole `details`, `cwes` and `ranges`: each release line's affected versions) and everything you can see that it affects, each with the fix of its own line"],
             ]),
 
             H("Applications"),
@@ -122,7 +125,7 @@ curl -f -X POST -H "Authorization: Bearer $DEPOTEX_TOKEN" \\
             ]),
 
             H("Vulnerability data"),
-            P("With vulnerability data on, every component that has a package URL is checked against known vulnerabilities, and each SBOM reports what its components carry: the advisories, their severity and score, and the version that fixes each one. The check uses the **OSV** service (osv.dev), which covers npm, PyPI, Maven, Go, crates.io, NuGet, Packagist, RubyGems, Hex, Pub, Linux distributions and GitHub's advisories. Needs **Pro**."),
+            P("With vulnerability data on, every component that has a package URL is checked against known vulnerabilities, and each SBOM reports what its components carry: the advisories, their severity and score, the weaknesses they name (CWE ids with MITRE's names, built in, so offline installations have them too), and the version that fixes each one on the component's release line. The check uses the **OSV** service (osv.dev), which covers npm, PyPI, Maven, Go, crates.io, NuGet, Packagist, RubyGems, Hex, Pub, Linux distributions and GitHub's advisories. Needs **Pro**."),
             SHOT("vulnerability-data.png", "Settings → Vulnerability data: the OSV service, how often components are checked again, and a test"),
             UL([
                 "Turn it on under **Settings → Vulnerability data** (super admins). Only package names and versions are sent; nothing about your repositories, users or files.",
@@ -133,7 +136,7 @@ curl -f -X POST -H "Authorization: Bearer $DEPOTEX_TOKEN" \\
                 "If the endpoint can't be reached, what was found stays as it was; the settings page shows the error.",
             ]),
             TABLE(["Request", "Returns"], [
-                ["`GET /api/browse/versions/{id}/sbom/{n}/vulnerabilities`", "What matched an SBOM stored with a version: a summary per severity and each advisory (id, aliases, summary, severity, score, references) with the components it hits and the fixing version"],
+                ["`GET /api/browse/versions/{id}/sbom/{n}/vulnerabilities`", "What matched an SBOM stored with a version: a summary per severity and each advisory (id, aliases, summary, severity, score, references, `cwes` with their names, the start of its `details`) with the components it hits, each with the fixing version of its line and the `range` holding it (`introduced`, `fixed` or `lastAffected`)"],
                 ["`GET …/applications/{app}/versions/{version}/documents/{n}/vulnerabilities`", "The same for an application's SBOM"],
                 ["`GET`, `PUT /api/sbom/vulnerability-data`", "The settings (`enabled`, `endpoint`, `recheckHours`) and status (last check, errors, counts); `vulnerability_data:manage`"],
                 ["`POST /api/sbom/vulnerability-data/test`", "Checks that the endpoint answers like OSV"],
