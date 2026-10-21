@@ -94,9 +94,22 @@
       <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Critical-severity alerts</li><li>Alerts in forced categories (configured by your administrator)</li></ul>
       <p class="text-muted mb-4"><strong class="text-text">Muted Categories</strong></p>
       <p class="text-muted mb-4">You can mute specific notification categories to stop receiving them. For example, mute "marketing" or "tips" categories if they're not relevant to you.</p>
-      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Some categories are marked as "Forced" by your administrator. These cannot be muted and are always delivered regardless of your preferences. They appear with a lock icon and distinct styling in the preferences panel.</p></div>
-      <p class="text-muted mb-4"><strong class="text-text">Effective Preferences</strong></p>
-      <p class="text-muted mb-4">The preferences panel shows a summary of your effective settings — what you'll actually experience after forced categories are applied.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Some categories are forced by your administrator. These cannot be muted and are always delivered regardless of your preferences. Everyone sees them under <strong class="text-text">Forced categories</strong>, each with a lock icon.</p></div>
+      <p class="text-muted mb-4"><strong class="text-text">What you'll receive</strong></p>
+      <p class="text-muted mb-4">A summary below the lists shows what you'll actually get: whether you opted out, what you muted, and what is always delivered.</p>
+      <p class="text-muted mb-4">Changes take effect when you save: a bar at the bottom says you have unsaved changes, with <strong class="text-text">Discard</strong> and <strong class="text-text">Save preferences</strong>.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/profile-notifications.png" alt="Profile settings → Notifications: opt-out, muted and forced categories, and the save bar" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">profile-notifications.png</p>
+          <p class="text-xs text-muted max-w-md">Profile settings → Notifications: opt-out, muted and forced categories, and the save bar</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Profile settings → Notifications: opt-out, muted and forced categories, and the save bar</figcaption>
+      </figure>
       <h2 id="alert-severity-levels" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Alert Severity Levels</h2>
       <div class="tbl-wrap"><table><thead><tr><th>Severity</th><th>Color</th><th>Behavior</th></tr></thead><tbody><tr><td>Critical</td><td>Red</td><td>Triggers toast notification, always delivered</td></tr><tr><td>Warning</td><td>Amber</td><td>Standard delivery, no toast</td></tr><tr><td>Info</td><td>Blue</td><td>Standard delivery, no toast</td></tr></tbody></table></div>
       <h2 id="alert-targeting" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Alert Targeting</h2>

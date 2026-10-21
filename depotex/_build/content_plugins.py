@@ -56,7 +56,7 @@ PLUGINS = [
             TABLE(["Where", "What a plugin can add"], [
                 ["Left nav → **Plugins**", "A full page of its own, listed as a sub-item (`/plugins/<plugin>`); the plugin draws everything but the left and top nav"],
                 ["Dashboard", "A widget"],
-                ["Profile menu, Profile → settings", "A menu entry that opens a dialog; a section among your profile settings"],
+                ["Profile menu, Profile → settings", "A menu entry that opens a dialog; a section in the **Access** group of your profile settings, after API tokens and Connected apps"],
                 ["Settings → Plugins, Settings → Applications, a settings page of its own", "A section on those pages, or a page under Settings"],
                 ["The plugin's own page", "A panel with its feature's controls"],
                 ["The setup guide", "A step of its own after activation"],
@@ -121,7 +121,7 @@ PLUGINS = [
             SHOT("plugins-connect-ai-app-form.png", "Connect an AI app: the Add an application form filled in for Claude Code and the plugin"),
             UL([
                 "If an app for the same AI client is already registered, adding this plugin to it is offered first instead of registering a second app.",
-                "The guide then shows the client ID, the server address and how to add them to that AI app, such as the `claude mcp add` command or the `mcp.json` entry for Cursor or VS Code. Everyone signed in finds the same details later under the profile menu's **Connect an AI agent**.",
+                "The guide then shows the client ID, the server address and how to add them to that AI app, such as the `claude mcp add` command or the `mcp.json` entry for Cursor or VS Code. Everyone signed in finds the same details later in their profile settings, under **Access → Connect an AI agent**.",
                 "**Claude** (web, desktop and mobile) connects from Claude's own servers, so Depotex must be reachable from the internet. Claude Code, VS Code and Cursor connect from the person's computer.",
                 "Approval, groups and token lifetimes can be changed later under **Applications**.",
             ]),

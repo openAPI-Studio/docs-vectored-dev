@@ -32,6 +32,7 @@ from content_reposettings import REPO_SETTINGS
 from content_browse import BROWSE
 from content_formats import FORMATS
 from content_dashboard import DASHBOARD
+from content_profile import PROFILE
 from content_kubernetes import KUBERNETES
 from content_ratelimits import RATE_LIMITS
 
@@ -200,6 +201,7 @@ location / {
 
     *KUBERNETES,
     *DASHBOARD,
+    *PROFILE,
     *SPACES,
     *GROUPS,
     *FORMATS,
@@ -296,20 +298,22 @@ location / {
             H("Create a token"),
             STEPS([
                 "Open your API tokens|Open the profile menu (your initials, top right) and choose **API tokens**.",
-                "Select New token|Above the list of your tokens.",
+                "Select New token|Above the list of your tokens. The form opens in place.",
                 "Name it|Up to 128 characters, for example `CI/CD pipeline`.",
-                "Choose its permissions|Only permissions you hold yourself are offered.",
-                "Choose when it expires|7, 30, 60, 90, 180 or 365 days, or never. An organization policy can set a shorter maximum.",
+                "Choose when it expires|7, 30, 60, 90, 180 or 365 days, or never; the form shows the date. An organization policy can set a shorter maximum.",
+                "Optionally, start from a template|**Read only**, **CI and release pipeline**, **Vibe pack** (what the vibepack skill needs to check in and pull vibe projects), **Security review**, **Space admin** or **All API access** (marked *Broad access*). A template only fills the permission list, with the permissions you hold; change it as you like.",
+                "Choose its permissions|Grouped by what they're about; filter by name, open a group, or tick a group to take all of it. Only permissions you hold yourself are offered.",
                 "Optionally, limit where it's used from|Up to 20 IP addresses or ranges (CIDR). Pro license or higher.",
-                "Select Create token|Copy the token now: it starts with `dpt_` and is shown only once. Depotex keeps only a hash of it.",
+                "Select Create token|Copy the token now: it starts with `dpt_` and is shown only once, above your tokens. Depotex keeps only a hash of it.",
             ]),
+            SHOT("profile-api-token-create.png", "Profile → API tokens → New token: expiration, templates and permissions"),
             H("Use a token"),
             P("Send it as a bearer token. Tools that only know user names and passwords (Maven, pip, curl `-u`) can send it as the password, with any user name."),
             CODE('curl -H "Authorization: Bearer $DEPOTEX_TOKEN" https://depotex.example.com/api/spaces\ncurl -u ci:$DEPOTEX_TOKEN https://depotex.example.com/repository/platform/tools/scripts/bootstrap.sh'),
             H("Rotate and revoke"),
             UL([
                 "**Rotate** gives the token a new secret. The old one keeps working for 60 seconds, so a pipeline can switch without failing. Pro license or higher.",
-                "**Revoke** stops a token at once.",
+                "**Revoke** (the bin) stops a token at once, after you confirm it in the row.",
                 "Each person may have 25 active tokens unless the organization policy says otherwise.",
             ]),
             H("API description"),
@@ -352,8 +356,8 @@ location / {
                 ["SBOMs and vulnerabilities", "[SBOMs](sbom.html) in SPDX and CycloneDX, stored with artifacts or uploaded for applications from CI; completeness scores, each vulnerability explained in place (its weakness by name, the CVSS vector in plain words, the affected versions of every release line and the fix for yours, its description), component search everywhere, vulnerability data from OSV, VEX assessments, AI BOMs for models and datasets, and export and sharing."],
                 ["Supply-chain controls", "[Quarantine](quarantine.html) rules and manual holds, the [block list](blocklist.html), [integrity checks](integrity.html) of every stored file, and automatic quarantine of unsafe package metadata."],
                 ["Policies, automation and plugins", "[Policies](policies.html) that block, warn about or adjust actions, from templates or your own conditions, with dry runs, exemptions and compliance scans; [automation](automation.html) rules that send alerts, webhooks and emails on [events](events.html); signed [plugins](plugins.html), including MCP servers for AI applications and an API explorer."],
-                ["Users and sign-in", "[Directories](users-and-directories.html): Local, LDAP, Active Directory, Microsoft Entra ID, Google Workspace and SCIM; [single sign-on](single-sign-on.html) with OpenID Connect and SAML; invitations and password resets by email, profile pictures in every list of people (`profiles:view`), sessions and timeouts, CAPTCHA, lockout after failed attempts, anonymous access, and GDPR data export and anonymization."],
-                ["Applications and tokens", "[OAuth applications](oauth-applications.html) with consent, device sign-in for command-line tools, service accounts and workload identity for CI; [API tokens](api-tokens.html) with permissions, expiry, IP allowlists and rotation; [rate limits](rate-limits.html), overrides and download quotas."],
+                ["Users and sign-in", "[Directories](users-and-directories.html): Local, LDAP, Active Directory, Microsoft Entra ID, Google Workspace and SCIM; [single sign-on](single-sign-on.html) with OpenID Connect and SAML; [your profile settings](profile.html) (avatar, theme and language, notifications, password, sessions, tokens and connected apps); invitations and password resets by email, profile pictures in every list of people (`profiles:view`), sessions and timeouts, CAPTCHA, lockout after failed attempts, anonymous access, and GDPR data export and anonymization."],
+                ["Applications and tokens", "[OAuth applications](oauth-applications.html) with consent, device sign-in for command-line tools, service accounts and workload identity for CI; [API tokens](api-tokens.html) with permissions, templates to start from, expiry, IP allowlists and rotation; [rate limits](rate-limits.html), overrides and download quotas."],
                 ["Notifications", "In-app [alerts](alerts.html) with the bell, a notifications page and preferences; [email](email.html) through SMTP providers or the Amazon SES API with an IAM role; [banners](branding-and-banners.html) for announcements."],
                 ["Administration", "The [dashboard](dashboard.html), the [system check](system-check.html) and cluster health, [scheduled jobs](scheduler.html), log levels, log files and exports, the [audit log](logging-and-audit.html), profiling, Prometheus [metrics](monitoring.html), [branding](branding-and-banners.html) per theme and your own help links."],
                 ["Backups and recovery", "[Backups](backups.html) on a schedule or on demand, encrypted, kept on a separate target, checked and test-restored; restore into a new installation from the setup wizard; [recovery mode](recovery.html) when an installed server can't start."],

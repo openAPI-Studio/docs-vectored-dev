@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-88 screenshots. Save each one into `depotex/assets/` using the
+97 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -17,6 +17,23 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `dashboard-overview.png`
       Dashboard: what needs attention, the installation's figures, spaces by size and the system's health
+
+## Your profile
+
+- [ ] `profile-overview.png`
+      Profile settings → Profile: the sections on the left, your avatar and account details
+- [ ] `profile-preferences.png`
+      Profile settings → Preferences: the three themes and the language
+- [ ] `profile-security.png`
+      Profile settings → Security: change your password, download your data
+- [ ] `profile-sessions.png`
+      Profile settings → Active sessions: this device, other sessions, and the confirmation before signing one out
+- [ ] `api-tokens.png`
+      Profile → API tokens: your tokens and your rate limits
+- [ ] `profile-connected-apps.png`
+      Profile settings → Connected apps: two applications and the linked installations
+- [ ] `profile-connect-ai-agent.png`
+      Profile settings → Connect an AI agent: the server address and the AI apps, one open to its instructions
 
 ## Spaces
 
@@ -224,6 +241,8 @@ realistic but fictional names and figures rather than real people's data.
       The bell's dropdown: unread alerts, newest first
 - [ ] `alerts-page.png`
       Notifications: filters by state, severity and category, and every alert with its actions
+- [ ] `profile-notifications.png`
+      Profile settings → Notifications: opt-out, muted and forced categories, and the save bar
 
 ## Policies
 
@@ -273,3 +292,5 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `api-tokens.png`
       Profile → API tokens: your tokens and your rate limits
+- [ ] `profile-api-token-create.png`
+      Profile → API tokens → New token: expiration, templates and permissions
