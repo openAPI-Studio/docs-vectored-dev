@@ -192,7 +192,7 @@ location / {
             ]),
             H("Read cache"),
             P("Each server keeps what most requests look up, such as spaces, repositories, roles, access grants, upload rules, quota limits and repository settings, in its own memory. PostgreSQL tells every server the moment one of these changes, from any server, and each server also checks for changes every second, so a change applies everywhere almost at once. Redis is not needed for this, and it works the same when Redis is down."),
-            P("Whether an API token is valid, sessions and storage used against a quota are never kept in memory: revoking a token or disabling a person takes effect on every server at once."),
+            P("Whether an API token is valid, sessions and storage used against a quota are never kept in memory: revoking a token or disabling a person takes effect on every server at once. A server that can't check for changes for three check intervals (3 seconds by default) stops using what it kept and reads the database until checking works again."),
             TABLE(["Variable", "Default", "Meaning"], [
                 ["`READ_CACHE_ENABLED`", "`true`", "`false` turns the read cache off on this server: every request reads the database. Use it if you suspect a server is showing an old setting."],
                 ["`READ_CACHE_CHECK_INTERVAL`", "`1s`", "How often a server checks for changes in case it missed a notice (up to `1m`)"],
