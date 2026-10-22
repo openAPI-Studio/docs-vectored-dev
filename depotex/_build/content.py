@@ -32,6 +32,7 @@ from content_reposettings import REPO_SETTINGS
 from content_browse import BROWSE
 from content_formats import FORMATS
 from content_dashboard import DASHBOARD
+from content_search import SEARCH
 from content_profile import PROFILE
 from content_kubernetes import KUBERNETES
 from content_ratelimits import RATE_LIMITS
@@ -129,6 +130,12 @@ location / {
             P("Cloud load balancers (AWS ALB, Azure Application Gateway, Google Cloud Load Balancing) pass WebSockets through; add a path rule for `/api/ws*` to the backend and raise the idle timeout. Without this route nothing breaks: alerts refresh every 30 seconds instead, and the system check shows a **Live updates** warning until it's fixed."),
             H("After an update"),
             P("When Depotex is updated, pages people already have open notice within a few minutes, or as soon as they return to the tab, and show **A new version is available** with **Reload** and **Later**. Nothing reloads on its own, so unsaved work isn't lost. During a rolling upgrade of several servers the message appears once the new version is serving. Proxies and CDNs must not cache the `/app-version` address. It answers anyone, signed in or not, with the build identifier of the running frontend; that is intended (open pages compare it) and it tells nothing else about the installation."),
+            H("Addresses in package links"),
+            P("Package managers get links from Depotex (npm tarballs, NuGet and Cargo addresses, Composer and Terraform metadata, yum `.repo` files and more) that use the address they reached it at, so a CI runner on an internal name and a laptop on the public one each get links that work for them. That address comes from the request, which a client can forge."),
+            P("Under **Settings → General**, list **Other addresses clients use** (a host or host:port per line, such as `depotex.internal` or `10.0.0.5:8080`), then turn on **Package links use only these addresses**. From then on a request at any address that isn't the Depotex address or listed gets links to the Depotex address. The switch is off until you turn it on, needs the Depotex address saved first and the `settings:write` permission, and applies on every server within seconds."),
+            SHOT("settings-general-addresses.png", "Settings → General: the Depotex address, other addresses clients use, and the package links switch"),
+            WARN("List every address your tools use before turning the switch on: a client at an address that isn't listed gets links to the Depotex address, which an isolated network may not reach. The page warns when the address you're using isn't listed."),
+            NOTE("Depotex needs its own host name: it can't be served under a path such as `https://tools.example.com/depotex/`."),
             H("Security headers"),
             P("Pages are served with security headers (frames from other sites are refused, the referrer is trimmed, HSTS). A Content-Security-Policy is sent in report-only mode by default; violations are logged by the frontend as `[csp]` lines. Set `CSP_ENFORCE=true` on the frontend once the log stays quiet."),
             H("Help menu and footer"),
@@ -147,7 +154,7 @@ location / {
         desc="What happens when an installed server can't start, and how to fix it",
         keywords=["recovery", "troubleshooting", "startup", "database", "redis", "license", "encryption key"],
         blocks=[
-            P("If an installed server can't start — the database is down, the encryption key is wrong, Redis or storage is unreachable, the license no longer matches — it doesn't just exit. It starts in recovery mode, finds what's wrong, and shows you how to fix it."),
+            P("If an installed server can't start — the database is down, the encryption key is wrong, storage is unreachable, the Redis URL can't be read, the license no longer matches — it doesn't just exit. It starts in recovery mode, finds what's wrong, and shows you how to fix it."),
             H("Open the recovery page"),
             P("The server log shows a line like `open the recovery page … recovery_url=https://…/recovery?token=…`. Open that URL. The key keeps the diagnostics private; set `RECOVERY_TOKEN` to choose it. Like the setup key, it is removed from the address bar once the page has read it."),
             H("What it checks"),
@@ -187,7 +194,7 @@ location / {
             ]),
             UL([
                 "Each kind takes TLS (`rediss`, `rediss+sentinel`, `rediss+cluster`), a private certificate authority (`ca_file=/path/ca.pem`) and Redis ACL users (`user:password@`).",
-                "Redis coordinates; PostgreSQL keeps the records. If Redis becomes unavailable, Depotex keeps working: each server counts [rate limits](rate-limits.html#redis-and-clusters) on its own, sign-in keeps working, and changes reach other servers within 30 seconds instead of at once. It logs one warning when Redis goes and one message when it returns.",
+                "Redis coordinates; PostgreSQL keeps the records. If Redis becomes unavailable, Depotex keeps working: each server counts [rate limits](rate-limits.html#redis-and-clusters) on its own, sign-in keeps working (sessions are kept in PostgreSQL, so a sign-out made while Redis is away still holds when it returns), scheduled jobs keep running once per cluster and a leader is still elected (both are coordinated in PostgreSQL), live updates (the alert bell, job status) and search changes still reach every server through PostgreSQL, and changes reach other servers within 30 seconds instead of at once. It logs one warning when Redis goes and one message when it returns. A server that starts while Redis is down starts anyway, after waiting 10 seconds for it, and connects once Redis answers; the recovery page lists an unreachable Redis as a warning.",
                 "A failover can lose the last few writes to Redis; results stay correct because PostgreSQL holds the records.",
             ]),
             H("Read cache"),
@@ -207,10 +214,13 @@ location / {
                 ["**left**", "Shut down cleanly. Removed from the list after a day (CLUSTER_DEAD_NODE_TTL); a server that starts again with the same identity becomes active again."],
                 ["**dead**", "Stopped sending heartbeats (30 seconds by default, longer for the leader) without shutting down cleanly. Also removed after a day."],
             ]),
+            P("When the server showing the page can't reach Redis, a notice above the table says since when, and what still works. Each node's CPU and memory come live over Redis; until it is back, other nodes show the values they last saved (every minute), and their details say when that was. The [system check](system-check.html) lists Redis as a warning on each server that can't reach it."),
+            SHOT("clustering-redis-degraded.png", "Settings → Clustering while Redis can't be reached: the notice above the node table"),
         ])),
 
     *KUBERNETES,
     *DASHBOARD,
+    *SEARCH,
     *PROFILE,
     *SPACES,
     *GROUPS,
@@ -259,7 +269,23 @@ location / {
             P("**Repositories** in the sidebar (super admins) lists every repository of the installation, grouped by space: its format, type, whether it can be published to and overwritten, and when it last changed. Filter by format, type, space or name; **Browse** opens a repository in the [artifact browser](browse.html), **Open space** opens its space."),
             SHOT("repositories-list.png", "Repositories: every repository, grouped by space, for administrators"),
             H("Delete a repository"),
-            P("Choose the bin next to a repository, in its space or in the list above, and confirm. The repository and everything in it are deleted; this can't be undone. A repository that belongs to a group is taken out of it; if it was where the group's uploads went, the group has no upload target until you choose one."),
+            P("Choose the bin next to a repository, in its space or in the list above, and confirm. The repository disappears at once, on every server: nobody can browse, download from or publish to it, and a group it belongs to leaves it out. It isn't gone yet: it is kept, with everything in it, so a super admin can restore it."),
+            H("Restore a deleted repository"),
+            P("Super admins find deleted repositories under **Settings → Repositories → Deleted repositories**: each with its space, format and type, when and by whom it was deleted, when it will be removed for good, and how many versions and how much storage it holds."),
+            SHOT("settings-deleted-repositories.png", "Settings → Deleted repositories: two deleted repositories, each with Restore and Delete permanently"),
+            UL([
+                "**Restore** brings the repository back as it was: its files and versions, its settings, the roles people had on it and its place in groups. It is refused when the space no longer allows the repository's format (add the format to the space first), or when a proxy repository's upstream is no longer on the space's list.",
+                "**Delete permanently** removes it now instead of waiting, and frees its storage. This can't be undone.",
+            ]),
+            P("A deleted repository is removed for good 7 days after it was deleted, by the Deleted Repositories job (Settings → Scheduler; change `retention_days` there to keep them longer or shorter). Until then:"),
+            UL([
+                "it keeps its name: a new repository can't take the name until the old one is restored or removed;",
+                "its storage still counts against its space's quota;",
+                "its space can't be deleted, and an upstream it uses can't be deleted. Both say deleted repositories still hold them: restore them or delete them permanently first.",
+            ]),
+            TABLE(["Permission", "Who has it", "Allows"], [
+                ["`depot:write`", "Super admins", "See, restore and permanently delete deleted repositories"],
+            ]),
             H("Permissions"),
             TABLE(["Permission", "Who has it", "Allows"], [
                 ["`spaces:repos:write`", "Space Maintainer and Owner", "Create, change and delete the space's repositories"],
@@ -339,7 +365,7 @@ location / {
             ]),
             H("What a token can do"),
             UL([
-                "A token can only be given permissions its owner already has. The permission list when creating a token shows every permission you can give, including repository, space and upstream permissions (hover one for what it allows).",
+                "A token can only be given permissions its owner already has. The permission list when creating a token shows every permission you can give, including repository, space and upstream permissions (hover one for what it allows). A permission name Depotex doesn't know is refused.",
                 "A token used to create another token can only give it permissions it has itself.",
                 "A token never does more than its owner can do right now. If the owner's role is reduced, their tokens lose the extra permissions immediately.",
                 "If the owner is suspended or deactivated, their tokens stop working.",
@@ -360,15 +386,15 @@ location / {
             P("The first release of Depotex: a self-hosted artifact repository that runs on a single server or as a cluster, with the same features either way. Later releases are listed above this one as they ship."),
             TABLE(["Area", "What's included"], [
                 ["Package formats", "[Maven](maven.html), [npm](npm.html), [PyPI](pypi.html), [Docker and OCI images](docker.html), [Helm](helm.html), [Go](go.html), [NuGet](nuget.html), [Cargo](cargo.html), [APT](apt.html), [YUM](yum.html), [Terraform and OpenTofu](terraform.html), [Hugging Face](huggingface.html), [Git LFS](git-lfs.html), [Composer](composer.html) and [raw files](raw.html), each working with its standard client for downloading and publishing."],
-                ["Repositories", "Hosted repositories; [proxy repositories](upstreams.html) that cache Maven Central, npm, PyPI, Docker Hub, internal mirrors or another Depotex; [group repositories](repository-groups.html) that combine them behind one address, with a universal address per format in every space. Write policies, upload rules, cleanup policies, storage quotas and uploads from the browser."],
+                ["Repositories", "Hosted repositories; [proxy repositories](upstreams.html) that cache Maven Central, npm, PyPI, Docker Hub, internal mirrors or another Depotex; [group repositories](repository-groups.html) that combine them behind one address, with a universal address per format in every space. Write policies, upload rules, cleanup policies, storage quotas and uploads from the browser. Deleted repositories can be restored for 7 days. New spaces start with a default storage quota (50 GB, set in Settings → Repositories)."],
                 ["Spaces and access", "[Spaces](spaces.html) that are private, internal or public, with Viewer, Developer, Maintainer and Owner roles for people, groups and service accounts, per-repository access and content selectors."],
-                ["Browsing and search", "The [artifact browser](browse.html): search across every repository you can see, filters, a tree per repository, and a page per version with install commands, files, checksums, dependencies and security status."],
-                ["SBOMs and vulnerabilities", "[SBOMs](sbom.html) in SPDX and CycloneDX, stored with artifacts or uploaded for applications from CI; completeness scores, each vulnerability explained in place (its weakness by name, the CVSS vector in plain words, the affected versions of every release line and the fix for yours, its description), component search everywhere, vulnerability data from OSV, VEX assessments, AI BOMs for models and datasets, and export and sharing."],
+                ["Browsing and search", "The [artifact browser](browse.html): search across every repository you can see, filters, a tree per repository, and a page per version with install commands, files, checksums, dependencies and security status. [Search](search.html) from the top of every page (Ctrl+K or /) for the spaces, repositories, artifacts, settings, people and groups you can open."],
+                ["SBOMs and vulnerabilities", "[SBOMs](sbom.html) in SPDX and CycloneDX, stored with artifacts, uploaded for applications from CI, or made by Depotex from package metadata or a lockfile the package ships, for Maven (with parent POMs), npm, PyPI, Go, Cargo, NuGet and Composer, and read from container images with Syft (Pro); operating system packages checked per distribution release, including those in APT and YUM repositories once their release is set; coverage scores that say how much of each version could be checked (Pro); first-seen dates, \"new since upload\" and a fix-it checklist with the upgrade command; a Security tab that sums up a version (vulnerabilities, coverage or why there is none, re-check), then cards for each SBOM with its downloads and exports; re-checks that alert instead of quarantining, or quarantine after a grace period; malformed SBOMs listed as unreadable instead of quarantined; completeness scores, each vulnerability explained in place (its weakness by name, the CVSS vector in plain words, the affected versions of every release line and the fix for yours, its description), component search everywhere, vulnerability data from OSV (asked online, or downloaded and matched inside the installation, or uploaded for installations with no internet), scanner plugins whose findings merge with OSV's and count in policies, SBOMs packed inside wheels, NuGet packages and Java archives, re-check and re-inspect on request for a version, a repository or everything, VEX assessments, AI BOMs for models and datasets, and export and sharing."],
                 ["Supply-chain controls", "[Quarantine](quarantine.html) rules and manual holds, the [block list](blocklist.html), [integrity checks](integrity.html) of every stored file, and automatic quarantine of unsafe package metadata."],
                 ["Policies, automation and plugins", "[Policies](policies.html) that block, warn about or adjust actions, from templates or your own conditions, with dry runs, exemptions and compliance scans; [automation](automation.html) rules that send alerts, webhooks and emails on [events](events.html); signed [plugins](plugins.html), including MCP servers for AI applications and an API explorer."],
-                ["Users and sign-in", "[Directories](users-and-directories.html): Local, LDAP, Active Directory, Microsoft Entra ID, Google Workspace and SCIM; [single sign-on](single-sign-on.html) with OpenID Connect and SAML; [your profile settings](profile.html) (avatar, theme and language, notifications, password, sessions, tokens and connected apps); invitations and password resets by email, profile pictures in every list of people (`profiles:view`), sessions and timeouts, CAPTCHA, lockout after failed attempts, anonymous access, and GDPR data export and anonymization."],
+                ["Users and sign-in", "[Directories](users-and-directories.html): Local, LDAP, Active Directory, Microsoft Entra ID, Google Workspace and SCIM; [single sign-on](single-sign-on.html) with OpenID Connect and SAML; [your profile settings](profile.html) (avatar, theme and language: English or German, notifications, password, sessions, tokens and connected apps); invitations and password resets by email, profile pictures in every list of people (`profiles:view`), sessions and timeouts, CAPTCHA, lockout after failed attempts, anonymous access, and GDPR data export and anonymization."],
                 ["Applications and tokens", "[OAuth applications](oauth-applications.html) with consent, device sign-in for command-line tools, service accounts and workload identity for CI; [API tokens](api-tokens.html) with permissions, templates to start from, expiry, IP allowlists and rotation; [rate limits](rate-limits.html), overrides and download quotas."],
-                ["Notifications", "In-app [alerts](alerts.html) with the bell, a notifications page and preferences; [email](email.html) through SMTP providers or the Amazon SES API with an IAM role; [banners](branding-and-banners.html) for announcements."],
+                ["Notifications", "In-app [alerts](alerts.html) with the bell, a notifications page and preferences; [email](email.html) through SMTP providers or the Amazon SES API with an IAM role; [banners](branding-and-banners.html) for announcements, with an optional title."],
                 ["Administration", "The [dashboard](dashboard.html), the [system check](system-check.html) and cluster health, [scheduled jobs](scheduler.html), log levels, log files and exports, the [audit log](logging-and-audit.html), profiling, Prometheus [metrics](monitoring.html), [branding](branding-and-banners.html) per theme and your own help links."],
                 ["Backups and recovery", "[Backups](backups.html) on a schedule or on demand, encrypted, kept on a separate target, checked and test-restored; restore into a new installation from the setup wizard; [recovery mode](recovery.html) when an installed server can't start."],
                 ["Installation", "A [setup wizard](getting-started.html) or an unattended setup file; [container images and a Helm chart](kubernetes.html); a [single server or a cluster](deployment-modes.html) with Redis as one server, Sentinel or Redis Cluster; [storage](storage.html) on a local disk, S3 (with IAM roles), MinIO or Azure Blob."],

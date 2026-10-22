@@ -15,10 +15,13 @@ REPO_SETTINGS = [
             H("Artifacts"),
             P("**Largest artifact** (10 GB by default) applies to uploads and to files downloaded from remote registries. A file over it is stopped while it streams, and nothing of it is kept."),
 
+            H("Default storage quota for new spaces"),
+            P("Every space created from now on starts with this storage quota: 50 GB unless you change it here. Choose **No limit** to create spaces without a quota, or **Limit** with the size in GB or TB and when to warn (80% by default). Whoever creates a space can give it another quota, or none, in the create form; changing the default never touches existing spaces, which keep their own quota (or none)."),
+            SHOT("repository-settings-default-quota.png", "Settings → Repositories → Artifacts: the default storage quota for new spaces, 50 GB, warn at 80%"),
             H("Remote registries"),
             TABLE(["Setting", "Default", "Meaning"], [
                 ["Connect timeout", "10 s", "How long to wait to connect, and for the TLS handshake"],
-                ["Response timeout", "60 s", "How long to wait for a registry to start answering. A download that is under way isn't cut off"],
+                ["Response timeout", "60 s", "How long to wait for a registry to start answering, and how long a download may send nothing before it is stopped (the client can try again). A download that keeps sending, however slowly, isn't cut off"],
                 ["Retries", "2", "How many times a failed request is tried again"],
             ]),
 
@@ -40,6 +43,8 @@ REPO_SETTINGS = [
             H("Defaults for operators"),
             TABLE(["Environment variable", "Default", "Meaning"], [
                 ["`REPOSITORY_MAX_ARTIFACT_SIZE`", "10737418240 (10 GB)", "Largest artifact in bytes until a super admin saves settings (1 MB to 1 TB)"],
+                ["`SPACE_DEFAULT_QUOTA`", "50000000000 (50 GB)", "Storage quota a new space gets, in bytes, until a super admin saves settings; 0 means new spaces have no limit"],
+                ["`SPACE_DEFAULT_QUOTA_WARN_PERCENT`", "80", "Warning threshold of that quota, 1 to 100 percent"],
                 ["`REMOTE_CONNECT_TIMEOUT`", "10s", "Connect timeout (1s to 300s)"],
                 ["`REMOTE_READ_TIMEOUT`", "60s", "Response timeout (1s to 3600s)"],
                 ["`REMOTE_RETRIES`", "2", "Retries (0 to 10)"],

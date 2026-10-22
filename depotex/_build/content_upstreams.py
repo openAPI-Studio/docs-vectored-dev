@@ -41,7 +41,9 @@ UPSTREAMS = [
             P("The other Depotex serves links at `/api/link/v1/` on its usual address, with the same permissions as downloads; it needs no particular license tier. Link traffic counts toward the package-manager rate limit (`RATE_LIMIT_BULK`)."),
 
             H("Health"),
-            P("Proxy repositories pause an upstream that fails five times in a row — first for a minute, then longer, up to an hour — and serve what they have cached meanwhile. The upstreams list shows a paused upstream, until when, and its last error."),
+            P("Proxy repositories pause a host that fails five times in a row — first for a minute, then longer, up to an hour — and serve what they have cached from it meanwhile. Each host an upstream uses counts on its own: many registries answer from one host and serve files from another (the Terraform registry's downloads come from releases.hashicorp.com, PyPI's from files.pythonhosted.org), so when only the file host fails, just downloads from it are paused while version lists keep working. The upstreams list shows a paused upstream, until when, and its last error."),
+            P("Select an upstream to see its **Hosts**: its own address and each host its files and links came from, whether each is answering, failing or paused, its last success and, while it fails, its last error. `GET /api/upstream-health` (`upstreams:read`) returns the same, per upstream and per host. Hosts not asked for 30 days are removed from the list each night, and each upstream keeps its 50 most recent; the **upstream-host-prune** job in **Settings → Advanced → Scheduled jobs** sets both."),
+            SHOT("upstreams-hosts.png", "An upstream whose file host is paused while its own address keeps answering"),
 
             H("Which spaces may proxy it"),
             P("Open a space, choose **Settings**, and tick the upstreams it may proxy under **Upstreams**. Only upstreams in the space's formats are listed. Everyone who can see the space finds the list on its **Repositories** tab, without credentials. An upstream's detail panel on the upstreams page lists the spaces allowed to proxy it. Only super admins can change it."),

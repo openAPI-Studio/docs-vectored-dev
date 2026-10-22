@@ -30,6 +30,7 @@ BRANDING = [
             H("Banners"),
             P("Under **Settings → Banners**, select **Add banner** or a banner in the list. Each opens its own page with a preview of the banner at the top, as it will appear on every page:"),
             TABLE(["Setting", "Choices"], [
+                ["Title", "Optional: one line of up to 120 characters, shown in bold above the message"],
                 ["Message", "Up to 500 characters of plain text. Write `[link text](https://…)` for a link"],
                 ["Level", "**Information**, **Warning** or **Problem**, in the theme's colors (problems are announced to screen readers at once)"],
                 ["Who sees it", "**Signed-in people**, **Everyone, also on the sign-in page**, or **Super admins only**"],
@@ -38,8 +39,8 @@ BRANDING = [
                 ["On", "Turn it off without deleting it"],
             ]),
             SHOT("banners-list.png", "Settings → Banners: each banner's status, message, audience and schedule"),
-            SHOT("banner-bar.png", "A warning banner at the top of the page, with a link and a close button"),
-            P("Several banners show together, problems first. Pages ask for banners when they open, when people come back to the tab, and every few minutes, so a new or ended banner shows within a few minutes. The list shows each banner's status (**Showing**, **Scheduled**, **Ended** or **Off**), message, level, who sees it and when; filter it with **All**, **Showing**, **Scheduled** and **Off or ended**. To delete a banner, open it and select **Delete…** at the bottom of its page."),
+            SHOT("banner-bar.png", "A warning banner at the top of the page: its title, its message with a link, and a close button"),
+            P("Several banners show together, problems first. Pages ask for banners when they open, when people come back to the tab, and every few minutes, so a new or ended banner shows within a few minutes. The list shows each banner's status (**Showing**, **Scheduled**, **Ended** or **Off**), title and message, level, who sees it and when; filter it with **All**, **Showing**, **Scheduled** and **Off or ended**. To delete a banner, open it and select **Delete…** at the bottom of its page."),
 
             H("License expiry banner"),
             P("Super admins get an automatic banner about the license, with a **Manage license** link: from 30 days before it expires as information, as a warning in the last 14 days, and as a problem in the last 7 days, while it's in its grace period, after it expired, and when it isn't valid. Information and warnings can be closed for the day; problems stay until the license is renewed. Other people never see it."),

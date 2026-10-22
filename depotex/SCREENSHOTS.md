@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-97 screenshots. Save each one into `depotex/assets/` using the
+126 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -12,11 +12,27 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `setup-wizard.png`
       The setup wizard's first step: the installation ID to request a license with, and the license
+- [ ] `settings-general-addresses.png`
+      Settings → General: the Depotex address, other addresses clients use, and the package links switch
+
+## Single Node &amp; Cluster
+
+- [ ] `clustering-redis-degraded.png`
+      Settings → Clustering while Redis can't be reached: the notice above the node table
 
 ## Dashboard
 
 - [ ] `dashboard-overview.png`
       Dashboard: what needs attention, the installation's figures, spaces by size and the system's health
+
+## Search
+
+- [ ] `search-palette.png`
+      Search: spaces, repositories, artifacts, people and groups matching what was typed
+- [ ] `search-results.png`
+      The Search page: every kind of result for "orion", with a tab per kind
+- [ ] `search-settings.png`
+      Search: settings matching "session", each with its page and tab
 
 ## Your profile
 
@@ -49,6 +65,12 @@ realistic but fictional names and figures rather than real people's data.
       A repository's page: its address, setup for the package manager, and its contents
 - [ ] `upload.png`
       Upload: pick a hosted repository you can publish to, then add files
+- [ ] `repository-settings-tab.png`
+      A repository's Settings tab: the Repository and Artifacts cards, with switches, choices and the largest artifact in MB
+- [ ] `repository-access-tab.png`
+      A repository's Access tab: repository roles and path access, each with a row to add someone
+- [ ] `spaces-create-quota.png`
+      New space: the storage quota section, prefilled with the installation default of 50 GB, with No limit and the warning threshold
 - [ ] `spaces-members.png`
       A space's Members tab: add people, groups and service accounts, and change their role
 
@@ -56,6 +78,29 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `repository-group.png`
       A group repository: its members in the order they're asked, and the space's universal URL
+
+## APT
+
+- [ ] `repository-signing-key-next.png`
+      The Signing key card during an overlap: the current key, the next key and its date, Cancel switch and Switch now
+- [ ] `repository-signing-key-rotate.png`
+      Generate a new signing key: the overlap in days before it signs
+- [ ] `apt-release-validity.png`
+      An APT repository's settings with its Release valid for 7 days
+- [ ] `apt-upstream-keys.png`
+      An APT proxy's Upstream keys: the keys its upstream must sign its Release files with
+- [ ] `repository-distribution.png`
+      An APT repository's settings with its distribution release set to debian-12
+
+## YUM
+
+- [ ] `yum-proxy-signatures.png`
+      A YUM proxy's settings: the upstream's trusted key, with signed packages and signed repodata required
+
+## Terraform
+
+- [ ] `terraform-login.png`
+      The page terraform login opens: approve or deny the token for terraform on this computer
 
 ## Browse
 
@@ -70,11 +115,15 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `upstreams-list.png`
       Upstreams: each registry's format, address, the spaces that use it and its health
+- [ ] `upstreams-hosts.png`
+      An upstream whose file host is paused while its own address keeps answering
 
 ## Repository settings
 
 - [ ] `repository-settings.png`
       Settings → Repositories: largest artifact, timeouts, retries, outbound proxy and a connection test
+- [ ] `repository-settings-default-quota.png`
+      Settings → Repositories → Artifacts: the default storage quota for new spaces, 50 GB, warn at 80%
 
 ## Storage
 
@@ -162,8 +211,18 @@ realistic but fictional names and figures rather than real people's data.
 
 ## SBOMs
 
+- [ ] `sbom-unreadable.png`
+      A version's Security tab with an SBOM marked Unreadable and the reason under it
+- [ ] `sbom-security-tab.png`
+      A version's Security tab beside the version's side panel: the summary with vulnerabilities, coverage and re-check, and the vulnerabilities as cards
 - [ ] `sbom-finding-details.png`
-      A vulnerability in an SBOM: severity, the weakness by name, what an attacker needs and can affect, the affected component with its range and fix, the folded description and the references
+      A vulnerability card opened: score and severity, the weakness by name, the affected component with its fix and range, what an attacker needs and can affect, the description and the references
+- [ ] `sbom-coverage.png`
+      The Coverage card of a version's Security tab, opened: the score, the three parts with their points and why each scored what it did
+- [ ] `sbom-fix-checklist.png`
+      An SBOM's Fix-it checklist: a step per affected component with the version that fixes it and the command, one ticked, and the check-again step
+- [ ] `vulnerability-data-rescan.png`
+      Settings → Vulnerability data: when a re-check breaks a policy, alert only or quarantine after a grace period
 - [ ] `browse-components.png`
       Browse → Components: find every SBOM that lists a component
 - [ ] `advisory-page.png`
@@ -172,8 +231,18 @@ realistic but fictional names and figures rather than real people's data.
       A space's SBOMs tab: registered applications
 - [ ] `sbom-version.png`
       An application version: its SBOM with completeness, components, vulnerabilities and export
+- [ ] `vulnerability-data-status.png`
+      Settings → Vulnerability data: the status block with its counts, Re-scan now and Re-inspect every version
+- [ ] `security-reinspect.png`
+      A version's Security tab: Re-check vulnerabilities, Re-inspect SBOMs and when it was last inspected
 - [ ] `vulnerability-data.png`
-      Settings → Vulnerability data: the OSV service, how often components are checked again, and a test
+      Settings → Vulnerability data: turning checks on and where components are checked: the OSV API, OSV's data files or uploaded files
+- [ ] `vulnerability-data-scanners.png`
+      Settings → Vulnerability data: the scanner plugins, where each may send data, and when each was last asked
+- [ ] `vulnerability-data-distributions.png`
+      Settings → Vulnerability data: the Amazon Linux, Fedora and Oracle Linux releases read, and the repository mirror
+- [ ] `vulnerability-data-offline.png`
+      Settings → Vulnerability data: downloading OSV's data files, each ecosystem's state, and uploading OSV data
 
 ## Users &amp; Directories
 
@@ -209,7 +278,7 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `banners-list.png`
       Settings → Banners: each banner's status, message, audience and schedule
 - [ ] `banner-bar.png`
-      A warning banner at the top of the page, with a link and a close button
+      A warning banner at the top of the page: its title, its message with a link, and a close button
 
 ## Logging &amp; Audit
 
@@ -234,6 +303,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `scheduler-jobs.png`
       Settings → Advanced → Scheduled jobs
+- [ ] `scheduler-edit-schedule.png`
+      Editing a job's schedule, with the next run in the viewer's time
 
 ## Alerts
 
@@ -282,6 +353,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `repositories-list.png`
       Repositories: every repository, grouped by space, for administrators
+- [ ] `settings-deleted-repositories.png`
+      Settings → Deleted repositories: two deleted repositories, each with Restore and Delete permanently
 
 ## Licensing
 

@@ -37,7 +37,7 @@ QUARANTINE = [
             NOTE("When a proxied file's upstream doesn't say when it was published, an age rule treats it as just published."),
 
             H("Quarantined versions"),
-            P("The space's **Quarantine** tab lists its quarantined versions, newest first, and **Settings → Repositories → Quarantine** lists every space's. Show the versions held, released or all, and search by name, version or repository (on the installation-wide list, also by space). Select several to release them together."),
+            P("The space's **Quarantine** tab lists its quarantined versions, newest first, and **Settings → Repositories → Quarantine** lists every space's. Show the versions held, released or all, and search by name, version or repository (on the installation-wide list, also by space). Select several to release them together. A version's name opens it in the [artifact browser](browse.html), where its Security tab says what was found; its repository opens the repository."),
             SHOT("quarantine.png", "Settings → Quarantine: versions held back in every space, and the installation's rules"),
             STEPS([
                 "Release|Tick the versions, or choose **Release** on one, add a note if you like (it goes in the audit log), and confirm. They can be downloaded again at once.",

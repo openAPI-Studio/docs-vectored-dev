@@ -20,7 +20,7 @@ PROFILE = [
             ]),
 
             H("Preferences"),
-            P("Pick **Light**, **Dark** or **High contrast**; each card previews that theme. **Language** sets the language of menus, messages, numbers and dates. Both are saved for your account and follow you to other devices."),
+            P("Pick **Light**, **Dark** or **High contrast**; each card previews that theme. **Language** sets the language of menus, messages, numbers and dates: English or German (Deutsch). Both are saved for your account and follow you to other devices. Emails Depotex sends you (invitations, password resets, alerts) use the same language."),
             SHOT("profile-preferences.png", "Profile settings → Preferences: the three themes and the language"),
 
             H("Notifications"),

@@ -57,8 +57,26 @@
         <figcaption class="text-xs text-muted mt-2">Repositories: every repository, grouped by space, for administrators</figcaption>
       </figure>
       <h2 id="delete-a-repository" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Delete a repository</h2>
-      <p class="text-muted mb-4">Choose the bin next to a repository, in its space or in the list above, and confirm. The repository and everything in it are deleted; this can't be undone. A repository that belongs to a group is taken out of it; if it was where the group's uploads went, the group has no upload target until you choose one.</p>
-      <h2 id="permissions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Permissions</h2>
+      <p class="text-muted mb-4">Choose the bin next to a repository, in its space or in the list above, and confirm. The repository disappears at once, on every server: nobody can browse, download from or publish to it, and a group it belongs to leaves it out. It isn't gone yet: it is kept, with everything in it, so a super admin can restore it.</p>
+      <h2 id="restore-a-deleted-repository" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Restore a deleted repository</h2>
+      <p class="text-muted mb-4">Super admins find deleted repositories under <strong class="text-text">Settings → Repositories → Deleted repositories</strong>: each with its space, format and type, when and by whom it was deleted, when it will be removed for good, and how many versions and how much storage it holds.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/settings-deleted-repositories.png" alt="Settings → Deleted repositories: two deleted repositories, each with Restore and Delete permanently" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">settings-deleted-repositories.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Deleted repositories: two deleted repositories, each with Restore and Delete permanently</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Deleted repositories: two deleted repositories, each with Restore and Delete permanently</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Restore</strong> brings the repository back as it was: its files and versions, its settings, the roles people had on it and its place in groups. It is refused when the space no longer allows the repository's format (add the format to the space first), or when a proxy repository's upstream is no longer on the space's list.</li><li><strong class="text-text">Delete permanently</strong> removes it now instead of waiting, and frees its storage. This can't be undone.</li></ul>
+      <p class="text-muted mb-4">A deleted repository is removed for good 7 days after it was deleted, by the Deleted Repositories job (Settings → Scheduler; change <span class="font-mono text-sm break-words">retention_days</span> there to keep them longer or shorter). Until then:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>it keeps its name: a new repository can't take the name until the old one is restored or removed;</li><li>its storage still counts against its space's quota;</li><li>its space can't be deleted, and an upstream it uses can't be deleted. Both say deleted repositories still hold them: restore them or delete them permanently first.</li></ul>
+      <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who has it</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">depot:write</span></td><td>Super admins</td><td>See, restore and permanently delete deleted repositories</td></tr></tbody></table></div>
+      <h2 id="permissions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Permissions</h2>
       <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who has it</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">spaces:repos:write</span></td><td>Space Maintainer and Owner</td><td>Create, change and delete the space's repositories</td></tr><tr><td><span class="font-mono text-sm break-words">depot:read</span></td><td>Super admins</td><td>See every repository of the installation</td></tr><tr><td><span class="font-mono text-sm break-words">depot:write</span></td><td>Super admins</td><td>Delete any repository from the list of every repository</td></tr></tbody></table></div>
       <p class="text-muted mb-4">Creating a repository raises the <span class="font-mono text-sm break-words">depot.repository.create</span> event, so a <a href="policies.html" class="text-cta hover:underline">policy</a> can restrict names or formats (the <strong class="text-text">Allowed repository formats</strong> template).</p>
       </article>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search — Depotex Docs</title>
+  <meta name="description" content="Find spaces, repositories, artifacts, settings, people and groups from the search box at the top of every page">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <h1 class="vc-h1">Search</h1>
+      <p class="vc-lede">Find spaces, repositories, artifacts, settings, people and groups from the search box at the top of every page</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">The search box at the top of every page finds what you can open across Depotex: spaces, repositories and artifacts, and for administrators settings, people and groups. Open it by clicking the box, with <strong class="text-text">Ctrl+K</strong> (<strong class="text-text">⌘K</strong> on a Mac), or with <strong class="text-text">/</strong> when you aren't typing in a field. On a phone, tap the search button in the header; the search fills the screen. It is part of every licence tier.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/search-palette.png" alt="Search: spaces, repositories, artifacts, people and groups matching what was typed" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">search-palette.png</p>
+          <p class="text-xs text-muted max-w-md">Search: spaces, repositories, artifacts, people and groups matching what was typed</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Search: spaces, repositories, artifacts, people and groups matching what was typed</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Results appear as you type, grouped by kind, with the first one highlighted. Each says where it is (a repository's space and format, an artifact's version, space and repository, a person's email) and its state when that matters: a quarantined, blocked or incomplete artifact, a proxy or group repository, a disabled, invited or locked account.</p>
+      <h2 id="all-results" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. All results</h2>
+      <p class="text-muted mb-4">The box shows the first five results of each kind. <strong class="text-text">See all results</strong> at the bottom (or <strong class="text-text">Enter</strong> on it) opens the <strong class="text-text">Search</strong> page: all kinds side by side under <strong class="text-text">All</strong>, each with <strong class="text-text">Show more</strong> when there are more, and a tab per kind that found something. A kind's tab lists its results 20 at a time with <strong class="text-text">Load more</strong>; <strong class="text-text">Artifacts</strong> also links to <a href="browse.html" class="text-cta hover:underline">Browse</a> with the same words, for its filters and sorting. The address holds the words and the tab (<span class="font-mono text-sm break-words">/search?q=orion&amp;kind=artifacts</span>), so a search can be bookmarked or shared; others see only what they may open.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/search-results.png" alt="The Search page: every kind of result for &quot;orion&quot;, with a tab per kind" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">search-results.png</p>
+          <p class="text-xs text-muted max-w-md">The Search page: every kind of result for "orion", with a tab per kind</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Search page: every kind of result for "orion", with a tab per kind</figcaption>
+      </figure>
+      <h2 id="what-it-finds" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. What it finds</h2>
+      <p class="text-muted mb-4">Only what you could open yourself is found, under the same rules as the rest of Depotex: a space or repository you have no access to never appears, even by name.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Kind</th><th>Matches</th><th>Who sees it</th></tr></thead><tbody><tr><td>Spaces</td><td>Name and key</td><td>The spaces the <strong class="text-text">Spaces</strong> list shows you: yours, internal ones of your organization, public ones</td></tr><tr><td>Repositories</td><td>Name and format (<span class="font-mono text-sm break-words">npm</span>, <span class="font-mono text-sm break-words">maven</span>…)</td><td>Repositories you can open, through your space roles, a role on the repository or a content selector</td></tr><tr><td>Artifacts</td><td>As <a href="browse.html" class="text-cta hover:underline">Browse</a> search: package name, version and file names; each package once, at its newest version, best match first</td><td>Versions you can browse, down to the folders a content selector gives you</td></tr><tr><td>Settings</td><td>A setting's label, the tab or section it sits in, and its page</td><td>People who can open <strong class="text-text">Settings</strong>, for the pages and tabs their role reaches</td></tr><tr><td>People</td><td>Name, username and email</td><td>Administrators with <span class="font-mono text-sm break-words">users:read</span> and <span class="font-mono text-sm break-words">profiles:view</span></td></tr><tr><td>Groups</td><td>Name</td><td>Administrators with <span class="font-mono text-sm break-words">groups:read</span></td></tr></tbody></table></div>
+      <p class="text-muted mb-4">While <a href="spaces.html" class="text-cta hover:underline">anonymous access</a> is on, visitors who aren't signed in find public spaces and what they hold.</p>
+      <h2 id="finding-a-setting" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Finding a setting</h2>
+      <p class="text-muted mb-4">People who can open <strong class="text-text">Settings</strong> also find what's in it: a single setting such as <strong class="text-text">Sign out after inactivity</strong>, a tab such as <strong class="text-text">Sessions</strong>, a whole page, or a page or section a plugin adds. Settings come first and appear as you type. Each says where it is (<strong class="text-text">Security › Sessions</strong>). Only settings you could change are listed: a tab your role doesn't see, or a page of a feature your licence doesn't include, isn't found.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/search-settings.png" alt="Search: settings matching &quot;session&quot;, each with its page and tab" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">search-settings.png</p>
+          <p class="text-xs text-muted max-w-md">Search: settings matching "session", each with its page and tab</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Search: settings matching "session", each with its page and tab</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Opening one goes to its page and tab, scrolls to the setting and outlines it for a moment.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">A few settings are found by their page only, not one by one: email delivery, backups, and the rate-limit budgets other than failed sign-ins.</p></div>
+      <h2 id="how-matching-works" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. How matching works</h2>
+      <p class="text-muted mb-4">Each word you type must start a word of the result: <span class="font-mono text-sm break-words">orion rel</span> finds <span class="font-mono text-sm break-words">orion-releases</span>, and so does <span class="font-mono text-sm break-words">rel</span>, but <span class="font-mono text-sm break-words">leases</span> doesn't. Dots, dashes, underscores and <span class="font-mono text-sm break-words">@</span> separate words, so <span class="font-mono text-sm break-words">jane</span> finds <span class="font-mono text-sm break-words">jane.smith@example.com</span>. Type at least two letters or digits. Case and order don't matter.</p>
+      <h2 id="using-the-keyboard" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Using the keyboard</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">↑</strong> and <strong class="text-text">↓</strong> move through the results, <strong class="text-text">Enter</strong> opens the highlighted one, <strong class="text-text">Esc</strong> closes the search.</li><li>With the box empty, your last five searches are offered. They are kept in this browser only; <strong class="text-text">Clear</strong> forgets them.</li><li>On pages with their own search field (Browse), <strong class="text-text">/</strong> goes to that field; <strong class="text-text">Ctrl+K</strong> always opens this search.</li></ul>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Limits</h2>
+      <p class="text-muted mb-4">Search runs as you type, so it is built to stay light on the server:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each person can search 120 times a minute, in bursts of up to 30. Typing sends one search per pause and drops the one before, which stays far below that. Past it, the search asks you to wait.</li><li>Each server runs at most 8 searches at once; past that it answers that search is busy, and the box says to try again in a moment.</li><li>Each kind of result has a second to answer. One that doesn't is left out, and the box says some results couldn't be loaded.</li><li>The box shows the first 5 results of each kind; the <strong class="text-text">Search</strong> page pages through the rest.</li><li>Settings are found in your browser, from a list loaded the first time you search: they cost the server nothing.</li></ul>
+      <h2 id="searching-through-the-api" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Searching through the API</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">GET /api/search</span> takes the same words in <span class="font-mono text-sm break-words">q</span> and answers with the kinds your token's permissions allow (any <a href="api-tokens.html" class="text-cta hover:underline">API token</a>; it never finds more than its owner could). Add <span class="font-mono text-sm break-words">kind</span> (<span class="font-mono text-sm break-words">spaces</span>, <span class="font-mono text-sm break-words">repositories</span>, <span class="font-mono text-sm break-words">artifacts</span>, <span class="font-mono text-sm break-words">users</span> or <span class="font-mono text-sm break-words">groups</span>) for one kind, 20 a page, and pass each group's <span class="font-mono text-sm break-words">next</span> back as <span class="font-mono text-sm break-words">cursor</span> for the next page; <span class="font-mono text-sm break-words">limit</span> goes up to 50.</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">curl -H &quot;Authorization: Bearer $DEPOTEX_TOKEN&quot; &quot;https://depotex.example.com/api/search?q=orion+rel&amp;kind=repositories&quot;</code></pre>
+      <div class="tbl-wrap"><table><thead><tr><th>Reason</th><th>Meaning</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">search_too_short</span> / <span class="font-mono text-sm break-words">search_too_long</span></td><td><span class="font-mono text-sm break-words">q</span> has fewer than 2 letters or digits, or more than 200 characters</td></tr><tr><td><span class="font-mono text-sm break-words">invalid_kind</span>, <span class="font-mono text-sm break-words">invalid_limit</span>, <span class="font-mono text-sm break-words">cursor_needs_kind</span>, <span class="font-mono text-sm break-words">invalid_cursor</span></td><td>An unknown kind, a limit outside 1–50, a cursor without <span class="font-mono text-sm break-words">kind</span>, or a cursor that isn't one Depotex gave</td></tr><tr><td><span class="font-mono text-sm break-words">search_busy</span> (503)</td><td>The server is running as many searches as it allows; retry after the <span class="font-mono text-sm break-words">Retry-After</span> header</td></tr><tr><td>429 <span class="font-mono text-sm break-words">rate_limited</span></td><td>Your search budget is spent for now; retry after <span class="font-mono text-sm break-words">Retry-After</span></td></tr></tbody></table></div>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">A kind whose results didn't arrive in time is listed in <span class="font-mono text-sm break-words">unavailable</span> in the answer; the other kinds are complete.</p></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

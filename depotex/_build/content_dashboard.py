@@ -17,7 +17,7 @@ DASHBOARD = [
             H("Needs attention"),
             P("The list at the top is what someone should look at now, worst first, each with a button to where it's fixed. When nothing needs you, it says so. For administrators it can hold:"),
             TABLE(["Item", "Shown to", "Button"], [
-                ["An upstream is paused after repeated failures, or failing, with how many proxy repositories use it", "`upstreams:read`", "Opens the upstream"],
+                ["An upstream is paused after repeated failures, failing (including when only the host its files come from fails), or failed in the last 15 minutes though it has answered since, with how many proxy repositories use it", "`upstreams:read`", "Opens the upstream"],
                 ["Broken files in storage found by the integrity check", "`integrity:admin`", "Opens Integrity"],
                 ["A space is past its quota's warning, or full", "`depot:read`", "Opens the space's quota"],
                 ["A scheduled job failed three times in a row", "`scheduler:read`", "Opens Scheduled jobs"],

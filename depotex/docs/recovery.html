@@ -38,7 +38,7 @@
       <div data-vc="contents"></div>
 
       <article class="vc-doc">
-      <p class="text-muted mb-4">If an installed server can't start — the database is down, the encryption key is wrong, Redis or storage is unreachable, the license no longer matches — it doesn't just exit. It starts in recovery mode, finds what's wrong, and shows you how to fix it.</p>
+      <p class="text-muted mb-4">If an installed server can't start — the database is down, the encryption key is wrong, storage is unreachable, the Redis URL can't be read, the license no longer matches — it doesn't just exit. It starts in recovery mode, finds what's wrong, and shows you how to fix it.</p>
       <h2 id="open-the-recovery-page" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Open the recovery page</h2>
       <p class="text-muted mb-4">The server log shows a line like <span class="font-mono text-sm break-words">open the recovery page … recovery_url=https://…/recovery?token=…</span>. Open that URL. The key keeps the diagnostics private; set <span class="font-mono text-sm break-words">RECOVERY_TOKEN</span> to choose it. Like the setup key, it is removed from the address bar once the page has read it.</p>
       <h2 id="what-it-checks" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. What it checks</h2>
