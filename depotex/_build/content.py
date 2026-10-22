@@ -42,6 +42,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-22", "Performance", "Each server keeps spaces, repositories, roles, access grants and repository settings in memory and drops them as soon as they change on any server, so a download reads the database twice instead of eight times; READ_CACHE_ENABLED=false turns this off on a server."),
     ("2026-10-17", "Plugins", "Connect an AI agent in the profile menu has a Vibepack skill tab to download the agent skill and see how to use it, and plugin screens can offer a .zip from their package to download."),
     ("2026-10-17", "Vibe artifacts", "Enterprise: the vibepack skill connects an AI agent with the Depotex AI tools or a saved API token, asks for the project's name, status and other details before its first save, and offers screenshots, captured pages or mock-ups; its script saves a check-in from a terminal without an agent, asking the same questions step by step."),
     ("2026-10-14", "Quarantine", "Enterprise: quarantined versions can be blocked (kept, and refused from then on) or deleted and blocked, in their repository, their space or every space, for one version or every version of the name; repository admins get a Quarantine tab for their repository."),
@@ -188,6 +189,15 @@ location / {
                 "Each kind takes TLS (`rediss`, `rediss+sentinel`, `rediss+cluster`), a private certificate authority (`ca_file=/path/ca.pem`) and Redis ACL users (`user:password@`).",
                 "Redis coordinates; PostgreSQL keeps the records. If Redis becomes unavailable, Depotex keeps working: each server counts [rate limits](rate-limits.html#redis-and-clusters) on its own, sign-in keeps working, and changes reach other servers within 30 seconds instead of at once. It logs one warning when Redis goes and one message when it returns.",
                 "A failover can lose the last few writes to Redis; results stay correct because PostgreSQL holds the records.",
+            ]),
+            H("Read cache"),
+            P("Each server keeps what most requests look up, such as spaces, repositories, roles, access grants, upload rules, quota limits and repository settings, in its own memory. PostgreSQL tells every server the moment one of these changes, from any server, and each server also checks for changes every second, so a change applies everywhere almost at once. Redis is not needed for this, and it works the same when Redis is down."),
+            P("Whether an API token is valid, sessions and storage used against a quota are never kept in memory: revoking a token or disabling a person takes effect on every server at once."),
+            TABLE(["Variable", "Default", "Meaning"], [
+                ["`READ_CACHE_ENABLED`", "`true`", "`false` turns the read cache off on this server: every request reads the database. Use it if you suspect a server is showing an old setting."],
+                ["`READ_CACHE_CHECK_INTERVAL`", "`1s`", "How often a server checks for changes in case it missed a notice (up to `1m`)"],
+                ["`READ_CACHE_MAX_AGE`", "`5m`", "The longest a server uses something it read, whatever the checks say (`1s` to `1h`)"],
+                ["`READ_CACHE_MAX_ENTRIES`", "`20000`", "How many items each kind of lookup keeps per server"],
             ]),
             H("Clustering"),
             P("Nodes register themselves, send heartbeats, and elect a leader. **Settings → Clustering** lists every node in a table: status (the leader has a crown), [health](system-check.html#cluster-health), name and machine ID, version, CPU, memory, uptime and last heartbeat. **Cluster health** above the table sums up every server's latest self-check, with **View server** for each thing that needs attention. Select a node to open its identity, resources and recent events below its row, and rename it with the pencil (Pro). A node that stops responding gets a red notice above the table saying how many heartbeats it missed, with **View node**. How clustering works and the environment variables that tune it are explained below the table."),
