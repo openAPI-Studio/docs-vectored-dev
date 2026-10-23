@@ -48,15 +48,16 @@ REPO_SETTINGS = [
                 ["`REMOTE_CONNECT_TIMEOUT`", "10s", "Connect timeout (1s to 300s)"],
                 ["`REMOTE_READ_TIMEOUT`", "60s", "Response timeout (1s to 3600s)"],
                 ["`REMOTE_RETRIES`", "2", "Retries (0 to 10)"],
+                ["`PROXY_STRICT_CHECKSUMS`", "true", "[Proxy checksums](users-and-directories.html#proxy-checksums) (Settings → Security) until a super admin saves it: `true` refuses a file whose checksum doesn't match in proxy repositories set to **Use the Security setting**, `false` serves it and logs a warning"],
             ]),
             P("Set them the same on every server. Once settings are saved on the page, the page's values apply. A server with an invalid value doesn't start."),
 
             H("Events"),
-            P("`repository_settings.update`, `trusted_certificate.create` and `trusted_certificate.delete` (before and after, blocking) are raised on changes. They never carry the proxy password. See [Events](events.html)."),
+            P("`repository_settings.update`, `repository_settings.proxy_checksums.update`, `trusted_certificate.create` and `trusted_certificate.delete` (before and after, blocking) are raised on changes. They never carry the proxy password. See [Events](events.html)."),
 
             H("Permissions"),
             TABLE(["Permission", "Who", "Allows"], [
-                ["`repository_settings:manage`", "Super admins only", "Viewing and changing these settings and the trusted certificates, and testing connections"],
+                ["`repository_settings:manage`", "Super admins only", "Viewing and changing these settings and the trusted certificates, testing connections, and Settings → Security → Proxy checksums"],
             ]),
             NOTE("Every change and every connection test is recorded in the audit log."),
         ],

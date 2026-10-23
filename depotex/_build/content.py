@@ -43,6 +43,13 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-23", "Vibe artifacts", "Enterprise: gems a Gemfile.lock locks for a platform (such as nokogiri 1.16.8-x86_64-linux) are checked at their version, so vulnerabilities fixed in that version no longer show on check-ins, gems.locked files are read too, and check-ins already pushed are read again in the background after the upgrade (with several servers, re-inspect vibe repositories once every server runs this version)."),
+    ("2026-10-23", "API tokens", "Package managers can send an API token as the user name with an empty password (Bundler's token-only setting), and an OAuth access token on its own with no scheme, so a CI job can publish with the access token it gets through workload identity."),
+    ("2026-10-23", "Proxy repositories", "Settings → Security has a Proxy checksums switch (on by default, PROXY_STRICT_CHECKSUMS until saved) that proxy repositories set to the new Checksums value Use the Security setting follow: on, a file whose checksum doesn't match the upstream's is refused; off, it is served with a warning; repositories set to Strict, Warn or Off keep their own setting, and a repository's settings show what Use the Security setting means at the moment."),
+    ("2026-10-23", "Policies", "The Compliance tab of a policy on depot.repository.create now sees each existing repository's type, space, upstream and proxy checksum setting, so a condition such as payload.type == \"proxy\" && payload.checksum_policy != \"strict\" lists the proxy repositories that aren't Strict."),
+    ("2026-10-23", "APT and YUM", "Generated indexes now carry Last-Modified and answer an unchanged If-Modified-Since with 304, so apt-get update no longer downloads an unchanged index again."),
+    ("2026-10-23", "Repositories", "The Browse format filter and the block-list, quarantine and cleanup rule dialogs list formats in the order the API does (Terraform, Composer and Hugging Face move), and a repository's Largest artifact setting explains that, left empty, the format's own limit applies when it is smaller than the installation's, and that a limit set there replaces both."),
+    ("2026-10-23", "Browse", "A version with several files, such as wheels and a source archive or a jar and its POM, has a File picker on its page that Download, the curl command and the checksums follow, and the AI tools' download link lists the version's files to choose from."),
     ("2026-10-22", "Performance", "Each server keeps spaces, repositories, roles, access grants and repository settings in memory and drops them as soon as they change on any server, so a download reads the database twice instead of eight times; READ_CACHE_ENABLED=false turns this off on a server."),
     ("2026-10-17", "Plugins", "Connect an AI agent in the profile menu has a Vibepack skill tab to download the agent skill and see how to use it, and plugin screens can offer a .zip from their package to download."),
     ("2026-10-17", "Vibe artifacts", "Enterprise: the vibepack skill connects an AI agent with the Depotex AI tools or a saved API token, asks for the project's name, status and other details before its first save, and offers screenshots, captured pages or mock-ups; its script saves a check-in from a terminal without an agent, asking the same questions step by step."),
@@ -344,8 +351,9 @@ location / {
             ]),
             SHOT("profile-api-token-create.png", "Profile → API tokens → New token: expiration, templates and permissions"),
             H("Use a token"),
-            P("Send it as a bearer token. Tools that only know user names and passwords (Maven, pip, curl `-u`) can send it as the password, with any user name."),
-            CODE('curl -H "Authorization: Bearer $DEPOTEX_TOKEN" https://depotex.example.com/api/spaces\ncurl -u ci:$DEPOTEX_TOKEN https://depotex.example.com/repository/platform/tools/scripts/bootstrap.sh'),
+            P("Send it as a bearer token. Tools that only know user names and passwords (Maven, pip, curl `-u`) can send it as the password, with any user name, or as the user name with an empty password, which is what Bundler sends when its setting holds only a token. Tools that send a key with no scheme, such as Cargo, send the token on its own."),
+            CODE('curl -H "Authorization: Bearer $DEPOTEX_TOKEN" https://depotex.example.com/api/spaces\ncurl -u ci:$DEPOTEX_TOKEN https://depotex.example.com/repository/platform/tools/scripts/bootstrap.sh\ncurl -u "$DEPOTEX_TOKEN:" https://depotex.example.com/repository/platform/tools/scripts/bootstrap.sh'),
+            P("An [OAuth access token](oauth-applications.html) (`dpo_at_…`), such as the one a CI job gets through workload identity, can be sent in each of these ways too. A token given as the user name counts only when the password is empty: next to a password that isn't a token, the request counts as having no credentials."),
             H("Rotate and revoke"),
             UL([
                 "**Rotate** gives the token a new secret. The old one keeps working for 60 seconds, so a pipeline can switch without failing. Pro license or higher.",
@@ -361,7 +369,7 @@ location / {
                 "A token's requests don't use up its owner's budget in the browser.",
                 "Administrators can give one token, or everyone in a role or organization, a different budget: the gauge button on a token, or [Rate limits](rate-limits.html#overrides).",
                 "**Profile → API tokens → Your rate limits** shows your budgets.",
-                "A token that was never issued counts as a failed sign-in for the address that sent it, so guessing tokens is refused after 20 tries in 15 minutes.",
+                "A token that was never issued counts as a failed sign-in for the address that sent it, however it was sent, so guessing tokens is refused after 20 tries in 15 minutes.",
             ]),
             H("What a token can do"),
             UL([

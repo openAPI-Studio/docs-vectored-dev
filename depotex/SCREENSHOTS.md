@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-126 screenshots. Save each one into `depotex/assets/` using the
+129 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -65,6 +65,8 @@ realistic but fictional names and figures rather than real people's data.
       A repository's page: its address, setup for the package manager, and its contents
 - [ ] `upload.png`
       Upload: pick a hosted repository you can publish to, then add files
+- [ ] `repository-settings-proxy-checksums.png`
+      A proxy repository's Checksums set to Use the Security setting, with what that means at the moment: Strict
 - [ ] `repository-settings-tab.png`
       A repository's Settings tab: the Repository and Artifacts cards, with switches, choices and the largest artifact in MB
 - [ ] `repository-access-tab.png`
@@ -110,6 +112,8 @@ realistic but fictional names and figures rather than real people's data.
       The tree of a repository, with its address and setup instructions
 - [ ] `browse-version.png`
       A version: install command, overview, files, dependencies and security, with downloads and recent activity
+- [ ] `browse-version-file-picker.png`
+      A version with several files: the File picker under the Install bar, with the download and checksums following the file picked
 
 ## Upstreams
 
@@ -254,6 +258,8 @@ realistic but fictional names and figures rather than real people's data.
       A user's page: profile, sign-in and security, and groups
 - [ ] `groups-group.png`
       A group: its directories and members
+- [ ] `security-proxy-checksums.png`
+      Settings → Security → Proxy checksums: the switch, the formats whose new proxies start at it, and how it differs from a repository's own setting
 
 ## Single Sign-On
 

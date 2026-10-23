@@ -106,7 +106,7 @@ PLUGINS = [
                 ["`get_vulnerabilities`", "The known vulnerabilities of an SBOM's components, worst first, with assessments (VEX)"],
                 ["`search_components`", "A component across every SBOM the person can see, with what holds it"],
                 ["`get_advisory`", "A CVE or GHSA with what it says and everything it affects"],
-                ["`get_download_link`", "A short-lived link to download one file of a version"],
+                ["`get_download_link`", "A short-lived link to download one file of a version. Without a path it links to the main file, and for a version with several files (wheels and a source archive, a jar and its POM, builds for different platforms) it also lists them, so the AI application can ask for the one it needs"],
                 ["`search_docs`, `get_doc`, `list_doc_sources`", "Search and read the documentation inside artifacts, and see what is indexed"],
                 ["`quarantine_version`, `release_from_quarantine`", "Write tools: quarantine or release a version, with a reason (its settings add a prefix such as \"AI agent: \")"],
                 ["`vibe_search`, `vibe_versions`, `vibe_pull`, `vibe_list_files`, `vibe_get_file`, `vibe_diff`", "Enterprise, while vibe artifacts are on: find, pull and compare vibe projects (see [Vibe artifacts](vibe-artifacts.html#use-vibe-projects-from-ai-tools))"],

@@ -75,7 +75,7 @@ FORMATS = [
             H("What every format has in common"),
             UL([
                 "**Address**: `https://<depotex>/repository/<space>/<repository>/`, except Docker, which uses `<depotex>/<space>/<repository>/<image>`. The repository's page shows its address and setup snippets.",
-                "**Credentials**: an API token (Profile → API tokens) as the password, or as a Bearer token (NuGet: as the API key; Cargo: the token alone). Public spaces need none while anonymous access is on.",
+                "**Credentials**: an API token (Profile → API tokens) as the password or as the user name with an empty password, or as a Bearer token (NuGet: as the API key; Cargo: the token alone; see [Use a token](api-tokens.html#use-a-token)). Public spaces need none while anonymous access is on.",
                 "**Permissions**: Read to download, Publish for new files, Overwrite to replace or change, Delete to remove, set by space roles, repository roles and content selectors (see [Spaces](spaces.html#permissions)).",
                 "**Policies**: upload rules, cleanup, storage quotas, [quarantine](quarantine.html) and the [block list](blocklist.html) work on every format's versions.",
                 "**Storage**: each distinct file content is stored once, checked nightly by [integrity checks](integrity.html), and counted toward the space's quota.",
@@ -532,7 +532,7 @@ FORMATS = [
                 "The package is read: a bad `.deb` or `.dsc` is refused. Packages for `all` architectures show in every architecture's index.",
                 "For a source package, upload its `.orig.tar.*` and `.debian.tar.*` (or `.diff.gz`) first, then the `.dsc`; `apt-get source` then finds it.",
                 "Uploading the same file again with another distribution adds that distribution; a different file at the same path is refused. New APT repositories publish **once**.",
-                "The indexes under `dists/`, `public.key` and `public.gpg` are generated and can't be uploaded. They update on the next `apt-get update` after an upload. Each index is offered plain, gzipped and xz-compressed; apt picks xz.",
+                "The indexes under `dists/`, `public.key` and `public.gpg` are generated and can't be uploaded. They update on the next `apt-get update` after an upload. Each index is offered plain, gzipped and xz-compressed; apt picks xz. An index that hasn't changed since apt last fetched it is answered from apt's copy (`Hit` in `apt-get update`).",
             ]),
             H("Signing key"),
             P("Every hosted APT repository and group signs its indexes with its own OpenPGP key, created the first time it's needed. On the repository's **Settings** tab, **Signing key** shows its fingerprint and lets those who administer the repository **generate a new key** or **import** their own (an armored private key, with its passphrase if it has one). Rotating and importing raise `repository.signing_key.update`, so a policy can require approval."),
