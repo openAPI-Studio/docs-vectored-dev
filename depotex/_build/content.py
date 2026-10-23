@@ -43,6 +43,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-23", "Browse", "A version with several files, such as wheels and a source archive or a jar and its POM, has a File picker on its page that Download, the curl command and the checksums follow, and the AI tools' download link lists the version's files to choose from."),
     ("2026-10-22", "Performance", "Each server keeps spaces, repositories, roles, access grants and repository settings in memory and drops them as soon as they change on any server, so a download reads the database twice instead of eight times; READ_CACHE_ENABLED=false turns this off on a server."),
     ("2026-10-17", "Plugins", "Connect an AI agent in the profile menu has a Vibepack skill tab to download the agent skill and see how to use it, and plugin screens can offer a .zip from their package to download."),
     ("2026-10-17", "Vibe artifacts", "Enterprise: the vibepack skill connects an AI agent with the Depotex AI tools or a saved API token, asks for the project's name, status and other details before its first save, and offers screenshots, captured pages or mock-ups; its script saves a check-in from a terminal without an agent, asking the same questions step by step."),

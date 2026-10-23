@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-126 screenshots. Save each one into `depotex/assets/` using the
+127 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -110,6 +110,8 @@ realistic but fictional names and figures rather than real people's data.
       The tree of a repository, with its address and setup instructions
 - [ ] `browse-version.png`
       A version: install command, overview, files, dependencies and security, with downloads and recent activity
+- [ ] `browse-version-file-picker.png`
+      A version with several files: the File picker under the Install bar, with the download and checksums following the file picked
 
 ## Upstreams
 
