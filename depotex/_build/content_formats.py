@@ -532,7 +532,7 @@ FORMATS = [
                 "The package is read: a bad `.deb` or `.dsc` is refused. Packages for `all` architectures show in every architecture's index.",
                 "For a source package, upload its `.orig.tar.*` and `.debian.tar.*` (or `.diff.gz`) first, then the `.dsc`; `apt-get source` then finds it.",
                 "Uploading the same file again with another distribution adds that distribution; a different file at the same path is refused. New APT repositories publish **once**.",
-                "The indexes under `dists/`, `public.key` and `public.gpg` are generated and can't be uploaded. They update on the next `apt-get update` after an upload. Each index is offered plain, gzipped and xz-compressed; apt picks xz.",
+                "The indexes under `dists/`, `public.key` and `public.gpg` are generated and can't be uploaded. They update on the next `apt-get update` after an upload. Each index is offered plain, gzipped and xz-compressed; apt picks xz. An index that hasn't changed since apt last fetched it is answered from apt's copy (`Hit` in `apt-get update`).",
             ]),
             H("Signing key"),
             P("Every hosted APT repository and group signs its indexes with its own OpenPGP key, created the first time it's needed. On the repository's **Settings** tab, **Signing key** shows its fingerprint and lets those who administer the repository **generate a new key** or **import** their own (an armored private key, with its passphrase if it has one). Rotating and importing raise `repository.signing_key.update`, so a policy can require approval."),
