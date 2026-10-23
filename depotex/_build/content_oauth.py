@@ -94,6 +94,7 @@ curl https://depotex.example.com/api/oauth/token -d grant_type=urn:ietf:params:o
                 "Each exchange is in the audit log with the workload (for example `repo:my-org/my-repo:ref:refs/heads/main`), and the application's actions show `via: oauth:<application> (<workload>)`.",
                 "The client secret keeps working next to the rules; create a new one and don't hand it out if you want only workload identity.",
                 "Depotex must be able to reach the issuer over https to read its keys (GitHub's and GitLab.com's are public).",
+                "The access token the exchange returns (`dpo_at_…`) can be sent the ways [Use a token](api-tokens.html#use-a-token) lists, so package managers can publish with it: as a bearer token, as the password, as the user name with an empty password, or on its own where a tool sends its key with no scheme. NuGet's API key (`dotnet nuget push --api-key`) takes API tokens only.",
                 "With an Enterprise license the discovery document lists `private_key_jwt` among the token endpoint's authentication methods, with the accepted signing algorithms, so OAuth libraries know they can send a `client_assertion`.",
             ]),
 

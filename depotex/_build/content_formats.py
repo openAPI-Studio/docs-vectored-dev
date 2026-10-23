@@ -75,7 +75,7 @@ FORMATS = [
             H("What every format has in common"),
             UL([
                 "**Address**: `https://<depotex>/repository/<space>/<repository>/`, except Docker, which uses `<depotex>/<space>/<repository>/<image>`. The repository's page shows its address and setup snippets.",
-                "**Credentials**: an API token (Profile → API tokens) as the password, or as a Bearer token (NuGet: as the API key; Cargo: the token alone). Public spaces need none while anonymous access is on.",
+                "**Credentials**: an API token (Profile → API tokens) as the password or as the user name with an empty password, or as a Bearer token (NuGet: as the API key; Cargo: the token alone; see [Use a token](api-tokens.html#use-a-token)). Public spaces need none while anonymous access is on.",
                 "**Permissions**: Read to download, Publish for new files, Overwrite to replace or change, Delete to remove, set by space roles, repository roles and content selectors (see [Spaces](spaces.html#permissions)).",
                 "**Policies**: upload rules, cleanup, storage quotas, [quarantine](quarantine.html) and the [block list](blocklist.html) work on every format's versions.",
                 "**Storage**: each distinct file content is stored once, checked nightly by [integrity checks](integrity.html), and counted toward the space's quota.",
