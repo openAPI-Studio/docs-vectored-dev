@@ -424,7 +424,7 @@ DIRECTORIES = [
             UL([
                 "It applies from the next download, on every server, to every proxy repository set to **Use the Security setting**.",
                 "A repository set to **Strict**, **Warn** or **Off** keeps its own setting: the switch never changes it. Change it in the repository's **Settings → Checksums**.",
-                "**Applies to** lists the formats whose new proxy repositories start at **Use the Security setting**: [Conda](conda.html) so far, with more added one at a time (see [What is checked](spaces.html#what-is-checked)). New proxy repositories of the other formats start at **Warn**, and any proxy repository can be set to **Use the Security setting** in its settings.",
+                "**Applies to** lists the formats whose new proxy repositories start at **Use the Security setting**: [RubyGems](rubygems.html) and [Conda](conda.html) so far, with more added one at a time (see [What is checked](spaces.html#what-is-checked)). New proxy repositories of the other formats start at **Warn**, and any proxy repository can be set to **Use the Security setting** in its settings.",
                 "A repository set to **Use the Security setting** shows on its **Settings** page whether that means **Strict** or **Warn** at the moment, so its admins can tell without access to this page.",
                 "Files are checked when a proxy keeps them. A proxy set to **Pass through** doesn't check.",
                 "Until a super admin saves the switch, the server's `PROXY_STRICT_CHECKSUMS` setting applies (on unless set to `false`; see [Repository settings](repository-settings.html#defaults-for-operators)).",

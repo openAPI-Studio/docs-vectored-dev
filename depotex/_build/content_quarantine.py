@@ -23,7 +23,8 @@ QUARANTINE = [
             H("Hidden versions"),
             P("Turn on **Hide quarantined versions** in a repository's **Settings** to leave quarantined versions out of the version lists clients resolve from, so builds pick another version instead of failing. A released version is listed again at once."),
             UL([
-                "Lists Depotex writes itself leave them out, such as a hosted [conda](conda.html#hidden-versions) channel's index.",
+                "Lists Depotex writes itself leave them out, such as a hosted [RubyGems](rubygems.html#hidden-versions) repository's compact index or a hosted [conda](conda.html#hidden-versions) channel's index.",
+                "A [RubyGems](rubygems.html#hidden-versions) proxy leaves them out of the `info/` files Bundler and `gem` resolve from, and also leaves out versions it hasn't fetched yet that an age rule would hold, judged by their publish date on RubyGems.org: with a 7-day rule, Bundler resolves to the newest release that is at least 7 days old. The specs files it passes on (`gem search`, RubyGems 3.1) still list them, and so does a Bundler cache holding the gem's `info` file from before the version was hidden, until the gem changes on RubyGems.org; installing such a version fails with **quarantined**.",
                 "A list a proxy repository passes on as its upstream wrote it keeps them, and their downloads are refused: conda proxies, and conda groups for their proxy members, do so for now. Each format's page says which applies.",
                 "With the switch off, quarantined versions stay listed and downloading them fails with **quarantined**.",
             ]),
@@ -38,7 +39,7 @@ QUARANTINE = [
                 ["**Applies to**", "Uploads and proxied files, uploads only (hosted repositories), or proxied files only."],
                 ["**Formats**", "Which formats; none ticked means all."],
                 ["**Namespace**, **Name**, **Version**", "Patterns the version must match; `*` matches anything, `?` one character, case doesn't matter; empty matches everything. A Maven name is `groupId:artifactId` (so `com.acme:*`), an npm name may have its `@scope`, and a PyPI name matches however it is written (`Acme_Internal*` matches `acme-internal-tools`). For example, version `*-rc*` holds back release candidates."],
-                ["**Published less than (days)**", "Only versions published less than this many days ago: proxied files by the upstream's date, uploads from when they're uploaded (a gem from its push, which is also the date Bundler sees). Their quarantine ends by itself when they are old enough. This holds back freshly published packages, the way malicious ones usually arrive."],
+                ["**Published less than (days)**", "Only versions published less than this many days ago: proxied files by the upstream's date (a gem's release on RubyGems.org), uploads from when they're uploaded (a gem from its push, which is also the date Bundler sees). Their quarantine ends by itself when they are old enough. This holds back freshly published packages, the way malicious ones usually arrive."],
                 ["**Reason**", "Shown to anyone whose download is refused, and in the quarantine list."],
             ]),
             P("Every setting you fill in must match. When several rules match, one without an age limit wins; otherwise the one ending last."),
