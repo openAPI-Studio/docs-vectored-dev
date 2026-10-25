@@ -14,7 +14,7 @@ FORMATS = [
     ("NuGet", "dotnet", "nuget"), ("Cargo", "cargo", "cargo"), ("APT", "apt", "apt"), ("YUM", "dnf", "yum"),
     ("Terraform", "terraform init", "terraform"), ("Hugging Face", "huggingface_hub", "huggingface"),
     ("Git LFS", "git lfs", "git-lfs"), ("Composer", "composer", "composer"), ("RubyGems", "gem", "rubygems"),
-    ("Conda", "conda · pixi", "conda"),
+    ("Conda", "conda · pixi", "conda"), ("Conan", "conan", "conan"),
     ("Raw", "curl", "raw"),
 ]
 

@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-142 screenshots. Save each one into `depotex/assets/` using the
+145 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -133,6 +133,15 @@ realistic but fictional names and figures rather than real people's data.
       A conda group's Conda card: Serve sharded repodata, and Hosted packages hide upstream packages of the same name
 - [ ] `conda-version-builds.png`
       A conda version's page: its builds per platform with size and install-time scripts, and Yank in the version's menu
+
+## Conan (C/C++)
+
+- [ ] `conan-usage.png`
+      Use this repository on a hosted Conan repository: the remote name, then the commands to add the remote first, sign in with an API token and install
+- [ ] `conan-version-revisions.png`
+      A Conan version's page: the install command and its recipe revisions, the latest marked, with who published each, integrity and number of binaries
+- [ ] `conan-version-packages.png`
+      The binaries of a recipe revision: package ID, OS, architecture, compiler, build type and package revision of each
 
 ## Browse
 
