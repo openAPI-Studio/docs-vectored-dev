@@ -14,10 +14,18 @@ QUARANTINE = [
             UL([
                 "Downloads, `HEAD` requests and checksum files of a quarantined version answer **403** with the reason `quarantined` and the rule's reason.",
                 "Another Depotex linked to the repository ([Depotex link](upstreams.html#depotex-link)) is refused too, and removes copies it cached.",
-                "Quarantined versions stay in the version lists clients resolve from (such as `maven-metadata.xml` and npm package documents). Turn on **Hide quarantined versions** in a repository's **Settings** to leave them out, so builds pick another version. `npm audit` reports quarantined versions as high advisories.",
+                "Quarantined versions stay in the version lists clients resolve from (such as `maven-metadata.xml` and npm package documents), unless the repository hides them (see [Hidden versions](#hidden-versions)). `npm audit` reports quarantined versions as high advisories.",
                 "A released version is never quarantined again by a rule; it can still be quarantined by hand.",
                 "Depotex also quarantines versions carrying unsafe content (oversized or hostile SBOMs, attestations or metadata) by itself, on every license tier: see [Browse](browse.html#unsafe-content-is-quarantined). They show as **Refused content (automatic)**.",
                 "A [policy on SBOMs](sbom.html#policies-on-sboms) that denies what a version's SBOM lists (severe vulnerabilities, forbidden licenses) quarantines it too; those show as **Refused by policy** with the policy's message.",
+            ]),
+
+            H("Hidden versions"),
+            P("Turn on **Hide quarantined versions** in a repository's **Settings** to leave quarantined versions out of the version lists clients resolve from, so builds pick another version instead of failing. A released version is listed again at once."),
+            UL([
+                "Lists Depotex writes itself leave them out, such as a hosted [conda](conda.html#hidden-versions) channel's index.",
+                "A list a proxy repository passes on as its upstream wrote it keeps them, and their downloads are refused: conda proxies do so for now. Each format's page says which applies.",
+                "With the switch off, quarantined versions stay listed and downloading them fails with **quarantined**.",
             ]),
 
             H("Quarantine rules"),

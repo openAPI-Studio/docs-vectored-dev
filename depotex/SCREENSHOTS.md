@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-129 screenshots. Save each one into `depotex/assets/` using the
+134 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -103,6 +103,19 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `terraform-login.png`
       The page terraform login opens: approve or deny the token for terraform on this computer
+
+## Conda
+
+- [ ] `conda-usage.png`
+      Use this repository on a hosted conda channel: the channel for conda, micromamba and pixi, the credentials each reads, and the install and upload commands
+- [ ] `conda-web-upload.png`
+      Conda packages uploaded from the web: each file stored in the platform folder its info/index.json names
+- [ ] `conda-yank.png`
+      Yanking one build of a conda version: the broken linux-64 build ticked, with a reason
+- [ ] `conda-settings.png`
+      A conda repository's Conda card: Serve sharded repodata, with what micromamba and conda do after a change
+- [ ] `conda-version-builds.png`
+      A conda version's page: its builds per platform with size and install-time scripts, and Yank in the version's menu
 
 ## Browse
 

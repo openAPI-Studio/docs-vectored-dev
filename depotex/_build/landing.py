@@ -13,7 +13,8 @@ FORMATS = [
     ("Docker &amp; OCI", "docker", "docker"), ("Helm", "helm", "helm"), ("Go", "go", "go"),
     ("NuGet", "dotnet", "nuget"), ("Cargo", "cargo", "cargo"), ("APT", "apt", "apt"), ("YUM", "dnf", "yum"),
     ("Terraform", "terraform init", "terraform"), ("Hugging Face", "huggingface_hub", "huggingface"),
-    ("Git LFS", "git lfs", "git-lfs"), ("Composer", "composer", "composer"), ("Raw", "curl", "raw"),
+    ("Git LFS", "git lfs", "git-lfs"), ("Composer", "composer", "composer"), ("Conda", "conda · pixi", "conda"),
+    ("Raw", "curl", "raw"),
 ]
 
 L = "assets/formats/logos/"
