@@ -113,6 +113,10 @@ curl -u me:$TOKEN -T app-1.1.zip https://depotex.example.com/repository/acme/raw
                 "`docker search` and the registry catalog list the members' images, not the group.",
             ]),
 
+            H("Conda groups"),
+            P("A conda group is one channel for conda, micromamba and pixi: its sharded repodata, `repodata.json` and `run_exports.json` merge every member's (a package file two members have comes from the first), and `rattler-build upload` goes to the repository the write rules choose by package name and version. A package name any hosted member has gets nothing from proxy members, downloads included, unless the group's **Hosted packages hide upstream packages of the same name** is turned off. See [Conda channels](conda.html#groups)."),
+            CODE("conda install --override-channels -c https://depotex.example.com/repository/acme/conda/ my-tool"),
+
             H("Check what a group does"),
             P("The dry run answers, without downloading or storing anything, which members a read would ask and why others are skipped, or where an upload would go and which rule decided."),
 

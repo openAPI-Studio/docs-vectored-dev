@@ -24,7 +24,7 @@ QUARANTINE = [
             P("Turn on **Hide quarantined versions** in a repository's **Settings** to leave quarantined versions out of the version lists clients resolve from, so builds pick another version instead of failing. A released version is listed again at once."),
             UL([
                 "Lists Depotex writes itself leave them out, such as a hosted [conda](conda.html#hidden-versions) channel's index.",
-                "A list a proxy repository passes on as its upstream wrote it keeps them, and their downloads are refused: conda proxies do so for now. Each format's page says which applies.",
+                "A list a proxy repository passes on as its upstream wrote it keeps them, and their downloads are refused: conda proxies, and conda groups for their proxy members, do so for now. Each format's page says which applies.",
                 "With the switch off, quarantined versions stay listed and downloading them fails with **quarantined**.",
             ]),
 
