@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-139 screenshots. Save each one into `depotex/assets/` using the
+140 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -199,6 +199,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `blocklist-rules.png`
       Settings → Block list: the installation's rules
+- [ ] `blocklist-rule-range.png`
+      Adding a block-list rule for RubyGems with a RubyGems requirement as its version range
 
 ## Vibe artifacts
 

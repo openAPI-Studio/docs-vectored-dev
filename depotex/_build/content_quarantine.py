@@ -42,7 +42,7 @@ QUARANTINE = [
                 ["**Reason**", "Shown to anyone whose download is refused, and in the quarantine list."],
             ]),
             P("Every setting you fill in must match. When several rules match, one without an age limit wins; otherwise the one ending last."),
-            NOTE("When a proxied file's upstream doesn't say when it was published, an age rule treats it as just published."),
+            NOTE("When a proxied file's upstream doesn't say when it was published, an age rule treats it as just published when the file is fetched. A proxy that leaves out of its listings the versions it hasn't fetched yet that an age rule would hold (with **Hide quarantined versions** on; its format's page says whether it does) keeps a version whose publish date it doesn't know listed, and judges it when it is fetched. A proxy set to **Pass through** stores nothing, so rules don't hold the files it streams and hide nothing from its listings."),
 
             H("Quarantined versions"),
             P("The space's **Quarantine** tab lists its quarantined versions, newest first, and **Settings → Repositories → Quarantine** lists every space's. Show the versions held, released or all, and search by name, version or repository (on the installation-wide list, also by space). Select several to release them together. A version's name opens it in the [artifact browser](browse.html), where its Security tab says what was found; its repository opens the repository."),
