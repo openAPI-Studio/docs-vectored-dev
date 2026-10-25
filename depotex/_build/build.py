@@ -62,7 +62,7 @@ GROUPS = [
     ("Operations", ["branding-and-banners", "logging-and-audit", "system-check", "monitoring", "email", "scheduler", "licensing"]),
     ("Alerts & automation", ["alerts", "alerts-admin", "events", "policies", "automation", "plugins"]),
     ("Repositories", ["repositories"]),
-    ("Formats", ["formats", "maven", "npm", "pypi", "go", "helm", "nuget", "cargo", "apt", "yum", "terraform", "huggingface", "git-lfs", "composer", "docker", "raw"]),
+    ("Formats", ["formats", "maven", "npm", "pypi", "go", "helm", "nuget", "cargo", "apt", "yum", "terraform", "huggingface", "git-lfs", "composer", "rubygems", "docker", "raw"]),
     ("What's new", ["changelog"]),
 ]
 

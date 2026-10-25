@@ -38,7 +38,7 @@ QUARANTINE = [
                 ["**Applies to**", "Uploads and proxied files, uploads only (hosted repositories), or proxied files only."],
                 ["**Formats**", "Which formats; none ticked means all."],
                 ["**Namespace**, **Name**, **Version**", "Patterns the version must match; `*` matches anything, `?` one character, case doesn't matter; empty matches everything. A Maven name is `groupId:artifactId` (so `com.acme:*`), an npm name may have its `@scope`, and a PyPI name matches however it is written (`Acme_Internal*` matches `acme-internal-tools`). For example, version `*-rc*` holds back release candidates."],
-                ["**Published less than (days)**", "Only versions published less than this many days ago: proxied files by the upstream's date, uploads from when they're uploaded. Their quarantine ends by itself when they are old enough. This holds back freshly published packages, the way malicious ones usually arrive."],
+                ["**Published less than (days)**", "Only versions published less than this many days ago: proxied files by the upstream's date, uploads from when they're uploaded (a gem from its push, which is also the date Bundler sees). Their quarantine ends by itself when they are old enough. This holds back freshly published packages, the way malicious ones usually arrive."],
                 ["**Reason**", "Shown to anyone whose download is refused, and in the quarantine list."],
             ]),
             P("Every setting you fill in must match. When several rules match, one without an age limit wins; otherwise the one ending last."),

@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-135 screenshots. Save each one into `depotex/assets/` using the
+139 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -103,6 +103,17 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `terraform-login.png`
       The page terraform login opens: approve or deny the token for terraform on this computer
+
+## RubyGems (Ruby)
+
+- [ ] `rubygems-usage-hosted.png`
+      A hosted RubyGems repository's Usage tab: the Gemfile source block, bundle install and gem install with the repository's address
+- [ ] `rubygems-yank.png`
+      Yanking one platform's file of a version: the confirmation on the version's Overview
+- [ ] `rubygems-settings.png`
+      A RubyGems repository's settings: the owners-only and new-names switches, and the reserved gem names with their owners
+- [ ] `rubygems-version-platforms.png`
+      A gem version's Overview: the gemspec, the owners and the platforms table with each platform's file
 
 ## Conda
 
