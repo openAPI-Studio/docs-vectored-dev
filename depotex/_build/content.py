@@ -43,6 +43,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-25", "RubyGems", "RubyGems group repositories: one address for hosted gems and RubyGems.org, with hosted names shadowing upstream ones, pushes routed to a hosted member, and Bundler downloading only what changed"),
     ("2026-10-25", "RubyGems", "Proxy repositories of RubyGems.org and other gem registries (Pro): Bundler and gem install through them, each .gem checked against the registry's SHA-256 (new proxies follow Settings → Security → Proxy checksums), quarantine age rules judged by each version's publish date, and hidden versions left out of what Bundler resolves"),
     ("2026-10-25", "Block list", "Version ranges are read in each format's own syntax where it has one, so a rule for RubyGems takes requirements such as ~> 1.2 or >= 1.0, < 2 and reads them as gem and Bundler do, and a range is kept as you type it (Maven-style ranges, and spaces inside a version, are still saved without spaces)."),
     ("2026-10-25", "RubyGems", "A version RubyGems counts as one already pushed (1.0.0 after 1.0, 1.0.0.a after 1.0.a) is refused as on RubyGems.org, pushing a gem's file again stores it again when the integrity check found it missing, and gem owner lists owners by email address, user name or id, each of which --remove takes."),

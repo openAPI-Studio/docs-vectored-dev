@@ -36,7 +36,7 @@ BLOCKLIST = [
                 "npm: blocked versions are left out of package documents (dist-tags move to the newest version left), and `npm audit` reports them as critical advisories.",
                 "Docker: blocked tags are left out of tag lists, and pulling them (or their digest) is refused.",
                 "Raw: blocked files are left out of folder listings.",
-                "RubyGems: blocked versions are left out of the `info/` files Bundler and `gem` resolve from and of the JSON API, both what hosted repositories generate and what proxies pass on, so Bundler picks another version; hosted repositories leave them out of the specs files too. A proxy's specs files are RubyGems.org's and still list them. See [Hidden versions](rubygems.html#hidden-versions).",
+                "RubyGems: blocked versions are left out of the `info/` files Bundler and `gem` resolve from and of the JSON API, both what hosted repositories generate and what proxies pass on, so Bundler picks another version; hosted repositories leave them out of the specs files too. A proxy's specs files are RubyGems.org's and still list them. A group leaves out what its members do; a version blocked after it was pushed leaves a group's list of gems within about a minute. See [Hidden versions](rubygems.html#hidden-versions).",
                 "Another Depotex linked to the repository ([Depotex link](upstreams.html#depotex-link)) is refused them too, and removes copies it cached.",
             ]),
             NOTE("A change applies at once on the server you made it on, and to downloads on other servers of a cluster within a few seconds (`BLOCKLIST_REFRESH_INTERVAL`, 5s by default). Uploads and proxy caching check for changes every time."),

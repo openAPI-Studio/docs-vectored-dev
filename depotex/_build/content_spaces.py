@@ -102,6 +102,7 @@ SPACES = [
             P("A proxy refuses downloads of [blocked](blocklist.html) versions, and of [quarantined](quarantine.html#hidden-versions) ones. Where its format lets it, it also leaves them out of the version lists it passes on, so clients resolve to the newest version that passes instead of failing: blocked versions always, quarantined ones while the repository's **Hide quarantined versions** is on. A list the proxy passes on as its upstream wrote it keeps them."),
             UL([
                 "[RubyGems](rubygems.html#hidden-versions): left out of the `info/` files Bundler and `gem` resolve from and of the JSON API, together with versions not fetched yet that a quarantine age rule would hold, judged by their publish date on RubyGems.org. The specs files (`gem search`, RubyGems 3.1) are passed on as RubyGems.org wrote them, and a Bundler cache that holds a gem's `info` file from before keeps the version until the gem changes upstream; installing it there fails with 403.",
+                "A RubyGems [group](rubygems.html#groups) leaves out what each member leaves out. A version blocked or quarantined after it reached the group leaves the group's list of gems within about a minute; its download through the group is refused at once.",
                 "[Conda](conda.html#hidden-versions): a proxy passes on every build its upstream lists, for now, so blocked and quarantined builds stay listed and their downloads are refused (403); a group lists what its members list.",
             ]),
             H("Repository settings"),

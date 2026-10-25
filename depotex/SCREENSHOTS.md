@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-141 screenshots. Save each one into `depotex/assets/` using the
+142 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -114,6 +114,8 @@ realistic but fictional names and figures rather than real people's data.
       A RubyGems repository's settings: the owners-only and new-names switches, and the reserved gem names with their owners
 - [ ] `rubygems-usage-proxy.png`
       A RubyGems proxy repository's Usage tab: the Gemfile source, the Bundler mirror and gem install
+- [ ] `rubygems-usage.png`
+      A RubyGems group's Usage tab: the group as the Gemfile source, the link to use it as Bundler's mirror of rubygems.org instead, and gem install; gem push through the group is on its Publish tab
 - [ ] `rubygems-version-platforms.png`
       A gem version's Overview: the gemspec, the owners and the platforms table with each platform's file
 
