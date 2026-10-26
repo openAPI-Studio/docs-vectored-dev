@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-145 screenshots. Save each one into `depotex/assets/` using the
+146 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -137,7 +137,9 @@ realistic but fictional names and figures rather than real people's data.
 ## Conan (C/C++)
 
 - [ ] `conan-usage.png`
-      Use this repository on a hosted Conan repository: the remote name, then the commands to add the remote first, sign in with an API token and install
+      Use this repository on the Conan group a space uses by default: its universal address, the remote name, then the commands to add the remote first, turn ConanCenter off, sign in with an API token and install
+- [ ] `conan-group-settings.png`
+      A Conan group's Conan card: Hosted recipes hide upstream recipes of the same name, on (the default)
 - [ ] `conan-version-revisions.png`
       A Conan version's page: the install command and its recipe revisions, the latest marked, with who published each, integrity and number of binaries
 - [ ] `conan-version-packages.png`

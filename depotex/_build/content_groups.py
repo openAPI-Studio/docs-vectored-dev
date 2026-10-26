@@ -54,6 +54,7 @@ curl -u me:$TOKEN -T app-1.1.zip https://depotex.example.com/repository/acme/raw
                 "**Read deny list**: paths or packages the group never serves, from any member.",
                 "**Largest download** and **largest upload** through the group.",
             ]),
+            P("The largest upload also applies to an upload sent without its size (chunked): it is refused as soon as it passes the limit, and nothing of it is stored."),
 
             H("Universal URLs"),
             P("One group per format can be the space's **default**. It then also answers at the format's universal URL, `https://<depotex>/repository/<space>/<format>/` (for example `/repository/acme/maven/`), so every project in the space can use the same address. For NuGet, the source address is the universal URL's service index, `…/repository/<space>/nuget/index.json`. Format names (`maven`, `npm`, `pypi`, `go`, `helm`, `nuget`, `docker`, `raw`) can't be used as repository names. A repository created earlier with such a name keeps its address; rename or delete it before making a group the default for that format."),
@@ -120,6 +121,10 @@ curl -u me:$TOKEN -T app-1.1.zip https://depotex.example.com/repository/acme/raw
             H("Conda groups"),
             P("A conda group is one channel for conda, micromamba and pixi: its sharded repodata, `repodata.json` and `run_exports.json` merge every member's (a package file two members have comes from the first), and `rattler-build upload` goes to the repository the write rules choose by package name and version. A package name any hosted member has gets nothing from proxy members, downloads included, unless the group's **Hosted packages hide upstream packages of the same name** is turned off. See [Conda channels](conda.html#groups)."),
             CODE("conda install --override-channels -c https://depotex.example.com/repository/acme/conda/ my-tool"),
+
+            H("Conan groups"),
+            P("A Conan group is one remote for Conan 2: `conan list`, `conan search`, a reference's revisions and a recipe revision's binaries combine every member's, the latest revision and each file come from the first member that has them, and `conan upload` sends each revision to the repository the write rules choose by recipe name and version. A recipe name any hosted member has gets nothing from proxy members, downloads included, unless the group's **Hosted recipes hide upstream recipes of the same name** is turned off; the binaries of a recipe revision a hosted member has still come from every member. See [Conan repositories](conan.html#groups)."),
+            CODE("conan remote add acme-conan https://depotex.example.com/repository/acme/conan --index 0"),
 
             H("Check what a group does"),
             P("The dry run answers, without downloading or storing anything, which members a read would ask and why others are skipped, or where an upload would go and which rule decided."),
