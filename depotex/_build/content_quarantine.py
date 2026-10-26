@@ -23,10 +23,11 @@ QUARANTINE = [
             H("Hidden versions"),
             P("Turn on **Hide quarantined versions** in a repository's **Settings** to leave quarantined versions out of the version lists clients resolve from, so builds pick another version instead of failing. A released version is listed again at once."),
             UL([
-                "Lists Depotex writes itself leave them out, such as a hosted [RubyGems](rubygems.html#hidden-versions) repository's compact index, a hosted [conda](conda.html#hidden-versions) channel's index or what a hosted [Conan](conan.html#hidden-versions) repository lists.",
+                "Lists Depotex writes itself leave them out, such as a hosted [RubyGems](rubygems.html#hidden-versions) repository's compact index, a hosted [conda](conda.html#hidden-versions) channel's index or what a [Conan](conan.html#hidden-versions) repository lists, a Conan proxy's included.",
                 "A [RubyGems](rubygems.html#hidden-versions) proxy leaves them out of the `info/` files Bundler and `gem` resolve from, and also leaves out versions it hasn't fetched yet that an age rule would hold, judged by their publish date on RubyGems.org: with a 7-day rule, Bundler resolves to the newest release that is at least 7 days old. The specs files it passes on (`gem search`, RubyGems 3.1) still list them, and so does a Bundler cache holding the gem's `info` file from before the version was hidden, until the gem changes on RubyGems.org; installing such a version fails with **quarantined**.",
                 "A [RubyGems group](rubygems.html#groups) leaves out what its members leave out; a version quarantined after it was pushed leaves the group's list of gems within about a minute, and its download is refused at once.",
                 "A list a proxy repository passes on as its upstream wrote it keeps them, and their downloads are refused: conda proxies, and conda groups for their proxy members, do so for now. Each format's page says which applies.",
+                "Other proxies quarantine a version when its first file is fetched, so a version a rule would hold back that the proxy hasn't fetched yet is still listed, by a Conan proxy too, and downloading it is refused. Leaving such versions out before they're fetched, as a RubyGems proxy does, comes to them in a later release.",
                 "With the switch off, quarantined versions stay listed and downloading them fails with **quarantined**.",
             ]),
 

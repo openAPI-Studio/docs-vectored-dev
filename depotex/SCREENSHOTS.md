@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-146 screenshots. Save each one into `depotex/assets/` using the
+148 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -138,6 +138,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `conan-usage.png`
       Use this repository on the Conan group a space uses by default: its universal address, the remote name, then the commands to add the remote first, turn ConanCenter off, sign in with an API token and install
+- [ ] `conan-proxy-usage.png`
+      Use this repository on a proxy of ConanCenter: add it as the first remote, turn ConanCenter off, sign in with an API token and install
 - [ ] `conan-group-settings.png`
       A Conan group's Conan card: Hosted recipes hide upstream recipes of the same name, on (the default)
 - [ ] `conan-version-revisions.png`
@@ -160,6 +162,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `upstreams-list.png`
       Upstreams: each registry's format, address, the spaces that use it and its health
+- [ ] `upstreams-test-not-conan-2.png`
+      Test connection on a Conan upstream whose address is a Conan 1 server: the failure, not a Conan 2 server, next to the form
 - [ ] `upstreams-hosts.png`
       An upstream whose file host is paused while its own address keeps answering
 

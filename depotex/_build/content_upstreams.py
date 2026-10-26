@@ -22,8 +22,9 @@ UPSTREAMS = [
                 "Client certificate|Optional, for upstreams that require mTLS: paste the certificate and its private key (PEM). The key is stored encrypted and never shown again.",
                 "Authentication|**None**, **Username and password**, **Token**, or **Custom header**: a header name and value sent with every request, for registries such as GitLab (`PRIVATE-TOKEN`) or Artifactory (`X-JFrog-Art-Api`). Credentials are stored encrypted with the installation's encryption key and are never shown again. When editing, leave the field empty to keep them.",
                 "Cache|How long index and metadata answers are reused before asking the upstream again (1 to 43200 minutes; 1440 is a day).",
-                "Test|**Test connection** checks the address and credentials from this server before you save. It reports the time taken in a notification, or why it failed: not reachable, credentials refused, nothing at that address, or an error from the registry. A failure also stays next to the form, with **Test again** in its notification.",
+                "Test|**Test connection** checks the address and credentials from this server before you save. It reports the time taken in a notification, or why it failed: not reachable, credentials refused, nothing at that address, an error from the registry, or, for a Conan upstream, not a Conan 2 server (the revisions capability is missing, as on ConanCenter's old Conan 1 address `center.conan.io`). A failure also stays next to the form, with **Test again** in its notification.",
             ]),
+            SHOT("upstreams-test-not-conan-2.png", "Test connection on a Conan upstream whose address is a Conan 1 server: the failure, not a Conan 2 server, next to the form"),
             P("Turn off **Allow proxying from this upstream** to pause an upstream without removing it. Deleting an upstream takes it off every space's allow-list."),
             WARN("The test runs from the server you're connected to, and can reach internal addresses (for internal mirrors). In a cluster, check that every server can reach the upstream."),
 
