@@ -49,6 +49,9 @@ FORMATS = [
                 ["[Hugging Face](huggingface.html)", "huggingface_hub with `HF_ENDPOINT` to download; 0.11 to upload", "The Hub's HTTP API, with commits in the NDJSON form huggingface_hub sends from 0.11 (0.10 and older can download only). The `hf` command comes with huggingface_hub 0.34; older versions have `huggingface-cli`. `git clone` of a model isn't supported", "huggingface_hub 0.10 (download), 0.11 and 2.2"],
                 ["[Git LFS](git-lfs.html)", "git-lfs 2.0", "The batch API with basic transfers, and the locking API (`git lfs lock`, `lfs.locksverify`)", "git-lfs 2.0, 2.13 and 3.7"],
                 ["[Composer](composer.html)", "Composer 2.0", "The Composer 2 metadata (`metadata-url`); Composer 1 finds no packages", "Composer 2.0 and 2.10"],
+                ["[RubyGems](rubygems.html)", "RubyGems 3.1 and Bundler 2.1 (Ruby 2.7)", "The compact index (`versions`, `info/`), which Bundler and `gem` 3.2.3 or later resolve from; older `gem` versions read the specs files. RubyGems 3.1's `gem install` can't install a gem that has only platform builds (Bundler on the same Ruby can). No dependency API, which RubyGems.org retired too", "RubyGems 3.1, 3.4, 3.5 and 4.0 with Bundler 2.1, 2.4, 2.5 and 4.0 (Ruby 2.7, 3.2, 3.3 and 4.0)"],
+                ["[Conda](conda.html)", "conda 4.12, micromamba 1.5, pixi", "Plain `repodata.json` (conda 4.12), `repodata.json.zst` (conda 24 and later) and sharded repodata (conda 26.5 or later, micromamba 2, pixi), all generated for every channel. conda 26.5 and 26.6 don't send a channel address's credentials with the shard request and read `repodata.json.zst` instead ([details](conda.html#set-up-conda-micromamba-and-pixi)). Uploads are HTTP `PUT`s (rattler-build, curl)", "conda 4.12, 24.11, 26.5, 26.7 and 26.9; micromamba 1.5 and 2.9; pixi 0.83; rattler-build 0.77 (upload)"],
+                ["[Conan](conan.html)", "Conan 2.0", "The Conan 2 REST API with revisions; Conan 1 isn't tested and may not work ([details](conan.html#conan-1))", "Conan 2.0.17 and 2.33.0"],
                 ["[Docker](docker.html)", "Docker 1.10; any current OCI tool", "Image manifest schema 2 and OCI: schema 1 (Docker 1.9 and older) isn't accepted. Clients that can't read multi-platform images get the `linux/amd64` image of a tag", "Docker 20.10 and 29"],
                 ["[Raw](raw.html)", "Any HTTP client", "GET, HEAD, PUT and DELETE; byte ranges and `If-Range` to resume", "curl"],
             ]),
@@ -74,6 +77,16 @@ FORMATS = [
                 ["Publish once by default", "Yes", "Commits are new versions", "Objects never change", "Always"],
                 ["Dependencies in the browser", "—", "—", "—", "From composer.json (`require`, `require-dev`)"],
                 ["Signatures", "`SHA256SUMS` signed with the repository's key", "—", "—", "—"],
+            ]),
+            P("RubyGems, Conda and Conan, added after those, in the same terms:"),
+            TABLE(["", "RubyGems", "Conda", "Conan"], [
+                ["Hosted, proxy (Pro) and group repositories", "✓", "✓", "✓"],
+                ["Groups route uploads by", "Gem and release/pre-release", "Package and release/pre-release", "Recipe and release/pre-release"],
+                ["Proxy another Depotex over a [Depotex link](upstreams.html#depotex-link) (Enterprise)", "✓", "✓", "✓"],
+                ["What counts as a version", "Gem version (a file per platform)", "Package version (its builds, one per platform and file)", "Recipe version (its revisions and their binaries)"],
+                ["Publish once by default", "Always", "Always (the same file again is accepted)", "Revisions never change; a version takes new revisions"],
+                ["Dependencies in the browser", "From the gemspec (runtime and development)", "From the newest build (`depends`, `constrains`)", "What the newest revision's binaries were built with"],
+                ["Signatures", "Attestations from `gem push --attestation`; signed gems marked", "—", "— (each revision is checked against its manifest)"],
             ]),
             H("What every format has in common"),
             UL([
@@ -451,7 +464,7 @@ FORMATS = [
             P("With a Cargo [group](repository-groups.html) as the space's default, `sparse+https://" + HOST + "/repository/my-space/cargo/` is one registry for your crates and crates.io's: use it for `[registries]` and for replacing crates.io, and `cargo publish` goes to the repository the group's write rules choose. The repository's **Usage** tab shows these snippets with your address and registry name filled in."),
             H("Publish, yank and owners"),
             UL([
-                "**Publish** needs Publish permission. The crate is checked: a valid name (crates.io's rules; Rust's own names such as `std` and `core` are refused), a SemVer version, readable dependencies, and an archive whose `Cargo.toml` names the same crate and version. The largest crate is 10 MiB by default (`CARGO_MAX_CRATE_SIZE`), or the repository's own size limit if smaller.",
+                "**Publish** needs Publish permission. The crate is checked: a valid name (crates.io's rules; Rust's own names such as `std` and `core` are refused), a SemVer version, readable dependencies, and an archive whose `Cargo.toml` names the same crate and version. The largest crate is 10 MiB by default (`CARGO_MAX_CRATE_SIZE`), within the installation's limit, for a repository without its own size limit. A repository's own size limit (its **Largest artifact** setting) replaces it, larger or smaller: that's how to change it for one repository.",
                 "A version can **never be replaced**: every `Cargo.lock` that uses it pins its checksum. New Cargo repositories publish **once**. Deleting a version (Delete permission) is the only way to free it.",
                 "Names compare as cargo does: `My_Crate` and `my-crate` are one crate, kept under the spelling it was first published with.",
                 "**Yank** (`cargo yank --version 1.0.0`, undo with `--undo`, or **Yank this version** and **Undo the yank** on the version's page in the [browser](browse.html)): new lock files skip the version, projects that already use it keep building.",
@@ -504,7 +517,7 @@ FORMATS = [
             P("Crates show by name, then their versions. The Overview shows the description, license, authors, owners, links, keywords, categories, minimum Rust version, edition, features, whether the version is yanked, and its docs; the README tab shows the crate's README; Dependencies lists normal, optional, build and dev dependencies. The quick facts show `cargo add` and the `Cargo.toml` line for the version."),
             H("Server settings"),
             TABLE(["Variable", "Default", "What it does"], [
-                ["`CARGO_MAX_CRATE_SIZE`", "`10485760` (10 MiB)", "The largest crate a repository without its own size limit takes, in bytes"],
+                ["`CARGO_MAX_CRATE_SIZE`", "`10485760` (10 MiB)", "The largest crate a repository without its own size limit takes, in bytes, within the installation's limit. A repository's own size limit replaces it, larger or smaller"],
                 ["`CARGO_DOCS_MAX_SIZE`", "`104857600` (100 MiB)", "A version's docs, unpacked, for repositories without their own limit"],
                 ["`CARGO_DOCS_MAX_FILES`", "`50000`", "Files in a version's docs"],
                 ["`CARGO_DOCS_BUILD_LEASE`", "`10m`", "How long a runner holds a build before another may take it (runners renew it while they work)"],
@@ -859,7 +872,7 @@ FORMATS = [
             CODE('git archive --format=zip --prefix=tools/ v1.2.0 > tools-1.2.0.zip\ncurl -f -u "me:$DEPOTEX_TOKEN" -T tools-1.2.0.zip \\\n  https://' + HOST + '/repository/my-space/php/packages/upload/acme/tools/1.2.0'),
             UL([
                 "The archive's `composer.json` must name the package in the address, and its version, when it has one, must be the same. Composer's version rules apply: `v1.0` and `1.0.0` are the same version.",
-                "A version can **never be replaced**; delete it (Delete permission) to free it. Archives are at most `COMPOSER_MAX_ARCHIVE_SIZE` (100 MiB), or the repository's own size limit if smaller.",
+                "A version can **never be replaced**; delete it (Delete permission) to free it. Archives are at most `COMPOSER_MAX_ARCHIVE_SIZE` (100 MiB by default), within the installation's limit, for a repository without its own size limit. A repository's own size limit (its **Largest artifact** setting) replaces it, larger or smaller: that's how to change it for one repository.",
                 "Only what belongs in repository metadata is served from `composer.json`: never its `scripts` or `config`.",
                 "Branches (`dev-main`, `1.x-dev`) are versions someone uploads; Depotex doesn't follow git.",
             ]),
@@ -887,7 +900,7 @@ FORMATS = [
             P("A version's page shows what its `composer.json` says (type, licence, authors, support links, the PHP version and extensions it needs), its dependencies (`require` and `require-dev`), its README and whether the package is abandoned. The **Install** bar shows `composer require`."),
             H("Server settings"),
             TABLE(["Variable", "Default", "Description"], [
-                ["`COMPOSER_MAX_ARCHIVE_SIZE`", "`104857600`", "Largest archive a hosted repository takes, in bytes (1 KiB–1 TiB), within the installation's and the repository's own limits"],
+                ["`COMPOSER_MAX_ARCHIVE_SIZE`", "`104857600`", "Largest archive a hosted repository without its own size limit takes, in bytes (1 KiB–1 TiB), within the installation's limit. A repository's own size limit replaces it, larger or smaller"],
             ]),
             H("Limits"),
             UL([

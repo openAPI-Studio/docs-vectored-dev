@@ -12,11 +12,11 @@ from engine import H, P, UL, NOTE, TABLE, SHOT
 from content import PAGES
 
 INTRO = [
-    P("Depotex is a self-hosted artifact repository: one place for the packages, container images, models and files your teams build and depend on. It serves 15 package formats to the tools developers already use, keeps copies of public registries close to your builds, and gives security and platform teams the controls around them: SBOMs and known vulnerabilities, quarantine, a block list, policies and a full audit log. It runs on a single server or as a cluster, with the same features either way."),
+    P("Depotex is a self-hosted artifact repository: one place for the packages, container images, models and files your teams build and depend on. It serves 18 package formats to the tools developers already use, keeps copies of public registries close to your builds, and gives security and platform teams the controls around them: SBOMs and known vulnerabilities, quarantine, a block list, policies and a full audit log. It runs on a single server or as a cluster, with the same features either way."),
     SHOT("dashboard-overview.png", "The dashboard: what needs attention, the installation's figures, spaces by size and the health of every part of the system"),
     H("What it does"),
     TABLE(["Capability", "What Depotex does"], [
-        ["**Hosts your packages**", "Maven, npm, PyPI, Docker and OCI images, Helm, Go, NuGet, Cargo, APT, YUM, Terraform and OpenTofu, Hugging Face, Git LFS, Composer and raw files, each with its own client: `mvn` and Gradle, `npm`/`pnpm`/Yarn, `pip`/`uv`/`twine`, `docker`, `helm`, `go`, `dotnet`, `cargo`, `apt`, `dnf`, `terraform init`, `huggingface_hub`, `git lfs`, `composer` and `curl`. See [Supported formats](docs/formats.html)."],
+        ["**Hosts your packages**", "Maven, npm, PyPI, Docker and OCI images, Helm, Go, NuGet, Cargo, APT, YUM, Terraform and OpenTofu, Hugging Face, Git LFS, Composer, RubyGems, Conda, Conan and raw files, each with its own client: `mvn` and Gradle, `npm`/`pnpm`/Yarn, `pip`/`uv`/`twine`, `docker`, `helm`, `go`, `dotnet`, `cargo`, `apt`, `dnf`, `terraform init`, `huggingface_hub`, `git lfs`, `composer`, `gem` and Bundler, `conda`/`micromamba`/`pixi`, `conan` and `curl`. See [Supported formats](docs/formats.html)."],
         ["**Caches public registries**", "Proxy repositories fetch from Maven Central, npm, PyPI, Docker Hub, an internal mirror or another Depotex, and keep a copy, so builds keep working when the internet doesn't. Upstreams are registered once, health-checked, and allowed per space. See [Upstreams](docs/upstreams.html)."],
         ["**Gives every format one address**", "Group repositories put hosted and proxy repositories behind one URL: downloads come from the first member that has the file, uploads go where rules say. Each space has a universal address per format, `/repository/<space>/<format>/`. See [Repository groups](docs/repository-groups.html)."],
         ["**Organises by team**", "[Spaces](docs/spaces.html) hold repositories and decide who uses them: private, internal or public, with Viewer, Developer, Maintainer and Owner roles for people, groups and service accounts, plus upload rules, cleanup policies and storage quotas."],
@@ -62,7 +62,7 @@ GROUPS = [
     ("Operations", ["branding-and-banners", "logging-and-audit", "system-check", "monitoring", "email", "scheduler", "licensing"]),
     ("Alerts & automation", ["alerts", "alerts-admin", "events", "policies", "automation", "plugins"]),
     ("Repositories", ["repositories"]),
-    ("Formats", ["formats", "maven", "npm", "pypi", "go", "helm", "nuget", "cargo", "apt", "yum", "terraform", "huggingface", "git-lfs", "composer", "rubygems", "docker", "raw"]),
+    ("Formats", ["formats", "maven", "npm", "pypi", "go", "helm", "nuget", "cargo", "apt", "yum", "terraform", "huggingface", "git-lfs", "composer", "rubygems", "conda", "conan", "docker", "raw"]),
     ("What's new", ["changelog"]),
 ]
 

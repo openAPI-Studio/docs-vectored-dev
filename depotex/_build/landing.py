@@ -190,7 +190,7 @@ def render(head, banner, slugs):
     <div style="max-width:820px">
       <div class="dx-pill"><span class="dx-dot"></span><span class="dx-soon">Coming soon</span><span style="width:1px;height:12px;background:var(--amberLine)"></span><span style="font-size:13px;color:var(--body)">In active development</span></div>
       <h1 style="font-size:clamp(40px,6vw,64px);line-height:1.04;font-weight:700;letter-spacing:-.038em;margin:0 0 22px;text-wrap:balance;color:var(--tx)">Every package your teams build and use, on a server you run.</h1>
-      <p style="font-size:clamp(17px,2.4vw,20px);line-height:1.6;color:var(--body);margin:0 0 34px;max-width:680px;text-wrap:pretty">Depotex is a self-hosted artifact repository for 15 package formats. It caches the public registries your builds depend on and gives security teams SBOMs, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.</p>
+      <p style="font-size:clamp(17px,2.4vw,20px);line-height:1.6;color:var(--body);margin:0 0 34px;max-width:680px;text-wrap:pretty">Depotex is a self-hosted artifact repository for 18 package formats. It caches the public registries your builds depend on and gives security teams SBOMs, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
         <a href="{D}getting-started.html" class="dx-btn">Read Getting Started <span aria-hidden="true">→</span></a>
         <a href="{D}kubernetes.html" class="dx-btn2">Docker &amp; Kubernetes</a>
@@ -212,7 +212,7 @@ def render(head, banner, slugs):
   <section id="formats" class="dx-sec">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px">
       <div style="max-width:640px">
-        <div class="dx-eyebrow">15 formats</div>
+        <div class="dx-eyebrow">18 formats</div>
         <h2 class="dx-h2" style="margin-bottom:14px">Works with the tools developers already use.</h2>
         <p class="dx-body" style="overflow-wrap:anywhere">Point your package manager at Depotex and keep your existing commands. Each space has one address per format: <code class="dx-code">/repository/&lt;space&gt;/&lt;format&gt;/</code></p>
       </div>
