@@ -281,7 +281,7 @@ def landing(pages, intro_blocks):
     # for the build's signature.
     import landing as page
     head = HEAD.format(title="Depotex: self-hosted artifact repository | Vectored",
-                       desc="Depotex: a self-hosted artifact repository for 15 package formats, with SBOMs, quarantine and policies, on one server or a cluster. From Vectored",
+                       desc="Depotex: a self-hosted artifact repository for 18 package formats, with SBOMs, quarantine and policies, on one server or a cluster. From Vectored",
                        favicon="../favicon.svg", up="../")
     return page.render(head, BANNER, {slug for slug, _ in pages})
 

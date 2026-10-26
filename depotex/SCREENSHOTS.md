@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-126 screenshots. Save each one into `depotex/assets/` using the
+148 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -65,6 +65,8 @@ realistic but fictional names and figures rather than real people's data.
       A repository's page: its address, setup for the package manager, and its contents
 - [ ] `upload.png`
       Upload: pick a hosted repository you can publish to, then add files
+- [ ] `repository-settings-proxy-checksums.png`
+      A proxy repository's Checksums set to Use the Security setting, with what that means at the moment: Strict
 - [ ] `repository-settings-tab.png`
       A repository's Settings tab: the Repository and Artifacts cards, with switches, choices and the largest artifact in MB
 - [ ] `repository-access-tab.png`
@@ -102,6 +104,49 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `terraform-login.png`
       The page terraform login opens: approve or deny the token for terraform on this computer
 
+## RubyGems (Ruby)
+
+- [ ] `rubygems-usage-hosted.png`
+      A hosted RubyGems repository's Usage tab: the Gemfile source block, bundle install and gem install with the repository's address
+- [ ] `rubygems-yank.png`
+      Yanking one platform's file of a version: the confirmation on the version's Overview
+- [ ] `rubygems-settings.png`
+      A RubyGems repository's settings: the owners-only and new-names switches, and the reserved gem names with their owners
+- [ ] `rubygems-usage-proxy.png`
+      A RubyGems proxy repository's Usage tab: the Gemfile source, the Bundler mirror and gem install
+- [ ] `rubygems-usage.png`
+      A RubyGems group's Usage tab: the group as the Gemfile source, the link to use it as Bundler's mirror of rubygems.org instead, and gem install; gem push through the group is on its Publish tab
+- [ ] `rubygems-version-platforms.png`
+      A gem version's Overview: the gemspec, the owners and the platforms table with each platform's file
+
+## Conda
+
+- [ ] `conda-usage.png`
+      Use this repository on a hosted conda channel: the channel for conda, micromamba and pixi, the credentials each reads, and the install and upload commands
+- [ ] `conda-web-upload.png`
+      Conda packages uploaded from the web: each file stored in the platform folder its info/index.json names
+- [ ] `conda-yank.png`
+      Yanking one build of a conda version: the broken linux-64 build ticked, with a reason
+- [ ] `conda-settings.png`
+      A conda repository's Conda card: Serve sharded repodata, with what micromamba and conda do after a change
+- [ ] `conda-group-settings.png`
+      A conda group's Conda card: Serve sharded repodata, and Hosted packages hide upstream packages of the same name
+- [ ] `conda-version-builds.png`
+      A conda version's page: its builds per platform with size and install-time scripts, and Yank in the version's menu
+
+## Conan (C/C++)
+
+- [ ] `conan-usage.png`
+      Use this repository on the Conan group a space uses by default: its universal address, the remote name, then the commands to add the remote first, turn ConanCenter off, sign in with an API token and install
+- [ ] `conan-proxy-usage.png`
+      Use this repository on a proxy of ConanCenter: add it as the first remote, turn ConanCenter off, sign in with an API token and install
+- [ ] `conan-group-settings.png`
+      A Conan group's Conan card: Hosted recipes hide upstream recipes of the same name, on (the default)
+- [ ] `conan-version-revisions.png`
+      A Conan version's page: the install command and its recipe revisions, the latest marked, with who published each, integrity and number of binaries
+- [ ] `conan-version-packages.png`
+      The binaries of a recipe revision: package ID, OS, architecture, compiler, build type and package revision of each
+
 ## Browse
 
 - [ ] `browse-search.png`
@@ -110,11 +155,15 @@ realistic but fictional names and figures rather than real people's data.
       The tree of a repository, with its address and setup instructions
 - [ ] `browse-version.png`
       A version: install command, overview, files, dependencies and security, with downloads and recent activity
+- [ ] `browse-version-file-picker.png`
+      A version with several files: the File picker under the Install bar, with the download and checksums following the file picked
 
 ## Upstreams
 
 - [ ] `upstreams-list.png`
       Upstreams: each registry's format, address, the spaces that use it and its health
+- [ ] `upstreams-test-not-conan-2.png`
+      Test connection on a Conan upstream whose address is a Conan 1 server: the failure, not a Conan 2 server, next to the form
 - [ ] `upstreams-hosts.png`
       An upstream whose file host is paused while its own address keeps answering
 
@@ -169,6 +218,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `blocklist-rules.png`
       Settings → Block list: the installation's rules
+- [ ] `blocklist-rule-range.png`
+      Adding a block-list rule for RubyGems with a RubyGems requirement as its version range
 
 ## Vibe artifacts
 
@@ -254,6 +305,8 @@ realistic but fictional names and figures rather than real people's data.
       A user's page: profile, sign-in and security, and groups
 - [ ] `groups-group.png`
       A group: its directories and members
+- [ ] `security-proxy-checksums.png`
+      Settings → Security → Proxy checksums: the switch, the formats whose new proxies start at it, and how it differs from a repository's own setting
 
 ## Single Sign-On
 

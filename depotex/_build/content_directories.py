@@ -414,6 +414,27 @@ DIRECTORIES = [
             WARN("With anonymous access on, anyone who can reach the server can download everything in public spaces, and their downloads aren't tied to a person in the audit log. Keep secrets and internal builds in private or internal spaces."),
             P("Turning it off leaves public spaces public, but only signed-in people can read them until you turn it back on. The change applies on every server at once and raises the `security.anonymous_access.update` event."),
 
+            H("Proxy checksums"),
+            P("**Settings → Security → Proxy checksums** (super admins: the `repository_settings:manage` permission; every license tier, though proxy repositories need Pro) decides what [proxy repositories](spaces.html#proxy-repositories) whose **Checksums** setting is **Use the Security setting** do when a file from their upstream doesn't match the checksum the upstream publishes for it. It is on by default and saved with the page's **Save**."),
+            SHOT("security-proxy-checksums.png", "Settings → Security → Proxy checksums: the switch, the formats whose new proxies start at it, and how it differs from a repository's own setting"),
+            TABLE(["Switch", "A file whose checksum doesn't match"], [
+                ["**On** (default)", "Is refused and not kept, as under **Strict**: the client gets an error (503 `checksum_mismatch`), or the last cached copy when the repository serves cached files while the upstream is down"],
+                ["**Off**", "Is served and a warning is logged, as under **Warn**"],
+            ]),
+            UL([
+                "It applies from the next download, on every server, to every proxy repository set to **Use the Security setting**.",
+                "A repository set to **Strict**, **Warn** or **Off** keeps its own setting: the switch never changes it. Change it in the repository's **Settings → Checksums**.",
+                "**Applies to** lists the formats whose new proxy repositories start at **Use the Security setting**: [RubyGems](rubygems.html), [Conda](conda.html) and [Conan](conan.html) so far, with more added one at a time (see [What is checked](spaces.html#what-is-checked)). New proxy repositories of the other formats start at **Warn**, and any proxy repository can be set to **Use the Security setting** in its settings.",
+                "A repository set to **Use the Security setting** shows on its **Settings** page whether that means **Strict** or **Warn** at the moment, so its admins can tell without access to this page.",
+                "Files are checked when a proxy keeps them. A proxy set to **Pass through** doesn't check.",
+                "Until a super admin saves the switch, the server's `PROXY_STRICT_CHECKSUMS` setting applies (on unless set to `false`; see [Repository settings](repository-settings.html#defaults-for-operators)).",
+                "Changing it raises `repository_settings.proxy_checksums.update`, which subscribers and policies can refuse, and is recorded in the audit log.",
+            ]),
+            NOTE("This is not **Verify checksums** in [Settings → Integrity](integrity.html), which re-reads files already in storage to find damaged ones. Proxy checksums is about files arriving from an upstream."),
+            P("The switch decides what repositories set to it do; it doesn't stop anyone choosing **Warn** or **Off** for a repository they create or administer. To require **Strict** for new proxy repositories, add an organization [policy](policies.html) on `depot.repository.create`, for example the condition `payload.type == \"proxy\" && payload.checksum_policy != \"strict\"` with the effect deny. Its [Compliance](policies.html#compliance-checking-what-already-exists) tab then lists the existing proxy repositories that aren't **Strict**."),
+            WARN("The **New repository** dialog has no **Checksums** choice: a proxy repository created there starts at **Warn**, or at **Use the Security setting** for the formats listed under **Applies to**. With the policy above, creating a proxy repository in the dialog is therefore refused, and proxy repositories are created through the API with `settings.proxy.checksumPolicy` set to `strict` (see [Proxy repositories](spaces.html#proxy-repositories)). To keep the dialog working for the listed formats, use the condition `payload.type == \"proxy\" && !(payload.checksum_policy in [\"strict\", \"default\"])` instead: it also accepts **Use the Security setting**, which is **Strict** only while this switch is on."),
+            NOTE("During an upgrade of a cluster, servers still on the previous version treat **Use the Security setting** as **Warn**, and saving a repository set to it is refused there. Finish the upgrade on every server."),
+
             H("Failed attempts and lockout"),
             P("Depotex protects accounts against password guessing in two ways:"),
             TABLE(["Protection", "What happens", "Default"], [

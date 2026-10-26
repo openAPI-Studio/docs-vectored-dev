@@ -10,7 +10,7 @@ GROUPS = [
         blocks=[
             H("Overview"),
             P("A **group** is a repository that combines other repositories of the same format in a space. Package managers use one address for everything: reads are answered by the first member that has the file, in the order you set (the hierarchy), and package listings combine every member; uploads go to one hosted member chosen by the group's write rules. Proxy members are never written to. Groups are available on every license tier."),
-            NOTE("Groups work for every format: raw, Maven, npm, PyPI, Go, Helm, NuGet and Docker."),
+            NOTE("Groups work for every format: Maven, npm, PyPI, Go, Helm, Terraform, NuGet, Cargo, APT, YUM, Composer, RubyGems, Conda, Conan, Hugging Face, Git LFS, Docker and raw."),
 
             H("Set up a group"),
             P("Open the space's **Repositories** tab. Repositories are shown in a lane per format: the format's universal URL at the top, each group with its members in the order they're asked (a group inside a group is indented), then the repositories in no group. The repository that takes uploads is marked **Takes uploads**, and a member limited to some paths or packages shows them."),
@@ -41,12 +41,12 @@ curl -u me:$TOKEN -T app-1.1.zip https://depotex.example.com/repository/acme/raw
                 "Members are hosted, proxy or other group repositories of the group's format in the same space, at most 50. A group inside a group is flattened into the hierarchy (at most 5 levels; groups can't contain each other).",
                 "Put hosted members before proxies. A proxy asked first means every internal package costs a request to the upstream, and could be answered by it.",
                 "Each member can be limited to some paths or packages: asked for **everything**, **only** what a pattern matches, or everything **except** what a pattern matches. For example, never ask Maven Central for `^com/acme/`: your own packages then can't be replaced by a public package with the same name (dependency confusion).",
-                "Patterns are regular expressions (RE2), on the **path** inside the repository or on the **package**: Maven `groupId:artifactId`, npm name, PyPI project, Go module path, Helm chart, NuGet package ID (lower case), Docker image.",
+                "Patterns are regular expressions (RE2), on the **path** inside the repository or on the **package**: Maven `groupId:artifactId`, npm name, PyPI project, Go module path, Helm chart, NuGet package ID (lower case), RubyGems gem, conda package, Conan recipe name, Docker image.",
                 "Members that are offline, or that the person can't read, are skipped.",
             ]),
 
             H("Where uploads go"),
-            P("Write rules are checked in order; the first that matches decides. A rule matches a path or package pattern, and optionally only release or only snapshot versions (as the space's upload rules define snapshots; `-SNAPSHOT` by default). For Go, Helm and NuGet the choice reads **Pre-releases**, and matches versions with a pre-release label such as `1.0.0-rc.1` or `v2.0.0-beta.2`. It sends the upload to a hosted member of the group (nested groups included), or refuses it. npm and Docker route by package or image only: version conditions don't apply to them. When no rule matches, the upload goes to the group's **default write repository**; without one the group doesn't take uploads. Rules match whole packages and versions, so every file of a version lands in the same repository. That repository's own write policy, upload rules and quota still apply, and the person needs permission to publish there."),
+            P("Write rules are checked in order; the first that matches decides. A rule matches a path or package pattern, and optionally only release or only snapshot versions (as the space's upload rules define snapshots; `-SNAPSHOT` by default). For Go, Helm, Terraform, NuGet, Cargo, RubyGems, Conda, Conan, APT and YUM the choice reads **Pre-releases**, and matches the versions the format counts as pre-releases, such as `1.0.0-rc.1`, `v2.0.0-beta.2`, RubyGems' `1.2.0.rc1` or Debian's and RPM's `1.0~rc1`. It sends the upload to a hosted member of the group (nested groups included), or refuses it. npm and Docker route by package or image only: version conditions don't apply to them. When no rule matches, the upload goes to the group's **default write repository**; without one the group doesn't take uploads. Rules match whole packages and versions, so every file of a version lands in the same repository. That repository's own write policy, upload rules and quota still apply, and the person needs permission to publish there."),
             P("If the repository a rule sends uploads to is deleted, uploads matching that rule are refused rather than sent elsewhere."),
 
             H("Limits on the group"),
@@ -54,9 +54,10 @@ curl -u me:$TOKEN -T app-1.1.zip https://depotex.example.com/repository/acme/raw
                 "**Read deny list**: paths or packages the group never serves, from any member.",
                 "**Largest download** and **largest upload** through the group.",
             ]),
+            P("The largest upload also applies to an upload sent without its size (chunked): it is refused as soon as it passes the limit, and nothing of it is stored."),
 
             H("Universal URLs"),
-            P("One group per format can be the space's **default**. It then also answers at the format's universal URL, `https://<depotex>/repository/<space>/<format>/` (for example `/repository/acme/maven/`), so every project in the space can use the same address. For NuGet, the source address is the universal URL's service index, `…/repository/<space>/nuget/index.json`. Format names (`maven`, `npm`, `pypi`, `go`, `helm`, `nuget`, `docker`, `raw`) can't be used as repository names. A repository created earlier with such a name keeps its address; rename or delete it before making a group the default for that format."),
+            P("One group per format can be the space's **default**. It then also answers at the format's universal URL, `https://<depotex>/repository/<space>/<format>/` (for example `/repository/acme/maven/`), so every project in the space can use the same address. For NuGet, the source address is the universal URL's service index, `…/repository/<space>/nuget/index.json`. Format names (`maven`, `npm`, `pypi`, `go`, `helm`, `terraform`, `nuget`, `cargo`, `apt`, `yum`, `composer`, `rubygems`, `conda`, `conan`, `huggingface`, `gitlfs`, `docker`, `raw` and `vibe`) can't be used as repository names. A repository created earlier with such a name keeps its address; rename or delete it before making a group the default for that format."),
 
             H("Maven groups"),
             P("A Maven group combines `maven-metadata.xml` from every member, so a build sees every version: your releases, your snapshots and Maven Central's, with `latest` and `release` worked out across them (its checksum files match the combined file). Jars, POMs and a snapshot's build metadata come from the first member that has them."),
@@ -112,6 +113,18 @@ curl -u me:$TOKEN -T app-1.1.zip https://depotex.example.com/repository/acme/raw
                 "`docker login depotex.example.com` once covers the group and its members.",
                 "`docker search` and the registry catalog list the members' images, not the group.",
             ]),
+
+            H("RubyGems groups"),
+            P("A RubyGems group is one source for Bundler and `gem`: each gem's `info` file and the list of every gem combine the members, gems come from the first member that has them, and `gem push` goes to the repository the write rules choose by the gem's name and version (yanks and owner changes to the first hosted member that has the gem). A gem name a hosted member has, or has reserved, gets no versions from proxy members, in any casing and for everyone: a public gem of the same name can't stand in for yours. The group's **Settings** tab turns this off. See [RubyGems repositories](rubygems.html#groups)."),
+            CODE('bundle config set --global https://depotex.example.com/repository/acme/rubygems/ "me:$TOKEN"\n# Gemfile\nsource "https://depotex.example.com/repository/acme/rubygems/"'),
+
+            H("Conda groups"),
+            P("A conda group is one channel for conda, micromamba and pixi: its sharded repodata, `repodata.json` and `run_exports.json` merge every member's (a package file two members have comes from the first), and `rattler-build upload` goes to the repository the write rules choose by package name and version. A package name any hosted member has gets nothing from proxy members, downloads included, unless the group's **Hosted packages hide upstream packages of the same name** is turned off. See [Conda channels](conda.html#groups)."),
+            CODE("conda install --override-channels -c https://depotex.example.com/repository/acme/conda/ my-tool"),
+
+            H("Conan groups"),
+            P("A Conan group is one remote for Conan 2: `conan list`, `conan search`, a reference's revisions and a recipe revision's binaries combine every member's, the latest revision and each file come from the first member that has them, and `conan upload` sends each revision to the repository the write rules choose by recipe name and version. A recipe name any hosted member has gets nothing from proxy members, downloads included, unless the group's **Hosted recipes hide upstream recipes of the same name** is turned off; the binaries of a recipe revision a hosted member has still come from every member (from a proxy only when its copy of the recipe's manifest hashes to that revision). See [Conan repositories](conan.html#groups)."),
+            CODE("conan remote add acme-conan https://depotex.example.com/repository/acme/conan --index 0"),
 
             H("Check what a group does"),
             P("The dry run answers, without downloading or storing anything, which members a read would ask and why others are skipped, or where an upload would go and which rule decided."),
