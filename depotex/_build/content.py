@@ -43,6 +43,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-10-29", "Clustering", "Jobs that repeat at an interval (system check, vulnerability sync, quarantine expiry and others) now run on one server per interval instead of on every server of a cluster."),
     ("2026-10-29", "Performance", "Many uploads at once into one space no longer wait for each other: in a cluster of three servers, uploads are about 60% faster and their slowest responses about 2.5 times quicker."),
     ("2026-10-29", "Installation", "Pool settings in `DATABASE_URL` (`pool_max_conns` and the other `pool_` options) no longer make setup and upgrades fail with \"unrecognized configuration parameter\"."),
     ("2026-10-29", "Block list", "In a cluster, a block list's dry run (Check) now includes a rule saved on another server a moment ago, instead of up to 5 seconds later."),
