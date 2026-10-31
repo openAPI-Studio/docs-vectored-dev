@@ -1,0 +1,21 @@
+[
+ ["intro","This is Maya."],
+ ["intro","Last night, she built an entire app, without writing a single line of code herself."],
+ ["intro","She described what she wanted, and an AI wrote it for her."],
+ ["world","This is vibe coding. And millions of people are doing it, every single day."],
+ ["world","Apps that took a team months now take one person an afternoon."],
+ ["crack","But there's a catch. Nobody is keeping track of what the AI actually built."],
+ ["secret","Somewhere in Maya's code, there's a secret key, pasted in plain text, for anyone to find."],
+ ["package","The AI also added a package that doesn't exist. Or one that's a single letter off a popular one. Exactly the kind of name an attacker loves to register."],
+ ["hidden","In the files that tell the AI what to do, there are characters no human can see. But the AI reads them, and follows them."],
+ ["broken","And when the next change breaks everything, there's no record of the last version that worked. The context, the screenshots, the reasons why, all lost somewhere in a chat history."],
+ ["rope","Vibe code is shipping without a safety net."],
+ ["depot","So we built one. Depotex gives every vibe-coded project a safe home."],
+ ["checkin","Each time the AI finishes a change, it checks in: the code, its memory, the known gaps, and screenshots of what it built."],
+ ["gate","Every push is checked on the way in. Secrets and hidden characters are refused at the door."],
+ ["gate","Made-up and look-alike packages are flagged, before anyone installs them."],
+ ["rollback","And when a change breaks the tests, Depotex knows the last check-in that passed, so the AI can go straight back to it."],
+ ["mcp","AI tools push and pull projects directly. And people can find any project, by name, by date, or by what it looks like."],
+ ["outro","So keep vibing. Just don't lose the plot."],
+ ["logo","Depotex. By Vectored."]
+]
