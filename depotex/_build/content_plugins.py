@@ -109,6 +109,7 @@ PLUGINS = [
                 ["`get_download_link`", "A short-lived link to download one file of a version. Without a path it links to the main file, and for a version with several files (wheels and a source archive, a jar and its POM, builds for different platforms) it also lists them, so the AI application can ask for the one it needs"],
                 ["`search_docs`, `get_doc`, `list_doc_sources`", "Search and read the documentation inside artifacts, and see what is indexed"],
                 ["`quarantine_version`, `release_from_quarantine`", "Write tools: quarantine or release a version, with a reason (its settings add a prefix such as \"AI agent: \")"],
+                ["`promote_version`", "Write tool: [promote](spaces.html#promotion) a version to another repository of its format, or move it there; the person needs to download it and publish to the target (Pro)"],
                 ["`vibe_search`, `vibe_versions`, `vibe_pull`, `vibe_list_files`, `vibe_get_file`, `vibe_diff`", "Enterprise, while vibe artifacts are on: find, pull and compare vibe projects (see [Vibe artifacts](vibe-artifacts.html#use-vibe-projects-from-ai-tools))"],
                 ["`vibe_push_begin`, `vibe_push_commit`", "Write tools, Enterprise: publish a vibe project as a new check-in; the answer has the check-in's link in the Vibe browser"],
             ]),

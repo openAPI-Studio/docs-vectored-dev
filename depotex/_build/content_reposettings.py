@@ -40,6 +40,10 @@ REPO_SETTINGS = [
             P("Each certificate is marked **Valid**, **Expires in N days** (30 days or less) or **Expired**; select it to see its subject, issuer, expiry and SHA-256 fingerprint. **Add certificate** opens the paste and load-from-a-server forms. Removing one stops trusting registries it signed. Up to 100 certificates."),
             WARN("**Load from a server** connects directly, not through the outbound proxy. Check the fingerprint with the registry's owner before trusting a certificate."),
 
+            H("Metadata of every repository"),
+            P("Super admins (or anyone with the depot write permission) can check or repair the metadata of every hosted and proxy repository at once, or of one format's, in the **Metadata of every repository** card: choose a format (or **All formats**) and select **Check all** or **Repair all**. One rebuild per repository is queued and run in the background, one at a time; repositories that already have one queued or running are skipped. The card lists the latest results, each linking to the repository, whose own **Metadata** card has the details. See [Rebuild metadata](spaces.html#rebuild-metadata) for what a check and a repair do."),
+            SHOT("settings-repositories-metadata.png", "The Metadata of every repository card: a format choice, Check all and Repair all, and the latest results per repository"),
+            P("Through the API: `POST /api/repair` with `{\"mode\": \"check\"}` or `{\"mode\": \"repair\"}` and an optional `format`, and `GET /api/repair` for what is queued or running and the latest results."),
             H("Defaults for operators"),
             TABLE(["Environment variable", "Default", "Meaning"], [
                 ["`REPOSITORY_MAX_ARTIFACT_SIZE`", "10737418240 (10 GB)", "Largest artifact in bytes until a super admin saves settings (1 MB to 1 TB)"],

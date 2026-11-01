@@ -43,6 +43,11 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-01", "Promotion", "Pro: [promote](spaces.html#promotion) versions to another repository of their format, in the same space or another, by id or by tag, copied or moved (the source keeps them in its trash), from a tag's Promote button, a version's menu, the API, in the background for up to 5000 versions, or by an AI agent's promote_version tool; works for every format that takes browser uploads and for Docker images, and a policy can require tags first."),
+    ("2026-11-01", "Tags", "Pro: spaces have [tags](spaces.html#tags) with a description and attributes to put on versions from the Tags tab, the API or CI uploads (the X-Depotex-Tag header); tags show on version pages and in search results, and cleanup policies can keep tagged versions."),
+    ("2026-11-01", "Repositories", "A repository's Metadata card checks or repairs what it serves to clients against its stored files (index files, package lists, manifest records), and Settings → Repositories does it for every repository or every one of a format; [Rebuild metadata](spaces.html#rebuild-metadata)."),
+    ("2026-11-01", "Cleanup", "Versions a cleanup policy removed can be restored from the space's new [Trash](spaces.html#trash) tab or purged for good at once, and a policy's last run can be undone in one step."),
+    ("2026-11-01", "Proxy repositories", "A proxy's Proxy cache card has Re-check now, which makes it ask its upstream again for everything it cached, and lists the remembered \"not found\" answers so you can forget one, a folder or all of them; see [Re-check with the upstream](spaces.html#re-check-with-the-upstream)."),
     ("2026-10-29", "Clustering", "Jobs that repeat at an interval (system check, vulnerability sync, quarantine expiry and others) now run on one server per interval instead of on every server of a cluster."),
     ("2026-10-29", "Performance", "Many uploads at once into one space no longer wait for each other: in a cluster of three servers, uploads are about 60% faster and their slowest responses about 2.5 times quicker."),
     ("2026-10-29", "Installation", "Pool settings in `DATABASE_URL` (`pool_max_conns` and the other `pool_` options) no longer make setup and upgrades fail with \"unrecognized configuration parameter\"."),
@@ -326,7 +331,7 @@ location / {
             H("Tiers"),
             TABLE(["Tier", "Adds, for example"], [
                 ["**Standard**", "Spaces with hosted and group repositories in every format, the artifact browser, users and groups, backups, email and viewing scheduled jobs"],
-                ["**Pro**", "Proxy repositories, clustering (several servers), the [system check](system-check.html), the audit log, [policies](policies.html), [automation](automation.html), [plugins](plugins.html), API token IP allowlists and rotation"],
+                ["**Pro**", "Proxy repositories, [tags](spaces.html#tags) and [promotion](spaces.html#promotion), clustering (several servers), the [system check](system-check.html), the audit log, [policies](policies.html), [automation](automation.html), [plugins](plugins.html), API token IP allowlists and rotation"],
                 ["**Enterprise**", "[Single sign-on](single-sign-on.html), [quarantine](quarantine.html), the [block list](blocklist.html), [branding](branding-and-banners.html), [vibe artifacts](vibe-artifacts.html) and managing everyone's API tokens"],
             ]),
             P("Each feature's page says which tier it needs. A feature the license doesn't cover shows what it would need instead of its settings, and its API answers `402 license_required`."),

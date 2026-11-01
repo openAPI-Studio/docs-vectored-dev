@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-148 screenshots. Save each one into `depotex/assets/` using the
+156 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -67,10 +67,22 @@ realistic but fictional names and figures rather than real people's data.
       Upload: pick a hosted repository you can publish to, then add files
 - [ ] `repository-settings-proxy-checksums.png`
       A proxy repository's Checksums set to Use the Security setting, with what that means at the moment: Strict
+- [ ] `repository-settings-proxy-cache.png`
+      A proxy repository's Proxy cache card: Re-check now, and the remembered “not found” paths with when each is asked for again, a filter and Forget all
 - [ ] `repository-settings-tab.png`
       A repository's Settings tab: the Repository and Artifacts cards, with switches, choices and the largest artifact in MB
+- [ ] `repository-settings-metadata.png`
+      A Helm repository's Metadata card after a check: two chart archives missing from index.yaml, with Check and Repair
 - [ ] `repository-access-tab.png`
       A repository's Access tab: repository roles and path access, each with a row to add someone
+- [ ] `spaces-trash.png`
+      A space's Trash tab: trashed Maven versions with the cleanup policy that removed them, their size, when, and Restore
+- [ ] `spaces-cleanup-undo-run.png`
+      A cleanup policy's row with its last run and the button that restores what that run removed
+- [ ] `spaces-tags.png`
+      A space's Tags tab: two tags with their description and attributes, one opened to the four Maven versions it carries
+- [ ] `spaces-tags-promote.png`
+      The Promote dialog for a tag: source repository, target repository in another space, Move and Run in the background
 - [ ] `spaces-create-quota.png`
       New space: the storage quota section, prefilled with the installation default of 50 GB, with No limit and the warning threshold
 - [ ] `spaces-members.png`
@@ -153,6 +165,8 @@ realistic but fictional names and figures rather than real people's data.
       Browse: search every repository you can see, filter by space, format and type
 - [ ] `browse-tree.png`
       The tree of a repository, with its address and setup instructions
+- [ ] `browse-version-tags.png`
+      A version's heading: name, version menu, status and its two tags, with Download
 - [ ] `browse-version.png`
       A version: install command, overview, files, dependencies and security, with downloads and recent activity
 - [ ] `browse-version-file-picker.png`
@@ -173,6 +187,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Repositories: largest artifact, timeouts, retries, outbound proxy and a connection test
 - [ ] `repository-settings-default-quota.png`
       Settings → Repositories → Artifacts: the default storage quota for new spaces, 50 GB, warn at 80%
+- [ ] `settings-repositories-metadata.png`
+      The Metadata of every repository card: a format choice, Check all and Repair all, and the latest results per repository
 
 ## Storage
 

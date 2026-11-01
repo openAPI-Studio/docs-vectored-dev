@@ -81,7 +81,7 @@ SPACES = [
                 "**Caching**: **Keep files** stores each file the first time it's asked for (it counts toward the space's quota); **Pass through** stores nothing.",
                 "Files are re-checked with the upstream after their age (**Re-check artifacts after**, **Re-check metadata after**); an unchanged file isn't downloaded again.",
                 "**Metadata paths** (one pattern per line, such as `dist/channel-*`) are files the upstream changes in place although the format can't tell (raw files): they're re-checked at the metadata age. See [Rust toolchains](raw.html#rust-toolchains).",
-                "**Remember “not found”** (minutes; 1440, a day, by default; 0 turns it off; at most 43200) saves asking the upstream again for files it doesn't have. Only a *not found* answer (404 or 410) is remembered, never an error, a timeout or refused credentials. It applies only to files with no copy here: a cached file is still served even if the upstream no longer has it. Every server shares what was remembered. A remembered file stays *not found* until the time is up, even if it appears upstream meanwhile (for example a version published minutes after a build asked for it), so keep the time short for upstreams that publish often.",
+                "**Remember “not found”** (minutes; 1440, a day, by default; 0 turns it off; at most 43200) saves asking the upstream again for files it doesn't have. Only a *not found* answer (404 or 410) is remembered, never an error, a timeout or refused credentials. It applies only to files with no copy here: a cached file is still served even if the upstream no longer has it. Every server shares what was remembered. A remembered file stays *not found* until the time is up, even if it appears upstream meanwhile (for example a version published minutes after a build asked for it), so keep the time short for upstreams that publish often, or forget the answer ([below](#re-check-with-the-upstream)).",
                 "A `HEAD` request never downloads a file.",
                 "**Checksums**: compare each fetched file with the checksum the upstream publishes: **Strict** refuses a mismatch, **Warn** serves it and logs a warning, **Off** doesn't compare. **Use the Security setting** follows [Settings → Security → Proxy checksums](users-and-directories.html#proxy-checksums): Strict while it is on, Warn while it is off; the repository's settings (and `checksumPolicyEffective` when the API returns one repository) show which of the two it is at the moment. New proxy repositories start at **Warn**, or at **Use the Security setting** for the formats listed under [What is checked](#what-is-checked); settings sent when creating a repository through the API win, and changing the Security setting never changes a repository set to Strict, Warn or Off.",
                 "While the upstream is unreachable, cached files are served even past their age (**Serve cached files…**), and an upstream that keeps failing is paused for a while.",
@@ -90,6 +90,11 @@ SPACES = [
                 "Going to the upstream needs the **fetch from upstream** permission (every role has it); without it, people only get what's cached. When the space is over its quota, files are passed through without being kept.",
             ]),
             SHOT("repository-settings-proxy-checksums.png", "A proxy repository's Checksums set to Use the Security setting, with what that means at the moment: Strict"),
+            H("Re-check with the upstream"),
+            P("Each proxy repository's **Settings** tab has a **Proxy cache** card for repository admins. **Re-check now** makes the proxy ask its upstream again: every cached file is re-checked on its next request, whatever its age, and every remembered *not found* is forgotten. Files that didn't change aren't downloaded again, and files kept forever (**Re-check artifacts after** set to -1) stay as they are. Use it after the upstream replaced files or published packages a build is waiting for. For RubyGems proxies it also fetches the upstream's list of gems again, so new versions show at once."),
+            P("When a package was published upstream just after a build looked for it, the proxy keeps answering *not found* until the remembered answer expires. The **Remembered “not found”** list in the same card shows each remembered path and when it will be asked for again. Type a path or folder (such as `com/acme/`) and select **Filter** to narrow the list. The eraser button beside a path forgets that path; **Forget all** (or **Forget all under** the folder you filtered by) forgets the rest. Every server forgets at once."),
+            SHOT("repository-settings-proxy-cache.png", "A proxy repository's Proxy cache card: Re-check now, and the remembered “not found” paths with when each is asked for again, a filter and Forget all"),
+            P("Through the API (repository Admin role): `POST /api/spaces/{space}/repositories/{repository}/proxy/invalidate` re-checks everything, or only under `{\"prefix\": \"com/acme/\"}`; `GET /api/spaces/{space}/repositories/{repository}/proxy/not-found` lists remembered paths (`prefix`, `cursor`, `limit`), and `DELETE` on it forgets one (`?path=`), those under a folder (`?prefix=`) or all. Each raises the `proxy.cache.invalidate` event, so a [policy](policies.html) can refuse it or [automation](automation.html) can report it."),
             NOTE("Behind a load balancer, route `/repository/`, `/v2/` and `/v1/search` (Docker) straight to the backend servers for the best throughput on large files; the web frontend also forwards them."),
             H("What is checked"),
             P("A proxy repository that keeps files compares each one, before keeping it, with a checksum from the upstream: the one in the format's own index or metadata where the format has one, otherwise the upstream's `X-Checksum-*` response headers or a `.sha256`, `.sha1` or `.md5` file next to it. A file the upstream publishes no checksum for is kept without a comparison."),
@@ -122,6 +127,16 @@ SPACES = [
                 ["Proxy (proxy repositories)", "Keep fetched files or pass them through; how long artifacts and metadata are served before asking the upstream again; how long \"not found\" is remembered; what to do when a checksum doesn't match (Strict, Warn, Off, or **Use the Security setting**); pause an upstream that keeps failing; serve cached files while the upstream is down."],
             ]),
             NOTE("These settings are saved now and apply as each package format arrives."),
+            H("Rebuild metadata"),
+            P("Some formats keep what they serve to clients beside the files (Helm's `index.yaml` is made from each chart's Chart.yaml, read when it was uploaded). If that gets out of line with the stored files, for example after a restore from an old backup, repository admins can rebuild it from the files in the **Metadata** card of the repository's **Settings** (not for groups, which keep nothing of their own)."),
+            UL([
+                "**Check** compares and lists what is out of line (the first 50), without changing anything.",
+                "**Repair** also fixes it: what is missing is read again from the files, and the repository's versions are inspected and indexed again afterwards.",
+                "Rebuilds run in the background within a minute (the **repository-repair** job); the card shows the latest one and its report. A second request while one is queued or running gets that one.",
+                "npm, PyPI, NuGet, Composer, RubyGems, Conda, Helm, YUM, Docker and Terraform rebuild what they serve from the files (for Docker, the manifest records that referrers and garbage collection rely on). APT, Cargo and Conan can only list files missing from their indexes: a package's distributions, a crate's index entry and a recipe revision come from the upload, so upload or publish those again. For Maven, Go and raw, which build their metadata on each request, and Hugging Face, whose commits are kept apart from the files, a repair inspects and indexes the versions again.",
+            ]),
+            SHOT("repository-settings-metadata.png", "A Helm repository's Metadata card after a check: two chart archives missing from index.yaml, with Check and Repair"),
+            P("Through the API (repository Admin role): `POST /api/spaces/{space}/repositories/{repository}/repair` with `{\"mode\": \"check\"}` or `{\"mode\": \"repair\"}`, and `GET` on the same address for the latest rebuild. Each raises `repository.repair` when asked (policies can refuse it) and when run, with its report."),
             H("Repository access"),
             P("Space roles apply to every repository in the space: viewers browse and download, developers also publish, maintainers and owners also overwrite, delete and administer. A repository's **Access** tab gives people more, on that repository only:"),
             UL([
@@ -165,10 +180,60 @@ SPACES = [
                 ["**Always keep versions matching**", "A regular expression; matching versions are kept."],
                 ["**Only remove versions matching**", "A regular expression; versions that don't match are kept."],
                 ["**Match patterns against the component and version**", "Patterns match `component/version` (for example `example.com/mod/v1.2.0`) instead of the version alone."],
+                ["**Keep versions that carry a tag**", "Versions with any of the space's [tags](#tags) are never removed, so a release candidate or an approved build stays while it's tagged. They still count among the newest versions kept."],
             ]),
             P("Every condition you set must hold. **Preview** lists what the policy would remove right now, without removing anything, and **Download CSV** exports the whole list. The preview warns when the plan includes hosted Go versions: `go.mod` and `go.sum` pin exact versions, so builds that still need a removed one fail. Each policy shows when it last ran and what it removed."),
             NOTE("Cleanup starts working as soon as repositories in the space store files; until then policies can be prepared."),
             P("Changes raise `space.cleanup_policy.create`, `.update` and `.delete` (which organization policies can restrict) and every run raises `cleanup.run`, so automation can alert you when one fails."),
+
+            H("Trash"),
+            P("Versions a cleanup policy removed wait in the space's **Trash** tab, visible to maintainers and owners (whoever may delete the space's artifacts). While there, they're hidden from package managers and don't count toward the space's quota. The tab lists them newest first with the policy that removed them, their size and when; search by name to find one."),
+            SHOT("spaces-trash.png", "A space's Trash tab: trashed Maven versions with the cleanup policy that removed them, their size, when, and Restore"),
+            UL([
+                "**Restore** brings a version back as it was: downloadable again, listed in its format's metadata, and counted toward the quota. A restore that wouldn't fit in the quota is refused.",
+                "Tick several versions to restore them together, or to **Purge** them: they're deleted for good at once instead of when the trash is emptied, after you confirm.",
+                "To undo a whole run, select the restore button on the policy's row in **Settings → Cleanup**: everything that run moved to the trash comes back, except versions purged or uploaded again since.",
+                "The trash is emptied after 7 days by default (the **space-trash-purge** job). A version uploaded again while in the trash replaces the trashed one.",
+            ]),
+            SHOT("spaces-cleanup-undo-run.png", "A cleanup policy's row with its last run and the button that restores what that run removed"),
+            P("Through the API (the space's **delete artifacts** permission): `GET /api/spaces/{space}/trash` lists the trash (`q`, `repository`, `reason`, `cursor`, `limit`); `POST /api/spaces/{space}/trash/restore` and `POST /api/spaces/{space}/trash/purge` take `{\"ids\": [...]}` or `{\"reason\": ...}`, where a policy's `lastRunReason` names its last run. Restoring raises `artifact.restore` and purging `artifact.purge`, so [policies](policies.html) can refuse them and automation can report them; both are in the audit log. Available on every license tier."),
+
+            H("Tags"),
+            P("A tag names versions that belong together, such as everything one CI build published, with a description and attributes (the commit, the pipeline, a ticket). Find a space's tags on its **Tags** tab: each shows how many versions carry it, and **Versions** lists them, newest tagged first, in the repositories you can see. Tags belong to their space; a version can carry several."),
+            SHOT("spaces-tags.png", "A space's Tags tab: two tags with their description and attributes, one opened to the four Maven versions it carries"),
+            UL([
+                "**New tag** adds one: a name (letters, digits, dots, dashes and underscores; it can't be changed later), a description and attributes as a JSON object. Developers, maintainers and owners can add and change tags; maintainers and owners can remove them (the versions stay).",
+                "**Tag versions** puts a tag on the versions you choose by repository, name and version, with `*` for any run of characters and `?` for one (for example version `2.4.*`); at most 1000 at a time. The cross next to a version takes the tag off.",
+                "From CI, tag what you publish as you upload it: send the header `X-Depotex-Tag: build-1042` (several tags comma-separated, up to 20) with the upload to any `/repository/...` address. The tag must already exist in the space; an unknown one refuses the upload, so a typo doesn't go unnoticed.",
+            ]),
+            CODE("""# Create the tag once per build, then publish with it
+curl -X POST -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/json" \\
+  https://depotex.example.com/api/spaces/acme/tags \\
+  -d '{"name": "build-1042", "attributes": {"commit": "3f2a9c1"}}'
+curl -T billing-api-2.4.1.jar -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "X-Depotex-Tag: build-1042" \\
+  https://depotex.example.com/repository/acme/releases/com/acme/billing-api/2.4.1/billing-api-2.4.1.jar"""),
+            P("Through the API: `GET` and `POST /api/spaces/{space}/tags`; `GET`, `PUT` and `DELETE /api/spaces/{space}/tags/{tag}`; `GET /api/spaces/{space}/tags/{tag}/versions`; and `POST /api/spaces/{space}/tags/{tag}/associate` or `/disassociate` with `{\"ids\": [...]}` or `{\"repositories\": [...], \"format\": ..., \"name\": ..., \"version\": ...}`. Adding, changing and removing a tag raise `tag.create`, `tag.update` and `tag.delete`, and putting one on versions or taking it off raises `artifact.tag`, so [policies](policies.html) can refuse them (refusing a tag on upload refuses the upload) and [automation](automation.html) can report them; all are in the audit log."),
+            P("Tags also show next to the version in the [artifact browser](browse.html#a-version) and in search results, each linking to the space's **Tags** tab, and a [cleanup policy](#cleanup) can keep every tagged version."),
+            NOTE("Changing tags needs a **Pro** license. Without it, existing tags and the versions they carry stay readable, and uploads that send `X-Depotex-Tag` are refused."),
+
+            H("Promotion"),
+            P("Promotion copies versions from one repository into another of the same format, such as from a staging repository to the release repository once they've passed their checks, in the same space or another one. The target builds its own metadata from the copied files (its index, package documents, search) exactly as for an upload, and its upload rules, quota and [policies](policies.html) apply. The files' content is stored only once."),
+            UL([
+                "Choose the versions by id, or every version of the repository that carries one of the space's [tags](#tags), up to 100 at a time.",
+                "**Move** also takes the promoted versions out of the source: they wait in its [trash](#trash) (the reason says where they went), so a move can be undone.",
+                "Within a space, the copies carry the same tags as the originals.",
+                "Versions in [quarantine](quarantine.html) aren't promoted. Neither are versions in a group: promote from the repository that holds them.",
+                "You need to be able to download from the source (and delete from it, to move) and to publish to the target.",
+            ]),
+            P("In the space's **Tags** tab, select **Promote** next to a tag: choose the repository its versions are in and the repository to promote them to (any hosted repository of the format you can publish to, in any space), and whether to move them or run in the background. To promote one version, open it in the [artifact browser](browse.html#a-version) and choose **Promote** in its **⋯** menu. Background promotions are listed below the tags with how they went."),
+            SHOT("spaces-tags-promote.png", "The Promote dialog for a tag: source repository, target repository in another space, Move and Run in the background"),
+            P("AI agents with the MCP plugin can promote a version for the person using them (the `promote_version` write tool), with that person's access."),
+            CODE("""curl -X POST -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/json" \\
+  https://depotex.example.com/api/spaces/acme/repositories/staging/promote \\
+  -d '{"target": {"space": "acme", "repository": "releases"}, "tag": "build-1042"}'"""),
+            P("For more versions, or to not wait, add `\"background\": true`: the promotion is queued (up to 5000 versions) and the **promotion-run** job copies them within a minute, with the access you had when you asked. `GET /api/spaces/{space}/promotions` lists the space's background promotions for 30 days: queued, running, done or failed, how many versions went, and those refused with why."),
+            P("The answer lists each version as `promoted` or `refused`, with the reason. Every promotion raises `artifact.promote` with the versions and their tags, so a [policy](policies.html) can allow only versions tagged, say, `qa-approved` into a release repository; each copied file also raises `artifact.upload`. Promotions are in the audit log."),
+            NOTE("Promotion needs a **Pro** license. It works for every format that takes uploads from the browser and for Docker images (by tag, with every platform of a multi-platform image); Conan, Terraform, Hugging Face and Git LFS repositories can't be promoted yet, and a Docker image is promoted from a proxy only when every layer has been pulled through it. An npm promotion makes the promoted version `latest` in the target, and an APT promotion files the package under the target's default distribution and component."),
 
             H("Storage quota"),
             P("Super admins can limit how much a space's repositories store, in the space's **Settings** under **Storage quota**: the quota (GB or TB) and when to warn (80% by default). Uploads that would go over the quota are refused. Everyone who can see the space finds its usage on the **Overview**, with a warning when it's nearly or completely full."),
