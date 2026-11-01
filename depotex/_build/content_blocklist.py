@@ -39,7 +39,7 @@ BLOCKLIST = [
                 "RubyGems: blocked versions are left out of the `info/` files Bundler and `gem` resolve from and of the JSON API, both what hosted repositories generate and what proxies pass on, so Bundler picks another version; hosted repositories leave them out of the specs files too. A proxy's specs files are RubyGems.org's and still list them. A group leaves out what its members do; a version blocked after it was pushed leaves a group's list of gems within about a minute. See [Hidden versions](rubygems.html#hidden-versions).",
                 "Another Depotex linked to the repository ([Depotex link](upstreams.html#depotex-link)) is refused them too, and removes copies it cached.",
             ]),
-            NOTE("A change applies at once on the server you made it on, and to downloads on other servers of a cluster within a few seconds (`BLOCKLIST_REFRESH_INTERVAL`, 5s by default). Uploads and proxy caching check for changes every time."),
+            NOTE("A change applies at once on the server you made it on, and to downloads on other servers of a cluster within a few seconds (`BLOCKLIST_REFRESH_INTERVAL`, 5s by default). Uploads, proxy caching and the dry run check for changes every time."),
             H("Without Enterprise"),
             P("Rules can't be added or changed, but existing rules keep applying, and you can delete them."),
             H("Events"),
