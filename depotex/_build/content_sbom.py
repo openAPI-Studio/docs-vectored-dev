@@ -80,7 +80,7 @@ SBOM = [
             SHOT("sbom-fix-checklist.png", "An SBOM's Fix-it checklist: a step per affected component with the version that fixes it and the command, one ticked, and the check-again step"),
 
             H("When a re-check breaks a policy"),
-            P("A single new advisory can affect every version that uses a library, sometimes thousands of them, all at once. So what a **re-check** does when it makes stored versions break an SBOM policy is one setting under **Settings → Vulnerability data**:"),
+            P("A single new advisory can affect every version that uses a library, sometimes thousands of them, all at once. So what a **re-check** does when it makes stored versions break an SBOM policy is one setting under **Settings → Vulnerability data**. The same setting decides what happens to stored versions a [vulnerable-version quarantine rule](quarantine.html#after-a-version-is-stored) would hold once new advisories name them:"),
             TABLE(["Setting", "What happens"], [
                 ["**Alert only** (default)", "The space's owners and maintainers are told which versions break which policy. The versions stay available, so builds keep working while you assess the advisory."],
                 ["**Quarantine after a grace period**", "Each version that breaks a policy shows **Will be quarantined on …** on its Security tab and side panel. On that date it is checked again: if it still breaks the policy it is quarantined (source **Refused by policy**); if it was fixed, or the advisory was assessed with VEX, it stays available. A grace period of 0 quarantines at once. Up to 90 days, 7 by default."],
