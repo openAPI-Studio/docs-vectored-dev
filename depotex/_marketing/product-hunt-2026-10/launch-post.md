@@ -82,7 +82,7 @@ Thumbnail (logo): `gallery/thumbnail-240.png`.
 
 ## 9. Video
 
-`depotex-tour.mp4` (1920×1080, 36 seconds, no sound): a walkthrough of the eight gallery screens. Product Hunt only takes a YouTube or Loom link for video, so upload it there (unlisted works) and paste the link in the video field.
+`depotex-tour.mp4` (1920×1080, 42 seconds, voiceover and music): a walkthrough of the eight gallery screens. Product Hunt only takes a YouTube or Loom link for video, so upload it there (unlisted works) and paste the link in the video field.
 
 ### Narrated explainer (main video)
 
