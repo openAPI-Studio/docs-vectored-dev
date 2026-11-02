@@ -16,7 +16,7 @@ QUARANTINE = [
                 "Another Depotex linked to the repository ([Depotex link](upstreams.html#depotex-link)) is refused too, and removes copies it cached.",
                 "Quarantined versions stay in the version lists clients resolve from (such as `maven-metadata.xml` and npm package documents), unless the repository hides them (see [Hidden versions](#hidden-versions)). `npm audit` reports quarantined versions as high advisories.",
                 "A released version is never quarantined again by a rule; it can still be quarantined by hand.",
-                "Depotex also quarantines versions carrying unsafe content (oversized or hostile SBOMs, attestations or metadata) by itself, on every license tier: see [Browse](browse.html#unsafe-content-is-quarantined). They show as **Refused content (automatic)**.",
+                "Depotex also quarantines versions carrying unsafe content (oversized or hostile SBOMs, attestations or metadata, or a [Conan archive](conan.html#archive-checks) that doesn't match its manifest) by itself, on every license tier: see [Browse](browse.html#unsafe-content-is-quarantined). They show as **Refused content (automatic)**.",
                 "A [policy on SBOMs](sbom.html#policies-on-sboms) that denies what a version's SBOM lists (severe vulnerabilities, forbidden licenses) quarantines it too; those show as **Refused by policy** with the policy's message.",
             ]),
 

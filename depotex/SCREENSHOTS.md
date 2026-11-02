@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-158 screenshots. Save each one into `depotex/assets/` using the
+159 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -156,10 +156,12 @@ realistic but fictional names and figures rather than real people's data.
       Use this repository on a proxy of ConanCenter: add it as the first remote, turn ConanCenter off, sign in with an API token and install
 - [ ] `conan-group-settings.png`
       A Conan group's Conan card: Hosted recipes hide upstream recipes of the same name, on (the default)
+- [ ] `conan-integrity.png`
+      A Conan version's page: its recipe revision Verified, the recipe's description, licence, homepage, topics and sources, and two binaries, each Verified with ID matches, its size and its number of package revisions
 - [ ] `conan-version-revisions.png`
-      A Conan version's page: the install command and its recipe revisions, the latest marked, with who published each, integrity and number of binaries
+      A Conan version's page: the install command and its recipe revisions, the latest marked, with who published each, integrity, size and number of binaries
 - [ ] `conan-version-packages.png`
-      The binaries of a recipe revision: package ID, OS, architecture, compiler, build type and package revision of each
+      The binaries of a recipe revision: package ID, settings, integrity with ID matches, size, and the package revision of each with how many it has
 
 ## Browse
 
