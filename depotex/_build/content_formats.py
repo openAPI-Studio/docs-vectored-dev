@@ -87,6 +87,7 @@ FORMATS = [
                 ["Publish once by default", "Always", "Always (the same file again is accepted)", "Revisions never change; a version takes new revisions"],
                 ["Dependencies in the browser", "From the gemspec (runtime and development)", "From the newest build (`depends`, `constrains`)", "What the newest revision's binaries were built with"],
                 ["Signatures", "Attestations from `gem push --attestation`; signed gems marked", "—", "— (each revision is checked against its manifest)"],
+                ["SBOMs Depotex makes (Pro)", "From the gemspec's runtime dependencies", "From `depends`; packages from public channels' proxies also read with Syft", "— (C/C++ packages show as not covered)"],
             ]),
             H("What every format has in common"),
             UL([
@@ -1218,6 +1219,16 @@ FORMATS = [
             H("In the artifact browser"),
             P("A version's page lists its builds, one per platform and file: platform, build, file, size, date, what it does at install (post-link and pre-unlink scripts, activation scripts, rewriting paths in text or binary files) and whether it's yanked. It also shows what the newest build's `about.json` says (summary, licence, home page, development and documentation links) and its dependencies (`depends`, and `constrains` as constraints). The **Install** bar shows `conda install`."),
             SHOT("conda-version-builds.png", "A conda version's page: its builds per platform with size and install-time scripts, and Yank in the version's menu"),
+            H("SBOMs and vulnerabilities"),
+            P("From **Pro**, conda versions get [SBOMs](sbom.html) on their **Security** tab, made by Depotex in the background:"),
+            UL([
+                "**Every version** gets an SBOM from its newest build's `depends`: the package itself (in a proxy) and each dependency pinned to one version (`1.2.3`, `==1.2.3`, with or without a build). Ranges such as `>=1.2` or `1.2.*` aren't resolved; `constrains` and virtual packages (`__glibc`, `__cuda`) are left out. The package URLs name the channel: `pkg:conda/conda-forge/numpy@1.26.4` for a channel on conda.anaconda.org, otherwise the channel's address (`?repository_url=…`). A hosted channel's address is your installation's, so its versions get this SBOM only once **Settings → General → Public URL** is set. Setting or changing it doesn't update versions already stored: afterwards, use **Re-inspect all versions** in the repository's **Settings** (or **Re-inspect every version** under **Settings → Vulnerability data**).",
+                "**Packages from public channels** (conda-forge, Bioconda and Anaconda's `main`, `r`, `msys2`, `pytorch` and `nvidia`, fetched through a proxy) are also unpacked and read with Syft, one SBOM per package file: the Python packages they install, R packages, and Ruby, Java, JavaScript, Go and Rust packages they carry, each at the version found. Python packages are checked against PyPI's advisories and R packages from CRAN (their `DESCRIPTION` says `Repository: CRAN`) against CRAN's. Only package files the proxy fetched from such a channel are read: if a proxy's upstream is changed to a public channel, files it cached before from another channel aren't. The scan runs within the [image scan limits](browse.html#configuration) and appears a minute or two after the package is first fetched.",
+                "**Not covered**, never shown as clean: conda packages themselves (no vulnerability database has conda advisories), R packages from Bioconductor or anywhere but CRAN, and the few C and C++ libraries Syft recognises by their binaries (such as OpenSSL). Most C and C++ libraries inside conda packages have no package record and aren't listed at all, so a vulnerability in them isn't found. A version made only of such components reads **Not covered** on its Security tab.",
+                "Hosted channels, proxies of other channels (a private channel's `requests` may not be PyPI's) and labels get the dependency SBOM only, not the Syft read.",
+                "The Fix-it checklist suggests `conda install \"numpy=1.26.4\"` for a conda package. A Python package found inside a conda package gets the `pip` command; in a conda environment the fix is usually a newer build of the conda package that carries it.",
+            ]),
+            SHOT("sbom-conda-payload.png", "A conda-forge package's Security tab: vulnerabilities of the Python package inside it, found by the Depotex package scan, with its coverage"),
             H("Moving a channel from Artifactory or anaconda.org"),
             P("A channel at `https://artifactory.example.com/artifactory/api/conda/<repo>/<subdir>/…` or `https://conda.anaconda.org/<channel>/<subdir>/…` becomes `https://" + HOST + "/repository/<space>/<repository>/<subdir>/…`: replace the channel's address in `.condarc`, `.mambarc`, `pixi.toml` and `environment.yml`. To copy the packages, read each platform's `repodata.json` and upload every file it lists:"),
             CODE('SRC=https://artifactory.example.com/artifactory/api/conda/conda-local\nDST=https://' + HOST + '/repository/my-space/conda-local\nfor sub in noarch linux-64 osx-arm64 win-64; do\n  curl -fsS -u "$SRC_USER:$SRC_TOKEN" "$SRC/$sub/repodata.json" |\n  python3 -c \'import json,sys; d=json.load(sys.stdin); [print(f) for k in ("packages.conda", "packages") for f in d.get(k) or {}]\' |\n  while read -r f; do\n    curl -fsS -u "$SRC_USER:$SRC_TOKEN" -o "$f" "$SRC/$sub/$f" &&\n      curl -fsS -T "$f" -H "Authorization: Bearer $DEPOTEX_TOKEN" "$DST/$sub/"\n    rm -f "$f"\n  done\ndone'),
@@ -1230,10 +1241,11 @@ FORMATS = [
             UL([
                 "Hosted repositories, groups, uploads, yanks and the settings: every tier.",
                 "Proxy repositories (in a group too): Pro. [Quarantine](quarantine.html) and the [block list](blocklist.html): Enterprise.",
+                "SBOMs and vulnerability data: Pro.",
             ]),
             H("Limits"),
             UL([
-                "Packages are at most 4 GiB by default, and never more than the installation's limit (Settings → Repositories). A repository's own **Largest artifact**, in its settings, replaces both, larger or smaller: that's how to raise or lower it for one repository. There are no server settings (environment variables) for conda.",
+                "Packages are at most 4 GiB by default, and never more than the installation's limit (Settings → Repositories). A repository's own **Largest artifact**, in its settings, replaces both, larger or smaller: that's how to raise or lower it for one repository. The only server settings (environment variables) for conda are the [image scan limits](browse.html#configuration), which also bound reading public channels' packages with Syft.",
                 "A group merges at most 5,000 package names per platform folder that more than one member has into its sharded repodata (two proxies of overlapping channels can have more): such a folder serves only its whole repodata.",
                 "A group's merged repodata keeps its members' package records and removed files, not their other fields (such as signatures). Groups serve no labels (`label/main/` included) and, like hosted channels, no `current_repodata.json`, `repodata.json.bz2` or `channeldata.json`.",
                 "Hosted channels have no labels: `label/main/` is the channel itself, other labels are 404 and uploads to a label are refused.",

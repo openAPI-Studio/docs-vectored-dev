@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-157 screenshots. Save each one into `depotex/assets/` using the
+158 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -145,6 +145,8 @@ realistic but fictional names and figures rather than real people's data.
       A conda group's Conda card: Serve sharded repodata, and Hosted packages hide upstream packages of the same name
 - [ ] `conda-version-builds.png`
       A conda version's page: its builds per platform with size and install-time scripts, and Yank in the version's menu
+- [ ] `sbom-conda-payload.png`
+      A conda-forge package's Security tab: vulnerabilities of the Python package inside it, found by the Depotex package scan, with its coverage
 
 ## Conan (C/C++)
 
