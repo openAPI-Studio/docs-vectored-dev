@@ -10,6 +10,7 @@ Marketing material, not a docs page: nothing here is linked from the site.
 | `explainer-cover.jpg` | Its title card, for a YouTube thumbnail |
 | `depotex-vibe-coding-story.mp4` | 51 s three.js version of the same story, music only |
 | `depotex-tour.mp4` | 42 s tour of the gallery with voiceover and music |
+| `tour-thumbnail.jpg` | 1280×720 YouTube thumbnail for the tour (source: `gallery-source/thumb.html`) |
 | `explainer-source/` | Narration script, TTS, SVG animation, music and mix scripts |
 | `video-source/` | three.js scene, frame renderer and soundtrack for the 51 s video |
 | `gallery-source/` | Generator for the gallery images |
