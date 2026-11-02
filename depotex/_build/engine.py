@@ -40,13 +40,35 @@ def SHOT(filename, caption):
     return ("shot", (filename, caption))
 
 
+# --- guides ------------------------------------------------------------------
+# Pages live in one of two folders: docs/ (the user guide, and pages both
+# guides list) and admin/ (the admin guide). Content links to another page by
+# its bare file name (`spaces.html#tags`); while a page renders, LOCATIONS and
+# CURRENT_DIR let inline() point that link into the right folder, so a page
+# can move between guides without editing every link to it.
+
+LOCATIONS = {}       # slug -> "docs" | "admin"
+CURRENT_DIR = ["docs"]
+PAGE_LINK = re.compile(r"^([a-z0-9-]+)\.html(#.*)?$")
+
+
+def page_href(href):
+    m = PAGE_LINK.match(href)
+    if not m or m.group(1) not in LOCATIONS:
+        return href
+    where = LOCATIONS[m.group(1)]
+    if where == CURRENT_DIR[0]:
+        return href
+    return f"../{where}/{href}"
+
+
 # --- inline markup -----------------------------------------------------------
 # **bold**, `code`, [text](href). Everything else is escaped.
 
 def inline(text):
     out = html.escape(text, quote=False)
     out = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
-                 r'<a href="\2" class="text-cta hover:underline">\1</a>', out)
+                 lambda m: f'<a href="{page_href(m.group(2))}" class="text-cta hover:underline">{m.group(1)}</a>', out)
     out = re.sub(r"\*\*([^*]+)\*\*", r'<strong class="text-text">\1</strong>', out)
     out = re.sub(r"`([^`]+)`", r'<span class="font-mono text-sm break-words">\1</span>', out)
     return out
@@ -79,6 +101,14 @@ ICONS = {
     "activity": '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
     "lock": '<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
     "search": '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    "book": '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+    "terminal": '<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>',
+    "help": '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+    "alert": '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+    "rss": '<path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>',
+    "server": '<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>',
+    "sliders": '<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>',
+    "life-buoy": '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>',
     "bell": '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
 }
 
@@ -229,12 +259,33 @@ def render_blocks(blocks, page_label):
 # pages on disk — so adding a page is one edit, not thirty.
 
 
+def feed_link(p):
+    if not p.get("feed"):
+        return ""
+    href, title = p["feed"]
+    return f'\n  <link rel="alternate" type="application/rss+xml" title="{html.escape(title, quote=True)}" href="{href}">'
+
+
+def hash_forward(p):
+    """Old deep links into a page whose sections moved elsewhere: a known
+    #anchor goes on to the page that now has it (p["hash_moved"])."""
+    if not p.get("hash_moved"):
+        return ""
+    to, anchors = p["hash_moved"]
+    import json
+    return ('\n  <script>(function(){var a=' + json.dumps(sorted(anchors)) + ',h=location.hash.slice(1);'
+            'if(h&&a.indexOf(h)!==-1)location.replace(' + json.dumps(to) + '+location.hash);})();</script>')
+
+
 def doc_page(slug, p, pages):
+    CURRENT_DIR[0] = p.get("dir", "docs")
     body = render_blocks(p["blocks"], p["label"])
+    suffix = " — Depotex Admin Guide" if CURRENT_DIR[0] == "admin" else " — Depotex Docs"
     return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-{HEAD.format(title=p["title"] + " — Depotex Docs", desc=p["desc"], favicon="../../favicon.svg", up="../../")}
+{HEAD.format(title=p["title"] + suffix, desc=p["desc"], favicon="../../favicon.svg", up="../../")}
+  <meta name="dx-guide" content="{p.get("guide", "user")}">{feed_link(p)}{hash_forward(p)}
 </head>
 <body>
 
@@ -283,25 +334,55 @@ def landing(pages, intro_blocks):
     head = HEAD.format(title="Depotex: self-hosted artifact repository | Vectored",
                        desc="Depotex: a self-hosted artifact repository for 18 package formats, with SBOMs, quarantine and policies, on one server or a cluster. From Vectored",
                        favicon="../favicon.svg", up="../")
-    return page.render(head, BANNER, {slug for slug, _ in pages})
+    out = page.render(head, BANNER, {slug for slug, _ in pages})
+    admin = {slug for slug, p in pages if p.get("dir") == "admin"}
+    return re.sub(r'href="docs/([a-z0-9-]+)\.html',
+                  lambda m: f'href="admin/{m.group(1)}.html' if m.group(1) in admin else m.group(0), out)
+
+
+def redirect_page(slug, p):
+    """What stays at docs/<slug>.html after a page moved to the admin guide:
+    old links and bookmarks keep working, with the #section they named."""
+    to = f"../admin/{slug}.html"
+    title = html.escape(html.unescape(p["title"]))
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{title} moved to the Admin Guide</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{to}">
+  <meta http-equiv="refresh" content="0; url={to}">
+  <script>location.replace("{to}" + location.hash);</script>
+</head>
+<body>
+  <p>{title} is now in the <a href="{to}">Depotex Admin Guide</a>.</p>
+</body>
+</html>
+"""
 
 
 def build(pages, intro_blocks, handwritten=()):
-    (ROOT / "docs").mkdir(parents=True, exist_ok=True)
-    (ROOT / "assets").mkdir(parents=True, exist_ok=True)
+    for d in ("docs", "admin", "assets"):
+        (ROOT / d).mkdir(parents=True, exist_ok=True)
+    LOCATIONS.clear()
+    LOCATIONS.update({slug: p.get("dir", "docs") for slug, p in pages})
 
     for slug, p in pages:
-        target = ROOT / "docs" / f"{slug}.html"
+        where = p.get("dir", "docs")
+        target = ROOT / where / f"{slug}.html"
         if slug in handwritten:
             refresh_nav(target, pages)
             continue
         target.write_text(doc_page(slug, p, pages), encoding="utf-8")
+        if where == "admin" and p.get("moved"):
+            (ROOT / "docs" / f"{slug}.html").write_text(redirect_page(slug, p), encoding="utf-8")
 
     (ROOT / "index.html").write_text(landing(pages, intro_blocks), encoding="utf-8")
 
     tocs = 0
-    for slug, _ in pages:
-        if add_toc(ROOT / "docs" / f"{slug}.html"):
+    for slug, p in pages:
+        if add_toc(ROOT / p.get("dir", "docs") / f"{slug}.html"):
             tocs += 1
 
     write_manifest()

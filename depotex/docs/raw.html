@@ -14,6 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="../../assets/tailwind-config.js"></script>
   <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
 </head>
 <body>
 
@@ -48,7 +49,7 @@ curl -fs https://depotex.example.com/repository/my-space/files/tools/app.zip.sha
       <p class="text-muted mb-4">Raw files have no versions: each file is one item, named by its path. Cleanup, quotas, quarantine and the block list act on files, and their name patterns match the path (for example <span class="font-mono text-sm break-words">tools/1.4/*</span>).</p>
       <p class="text-muted mb-4">A raw <a href="repository-groups.html" class="text-cta hover:underline">group</a> answers downloads from the first member that has the file, lists the folders of every member, and sends uploads to the repository its rules choose by path; with it as the space's default, <span class="font-mono text-sm break-words">https://depotex.example.com/repository/my-space/raw/</span> is one address for all of them.</p>
       <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Proxy repositories</h2>
-      <p class="text-muted mb-4">A raw proxy repository fetches files from any HTTP server, path for path, and keeps them: for example a vendor's download site or another artifact server. A proxy can also reach a raw repository of another Depotex (<a href="upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
+      <p class="text-muted mb-4">A raw proxy repository fetches files from any HTTP server, path for path, and keeps them: for example a vendor's download site or another artifact server. A proxy can also reach a raw repository of another Depotex (<a href="../admin/upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
       <p class="text-muted mb-4">Files a raw proxy keeps are re-checked after the <strong class="text-text">artifact</strong> max age, since most never change. For files the upstream changes in place, list their paths under <strong class="text-text">Metadata paths</strong> in the repository's <strong class="text-text">Settings</strong> (one pattern per line, such as <span class="font-mono text-sm break-words">dist/channel-*</span>): those are re-checked at the <strong class="text-text">metadata</strong> max age instead.</p>
       <h2 id="rust-toolchains" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Rust toolchains</h2>
       <p class="text-muted mb-4"><span class="font-mono text-sm break-words">rustup</span> can install and update Rust through a raw repository, so machines never reach static.rust-lang.org themselves:</p>

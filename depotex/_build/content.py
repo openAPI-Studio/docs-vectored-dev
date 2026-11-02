@@ -36,6 +36,13 @@ from content_search import SEARCH
 from content_profile import PROFILE
 from content_kubernetes import KUBERNETES
 from content_ratelimits import RATE_LIMITS
+from content_quickstart import QUICKSTART
+from content_admin import ADMIN
+from content_setup import SETUP
+from content_helm import HELM
+from content_envvars import ENV_VARS
+from content_help import HELP
+from content_advisories import ADVISORIES_PAGE
 
 PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public release.")
 
@@ -84,12 +91,12 @@ CHANGELOG = [
 ]
 
 PAGES = [
-    ("getting-started", dict(
-        label="Getting Started", title="Getting Started", icon="rocket",
-        desc="Install Depotex and complete the setup wizard",
-        keywords=["install", "setup", "wizard", "first run", "bootstrap", "help", "support", "version", "footer", "about"],
+    ("install", dict(
+        label="Install Depotex", title="Install Depotex", icon="rocket",
+        desc="Start the server, the setup key, the reverse proxy and package-link addresses",
+        keywords=["install", "setup", "wizard", "first run", "bootstrap", "proxy", "nginx", "caddy", "websocket", "help", "support", "version", "footer", "about"],
         blocks=[
-            P("Depotex is a self-hosted platform. It needs PostgreSQL. Redis is optional for a single node and required for a cluster. On Kubernetes, use the container images and Helm chart: see [Docker & Kubernetes](kubernetes.html)."),
+            P("Depotex is a self-hosted platform. It needs PostgreSQL. Redis is optional for a single node and required for a cluster. On Kubernetes, use the container images and the [Helm chart](helm-chart.html); see also [Docker & Kubernetes](kubernetes.html). Before you start, [plan the installation](install-planning.html): sizing, the database, storage and the address people will use."),
             H("First boot"),
             P("Set `DATABASE_URL` and `CONFIG_ENCRYPTION_KEY`, then start the server. After the first boot the database URL is saved encrypted on the node, so later boots only need the encryption key."),
             H("The setup key"),
@@ -97,26 +104,12 @@ PAGES = [
             P("The key changes each time the server restarts. Set `SETUP_TOKEN` to choose it yourself, for example when several nodes share the setup."),
             H("Setup wizard"),
             SHOT("setup-wizard.png", "The setup wizard's first step: the installation ID to request a license with, and the license"),
-            STEPS([
-                "License|paste the license token issued for this installation.",
-                "Database|confirm the PostgreSQL connection.",
-                "Storage|choose local, S3, MinIO or Azure.",
-                "Cache|add a Redis URL (one server, a Sentinel group or a Redis Cluster: see [Single Node & Cluster](deployment-modes.html#redis)), or skip it for a single node.",
-                "Admin user|create the first administrator, or choose **Restore from a backup** to bring back a lost installation (see [Backups → Disaster recovery](backups.html#disaster-recovery)).",
-            ]),
-            P("Use the language menu at the top of the wizard to set it up in your language. The administrator account you create keeps that language; change it later from the profile menu."),
+            P("The wizard asks for the license, the PostgreSQL connection, storage, the optional Redis cache and the first administrator, in that order. Each step is described, with screenshots, in [Setup wizard](setup-wizard.html). To bring back a lost installation, its last step offers **Restore from a backup** (see [Backups → Disaster recovery](backups.html#disaster-recovery))."),
             P("Credentials entered in the wizard are stored encrypted in the database, not in environment variables."),
             NOTE("`CONFIG_ENCRYPTION_KEY` is required on every start and protects every stored credential. Use a long random value (for example `openssl rand -base64 32`) and keep it somewhere safe: without it the installation cannot start."),
             H("Unattended setup"),
-            P("To set up without the wizard — for scripts, containers or configuration management — describe the installation in a YAML file and pass it at first start:"),
+            P("To set up without the wizard (scripts, containers, configuration management), describe the installation in a YAML file and pass it at first start with `--setup-config`. The file, every key and the Helm chart's equivalent are in [Set up without the UI](headless-setup.html)."),
             CODE("chmod 600 setup.yaml\nCONFIG_ENCRYPTION_KEY=... ADMIN_PASSWORD=... ./server --setup-config setup.yaml"),
-            P("The file has the same sections as the wizard: `database`, `cache`, `storage`, `license` and `admin`. Write secrets as `${VARIABLE}` and pass them in the environment, so they never sit in the file. An example ships as `setup.example.yaml`."),
-            UL([
-                "The file is only read on a fresh installation. Delete it afterwards.",
-                "It must not be readable by other users (`chmod 600`), and unknown keys are rejected so typos don't go unnoticed.",
-                "If anything is wrong the server stops with an error explaining what to fix.",
-                "Run `./server --machine-id` to get the installation ID for your license request.",
-            ]),
             H("Behind a proxy"),
             P("Set `TRUSTED_PROXIES` to the addresses of your load balancer and any other proxy in front of Depotex (IPs or CIDRs, comma-separated). The default trusts only the same host. Client addresses are used for IP allowlists, [rate limits](rate-limits.html) and audit logs: without the right setting, everyone behind the proxy shares one address and one budget."),
             P("**Tell the web frontend a proxy is in front.** Set `FRONTEND_BEHIND_PROXY=true` on the web frontend when a reverse proxy or load balancer in front of it sets `X-Forwarded-For`, `X-Forwarded-Host` and `X-Forwarded-Proto` (Caddy does by default, the nginx example below does, as do Kubernetes ingress controllers and cloud load balancers). The frontend then passes them on to the server. Without it the frontend ignores them, because anyone who reaches its port directly could send their own: every browser then counts as one address for rate limits, the sign-in lockout and the audit log, and repository addresses in package metadata (npm, PyPI) are built from the `Host` header the browser sent. The [Helm chart](kubernetes.html) sets it when its ingress is enabled."),
@@ -325,7 +318,7 @@ location / {
     ("licensing", dict(
         label="Licensing", title="Licensing", icon="shield",
         desc="License tiers, installation ID and updating a license",
-        keywords=["license", "tier", "installation id", "entitlements"],
+        keywords=["license", "tier", "installation id", "entitlements", "trial", "renewal", "buy", "pricing", "contact"],
         blocks=[
             P("A Depotex license is a signed file bound to the installation's ID. Its tier decides which features are available; it can also cap how many people may sign in and how many servers may run."),
             H("Tiers"),
@@ -337,6 +330,18 @@ location / {
             P("Each feature's page says which tier it needs. A feature the license doesn't cover shows what it would need instead of its settings, and its API answers `402 license_required`."),
             P("**Settings → Application → Licensing** (the `licenses:admin` permission) shows the license at a glance: its tier and status, who it's issued to, when it expires, and how many users and servers are in use against its limits (amber from 80%, red at the limit). Below are the features it turns on, its license ID, and the installation ID to quote when requesting a new license (**Copy** puts it on the clipboard)."),
             P("Super admins see a banner at the top when the license expires within 30 days (information, then a warning in the last 14 days and a problem in the last 7), is in its grace period, has expired or isn't valid; its **Update license** button takes you to the update section. `LICENSE_BANNER_DAYS` changes the 30 days (`0` turns the banner off)."),
+            H("Get a license"),
+            P("To get a license, a trial or a renewal, or to change your tier, user limit or server limit, contact us through [vectored.dev/#contact](https://vectored.dev/#contact) or email [support@vectored.dev](mailto:support@vectored.dev). Include:"),
+            TABLE(["What", "Where to find it"], [
+                ["**Installation ID**", "The setup wizard's License step (**Copy installation ID**), **Settings → Application → Licensing**, or `./server --machine-id` on the machine that will set Depotex up (on Kubernetes, `prime-secrets.sh installation-id`: see [Install with Helm](helm-chart.html)). A cluster has one ID: every server shares the one it was set up with."],
+                ["**Licensee**", "The organization name to show on the license"],
+                ["**Tier**", "Standard, Pro or Enterprise (see [Tiers](#tiers))"],
+                ["**Users and servers**", "How many people will sign in, and how many servers will run (1 for a single server)"],
+                ["**Term**", "Start date and length, or the license ID you are renewing"],
+                ["**Contact**", "Who receives the license and renewal reminders"],
+            ]),
+            P("You receive a license file (`.json`). Apply it in the setup wizard on a new installation, in the setup file or Helm values for an [unattended setup](headless-setup.html), or under **Update license** below on a running one."),
+            NOTE("The installation ID is saved in the database when Depotex is set up, so adding servers or moving them to new machines with the same database keeps it. A new installation (a new database, including one you restore a backup into) has its own ID and needs a license for it: request it before you move."),
             H("When a license expires"),
             UL([
                 "**Grace period:** a license can allow some days of grace after its expiry date. Everything keeps working; the page and the banner say how many days ago it expired.",
@@ -426,7 +431,11 @@ location / {
                 ["Notifications", "In-app [alerts](alerts.html) with the bell, a notifications page and preferences; [email](email.html) through SMTP providers or the Amazon SES API with an IAM role; [banners](branding-and-banners.html) for announcements, with an optional title."],
                 ["Administration", "The [dashboard](dashboard.html), the [system check](system-check.html) and cluster health, [scheduled jobs](scheduler.html), log levels, log files and exports, the [audit log](logging-and-audit.html), profiling, Prometheus [metrics](monitoring.html), [branding](branding-and-banners.html) per theme and your own help links."],
                 ["Backups and recovery", "[Backups](backups.html) on a schedule or on demand, encrypted, kept on a separate target, checked and test-restored; restore into a new installation from the setup wizard; [recovery mode](recovery.html) when an installed server can't start."],
-                ["Installation", "A [setup wizard](getting-started.html) or an unattended setup file; [container images and a Helm chart](kubernetes.html); a [single server or a cluster](deployment-modes.html) with Redis as one server, Sentinel or Redis Cluster; [storage](storage.html) on a local disk, S3 (with IAM roles), MinIO or Azure Blob."],
+                ["Installation", "A [setup wizard](install.html) or an unattended setup file; [container images and a Helm chart](kubernetes.html); a [single server or a cluster](deployment-modes.html) with Redis as one server, Sentinel or Redis Cluster; [storage](storage.html) on a local disk, S3 (with IAM roles), MinIO or Azure Blob."],
             ]),
         ])),
 ]
+
+# The user guide's start page and the admin guide's own pages (guides.py says
+# which guide and folder each page is in).
+PAGES = QUICKSTART + PAGES + ADMIN + SETUP + HELM + ENV_VARS + HELP + ADVISORIES_PAGE

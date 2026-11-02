@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-156 screenshots. Save each one into `depotex/assets/` using the
+169 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -8,7 +8,16 @@ Guidance: capture the app at a comfortable browser width (about 1440px), use
 the light theme unless the shot is specifically about dark mode, and use
 realistic but fictional names and figures rather than real people's data.
 
-## Getting Started
+## Getting started
+
+- [ ] `quickstart-sign-in.png`
+      The sign-in page
+- [ ] `quickstart-find-repository.gif`
+      From the dashboard to a space, its repositories, and a repository's setup instructions
+- [ ] `quickstart-repository-setup.png`
+      An npm repository's setup: the address, then the commands to point npm, pnpm, Yarn and Bun at it
+
+## Install Depotex
 
 - [ ] `setup-wizard.png`
       The setup wizard's first step: the installation ID to request a license with, and the license
@@ -339,6 +348,10 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Applications: the list of applications and the selected one beside it
 - [ ] `service-accounts.png`
       Settings → Service accounts
+- [ ] `settings-applications-add.png`
+      Settings → Applications → Add application: a custom application or another Depotex instance
+- [ ] `settings-applications-link-instance.png`
+      Link a Depotex instance: the other installation's address, looked up before you choose directions
 
 ## Branding &amp; Banners
 
@@ -436,3 +449,28 @@ realistic but fictional names and figures rather than real people's data.
       Profile → API tokens: your tokens and your rate limits
 - [ ] `profile-api-token-create.png`
       Profile → API tokens → New token: expiration, templates and permissions
+
+## Settings reference
+
+- [ ] `settings-general.png`
+      Settings → General: the Depotex address, other addresses, and the help links
+
+## Setup wizard
+
+- [ ] `setup-wizard.gif`
+      The setup wizard from the license to the first administrator
+- [ ] `setup-wizard-license.png`
+      Setup wizard, License: the installation ID to request a license with, and the license to upload or paste
+- [ ] `setup-wizard-database.png`
+      Setup wizard, Database: the connection, its checks, and what the database already holds
+- [ ] `setup-wizard-storage.png`
+      Setup wizard, File storage: the backend and its settings, checked before you go on
+- [ ] `setup-wizard-cache.png`
+      Setup wizard, Cache: an optional Redis URL
+- [ ] `setup-wizard-admin.png`
+      Setup wizard, Administrator: the first super admin, or restore from a backup
+
+## Support
+
+- [ ] `support-about-dialog.png`
+      ? → About: the version, build and server, with Copy details for a support request

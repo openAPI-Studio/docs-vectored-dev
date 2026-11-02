@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup wizard — Depotex Admin Guide</title>
+  <meta name="description" content="Set up a new installation step by step: license, database, storage, cache and the first administrator">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg></div>
+      <h1 class="vc-h1">Setup wizard</h1>
+      <p class="vc-lede">Set up a new installation step by step: license, database, storage, cache and the first administrator</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">A server that has never been set up starts in <strong class="text-text">setup mode</strong>: it serves only the setup wizard, protected by a one-time setup key. The wizard collects what the installation needs, stores every credential encrypted in the database, and restarts the server into normal mode. It takes about five minutes once PostgreSQL and your storage exist.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard.gif" alt="The setup wizard from the license to the first administrator" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard.gif</p>
+          <p class="text-xs text-muted max-w-md">The setup wizard from the license to the first administrator</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The setup wizard from the license to the first administrator</figcaption>
+      </figure>
+      <h2 id="before-you-start" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Before you start</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>You need</th><th>Details</th></tr></thead><tbody><tr><td>A PostgreSQL database</td><td>An empty database and a role that owns it (it creates tables, and roles for plugins that use a database: <span class="font-mono text-sm break-words">CREATEROLE</span>). Not a superuser. See <a href="install-planning.html#postgresql" class="text-cta hover:underline">Plan an installation</a>.</td></tr><tr><td>Storage for artifacts</td><td>A directory on the server, an S3 bucket, a MinIO bucket or an Azure Blob container, which must already exist.</td></tr><tr><td>Redis (optional)</td><td>Needed only for a cluster. One server, a Sentinel group or a Redis Cluster.</td></tr><tr><td><span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span></td><td>Set on the server before its first start, and kept safe: it encrypts every stored credential. See <a href="environment-variables.html#bootstrap" class="text-cta hover:underline">Environment variables</a>.</td></tr><tr><td>A license</td><td>Bound to the installation ID the wizard shows on its first step. See <a href="licensing.html#get-a-license" class="text-cta hover:underline">Get a license</a>.</td></tr></tbody></table></div>
+      <h2 id="open-the-wizard" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Open the wizard</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Start the server</span> &mdash; With <span class="font-mono text-sm break-words">DATABASE_URL</span> and <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span> set (see <a href="install.html" class="text-cta hover:underline">Install Depotex</a>).</li><li class="pl-2"><span class="text-text font-medium">Find the setup link</span> &mdash; The log prints a line like <span class="font-mono text-sm break-words">open the setup wizard … setup_url=https://depotex.example.com/setup?token=…</span>. On Kubernetes the key is <span class="font-mono text-sm break-words">SETUP_TOKEN</span> in the keys file <span class="font-mono text-sm break-words">prime-secrets.sh</span> wrote.</li><li class="pl-2"><span class="text-text font-medium">Open it</span> &mdash; The page reads the key and removes it from the address bar. Anyone without the key gets nothing from setup mode, so nobody else who can reach the server can take it over first.</li><li class="pl-2"><span class="text-text font-medium">Choose your language</span> &mdash; The language menu at the top. The first administrator keeps it as their language.</li></ol>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">The key changes each time the server restarts, unless you set it with <span class="font-mono text-sm break-words">SETUP_TOKEN</span> (do that when several servers share one setup, or to script it). Requests in setup mode are limited to <span class="font-mono text-sm break-words">RATE_LIMIT_SETUP</span> a minute per address (30 by default).</p></div>
+      <h2 id="step-1-license" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Step 1: License</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard-license.png" alt="Setup wizard, License: the installation ID to request a license with, and the license to upload or paste" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard-license.png</p>
+          <p class="text-xs text-muted max-w-md">Setup wizard, License: the installation ID to request a license with, and the license to upload or paste</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Setup wizard, License: the installation ID to request a license with, and the license to upload or paste</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Installation ID</strong>: what the license is bound to. <strong class="text-text">Copy installation ID</strong> and send it with your license request (see <a href="licensing.html#get-a-license" class="text-cta hover:underline">Get a license</a>). The same ID is printed by <span class="font-mono text-sm break-words">./server --machine-id</span>.</li><li><strong class="text-text">Upload file</strong> (or drop the <span class="font-mono text-sm break-words">.json</span> file on the box) or <strong class="text-text">Paste text</strong>, then <strong class="text-text">Validate license</strong>. A valid license shows its licensee, tier, expiry and user and server limits.</li><li><strong class="text-text">Next</strong> stays off until the license is valid for this installation.</li></ul>
+      <h2 id="step-2-database" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Step 2: Database</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard-database.png" alt="Setup wizard, Database: the connection, its checks, and what the database already holds" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard-database.png</p>
+          <p class="text-xs text-muted max-w-md">Setup wizard, Database: the connection, its checks, and what the database already holds</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Setup wizard, Database: the connection, its checks, and what the database already holds</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Enter the database to keep Depotex's data in (the wizard doesn't fill it in from <span class="font-mono text-sm break-words">DATABASE_URL</span>, which is only what the server boots with). Use <strong class="text-text">Connection string</strong>, or <strong class="text-text">Connection details</strong> (host, port, database name, user name, password and SSL mode: Disable, Prefer, Require, Verify CA or Verify full).</li><li><strong class="text-text">Test connection</strong> checks that Depotex can sign in, that it may create tables, and whether the database is empty.</li><li>A database that already holds tables is flagged: setup runs migrations, which may clash with what's there. <strong class="text-text">Wipe database</strong> deletes every table, all data and every schema in it, after you confirm. Use it only on a database you made for Depotex.</li><li>Add <span class="font-mono text-sm break-words">pool_max_conns</span> to the URL to size the connection pool now: a value set at first boot is kept. See <a href="deployment-modes.html#database-connections" class="text-cta hover:underline">Database connections</a>.</li></ul>
+      <h2 id="step-3-storage" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Step 3: Storage</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard-storage.png" alt="Setup wizard, File storage: the backend and its settings, checked before you go on" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard-storage.png</p>
+          <p class="text-xs text-muted max-w-md">Setup wizard, File storage: the backend and its settings, checked before you go on</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Setup wizard, File storage: the backend and its settings, checked before you go on</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Backend</th><th>Settings</th></tr></thead><tbody><tr><td><strong class="text-text">Local filesystem</strong></td><td><strong class="text-text">Base path</strong>: a directory on the server. In a cluster, a volume mounted at the same path on every server.</td></tr><tr><td><strong class="text-text">AWS S3</strong></td><td><strong class="text-text">Bucket</strong>, <strong class="text-text">Region</strong>; <strong class="text-text">Access key ID</strong> and <strong class="text-text">Secret access key</strong>, or leave both empty to use the server's IAM role; optionally a <strong class="text-text">Role to assume</strong> and its <strong class="text-text">External ID</strong>.</td></tr><tr><td><strong class="text-text">MinIO (S3-compatible)</strong></td><td><strong class="text-text">Endpoint</strong> (<span class="font-mono text-sm break-words">host:port</span>), <strong class="text-text">Bucket</strong>, <strong class="text-text">Use SSL</strong>, <strong class="text-text">Access key</strong> and <strong class="text-text">Secret key</strong></td></tr><tr><td><strong class="text-text">Azure Blob Storage</strong></td><td><strong class="text-text">Container</strong>, <strong class="text-text">Storage account</strong> and <strong class="text-text">Storage key</strong> (base64)</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The bucket or container must exist. The wizard writes and reads a test object before it lets you go on; credentials are stored encrypted. Change storage later in <strong class="text-text">Settings → Storage</strong> (see <a href="storage.html" class="text-cta hover:underline">Storage</a>).</p>
+      <h2 id="step-4-cache" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Step 4: Cache</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard-cache.png" alt="Setup wizard, Cache: an optional Redis URL" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard-cache.png</p>
+          <p class="text-xs text-muted max-w-md">Setup wizard, Cache: an optional Redis URL</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Setup wizard, Cache: an optional Redis URL</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Leave it empty for a single server: everything works without Redis.</li><li>For a cluster, give a <strong class="text-text">Redis URL</strong>: <span class="font-mono text-sm break-words">redis://</span> or <span class="font-mono text-sm break-words">rediss://</span> for one server, <span class="font-mono text-sm break-words">redis+sentinel://…?master_name=…</span> for Sentinel, <span class="font-mono text-sm break-words">redis+cluster://…</span> for a Redis Cluster. <strong class="text-text">Connection details</strong> fill in a single server only. See <a href="deployment-modes.html#redis" class="text-cta hover:underline">Single Node &amp; Cluster → Redis</a>.</li><li><strong class="text-text">Test connection</strong> connects before you go on.</li></ul>
+      <h2 id="step-5-administrator-or-restore" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Step 5: Administrator, or restore</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard-admin.png" alt="Setup wizard, Administrator: the first super admin, or restore from a backup" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard-admin.png</p>
+          <p class="text-xs text-muted max-w-md">Setup wizard, Administrator: the first super admin, or restore from a backup</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Setup wizard, Administrator: the first super admin, or restore from a backup</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Choose how this installation starts:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Create an administrator</strong>: full name, email and password of the first <strong class="text-text">super admin</strong>. Choose a long password (the wizard takes 8 characters or more; people's passwords later need <span class="font-mono text-sm break-words">AUTH_PASSWORD_MIN_LENGTH</span>, 12 by default).</li><li><strong class="text-text">Restore from a backup</strong>: bring back an installation from a <span class="font-mono text-sm break-words">.dxbak</span> file, uploaded here (sent in pieces, resumed after a dropped connection) or copied beforehand into <span class="font-mono text-sm break-words">backups/import/</span> of the storage from step 3. The backup must have been made with the same <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>; people sign in with the backup's accounts afterwards; artifacts themselves aren't in backups and must already be in that storage. See <a href="backups.html#disaster-recovery" class="text-cta hover:underline">Backups → Disaster recovery</a>.</li></ul>
+      <p class="text-muted mb-4"><strong class="text-text">Complete setup</strong> saves everything, runs the database migrations and restarts the server in normal mode. The page waits and then takes you to sign-in.</p>
+      <h2 id="after-setup" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. After setup</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Sign in</span> &mdash; As the administrator you created.</li><li class="pl-2"><span class="text-text font-medium">Set the Depotex address</span> &mdash; <strong class="text-text">Settings → General</strong>: the address people and package managers use. Links in emails, single sign-on and package metadata depend on it.</li><li class="pl-2"><span class="text-text font-medium">Configure email</span> &mdash; <strong class="text-text">Settings → Application → Email</strong>, so invitations and password resets work. See <a href="email.html" class="text-cta hover:underline">Email</a>.</li><li class="pl-2"><span class="text-text font-medium">Bring people in</span> &mdash; Directories, single sign-on or invitations. See <a href="users-and-directories.html" class="text-cta hover:underline">Users &amp; Directories</a>.</li><li class="pl-2"><span class="text-text font-medium">Turn on backups</span> &mdash; <strong class="text-text">Settings → Backups</strong>. See <a href="backups.html" class="text-cta hover:underline">Backups</a>.</li><li class="pl-2"><span class="text-text font-medium">Check health</span> &mdash; <strong class="text-text">Settings → Advanced → System check</strong> (Pro). See <a href="system-check.html" class="text-cta hover:underline">System Check</a>.</li><li class="pl-2"><span class="text-text font-medium">Harden it</span> &mdash; Work through the <a href="security-hardening.html" class="text-cta hover:underline">production checklist</a>.</li></ol>
+      <h2 id="if-setup-fails" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. If setup fails</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>The setup page says the key is missing or wrong</td><td>Open the exact <span class="font-mono text-sm break-words">setup_url</span> from the newest log line; the key changes on every restart unless <span class="font-mono text-sm break-words">SETUP_TOKEN</span> is set</td></tr><tr><td>Database: can't connect or can't create tables</td><td>Check host, port and SSL mode; the role needs to own the database (or <span class="font-mono text-sm break-words">CREATE</span> on it)</td></tr><tr><td>Storage isn't accessible</td><td>The bucket or container must exist; check the credentials, region or endpoint, and that the server can reach it (proxy, firewall)</td></tr><tr><td>Couldn't connect to Redis</td><td>Check the URL scheme for Sentinel or Cluster, the password and TLS (<span class="font-mono text-sm break-words">rediss</span>)</td></tr><tr><td>Setup couldn't be completed</td><td>The step named in the message has a value that no longer works; go back to it. The server log says what failed</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Nothing is saved until <strong class="text-text">Complete setup</strong> succeeds, so you can restart the server and begin again at any point before that.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

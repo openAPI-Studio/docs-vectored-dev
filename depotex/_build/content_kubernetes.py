@@ -39,7 +39,7 @@ docker push registry.example.com/depotex-frontend:1.0.0"""),
             TABLE(["`setup.mode`", "What happens"], [
                 ["`auto` (default)", "Unattended setup once the licence is stored in the secret; the setup wizard until then"],
                 ["`passive`", "Unattended setup from the values and the secrets"],
-                ["`wizard`", "Open `<address>/setup?token=<setup key>` and fill it in (see [Getting Started](getting-started.html))"],
+                ["`wizard`", "Open `<address>/setup?token=<setup key>` and fill it in (see [Install Depotex](install.html))"],
                 ["`none`", "Already set up: no setup file, and the server no longer receives the setup key"],
             ]),
 

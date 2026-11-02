@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production checklist — Depotex Admin Guide</title>
+  <meta name="description" content="Hardening and go-live checklist for a production Depotex installation">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+      <h1 class="vc-h1">Production checklist</h1>
+      <p class="vc-lede">Hardening and go-live checklist for a production Depotex installation</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Work through this list before people and CI depend on an installation, and again after each major change. Each item links to where it's configured.</p>
+      <h2 id="secrets-and-keys" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Secrets and keys</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span> is long and random, the same on every server, kept in a secret store, and backed up <strong class="text-text">separately</strong> from the database backups it unlocks. Losing it makes every stored credential and every backup unreadable. See <a href="environment-variables.html#bootstrap" class="text-cta hover:underline">Environment variables</a>.</li><li>The setup key is no longer delivered to running servers (<span class="font-mono text-sm break-words">setup.mode: none</span> in Helm; no <span class="font-mono text-sm break-words">SETUP_TOKEN</span> elsewhere), and the setup file was deleted.</li><li><span class="font-mono text-sm break-words">RECOVERY_TOKEN</span> is kept in your secret store; the recovery page shows diagnostics only to its holder.</li><li>Encrypt <a href="backups.html#encryption" class="text-cta hover:underline">backups</a> with public keys (age), and keep the private key offline.</li><li><span class="font-mono text-sm break-words">PAGINATION_CURSOR_SECRET</span> is set, the same on every server.</li></ul>
+      <h2 id="network-and-tls" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Network and TLS</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Only the reverse proxy is reachable from users; the web app's port (3000) and the server's port (8080) are not.</li><li>TLS everywhere: at the proxy, to PostgreSQL (<span class="font-mono text-sm break-words">sslmode=verify-full</span>), to Redis (<span class="font-mono text-sm break-words">rediss://</span>), to object storage.</li><li><span class="font-mono text-sm break-words">TRUSTED_PROXIES</span> lists exactly your proxies, and <span class="font-mono text-sm break-words">FRONTEND_BEHIND_PROXY=true</span> is set only with a proxy that overwrites the forwarded headers. See <a href="install.html#behind-a-proxy" class="text-cta hover:underline">Behind a proxy</a>.</li><li><span class="font-mono text-sm break-words">/api/ws</span> routes to the server, so the system check has no <strong class="text-text">Live updates</strong> warning.</li><li><span class="font-mono text-sm break-words">METRICS_ADDR</span> is bound to a private interface, or metrics use <span class="font-mono text-sm break-words">METRICS_TOKEN</span>. See <a href="monitoring.html" class="text-cta hover:underline">Monitoring</a>.</li><li>On Kubernetes, network policies stay enabled; restrict the server's egress to what it needs (<span class="font-mono text-sm break-words">networkPolicy.backendInternetEgress: false</span> plus <span class="font-mono text-sm break-words">extraEgress</span>).</li><li>Outbound calls go through your proxy (Settings → Repositories), and webhooks to private addresses stay off (<span class="font-mono text-sm break-words">AUTOMATION_WEBHOOK_ALLOW_PRIVATE=false</span>).</li></ul>
+      <h2 id="browser-security" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Browser security</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Set <span class="font-mono text-sm break-words">CSP_ENFORCE=true</span> on the web app once its log has no <span class="font-mono text-sm break-words">[csp]</span> lines for a while.</li><li>Package links use only known addresses: list them under <strong class="text-text">Settings → General</strong> and turn on <strong class="text-text">Package links use only these addresses</strong>.</li></ul>
+      <h2 id="identity-and-access" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Identity and access</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>People sign in through your identity provider: <a href="single-sign-on.html" class="text-cta hover:underline">single sign-on</a> (Enterprise) with <strong class="text-text">Require single sign-on</strong>, or a synchronized directory. Multi-factor authentication is enforced there.</li><li>Keep at least two super admins, and a documented break-glass procedure (<span class="font-mono text-sm break-words">SSO_ENFORCEMENT_OVERRIDE</span> on one server) for when the identity provider is down.</li><li>Anonymous access is off unless you mean to serve public packages (Settings → Security → Anonymous access).</li><li>Sessions: lifetimes and the number of sessions per person fit your policy (Settings → Security → Sessions); <span class="font-mono text-sm break-words">AUTH_PASSWORD_MIN_LENGTH</span> is 12 or more.</li><li>CAPTCHA after failed sign-ins is on if Depotex is reachable from the internet.</li><li>CI uses <a href="../docs/oauth-applications.html#workload-identity-no-secret-in-the-pipeline" class="text-cta hover:underline">workload identity</a> or service accounts with narrowly scoped, expiring tokens; API tokens have IP allowlists where possible (Pro).</li><li>Token lifetime and blocked permissions are enforced by <a href="policies.html" class="text-cta hover:underline">policies</a> (<strong class="text-text">Token lifetime</strong> templates).</li><li>Space roles follow least privilege: Developer to publish, Maintainer to manage repositories.</li></ul>
+      <h2 id="supply-chain" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Supply chain</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Proxy checksums are strict (Settings → Security → Proxy checksums).</li><li>Quarantine rules hold new versions from public registries for review or an age (Enterprise); the block list covers known-bad versions. See <a href="../docs/quarantine.html" class="text-cta hover:underline">Quarantine</a>, <a href="../docs/blocklist.html" class="text-cta hover:underline">Block list</a>.</li><li>Vulnerability data is current (Settings → Vulnerability data), and alerts reach the people who act on them.</li><li>Plugins: <span class="font-mono text-sm break-words">PLUGIN_SIGNING_REQUIRED=true</span>; only plugins you trust are installed, with only the permissions they need.</li><li>Integrity checks run on schedule (Settings → Integrity).</li></ul>
+      <h2 id="resilience" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Resilience</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Backups run daily to a target separate from the installation's storage, and a test restore has succeeded (Enterprise runs one weekly).</li><li>The artifact storage has its own protection: versioning or replication on S3, snapshots on disk.</li><li>PostgreSQL has point-in-time recovery from your platform.</li><li>For a cluster: three or more servers, replicated PostgreSQL and Redis, pod disruption budgets on.</li><li>The <a href="backups.html#disaster-recovery" class="text-cta hover:underline">disaster recovery</a> steps were rehearsed on a scratch installation.</li></ul>
+      <h2 id="monitoring-and-audit" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Monitoring and audit</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The system check runs (Pro), and its alerts reach on-call through <a href="automation.html" class="text-cta hover:underline">automation</a> (webhook or email).</li><li>Prometheus scrapes every server; alert on rate-limit refusals and Redis health. See <a href="monitoring.html" class="text-cta hover:underline">Monitoring</a>.</li><li>Audit log retention (<span class="font-mono text-sm break-words">AUDIT_LOG_RETENTION_DAYS</span>) meets your compliance needs; export to your SIEM if you keep it longer.</li><li>Log files are collected centrally, with redaction on (<span class="font-mono text-sm break-words">LOG_REDACT_ENABLED=true</span>).</li></ul>
+      <h2 id="licensing-and-updates" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Licensing and updates</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The license banner is on (<span class="font-mono text-sm break-words">LICENSE_BANNER_DAYS</span>), and renewal is in someone's calendar.</li><li>Someone is subscribed to the <a href="../docs/security-advisories.html" class="text-cta hover:underline">security advisory feed</a>, and upgrades follow <a href="upgrades.html" class="text-cta hover:underline">Upgrades &amp; maintenance</a>.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

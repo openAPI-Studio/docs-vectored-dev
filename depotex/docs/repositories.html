@@ -14,6 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="../../assets/tailwind-config.js"></script>
   <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="shared">
 </head>
 <body>
 
@@ -78,7 +79,7 @@
       <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who has it</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">depot:write</span></td><td>Super admins</td><td>See, restore and permanently delete deleted repositories</td></tr></tbody></table></div>
       <h2 id="permissions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Permissions</h2>
       <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who has it</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">spaces:repos:write</span></td><td>Space Maintainer and Owner</td><td>Create, change and delete the space's repositories</td></tr><tr><td><span class="font-mono text-sm break-words">depot:read</span></td><td>Super admins</td><td>See every repository of the installation</td></tr><tr><td><span class="font-mono text-sm break-words">depot:write</span></td><td>Super admins</td><td>Delete any repository from the list of every repository</td></tr></tbody></table></div>
-      <p class="text-muted mb-4">Creating a repository raises the <span class="font-mono text-sm break-words">depot.repository.create</span> event, so a <a href="policies.html" class="text-cta hover:underline">policy</a> can restrict names or formats (the <strong class="text-text">Allowed repository formats</strong> template).</p>
+      <p class="text-muted mb-4">Creating a repository raises the <span class="font-mono text-sm break-words">depot.repository.create</span> event, so a <a href="../admin/policies.html" class="text-cta hover:underline">policy</a> can restrict names or formats (the <strong class="text-text">Allowed repository formats</strong> template).</p>
       </article>
 
       <div data-vc="pagefoot"></div>

@@ -102,7 +102,7 @@ curl -H "Authorization: Bearer $DEPOTEX_TOKEN" https://depotex.example.com/api/b
             H("Disaster recovery"),
             P("When the installation itself is lost, restore a backup onto a new server in one of two ways. Both need the backup's `CONFIG_ENCRYPTION_KEY`."),
             H("In the setup wizard"),
-            P("Start a new server as for a fresh installation and go through the [setup wizard](getting-started.html#setup-wizard) with the same license, database server and storage as before (a new, empty database). On the last step choose **Restore from a backup** instead of creating an administrator:"),
+            P("Start a new server as for a fresh installation and go through the [setup wizard](install.html#setup-wizard) with the same license, database server and storage as before (a new, empty database). On the last step choose **Restore from a backup** instead of creating an administrator:"),
             SHOT("setup-restore-step.png", "The setup wizard's last step with Restore from a backup: the chosen backup's summary, key field and consent box"),
             STEPS([
                 "Choose the backup|Upload the `.dxbak` file (sent in pieces; a broken connection resumes), or pick one already in `backups/import/` of the storage you entered.",

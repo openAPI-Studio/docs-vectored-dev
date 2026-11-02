@@ -14,6 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="../../assets/tailwind-config.js"></script>
   <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
 </head>
 <body>
 
@@ -40,7 +41,7 @@
       <article class="vc-doc">
       <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
       <p class="text-muted mb-4">Your profile settings hold everything about your own account. Open them from the profile menu (your picture or initials, top right) with <strong class="text-text">Edit Profile</strong>, or from the places that link to one section: the bell's settings icon and <strong class="text-text">Preferences</strong> on the notifications page open <strong class="text-text">Notifications</strong>, the dashboard's token and session cards open <strong class="text-text">API tokens</strong> and <strong class="text-text">Active sessions</strong>. A link ending in <span class="font-mono text-sm break-words">?profile=tokens</span> (or another section) opens that section directly.</p>
-      <p class="text-muted mb-4">The left side shows who you are and the sections in three groups: <strong class="text-text">Account</strong> (Profile, Preferences, Notifications), <strong class="text-text">Sign-in</strong> (Security, Active sessions) and <strong class="text-text">Access</strong> (API tokens, Connected apps, then sections that installed <a href="plugins.html" class="text-cta hover:underline">plugins</a> add, such as <strong class="text-text">Connect an AI agent</strong> and <strong class="text-text">MCP keys</strong>). Each section says at the top what it is for. On a phone the sections are a row of tabs above the content.</p>
+      <p class="text-muted mb-4">The left side shows who you are and the sections in three groups: <strong class="text-text">Account</strong> (Profile, Preferences, Notifications), <strong class="text-text">Sign-in</strong> (Security, Active sessions) and <strong class="text-text">Access</strong> (API tokens, Connected apps, then sections that installed <a href="../admin/plugins.html" class="text-cta hover:underline">plugins</a> add, such as <strong class="text-text">Connect an AI agent</strong> and <strong class="text-text">MCP keys</strong>). Each section says at the top what it is for. On a phone the sections are a row of tabs above the content.</p>
       <figure class="shot mb-6">
         <img src="../assets/profile-overview.png" alt="Profile settings → Profile: the sections on the left, your avatar and account details" loading="lazy"
              class="rounded-lg border border-border"
@@ -128,7 +129,7 @@
         <figcaption class="text-xs text-muted mt-2">Profile settings → Connected apps: two applications and the linked installations</figcaption>
       </figure>
       <h2 id="connect-an-ai-agent" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Connect an AI agent</h2>
-      <p class="text-muted mb-4">While the MCP server <a href="plugins.html#mcp-servers-for-ai-applications" class="text-cta hover:underline">plugin</a> is active, <strong class="text-text">Access → Connect an AI agent</strong> shows how to connect an AI assistant to Depotex. <strong class="text-text">Connect</strong> has the server address to copy, then the AI apps your administrator set up for this server: open one for its client ID and how to add the server in that app, such as the <span class="font-mono text-sm break-words">claude mcp add</span> command or the <span class="font-mono text-sm break-words">mcp.json</span> entry. <strong class="text-text">Vibepack skill</strong> downloads the skill that lets an AI coding agent save and pick up vibe projects, with the steps to install and use it, and the commands for saving without an agent.</p>
+      <p class="text-muted mb-4">While the MCP server <a href="../admin/plugins.html#mcp-servers-for-ai-applications" class="text-cta hover:underline">plugin</a> is active, <strong class="text-text">Access → Connect an AI agent</strong> shows how to connect an AI assistant to Depotex. <strong class="text-text">Connect</strong> has the server address to copy, then the AI apps your administrator set up for this server: open one for its client ID and how to add the server in that app, such as the <span class="font-mono text-sm break-words">claude mcp add</span> command or the <span class="font-mono text-sm break-words">mcp.json</span> entry. <strong class="text-text">Vibepack skill</strong> downloads the skill that lets an AI coding agent save and pick up vibe projects, with the steps to install and use it, and the commands for saving without an agent.</p>
       <figure class="shot mb-6">
         <img src="../assets/profile-connect-ai-agent.png" alt="Profile settings → Connect an AI agent: the server address and the AI apps, one open to its instructions" loading="lazy"
              class="rounded-lg border border-border"

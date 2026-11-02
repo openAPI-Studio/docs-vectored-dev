@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently asked questions — Depotex Admin Guide</title>
+  <meta name="description" content="Answers to the questions administrators ask most">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h1 class="vc-h1">Frequently asked questions</h1>
+      <p class="vc-lede">Answers to the questions administrators ask most</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="licensing" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Licensing</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">How do I get a license?</strong> Read the installation ID (setup wizard, Settings → Application → Licensing, or <span class="font-mono text-sm break-words">./server --machine-id</span>) and send it through <a href="https://vectored.dev/#contact" class="text-cta hover:underline">vectored.dev/#contact</a> or to support@vectored.dev. See <a href="licensing.html#get-a-license" class="text-cta hover:underline">Get a license</a>.</li><li><strong class="text-text">What happens when the license expires?</strong> Any grace period first, with banners; then only sign-in, health checks and the license page answer, until a new license is applied. Nothing is deleted. See <a href="licensing.html#when-a-license-expires" class="text-cta hover:underline">When a license expires</a>.</li><li><strong class="text-text">We moved Depotex to new servers and it wants a new license.</strong> The installation ID follows the machine (on Kubernetes, the pod's identity). Request a license for the new ID before moving, and apply it on the recovery page.</li><li><strong class="text-text">Does applying a license need a restart?</strong> No, it applies at once. Some features notice a change of tier only after a restart.</li><li><strong class="text-text">Does Depotex call home?</strong> No. It doesn't need internet access to check its license. It sends the installation ID only when it downloads the vibe artifacts package list (Enterprise, off without an address).</li></ul>
+      <h2 id="installation" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Installation</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Do I need Redis?</strong> Not for a single server. A cluster needs it. See <a href="deployment-modes.html" class="text-cta hover:underline">Single Node &amp; Cluster</a>.</li><li><strong class="text-text">Which PostgreSQL?</strong> 15 or later; managed services work. The role must own the database and needn't be a superuser.</li><li><strong class="text-text">Can it run without internet access?</strong> Yes. Mirror the images, use Depotex or internal mirrors as upstreams, and upload vulnerability data offline (Settings → Vulnerability data).</li><li><strong class="text-text">Can I run it under a path such as /depotex?</strong> No, it needs its own host name.</li><li><strong class="text-text">Can I set it up with no browser?</strong> Yes, from a YAML file: <a href="headless-setup.html" class="text-cta hover:underline">Set up without the UI</a>.</li><li><strong class="text-text">Where is the Helm chart?</strong> The published chart location is TBD; see <a href="helm-chart.html" class="text-cta hover:underline">Install with Helm</a>.</li><li><strong class="text-text">How do I move from Nexus or Artifactory?</strong> Create proxy repositories on your old server as an upstream to switch builds without downtime, then publish your hosted packages to Depotex with each format's client. Ask <a href="support.html" class="text-cta hover:underline">support</a> for help planning a migration.</li></ul>
+      <h2 id="access" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Access</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">I'm locked out: single sign-on is down.</strong> Start one server with <span class="font-mono text-sm break-words">SSO_ENFORCEMENT_OVERRIDE=true</span>, sign in with a password as a super admin, fix the provider, then remove the variable.</li><li><strong class="text-text">An account is locked after failed sign-ins.</strong> It unlocks after <span class="font-mono text-sm break-words">AUTH_LOCKOUT_DURATION</span> (15 minutes), or a super admin unlocks it in Settings → Access → Users.</li><li><strong class="text-text">A super admin forgot their password.</strong> Another super admin resets it. If no one can sign in, use <strong class="text-text">Forgot password</strong> with email configured, or contact <a href="support.html" class="text-cta hover:underline">support</a>.</li><li><strong class="text-text">How do I give CI access without a person's token?</strong> A service account with an OAuth application, or workload identity with no secret at all. See <a href="../docs/oauth-applications.html" class="text-cta hover:underline">OAuth Applications</a>.</li><li><strong class="text-text">Why does everyone seem to come from the same address?</strong> <span class="font-mono text-sm break-words">TRUSTED_PROXIES</span> doesn't include your proxy. See <a href="install.html#behind-a-proxy" class="text-cta hover:underline">Behind a proxy</a>.</li></ul>
+      <h2 id="data" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Data</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">What's in a backup?</strong> The database (settings, people, repositories' records) and platform files (logos, avatars, plugin packages), not artifacts. Protect artifact storage with your storage platform. See <a href="backups.html" class="text-cta hover:underline">Backups</a>.</li><li><strong class="text-text">I lost CONFIG_ENCRYPTION_KEY.</strong> Stored credentials and backups made with it can't be read; there is no recovery. Keep the key in a secret store and with your backup records.</li><li><strong class="text-text">How do I reclaim disk space?</strong> Cleanup policies per space, quotas, emptying the trash, and Docker garbage collection (automatic). See <a href="../docs/spaces.html" class="text-cta hover:underline">Spaces</a>.</li><li><strong class="text-text">Can a deleted repository be restored?</strong> Yes, for 7 days by default: Settings → Repositories → Deleted repositories.</li></ul>
+      <h2 id="operations" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Operations</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">How do I upgrade without downtime?</strong> Run a cluster and upgrade one server at a time. See <a href="upgrades.html" class="text-cta hover:underline">Upgrades &amp; maintenance</a>.</li><li><strong class="text-text">The system check warns about Live updates.</strong> Route <span class="font-mono text-sm break-words">/api/ws</span> to the server with WebSocket upgrades allowed.</li><li><strong class="text-text">How do I see what a server is doing?</strong> Settings → Logging: levels per area, log files, exports and profiles; Settings → Advanced → Scheduled jobs for background work.</li><li><strong class="text-text">How do I hear about security fixes?</strong> Subscribe to the <a href="../docs/security-advisories.html" class="text-cta hover:underline">security advisory feed</a>.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set up without the UI — Depotex Admin Guide</title>
+  <meta name="description" content="Unattended setup from a YAML file for scripts, containers and configuration management">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+      <h1 class="vc-h1">Set up without the UI</h1>
+      <p class="vc-lede">Unattended setup from a YAML file for scripts, containers and configuration management</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Everything the setup wizard asks can come from a YAML file instead, so a new installation can be set up by a script, a container entrypoint, Ansible, Terraform or a GitOps pipeline with nobody at a browser. This is <strong class="text-text">passive setup</strong>. The Helm chart uses it too (<span class="font-mono text-sm break-words">setup.mode: passive</span> or <span class="font-mono text-sm break-words">auto</span>; see <a href="helm-chart.html#first-boot-setup" class="text-cta hover:underline">Install with Helm</a>).</p>
+      <h2 id="how-it-works" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. How it works</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Get the installation ID</span> &mdash; <span class="font-mono text-sm break-words">./server --machine-id</span> prints it and exits. In a container, run the image with <span class="font-mono text-sm break-words">--machine-id</span> on the host (or pod) that will run Depotex: the ID belongs to that machine.</li><li class="pl-2"><span class="text-text font-medium">Get the license</span> &mdash; Request it for that ID (see <a href="licensing.html#get-a-license" class="text-cta hover:underline">Get a license</a>).</li><li class="pl-2"><span class="text-text font-medium">Write the setup file</span> &mdash; The same sections as the wizard; secrets as <span class="font-mono text-sm break-words">${VARIABLE}</span> references (below).</li><li class="pl-2"><span class="text-text font-medium">Start the server once with it</span> &mdash; <span class="font-mono text-sm break-words">--setup-config setup.yaml</span>, or <span class="font-mono text-sm break-words">SETUP_CONFIG_FILE=setup.yaml</span>. The server checks the file, sets up, and continues in normal mode.</li><li class="pl-2"><span class="text-text font-medium">Remove the file</span> &mdash; It's read only on a fresh installation and ignored afterwards; don't leave secrets lying around.</li></ol>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">chmod 600 setup.yaml
+export CONFIG_ENCRYPTION_KEY=&quot;$(cat /run/secrets/depotex-encryption-key)&quot;
+export DATABASE_URL=&#x27;postgres://depotex:…@db.internal:5432/depotex?sslmode=verify-full&amp;pool_max_conns=25&#x27;
+export ADMIN_PASSWORD=&quot;$(cat /run/secrets/depotex-admin-password)&quot;
+./server --setup-config setup.yaml</code></pre>
+      <h2 id="the-setup-file" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. The setup file</h2>
+      <p class="text-muted mb-4">An annotated example ships as <span class="font-mono text-sm break-words">setup.example.yaml</span>. Every key:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">database:
+  url: ${DATABASE_URL}           # may be left out when DATABASE_URL is set
+
+cache:
+  redis_url: &quot;&quot;                  # empty: single server without Redis; required for a cluster
+
+storage:
+  backend: s3                    # local | s3 | minio | azure
+  local:
+    path: /var/lib/depotex/artifacts
+  s3:
+    bucket: my-depotex-artifacts
+    region: eu-west-1
+    access_key: ${S3_ACCESS_KEY} # leave both keys out to use the server&#x27;s IAM role
+    secret_key: ${S3_SECRET_KEY}
+    role_arn: &quot;&quot;                 # optional: a role to assume
+    external_id: &quot;&quot;              # optional: its external ID
+  minio:
+    endpoint: minio.internal:9000
+    bucket: depotex
+    use_ssl: true
+    access_key: ${MINIO_ACCESS_KEY}
+    secret_key: ${MINIO_SECRET_KEY}
+  azure:
+    container: depotex
+    account: ${AZURE_STORAGE_ACCOUNT}
+    key: ${AZURE_STORAGE_KEY}
+
+license:
+  file: license.json             # relative to this file; or data: | with the JSON inline
+
+admin:
+  email: admin@example.com
+  name: Administrator
+  password: ${ADMIN_PASSWORD}    # at least 8 characters</code></pre>
+      <div class="tbl-wrap"><table><thead><tr><th>Key</th><th>Required</th><th>Meaning</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">database.url</span></td><td>When <span class="font-mono text-sm break-words">DATABASE_URL</span> isn't set</td><td>PostgreSQL URL. Query options such as <span class="font-mono text-sm break-words">sslmode</span> and <span class="font-mono text-sm break-words">pool_max_conns</span> are kept.</td></tr><tr><td><span class="font-mono text-sm break-words">cache.redis_url</span></td><td>For a cluster</td><td>Redis URL: one server, Sentinel (<span class="font-mono text-sm break-words">redis+sentinel://</span>) or Redis Cluster (<span class="font-mono text-sm break-words">redis+cluster://</span>); <span class="font-mono text-sm break-words">rediss</span> variants for TLS</td></tr><tr><td><span class="font-mono text-sm break-words">storage.backend</span></td><td>Yes</td><td><span class="font-mono text-sm break-words">local</span>, <span class="font-mono text-sm break-words">s3</span>, <span class="font-mono text-sm break-words">minio</span> or <span class="font-mono text-sm break-words">azure</span>; only that backend's section is read</td></tr><tr><td><span class="font-mono text-sm break-words">storage.local.path</span></td><td>With <span class="font-mono text-sm break-words">local</span></td><td>Directory for artifacts (a shared volume in a cluster)</td></tr><tr><td><span class="font-mono text-sm break-words">storage.s3.*</span></td><td>With <span class="font-mono text-sm break-words">s3</span></td><td><span class="font-mono text-sm break-words">bucket</span>, <span class="font-mono text-sm break-words">region</span>; <span class="font-mono text-sm break-words">access_key</span> and <span class="font-mono text-sm break-words">secret_key</span> (or neither, for the IAM role); optional <span class="font-mono text-sm break-words">role_arn</span>, <span class="font-mono text-sm break-words">external_id</span></td></tr><tr><td><span class="font-mono text-sm break-words">storage.minio.*</span></td><td>With <span class="font-mono text-sm break-words">minio</span></td><td><span class="font-mono text-sm break-words">endpoint</span>, <span class="font-mono text-sm break-words">bucket</span>, <span class="font-mono text-sm break-words">use_ssl</span>, <span class="font-mono text-sm break-words">access_key</span>, <span class="font-mono text-sm break-words">secret_key</span></td></tr><tr><td><span class="font-mono text-sm break-words">storage.azure.*</span></td><td>With <span class="font-mono text-sm break-words">azure</span></td><td><span class="font-mono text-sm break-words">container</span>, <span class="font-mono text-sm break-words">account</span>, <span class="font-mono text-sm break-words">key</span></td></tr><tr><td><span class="font-mono text-sm break-words">license.file</span> or <span class="font-mono text-sm break-words">license.data</span></td><td>Yes, one of them</td><td>The license JSON: a file (relative to the setup file) or inline</td></tr><tr><td><span class="font-mono text-sm break-words">admin.email</span>, <span class="font-mono text-sm break-words">admin.name</span>, <span class="font-mono text-sm break-words">admin.password</span></td><td>Yes</td><td>The first super admin</td></tr></tbody></table></div>
+      <h2 id="rules-the-server-enforces" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Rules the server enforces</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Private file.</strong> The file must not be readable by group or others (<span class="font-mono text-sm break-words">chmod 600</span>); otherwise the server stops and prints the <span class="font-mono text-sm break-words">chmod</span> to run.</li><li><strong class="text-text">No unknown keys.</strong> A misspelled key is an error, so a typo can't silently drop a setting.</li><li><strong class="text-text">Secrets from the environment.</strong> Any value may use <span class="font-mono text-sm break-words">${NAME}</span>; only that form is expanded, so a literal <span class="font-mono text-sm break-words">$</span> stays as it is. A referenced variable that isn't set stops the server with its name.</li><li><strong class="text-text">One license source.</strong> <span class="font-mono text-sm break-words">license.file</span> or <span class="font-mono text-sm break-words">license.data</span>, not both.</li><li><strong class="text-text">Fresh installations only.</strong> On an installed server the file is ignored.</li><li><strong class="text-text">Fails loudly.</strong> If a value doesn't work (database, storage, Redis, license), the server stops with an error that says what to fix; nothing is half set up.</li></ul>
+      <h2 id="in-containers" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. In containers</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">docker run --rm \
+  -e CONFIG_ENCRYPTION_KEY -e DATABASE_URL -e ADMIN_PASSWORD -e S3_ACCESS_KEY -e S3_SECRET_KEY \
+  -e SETUP_CONFIG_FILE=/config/setup.yaml \
+  -v &quot;$PWD/setup:/config:ro&quot; \
+  -v depotex-data:/app/data \
+  -p 8080:8080 \
+  &lt;your-registry&gt;/depotex-backend:&lt;version&gt;</code></pre>
+      <p class="text-muted mb-4">Mount the setup file read-only with mode 0600, owned by the server's user (UID 65532 in the image). The <span class="font-mono text-sm break-words">/app/data</span> volume keeps the server's bootstrap file, search index and logs: keep it across restarts. With the Helm chart you don't write the file yourself: the chart builds it from its values and the secrets (see <a href="helm-chart.html#first-boot-setup" class="text-cta hover:underline">Install with Helm</a>).</p>
+      <h2 id="after-setup-without-the-ui" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. After setup, without the UI</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Everything in the web app is also an API: <span class="font-mono text-sm break-words">GET /api/openapi.json</span> describes every route, its permission and its license tier (see <a href="../docs/api-tokens.html#api-description" class="text-cta hover:underline">API Tokens → API description</a>). Sign in once as the administrator to create an <a href="../docs/api-tokens.html" class="text-cta hover:underline">API token</a> for automation, or register an <a href="../docs/oauth-applications.html" class="text-cta hover:underline">OAuth application</a> with a service account for machine access.</li><li>Write the configuration you script (spaces, repositories, upstreams, directories, policies) against that API, so a new installation can be rebuilt the same way.</li><li>Disaster recovery also works without the UI: <span class="font-mono text-sm break-words">./server --restore-file backup.dxbak</span> checks a backup with no server running, and <span class="font-mono text-sm break-words">--yes</span> restores it. See <a href="backups.html#disaster-recovery" class="text-cta hover:underline">Backups → Disaster recovery</a>.</li></ul>
+      <h2 id="command-line-flags" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Command-line flags</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Flag</th><th>What it does</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">--setup-config &lt;file&gt;</span></td><td>Set up a fresh installation from this file (overrides <span class="font-mono text-sm break-words">SETUP_CONFIG_FILE</span>)</td></tr><tr><td><span class="font-mono text-sm break-words">--machine-id</span></td><td>Print this machine's installation ID, for a license request, and exit</td></tr><tr><td><span class="font-mono text-sm break-words">--restore-file &lt;file&gt;</span></td><td>Check a backup archive (<span class="font-mono text-sm break-words">.dxbak</span>) with no server running; with <span class="font-mono text-sm break-words">--yes</span>, restore it, then exit</td></tr><tr><td><span class="font-mono text-sm break-words">--restore-import &lt;name&gt;</span></td><td>The same for a file in the backup storage's import folder (<span class="font-mono text-sm break-words">backups/import/</span>)</td></tr><tr><td><span class="font-mono text-sm break-words">--restore-key-file &lt;file&gt;</span></td><td>The key of an encrypted backup: an age identity file, or the passphrase</td></tr><tr><td><span class="font-mono text-sm break-words">--restore-sha256 &lt;hex&gt;</span></td><td>The SHA-256 the backup must have (from its <span class="font-mono text-sm break-words">.sha256</span> file)</td></tr><tr><td><span class="font-mono text-sm break-words">--restore-accept-foreign</span></td><td>Restore a backup signed by another installation</td></tr><tr><td><span class="font-mono text-sm break-words">--restore-force</span></td><td>Restore although other servers of this installation are running</td></tr><tr><td><span class="font-mono text-sm break-words">--yes</span></td><td>With a restore flag: restore (without it only the checks run)</td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

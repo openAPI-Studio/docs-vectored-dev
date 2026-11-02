@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Depotex security advisories</title>
+    <link>https://docs.vectored.dev/depotex/docs/security-advisories.html</link>
+    <atom:link href="https://docs.vectored.dev/depotex/advisories.xml" rel="self" type="application/rss+xml"/>
+    <description>Security fixes in Depotex: what they affect and what to do.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 02 Nov 2026 09:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Security advisory feed opened</title>
+      <link>https://docs.vectored.dev/depotex/docs/security-advisories.html#dpx-notice-2026-001</link>
+      <guid isPermaLink="false">DPX-NOTICE-2026-001</guid>
+      <pubDate>Mon, 02 Nov 2026 09:00:00 +0000</pubDate>
+      <category>Notice</category>
+      <description>Depotex security advisories are now published on this page and in an RSS feed. No advisories have been issued so far. Subscribe to the feed to hear about future advisories.</description>
+    </item>
+  </channel>
+</rss>
