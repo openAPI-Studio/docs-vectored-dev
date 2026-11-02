@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How access fits together — Depotex Admin Guide</title>
+  <meta name="description" content="Directories, users, system roles, groups, space roles and repository roles: what each one decides and how they combine">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h1 class="vc-h1">How access fits together</h1>
+      <p class="vc-lede">Directories, users, system roles, groups, space roles and repository roles: what each one decides and how they combine</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Who can do what in Depotex is decided in layers. A <strong class="text-text">directory</strong> brings in the account, the account's <strong class="text-text">system role</strong> decides what it may do across the installation, and <strong class="text-text">space roles</strong> and <strong class="text-text">repository roles</strong> decide what it may do with packages. <strong class="text-text">Groups</strong> let you hand out space and repository roles to many people at once. This page shows how the layers combine; each one has its own page with the details.</p>
+      <h2 id="the-layers" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. The layers</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">Directory            Local · Delegated · LDAP · Active Directory · SCIM · Entra ID · Google Workspace
+  └─ User account    one per person (the highest directory wins when several have them)
+       ├─ System role      Member · Organization admin · Super admin     → what the account may do in Settings
+       ├─ Groups           added by hand, or synced from the directory    → carry space and repository roles
+       └─ Space role       Viewer · Developer · Maintainer · Owner        → every repository in the space
+            └─ Repository role   Viewer · Deployer · Maintainer · Admin   → one repository
+                 └─ Path access  a repository role on a content selector&#x27;s paths</code></pre>
+      <div class="tbl-wrap"><table><thead><tr><th>Layer</th><th>Decides</th><th>Set in</th><th>Details</th></tr></thead><tbody><tr><td><strong class="text-text">Directory</strong></td><td>Where the account comes from and how the person signs in</td><td>Settings → Directories</td><td><a href="users-and-directories.html#overview" class="text-cta hover:underline">Users &amp; directories</a></td></tr><tr><td><strong class="text-text">System role</strong></td><td>What the account may do across the installation: settings, people, policies</td><td>Settings → Users → a user → <strong class="text-text">Change role</strong></td><td><a href="users-and-directories.html#actions-on-a-user" class="text-cta hover:underline">Actions on a user</a></td></tr><tr><td><strong class="text-text">Group</strong></td><td>A set of people who get the same space and repository roles</td><td>Settings → Groups, or the directory</td><td><a href="users-and-directories.html#groups" class="text-cta hover:underline">Groups</a></td></tr><tr><td><strong class="text-text">Space role</strong></td><td>What someone may do in every repository of a space</td><td>A space → <strong class="text-text">Members</strong></td><td><a href="../docs/spaces.html#roles" class="text-cta hover:underline">Spaces: roles</a></td></tr><tr><td><strong class="text-text">Repository role</strong></td><td>More access on one repository, or on some of its paths</td><td>A repository → <strong class="text-text">Access</strong></td><td><a href="../docs/spaces.html#repository-access" class="text-cta hover:underline">Repository access</a></td></tr></tbody></table></div>
+      <h2 id="directories-and-accounts" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Directories and accounts</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Every account belongs to exactly one directory. <strong class="text-text">Local</strong> accounts have Depotex passwords; <strong class="text-text">Delegated</strong> accounts sign in with <a href="single-sign-on.html" class="text-cta hover:underline">single sign-on</a>; <strong class="text-text">LDAP</strong>, <strong class="text-text">Active Directory</strong>, <strong class="text-text">SCIM</strong>, <strong class="text-text">Microsoft Entra ID</strong> and <strong class="text-text">Google Workspace</strong> accounts are created, changed and disabled by the directory, not in Depotex.</li><li>When the same person (same email or username) has an account in several directories, only the one in the <strong class="text-text">highest directory</strong> is used; the others are shadowed. See <a href="users-and-directories.html#directory-order" class="text-cta hover:underline">Directory order</a>.</li><li>A directory recognizes its accounts by their immutable ID, so renaming someone or changing their email in the directory updates the same Depotex account, keeping their roles and groups.</li><li>Directories need a license: Local and Delegated on every tier, LDAP and Active Directory on Pro, SCIM, Entra ID and Google Workspace on Enterprise.</li></ul>
+      <h2 id="system-roles" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. System roles</h2>
+      <p class="text-muted mb-4">Every account has one system role. Each includes what the one before it can do:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>System role</th><th>Can</th><th>How someone gets it</th></tr></thead><tbody><tr><td><strong class="text-text">Member</strong></td><td>Sign in, use the spaces and repositories their space and repository roles allow, see people and groups of their organization, create their own API tokens. No Settings area</td><td>The default for everyone, including every account a directory syncs or provisions</td></tr><tr><td><strong class="text-text">Organization admin</strong></td><td>Also the Settings area for their organization: users, groups, policies, automation and organization-level settings</td><td>Given by an organization admin or super admin; or set as <strong class="text-text">Role for new accounts</strong> for accounts single sign-on creates</td></tr><tr><td><strong class="text-text">Super admin</strong></td><td>Everything: installation settings, license, storage, backups, plugins, every organization, every space and repository. Only super admins create spaces</td><td>The first administrator (setup wizard), and anyone another super admin promotes</td></tr></tbody></table></div>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>You can only give a role up to your own, and never change your own. Organization admins can't act on super admins.</li><li><strong class="text-text">A directory never grants an admin role.</strong> Synced and provisioned accounts start as Member, and a directory can't make anyone a super admin; promote people by hand in <strong class="text-text">Settings → Users</strong>. Single sign-on can create accounts as Member or Organization admin, never Super admin.</li><li>What each system role can do is fixed by Depotex (each feature's page names the permission it checks); it isn't edited per installation. Fine-grained access to packages comes from space and repository roles instead.</li></ul>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Keep the number of super admins small and review them regularly; see <a href="security-hardening.html" class="text-cta hover:underline">Security hardening</a>.</p></div>
+      <h2 id="groups" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Groups</h2>
+      <p class="text-muted mb-4">A group is a named set of people in your organization. Groups don't change anyone's system role: they exist to give <strong class="text-text">space roles</strong> and <strong class="text-text">repository roles</strong> to many people at once, and to keep that access in step with your directory.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/groups-group.png" alt="A group: the directories that sync into it, and each member with where they came from" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">groups-group.png</p>
+          <p class="text-xs text-muted max-w-md">A group: the directories that sync into it, and each member with where they came from</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A group: the directories that sync into it, and each member with where they came from</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Hand-made groups:</strong> create one in <strong class="text-text">Settings → Groups</strong> and add people from any directory.</li><li><strong class="text-text">Synced groups:</strong> LDAP, Active Directory, SCIM, Entra ID and Google Workspace bring their groups in. A synced group with the same name as an existing group (ignoring upper and lower case) is merged into it, so <span class="font-mono text-sm break-words">Platform</span> from Active Directory and <span class="font-mono text-sm break-words">platform</span> from SCIM become one group.</li><li><strong class="text-text">Nested groups:</strong> Depotex groups are flat (a group can't contain a group). For Active Directory and LDAP, <strong class="text-text">Include members of nested groups</strong> (on by default) counts the members of groups inside a directory group as its members, so the hierarchy in your directory is flattened into the Depotex group.</li><li><strong class="text-text">Members from the directory are managed there.</strong> Sync adds and removes them; members added by hand stay until you remove them. A group is never deleted by sync.</li></ul>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">These are groups of <strong class="text-text">people</strong>. A <a href="../docs/repository-groups.html" class="text-cta hover:underline">repository group</a> is something else: one address that combines several repositories of a format.</p></div>
+      <h2 id="space-roles" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Space roles</h2>
+      <p class="text-muted mb-4">A space role applies to every repository in the space. It can be given to a person, a group or a service account, on the space's <strong class="text-text">Members</strong> tab (space owners and super admins).</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Space role</th><th>Can</th></tr></thead><tbody><tr><td>Viewer</td><td>Browse the space and download</td></tr><tr><td>Developer</td><td>Also publish new artifacts and upload application SBOMs</td></tr><tr><td>Maintainer</td><td>Also delete and overwrite artifacts, release quarantined versions, manage repositories, upload and cleanup policies and the block list</td></tr><tr><td>Owner</td><td>Also manage members and settings, and delete the space</td></tr></tbody></table></div>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>When someone has several roles in a space (their own and their groups'), <strong class="text-text">the highest one counts</strong>.</li><li>An <strong class="text-text">internal</strong> space can be read by everyone who signs in to the organization, a <strong class="text-text">public</strong> one also anonymously; publishing always needs Developer or higher. See <a href="../docs/spaces.html#visibility" class="text-cta hover:underline">Visibility</a>.</li><li>Removing a person from <strong class="text-text">Members</strong> leaves the roles they have through groups.</li></ul>
+      <h2 id="repository-roles-and-path-access" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Repository roles and path access</h2>
+      <p class="text-muted mb-4">A repository's <strong class="text-text">Access</strong> tab gives a person, group or service account more access on that one repository, or only on the paths a content selector matches (for example publish only under <span class="font-mono text-sm break-words">com/acme/team-x/**</span>).</p>
+      <figure class="shot mb-6">
+        <img src="../assets/repository-access-tab.png" alt="A repository&#x27;s Access tab: repository roles and path access" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">repository-access-tab.png</p>
+          <p class="text-xs text-muted max-w-md">A repository's Access tab: repository roles and path access</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A repository's Access tab: repository roles and path access</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Repository roles are <strong class="text-text">Viewer</strong> (browse and download), <strong class="text-text">Deployer</strong> (also publish), <strong class="text-text">Maintainer</strong> (also overwrite and delete) and <strong class="text-text">Admin</strong> (also settings and access).</li><li>Access only ever <strong class="text-text">adds</strong>: a repository role can give more than the space role, never less. To keep someone out of a repository, don't give them a space role; give the repositories they need instead.</li><li>People with only repository access see the space with just those repositories.</li></ul>
+      <h2 id="service-accounts-and-tokens" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Service accounts and tokens</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>A <strong class="text-text">service account</strong> is a non-human account for CI and integrations. It gets space and repository roles like a person; see <a href="../docs/oauth-applications.html#machine-access-service-accounts" class="text-cta hover:underline">Service accounts</a>.</li><li>An <strong class="text-text">API token</strong> never gives more than its owner has: it carries a list of permissions and works only where the owner's roles allow them. See <a href="../docs/api-tokens.html" class="text-cta hover:underline">API tokens</a>.</li><li>Policies can limit what is allowed on top of roles (for example sign-in only from some networks, or API tokens that must expire); see <a href="policies.html" class="text-cta hover:underline">Policies</a>.</li></ul>
+      <h2 id="example-give-a-team-access-from-active-directory" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Example: give a team access from Active Directory</h2>
+      <p class="text-muted mb-4">The platform team is the AD group <span class="font-mono text-sm break-words">Platform</span> (with nested groups for each squad). They should publish to their own space and read the shared <span class="font-mono text-sm break-words">thirdparty</span> space; only the release managers may publish to <span class="font-mono text-sm break-words">releases</span>.</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Sync the directory</span> &mdash; Add an Active Directory directory with the group base DN and <strong class="text-text">Include members of nested groups</strong> on (<a href="users-and-directories.html#setting-up-an-active-directory-directory" class="text-cta hover:underline">Setting up an Active Directory directory</a>). After the first sync, <strong class="text-text">Settings → Groups</strong> has <span class="font-mono text-sm break-words">Platform</span> with every squad member in it.</li><li class="pl-2"><span class="text-text font-medium">Give the space role</span> &mdash; Open the space <strong class="text-text">platform → Members</strong>, add the group <span class="font-mono text-sm break-words">Platform</span> with <strong class="text-text">Developer</strong>. Everyone in the group can now publish to every repository in the space.</li><li class="pl-2"><span class="text-text font-medium">Give read access elsewhere</span> &mdash; Open the space <strong class="text-text">thirdparty → Members</strong> and add <span class="font-mono text-sm break-words">Platform</span> as <strong class="text-text">Viewer</strong>.</li><li class="pl-2"><span class="text-text font-medium">Narrow one repository</span> &mdash; For the release repository, don't rely on the space role: make a hand-made group <span class="font-mono text-sm break-words">Release managers</span>, and on <strong class="text-text">releases → Access</strong> give it <strong class="text-text">Deployer</strong>. (If developers shouldn't publish there at all, keep <span class="font-mono text-sm break-words">releases</span> in a space where <span class="font-mono text-sm break-words">Platform</span> is only Viewer, because repository roles can't take away what a space role gives.)</li><li class="pl-2"><span class="text-text font-medium">Admins</span> &mdash; Promote the team lead to <strong class="text-text">Organization admin</strong> in <strong class="text-text">Settings → Users</strong> if they should manage people and policies. The directory never does this for you.</li><li class="pl-2"><span class="text-text font-medium">Check</span> &mdash; Open a user's page: <strong class="text-text">Overview</strong> lists their groups; a space's <strong class="text-text">Members</strong> shows who has access and through which group.</li></ol>
+      <p class="text-muted mb-4">When someone joins or leaves <span class="font-mono text-sm break-words">Platform</span> in Active Directory, the next sync adds or removes them, and with them every space and repository role the group carries.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

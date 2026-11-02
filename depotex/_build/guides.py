@@ -29,7 +29,7 @@ MOVED = [
 # New pages written for the admin guide.
 ADMIN_NEW = [
     "index", "install-planning", "install", "helm-chart", "environment-variables", "setup-wizard", "headless-setup",
-    "settings-reference", "security-hardening", "upgrades", "known-issues", "faq", "support",
+    "settings-reference", "access-overview", "security-hardening", "upgrades", "known-issues", "faq", "support",
 ]
 
 # In docs/, listed in both sidebars.
@@ -55,7 +55,7 @@ ADMIN_GROUPS = [
     ("Install", ["install-planning", "install", "helm-chart", "kubernetes", "deployment-modes",
                  "environment-variables"]),
     ("Set up", ["setup-wizard", "headless-setup", "licensing", "recovery"]),
-    ("Configure", ["settings-reference", "users-and-directories", "single-sign-on", "oauth-applications", "api-tokens",
+    ("Configure", ["settings-reference", "access-overview", "users-and-directories", "single-sign-on", "oauth-applications", "api-tokens",
                    "rate-limits", "storage", "email", "branding-and-banners"]),
     ("Repositories", ["spaces", "repositories", "upstreams", "repository-settings"]),
     ("Security", ["security-hardening", "quarantine", "blocklist", "integrity", "sbom", "vibe-artifacts",

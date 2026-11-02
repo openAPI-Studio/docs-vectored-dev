@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-172 screenshots. Save each one into `depotex/assets/` using the
+181 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -405,6 +405,14 @@ realistic but fictional names and figures rather than real people's data.
 
 ## Policies
 
+- [ ] `policies-create.gif`
+      Creating a policy: New policy, a template, its networks, Try it, then Create policy
+- [ ] `policies-new.png`
+      New policy: templates grouped by area, each with the effect it has
+- [ ] `policies-try-it.png`
+      Try it: a sample sign-in from outside the ranges matches, so the policy would block it
+- [ ] `policies-created.png`
+      The new policy in dry run, with its Settings, Decisions, Compliance, History and Exemptions tabs
 - [ ] `policies-list.png`
       Settings → Policies: each policy's event, effect, mode, priority and decisions in the last 7 days
 - [ ] `policies-editor.png`
@@ -412,6 +420,12 @@ realistic but fictional names and figures rather than real people's data.
 
 ## Automation
 
+- [ ] `automation-create.gif`
+      Creating a rule: New rule, the event, a condition, an alert step, Try it, then Create rule
+- [ ] `automation-new-rule.png`
+      A new rule: When a repository is created, Only if it is a Docker repository, Then send an alert; Try it shows the condition matches
+- [ ] `automation-alert.png`
+      The alert the rule sent, in the notifications panel
 - [ ] `automation-rules.png`
       Settings → Automation: the rules with their on/off switch, event and condition, steps and last run
 - [ ] `automation-rule.png`
@@ -460,6 +474,13 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `settings-general.png`
       Settings → General: the Depotex address, other addresses, and the help links
+
+## How access fits together
+
+- [ ] `groups-group.png`
+      A group: the directories that sync into it, and each member with where they came from
+- [ ] `repository-access-tab.png`
+      A repository's Access tab: repository roles and path access
 
 ## Setup wizard
 

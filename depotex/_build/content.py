@@ -38,6 +38,7 @@ from content_kubernetes import KUBERNETES
 from content_ratelimits import RATE_LIMITS
 from content_quickstart import QUICKSTART
 from content_admin import ADMIN
+from content_access import ACCESS
 from content_setup import SETUP
 from content_helm import HELM
 from content_envvars import ENV_VARS
@@ -443,4 +444,4 @@ location / {
 
 # The user guide's start page and the admin guide's own pages (guides.py says
 # which guide and folder each page is in).
-PAGES = QUICKSTART + PAGES + ADMIN + SETUP + HELM + ENV_VARS + HELP + ADVISORIES_PAGE
+PAGES = QUICKSTART + PAGES + ADMIN + ACCESS + SETUP + HELM + ENV_VARS + HELP + ADVISORIES_PAGE

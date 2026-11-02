@@ -1,5 +1,5 @@
 """Policies page: org rules on events (deny, warn, set)."""
-from engine import H, P, UL, TABLE, NOTE, CODE, WARN, SHOT
+from engine import H, P, UL, TABLE, NOTE, CODE, WARN, SHOT, STEPS
 
 POLICIES = [
     ("policies", dict(
@@ -9,6 +9,23 @@ POLICIES = [
         blocks=[
             P("Policies let administrators control how Depotex behaves in their organization. A policy watches one kind of action (an event, such as a repository being created), checks a condition, and then blocks the action, lets it through with a warning, or adjusts one of its values."),
             P("**License:** Pro or higher. **Permissions:** `policies:read` to view, `policies:write` to create and change, `policies:admin` to exempt users or roles. Organization admins can view and write policies; exemptions need a super admin."),
+            H("Create a policy"),
+            P("This example limits sign-ins to your office and VPN networks. Every policy is made the same way: pick a template (or write a condition), test it, start it in dry run, then enforce it once its decisions look right."),
+            SHOT("policies-create.gif", "Creating a policy: New policy, a template, its networks, Try it, then Create policy"),
+            STEPS([
+                "Open the policies|Go to **Settings → Policies** and select **New policy**. You need the `policies:write` permission (organization admins and super admins have it).",
+                "Pick a template|Templates are grouped by area: **Sign-in**, **API tokens**, **Profiles**, **Repositories** and **Other**. The badge on each says what it does when it matches: **Block**, **Warn** or **Adjust**. Choose **Sign in only from these networks**. For a rule no template covers, choose **Custom condition** under **Your own** at the end of the list (see [Conditions](#conditions)).",
+                "Fill in the form|Give the policy a **Name** and an optional **Description**. Under **Allowed IP ranges**, enter one range per line, for example `10.0.0.0/8` and `192.168.0.0/16`. Leave **Message shown to the user** empty to show the standard message in each person's language, or write your own (for example where to find the VPN).",
+                "Set the priority|**Priority** decides the order when several policies watch the same event: lower numbers run first and the first policy that blocks wins (default 100). See [Order and conflicts](#order-and-conflicts).",
+                "Choose how it starts|Under **Start in**, keep **Dry run (Recommended)**: the policy records what it would do without stopping anyone. **Enforced** applies it at once; **Off** saves it without running it.",
+                "Test it|In **Try it**, edit the **Sample payload** (for example set `ip` to an address outside your ranges), set **Actor roles** if the condition uses them, and select **Run test**. The result says whether the condition matches and what the policy would do. Nothing is saved.",
+                "Create it|Select **Create policy**. The policy opens on its own page with the tabs **Settings**, **Decisions**, **Compliance**, **History** and **Exemptions**, and the mode switch (**Off**, **Dry run**, **Enforced**) at the top.",
+                "Watch, then enforce|Leave it in dry run for a few days and check **Decisions** for sign-ins it would have blocked. Add exemptions for accounts that must keep working (for example a break-glass admin), then select **Enforced**. Depotex asks first and says how many actions it would have affected in the last 7 days.",
+            ]),
+            SHOT("policies-new.png", "New policy: templates grouped by area, each with the effect it has"),
+            SHOT("policies-try-it.png", "Try it: a sample sign-in from outside the ranges matches, so the policy would block it"),
+            SHOT("policies-created.png", "The new policy in dry run, with its Settings, Decisions, Compliance, History and Exemptions tabs"),
+            WARN("Test a sign-in policy before enforcing it. A **Sign in only from these networks** or **Sign in only with these roles** policy that matches your own address or role locks you out too. Keep a super admin exempted, or keep the policy in dry run until its decisions show only the sign-ins you meant to stop."),
             H("Managing policies"),
             P("Go to **Settings → Policies**. The list shows each policy's event, effect, mode and priority, and what it did in the **last 7 days** (for example \"3 blocked\" or \"4 would warn\"); filter it by mode with **All**, **Enforced**, **Dry run** and **Off**. Open a policy to edit it, see its decisions, restore an earlier version, or manage exemptions."),
             SHOT("policies-list.png", "Settings → Policies: each policy's event, effect, mode, priority and decisions in the last 7 days"),
@@ -32,8 +49,17 @@ POLICIES = [
                 ["API tokens need an IP allowlist", "Blocks API tokens created without an IP allowlist", "Nothing"],
                 ["Keep permissions out of API tokens", "Blocks API tokens that include listed permissions", "Permissions, such as `users:delete`"],
                 ["Preset avatars only", "Blocks uploaded profile pictures", "Nothing"],
-                ["Allowed repository formats (sample app)", "Blocks new repositories in other formats", "Formats"],
+                ["Allowed repository formats", "Blocks new repositories in formats you haven't selected", "Formats"],
+                ["Refuse components under some licenses", "Quarantines artifact versions, and refuses application SBOMs, that list a component under one of your licenses", "License identifiers, such as `AGPL-3.0-only`"],
+                ["Refuse SBOMs with severe vulnerabilities", "Quarantines versions, and refuses application SBOMs, whose components have a known vulnerability of the severities you pick (VEX assessments applied); checked again when new advisories arrive", "Severities"],
+                ["Refuse SBOMs with fixable severe vulnerabilities", "The same, but only vulnerabilities that already have a fixed version count", "Severities"],
+                ["Refuse SBOMs with low coverage", "Quarantines versions, and refuses application SBOMs, whose SBOM coverage is in the bands you pick (too little is known to tell whether they are safe)", "Coverage bands"],
+                ["Require complete SBOMs with package URLs", "Quarantines versions, and refuses application SBOMs, whose components lack package URLs or that were cut at the component limit", "Nothing"],
+                ["Require an SBOM", "Quarantines versions that have no SBOM, published with them or made by Depotex from their metadata", "Nothing (add a repository condition to leave proxies alone)"],
+                ["Refuse vibe check-ins with some findings", "Refuses a push to a vibe project when its scan finds one of the findings you pick", "Findings"],
+                ["Refuse vibe check-ins with severe findings", "Refuses a push to a vibe project when its scan finds something of the severities you pick", "Severities"],
             ]),
+            P("The SBOM and vibe templates are listed under **Other**; see [SBOMs & vulnerabilities](sbom.html) and [Quarantine](quarantine.html) for what a quarantined version means. **Turn off “Remember me”** adjusts the sign-in instead of blocking it; every other template blocks."),
             P("A policy made from a template opens in the same form when you edit it. **Switch to custom condition** turns it into a custom policy, starting from the condition the template built."),
             NOTE("Sign-in templates run on every sign-in, and each sign-in is checked against every range or role you list (up to 100). That stays well under a millisecond, but a dry-run sign-in template writes a decision for every sign-in it would block, which on a busy system adds up; review it and switch it to enforce or off."),
             H("What a policy can do"),
