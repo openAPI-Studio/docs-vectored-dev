@@ -102,7 +102,7 @@ BROWSE = [
                 ["`GET /api/browse/lanes`", "Repositories you can see with their newest versions"],
                 ["`GET /api/spaces/{space}/repositories/{repository}/tree?node=`", "A level of a repository's tree"],
                 ["`GET /api/spaces/{space}/repositories/{repository}/packages?node=`", "A package's versions"],
-                ["`GET /api/browse/versions/{id}`", "A version, its files, checksums and download addresses"],
+                ["`GET /api/browse/versions/{id}`", "A version, its files, checksums and download addresses, and its security summary (`vulnerabilities`, with `notCovered`: the components no vulnerability data covers, never counted as checked)"],
                 ["`GET /api/browse/versions/{id}/metadata`, `/dependencies`, `/dependents`, `/attachments`, `/activity`", "The tabs' contents"],
                 ["`GET /api/browse/versions/{id}/sbom/{n}`", "What SBOM attachment `n` of the version (its index in `/attachments`) lists: the document (format, tool, the software it describes, counts) and the relationships between its components (see [SBOMs](sbom.html))"],
                 ["`GET /api/browse/versions/{id}/sbom/{n}/components?q=&cursor=&limit=`", "The SBOM's components (purl, name, version, type, supplier, licences, hashes), in document order, with cursor paging; `q` keeps those whose name or purl contains it"],
