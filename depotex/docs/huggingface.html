@@ -14,6 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="../../assets/tailwind-config.js"></script>
   <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
 </head>
 <body>
 
@@ -59,7 +60,7 @@ snapshot_download(&quot;acme/demo&quot;, revision=&quot;v1.0&quot;)   # reads HF
       <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Each commit is a version</strong>: cleanup policies, quotas, <a href="quarantine.html" class="text-cta hover:underline">quarantine</a> and the <a href="blocklist.html" class="text-cta hover:underline">block list</a> act on commits. Downloading at a quarantined or blocked commit is refused.</li><li>A file's content is stored once per Hugging Face repository, whatever commits use it. Content no commit uses any more is removed by the nightly <span class="font-mono text-sm break-words">huggingface-gc</span> job after <span class="font-mono text-sm break-words">HUGGINGFACE_GC_GRACE</span> (24 hours).</li></ul>
       <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Cleanup sees commits, not branches: a rule can remove the commit a branch points to, and the branch then answers 404 until it moves. Keep cleanup rules away from Hugging Face repositories whose branches must stay readable, or keep enough recent versions.</p></div>
       <h2 id="proxy-repositories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Proxy repositories</h2>
-      <p class="text-muted mb-4">Add an upstream with the <strong class="text-text">Hugging Face Hub</strong> preset (<span class="font-mono text-sm break-words">https://huggingface.co</span>), allow it for the space, then create a proxy repository with it. A proxy caches each file by commit, checked against the Hub's SHA-256 for large files; listings, trees and history are forwarded live. Proxies are read-only. A proxy can also reach a Hugging Face repository of another Depotex (<a href="upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
+      <p class="text-muted mb-4">Add an upstream with the <strong class="text-text">Hugging Face Hub</strong> preset (<span class="font-mono text-sm break-words">https://huggingface.co</span>), allow it for the space, then create a proxy repository with it. A proxy caches each file by commit, checked against the Hub's SHA-256 for large files; listings, trees and history are forwarded live. Proxies are read-only. A proxy can also reach a Hugging Face repository of another Depotex (<a href="../admin/upstreams.html#depotex-link" class="text-cta hover:underline">Depotex link</a>).</p>
       <h2 id="groups" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Groups</h2>
       <p class="text-muted mb-4">A Hugging Face <a href="repository-groups.html" class="text-cta hover:underline">group</a> merges the lists of models, datasets and Spaces of its members, reads each repository from the first member that has it, and sends writes to its write member.</p>
       <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. In the artifact browser</h2>

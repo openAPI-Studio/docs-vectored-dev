@@ -6,7 +6,7 @@ UPSTREAMS = [
     ("upstreams", dict(
         label="Upstreams", title="Upstreams", icon="link",
         desc="External registries such as Maven Central, or repositories on another Depotex, that spaces may proxy, with their credentials and which spaces may use them",
-        keywords=["upstream", "proxy", "remote", "mirror", "maven central", "npmjs", "docker hub", "credentials", "allow-list", "depotex link", "oauth", "client credentials", "quarantine"],
+        keywords=["upstream", "proxy", "remote", "mirror", "maven central", "npmjs", "docker hub", "credentials", "allow-list", "depotex link", "linked instance", "oauth", "client credentials", "quarantine"],
         blocks=[
             H("Overview"),
             P("An upstream is an external registry, such as Maven Central, the npm public registry, Docker Hub or your own internal mirror, or a repository on another Depotex installation (a **Depotex link**). Super admins register each one once for the whole installation under **Upstreams** in the sidebar, then choose which spaces may proxy it; proxy repositories in those spaces fetch from it. Registries are available on every license tier (proxy repositories need Pro); Depotex links need Enterprise."),
@@ -51,7 +51,8 @@ UPSTREAMS = [
             H("Depotex link"),
             P("A Depotex link proxies a repository of another Depotex installation, for example a central one at headquarters. Files come with their checksums, which are verified. The other installation's quarantine and block list apply here too: a file it refuses is refused here, never served from the cache, and copies cached before it refused them are removed. Needs an Enterprise license on this installation."),
             STEPS([
-                "On the other Depotex|Create a service account that can read the repository (a space or repository role, or a content selector), and an application under **Settings → Applications** whose machine access acts as it. Note its client ID and secret. An API token of an account that can read the repository works too.",
+                "Link the installations (simplest)|Link the two installations under **Settings → Applications** ([Link another Depotex installation](oauth-applications.html#link-another-depotex-installation)). Then, under **Add upstream**, choose **Another Depotex**, authentication **Linked instance**, the link, and pick the space and repository from lists loaded live from the other installation; the link supplies the address and the credentials. Skip to **Test**. When the link acts as each person, people must have connected their own account there, and each download checks that their account may read the repository (answers are remembered for a minute).",
+                "Or, by hand, on the other Depotex|Create a service account that can read the repository (a space or repository role, or a content selector), and an application under **Settings → Applications** whose machine access acts as it. Note its client ID and secret. An API token of an account that can read the repository works too.",
                 "Here|Choose **Add upstream**, kind **Another Depotex (Depotex link)**. Enter the other Depotex's address (as people open it in a browser), the space key and the repository name there, and the format of that repository.",
                 "Authentication|Choose **OAuth application (client credentials)** and enter the client ID and secret. Depotex gets short-lived access tokens itself and renews them when they expire or are revoked. **Token** takes an API token instead.",
                 "Test|**Test connection** checks that the other Depotex answers, the credentials can read the repository, and its format matches. It says so if the address isn't a Depotex or the formats differ.",

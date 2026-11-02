@@ -1,5 +1,5 @@
 """Automation page: rules that act after events (alerts, webhooks, email)."""
-from engine import H, P, UL, TABLE, NOTE, CODE, WARN, SHOT
+from engine import H, P, UL, TABLE, NOTE, CODE, WARN, SHOT, STEPS
 
 AUTOMATION = [
     ("automation", dict(
@@ -10,6 +10,21 @@ AUTOMATION = [
             P("Automation rules act after something happens in Depotex. A rule watches one kind of event (a repository being created, a job failing), optionally checks a condition, and then runs its steps: send an alert, call a webhook in another system, or send an email."),
             P("**License:** Pro or higher to create and change rules; built-in rules run on every license. **Permissions:** `automation:read` to view, `automation:write` to create and change your organization's rules, `automation:platform` for platform rules. Organization admins can view and write rules; platform rules need a super admin."),
             P("Rules never slow down or block the action itself: they run in the background a few seconds later. To stop an action, use a [policy](policies.html) instead."),
+            H("Create a rule"),
+            P("This example alerts the platform team whenever someone creates a Docker repository. Every rule is built the same way: an event (**When**), an optional condition (**Only if**) and one or more steps (**Then**)."),
+            SHOT("automation-create.gif", "Creating a rule: New rule, the event, a condition, an alert step, Try it, then Create rule"),
+            STEPS([
+                "Open automation|Go to **Settings → Automation** and select **New rule**. You need the `automation:write` permission (organization admins and super admins have it).",
+                "Name it|Give the rule a **Name**, such as `New Docker repository`, and an optional **Description**. Leave **Platform rule** off: an organization rule sees your organization's events. A super admin can turn it on to see every organization's events and system events such as failing jobs.",
+                "Choose the event|Under **When**, open **Choose an event** and type to search, then pick `depot.repository.create`. **Fields you can use** now lists the event's fields (`payload.name`, `payload.format`, `payload.space_key`, …). The [Events](events.html) page lists every event and its fields.",
+                "Add a condition|Under **Only if**, write `payload.format == \"docker\"`. Click a field chip to insert it. Leave the box empty to run on every event. See [Conditions](#conditions).",
+                "Add a step|Under **Then**, select **Add alert**. Pick a **Severity** (Info, Warning or Critical), who it goes to under **Send to** (for example **Specific users** and their user IDs), a **Title** such as `New repository {{name}}` and a **Message** such as `{{name}} ({{format}}) was created in space {{space_key}}.` **Insert a field** adds a field for you. **Add webhook** calls another system instead; an email step is offered once [email is set up](email.html).",
+                "Test it|In **Try it**, edit the **Sample event** (for example set `format` to `docker`) and select **Run test**. When the condition matches, it says the steps would run. Nothing is sent.",
+                "Create it|Keep **Rule is on** switched on and select **Create rule**. From now on, each matching event runs the steps a few seconds later; the rule's **Runs** tab shows each run and any error.",
+            ]),
+            SHOT("automation-new-rule.png", "A new rule: When a repository is created, Only if it is a Docker repository, Then send an alert; Try it shows the condition matches"),
+            SHOT("automation-alert.png", "The alert the rule sent, in the notifications panel"),
+            NOTE("A rule never stops the action that raised the event. If you want to refuse something (for example repositories in some formats), use a [policy](policies.html#create-a-policy) instead, and add a rule only to be told about it."),
             H("Managing rules"),
             P("Go to **Settings → Automation**. The list shows each rule with a switch to turn it on or off, its event and condition (**When**), what it does (**Then**: alerts, webhooks, emails) and its last run, with the status when that run didn't finish cleanly (**Failed · 3 days ago**). Click a rule to open it."),
             SHOT("automation-rules.png", "Settings → Automation: the rules with their on/off switch, event and condition, steps and last run"),

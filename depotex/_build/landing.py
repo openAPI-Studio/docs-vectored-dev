@@ -58,12 +58,13 @@ def marquee_row(items, dur, reverse):
 
 
 GROUPS = [
-    ("Start here", [("getting-started", "Getting Started", "Install Depotex and complete the setup wizard."), ("kubernetes", "Docker &amp; Kubernetes", "Container images and the Helm chart."), ("deployment-modes", "Single Node &amp; Cluster", "One node or many, with the same features."), ("recovery", "Recovery Mode", "When an installed server can't start, and how to fix it."), ("dashboard", "Dashboard", "What needs a look, figures and system health."), ("changelog", "Changelog", "What each release includes, newest first.")]),
+    ("Start here", [("getting-started", "Getting started", "Sign in, find a repository and publish your first package."), ("index", "Admin guide", "Install, set up, configure and run Depotex."), ("install", "Install Depotex", "The server, the setup key and the reverse proxy."), ("helm-chart", "Install with Helm", "The chart, its values and first-boot setup."), ("kubernetes", "Docker &amp; Kubernetes", "Container images and the Helm chart."), ("deployment-modes", "Single Node &amp; Cluster", "One node or many, with the same features."), ("recovery", "Recovery Mode", "When an installed server can't start, and how to fix it."), ("dashboard", "Dashboard", "What needs a look, figures and system health."), ("changelog", "Changelog", "What each release includes, newest first.")]),
     ("Repositories", [("spaces", "Spaces", "Who can use repositories, visibility and allowed formats."), ("repositories", "Repositories", "Create and manage artifact repositories."), ("repository-groups", "Repository groups", "Several repositories of one format behind one URL."), ("upstreams", "Upstreams", "External registries spaces may proxy."), ("browse", "Browse", "Search, walk trees and open any version."), ("repository-settings", "Repository settings", "Size limits, remote timeouts, proxies and CA certificates."), ("storage", "Storage", "Where files live, credentials and upload limits."), ("formats", "Supported formats", "Every format and the tools that work with it.")]),
-    ("Security", [("sbom", "SBOMs", "What your software is made of, and known vulnerabilities."), ("quarantine", "Quarantine", "Hold new or suspect versions until released."), ("blocklist", "Block list", "Stop a version from being used anywhere."), ("integrity", "Integrity", "Check every stored file is present and unchanged."), ("policies", "Policies", "Rules that block, warn or adjust actions."), ("rate-limits", "Rate Limits &amp; Quotas", "Request and download limits per person, token and address.")]),
-    ("Identity &amp; access", [("users-and-directories", "Users &amp; Directories", "Where accounts come from and how people sign in."), ("single-sign-on", "Single Sign-On", "Entra ID, Google, Okta, Keycloak, any OIDC or SAML provider."), ("oauth-applications", "OAuth Applications", "Pipelines, CLIs and AI agents without personal tokens."), ("api-tokens", "API Tokens", "Scoped tokens for automation and integrations."), ("licensing", "Licensing", "Tiers, installation ID and updating a license.")]),
+    ("Security", [("sbom", "SBOMs", "What your software is made of, and known vulnerabilities."), ("quarantine", "Quarantine", "Hold new or suspect versions until released."), ("blocklist", "Block list", "Stop a version from being used anywhere."), ("integrity", "Integrity", "Check every stored file is present and unchanged."), ("policies", "Policies", "Rules that block, warn or adjust actions."), ("rate-limits", "Rate Limits &amp; Quotas", "Request and download limits per person, token and address."), ("security-advisories", "Security advisories", "Security fixes, with an RSS feed to subscribe to.")]),
+    ("Identity &amp; access", [("users-and-directories", "Users &amp; Directories", "Where accounts come from and how people sign in."), ("single-sign-on", "Single Sign-On", "Entra ID, Google, Okta, Keycloak, any OIDC or SAML provider."), ("oauth-applications", "OAuth Applications", "Pipelines, CLIs and AI agents without personal tokens."), ("api-tokens", "API Tokens", "Scoped tokens for automation and integrations."), ("licensing", "Licensing", "Tiers, getting a license and updating it.")]),
     ("Operations", [("backups", "Backups", "Encrypted, checked and test-restored backups."), ("system-check", "System Check", "Health of every dependency and server, with alerts."), ("logging-and-audit", "Logging &amp; Audit", "Log levels, log files and who changed what."), ("monitoring", "Monitoring (Prometheus)", "Each server's metrics for Prometheus."), ("scheduler", "Scheduled Jobs", "The background jobs Depotex runs."), ("email", "Email", "SMTP, SES, Microsoft 365, SendGrid and more."), ("branding-and-banners", "Branding &amp; Banners", "App name, colors, logos and announcements.")]),
     ("Events &amp; automation", [("events", "Events", "What Depotex raises for policies, automation and plugins."), ("automation", "Automation", "Alerts, webhooks and emails when something happens."), ("plugins", "Plugins", "Signed plugins, including MCP tools for AI."), ("alerts", "Alerts", "The bell, toasts and your preferences."), ("alerts-admin", "Managing Alerts", "Send alerts, force categories, the alerts API.")]),
+    ("Help", [("known-issues", "Known issues", "Limits and gaps to know about, with workarounds."), ("faq", "FAQ", "Answers to common questions."), ("support", "Support", "How to get help and what to send.")]),
 ]
 
 
@@ -192,8 +193,8 @@ def render(head, banner, slugs):
       <h1 style="font-size:clamp(40px,6vw,64px);line-height:1.04;font-weight:700;letter-spacing:-.038em;margin:0 0 22px;text-wrap:balance;color:var(--tx)">Every package your teams build and use, on a server you run.</h1>
       <p style="font-size:clamp(17px,2.4vw,20px);line-height:1.6;color:var(--body);margin:0 0 34px;max-width:680px;text-wrap:pretty">Depotex is a self-hosted artifact repository for 18 package formats. It caches the public registries your builds depend on and gives security teams SBOMs, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <a href="{D}getting-started.html" class="dx-btn">Read Getting Started <span aria-hidden="true">→</span></a>
-        <a href="{D}kubernetes.html" class="dx-btn2">Docker &amp; Kubernetes</a>
+        <a href="{D}getting-started.html" class="dx-btn">User guide <span aria-hidden="true">→</span></a>
+        <a href="{D}index.html" class="dx-btn2">Admin guide</a>
         <span class="dx-mono dx-muted" style="font-size:13px">Container images · Helm chart · setup wizard</span>
       </div>
     </div>
@@ -241,7 +242,7 @@ def render(head, banner, slugs):
       <h2 class="dx-h2" style="margin-bottom:16px">Runs where you do, and looks after itself.</h2>
       <p class="dx-body dx-mb24">Backups with encryption and test restores, a system check with per-server cluster health, scheduled jobs, an audit log and Prometheus metrics. Recovery mode explains what's wrong when an installed server can't start.</p>
       <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px;font-weight:500">
-        <a href="{D}deployment-modes.html">Single node &amp; cluster →</a><a href="{D}backups.html">Backups →</a><a href="{D}recovery.html">Recovery mode →</a>
+        <a href="{D}index.html">Admin guide →</a><a href="{D}helm-chart.html">Install with Helm →</a><a href="{D}deployment-modes.html">Single node &amp; cluster →</a><a href="{D}backups.html">Backups →</a><a href="{D}recovery.html">Recovery mode →</a>
       </div>
     </div>
     <dl class="dx-dl">{dl}</dl>
@@ -273,7 +274,7 @@ def render(head, banner, slugs):
         <h2 style="font-size:clamp(26px,3vw,34px);line-height:1.2;font-weight:700;letter-spacing:-.025em;margin:0 0 12px;color:var(--tx)">Install, enter the setup key, and follow the wizard.</h2>
         <p style="font-size:16.5px;line-height:1.65;color:var(--body);margin:0">Then create a space and its first repository, and point your package manager at it.</p>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:12px"><a href="{D}getting-started.html" class="dx-btn">Get started →</a><a href="{D}changelog.html" class="dx-btn2">Changelog</a></div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px"><a href="{D}install.html" class="dx-btn">Install Depotex →</a><a href="{D}getting-started.html" class="dx-btn2">User guide</a><a href="{D}changelog.html" class="dx-btn2">Changelog</a></div>
     </div>
   </section>
 </main>

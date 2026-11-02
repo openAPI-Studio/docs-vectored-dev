@@ -120,7 +120,7 @@ DIRECTORIES = [
                 "**Groups are never deleted automatically.** If a group disappears from a directory, the members that directory added are removed and the group is marked as removed from that directory; the group and its manual members stay.",
                 "A group that a directory still syncs into can't be deleted here. Renaming it is fine: the directory keeps finding it by its ID.",
             ]),
-            NOTE("Groups don't grant permissions yet: access still comes from each user's role. Group-based roles will build on these groups."),
+            NOTE("Groups don't change anyone's system role (Member, Organization admin, Super admin). They carry **space roles** and **repository roles**: give a group a role on a space's **Members** tab or a repository's **Access** tab, and everyone in it gets that access. See [How access fits together](access-overview.html#groups)."),
 
             H("Privacy requests (GDPR)"),
             P("On a user's page, the **Privacy** tab answers the two most common data-protection requests. Both need a permission that super admins have: `users:export` and `users:anonymize`."),

@@ -177,6 +177,26 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://depotex.example.com/api/us
             ]),
             WARN("Tokens obtained through an application don't pass through single sign-on again: **Require single sign-on** applies when the person approves, not to later refreshes. Shorten the refresh token lifetime, or revoke connections, if that matters for an application."),
 
+            H("Link another Depotex installation"),
+            P("Two Depotex installations, such as a central one and a regional one, can trust each other's applications without anyone copying a client secret by hand. A link is what a [Depotex link upstream](upstreams.html#depotex-link) uses to proxy the other installation's repositories. Needs a Pro license and `oauth_apps:manage` on both sides (proxying through it needs Enterprise on the side that proxies); both installations need their address set under **Settings → General**."),
+            SHOT("settings-applications-add.png", "Settings → Applications → Add application: a custom application or another Depotex instance"),
+            STEPS([
+                "Start|**Settings → Applications → Add application → Depotex instance**.",
+                "Look up|Enter the other installation's address, as people open it in a browser, and select **Look up**. Depotex reads what that installation announces and shows its name, icon and version. Your own address is refused.",
+                "Direction|**This installation uses** the other one (upstreams here can proxy its repositories), **the other uses this installation** (an application is made here so it can proxy yours), or both.",
+                "Acts as|**Service account**: a service account on the other side; what it may read is what the link may read, and downloads and background checks use it. **Each person (impersonation)**: people connect their own account on the other side once, and see and download only what they may there. Choose one or both. For the direction into this installation, pick the service account the other side acts as here.",
+                "Who administers the other side|**I do**: **Continue on** the other installation, which opens with the application already filled in; sign in there, select **Create and go back**, and the link is active. **Another administrator**: Depotex shows what to create there and a link that fills in their form; the link waits until their credentials are entered here (**Enter credentials**). **I already have the credentials** takes the client ID and secret the other administrator sent.",
+            ]),
+            SHOT("settings-applications-link-instance.png", "Link a Depotex instance: the other installation's address, looked up before you choose directions"),
+            P("**Linked instances** on the same page lists each link with its direction (**Uses** the other one, or **uses this one**), what it acts as, whether it's **Active** or **Waiting**, and how many people connected their account. **Test** checks the other side answers and accepts the credentials. **Remove link** deletes the application made here, so the other side's calls stop at once, and forgets people's connections; remove the link on the other installation too."),
+            P("With **Each person**, people connect under **Profile → Connected apps**, or the first time they open something through the link: they sign in on the other installation (password or single sign-on) and come straight back. The application there is pre-approved, so they aren't asked to approve it."),
+            UL([
+                "Secrets never pass through the browser: the browser only carries a one-time code, which is useless without a key that stays on the server, and credentials travel server to server.",
+                "Unfinished links, codes and people's sign-ins expire after 30, 10 and 10 minutes.",
+                "Removing a link doesn't tell the other side: its half stays until its administrator removes it, and its **Test** then says the credentials were refused.",
+                "Events: `applink.create`, `applink.update`, `applink.delete` and `applink.connect` (a person connects their own account). Audit actions: `app_links:create`, `app_links:update`, `app_links:delete`, `app_links:connect`, `app_links:disconnect`.",
+            ]),
+
             H("Events, policies and audit"),
             TABLE(["Event", "When"], [
                 ["`oauth.client.create`, `oauth.client.update`, `oauth.client.delete`", "An application is registered, changed (including a new secret, enabling or disabling) or removed. The payload says its kind (`app` or `mcp`) and, for AI agents, the plugins it may use and whether its tools may change Depotex (`mcp_access`)"],

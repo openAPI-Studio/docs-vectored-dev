@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan an installation — Depotex Admin Guide</title>
+  <meta name="description" content="Components, requirements, sizing, network and storage to decide before installing Depotex">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Plan an installation</h1>
+      <p class="vc-lede">Components, requirements, sizing, network and storage to decide before installing Depotex</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Depotex is two programs, the <strong class="text-text">server</strong> (API, package-manager endpoints, background jobs) and the <strong class="text-text">web app</strong>, in front of PostgreSQL, optional Redis and artifact storage. Decide these before installing: they're the parts that are hard to change later.</p>
+      <h2 id="components" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Components</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Part</th><th>Role</th><th>Notes</th></tr></thead><tbody><tr><td>Server</td><td>Every API and package-manager request, scheduled jobs, events, plugins</td><td>Port 8080. Stateless apart from a small per-server data folder (below). Several servers form a cluster</td></tr><tr><td>Web app</td><td>The pages people use; forwards <span class="font-mono text-sm break-words">/api</span> and package-manager traffic to the server</td><td>Port 3000. Stateless; run two or more for availability</td></tr><tr><td>PostgreSQL</td><td>Every record: users, settings (encrypted), repositories, versions, events, the audit log</td><td>Required. The single source of truth</td></tr><tr><td>Redis</td><td>Coordination between servers: rate limits, live updates, locks</td><td>Optional on one server, required for a cluster. Losing it is survivable: see <a href="deployment-modes.html#redis" class="text-cta hover:underline">Single Node &amp; Cluster</a></td></tr><tr><td>Artifact storage</td><td>The files of every artifact</td><td>Local disk, S3 (or S3-compatible), MinIO or Azure Blob</td></tr><tr><td>Reverse proxy / ingress</td><td>TLS, the public address, <span class="font-mono text-sm break-words">/api/ws</span> to the server</td><td>Any proxy or load balancer; examples for Caddy and nginx in <a href="install.html#behind-a-proxy" class="text-cta hover:underline">Install Depotex</a></td></tr></tbody></table></div>
+      <h2 id="single-server-or-cluster" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Single server or cluster</h2>
+      <div class="tbl-wrap"><table><thead><tr><th></th><th>Single server</th><th>Cluster</th></tr></thead><tbody><tr><td>License</td><td>Standard or higher</td><td>Pro or higher, with enough servers</td></tr><tr><td>Redis</td><td>Optional</td><td>Required (one server, Sentinel or Redis Cluster)</td></tr><tr><td>Storage</td><td>Any</td><td>Shared by every server: S3, MinIO, Azure, or one volume mounted at the same path everywhere</td></tr><tr><td>Availability</td><td>Downtime for restarts and upgrades</td><td>Rolling upgrades; a failed server's work is taken over</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Every feature behaves the same either way. Start with one server if you're unsure: going to a cluster later means adding Redis and shared storage, not reinstalling.</p>
+      <h2 id="postgresql" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. PostgreSQL</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>A supported PostgreSQL release, 15 or later (the Helm chart's built-in database is 17; the server image's backup tools are 18 and work with 18 and older). Managed services (Amazon RDS and Aurora PostgreSQL, Google Cloud SQL, Azure Database for PostgreSQL) work.</li><li>One database for Depotex, owned by the role Depotex connects as. The role needs <span class="font-mono text-sm break-words">CREATEROLE</span> if plugins use databases, and must not be a superuser.</li><li>Connections: each server opens up to <span class="font-mono text-sm break-words">pool_max_conns</span> (default 4, or the number of CPUs if more). Keep servers × <span class="font-mono text-sm break-words">pool_max_conns</span> plus room for maintenance under <span class="font-mono text-sm break-words">max_connections</span>. See <a href="deployment-modes.html#database-connections" class="text-cta hover:underline">Database connections</a>.</li><li>Use TLS (<span class="font-mono text-sm break-words">sslmode=verify-full</span>) when the database isn't on the same host, and back the database up with your platform's tools as well as with Depotex <a href="backups.html" class="text-cta hover:underline">backups</a>.</li></ul>
+      <h2 id="storage" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Storage</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Size it for your artifacts plus growth: proxies keep copies of everything fetched, Docker images are large. Cleanup policies and quotas keep it in check (see <a href="../docs/spaces.html" class="text-cta hover:underline">Spaces</a>).</li><li>Object storage (S3, MinIO, Azure) is the usual choice and the only one that needs nothing extra for a cluster. On AWS the server can use its IAM role instead of keys.</li><li>Each server also has a small <strong class="text-text">data folder</strong> of its own (<span class="font-mono text-sm break-words">/app/data</span> in the image): the encrypted bootstrap file, its search index (rebuilt when missing) and its log files. Give it persistent disk, about 10 GiB to start; the search index grows with the number of versions.</li><li>Backups and scans need temporary space: a compressed database dump for <a href="backups.html" class="text-cta hover:underline">backups</a> (<span class="font-mono text-sm break-words">BACKUP_TEMP_DIR</span>), the largest unpacked image for image scans (<span class="font-mono text-sm break-words">IMAGE_SCAN_TMP_DIR</span>).</li></ul>
+      <h2 id="sizing" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Sizing</h2>
+      <p class="text-muted mb-4">Starting points, to be adjusted from what <a href="monitoring.html" class="text-cta hover:underline">monitoring</a> and the <a href="system-check.html" class="text-cta hover:underline">system check</a> show under your load:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Installation</th><th>Servers</th><th>Web app</th><th>PostgreSQL</th><th>Redis</th></tr></thead><tbody><tr><td>Evaluation, small team</td><td>1 × 1 CPU, 1–2 GiB</td><td>1 × 0.5 CPU, 512 MiB</td><td>1–2 CPU, 2 GiB, 20 GiB disk</td><td>none</td></tr><tr><td>Department, CI on every commit</td><td>1–2 × 2 CPU, 4 GiB</td><td>2 × 1 CPU, 1 GiB</td><td>2–4 CPU, 8 GiB, SSD</td><td>small (256 MiB)</td></tr><tr><td>Company-wide, high availability</td><td>3+ × 4 CPU, 8 GiB</td><td>2–3 × 1 CPU, 1 GiB</td><td>8+ CPU, 32 GiB, replicated</td><td>replicated, 1 GiB</td></tr></tbody></table></div>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Most load is package-manager traffic from CI: count builds per hour and dependencies per build, not people.</li><li>Small files are database-bound: a faster database (and <span class="font-mono text-sm break-words">pool_max_conns</span> to match) helps more than more servers. Large files are network- and storage-bound.</li><li>Image scans (Syft) and SBOM inspection run one at a time per cluster in the background; they use CPU and temporary disk on the server that runs them.</li></ul>
+      <h2 id="network" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Network</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>From</th><th>To</th><th>Port</th><th>Why</th></tr></thead><tbody><tr><td>Users, CI</td><td>Reverse proxy</td><td>443</td><td>Web app, API and package managers, on one host name</td></tr><tr><td>Reverse proxy</td><td>Web app</td><td>3000</td><td>Everything except <span class="font-mono text-sm break-words">/api/ws</span></td></tr><tr><td>Reverse proxy</td><td>Server</td><td>8080</td><td><span class="font-mono text-sm break-words">/api/ws</span> (live updates, WebSocket)</td></tr><tr><td>Web app</td><td>Server</td><td>8080</td><td>API and package traffic</td></tr><tr><td>Server</td><td>PostgreSQL, Redis, storage</td><td>5432, 6379, 443/9000</td><td>Its records, coordination and files</td></tr><tr><td>Servers</td><td>Each other</td><td>none</td><td>Servers coordinate through PostgreSQL and Redis only</td></tr><tr><td>Prometheus</td><td>Server</td><td>9090 (optional)</td><td><a href="monitoring.html" class="text-cta hover:underline">Metrics</a>, never through the public address</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">Outbound from the server</strong>, only for what you use: upstream registries for proxy repositories, identity providers (single sign-on, Entra ID, Google), SMTP or Amazon SES, webhook targets, OSV vulnerability data (or upload it offline in Settings → Vulnerability data), and plugins' declared hosts. An outbound HTTP proxy and private certificate authorities are set in <strong class="text-text">Settings → Repositories</strong>. Nothing is sent to Vectored, apart from the installation ID when the vibe artifacts package list is downloaded.</p>
+      <h2 id="address-and-tls" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Address and TLS</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Give Depotex its own host name (<span class="font-mono text-sm break-words">https://depotex.example.com</span>); it can't be served under a path.</li><li>Terminate TLS at your proxy or ingress. Package managers and single sign-on require HTTPS in practice.</li><li>Set <span class="font-mono text-sm break-words">TRUSTED_PROXIES</span> (<span class="font-mono text-sm break-words">backend.trustedProxies</span> in Helm) to the proxies in front, or every request seems to come from the proxy.</li><li>Allow large request bodies and long timeouts at the proxy for big uploads and downloads.</li></ul>
+      <h2 id="before-you-install" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Before you install</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>PostgreSQL database and role created; Redis ready if you run a cluster; bucket or container created.</li><li>DNS name and TLS certificate.</li><li>A place to keep secrets: <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>, the first administrator's password, the setup and recovery keys.</li><li>Who will request the license, and with which tier, user and server counts (see <a href="licensing.html" class="text-cta hover:underline">Licensing</a>).</li><li>Email (SMTP or Amazon SES) for invitations and password resets.</li><li>Your identity source: local accounts, LDAP or Active Directory, Entra ID, Google Workspace, SCIM, and single sign-on.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

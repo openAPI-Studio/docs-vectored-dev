@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security advisories — Depotex Docs</title>
+  <meta name="description" content="Security fixes in Depotex, what they affect and what to do, with an RSS feed to subscribe to">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="shared">
+  <link rel="alternate" type="application/rss+xml" title="Depotex security advisories" href="../advisories.xml">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h1 class="vc-h1">Security advisories</h1>
+      <p class="vc-lede">Security fixes in Depotex, what they affect and what to do, with an RSS feed to subscribe to</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">When a release of Depotex fixes a security problem, it is announced here, with the versions affected, the version that fixes it and what to do until you can upgrade. Administrators should subscribe to the feed; everyone else can check here when asked to upgrade.</p>
+      <h2 id="subscribe" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Subscribe</h2>
+      <p class="text-muted mb-4">Add this address to your feed reader, Slack or Microsoft Teams RSS app, or monitoring tool:</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">https://docs.vectored.dev/depotex/advisories.xml</code></pre>
+      <p class="text-muted mb-4"><a href="../advisories.xml" class="text-cta hover:underline">Open the RSS feed</a>. Each item links to its advisory below. Most browsers and feed readers also find the feed on their own from this page.</p>
+      <p class="text-muted mb-4">To get advisories by email as well, write to <a href="mailto:support@vectored.dev" class="text-cta hover:underline">support@vectored.dev</a> with the address to send them to and your licensee name.</p>
+      <h2 id="advisories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Advisories</h2>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">No security advisories have been issued for Depotex.</p></div>
+      <h2 id="dpx-notice-2026-001" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. DPX-NOTICE-2026-001</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Security advisory feed opened</strong></p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Published:</strong> 2026-11-02</li></ul>
+      <p class="text-muted mb-4">Depotex security advisories are now published on this page and in an RSS feed. No advisories have been issued so far.</p>
+      <p class="text-muted mb-4"><strong class="text-text">What to do:</strong> Subscribe to the feed to hear about future advisories.</p>
+      <h2 id="severity" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Severity</h2>
+      <p class="text-muted mb-4">Each advisory has a CVSS score and one of these ratings, which say how soon to act:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Rating</th><th>CVSS</th><th>Means</th><th>Act</th></tr></thead><tbody><tr><td><strong class="text-text">Critical</strong></td><td>9.0–10.0</td><td>Exploitable from the network without an account, or leads to a full takeover</td><td>Upgrade at once, or apply the workaround now</td></tr><tr><td><strong class="text-text">High</strong></td><td>7.0–8.9</td><td>Serious, but needs an account, a particular setting or a step from someone</td><td>Upgrade in your next maintenance window, within days</td></tr><tr><td><strong class="text-text">Medium</strong></td><td>4.0–6.9</td><td>Limited impact or hard to exploit</td><td>Upgrade with your regular updates</td></tr><tr><td><strong class="text-text">Low</strong></td><td>0.1–3.9</td><td>Minor, defense in depth</td><td>Upgrade with your regular updates</td></tr></tbody></table></div>
+      <h2 id="what-an-advisory-contains" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. What an advisory contains</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>An ID (<span class="font-mono text-sm break-words">DPX-SA-&lt;year&gt;-&lt;number&gt;</span>) and, where one is assigned, the CVE.</li><li>What could happen and who is exposed: which features, settings, license tiers or deployment modes are affected.</li><li>Affected versions and the version that fixes it. Fixes ship in a new release of the server image and the web app image together.</li><li>A workaround or mitigation when there is one, and how to tell whether you were affected (audit log entries, log lines).</li><li>Credit to the person who reported it, if they want it.</li></ul>
+      <p class="text-muted mb-4">Problems in components Depotex is built with (Go, Next.js, PostgreSQL client libraries and others) get an advisory when they affect Depotex as shipped. Upgrading to the latest release always brings their fixes; see <a href="../admin/upgrades.html" class="text-cta hover:underline">Upgrades</a>.</p>
+      <h2 id="check-your-version" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Check your version</h2>
+      <p class="text-muted mb-4">The footer of every page, and <strong class="text-text">? → About</strong>, show the version and build of the server that answered. In a cluster check each server: <strong class="text-text">Settings → Clustering</strong> lists every server's version. From a script, <span class="font-mono text-sm break-words">GET /api/health</span> answers with the version without signing in.</p>
+      <h2 id="report-a-vulnerability" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Report a vulnerability</h2>
+      <p class="text-muted mb-4">Found a security problem in Depotex? Please tell us privately, not in a public issue or forum, so we can fix it before it's widely known.</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Write to us</span> &mdash; Email <a href="mailto:security@vectored.dev" class="text-cta hover:underline">security@vectored.dev</a> with the version, how to reproduce it, and what an attacker could do. Don't include real customer data, credentials or keys.</li><li class="pl-2"><span class="text-text font-medium">We confirm</span> &mdash; We acknowledge your report, confirm whether it's a vulnerability, and keep you informed while we fix it.</li><li class="pl-2"><span class="text-text font-medium">We fix and publish</span> &mdash; The fix ships in a release, then the advisory is published here and in the feed, crediting you if you wish.</li></ol>
+      <p class="text-muted mb-4">Please give us reasonable time to release a fix before you disclose it, test only against installations you own, and don't access or change other people's data. We won't take action against research done in good faith under these terms.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">For help with your own installation (configuration, an error you see) use <a href="../admin/support.html" class="text-cta hover:underline">Support</a> instead.</p></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

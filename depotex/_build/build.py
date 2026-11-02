@@ -10,6 +10,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import engine
 from engine import H, P, UL, NOTE, TABLE, SHOT
 from content import PAGES
+import guides
 
 INTRO = [
     P("Depotex is a self-hosted artifact repository: one place for the packages, container images, models and files your teams build and depend on. It serves 18 package formats to the tools developers already use, keeps copies of public registries close to your builds, and gives security and platform teams the controls around them: SBOMs and known vulnerabilities, quarantine, a block list, policies and a full audit log. It runs on a single server or as a cluster, with the same features either way."),
@@ -44,7 +45,8 @@ INTRO = [
     P("Each feature's page says which tier it needs. See [Licensing](docs/licensing.html)."),
     H("Where to start"),
     UL([
-        "[Getting Started](docs/getting-started.html): install, the setup key and the setup wizard.",
+        "[Getting started](docs/getting-started.html): sign in, find a repository and point your package manager at it.",
+        "[Admin guide](admin/index.html): install, set up, configure and run Depotex.",
         "[Docker & Kubernetes](docs/kubernetes.html): the container images and the Helm chart.",
         "[Spaces](docs/spaces.html) and [Supported formats](docs/formats.html): create a space and its first repository, then point your package manager at it.",
         "[Users & Directories](docs/users-and-directories.html): bring people in.",
@@ -52,61 +54,105 @@ INTRO = [
     ]),
 ]
 
-# Sidebar groups, in reading order. Depotex isn't in the shared
-# assets/nav.js (tools/gen_nav.py) until launch, so the build writes its own
-# registry entry to depotex/assets/nav-local.js, which only Depotex pages
-# load. Pages missing from GROUPS land in "More" so none disappear.
-GROUPS = [
-    ("Start here", ["getting-started", "kubernetes", "deployment-modes", "recovery"]),
-    ("Users & access", ["users-and-directories", "single-sign-on", "oauth-applications", "api-tokens", "rate-limits"]),
-    ("Operations", ["branding-and-banners", "logging-and-audit", "system-check", "monitoring", "email", "scheduler", "licensing"]),
-    ("Alerts & automation", ["alerts", "alerts-admin", "events", "policies", "automation", "plugins"]),
-    ("Repositories", ["repositories"]),
-    ("Formats", ["formats", "maven", "npm", "pypi", "go", "helm", "nuget", "cargo", "apt", "yum", "terraform", "huggingface", "git-lfs", "composer", "rubygems", "conda", "conan", "docker", "raw"]),
-    ("What's new", ["changelog"]),
-]
+# Sidebars. Depotex isn't in the shared assets/nav.js (tools/gen_nav.py) until
+# launch, so the build writes its own registry entries to
+# depotex/assets/nav-local.js, which only Depotex pages load. There are two:
+# the user guide and the admin guide (guides.py says which page is where).
+# Pages missing from a guide's groups land in its "More" group so none
+# disappear.
+CROSS = {
+    "@admin": {"h": "../admin/index.html", "l": "Admin guide →", "t": "admin guide administrators install configure", "x": 1},
+    "@user": {"h": "../docs/getting-started.html", "l": "User guide →", "t": "user guide getting started", "x": 1},
+}
 
 
-def write_local_nav(pages):
+def nav_entry(pages, groups, key, label, home_label, docs_home, guide):
     by_slug = dict(pages)
-    placed = set()
-    groups = []
 
     def item(slug):
+        if slug in CROSS:
+            return dict(CROSS[slug])
         p = by_slug[slug]
         label = html.unescape(p["label"])
         text = " ".join([label, html.unescape(p.get("desc", "")), " ".join(p.get("keywords", []))]).lower()
-        return {"h": slug + ".html", "l": label, "t": text}
+        h = slug + ".html" if p.get("dir", "docs") == "docs" else f"../{p['dir']}/{slug}.html"
+        return {"h": h, "l": label, "t": text}
 
-    for title, slugs in GROUPS:
-        items = [item(s) for s in slugs if s in by_slug]
-        placed.update(s for s in slugs if s in by_slug)
+    placed, out = set(), []
+    for title, slugs in groups:
+        items = [item(s) for s in slugs if s in by_slug or s in CROSS]
+        placed.update(slugs)
         if items:
-            groups.append({"title": title, "items": items})
-    rest = [item(s) for s, _ in pages if s not in placed]
+            out.append({"title": title, "items": items})
+    rest = [item(s) for s, p in pages if s not in placed and p.get("guide", "user") == guide]
     if rest:
-        groups.append({"title": "More", "items": rest})
-    entry = {
-        "key": "depotex", "label": "Depotex", "blurb": "Self-hosted artifact repository", "dir": "depotex",
-        "icon": "favicon.svg", "cta": "depotex/docs/getting-started.html", "ctaLabel": "Get started",
-        "homeLabel": "Depotex Overview", "docsHome": "depotex/docs/getting-started.html",
-        "count": sum(len(g["items"]) for g in groups), "groups": groups,
+        out.append({"title": "More", "items": rest})
+    return {
+        "key": key, "label": label, "blurb": "Self-hosted artifact repository" if guide == "user" else "Install, configure and run Depotex",
+        "dir": "depotex", "icon": "favicon.svg", "cta": docs_home, "ctaLabel": "Get started" if guide == "user" else "Open the admin guide",
+        "homeLabel": home_label, "docsHome": docs_home,
+        "count": sum(1 for g in out for i in g["items"] if not i.get("x")), "groups": out,
     }
+
+
+# Product picked for a page: the admin guide under depotex/admin/; a shared
+# page in the guide the reader came from (remembered for the tab); otherwise
+# the user guide. Other products keep nav.js's own lookup.
+PICKER = """(function () {
+  var base = window.VC_PRODUCT_FOR;
+  var user = window.VC_PRODUCTS.filter(function (p) { return p.key === 'depotex'; })[0];
+  var admin = window.VC_PRODUCTS.filter(function (p) { return p.key === 'depotex-admin'; })[0];
+  var shared = %s;
+  function file(path) { return (path.split('/').pop() || '').replace(/\\.html$/, ''); }
+  function remembered() { try { return sessionStorage.getItem('dx-guide'); } catch (e) { return null; } }
+  window.VC_PRODUCT_FOR = function (path) {
+    if (path.indexOf('/depotex/admin/') !== -1) return admin;
+    if (path.indexOf('/depotex/') === -1) return base ? base(path) : null;
+    if (shared[file(path)] && remembered() === 'admin') return admin;
+    return user;
+  };
+  try {
+    var here = location.pathname;
+    if (here.indexOf('/depotex/admin/') !== -1) sessionStorage.setItem('dx-guide', 'admin');
+    else if (here.indexOf('/depotex/docs/') !== -1 && !shared[file(here)]) sessionStorage.setItem('dx-guide', 'user');
+  } catch (e) {}
+})();
+"""
+
+
+def write_local_nav(pages):
+    user = nav_entry(pages, guides.USER_GROUPS, "depotex", "Depotex", "Depotex Overview", "depotex/docs/getting-started.html", "user")
+    admin = nav_entry(pages, guides.ADMIN_GROUPS, "depotex-admin", "Depotex Admin Guide", "Depotex Overview", "depotex/admin/index.html", "admin")
+    shared = {s: 1 for s, p in pages if p.get("guide") == "shared"}
     out = pathlib.Path(__file__).resolve().parent.parent / "assets" / "nav-local.js"
     out.parent.mkdir(exist_ok=True)
     out.write_text(
-        "/* Generated by depotex/_build/build.py: Depotex's sidebar and search entry, loaded\n"
-        "   only by Depotex pages until Depotex joins assets/nav.js at launch. */\n"
-        "window.VC_PRODUCTS = (window.VC_PRODUCTS || []).filter(function (p) { return p.key !== 'depotex'; });\n"
-        "window.VC_PRODUCTS.push(" + json.dumps(entry, ensure_ascii=False) + ");\n",
+        "/* Generated by depotex/_build/build.py: Depotex's two sidebars (user guide and\n"
+        "   admin guide) and search entries, loaded only by Depotex pages until Depotex\n"
+        "   joins assets/nav.js at launch. */\n"
+        "window.VC_PRODUCTS = (window.VC_PRODUCTS || []).filter(function (p) { return p.key !== 'depotex' && p.key !== 'depotex-admin'; });\n"
+        "window.VC_PRODUCTS.push(" + json.dumps(user, ensure_ascii=False) + ");\n"
+        "window.VC_PRODUCTS.push(" + json.dumps(admin, ensure_ascii=False) + ");\n"
+        + PICKER % json.dumps(shared),
         encoding="utf-8",
     )
-    return entry["count"]
+    return user["count"], admin["count"]
 
 
 if __name__ == "__main__":
+    guides.place(PAGES)
+    # docs/getting-started.html was the install page and is now the user
+    # quickstart: its old deep links (#behind-a-proxy, …) go on to the install page.
+    by_slug = dict(PAGES)
+    by_slug["getting-started"]["hash_moved"] = ("../admin/install.html", {
+        engine.slugify(t) for k, t in by_slug["install"]["blocks"] if k == "h"
+    } - {engine.slugify(t) for k, t in by_slug["getting-started"]["blocks"] if k == "h"})
     pages, shots, tocs = engine.build(PAGES, INTRO)
+    import content_advisories
+    feed = pathlib.Path(__file__).resolve().parent.parent / content_advisories.FEED
+    feed.write_text(content_advisories.rss(), encoding="utf-8")
+    print(f"advisories feed: {feed.name} ({len(content_advisories.ADVISORIES)} items)")
     print(f"pages: {pages}")
     print(f"screenshot slots: {shots}")
     print(f"pages with on-this-page nav: {tocs}")
-    print(f"sidebar entries: {write_local_nav(PAGES)}")
+    print("sidebar entries (user guide, admin guide): %d, %d" % write_local_nav(PAGES))

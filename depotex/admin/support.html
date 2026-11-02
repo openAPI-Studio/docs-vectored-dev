@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Depotex Admin Guide</title>
+  <meta name="description" content="How to get help, what to send with a support request, and how to report a security problem">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg></div>
+      <h1 class="vc-h1">Support</h1>
+      <p class="vc-lede">How to get help, what to send with a support request, and how to report a security problem</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Vectored supports Depotex. Write to <strong class="text-text">support@vectored.dev</strong>, or use the form at <a href="https://vectored.dev/#contact" class="text-cta hover:underline">vectored.dev/#contact</a>. Licenses, renewals and changes of tier go the same way.</p>
+      <h2 id="before-you-write" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Before you write</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Check the system check</span> &mdash; <strong class="text-text">Settings → Advanced → System check</strong> often names the problem and links to the page that fixes it (Pro).</li><li class="pl-2"><span class="text-text font-medium">Check known issues</span> &mdash; <a href="known-issues.html" class="text-cta hover:underline">Known issues</a> and the <a href="faq.html" class="text-cta hover:underline">FAQ</a> may already have the answer.</li><li class="pl-2"><span class="text-text font-medium">Check the server log</span> &mdash; Errors carry a request ID; the log line with it says what went wrong.</li><li class="pl-2"><span class="text-text font-medium">If the server can't start</span> &mdash; It runs in <a href="recovery.html" class="text-cta hover:underline">recovery mode</a>, which lists what's wrong and how to fix it.</li></ol>
+      <h2 id="what-to-send" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. What to send</h2>
+      <p class="text-muted mb-4">A request with these can usually be answered the first time:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>What</th><th>Where to find it</th></tr></thead><tbody><tr><td>Version, build and the server that answered</td><td><strong class="text-text">?</strong> menu → <strong class="text-text">About</strong> → <strong class="text-text">Copy details</strong> (it also copies the page and browser), or the footer's copy button</td></tr><tr><td>Your installation ID and license ID</td><td>Settings → Application → Licensing</td></tr><tr><td>Single server or cluster, and how many servers</td><td>Settings → Clustering</td></tr><tr><td>What you did, what you expected, what happened</td><td>Steps to reproduce; the exact error, with its request ID</td></tr><tr><td>When it started, and what changed then</td><td>An upgrade, a setting, the network, the identity provider</td></tr><tr><td>Logs from the time it happened</td><td>Settings → Logging → Files → export (collects every server's log files), or your log platform</td></tr><tr><td>The system check</td><td>A screenshot of Settings → Advanced → System check</td></tr><tr><td>For package-manager problems</td><td>The client and its version, the command, and its verbose output (for example <span class="font-mono text-sm break-words">npm --loglevel verbose</span>, <span class="font-mono text-sm break-words">pip -vvv</span>, <span class="font-mono text-sm break-words">mvn -X</span>)</td></tr></tbody></table></div>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Never send <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>, passwords, API tokens, client secrets, license files' private parts or backups. Log exports are redacted, but look through anything before you send it.</p></div>
+      <figure class="shot mb-6">
+        <img src="../assets/support-about-dialog.png" alt="? → About: the version, build and server, with Copy details for a support request" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">support-about-dialog.png</p>
+          <p class="text-xs text-muted max-w-md">? → About: the version, build and server, with Copy details for a support request</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">? → About: the version, build and server, with Copy details for a support request</figcaption>
+      </figure>
+      <h2 id="severity" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Severity</h2>
+      <p class="text-muted mb-4">Say how urgent it is, so it's handled in the right order:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Severity</th><th>Meaning</th><th>Examples</th></tr></thead><tbody><tr><td><strong class="text-text">1 — Critical</strong></td><td>Production down or data at risk; no workaround</td><td>No server starts; every download fails; storage unreadable</td></tr><tr><td><strong class="text-text">2 — High</strong></td><td>A major function fails or is badly degraded; a workaround is hard</td><td>One format can't publish; single sign-on fails for everyone; a cluster server keeps failing</td></tr><tr><td><strong class="text-text">3 — Normal</strong></td><td>A function doesn't work as documented; a workaround exists</td><td>A setting doesn't apply; a page shows an error</td></tr><tr><td><strong class="text-text">4 — Low</strong></td><td>Questions, documentation, feature requests</td><td>How to configure something; a request for a new format</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Response times are those of your support agreement.</p>
+      <h2 id="security-problems" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Security problems</h2>
+      <p class="text-muted mb-4">To report a vulnerability in Depotex, email <strong class="text-text">security@vectored.dev</strong> (or support@vectored.dev with <strong class="text-text">Security</strong> in the subject) instead of discussing it in public. Include what you found, how to reproduce it, and the version. Fixed vulnerabilities are announced as <a href="../docs/security-advisories.html" class="text-cta hover:underline">security advisories</a>, with an RSS feed you can subscribe to.</p>
+      <h2 id="feature-requests-and-feedback" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Feature requests and feedback</h2>
+      <p class="text-muted mb-4">Send ideas the same way, or from inside Depotex: <strong class="text-text">?</strong> → <strong class="text-text">Send feedback</strong>. Say what you're trying to do, not only the feature you have in mind; it helps find the best way to solve it.</p>
+      <h2 id="your-own-help-desk" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Your own help desk</h2>
+      <p class="text-muted mb-4">If your team supports Depotex users itself, point the <strong class="text-text">?</strong> menu's <strong class="text-text">Contact support</strong>, <strong class="text-text">Report a bug</strong> and <strong class="text-text">Documentation</strong> links at your own service desk or wiki: <strong class="text-text">Settings → General → Help menu</strong> (see <a href="install.html#help-menu-and-footer" class="text-cta hover:underline">Help menu and footer</a>). A <span class="font-mono text-sm break-words">mailto:</span> link fills in the version and server for the person writing.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
