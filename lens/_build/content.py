@@ -1,5 +1,5 @@
 """Lens doc content. Edit here, not the generated HTML under lens/docs/."""
-from engine import P, H, UL, OL, STEPS, TABLE, NOTE, WARN, SHOT
+from engine import P, H, UL, OL, STEPS, TABLE, NOTE, WARN, SHOT, VIDEO
 
 # Each page: slug -> dict(title, lede, desc, icon, blocks)
 
@@ -13,6 +13,8 @@ PAGES["getting-started"] = dict(
     blocks=[
         P("Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a project — kept by the extension itself, and mirrored into a folder on your own machine if you link one — along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](guides.html). Nothing is uploaded — see [Privacy](../privacy.html)."),
         NOTE("**Lens works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](ai.html) you connect yourself, which is off on install and optional."),
+
+        VIDEO("ADe5jHcBDhE", "Framelog demo: screenshots, GIFs and step-by-step guides with secrets masked", "A 75-second tour: masking secrets, capturing and annotating a screenshot, recording a step-by-step guide, replaying it with Guide Mode, recording a GIF, and letting an AI agent drive it."),
 
         H("Install and pin"),
         STEPS([

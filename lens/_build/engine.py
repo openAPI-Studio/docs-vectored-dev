@@ -45,6 +45,27 @@ def WARN(text):
     return ("warn", text)
 
 
+def VIDEO(youtube_id, title, caption):
+    """A YouTube video, embedded from youtube-nocookie.com and loaded lazily."""
+    return ("video", (youtube_id, title, caption))
+
+
+def video_html(youtube_id, title, caption, rounded="rounded-lg"):
+    """The markup for an embedded video. The landing page uses it too."""
+    return (
+        '<figure class="video mb-6">\n'
+        '        <div class="relative w-full overflow-hidden %s border border-border bg-black" style="aspect-ratio:16/9">\n'
+        '          <iframe src="https://www.youtube-nocookie.com/embed/%s?rel=0" title="%s"\n'
+        '                  class="absolute inset-0 w-full h-full" style="border:0" loading="lazy"\n'
+        '                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"\n'
+        '                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>\n'
+        '        </div>\n'
+        '        <figcaption class="text-xs text-muted mt-2">%s <a href="https://youtu.be/%s" target="_blank" rel="noopener" class="text-cta hover:underline">Watch on YouTube</a></figcaption>\n'
+        '      </figure>'
+        % (rounded, html.escape(youtube_id, quote=True), html.escape(title, quote=True),
+           html.escape(caption), html.escape(youtube_id, quote=True)))
+
+
 def SHOT(filename, caption):
     """A screenshot slot. `filename` is what the user saves into lens/assets."""
     return ("shot", (filename, caption))
@@ -132,6 +153,9 @@ def render(blocks, page_label):
                        'bg-amber-500/10 px-4 py-3 my-6" role="note">%s'
                        '<p class="text-sm text-muted">%s</p></div>'
                        % (WARN_ICON, inline(val)))
+
+        elif kind == "video":
+            out.append(video_html(*val))
 
         elif kind == "shot":
             filename, caption = val

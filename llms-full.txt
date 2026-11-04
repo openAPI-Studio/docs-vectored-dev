@@ -14845,13 +14845,7 @@ Capture a region of any tab as a PNG, a high-quality animated GIF or an MP4, or 
 
 Works completely offline No subscription No account or sign-in High-quality GIF output
 
-![Lens capturing a region of a web page, with the selection toolbar and the extension popup visible](https://docs.vectored.dev/lens/assets/lens-hero.png)
-
-Screenshot needed
-
-lens-hero.png
-
-Lens capturing a region of a web page, with the selection toolbar and the extension popup visible
+A 75-second tour: masking secrets, screenshots, step-by-step guides, Guide Mode, GIFs and the AI agent. [Watch on YouTube](https://youtu.be/ADe5jHcBDhE)
 
 4
 
@@ -14972,6 +14966,8 @@ Install Lens, link a project folder, and take your first capture.
 Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a project — kept by the extension itself, and mirrored into a folder on your own machine if you link one — along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](https://docs.vectored.dev/lens/docs/guides.html). Nothing is uploaded — see [Privacy](https://docs.vectored.dev/lens/privacy.html).
 
 **Lens works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](https://docs.vectored.dev/lens/docs/ai.html) you connect yourself, which is off on install and optional.
+
+A 75-second tour: masking secrets, capturing and annotating a screenshot, recording a step-by-step guide, replaying it with Guide Mode, recording a GIF, and letting an AI agent drive it. [Watch on YouTube](https://youtu.be/ADe5jHcBDhE)
 
 ### 1. Install and pin
 
