@@ -34,7 +34,7 @@ ADMIN = [
                 ["Configure", "[Settings reference](settings-reference.html) · [How access fits together](access-overview.html) · [Users & Directories](users-and-directories.html) · [Single Sign-On](single-sign-on.html) · [OAuth Applications](oauth-applications.html) · [API Tokens](api-tokens.html) · [Rate Limits](rate-limits.html) · [Storage](storage.html) · [Email](email.html) · [Branding](branding-and-banners.html)"],
                 ["Repositories", "[Spaces](spaces.html) · [Repositories](repositories.html) · [Upstreams](upstreams.html) · [Repository settings](repository-settings.html)"],
                 ["Security", "[Production checklist](security-hardening.html) · [Quarantine](quarantine.html) · [Block list](blocklist.html) · [Integrity](integrity.html) · [SBOMs](sbom.html) · [Vibe artifacts](vibe-artifacts.html) · [Policies](policies.html) · [Logging & Audit](logging-and-audit.html) · [Security advisories](security-advisories.html)"],
-                ["Operate", "[System Check](system-check.html) · [Monitoring](monitoring.html) · [Backups](backups.html) · [Upgrades](upgrades.html) · [Scheduled Jobs](scheduler.html) · [Managing Alerts](alerts-admin.html) · [Events](events.html) · [Automation](automation.html) · [Plugins](plugins.html)"],
+                ["Operate", "[System Check](system-check.html) · [Alert Tuning](alert-tuning.html) · [Monitoring](monitoring.html) · [Backups](backups.html) · [Upgrades](upgrades.html) · [Scheduled Jobs](scheduler.html) · [Managing Alerts](alerts-admin.html) · [Events](events.html) · [Automation](automation.html) · [Plugins](plugins.html)"],
                 ["Help", "[Known issues](known-issues.html) · [FAQ](faq.html) · [Support](support.html) · [Changelog](changelog.html)"],
             ]),
             H("Getting help"),
@@ -165,6 +165,7 @@ ADMIN = [
             TABLE(["Page", "What it configures", "Permission", "Tier", "Docs"], [
                 ["**Logging**", "Log levels per area, log files, exports, profiling, the audit log", "`audit_logs:read`", "All (audit log Pro)", "[Logging & Audit](logging-and-audit.html)"],
                 ["**System check**", "Health of every dependency and server", "`settings:write`", "Pro", "[System Check](system-check.html)"],
+                ["**Alert tuning**", "Mutes, and when each health check notifies and its thresholds", "`settings:write`", "All (health checks Pro)", "[Alert Tuning](alert-tuning.html)"],
                 ["**Scheduled jobs**", "Every background job: schedule, settings, runs, run now", "`scheduler:read`", "All (changes Pro)", "[Scheduled Jobs](scheduler.html)"],
                 ["**Event deliveries**", "Durable event deliveries and failures, retry", "`events:admin`", "Pro", "[Events](events.html)"],
             ]),

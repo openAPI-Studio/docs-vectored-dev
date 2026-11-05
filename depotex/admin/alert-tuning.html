@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert Tuning — Depotex Admin Guide</title>
+  <meta name="description" content="Mute alerts for a while or for good, choose when each health check notifies, and change its thresholds">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+      <h1 class="vc-h1">Alert Tuning</h1>
+      <p class="vc-lede">Mute alerts for a while or for good, choose when each health check notifies, and change its thresholds</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Alert tuning decides which health problems send an alert or email, and when. Mute a problem for an hour, until a date, until it clears or until you remove it; turn a check's notifications off, or keep only its failures; wait longer before telling; and change a check's thresholds, such as how late a scheduled job may be. A muted or turned-off check keeps running and keeps showing on the <a href="system-check.html" class="text-cta hover:underline">system check</a> and Settings → Clustering: only its notifications stop.</p>
+      <p class="text-muted mb-4">Open it under <strong class="text-text">Settings → Advanced → Alert tuning</strong>. You need the <span class="font-mono text-sm break-words">settings:write</span> permission (super admins). The system check and cluster health need a Pro license or higher; mutes of whole alert categories work on every license.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/alert-tuning.png" alt="Settings → Alert tuning: active mutes and each check&#x27;s notification rule" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">alert-tuning.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Alert tuning: active mutes and each check's notification rule</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Alert tuning: active mutes and each check's notification rule</figcaption>
+      </figure>
+      <h2 id="one-alert-per-problem" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. One alert per problem</h2>
+      <p class="text-muted mb-4">The <a href="system-check.html" class="text-cta hover:underline">system check</a> (every hour, every check) and cluster health (every minute, each server) look at the same installation, so one problem used to be able to send two alerts, <strong class="text-text">Cluster health: problems</strong> and <strong class="text-text">System check found problems</strong>, and two more when it recovered. Now both report to one <strong class="text-text">System health</strong> alert. It says how many problems need attention, on which servers, and how many more are muted, and it is updated in place: when the problem gets worse, changes, or clears (<strong class="text-text">System health is OK again</strong>). An unchanged problem sends a reminder once a day.</p>
+      <p class="text-muted mb-4">A problem the hourly check finds for the first time is checked again two minutes later and only told if it is still there, so a short blip doesn't alert. After a server was paused (a suspended VM, a stopped process, or a machine too busy to run Depotex for a while), scheduled jobs get 15 minutes to catch up before they count as overdue, and a job only counts as overdue once it is later than 10 minutes or two of its own intervals, whichever is longer.</p>
+      <p class="text-muted mb-4">A problem that keeps opening and clearing (4 times within an hour) sends one <strong class="text-text">flapping</strong> alert and then waits until it has been quiet for an hour.</p>
+      <h2 id="mute-an-alert" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Mute an alert</h2>
+      <p class="text-muted mb-4">Every System health alert has a <strong class="text-text">Mute…</strong> button, and so does each problem under <strong class="text-text">Needs attention</strong> on the system check and under <strong class="text-text">Cluster health</strong> on Settings → Clustering. It opens a new mute with those problems ticked; each one you keep gets its own mute.</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the mute</span> &mdash; Select <strong class="text-text">Mute…</strong> on the alert or the problem, or <strong class="text-text">New mute</strong> on Settings → Alert tuning.</li><li class="pl-2"><span class="text-text font-medium">Say what</span> &mdash; From an alert, untick problems you still want to hear about. Otherwise choose a <strong class="text-text">Source</strong> (a detector or a whole alert category), a <strong class="text-text">Check</strong>, a <strong class="text-text">Server</strong> and, optionally, an <strong class="text-text">Item</strong> (one job, identity provider or directory the check names). Leave a field on its first choice to match anything; set at least one.</li><li class="pl-2"><span class="text-text font-medium">Say how long</span> &mdash; <strong class="text-text">1 hour</strong>, <strong class="text-text">4 hours</strong>, <strong class="text-text">24 hours</strong>, <strong class="text-text">7 days</strong>, <strong class="text-text">Until a date</strong> (within a year), <strong class="text-text">Until the problem clears</strong> (ends by itself the first time nothing it covers is wrong), or <strong class="text-text">Until I remove it</strong>.</li><li class="pl-2"><span class="text-text font-medium">Give a reason</span> &mdash; Required. It is shown with the mute and in the audit log, so others know why.</li><li class="pl-2"><span class="text-text font-medium">Mute</span> &mdash; Select <strong class="text-text">Mute</strong>.</li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/alert-tuning-mute.png" alt="Settings → Alert tuning: a new mute for the problems in an alert" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">alert-tuning-mute.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Alert tuning: a new mute for the problems in an alert</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Alert tuning: a new mute for the problems in an alert</figcaption>
+      </figure>
+      <p class="text-muted mb-4"><strong class="text-text">Mutes</strong> lists the active ones: what each covers, until when, the reason and when it last held back a problem. <strong class="text-text">Change</strong> sets a new end or reason; <strong class="text-text">End</strong> sends alerts again from the next check. <strong class="text-text">Ended</strong> lists mutes that were removed, expired or ended when their problem cleared.</p>
+      <p class="text-muted mb-4">A mute whose source is a whole alert category, with no check, server or item, stops every alert of that category for the whole installation, whatever sends it (automation, plugins, security notices). Alerts an administrator sends by hand are never muted. This differs from the muted categories in a person's own <a href="../docs/alerts.html" class="text-cta hover:underline">notification preferences</a>, which hide alerts from that person only.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Muting a problem never announces it as fixed: the alert drops it from its count, and when the mute ends while the problem is still there, it is told again.</p></div>
+      <h2 id="check-notifications-and-thresholds" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Check notifications and thresholds</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Checks</strong> lists every health check with its rule: when it notifies, how long it waits, how often it reminds and its thresholds. <strong class="text-text">Change</strong> opens the check; leave a value empty to use the default. <strong class="text-text">Changed</strong> marks checks that differ from the defaults, and <strong class="text-text">Reset</strong> puts one back.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Default</th><th>What it does</th></tr></thead><tbody><tr><td>Notify</td><td>Warnings and failures</td><td><strong class="text-text">Failures only</strong>, or <strong class="text-text">Never</strong> to turn the check's notifications off for good. The check still runs and shows.</td></tr><tr><td>Wait before notifying</td><td>5 minutes for warnings, none for failures (a minute for cluster health)</td><td>A problem that clears within this time sends nothing. 0 to 1440 minutes.</td></tr><tr><td>Remind every</td><td>24 hours</td><td>While a problem stays, send a reminder this often; 0 turns reminders off. Up to 720 hours.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Checks with thresholds:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Check</th><th>Threshold</th><th>Default</th><th>Range</th></tr></thead><tbody><tr><td>Scheduled jobs</td><td>Overdue after (minutes)</td><td>10</td><td>2 to 1440</td></tr><tr><td>Scheduled jobs</td><td>Failed runs in a row before it fails</td><td>3</td><td>1 to 50</td></tr><tr><td>Scheduled jobs</td><td>Grace after the server resumes (minutes)</td><td>15</td><td>0 to 1440</td></tr><tr><td>Disk space</td><td>Warn below free space (%)</td><td>15</td><td>1 to 90</td></tr><tr><td>Disk space</td><td>Fail below free space (%)</td><td>5</td><td>1 to 90</td></tr><tr><td>Heartbeat (cluster health)</td><td>Heartbeat late after (minutes)</td><td>2</td><td>1 to 60</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Who gets System health alerts and emails is still chosen under <strong class="text-text">Notifications</strong> on the <a href="system-check.html" class="text-cta hover:underline">system check</a>.</p>
+      <h2 id="cluster" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Cluster</h2>
+      <p class="text-muted mb-4">Mutes and rules are stored in the database and apply on every server at once; it doesn't matter which server sends the alert. They keep working when Redis is down. If mutes can't be read, alerts are sent rather than hidden.</p>
+      <h2 id="events" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Events</h2>
+      <p class="text-muted mb-4"><span class="font-mono text-sm break-words">alert.silence.create</span>, <span class="font-mono text-sm break-words">alert.silence.update</span> and <span class="font-mono text-sm break-words">alert.tuning.update</span> can be blocked by subscribers; <span class="font-mono text-sm break-words">alert.silence.ended</span> (removed, expired or the problem cleared) and <span class="font-mono text-sm break-words">alert.incident.resolved</span> (a System health alert is OK again) follow. See <a href="../docs/events.html" class="text-cta hover:underline">Events</a>.</p>
+      <h2 id="api" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. API</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Request</th><th>Does</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">GET /api/alert-tuning</span></td><td>Every check with its scope, thresholds and saved rule, the sources a mute can name, and the defaults</td></tr><tr><td><span class="font-mono text-sm break-words">PUT /api/alert-tuning/checks/{check}</span></td><td>Save a rule: <span class="font-mono text-sm break-words">notifyOn</span> (empty, <span class="font-mono text-sm break-words">all</span>, <span class="font-mono text-sm break-words">fail</span>, <span class="font-mono text-sm break-words">never</span>), <span class="font-mono text-sm break-words">waitMinutes</span>, <span class="font-mono text-sm break-words">remindHours</span> (null for the default), <span class="font-mono text-sm break-words">tunables</span></td></tr><tr><td><span class="font-mono text-sm break-words">DELETE /api/alert-tuning/checks/{check}</span></td><td>Back to the defaults</td></tr><tr><td><span class="font-mono text-sm break-words">GET /api/alert-silences?state=active</span> (or <span class="font-mono text-sm break-words">ended</span>)</td><td>Mutes</td></tr><tr><td><span class="font-mono text-sm break-words">POST /api/alert-silences</span></td><td>A new mute: <span class="font-mono text-sm break-words">source</span>, <span class="font-mono text-sm break-words">check</span>, <span class="font-mono text-sm break-words">item</span>, <span class="font-mono text-sm break-words">server</span>, <span class="font-mono text-sm break-words">endsAt</span> (null: until removed), <span class="font-mono text-sm break-words">untilRecovered</span>, <span class="font-mono text-sm break-words">reason</span></td></tr><tr><td><span class="font-mono text-sm break-words">PATCH /api/alert-silences/{id}</span></td><td>Change a mute's end and reason</td></tr><tr><td><span class="font-mono text-sm break-words">DELETE /api/alert-silences/{id}</span></td><td>End a mute</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">All need <span class="font-mono text-sm break-words">settings:write</span>.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

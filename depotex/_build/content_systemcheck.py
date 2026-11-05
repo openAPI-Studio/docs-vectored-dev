@@ -25,12 +25,12 @@ SYSTEM_CHECK = [
                 ["Backup target (each server)", "Backups are kept in the installation's own storage (see [Backups](backups.html#backup-target))", "The backup target can't be reached, its marker is wrong, or a test file can't be written and read back"],
                 ["Test restores", "The last test restore failed, or none passed in 15 days (Enterprise)", ""],
                 ["Shared storage (each server)", "Not checked yet", "The server's storage doesn't hold this installation's storage ID: not the cluster's shared storage, or another installation's (see [Storage](storage.html))"],
-                ["Disk space (each server)", "Less than 15 % free where logs are written", "Less than 5 % free"],
+                ["Disk space (each server)", "Less than 15 % free where logs are written (changeable in [Alert tuning](alert-tuning.html))", "Less than 5 % free"],
                 ["Mail server", "Slow", "Can't connect, secure the connection or sign in (nothing is sent)"],
                 ["Email queue", "Messages failed in the last 24 hours", "Most messages failed"],
                 ["Synced directories", "The last sync failed or was blocked", "A directory can't be reached or read"],
                 ["Identity providers", "A SAML signing certificate expires within 30 days", "Discovery or metadata can't be read, or the certificate expired"],
-                ["Scheduled jobs", "A job's last run failed or it's overdue", "A job failed three times in a row"],
+                ["Scheduled jobs", "A job's last run failed, or it's overdue: later than 10 minutes or two of its own intervals, whichever is longer (not in the first 15 minutes after the server was paused)", "A job failed three times in a row (all three changeable in [Alert tuning](alert-tuning.html))"],
                 ["Event delivery", "Deliveries late or failed for good in the last 24 hours", "More than 100 deliveries late"],
                 ["Audit log (each server)", "Entries waiting to be written", "Entries were lost"],
                 ["Log file (each server)", "", "The log file can't be written"],
@@ -40,7 +40,8 @@ SYSTEM_CHECK = [
             P("A check that doesn't answer within its time limit (usually 20 seconds) counts as a problem. A server that doesn't report within five minutes is marked as not reporting."),
 
             H("Notifications"),
-            P("Under **Notifications** at the bottom of the page, choose an in-app alert and/or email (email must be set up), for super admins and/or organization admins (with a notification on, choose at least one), then **Save** in the bar that appears at the bottom. You're told when a check gets worse than in the previous run, and once when everything is OK again; an unchanged problem doesn't notify every hour. Each run raises `system.check.completed` and each change `system.check.changed`, so [automation](automation.html) can also send a webhook to your chat or paging tool."),
+            P("Under **Notifications** at the bottom of the page, choose an in-app alert and/or email (email must be set up), for super admins and/or organization admins (with a notification on, choose at least one), then **Save** in the bar that appears at the bottom. The system check and cluster health share one **System health** alert: you're told when a problem appears (a new one is checked again two minutes later first, so a blip doesn't alert), when it gets worse or changes, once a day while it stays, and once when everything is OK again. Each run raises `system.check.completed` and each change `system.check.changed`, so [automation](automation.html) can also send a webhook to your chat or paging tool."),
+            P("To mute a problem, select **Mute…** beside it under **Needs attention** or on the alert. To turn a check's notifications off, keep only its failures, or change its thresholds, use [Alert tuning](alert-tuning.html)."),
             STEPS([
                 "Run it once|Open **Settings → Advanced → System check** and select **Run now**. Results appear within seconds; other servers add theirs within a minute.",
                 "Fix what's red|Open **Details** for the error, fix the cause (for example the mail password), and run again.",
@@ -61,7 +62,7 @@ SYSTEM_CHECK = [
                 ["Redis", "Redis can't be reached, so reports are read from the database", ""],
             ]),
             P("Storage checks run every five minutes, the others every minute. The checks of shared services (mail, identity providers, directories, jobs, events) stay in the hourly system check."),
-            P("Notifications use the same choices as the system check (**Notifications** on this page: in-app alert and/or email, and the roles). You're told once when the status changes and has held for two minutes: to Warnings, to Problems, or back to Healthy. A new alert replaces the previous one. A problem moving to another server while the status stays the same doesn't notify again. Each change raises `cluster.health.changed`."),
+            P("Cluster health notifies through the same **System health** alert as the system check, to the people chosen under **Notifications** on this page: a problem it sees for two minutes is told, and a problem both see (such as a paused server) is one alert, not two. Each change of the cluster status raises `cluster.health.changed`. **Mute…** beside a problem on Settings → Clustering mutes it; see [Alert tuning](alert-tuning.html)."),
             NOTE("When Redis is down the reports are read from the database, so cluster health keeps working and shows a warning about Redis."),
 
             H("Configuration"),

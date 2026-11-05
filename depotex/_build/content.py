@@ -16,6 +16,7 @@ from content_email import EMAIL
 from content_sso import SSO
 from content_logging import LOGGING
 from content_systemcheck import SYSTEM_CHECK
+from content_alerttuning import ALERT_TUNING
 from content_oauth import OAUTH
 from content_branding import BRANDING
 from content_spaces import SPACES
@@ -51,6 +52,8 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-05", "Alerts", "One problem now sends one **System health** alert instead of a **Cluster health** and a **System check** alert, updated in place as it gets worse, changes or clears, with a daily reminder while it lasts; a new problem the hourly system check finds is checked again two minutes later before it alerts, and a paused server's scheduled jobs get 15 minutes to catch up before they count as overdue. See [Alert tuning](alert-tuning.html#one-alert-per-problem)."),
+    ("2026-11-05", "Alert tuning", "New **Settings → Advanced → Alert tuning**: [mute](alert-tuning.html#mute-an-alert) a problem, a check, a server or a whole alert category for a while, until it clears or until removed (with **Mute…** on alerts, the system check and Clustering), turn a check's notifications off or keep only failures, and change how long it waits, how often it reminds and its thresholds (overdue jobs, failed runs, disk space, late heartbeats)."),
     ("2026-11-02", "Quarantine", "[Quarantine rules](quarantine.html#vulnerable-versions) can hold versions with known vulnerabilities of their own the moment a proxy fetches them or they're uploaded (Enterprise, with vulnerability data); proxies leave such versions out of the lists clients resolve from, so ranges pick the fixed version, and a refused download names the advisories and the version that fixes them. Stored versions are judged again when new advisories name them, following the re-check setting, and versions held until checked are released once found clean."),
     ("2026-11-02", "Conan", "Conan archives are checked against each revision's manifest in the background, and a mismatch [quarantines](conan.html#archive-checks) the version; version pages show the recipe's licence, description, homepage, topics and sources, and each binary's integrity, size and package revisions; and SBOMs a package ships under metadata/ appear under Security (C/C++ components, and a package's own SBOM listing only itself, stay not covered)."),
     ("2026-11-02", "Conda", "Pro: conda versions get [SBOMs](conda.html#sboms-and-vulnerabilities) from their dependencies, and packages fetched through proxies of conda-forge, Bioconda and Anaconda's channels are read with Syft, so the Python and CRAN R packages inside them are checked for vulnerabilities; conda packages themselves, Bioconductor and other R packages, and the few C/C++ libraries Syft recognises show as not covered (most C/C++ libraries inside conda packages aren't listed)."),
@@ -269,6 +272,7 @@ location / {
     *BRANDING,
     *LOGGING,
     *SYSTEM_CHECK,
+    *ALERT_TUNING,
     *EMAIL,
     *SCHEDULER,
     *ALERTS,
