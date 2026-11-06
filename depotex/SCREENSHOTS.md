@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-185 screenshots. Save each one into `depotex/assets/` using the
+186 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -171,6 +171,8 @@ realistic but fictional names and figures rather than real people's data.
       A Conan version's page: the install command and its recipe revisions, the latest marked, with who published each, integrity, size and number of binaries
 - [ ] `conan-version-packages.png`
       The binaries of a recipe revision: package ID, settings, integrity with ID matches, size, and the package revision of each with how many it has
+- [ ] `conan-security-git-match.png`
+      A Conan version's Security tab: zlib 1.2.11 with three advisories found through its upstream repository, each with fixing version not known, and the note that two advisories couldn't be decided because they mix several projects' versions
 
 ## Browse
 
