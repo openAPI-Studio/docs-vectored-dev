@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-188 screenshots. Save each one into `depotex/assets/` using the
+189 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -242,6 +242,8 @@ realistic but fictional names and figures rather than real people's data.
       Quarantined versions with their advisories and the fixed version, and one held until it can be checked
 - [ ] `quarantine.png`
       Settings → Quarantine: versions held back in every space, and the installation's rules
+- [ ] `quarantine-release-malicious.png`
+      Releasing a held version with a known-malicious record: the dialog names the record it confirms
 - [ ] `quarantine-refused-malicious.png`
       The released list with a version refused at download as a known-malicious package, and its Release button
 - [ ] `quarantine-block.png`

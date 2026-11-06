@@ -105,7 +105,20 @@
       <p class="text-muted mb-4">A version blocked from quarantine (see below) leaves the held list for <strong class="text-text">Blocked</strong>, marked with the rule that blocks it.</p>
       <p class="text-muted mb-4">AI agents can quarantine and release versions too, through <a href="../admin/plugins.html#write-tools" class="text-cta hover:underline">write tools</a>, once an administrator allows it. They act as the person using them, need the same rights in the space, and are recorded in the audit log with <span class="font-mono text-sm break-words">via: mcp:&lt;plugin&gt;/&lt;application&gt;</span>.</p>
       <p class="text-muted mb-4">Versions held by an age rule show until when; once that time passes they're downloadable again and are listed as ended.</p>
-      <p class="text-muted mb-4">A version released automatically (its check came back clean, or its age rule's time ran out) that downloads still refuse as a <a href="sbom.html#malicious-packages" class="text-cta hover:underline">known-malicious package</a> is marked <strong class="text-text">Refused at download</strong> with its records, and keeps a <strong class="text-text">Release</strong> button: releasing it records that you know of the records, and the version can be downloaded again in that repository.</p>
+      <p class="text-muted mb-4">A held version that a <a href="sbom.html#malicious-packages" class="text-cta hover:underline">known-malicious</a> record has named since it was held (for example under an age rule) shows <strong class="text-text">Known-malicious package since it was held</strong> with the records. Releasing it, alone or among others, asks you to confirm those records; the confirmation goes in the audit log, and the version can then be downloaded in that repository. A release that doesn't confirm them (through the API without <span class="font-mono text-sm break-words">acknowledgeMalicious</span>, or an AI agent's write tool) leaves that version held.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/quarantine-release-malicious.png" alt="Releasing a held version with a known-malicious record: the dialog names the record it confirms" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">quarantine-release-malicious.png</p>
+          <p class="text-xs text-muted max-w-md">Releasing a held version with a known-malicious record: the dialog names the record it confirms</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Releasing a held version with a known-malicious record: the dialog names the record it confirms</figcaption>
+      </figure>
+      <p class="text-muted mb-4">A released version that downloads still refuse as a known-malicious package (released automatically when its check came back clean or its age rule's time ran out, or released before the record arrived) is marked <strong class="text-text">Refused at download</strong> with its records, and keeps a <strong class="text-text">Release</strong> button: releasing it again, confirming the records, lets it be downloaded again in that repository.</p>
       <figure class="shot mb-6">
         <img src="../assets/quarantine-refused-malicious.png" alt="The released list with a version refused at download as a known-malicious package, and its Release button" loading="lazy"
              class="rounded-lg border border-border"
