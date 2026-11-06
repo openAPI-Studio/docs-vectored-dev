@@ -172,7 +172,7 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `conan-version-packages.png`
       The binaries of a recipe revision: package ID, settings, integrity with ID matches, size, and the package revision of each with how many it has
 - [ ] `conan-security-git-match.png`
-      A Conan version's Security tab: zlib 1.2.11 with three advisories found through its upstream repository, each with fixing version not known, and the note that two advisories couldn't be decided because they mix several projects' versions
+      A Conan version's Security tab: zlib 1.2.11 with three advisories found through its upstream repository, each with fixing version not known, and the note that three advisories couldn't be decided, most because they mix several projects' versions
 
 ## Browse
 
