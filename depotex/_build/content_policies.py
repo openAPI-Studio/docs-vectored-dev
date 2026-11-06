@@ -51,6 +51,7 @@ POLICIES = [
                 ["Preset avatars only", "Blocks uploaded profile pictures", "Nothing"],
                 ["Allowed repository formats", "Blocks new repositories in formats you haven't selected", "Formats"],
                 ["Refuse components under some licenses", "Quarantines artifact versions, and refuses application SBOMs, that list a component under one of your licenses", "License identifiers, such as `AGPL-3.0-only`"],
+                ["Refuse known malicious packages", "Quarantines versions, and refuses application SBOMs, with a component vulnerability data reports as malicious (an OSV `MAL-…` record), whatever its severity", "Nothing"],
                 ["Refuse SBOMs with severe vulnerabilities", "Quarantines versions, and refuses application SBOMs, whose components have a known vulnerability of the severities you pick (VEX assessments applied); checked again when new advisories arrive", "Severities"],
                 ["Refuse SBOMs with fixable severe vulnerabilities", "The same, but only vulnerabilities that already have a fixed version count", "Severities"],
                 ["Refuse SBOMs with low coverage", "Quarantines versions, and refuses application SBOMs, whose SBOM coverage is in the bands you pick (too little is known to tell whether they are safe)", "Coverage bands"],

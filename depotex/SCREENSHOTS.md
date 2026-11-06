@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-185 screenshots. Save each one into `depotex/assets/` using the
+187 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -299,6 +299,8 @@ realistic but fictional names and figures rather than real people's data.
       A version's Security tab with an SBOM marked Unreadable and the reason under it
 - [ ] `sbom-security-tab.png`
       A version's Security tab beside the version's side panel: the summary with vulnerabilities, coverage and re-check, and the vulnerabilities as cards
+- [ ] `sbom-finding-malicious.png`
+      A finding marked Known malicious on a version's Security tab
 - [ ] `sbom-finding-details.png`
       A vulnerability card opened: score and severity, the weakness by name, the affected component with its fix and range, what an attacker needs and can affect, the description and the references
 - [ ] `sbom-coverage.png`
@@ -323,6 +325,8 @@ realistic but fictional names and figures rather than real people's data.
       A version's Security tab: components no vulnerability data covers shown as not covered
 - [ ] `vulnerability-data.png`
       Settings → Vulnerability data: turning checks on and where components are checked: the OSV API, OSV's data files or uploaded files
+- [ ] `vuln-settings-malicious.png`
+      Settings → Vulnerability data: the Malicious packages setting
 - [ ] `vulnerability-data-scanners.png`
       Settings → Vulnerability data: the scanner plugins, where each may send data, and when each was last asked
 - [ ] `vulnerability-data-distributions.png`
