@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-183 screenshots. Save each one into `depotex/assets/` using the
+185 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -383,6 +383,13 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `system-check.png`
       Settings → System check: what needs attention and every check's result
+
+## Alert Tuning
+
+- [ ] `alert-tuning.png`
+      Settings → Alert tuning: active mutes and each check's notification rule
+- [ ] `alert-tuning-mute.png`
+      Settings → Alert tuning: a new mute for the problems in an alert
 
 ## Email
 
