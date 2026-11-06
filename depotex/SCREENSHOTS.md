@@ -237,7 +237,7 @@ realistic but fictional names and figures rather than real people's data.
 ## Quarantine
 
 - [ ] `quarantine-rule-vulnerabilities.png`
-      A quarantine rule holding versions with known vulnerabilities: lowest severity, only with a fix, and what happens to versions that can't be checked
+      A quarantine rule holding versions with known vulnerabilities: lowest severity, only with a fix, always holding known-malicious packages, and what happens to versions that can't be checked
 - [ ] `quarantine-vulnerable-versions.png`
       Quarantined versions with their advisories and the fixed version, and one held until it can be checked
 - [ ] `quarantine.png`

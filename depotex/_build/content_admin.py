@@ -157,7 +157,7 @@ ADMIN = [
                 ["**Quarantine**", "Quarantine rules and held versions", "`artifacts:quarantine:manage`", "Enterprise", "[Quarantine](quarantine.html)"],
                 ["**Block list**", "Versions refused everywhere", "`artifacts:blocklist:manage`", "Enterprise", "[Block list](blocklist.html)"],
                 ["**Integrity**", "Checks that stored files are present and unchanged; repair", "`integrity:admin`", "All", "[Integrity](integrity.html)"],
-                ["**Vulnerability data**", "Where OSV data comes from: online, a mirror or an uploaded archive; what re-checks do", "`vulnerability_data:manage`", "See page", "[SBOMs](sbom.html)"],
+                ["**Vulnerability data**", "Where OSV data comes from: online, a mirror or an uploaded archive; what re-checks do; whether proxies refuse known-malicious packages", "`vulnerability_data:manage`", "See page", "[SBOMs](sbom.html)"],
                 ["**Vibe artifacts**", "Turning vibe artifacts on, push checks and the package list", "`repository_settings:manage`", "Enterprise", "[Vibe artifacts](vibe-artifacts.html)"],
             ]),
             P("Upstreams (super admins) are under **Upstreams** in the left navigation, not Settings: see [Upstreams](upstreams.html)."),
