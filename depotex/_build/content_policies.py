@@ -118,7 +118,8 @@ POLICIES = [
                 "An action with no policies for your organization isn't slowed down.",
                 "Each policy on an event is checked while the user waits, in well under a millisecond for typical conditions; the total is capped by `POLICY_EVAL_BUDGET` (50 ms by default).",
                 "**Every time a policy matches, a decision is written to the database.** A policy that matches almost everything on a busy event — for example a dry-run policy with condition `true` on `auth.login` — writes a decision for every sign-in. Keep conditions specific and don't leave broad dry runs running.",
-                "Changes to policies take effect immediately on all servers with Redis, and within `POLICY_CACHE_TTL` (10 s) without it.",
+                "Changes to policies and exemptions take effect at once on the server where they're saved, and on other servers within about a second, with or without Redis.",
+                "Each server keeps the policies in memory and checks against them without reading the database, so a slow database doesn't make a sign-in or other security-sensitive action fail its time limit. If a server can't reload policies for a minute (database trouble), it blocks security-sensitive actions until it can.",
             ]),
             WARN("Very complex conditions (large lists, nested loops) take longer and can hit the size limit (`POLICY_COST_LIMIT`), in which case they count as a failed check. Prefer several simple policies to one complex one."),
             H("API"),
@@ -143,7 +144,6 @@ POLICIES = [
             P("A blocked action returns **403** with `\"reason\": \"policy_denied\"`. Warnings come back in the `Depotex-Policy-Warnings` response header (base64url-encoded JSON)."),
             H("Settings"),
             TABLE(["Variable", "Default", "Description"], [
-                ["`POLICY_CACHE_TTL`", "`10s`", "How quickly a server picks up policy changes when Redis isn't available"],
                 ["`POLICY_EVAL_BUDGET`", "`50ms`", "Time limit for checking an action's policies"],
                 ["`POLICY_COST_LIMIT`", "`10000`", "Maximum size of a condition's work"],
                 ["`POLICY_DECISION_RETENTION_DAYS`", "`30`", "How long decisions are kept"],

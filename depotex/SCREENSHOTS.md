@@ -250,7 +250,7 @@ realistic but fictional names and figures rather than real people's data.
 ## Block list
 
 - [ ] `blocklist-rules.png`
-      Settings → Block list: the installation's rules
+      Settings → Block list: the installation's rules, each with its switch, what it blocks and its formats
 - [ ] `blocklist-rule-range.png`
       Adding a block-list rule for RubyGems with a RubyGems requirement as its version range
 
