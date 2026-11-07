@@ -16,6 +16,7 @@ from content_email import EMAIL
 from content_sso import SSO
 from content_logging import LOGGING
 from content_systemcheck import SYSTEM_CHECK
+from content_alerttuning import ALERT_TUNING
 from content_oauth import OAUTH
 from content_branding import BRANDING
 from content_spaces import SPACES
@@ -51,6 +52,13 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-06", "SBOM", "OSV malicious-package records (`MAL-…`) are marked **Known malicious** on findings and advisories, and the new **Refuse known malicious packages** policy template refuses or quarantines versions whose SBOM contains one. See [SBOM policies](sbom.html#policies-on-sboms)."),
+    ("2026-11-06", "Vulnerability data", "Proxies refuse versions known to be malicious, before passing on a download or serving a cached copy (Pro, **Settings → Vulnerability data → [Malicious packages](sbom.html#malicious-packages)**, set to refuse by default once vulnerability data is on), for npm, PyPI, Maven, Go, Cargo, NuGet, Composer and RubyGems."),
+    ("2026-11-06", "Quarantine", "[Vulnerable-version rules](quarantine.html#vulnerable-versions) now also hold known-malicious packages whatever their severity and fix (a new switch, on by default), and a stored version found malicious later is quarantined at once; a version released automatically or before the record arrived that downloads refuse as malicious is listed as **Refused at download** and can be released, and releasing a version with known-malicious records asks you to confirm them."),
+    ("2026-11-06", "Alerts", "One problem now sends one **System health** alert instead of a **Cluster health** and a **System check** alert, updated in place as it gets worse, changes or clears, with a daily reminder while it lasts; a new problem the hourly system check finds is checked again two minutes later before it alerts, and a paused server's scheduled jobs get 15 minutes to catch up before they count as overdue. See [Alert tuning](alert-tuning.html#one-alert-per-problem)."),
+    ("2026-11-06", "Alert tuning", "New **Settings → Advanced → Alert tuning**: [mute](alert-tuning.html#mute-an-alert) a problem, a check, a server or a whole alert category for a while, until it clears or until removed (with **Mute…** on alerts, the system check and Clustering), turn a check's notifications off or keep only failures, and change how long it waits, how often it reminds and its thresholds (overdue jobs, failed runs, disk space, late heartbeats)."),
+    ("2026-11-06", "Block list", "[Block-list rules](blocklist.html#rules), in Settings and in each space's Settings, are shown as a table like the quarantine rules: a switch turns a rule on or off without opening it, and each rule shows what it blocks and its formats."),
+    ("2026-11-04", "Policies", "Sign-ins are no longer sometimes refused with \"This action was refused by an extension\" when a server had been idle or its database was briefly slow: servers keep [policies](policies.html#performance) in memory and pick up changes made on other servers within about a second without Redis, and `POLICY_CACHE_TTL` is no longer used."),
     ("2026-11-02", "Quarantine", "[Quarantine rules](quarantine.html#vulnerable-versions) can hold versions with known vulnerabilities of their own the moment a proxy fetches them or they're uploaded (Enterprise, with vulnerability data); proxies leave such versions out of the lists clients resolve from, so ranges pick the fixed version, and a refused download names the advisories and the version that fixes them. Stored versions are judged again when new advisories name them, following the re-check setting, and versions held until checked are released once found clean."),
     ("2026-11-02", "Conan", "Conan archives are checked against each revision's manifest in the background, and a mismatch [quarantines](conan.html#archive-checks) the version; version pages show the recipe's licence, description, homepage, topics and sources, and each binary's integrity, size and package revisions; and SBOMs a package ships under metadata/ appear under Security (C/C++ components, and a package's own SBOM listing only itself, stay not covered)."),
     ("2026-11-02", "Conda", "Pro: conda versions get [SBOMs](conda.html#sboms-and-vulnerabilities) from their dependencies, and packages fetched through proxies of conda-forge, Bioconda and Anaconda's channels are read with Syft, so the Python and CRAN R packages inside them are checked for vulnerabilities; conda packages themselves, Bioconductor and other R packages, and the few C/C++ libraries Syft recognises show as not covered (most C/C++ libraries inside conda packages aren't listed)."),
@@ -269,6 +277,7 @@ location / {
     *BRANDING,
     *LOGGING,
     *SYSTEM_CHECK,
+    *ALERT_TUNING,
     *EMAIL,
     *SCHEDULER,
     *ALERTS,

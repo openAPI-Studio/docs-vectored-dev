@@ -16,7 +16,8 @@ BLOCKLIST = [
                 "**From quarantine**: blocking a quarantined version ([Block, or Delete and block](quarantine.html#block-or-delete-and-block)) adds a rule here, marked **From quarantine**, with where the version came from and whether it was deleted. Deleting such a rule unblocks the version: a version that was kept goes back to quarantine.",
             ]),
             H("Rules"),
-            SHOT("blocklist-rules.png", "Settings → Block list: the installation's rules"),
+            SHOT("blocklist-rules.png", "Settings → Block list: the installation's rules, each with its switch, what it blocks and its formats"),
+            P("Rules are listed with a switch that turns each one on or off (switched off, it blocks nothing until you switch it on again), what it blocks, and its formats. The count at the top says how many are on."),
             TABLE(["Setting", "Meaning"], [
                 ["**Formats**", "Which formats; none ticked means all."],
                 ["**Namespace**, **Name**", "Patterns; `*` matches anything, `?` one character, case doesn't matter. Fill in at least one. A Maven name is `groupId:artifactId`, an npm name may have its `@scope`, a Go name is the module path, a Helm name the chart, a NuGet name the package ID, and a raw file's name is its path (so `tools/*.exe`)."],

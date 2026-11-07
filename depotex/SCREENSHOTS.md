@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-183 screenshots. Save each one into `depotex/assets/` using the
+189 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -237,11 +237,15 @@ realistic but fictional names and figures rather than real people's data.
 ## Quarantine
 
 - [ ] `quarantine-rule-vulnerabilities.png`
-      A quarantine rule holding versions with known vulnerabilities: lowest severity, only with a fix, and what happens to versions that can't be checked
+      A quarantine rule holding versions with known vulnerabilities: lowest severity, only with a fix, always holding known-malicious packages, and what happens to versions that can't be checked
 - [ ] `quarantine-vulnerable-versions.png`
       Quarantined versions with their advisories and the fixed version, and one held until it can be checked
 - [ ] `quarantine.png`
       Settings → Quarantine: versions held back in every space, and the installation's rules
+- [ ] `quarantine-release-malicious.png`
+      Releasing a held version with a known-malicious record: the dialog names the record it confirms
+- [ ] `quarantine-refused-malicious.png`
+      The released list with a version refused at download as a known-malicious package, and its Release button
 - [ ] `quarantine-block.png`
       Delete and block: choosing where the block applies, every version, and the reason
 - [ ] `repository-quarantine.png`
@@ -250,7 +254,7 @@ realistic but fictional names and figures rather than real people's data.
 ## Block list
 
 - [ ] `blocklist-rules.png`
-      Settings → Block list: the installation's rules
+      Settings → Block list: the installation's rules, each with its switch, what it blocks and its formats
 - [ ] `blocklist-rule-range.png`
       Adding a block-list rule for RubyGems with a RubyGems requirement as its version range
 
@@ -299,6 +303,8 @@ realistic but fictional names and figures rather than real people's data.
       A version's Security tab with an SBOM marked Unreadable and the reason under it
 - [ ] `sbom-security-tab.png`
       A version's Security tab beside the version's side panel: the summary with vulnerabilities, coverage and re-check, and the vulnerabilities as cards
+- [ ] `sbom-finding-malicious.png`
+      A finding marked Known malicious on a version's Security tab
 - [ ] `sbom-finding-details.png`
       A vulnerability card opened: score and severity, the weakness by name, the affected component with its fix and range, what an attacker needs and can affect, the description and the references
 - [ ] `sbom-coverage.png`
@@ -323,6 +329,8 @@ realistic but fictional names and figures rather than real people's data.
       A version's Security tab: components no vulnerability data covers shown as not covered
 - [ ] `vulnerability-data.png`
       Settings → Vulnerability data: turning checks on and where components are checked: the OSV API, OSV's data files or uploaded files
+- [ ] `vuln-settings-malicious.png`
+      Settings → Vulnerability data: the Malicious packages setting
 - [ ] `vulnerability-data-scanners.png`
       Settings → Vulnerability data: the scanner plugins, where each may send data, and when each was last asked
 - [ ] `vulnerability-data-distributions.png`
@@ -383,6 +391,13 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `system-check.png`
       Settings → System check: what needs attention and every check's result
+
+## Alert Tuning
+
+- [ ] `alert-tuning.png`
+      Settings → Alert tuning: active mutes and each check's notification rule
+- [ ] `alert-tuning-mute.png`
+      Settings → Alert tuning: a new mute for the problems in an alert
 
 ## Email
 
