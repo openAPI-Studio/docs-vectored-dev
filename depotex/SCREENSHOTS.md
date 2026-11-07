@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-185 screenshots. Save each one into `depotex/assets/` using the
+186 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -84,6 +84,8 @@ realistic but fictional names and figures rather than real people's data.
       A Helm repository's Metadata card after a check: two chart archives missing from index.yaml, with Check and Repair
 - [ ] `repository-access-tab.png`
       A repository's Access tab: repository roles and path access, each with a row to add someone
+- [ ] `spaces-cleanup-revision-rules.png`
+      A cleanup policy's Revisions (Conan) settings and its preview of the revisions a run would delete
 - [ ] `spaces-trash.png`
       A space's Trash tab: trashed Maven versions with the cleanup policy that removed them, their size, when, and Restore
 - [ ] `spaces-cleanup-undo-run.png`
