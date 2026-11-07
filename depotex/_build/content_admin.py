@@ -100,7 +100,7 @@ ADMIN = [
                 ["Servers", "Each other", "none", "Servers coordinate through PostgreSQL and Redis only"],
                 ["Prometheus", "Server", "9090 (optional)", "[Metrics](monitoring.html), never through the public address"],
             ]),
-            P("**Outbound from the server**, only for what you use: upstream registries for proxy repositories, identity providers (single sign-on, Entra ID, Google), SMTP or Amazon SES, webhook targets, OSV vulnerability data (or upload it offline in Settings → Vulnerability data), and plugins' declared hosts. An outbound HTTP proxy and private certificate authorities are set in **Settings → Repositories**. Nothing is sent to Vectored, apart from the installation ID when the vibe artifacts package list is downloaded."),
+            P("**Outbound from the server**, only for what you use: upstream registries for proxy repositories, identity providers (single sign-on, Entra ID, Google), SMTP or Amazon SES, webhook targets, OSV vulnerability data (or upload it offline in Settings → Vulnerability data; C/C++ advisories for Conan packages come from OSV's data files at `osv-vulnerabilities.storage.googleapis.com` or your copy of it, whichever source is chosen), and plugins' declared hosts. An outbound HTTP proxy and private certificate authorities are set in **Settings → Repositories**. Nothing is sent to Vectored, apart from the installation ID when the vibe artifacts package list is downloaded."),
             H("Address and TLS"),
             UL([
                 "Give Depotex its own host name (`https://depotex.example.com`); it can't be served under a path.",
