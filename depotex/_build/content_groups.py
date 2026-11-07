@@ -115,7 +115,7 @@ curl -u me:$TOKEN -T app-1.1.zip https://depotex.example.com/repository/acme/raw
             ]),
 
             H("RubyGems groups"),
-            P("A RubyGems group is one source for Bundler and `gem`: each gem's `info` file and the list of every gem combine the members, gems come from the first member that has them, and `gem push` goes to the repository the write rules choose by the gem's name and version (yanks and owner changes to the first hosted member that has the gem). A gem name a hosted member has, or has reserved, gets no versions from proxy members, in any casing and for everyone: a public gem of the same name can't stand in for yours. The group's **Settings** tab turns this off. See [RubyGems repositories](rubygems.html#groups)."),
+            P("A RubyGems group is one source for Bundler and `gem`: each gem's `info` file, the list of every gem and search (`api/v1/search.json`) combine the members, gems come from the first member that has them, and `gem push` goes to the repository the write rules choose by the gem's name and version (yanks and owner changes to the first hosted member that has the gem). A gem name a hosted member has, or has reserved, gets no versions from proxy members, in any casing and for everyone: a public gem of the same name can't stand in for yours. The group's **Settings** tab turns this off. See [RubyGems repositories](rubygems.html#groups)."),
             CODE('bundle config set --global https://depotex.example.com/repository/acme/rubygems/ "me:$TOKEN"\n# Gemfile\nsource "https://depotex.example.com/repository/acme/rubygems/"'),
 
             H("Conda groups"),

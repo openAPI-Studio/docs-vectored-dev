@@ -435,6 +435,17 @@ DIRECTORIES = [
             WARN("The **New repository** dialog has no **Checksums** choice: a proxy repository created there starts at **Warn**, or at **Use the Security setting** for the formats listed under **Applies to**. With the policy above, creating a proxy repository in the dialog is therefore refused, and proxy repositories are created through the API with `settings.proxy.checksumPolicy` set to `strict` (see [Proxy repositories](spaces.html#proxy-repositories)). To keep the dialog working for the listed formats, use the condition `payload.type == \"proxy\" && !(payload.checksum_policy in [\"strict\", \"default\"])` instead: it also accepts **Use the Security setting**, which is **Strict** only while this switch is on."),
             NOTE("During an upgrade of a cluster, servers still on the previous version treat **Use the Security setting** as **Warn**, and saving a repository set to it is refused there. Finish the upgrade on every server."),
 
+            H("Attestation trust"),
+            P("**Settings → Security → Attestation trust** (super admins: the `repository_settings:manage` permission; every license tier) lists the Sigstore trust roots Depotex verifies attestations with, such as those pushed with [RubyGems](rubygems.html#attestations) gems. A trust root (`trusted_root.json`) names the certificate authorities, transparency logs and timestamp authorities whose signatures count."),
+            SHOT("security-attestation-trust.png", "Settings → Security → Attestation trust: the built-in public Sigstore root, an uploaded root and the attestations still to check"),
+            UL([
+                "**Built in**: the root of Sigstore's public instance (the one GitHub Actions and RubyGems.org use), as of the Depotex release. Each release brings a newer one; the newest on any server is used, marked **In use**.",
+                "**Add trust root** uploads another one, for example a private Sigstore instance's or GitHub's for private repositories: a name and the `trusted_root.json` file (at most 1 MiB), which must name at least one certificate authority and a transparency log or timestamp authority. Up to 50 can be added. **Remove** takes one away; a built-in root can't be removed.",
+                "Adding or removing a root applies on every server at once, and every attestation is checked again with the new set; the page shows how many are still waiting.",
+                "Depotex never downloads trust roots by itself. If Sigstore's public instance changes its keys before a Depotex release brings them, new attestations are **Not verifiable** until you upload its new `trusted_root.json` here.",
+                "Adding and removing raise `attestation_trust_root.create` and `attestation_trust_root.delete`, which subscribers and policies can refuse, and are recorded in the audit log.",
+            ]),
+
             H("Failed attempts and lockout"),
             P("Depotex protects accounts against password guessing in two ways:"),
             TABLE(["Protection", "What happens", "Default"], [
