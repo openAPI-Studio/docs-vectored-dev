@@ -1028,7 +1028,7 @@ FORMATS = [
             P("A RubyGems proxy's **Settings** tab has a **RubyGems** section (repository admins):"),
             TABLE(["Setting", "What it does"], [
                 ["**Keep versions yanked upstream for lockfiles**", "Off by default: a version the upstream yanks leaves the proxy's index too, as on the upstream. On: a version yanked upstream whose file the proxy had already cached stays listed in its `info` file, so a `Gemfile.lock` pinned to it still installs (the yank of `mimemagic` 0.3.5 broke builds that way). Only files cached before the yank can be kept."],
-                ["**Cache every platform's file of a version**", "When a `.gem` is downloaded through the proxy, the same version's files for its other platforms (and their gemspecs) are fetched in the background, with the same checks as any download, so builds for other platforms still work while the upstream can't be reached. Every file counts toward the repository's size and the space's quota."],
+                ["**Cache every platform's file of a version**", "When a `.gem` is downloaded through the proxy, the same version's files for its other platforms (and their gemspecs) are fetched in the background, with the same checks as any download, so builds for other platforms still work while the upstream can't be reached. Every file counts toward the repository's size and the space's quota. A version whose files can't be fetched is tried again on the next runs of the background job, up to its attempts; downloading the version again, or a new platform of the gem appearing upstream, tries once more. Not available on a proxy whose cache mode is **Pass through**: it keeps no files."],
                 ["**Upstream index**", "**Compact index** (RubyGems.org and most registries) or **Dependency API only**, for registries without a compact index, such as GitLab: the proxy then builds a compact index from the upstream's specs files and dependency API, and Bundler and `gem` use it as usual. The connection test says when an upstream needs this mode."],
             ]),
             SHOT("rubygems-proxy-settings.png", "A RubyGems proxy's settings: keep versions yanked upstream, cache every platform's file, the upstream index, and the versions yanked upstream"),
@@ -1168,7 +1168,7 @@ FORMATS = [
                 ["`rubygems.settings.update`", "A RubyGems repository's settings change; refused when policies can't be read"],
                 ["`rubygems.gem.import`", "A gem file is [imported](#import-with-publish-dates), or an identical file gets an earlier publish date; policies can refuse it"],
                 ["`rubygems.attestation.verify`", "A gem file's [attestations](#attestations) were checked and the result is new or changed"],
-                ["`rubygems.upstream_gem.update`", "A proxy sees a cached file's version leave its upstream's index, or come back (space, repository, gem, version, platform, action `upstream_yank` or `upstream_unyank`, whether it is kept for lockfiles)"],
+                ["`rubygems.upstream_gem.update`", "A proxy sees a cached file's version leave its upstream's index, or come back (space, repository, gem, version, platform, action `upstream_yank` or `upstream_unyank`, and whether **Keep versions yanked upstream** was on, so it stays installable for lockfiles)"],
             ]),
             P("Pushing, and a proxy keeping a gem it fetched, raise `artifact.upload`; deleting raises `artifact.delete`, as for every format. See [Events](events.html)."),
         ])),
