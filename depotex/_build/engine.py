@@ -129,8 +129,10 @@ HEAD = """  <meta charset="UTF-8">
   <link rel="stylesheet" href="{up}assets/tokens.css">"""
 
 BANNER = ('  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}'
-          'html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>\n'
-          '  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>')
+          'html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}'
+          '.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>\n'
+          '  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change. '
+          'Early adopters: <a href="/support.html?tool=depotex&amp;type=access">contact us for access</a>.</div>')
 
 # The theme toggle, sidebar, search and on-this-page nav that used to be
 # emitted after every page's content now live in the shared assets, so there

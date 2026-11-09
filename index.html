@@ -55,6 +55,15 @@
     .ai-pill svg{width:12px;height:12px}
     html.light .ai-pill{color:#2554D6}
     .pcard-links{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:14px}
+    /* A product on its own platform row: one card across the whole row, its
+       description beside the tags and links on a wide screen. */
+    .pgrp-full{grid-column:1/-1}
+    .pcard-wide{display:grid;grid-template-columns:minmax(0,1fr);gap:0 40px}
+    @media(min-width:900px){.pcard-wide{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}}
+    .pcard-wide .pcard-side{display:flex;flex-direction:column}
+    @media(min-width:900px){.pcard-wide .pcard-side{padding-left:40px;border-left:1px solid var(--border)}}
+    .pcard-access{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 16px}
+    .pcard-access strong{color:var(--tx)}
     .plink-primary{color:var(--green);font-weight:600}
     .plink{color:var(--muted)}
     .plink:hover{color:var(--tx);text-decoration:none}
@@ -126,7 +135,7 @@
             <h2 class="text-2xl sm:text-3xl font-bold mb-2">Products</h2>
             <p class="text-muted max-w-2xl">Everything ships with full documentation, a support channel, and Marketplace-managed billing where applicable.</p>
           </div>
-          <span class="font-mono text-xs text-muted tracking-wider uppercase">7 products · 6 live</span>
+          <span class="font-mono text-xs text-muted tracking-wider uppercase">8 products · 6 live</span>
         </div>
 
         <!-- Grouped by platform. Atlassian spans the full row and slides when it
@@ -299,6 +308,41 @@
                 <div class="pcard-links">
                   <a href="https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki" target="_blank" rel="noopener" data-store="lens" class="plink-primary">Install &rarr;</a>
                   <a href="lens/" class="plink">Documentation</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="pgrp pgrp-full" data-group="self">
+          <div class="pgrp-head">
+            <span class="pgrp-title">Self-hosted</span>
+            <span class="pgrp-rule"></span>
+            <span class="pgrp-count">1 app</span>
+          </div>
+          <div class="pgrp-view">
+            <div class="pgrp-track">
+              <article class="pcard pcard-wide" data-status="COMING SOON">
+                <div>
+                  <img src="depotex/assets/icon.svg" alt="" class="pcard-icon">
+                  <h3>Depotex</h3>
+                  <span class="pcard-platform">on your own servers · Docker, Kubernetes &amp; Helm</span>
+                  <div class="pcard-status"><span class="pstatus soon">COMING SOON</span></div>
+                  <p class="pcard-desc">A self-hosted artifact repository for 18 package formats — npm, Maven, PyPI, Docker, NuGet, Go, Cargo and more. It caches the public registries your builds depend on and gives security teams SBOMs, vulnerability checks, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.</p>
+                </div>
+                <div class="pcard-side">
+                  <div class="pcard-tags">
+                    <span class="ptag">18 package formats</span>
+                    <span class="ptag">Registry proxy &amp; cache</span>
+                    <span class="ptag">SBOMs &amp; vulnerabilities</span>
+                    <span class="ptag">Quarantine &amp; policies</span>
+                    <span class="ptag">Single sign-on</span>
+                    <span class="ptag">Single node or cluster</span>
+                  </div>
+                  <p class="pcard-access"><strong>Early adopters:</strong> Depotex isn't released yet. Contact us for access to the server and a license.</p>
+                  <div class="pcard-links">
+                    <a href="support.html?tool=depotex&amp;type=access" class="plink-primary">Request early access &rarr;</a>
+                    <a href="depotex/" class="plink">Documentation</a>
+                  </div>
                 </div>
               </article>
             </div>

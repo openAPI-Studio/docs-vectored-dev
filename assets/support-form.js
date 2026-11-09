@@ -48,6 +48,16 @@
     if (resolved) picker.value = resolved.id;
   }
 
+  // ?type= preselects the type by its value or data-key (for example
+  // ?tool=depotex&type=access from a product that early adopters ask for).
+  var typeParam = (new URLSearchParams(location.search).get('type') || '').toLowerCase();
+  var typeSelect = form.querySelector('[name="type"]');
+  if (typeParam && typeSelect) {
+    [].forEach.call(typeSelect.options, function (o) {
+      if (o.value && (o.value.toLowerCase() === typeParam || o.getAttribute('data-key') === typeParam)) typeSelect.value = o.value;
+    });
+  }
+
   function fieldValue(name) {
     var el = form.querySelector('[name="' + name + '"]');
     return el ? String(el.value || '').trim() : '';

@@ -195,6 +195,7 @@ def render(head, banner, slugs):
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
         <a href="{D}getting-started.html" class="dx-btn">User guide <span aria-hidden="true">→</span></a>
         <a href="{D}index.html" class="dx-btn2">Admin guide</a>
+        <a href="../support.html?tool=depotex&amp;type=access" class="dx-btn2">Request early access</a>
         <span class="dx-mono dx-muted" style="font-size:13px">Container images · Helm chart · setup wizard</span>
       </div>
     </div>
@@ -273,8 +274,9 @@ def render(head, banner, slugs):
         <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:16px"><span style="width:7px;height:7px;border-radius:50%;background:var(--amber)"></span><span class="dx-soon">Coming soon</span></div>
         <h2 style="font-size:clamp(26px,3vw,34px);line-height:1.2;font-weight:700;letter-spacing:-.025em;margin:0 0 12px;color:var(--tx)">Install, enter the setup key, and follow the wizard.</h2>
         <p style="font-size:16.5px;line-height:1.65;color:var(--body);margin:0">Then create a space and its first repository, and point your package manager at it.</p>
+        <p style="font-size:15px;line-height:1.6;color:var(--muted);margin:12px 0 0">Depotex isn't released yet. Early adopters: <a href="../support.html?tool=depotex&amp;type=access">contact us for access</a>.</p>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:12px"><a href="{D}install.html" class="dx-btn">Install Depotex →</a><a href="{D}getting-started.html" class="dx-btn2">User guide</a><a href="{D}changelog.html" class="dx-btn2">Changelog</a></div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px"><a href="../support.html?tool=depotex&amp;type=access" class="dx-btn">Request early access →</a><a href="{D}install.html" class="dx-btn2">Install Depotex</a><a href="{D}getting-started.html" class="dx-btn2">User guide</a><a href="{D}changelog.html" class="dx-btn2">Changelog</a></div>
     </div>
   </section>
 </main>

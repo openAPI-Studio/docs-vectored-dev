@@ -119,6 +119,14 @@ PRODUCTS = [
       cta='https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki',
       ctaLabel='Try now',
       homeLabel='Lens Overview'),
+ # Depotex builds its own sidebars and search entries (depotex/_build/build.py
+ # writes depotex/assets/nav-local.js, which only Depotex pages load and which
+ # replaces this entry there). Here it is listed in the switcher only, marked
+ # coming soon, with no pages of its own in the site-wide search.
+ dict(key='depotex', label='Depotex', blurb='Self-hosted artifact repository',
+      dir='depotex', icon='depotex/assets/icon.svg',
+      cta='support.html?tool=depotex&type=access', ctaLabel='Request access',
+      homeLabel='Depotex Overview', docsHome='depotex/', soon=True, external=True),
 ]
 
 
@@ -137,6 +145,10 @@ def build():
     out = []
     for p in PRODUCTS:
         d = p['dir']
+        if p.get('external'):
+            out.append({k: p[k] for k in ('key', 'label', 'blurb', 'dir', 'icon', 'cta', 'ctaLabel', 'homeLabel', 'docsHome')}
+                       | {'soon': 1, 'count': 0, 'groups': []})
+            continue
         groups = []
         seen = set()
         for gtitle, slugs in GROUPS[p['key']]:
@@ -201,6 +213,8 @@ js = """/* Vectored docs — product registry.
      docsHome   where "<Product> docs" links to — the directory when it has an
                 index.html, otherwise the first page in nav order
      count      number of doc pages, shown in the switcher
+     soon       1 when the product isn't released yet: the switcher says
+                "Coming soon" instead of the page count
      groups     [{ title, items: [{ h: href, l: label, t: search text,
                 x: 1 when the page sits outside docs/ and is left out of
                    the prev/next reading order }] }]

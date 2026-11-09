@@ -22,8 +22,8 @@
 <script src="../../assets/nav.js"></script>
 <script src="../assets/nav-local.js"></script>
 <script src="../../assets/header.js"></script>
-  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}</style>
-  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change.</div>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. Depotex is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=depotex&amp;type=access">contact us for access</a>.</div>
 
 <div class="vc-shell">
   <aside class="vc-side" data-noprint="1"></aside>
@@ -39,6 +39,7 @@
       <div data-vc="contents"></div>
 
       <article class="vc-doc">
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Depotex isn't released yet. Early adopters: <a href="../../support.html?tool=depotex&amp;type=access" class="text-cta hover:underline">contact us for access</a> to get the server and a license.</p></div>
       <p class="text-muted mb-4">Depotex is a self-hosted platform. It needs PostgreSQL. Redis is optional for a single node and required for a cluster. On Kubernetes, use the container images and the <a href="helm-chart.html" class="text-cta hover:underline">Helm chart</a>; see also <a href="kubernetes.html" class="text-cta hover:underline">Docker &amp; Kubernetes</a>. Before you start, <a href="install-planning.html" class="text-cta hover:underline">plan the installation</a>: sizing, the database, storage and the address people will use.</p>
       <h2 id="first-boot" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. First boot</h2>
       <p class="text-muted mb-4">Set <span class="font-mono text-sm break-words">DATABASE_URL</span> and <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>, then start the server. After the first boot the database URL is saved encrypted on the node, so later boots only need the encryption key.</p>

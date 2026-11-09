@@ -34,7 +34,7 @@
         '<span class="vc-pname">' + esc(p.label) + '</span>' +
         '<span class="vc-pblurb">' + esc(p.blurb) + '</span>' +
       '</span>' +
-      '<span class="vc-pcount">' + p.count + ' pages</span>' +
+      (p.soon ? '<span class="vc-pcount vc-psoon">Coming soon</span>' : '<span class="vc-pcount">' + p.count + ' pages</span>') +
     '</a>';
   }).join('');
 

@@ -230,6 +230,27 @@
       ],
     },
 
+    depotex: {
+      id: 'depotex',
+      name: 'Depotex',
+      platform: 'self-hosted',
+      tagline: 'A self-hosted artifact repository for 18 package formats.',
+      badge: 'COMING SOON',
+      docs: 'https://docs.vectored.dev/depotex/',
+      marketplace: null,
+      icon: 'depotex/assets/icon.svg',
+      accent: '#22C55E',
+      initial: 'D',
+      ratingLabel: 'How interested are you in Depotex?',
+      areas: ['Package formats', 'Proxying public registries', 'SBOMs & vulnerabilities', 'Quarantine & policies', 'Single sign-on', 'Clustering', 'Something else'],
+      questions: [
+        { id: 'earlyAccess', label: 'Want early access?', type: 'radio', options: ['Yes, I want early access', 'No, just leaving feedback'] },
+        { id: 'formats', label: 'Which package formats do you use?', type: 'text', placeholder: 'e.g. npm, Maven, Docker, PyPI' },
+        { id: 'currentTool', label: 'What do you use for artifacts today?', type: 'text', placeholder: 'e.g. Nexus, Artifactory, GitHub Packages, nothing' },
+      ],
+      nextSteps: [{ label: 'Depotex documentation', href: 'https://docs.vectored.dev/depotex/' }],
+    },
+
     frontdoor: {
       id: 'frontdoor',
       name: 'Front Door',
@@ -267,7 +288,7 @@
   };
 
   // Order the dropdown deliberately: live products first, then upcoming, then catch-alls.
-  var ORDER = ['macrotoolkit', 'forms', 'apistudio', 'rewardhub', 'rewardhub-monday', 'timesheets', 'lens', 'frontdoor', 'docs'];
+  var ORDER = ['macrotoolkit', 'forms', 'apistudio', 'rewardhub', 'rewardhub-monday', 'timesheets', 'lens', 'depotex', 'frontdoor', 'docs'];
 
   // Aliases so old links, marketplace slugs and in-app links all resolve.
   var ALIASES = {
@@ -293,6 +314,7 @@
     lensbyvectored: 'lens',
     screensnap: 'lens',
     ln: 'lens',
+    dx: 'depotex',
     'front-door': 'frontdoor',
     portal: 'frontdoor',
     documentation: 'docs',

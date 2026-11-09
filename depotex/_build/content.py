@@ -118,8 +118,9 @@ PAGES = [
     ("install", dict(
         label="Install Depotex", title="Install Depotex", icon="rocket",
         desc="Start the server, the setup key, the reverse proxy and package-link addresses",
-        keywords=["install", "setup", "wizard", "first run", "bootstrap", "proxy", "nginx", "caddy", "websocket", "help", "support", "version", "footer", "about"],
+        keywords=["install", "setup", "wizard", "first run", "bootstrap", "proxy", "nginx", "caddy", "websocket", "help", "support", "version", "footer", "about", "early access"],
         blocks=[
+            NOTE("Depotex isn't released yet. Early adopters: [contact us for access](../../support.html?tool=depotex&type=access) to get the server and a license."),
             P("Depotex is a self-hosted platform. It needs PostgreSQL. Redis is optional for a single node and required for a cluster. On Kubernetes, use the container images and the [Helm chart](helm-chart.html); see also [Docker & Kubernetes](kubernetes.html). Before you start, [plan the installation](install-planning.html): sizing, the database, storage and the address people will use."),
             H("First boot"),
             P("Set `DATABASE_URL` and `CONFIG_ENCRYPTION_KEY`, then start the server. After the first boot the database URL is saved encrypted on the node, so later boots only need the encryption key."),
@@ -356,6 +357,7 @@ location / {
             P("**Settings → Application → Licensing** (the `licenses:admin` permission) shows the license at a glance: its tier and status, who it's issued to, when it expires, and how many users and servers are in use against its limits (amber from 80%, red at the limit). Below are the features it turns on, its license ID, and the installation ID to quote when requesting a new license (**Copy** puts it on the clipboard)."),
             P("Super admins see a banner at the top when the license expires within 30 days (information, then a warning in the last 14 days and a problem in the last 7), is in its grace period, has expired or isn't valid; its **Update license** button takes you to the update section. `LICENSE_BANNER_DAYS` changes the 30 days (`0` turns the banner off)."),
             H("Get a license"),
+            NOTE("Depotex isn't released yet. Early adopters: [contact us for access](../../support.html?tool=depotex&type=access), and we'll send the server and a license."),
             P("To get a license, a trial or a renewal, or to change your tier, user limit or server limit, contact us through [vectored.dev/#contact](https://vectored.dev/#contact) or email [support@vectored.dev](mailto:support@vectored.dev). Include:"),
             TABLE(["What", "Where to find it"], [
                 ["**Installation ID**", "The setup wizard's License step (**Copy installation ID**), **Settings → Application → Licensing**, or `./server --machine-id` on the machine that will set Depotex up (on Kubernetes, `prime-secrets.sh installation-id`: see [Install with Helm](helm-chart.html)). A cluster has one ID: every server shares the one it was set up with."],
