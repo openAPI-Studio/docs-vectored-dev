@@ -22,6 +22,7 @@ SYSTEM_CHECK = [
                 ["Redis (each server)", "Slow", "Unreachable from that server"],
                 ["File storage (each server)", "Slow", "Can't write or read back a test file"],
                 ["Artifact storage integrity", "Broken files, or the last integrity check failed, was skipped or is over a week old", "—"],
+                ["ConanCenter address", "A [Conan proxy](conan.html) still uses ConanCenter's frozen address `center.conan.io` (the first ten are named, as space/repository): switch its upstream to `https://center2.conan.io`", ""],
                 ["Backup target (each server)", "Backups are kept in the installation's own storage (see [Backups](backups.html#backup-target))", "The backup target can't be reached, its marker is wrong, or a test file can't be written and read back"],
                 ["Test restores", "The last test restore failed, or none passed in 15 days (Enterprise)", ""],
                 ["Shared storage (each server)", "Not checked yet", "The server's storage doesn't hold this installation's storage ID: not the cluster's shared storage, or another installation's (see [Storage](storage.html))"],
