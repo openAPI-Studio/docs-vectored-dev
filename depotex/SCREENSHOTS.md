@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-201 screenshots. Save each one into `depotex/assets/` using the
+203 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -32,7 +32,11 @@ realistic but fictional names and figures rather than real people's data.
 ## Dashboard
 
 - [ ] `dashboard-overview.png`
-      Dashboard: what needs attention, the installation's figures, spaces by size and the system's health
+      The administrator's dashboard: health, figures, what needs attention, backups, supply-chain security, traffic, formats, cluster, rate limits, spaces and a plugin's card
+- [ ] `plugins-mcp-dashboard-widget.png`
+      The AI agent connections card the depotex-mcp plugin adds to the dashboard
+- [ ] `dashboard-member.png`
+      A member's dashboard: what needs attention, their spaces, new versions, usage, tokens, security in their spaces, watched packages and vibe check-ins
 
 ## Search
 
