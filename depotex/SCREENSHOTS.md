@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-199 screenshots. Save each one into `depotex/assets/` using the
+200 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -162,6 +162,8 @@ realistic but fictional names and figures rather than real people's data.
       A hosted conda channel's Labels card: main, dev and rc with their file counts and channel addresses
 - [ ] `conda-patches.png`
       A hosted conda channel's Repodata patches card: noarch and linux-64 patched, with their entry counts and who changed them
+- [ ] `conda-notices.png`
+      A hosted conda channel's Notices card: a warning about Saturday's maintenance, with its expiry and the preview of what conda notices prints
 - [ ] `conda-settings.png`
       A conda repository's Conda card: Serve sharded repodata, with what micromamba and conda do after a change
 - [ ] `conda-group-settings.png`
