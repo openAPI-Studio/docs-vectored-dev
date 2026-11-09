@@ -100,7 +100,7 @@ ADMIN = [
                 ["Servers", "Each other", "none", "Servers coordinate through PostgreSQL and Redis only"],
                 ["Prometheus", "Server", "9090 (optional)", "[Metrics](monitoring.html), never through the public address"],
             ]),
-            P("**Outbound from the server**, only for what you use: upstream registries for proxy repositories, identity providers (single sign-on, Entra ID, Google), SMTP or Amazon SES, webhook targets, OSV vulnerability data (or upload it offline in Settings → Vulnerability data), and plugins' declared hosts. An outbound HTTP proxy and private certificate authorities are set in **Settings → Repositories**. Nothing is sent to Vectored, apart from the installation ID when the vibe artifacts package list is downloaded."),
+            P("**Outbound from the server**, only for what you use: upstream registries for proxy repositories, identity providers (single sign-on, Entra ID, Google), SMTP or Amazon SES, webhook targets, OSV vulnerability data (or upload it offline in Settings → Vulnerability data; C/C++ advisories for Conan packages come from OSV's data files at `osv-vulnerabilities.storage.googleapis.com` or your copy of it, whichever source is chosen), and plugins' declared hosts. An outbound HTTP proxy and private certificate authorities are set in **Settings → Repositories**. Nothing is sent to Vectored, apart from the installation ID when the vibe artifacts package list is downloaded."),
             H("Address and TLS"),
             UL([
                 "Give Depotex its own host name (`https://depotex.example.com`); it can't be served under a path.",
@@ -157,7 +157,7 @@ ADMIN = [
                 ["**Quarantine**", "Quarantine rules and held versions", "`artifacts:quarantine:manage`", "Enterprise", "[Quarantine](quarantine.html)"],
                 ["**Block list**", "Versions refused everywhere", "`artifacts:blocklist:manage`", "Enterprise", "[Block list](blocklist.html)"],
                 ["**Integrity**", "Checks that stored files are present and unchanged; repair", "`integrity:admin`", "All", "[Integrity](integrity.html)"],
-                ["**Vulnerability data**", "Where OSV data comes from: online, a mirror or an uploaded archive; what re-checks do", "`vulnerability_data:manage`", "See page", "[SBOMs](sbom.html)"],
+                ["**Vulnerability data**", "Where OSV data comes from: online, a mirror or an uploaded archive; what re-checks do; whether proxies refuse known-malicious packages", "`vulnerability_data:manage`", "See page", "[SBOMs](sbom.html)"],
                 ["**Vibe artifacts**", "Turning vibe artifacts on, push checks and the package list", "`repository_settings:manage`", "Enterprise", "[Vibe artifacts](vibe-artifacts.html)"],
             ]),
             P("Upstreams (super admins) are under **Upstreams** in the left navigation, not Settings: see [Upstreams](upstreams.html)."),
