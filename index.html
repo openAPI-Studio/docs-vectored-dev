@@ -58,10 +58,45 @@
     /* A product on its own platform row: one card across the whole row, its
        description beside the tags and links on a wide screen. */
     .pgrp-full{grid-column:1/-1}
-    .pcard-wide{display:grid;grid-template-columns:minmax(0,1fr);gap:0 40px}
-    @media(min-width:900px){.pcard-wide{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}}
-    .pcard-wide .pcard-side{display:flex;flex-direction:column}
+    .pcard-wide{display:grid;grid-template-columns:minmax(0,1fr);gap:28px 40px}
+    @media(min-width:900px){.pcard-wide{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+    .pcard-wide .pcard-main,.pcard-wide .pcard-side{display:flex;flex-direction:column;min-width:0}
     @media(min-width:900px){.pcard-wide .pcard-side{padding-left:40px;border-left:1px solid var(--border)}}
+
+    /* Screenshot tour on a wide card: one screen at a time in a browser
+       frame of fixed shape. A screen taller than the frame scrolls slowly
+       from top to bottom at its full width (so it stays readable) before the
+       next one. Hover or focus pauses it; with reduced motion it doesn't
+       move by itself and each screen scrolls by hand. */
+    .tour{gap:12px}
+    .tour-frame{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--bg);box-shadow:0 12px 32px -18px rgba(0,0,0,.45)}
+    .tour-bar{display:flex;align-items:center;gap:10px;height:30px;padding:0 12px;border-bottom:1px solid var(--border);background:var(--surface)}
+    .tour-bar i{width:8px;height:8px;border-radius:50%;background:var(--border);flex:none}
+    .tour-url{flex:1;min-width:0;margin-left:6px;font:11px/18px 'JetBrains Mono',monospace;color:var(--muted);background:var(--bg);border:1px solid var(--border);
+      border-radius:6px;padding:0 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .tour-view{position:relative;aspect-ratio:16/10;background:#fff}
+    .tour-slide{position:absolute;inset:0;overflow-y:auto;scrollbar-width:none;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s}
+    .tour-slide::-webkit-scrollbar{display:none}
+    .tour-slide.on{opacity:1;visibility:visible;transition:opacity .5s ease}
+    .tour-slide img{display:block;width:100%;height:auto}
+    .tour-progress{position:absolute;right:6px;top:6px;bottom:6px;width:3px;border-radius:3px;background:rgba(15,23,42,.08);pointer-events:none;opacity:0;transition:opacity .3s}
+    .tour-progress b{display:block;width:100%;border-radius:3px;background:rgba(15,23,42,.35)}
+    .tour-view.tall .tour-progress{opacity:1}
+    .tour-foot{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .tour-cap{margin:0;font-size:13px;line-height:1.5;color:var(--muted);min-height:3em}
+    .tour-cap strong{color:var(--tx);font-weight:600}
+    .tour-nav{display:flex;align-items:center;gap:4px;flex:none}
+    .tour-nav button{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:999px;border:1px solid transparent;
+      background:none;color:var(--muted);cursor:pointer;padding:0}
+    .tour-nav button:hover{color:var(--tx);border-color:var(--border)}
+    .tour-nav button:focus-visible,.tour-view:focus-visible,.tour-slide:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+    .tour-nav svg{width:14px;height:14px}
+    .tour-dots{display:flex;gap:2px}
+    .tour-dots button{width:18px}
+    .tour-dots button::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--border);transition:background .2s,width .2s}
+    .tour-dots button[aria-current="true"]::before{width:14px;border-radius:3px;background:var(--green)}
+    .tour-dots button:hover{border-color:transparent}
+    @media(max-width:520px){.tour-foot{flex-direction:column}.tour-cap{min-height:0}}
     .pcard-access{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 16px}
     .pcard-access strong{color:var(--tx)}
     .plink-primary{color:var(--green);font-weight:600}
@@ -322,14 +357,12 @@
           <div class="pgrp-view">
             <div class="pgrp-track">
               <article class="pcard pcard-wide" data-status="COMING SOON">
-                <div>
+                <div class="pcard-main">
                   <img src="depotex/assets/icon.svg" alt="" class="pcard-icon">
                   <h3>Depotex</h3>
                   <span class="pcard-platform">on your own servers · Docker, Kubernetes &amp; Helm</span>
                   <div class="pcard-status"><span class="pstatus soon">COMING SOON</span></div>
                   <p class="pcard-desc">A self-hosted artifact repository for 18 package formats — npm, Maven, PyPI, Docker, NuGet, Go, Cargo and more. It caches the public registries your builds depend on and gives security teams SBOMs, vulnerability checks, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.</p>
-                </div>
-                <div class="pcard-side">
                   <div class="pcard-tags">
                     <span class="ptag">18 package formats</span>
                     <span class="ptag">Registry proxy &amp; cache</span>
@@ -342,6 +375,30 @@
                   <div class="pcard-links">
                     <a href="support.html?tool=depotex&amp;type=access" class="plink-primary">Request early access &rarr;</a>
                     <a href="depotex/" class="plink">Documentation</a>
+                  </div>
+                </div>
+                <div class="pcard-side tour" role="region" aria-roledescription="carousel" aria-label="Depotex screenshots">
+                  <div class="tour-frame">
+                    <div class="tour-bar" aria-hidden="true"><i></i><i></i><i></i><span class="tour-url">packages.example.com</span></div>
+                    <div class="tour-view">
+                      <div class="tour-slide on" role="group" aria-roledescription="slide" aria-label="1 of 7" data-path="/login" data-cap="&lt;strong&gt;Sign in&lt;/strong&gt; with a password or your company's single sign-on."><img src="depotex/assets/tour/sign-in.webp" width="1120" height="700" alt="The Depotex sign-in page with single sign-on buttons for Acme Entra ID and Okta, and an email and password form."></div>
+                      <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="2 of 7" data-path="/dashboard" data-cap="&lt;strong&gt;Dashboard&lt;/strong&gt;: health, what needs a look, backups, supply-chain security, traffic and spaces in one page."><img src="depotex/assets/tour/dashboard.webp" width="1120" height="2155" loading="lazy" alt="The administrator dashboard: health chips, six figures, a needs-attention list, backups, security, a traffic chart, formats, cluster nodes, rate limits and the fullest spaces."></div>
+                      <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="3 of 7" data-path="/browse" data-cap="&lt;strong&gt;Browse&lt;/strong&gt; every package you can see, across spaces, formats and repositories."><img src="depotex/assets/tour/browse.webp" width="1120" height="829" loading="lazy" alt="The Browse page listing recently updated artifacts with space, format, type and vulnerability filters."></div>
+                      <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="4 of 7" data-path="/browse/maven/com.example:storefront" data-cap="&lt;strong&gt;Security&lt;/strong&gt; for each version: SBOM coverage, known vulnerabilities and their fixes."><img src="depotex/assets/tour/security.webp" width="1120" height="914" loading="lazy" alt="A version's Security tab showing 17 known vulnerabilities, coverage, and advisories with the fixed version."></div>
+                      <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="5 of 7" data-path="/settings/quarantine" data-cap="&lt;strong&gt;Quarantine&lt;/strong&gt; holds risky versions until someone releases them, by hand or by rule."><img src="depotex/assets/tour/quarantine.webp" width="1120" height="952" loading="lazy" alt="The Quarantine page with held versions and installation rules."></div>
+                      <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="6 of 7" data-path="/repositories" data-cap="&lt;strong&gt;Repositories&lt;/strong&gt;: hosted, proxy and group repositories in every space."><img src="depotex/assets/tour/repositories.webp" width="1120" height="737" loading="lazy" alt="The Repositories list grouped by space, with format, type and publishing rules."></div>
+                      <div class="tour-slide" role="group" aria-roledescription="slide" aria-label="7 of 7" data-path="/setup" data-cap="&lt;strong&gt;Setup&lt;/strong&gt; in five steps: licence, database, storage, cache and the first administrator."><img src="depotex/assets/tour/setup.webp" width="1120" height="1189" loading="lazy" alt="The setup wizard's licence step."></div>
+                      <div class="tour-progress" aria-hidden="true"><b></b></div>
+                    </div>
+                  </div>
+                  <div class="tour-foot">
+                    <p class="tour-cap" aria-live="polite"></p>
+                    <div class="tour-nav">
+                      <button type="button" class="tour-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+                      <div class="tour-dots"></div>
+                      <button type="button" class="tour-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+                      <button type="button" class="tour-play" aria-label="Pause the tour"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="tour-ico-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="tour-ico-play" d="M8 5l11 7-11 7z" style="display:none"/></svg></button>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -477,6 +534,97 @@
   </main>
 
 <script>
+/* Screenshot tour (the Depotex card). Each screen holds a moment at the top;
+   one taller than the frame then scrolls to its bottom at a reading pace,
+   holds, and the next one fades in. It runs only while on screen; hovering,
+   focusing or the pause button stop it, and the reader can scroll a screen
+   or step through them by hand. With reduced motion it never advances by
+   itself. */
+(function () {
+  document.querySelectorAll('.tour').forEach(function (tour) {
+    var view = tour.querySelector('.tour-view');
+    var slides = [].slice.call(tour.querySelectorAll('.tour-slide'));
+    var cap = tour.querySelector('.tour-cap'), url = tour.querySelector('.tour-url');
+    var dotsBox = tour.querySelector('.tour-dots'), play = tour.querySelector('.tour-play');
+    var bar = tour.querySelector('.tour-progress b');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var i = 0, stopped = reduce, hold = false, seen = false, raf = 0, timer = 0, phase = 'top', t0 = 0;
+    var HOLD = 1600, SHORT = 4800, SPEED = 55; // ms, ms, px/s
+    var dots = slides.map(function (s, n) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('aria-label', 'Screenshot ' + (n + 1) + ' of ' + slides.length);
+      b.addEventListener('click', function () { show(n, true); });
+      dotsBox.appendChild(b); return b;
+    });
+    function clear() { cancelAnimationFrame(raf); clearTimeout(timer); }
+    function progress() {
+      var s = slides[i], max = s.scrollHeight - s.clientHeight;
+      view.classList.toggle('tall', max > 2);
+      if (max > 2) { bar.style.height = (s.clientHeight / s.scrollHeight) * 100 + '%'; bar.style.transform = 'translateY(' + (s.scrollTop / s.clientHeight) * 100 + '%)'; }
+    }
+    function show(n, byHand) {
+      clear();
+      slides[i].classList.remove('on'); slides[i].removeAttribute('tabindex');
+      i = (n + slides.length) % slides.length;
+      var s = slides[i];
+      s.classList.add('on'); s.scrollTop = 0; s.tabIndex = 0;
+      cap.innerHTML = s.dataset.cap; url.textContent = 'packages.example.com' + (s.dataset.path || '');
+      dots.forEach(function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      var img = s.querySelector('img'); if (img.loading === 'lazy') img.loading = 'eager';
+      var next = slides[(i + 1) % slides.length].querySelector('img'); if (next.loading === 'lazy') next.loading = 'eager';
+      progress();
+      phase = 'top'; schedule(HOLD);
+    }
+    function running() { return !stopped && !hold && seen && !document.hidden; }
+    function schedule(ms) { clear(); if (running()) timer = setTimeout(step, ms); }
+    function step() {
+      var s = slides[i], max = s.scrollHeight - s.clientHeight;
+      if (phase === 'top' && max > 2) { phase = 'scroll'; t0 = 0; raf = requestAnimationFrame(scroll); return; }
+      if (phase === 'top') { phase = 'end'; return schedule(SHORT - HOLD); }
+      show(i + 1);
+    }
+    function scroll(ts) {
+      if (!running()) return;
+      var s = slides[i], max = s.scrollHeight - s.clientHeight;
+      if (!t0) t0 = ts - (s.scrollTop / SPEED) * 1000;
+      s.scrollTop = Math.min(max, ((ts - t0) / 1000) * SPEED);
+      progress();
+      if (s.scrollTop >= max - 1) { phase = 'end'; return schedule(HOLD); }
+      raf = requestAnimationFrame(scroll);
+    }
+    function resume() {
+      if (!running()) return clear();
+      if (phase === 'scroll') { t0 = 0; raf = requestAnimationFrame(scroll); } else schedule(HOLD);
+    }
+    function setStopped(v) {
+      stopped = v;
+      play.setAttribute('aria-label', v ? 'Play the tour' : 'Pause the tour');
+      play.querySelector('.tour-ico-pause').style.display = v ? 'none' : '';
+      play.querySelector('.tour-ico-play').style.display = v ? '' : 'none';
+      resume();
+    }
+    slides.forEach(function (s) { s.addEventListener('scroll', progress, { passive: true }); });
+    tour.querySelector('.tour-prev').addEventListener('click', function () { show(i - 1, true); });
+    tour.querySelector('.tour-next').addEventListener('click', function () { show(i + 1, true); });
+    play.addEventListener('click', function () { setStopped(!stopped); });
+    tour.addEventListener('mouseenter', function () { hold = true; clear(); });
+    tour.addEventListener('mouseleave', function () { hold = tour.contains(document.activeElement); resume(); });
+    tour.addEventListener('focusin', function () { hold = true; clear(); });
+    tour.addEventListener('focusout', function (e) { if (!tour.contains(e.relatedTarget)) { hold = tour.matches(':hover'); resume(); } });
+    tour.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { show(i - 1, true); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(i + 1, true); e.preventDefault(); }
+    });
+    document.addEventListener('visibilitychange', resume);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { seen = es[0].isIntersecting; resume(); }, { threshold: 0.4 }).observe(view);
+    } else seen = true;
+    window.addEventListener('resize', progress);
+    setStopped(stopped);
+    show(0);
+  });
+})();
+
 /* Product group sliders. A group whose apps outnumber the cards that fit
    shows a More button; each press slides one card, and the last press turns it
    into Back. Cards outside the window are dimmed rather than hidden, so the
