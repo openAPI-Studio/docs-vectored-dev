@@ -97,11 +97,27 @@ curl https://depotex.example.com/api/oauth/token -d grant_type=urn:ietf:params:o
                 "The access token the exchange returns (`dpo_at_…`) can be sent the ways [Use a token](api-tokens.html#use-a-token) lists, so package managers can publish with it: as a bearer token, as the password, as the user name with an empty password, or on its own where a tool sends its key with no scheme. NuGet's API key (`dotnet nuget push --api-key`) takes API tokens only.",
                 "With an Enterprise license the discovery document lists `private_key_jwt` among the token endpoint's authentication methods, with the accepted signing algorithms, so OAuth libraries know they can send a `client_assertion`.",
             ]),
+            H("Without the client ID: token exchange"),
+            P("Some tools sign in with nothing but their CI identity token, such as RubyGems' [trusted publishing action](rubygems.html#publish-without-a-stored-token-enterprise). For them the token address also takes a token exchange (Enterprise): Depotex finds the application whose trust rule accepts the token and gives back an access token of its service account (no refresh token). The **Workload identity** dialog shows both forms."),
+            CODE("""curl https://depotex.example.com/api/oauth/token \\
+  -d grant_type=urn:ietf:params:oauth:grant-type:token-exchange \\
+  -d subject_token_type=urn:ietf:params:oauth:token-type:id_token \\
+  -d subject_token="$CI_ID_TOKEN"
+"""),
+            UL([
+                "Each identity token can be exchanged once, on any server. An exchange that is refused (by a policy, for example) leaves it usable, so the job can be run again.",
+                "Give each application its own audience: a token that matches the rules of two applications is refused, never settled by order. Sending `client_id` too limits the exchange to that application's rules.",
+                "Every refusal of the token itself is the same `invalid_grant`, so nobody can probe which rules exist; the server log names the rule and the reason. A token already used and one matching several applications are named as such.",
+                "`scope` may ask for fewer of the application's scopes; the token lasts as long as the application's tokens do.",
+                "Each exchange is in the audit log and raises `oauth.workload_token.exchange`, which organization [policies](policies.html) can refuse.",
+                "Below Enterprise the token address answers `unsupported_grant_type`, and the discovery document doesn't list the grant.",
+            ]),
+            SHOT("oauth-workload-identity-exchange.png", "The Workload identity dialog's pipeline examples: with the client ID, and the token exchange without it"),
 
             H("Endpoints"),
             TABLE(["Endpoint", "Address"], [
                 ["Authorization", "`/oauth/authorize`"],
-                ["Token", "`/api/oauth/token` (client secret as HTTP Basic or form fields; none for desktop/browser apps). Grants: `authorization_code`, `refresh_token`, and `client_credentials` for apps with machine access (AI agents add `resource`)"],
+                ["Token", "`/api/oauth/token` (client secret as HTTP Basic or form fields; none for desktop/browser apps). Grants: `authorization_code`, `refresh_token`, `client_credentials` for apps with machine access (AI agents add `resource`), and with Enterprise the [token exchange](#without-the-client-id-token-exchange) of a CI identity token, with no client authentication"],
                 ["Revocation (RFC 7009)", "`/api/oauth/revoke`"],
                 ["Device authorization (RFC 8628)", "`/api/oauth/device_authorization`; people enter codes at `/oauth/device`"],
                 ["Introspection (RFC 7662)", "`/api/oauth/introspect`"],
@@ -203,6 +219,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://depotex.example.com/api/us
                 ["`oauth.consent.grant`", "A person allows an application (or it's pre-approved for them), or allows more scopes. Org policies can refuse it — for example only allow certain applications, or forbid `users:write`"],
                 ["`oauth.consent.revoke`", "A connection ends: revoked by the person, by an administrator, or because the application was deleted"],
                 ["`oauth.federation.create`, `oauth.federation.update`, `oauth.federation.delete`", "A workload identity trust rule is added, changed (issuer, audience, conditions, on/off) or removed"],
+                ["`oauth.workload_token.exchange`", "A CI job's identity token is about to become, or became, an access token of the application's service account. Org policies can refuse it by the token's claims, the application, the rule or the endpoint that asked. Its `target` is the address the exchange was asked at, not a limit: the token works wherever the service account can"],
                 ["`service_account.create`, `service_account.update`, `service_account.delete`", "A service account is created, renamed, gets another role, is turned off or on, or is deleted. Org policies can, for example, forbid organization-admin service accounts"],
                 ["`mcp.key.create`, `mcp.key.revoke`", "A person makes an MCP key, or a key is revoked by its owner or an administrator. Policies can refuse them, for example forbid keys that can change Depotex"],
                 ["`ai_agents.mcp_keys.update`", "MCP keys are allowed or stopped for the installation"],

@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-191 screenshots. Save each one into `depotex/assets/` using the
+196 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -137,10 +137,16 @@ realistic but fictional names and figures rather than real people's data.
       A RubyGems repository's settings: the owners-only and new-names switches, and the reserved gem names with their owners
 - [ ] `rubygems-usage-proxy.png`
       A RubyGems proxy repository's Usage tab: the Gemfile source, the Bundler mirror and gem install
+- [ ] `rubygems-proxy-settings.png`
+      A RubyGems proxy's settings: keep versions yanked upstream, cache every platform's file, the upstream index, and the versions yanked upstream
 - [ ] `rubygems-usage.png`
       A RubyGems group's Usage tab: the group as the Gemfile source, the link to use it as Bundler's mirror of rubygems.org instead, and gem install; gem push through the group is on its Publish tab
+- [ ] `rubygems-import.png`
+      A hosted RubyGems repository's Import gems panel: the date source, what to do without a date, and a result per gem file
 - [ ] `rubygems-version-platforms.png`
       A gem version's Overview: the gemspec, the owners and the platforms table with each platform's file
+- [ ] `rubygems-attestations.png`
+      A gem version's Overview with verified attestations: the Attestations row with the signer, and each platform's result
 
 ## Conda
 
@@ -354,6 +360,8 @@ realistic but fictional names and figures rather than real people's data.
       A group: its directories and members
 - [ ] `security-proxy-checksums.png`
       Settings → Security → Proxy checksums: the switch, the formats whose new proxies start at it, and how it differs from a repository's own setting
+- [ ] `security-attestation-trust.png`
+      Settings → Security → Attestation trust: the built-in public Sigstore root, an uploaded root and the attestations still to check
 
 ## Single Sign-On
 
@@ -370,6 +378,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Applications: the list of applications and the selected one beside it
 - [ ] `service-accounts.png`
       Settings → Service accounts
+- [ ] `oauth-workload-identity-exchange.png`
+      The Workload identity dialog's pipeline examples: with the client ID, and the token exchange without it
 - [ ] `settings-applications-add.png`
       Settings → Applications → Add application: a custom application or another Depotex instance
 - [ ] `settings-applications-link-instance.png`
