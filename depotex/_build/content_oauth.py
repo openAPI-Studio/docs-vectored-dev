@@ -113,6 +113,8 @@ curl https://depotex.example.com/api/oauth/token -d grant_type=urn:ietf:params:o
                 "Below Enterprise the token address answers `unsupported_grant_type`, and the discovery document doesn't list the grant.",
             ]),
             SHOT("oauth-workload-identity-exchange.png", "The Workload identity dialog's pipeline examples: with the client ID, and the token exchange without it"),
+            H("Trusted publishing for conda clients (Enterprise)"),
+            P("rattler-build and pixi (`upload prefix`) send attestations only after trusted publishing: from a CI job with no API key, they post the job's identity token to `/api/oidc/mint_token` and get back an access token as plain text. It is the same exchange as above: the application whose trust rule accepts the token, its service account, single use, audited and raising `oauth.workload_token.exchange`. Give the rule the audience the client asks for, the server's host name (for example `depotex.example.com`). The token can upload wherever the service account may publish. Refusals are short text the client prints: `invalid_token` (no rule, already used, expired), `workload_identity_requires_enterprise` below Enterprise."),
 
             H("Endpoints"),
             TABLE(["Endpoint", "Address"], [
