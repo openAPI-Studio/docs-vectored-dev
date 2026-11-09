@@ -1242,7 +1242,7 @@ FORMATS = [
             CODE("rattler-build upload prefix \\\n  --url https://" + HOST + "/repository/my-space/conda-local \\\n  --channel main \\\n  --api-key \"$DEPOTEX_TOKEN\" \\\n  --skip-existing \\\n  output/linux-64/my-tool-1.2.0-h1234567_0.conda\n\npixi upload prefix --url https://" + HOST + "/repository/my-space/conda-local --channel dev \\\n  --api-key \"$DEPOTEX_TOKEN\" output/linux-64/my-tool-1.2.0-h1234567_0.conda"),
             UL([
                 "The file's SHA-256 is checked against the one the client sends. A file already stored with the same content answers as uploaded (and gains the channel's label, if you may change labels); a file of the same name with other content is refused with 409, which `--skip-existing` skips. Files are never replaced, `--force` included.",
-                "A [group](groups.html) takes the upload too and stores it in the hosted member its write rules choose.",
+                "A [group](repository-groups.html) takes the upload too and stores it in the hosted member its write rules choose.",
                 "Proxies refuse uploads.",
             ]),
             H("Attestations"),
