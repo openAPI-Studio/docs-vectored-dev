@@ -1,6 +1,6 @@
 # Framelog docs — screenshots needed
 
-22 screenshots. Save each one into `lens/assets/` using the
+0 screenshots. Save each one into `lens/assets/` using the
 exact filename below. The docs pick them up automatically on the next page
 load — until then each slot renders a dashed placeholder naming the file it
 wants, so an unshot page looks unfinished rather than broken.
@@ -14,61 +14,61 @@ these end up on a public docs site.
 
 ## Getting Started
 
-- [ ] `lens-popup-first-run.png`
+- [x] `lens-popup-first-run.png`
       The Framelog popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
-- [ ] `lens-folder-linked.png`
+- [x] `lens-folder-linked.png`
       The popup project card with a folder linked, showing the folder name under the project and the Change folder button
-- [ ] `lens-region-selection.png`
-      A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below
+- [x] `lens-region-selection.png`
+      A region selected on a web page, with the dimension pill above it and the delay, Cancel and Capture Image toolbar below
 ## Capturing a Region
 
-- [ ] `lens-selection-handles.png`
-      A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes
-- [ ] `lens-redaction-hints.png`
-      The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
-- [ ] `lens-capture-saver.png`
-      The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right
+- [x] `lens-selection-handles.png`
+      A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes
+- [x] `lens-redaction-hints.png`
+      The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot
+- [x] `lens-capture-saver.png`
+      The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right
 ## Recording GIF and MP4
 
-- [ ] `lens-recording-active.png`
+- [x] `lens-recording-active.png`
       A page being recorded, with the dashed red frame around the region and the REC widget showing elapsed time and a Stop & Convert button
-- [ ] `lens-gif-converter.png`
+- [x] `lens-gif-converter.png`
       The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header
-- [ ] `lens-popup-recording-banner.png`
+- [x] `lens-popup-recording-banner.png`
       The popup showing the red recording banner with elapsed time, the source tab name, and Stop & convert and discard buttons
 ## Step-by-step Guides
 
-- [ ] `lens-steps-widget.png`
-      The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons
-- [ ] `lens-guide-review.png`
-      The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption
-- [ ] `lens-guides-list.png`
+- [x] `lens-steps-widget.png`
+      The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons
+- [x] `lens-guide-review.png`
+      The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to
+- [x] `lens-guides-list.png`
       The dashboard Guides tab with guide cards, each showing the site's logo, title, step count and the folder path it was written to
-- [ ] `lens-guide-mode.png`
+- [x] `lens-guide-mode.png`
       Guide Mode running on a live page: the companion panel with a step and its screenshot, and a blue ring drawn around the button that step refers to
-- [ ] `lens-guide-editor.png`
+- [x] `lens-guide-editor.png`
       The guide editor showing the dark chrome around a white document sheet, with numbered steps, their screenshots and the formatting toolbar
 ## Projects and Folders
 
-- [ ] `lens-project-folder.png`
-      A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json
-- [ ] `lens-folder-access-lost.png`
+- [x] `lens-project-folder.png`
+      A linked project folder listing the captured PNG and GIF files, the guides folder and project_metadata.json
+- [x] `lens-folder-access-lost.png`
       The popup project card showing the amber paused flag on the folder line and the Reconnect button
 ## Timeline and Dashboard
 
-- [ ] `lens-popup-timeline.png`
+- [x] `lens-popup-timeline.png`
       The popup timeline with captures grouped under project headings, the active one open, each row showing thumbnail, page title, type badge and time
-- [ ] `lens-dashboard-projects.png`
+- [x] `lens-dashboard-projects.png`
       The dashboard Projects tab showing project cards with folder, capture count, last capture and status badges
-- [ ] `lens-dashboard-timeline.png`
+- [x] `lens-dashboard-timeline.png`
       The dashboard master timeline with the filter bar and capture cards grouped under project headings, each card showing its captured size and type badge
 ## Settings
 
-- [ ] `lens-click-marker.png`
-      A recording in progress with a red click marker expanding at the point of a click inside the recorded region
+- [x] `lens-click-marker.png`
+      A recording in progress with a click marker at the point of a click inside the recorded region
 ## AI Features
 
-- [ ] `lens-ai-profiles.png`
+- [x] `lens-ai-profiles.png`
       The AI assistance panel on the Settings page listing several configured models, each with its provider, model name and a verified badge
-- [ ] `lens-ai-provider.png`
-      The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options
+- [x] `lens-ai-provider.png`
+      The AI assistance panel on the Settings page with Claude picked under Add a model and its setup form open: name, model and API key

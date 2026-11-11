@@ -58,16 +58,16 @@
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The region you drag limits the <em>recording</em>, not the steps. Each step screenshot is a fresh capture of the <strong class="text-text">whole tab</strong>, with the control you used ringed on it — so steps stay readable even when the recorded region was small.</p></div>
 <p class="text-muted mb-4">A step is the whole screen on purpose. A picture cropped tight around one button leaves out the part of the page a reader needs in order to know where they are, and a crop cannot be undone once it is saved. Framelog works out where a tighter crop would go and offers it instead: open a step's crop tool in the editor and that box is already drawn, ready to accept or drag.</p>
 <figure class="shot mb-6">
-        <img src="../assets/lens-steps-widget.png" alt="The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons" loading="lazy"
+        <img src="../assets/lens-steps-widget.png" alt="The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
           <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           <p class="text-sm text-muted">Screenshot needed</p>
           <p class="font-mono text-xs text-cta break-all">lens-steps-widget.png</p>
-          <p class="text-xs text-muted max-w-md">The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons</p>
+          <p class="text-xs text-muted max-w-md">The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons</p>
         </div>
-        <figcaption class="text-xs text-muted mt-2">The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons</figcaption>
+        <figcaption class="text-xs text-muted mt-2">The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons</figcaption>
       </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">2. What does not become a step</h2>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">Clicks on Framelog's own controls. Pressing <strong class="text-text">Finish</strong> does not appear in the guide it finishes.</li><li class="mb-2">Clicks on nothing — empty space, a page background.</li><li class="mb-2">A repeated click on the same control within a second, which is counted once.</li><li class="mb-2">A drag or a text selection, which is not a click at all.</li><li class="mb-2">Clicking into a field and leaving it empty — the step arrives when you type something, not before.</li><li class="mb-2">Pausing while you fill a field in. The step is written once the typing settles, and typing on into the same field extends that step rather than adding another; the picture is of the field as you leave it.</li><li class="mb-2">The page load a click causes — said as part of that click (<em>Follow "Support" — opens docs.vectored.dev/support.html</em>) rather than as a step of its own with no picture. A redirect chain names where you end up; a page you open yourself is still a step.</li><li class="mb-2">Clicking a dropdown open. The step is the option you choose from it. On most platforms the open list is drawn by the operating system and would not appear in a screenshot of the page anyway.</li><li class="mb-2">A short scroll, or the jump a page makes in response to a click that was already recorded.</li></ul>
@@ -75,16 +75,16 @@
 <p class="text-muted mb-4">Nothing reaches your folder until you approve it. The review panel lists every step with its screenshot, and you can:</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">Edit the guide title, and the text of any step.</li><li class="mb-2">Untick steps you do not want. They are dropped, and the rest renumber.</li><li class="mb-2">Untick the guide entirely and keep just the recording.</li><li class="mb-2"><strong class="text-text">Rewrite with AI</strong> — only if you have a model connected. It refuses any answer that changes the number of steps, so it can improve the words but cannot invent or lose a step.</li></ul>
 <figure class="shot mb-6">
-        <img src="../assets/lens-guide-review.png" alt="The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption" loading="lazy"
+        <img src="../assets/lens-guide-review.png" alt="The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
           <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           <p class="text-sm text-muted">Screenshot needed</p>
           <p class="font-mono text-xs text-cta break-all">lens-guide-review.png</p>
-          <p class="text-xs text-muted max-w-md">The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption</p>
+          <p class="text-xs text-muted max-w-md">The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to</p>
         </div>
-        <figcaption class="text-xs text-muted mt-2">The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption</figcaption>
+        <figcaption class="text-xs text-muted mt-2">The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to</figcaption>
       </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">4. Where guides live afterwards</h2>
 <p class="text-muted mb-4"><strong class="text-text">Dashboard &gt; Guides.</strong> One card per guide, newest first, each showing the site's own logo — or its favicon where there is no logo, or a coloured initial where there is neither — with the title, the site, the step count, the project and the day it was captured.</p>

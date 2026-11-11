@@ -405,6 +405,7 @@ html.light .vc-psoon, [data-theme="light"] .vc-psoon { color: #B45309; }
 }
 .vc-doc .tbl-wrap { overflow-x: auto; margin-bottom: 24px; }
 .vc-doc .shot img { width: 100%; height: auto; display: block; border-radius: 8px; }
+.vc-doc .shot.shot-narrow img { width: auto; max-width: 100%; }
 
 /* Feedback + prev/next */
 .vc-fb {

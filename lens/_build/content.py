@@ -91,7 +91,7 @@ PAGES["getting-started"] = dict(
             "Press **Capture Image**|the save screen opens with your capture loaded, its tools down the left and the file name on the right.",
             "Annotate if you want to, then name it and save|the file lands in the project folder and appears in the popup timeline.",
         ]),
-        SHOT("lens-region-selection.png", "A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below"),
+        SHOT("lens-region-selection.png", "A region selected on a web page, with the dimension pill above it and the delay, Cancel and Capture Image toolbar below"),
 
         H("Where to go next"),
         UL([
@@ -129,7 +129,7 @@ PAGES["capturing"] = dict(
             ["Cancel", "Press **Cancel**, or press Escape"],
         ]),
         P("The pill above the selection shows the size in CSS pixels and the native pixel size you will actually get — on a Retina display a 600×400 selection is captured at 1200×800."),
-        SHOT("lens-selection-handles.png", "A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes"),
+        SHOT("lens-selection-handles.png", "A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes"),
 
         H("Capturing a hover state or an open menu"),
         P("A hover, a dropdown and a pop-up menu all close the moment you click anywhere else \u2014 including on the **Capture Image** button \u2014 so on their own they can never be photographed. The delay beside that button solves it: choose **3s**, **5s**, **10s** or **30s** and Framelog hands the page back to you for that long before the shutter fires."),
@@ -168,7 +168,7 @@ PAGES["capturing"] = dict(
         ]),
         NOTE("The check runs on the structure of the page in your own browser. It uses no AI and sends nothing anywhere, and it is on by default. If you have connected an AI provider you can additionally let a model sort real credentials from documentation examples — see [Settings](settings.html)."),
         WARN("Treat it as a safety net, not a guarantee. It recognises known shapes, so it will not catch a secret that does not look like one, or a name or figure that is sensitive only in context. Read the capture as well."),
-        SHOT("lens-redaction-hints.png", "The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below"),
+        SHOT("lens-redaction-hints.png", "The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot"),
 
         H("The save screen"),
         P("Confirming the selection opens the editor and the save form as a single screen. Down the left is a rail of tools, in the middle the picture, and on the right the panel for whichever tool is selected — with the file name and notes below it."),
@@ -185,7 +185,7 @@ PAGES["capturing"] = dict(
             ["Turn", "Rotate left or right, flip across or down"],
         ]),
         P("**Style** — colour, size and font — sits in the panel and applies to the next mark you make. Everything you add is listed under **Marks** in the order you made it, with blurs tagged *permanent*, so three edits later you can still see at a glance that a blur is in place."),
-        SHOT("lens-capture-saver.png", "The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right"),
+        SHOT("lens-capture-saver.png", "The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right"),
 
         H("Cropping, adjusting and turning"),
         UL([
@@ -322,7 +322,7 @@ PAGES["guides"] = dict(
         NOTE("Only **Record steps** follows the flow into a new tab. A GIF recording is a capture stream bound to one tab, so it stays on the tab it started in."),
         NOTE("The region you drag limits the *recording*, not the steps. Each step screenshot is a fresh capture of the **whole tab**, with the control you used ringed on it — so steps stay readable even when the recorded region was small."),
         P("A step is the whole screen on purpose. A picture cropped tight around one button leaves out the part of the page a reader needs in order to know where they are, and a crop cannot be undone once it is saved. Framelog works out where a tighter crop would go and offers it instead: open a step's crop tool in the editor and that box is already drawn, ready to accept or drag."),
-        SHOT("lens-steps-widget.png", "The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons"),
+        SHOT("lens-steps-widget.png", "The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons"),
 
         H("What does not become a step"),
         UL([
@@ -345,7 +345,7 @@ PAGES["guides"] = dict(
             "Untick the guide entirely and keep just the recording.",
             "**Rewrite with AI** — only if you have a model connected. It refuses any answer that changes the number of steps, so it can improve the words but cannot invent or lose a step.",
         ]),
-        SHOT("lens-guide-review.png", "The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption"),
+        SHOT("lens-guide-review.png", "The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to"),
 
         H("Where guides live afterwards"),
         P("**Dashboard > Guides.** One card per guide, newest first, each showing the site's own logo — or its favicon where there is no logo, or a coloured initial where there is neither — with the title, the site, the step count, the project and the day it was captured."),
@@ -503,7 +503,7 @@ PAGES["projects"] = dict(
             "`project_metadata.json` — a timeline entry per capture recording the file name, page title, page URL, timestamp, the captured region and your note.",
         ]),
         P("The metadata file is plain JSON and is meant to be read by other tools. Every entry and the file itself carry `\"createdBy\": \"Framelog by Vectored\"`."),
-        SHOT("lens-project-folder.png", "A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json"),
+        SHOT("lens-project-folder.png", "A linked project folder listing the captured PNG and GIF files, the guides folder and project_metadata.json"),
 
         H("Linking a folder later"),
         P("Press **Link folder** in the popup or on the dashboard's project card. Framelog counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is."),
@@ -618,7 +618,7 @@ PAGES["ai"] = dict(
             "In the guide editor's assistant you switch between them **per message**, so a question can go to a different model than the last one did.",
         ]),
         SHOT("lens-ai-profiles.png", "The AI assistance panel on the Settings page listing several configured models, each with its provider, model name and a verified badge"),
-        SHOT("lens-ai-provider.png", "The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options"),
+        SHOT("lens-ai-provider.png", "The AI assistance panel on the Settings page with Claude picked under Add a model and its setup form open: name, model and API key"),
 
         H("What each feature sends"),
         P("Only what that feature needs. The amounts differ, so they are listed separately rather than summarised."),
@@ -808,7 +808,7 @@ PAGES["settings"] = dict(
 
         H("Visualise clicks"),
         P("Draws a marker at each click while recording, so a walkthrough shows where you clicked. Markers are only drawn **inside** the recorded region — a marker outside it would never appear in the output."),
-        SHOT("lens-click-marker.png", "A recording in progress with a red click marker expanding at the point of a click inside the recorded region"),
+        SHOT("lens-click-marker.png", "A recording in progress with a click marker at the point of a click inside the recorded region"),
 
         H("Play shutter sound"),
         P("A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension."),

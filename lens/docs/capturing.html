@@ -53,16 +53,16 @@
 <div class="tbl-wrap"><table><thead><tr><th>Action</th><th>How</th></tr></thead><tbody><tr><td>Draw a region</td><td>Click and drag anywhere on the page</td></tr><tr><td>Resize</td><td>Drag any of the eight handles on the selection edge</td></tr><tr><td>Move</td><td>Drag from inside the selection</td></tr><tr><td>Confirm</td><td>Press <strong class="text-text">Capture Image</strong>, or press Enter</td></tr><tr><td>Cancel</td><td>Press <strong class="text-text">Cancel</strong>, or press Escape</td></tr></tbody></table></div>
 <p class="text-muted mb-4">The pill above the selection shows the size in CSS pixels and the native pixel size you will actually get — on a Retina display a 600×400 selection is captured at 1200×800.</p>
 <figure class="shot mb-6">
-        <img src="../assets/lens-selection-handles.png" alt="A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes" loading="lazy"
+        <img src="../assets/lens-selection-handles.png" alt="A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
           <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           <p class="text-sm text-muted">Screenshot needed</p>
           <p class="font-mono text-xs text-cta break-all">lens-selection-handles.png</p>
-          <p class="text-xs text-muted max-w-md">A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes</p>
+          <p class="text-xs text-muted max-w-md">A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes</p>
         </div>
-        <figcaption class="text-xs text-muted mt-2">A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes</figcaption>
+        <figcaption class="text-xs text-muted mt-2">A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes</figcaption>
       </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">2. Capturing a hover state or an open menu</h2>
 <p class="text-muted mb-4">A hover, a dropdown and a pop-up menu all close the moment you click anywhere else — including on the <strong class="text-text">Capture Image</strong> button — so on their own they can never be photographed. The delay beside that button solves it: choose <strong class="text-text">3s</strong>, <strong class="text-text">5s</strong>, <strong class="text-text">10s</strong> or <strong class="text-text">30s</strong> and Framelog hands the page back to you for that long before the shutter fires.</p>
@@ -99,16 +99,16 @@
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The check runs on the structure of the page in your own browser. It uses no AI and sends nothing anywhere, and it is on by default. If you have connected an AI provider you can additionally let a model sort real credentials from documentation examples — see <a href="settings.html" class="text-cta hover:underline">Settings</a>.</p></div>
 <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted">Treat it as a safety net, not a guarantee. It recognises known shapes, so it will not catch a secret that does not look like one, or a name or figure that is sensitive only in context. Read the capture as well.</p></div>
 <figure class="shot mb-6">
-        <img src="../assets/lens-redaction-hints.png" alt="The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below" loading="lazy"
+        <img src="../assets/lens-redaction-hints.png" alt="The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
           <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           <p class="text-sm text-muted">Screenshot needed</p>
           <p class="font-mono text-xs text-cta break-all">lens-redaction-hints.png</p>
-          <p class="text-xs text-muted max-w-md">The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below</p>
+          <p class="text-xs text-muted max-w-md">The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot</p>
         </div>
-        <figcaption class="text-xs text-muted mt-2">The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below</figcaption>
+        <figcaption class="text-xs text-muted mt-2">The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot</figcaption>
       </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">5. The save screen</h2>
 <p class="text-muted mb-4">Confirming the selection opens the editor and the save form as a single screen. Down the left is a rail of tools, in the middle the picture, and on the right the panel for whichever tool is selected — with the file name and notes below it.</p>
@@ -116,16 +116,16 @@
 <div class="tbl-wrap"><table><thead><tr><th>Tool</th><th>What it does</th></tr></thead><tbody><tr><td>Pen</td><td>Freehand drawing. Hold Shift to constrain the line</td></tr><tr><td>Text</td><td>Click where the label goes, then type</td></tr><tr><td>Box</td><td>Drag a rectangle. Shift keeps it square</td></tr><tr><td>Circle</td><td>Drag an ellipse. Shift keeps it round</td></tr><tr><td>Arrow</td><td>Drag from the tail to the point</td></tr><tr><td>Blur</td><td>Pixelate a region — rewritten into the image data, not drawn over it</td></tr><tr><td>Crop</td><td>Trim the picture to a region or a fixed ratio</td></tr><tr><td>Adjust</td><td>Brightness, contrast, saturation, exposure and warmth, plus Auto</td></tr><tr><td>Turn</td><td>Rotate left or right, flip across or down</td></tr></tbody></table></div>
 <p class="text-muted mb-4"><strong class="text-text">Style</strong> — colour, size and font — sits in the panel and applies to the next mark you make. Everything you add is listed under <strong class="text-text">Marks</strong> in the order you made it, with blurs tagged <em>permanent</em>, so three edits later you can still see at a glance that a blur is in place.</p>
 <figure class="shot mb-6">
-        <img src="../assets/lens-capture-saver.png" alt="The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right" loading="lazy"
+        <img src="../assets/lens-capture-saver.png" alt="The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
           <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           <p class="text-sm text-muted">Screenshot needed</p>
           <p class="font-mono text-xs text-cta break-all">lens-capture-saver.png</p>
-          <p class="text-xs text-muted max-w-md">The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right</p>
+          <p class="text-xs text-muted max-w-md">The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right</p>
         </div>
-        <figcaption class="text-xs text-muted mt-2">The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right</figcaption>
+        <figcaption class="text-xs text-muted mt-2">The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right</figcaption>
       </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">6. Cropping, adjusting and turning</h2>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Crop</strong> opens on the whole picture — easier to pull inward than an empty box is to place. Ratio chips offer Free, Original, 1:1, 16:9, 4:3 and 3:2, and the readout shows the real pixel size you will get. <strong class="text-text">Apply crop</strong> commits it.</li><li class="mb-2"><strong class="text-text">Adjust</strong> previews live against the picture as it was when you opened the tool, so dragging a slider back to the middle returns the exact original pixels rather than an approximation. <strong class="text-text">Auto</strong> stretches the histogram to use the full range.</li><li class="mb-2"><strong class="text-text">Turn</strong> applies immediately — each rotation or flip is one step that Undo reverses.</li></ul>

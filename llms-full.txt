@@ -15035,15 +15035,15 @@ The popup project card with a folder linked, showing the folder name under the p
 
 4. **Annotate if you want to, then name it and save** the file lands in the project folder and appears in the popup timeline.
 
-![A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below](https://docs.vectored.dev/lens/assets/lens-region-selection.png)
+![A region selected on a web page, with the dimension pill above it and the delay, Cancel and Capture Image toolbar below](https://docs.vectored.dev/lens/assets/lens-region-selection.png)
 
 Screenshot needed
 
 lens-region-selection.png
 
-A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below
+A region selected on a web page, with the dimension pill above it and the delay, Cancel and Capture Image toolbar below
 
-A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below
+A region selected on a web page, with the dimension pill above it and the delay, Cancel and Capture Image toolbar below
 
 ### 5. Where to go next
 
@@ -15098,15 +15098,15 @@ Start a capture from the popup's **Capture** tile or the keyboard shortcut. The 
 
 The pill above the selection shows the size in CSS pixels and the native pixel size you will actually get — on a Retina display a 600×400 selection is captured at 1200×800.
 
-![A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes](https://docs.vectored.dev/lens/assets/lens-selection-handles.png)
+![A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes](https://docs.vectored.dev/lens/assets/lens-selection-handles.png)
 
 Screenshot needed
 
 lens-selection-handles.png
 
-A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes
+A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes
 
-A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes
+A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes
 
 ### 2. Capturing a hover state or an open menu
 
@@ -15166,15 +15166,15 @@ The check runs on the structure of the page in your own browser. It uses no AI a
 
 Treat it as a safety net, not a guarantee. It recognises known shapes, so it will not catch a secret that does not look like one, or a name or figure that is sensitive only in context. Read the capture as well.
 
-![The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below](https://docs.vectored.dev/lens/assets/lens-redaction-hints.png)
+![The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot](https://docs.vectored.dev/lens/assets/lens-redaction-hints.png)
 
 Screenshot needed
 
 lens-redaction-hints.png
 
-The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
+The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot
 
-The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
+The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot
 
 ### 5. The save screen
 
@@ -15196,15 +15196,15 @@ The rail has two halves. Above the divider are **marks** you add on top of the p
 
 **Style** — colour, size and font — sits in the panel and applies to the next mark you make. Everything you add is listed under **Marks** in the order you made it, with blurs tagged *permanent*, so three edits later you can still see at a glance that a blur is in place.
 
-![The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right](https://docs.vectored.dev/lens/assets/lens-capture-saver.png)
+![The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right](https://docs.vectored.dev/lens/assets/lens-capture-saver.png)
 
 Screenshot needed
 
 lens-capture-saver.png
 
-The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right
+The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right
 
-The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right
+The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right
 
 ### 6. Cropping, adjusting and turning
 
@@ -15414,15 +15414,15 @@ The region you drag limits the *recording*, not the steps. Each step screenshot 
 
 A step is the whole screen on purpose. A picture cropped tight around one button leaves out the part of the page a reader needs in order to know where they are, and a crop cannot be undone once it is saved. Framelog works out where a tighter crop would go and offers it instead: open a step's crop tool in the editor and that box is already drawn, ready to accept or drag.
 
-![The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons](https://docs.vectored.dev/lens/assets/lens-steps-widget.png)
+![The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons](https://docs.vectored.dev/lens/assets/lens-steps-widget.png)
 
 Screenshot needed
 
 lens-steps-widget.png
 
-The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons
+The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons
 
-The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons
+The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons
 
 ### 2. What does not become a step
 
@@ -15456,15 +15456,15 @@ Nothing reaches your folder until you approve it. The review panel lists every s
 
 - **Rewrite with AI** — only if you have a model connected. It refuses any answer that changes the number of steps, so it can improve the words but cannot invent or lose a step.
 
-![The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption](https://docs.vectored.dev/lens/assets/lens-guide-review.png)
+![The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to](https://docs.vectored.dev/lens/assets/lens-guide-review.png)
 
 Screenshot needed
 
 lens-guide-review.png
 
-The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption
+The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to
 
-The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption
+The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to
 
 ### 4. Where guides live afterwards
 
@@ -15706,15 +15706,15 @@ Chrome hands out folder permission for as long as the extension is running and t
 
 The metadata file is plain JSON and is meant to be read by other tools. Every entry and the file itself carry "createdBy": "Framelog by Vectored".
 
-![A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json](https://docs.vectored.dev/lens/assets/lens-project-folder.png)
+![A linked project folder listing the captured PNG and GIF files, the guides folder and project_metadata.json](https://docs.vectored.dev/lens/assets/lens-project-folder.png)
 
 Screenshot needed
 
 lens-project-folder.png
 
-A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json
+A linked project folder listing the captured PNG and GIF files, the guides folder and project_metadata.json
 
-A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json
+A linked project folder listing the captured PNG and GIF files, the guides folder and project_metadata.json
 
 ### 4. Linking a folder later
 
@@ -15912,15 +15912,15 @@ Puts each capture on the clipboard as well as saving it. Because the clipboard o
 
 Draws a marker at each click while recording, so a walkthrough shows where you clicked. Markers are only drawn **inside** the recorded region — a marker outside it would never appear in the output.
 
-![A recording in progress with a red click marker expanding at the point of a click inside the recorded region](https://docs.vectored.dev/lens/assets/lens-click-marker.png)
+![A recording in progress with a click marker at the point of a click inside the recorded region](https://docs.vectored.dev/lens/assets/lens-click-marker.png)
 
 Screenshot needed
 
 lens-click-marker.png
 
-A recording in progress with a red click marker expanding at the point of a click inside the recorded region
+A recording in progress with a click marker at the point of a click inside the recorded region
 
-A recording in progress with a red click marker expanding at the point of a click inside the recorded region
+A recording in progress with a click marker at the point of a click inside the recorded region
 
 ### 11. Play shutter sound
 
@@ -16137,15 +16137,15 @@ The AI assistance panel on the Settings page listing several configured models, 
 
 The AI assistance panel on the Settings page listing several configured models, each with its provider, model name and a verified badge
 
-![The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options](https://docs.vectored.dev/lens/assets/lens-ai-provider.png)
+![The AI assistance panel on the Settings page with Claude picked under Add a model and its setup form open: name, model and API key](https://docs.vectored.dev/lens/assets/lens-ai-provider.png)
 
 Screenshot needed
 
 lens-ai-provider.png
 
-The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options
+The AI assistance panel on the Settings page with Claude picked under Add a model and its setup form open: name, model and API key
 
-The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options
+The AI assistance panel on the Settings page with Claude picked under Add a model and its setup form open: name, model and API key
 
 ### 3. What each feature sends
 
