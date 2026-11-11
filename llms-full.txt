@@ -14823,17 +14823,17 @@ These terms are governed by the laws of New South Wales, Australia, and the cour
 
 Questions about these terms: legal@vectored.dev
 
-# Lens
+# Framelog
 
-## Lens
+## Framelog
 
 Source: https://docs.vectored.dev/lens/
 
 [← All Tools](https://docs.vectored.dev/)
 
-![Lens logo](https://docs.vectored.dev/lens/assets/icon.png)
+![Framelog logo](https://docs.vectored.dev/lens/assets/icon.png)
 
-## Lens
+## Framelog
 
 by Vectored · for Chrome & Edge
 
@@ -14873,7 +14873,7 @@ Subscription required
 
 ### What’s Inside
 
-Everything Lens ships with — click any card for the documentation.
+Everything Framelog ships with — click any card for the documentation.
 
 [
 
@@ -14947,25 +14947,25 @@ The file is written into your folder, the metadata timeline is updated, and it a
 
 ### Where your captures go
 
-Screenshots of internal tools are some of the most sensitive things a browser extension can touch. Lens is built so that they never leave the machine that took them: there is no account, no subscription, no server, no analytics and no network call at capture time. As installed it is completely offline — unplug the network and every feature on this page still works.
+Screenshots of internal tools are some of the most sensitive things a browser extension can touch. Framelog is built so that they never leave the machine that took them: there is no account, no subscription, no server, no analytics and no network call at capture time. As installed it is completely offline — unplug the network and every feature on this page still works.
 
-Before a capture is saved, Lens checks the region for passwords, API keys and tokens and offers to blur them — a check that runs on the page structure in your own browser, with no AI and nothing sent anywhere.
+Before a capture is saved, Framelog checks the region for passwords, API keys and tokens and offers to blur them — a check that runs on the page structure in your own browser, with no AI and nothing sent anywhere.
 
 AI features are off on install. If you turn them on, you choose who does the work: your browser's built-in model, a model on your own machine, or an API key of your own. The first two keep everything local; picking a cloud provider asks you to confirm first. Either way there is no Vectored server in the path.
 
 [Privacy →](https://docs.vectored.dev/lens/privacy.html) [Security →](https://docs.vectored.dev/lens/security.html)
 
-Lens is free, on the [Chrome Web Store and Edge Add-ons](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). If there is something it should do that it does not, [tell us](https://docs.vectored.dev/lens/support.html) — no account and no subscription required, then or later.
+Framelog is free, on the [Chrome Web Store and Edge Add-ons](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). If there is something it should do that it does not, [tell us](https://docs.vectored.dev/lens/support.html) — no account and no subscription required, then or later.
 
 ## Getting Started
 
 Source: https://docs.vectored.dev/lens/docs/getting-started.html
 
-Install Lens, link a project folder, and take your first capture.
+Install Framelog, link a project folder, and take your first capture.
 
-Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a project — kept by the extension itself, and mirrored into a folder on your own machine if you link one — along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](https://docs.vectored.dev/lens/docs/guides.html). Nothing is uploaded — see [Privacy](https://docs.vectored.dev/lens/privacy.html).
+Framelog is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a project — kept by the extension itself, and mirrored into a folder on your own machine if you link one — along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](https://docs.vectored.dev/lens/docs/guides.html). Nothing is uploaded — see [Privacy](https://docs.vectored.dev/lens/privacy.html).
 
-**Lens works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](https://docs.vectored.dev/lens/docs/ai.html) you connect yourself, which is off on install and optional.
+**Framelog works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](https://docs.vectored.dev/lens/docs/ai.html) you connect yourself, which is off on install and optional.
 
 A 75-second tour: masking secrets, capturing and annotating a screenshot, recording a step-by-step guide, replaying it with Guide Mode, recording a GIF, and letting an AI agent drive it. [Watch on YouTube](https://youtu.be/ADe5jHcBDhE)
 
@@ -14973,21 +14973,21 @@ A 75-second tour: masking secrets, capturing and annotating a screenshot, record
 
 Tutorial 1: installing and pinning Framelog, a tour of the popup, your first project and your first capture. [Watch on YouTube](https://youtu.be/mc-U8RzEhX8)
 
-1. **Install Lens from the Chrome Web Store** or load the unpacked folder via chrome://extensions with Developer mode on.
+1. **Install Framelog from the Chrome Web Store** or load the unpacked folder via chrome://extensions with Developer mode on.
 
-2. **Pin it to the toolbar** click the puzzle-piece icon in Chrome's toolbar and press the pin next to Lens. The toolbar icon is where recording status and capture errors are reported.
+2. **Pin it to the toolbar** click the puzzle-piece icon in Chrome's toolbar and press the pin next to Framelog. The toolbar icon is where recording status and capture errors are reported.
 
-3. **Open the popup** click the Lens icon. This is where you pick the active project and start a capture.
+3. **Open the popup** click the Framelog icon. This is where you pick the active project and start a capture.
 
-![The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles](https://docs.vectored.dev/lens/assets/lens-popup-first-run.png)
+![The Framelog popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles](https://docs.vectored.dev/lens/assets/lens-popup-first-run.png)
 
 Screenshot needed
 
 lens-popup-first-run.png
 
-The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
+The Framelog popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
 
-The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
+The Framelog popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
 
 ### 2. What is in the popup
 
@@ -15005,15 +15005,15 @@ Top to bottom: the header, the project card, the capture tiles, and the timeline
 
 ### 3. Make a project
 
-A **project** is a name, and the captures filed under it. Lens keeps those itself, so a project works straight away with nothing else set up. Linking a folder on your computer is optional: do it and every capture is *also* written there, next to a project_metadata.json file recording what was captured, from which page, and when.
+A **project** is a name, and the captures filed under it. Framelog keeps those itself, so a project works straight away with nothing else set up. Linking a folder on your computer is optional: do it and every capture is *also* written there, next to a project_metadata.json file recording what was captured, from which page, and when.
 
 1. **Open the popup and press **New project**** the default project is already there if you would rather just start capturing.
 
 2. **Name the project** for example, the documentation set or release you are capturing for.
 
-3. **Press **Create**, or **Create & link folder**** the second asks Chrome for a folder and read/write access to it. Lens can only ever see the folder you pick.
+3. **Press **Create**, or **Create & link folder**** the second asks Chrome for a folder and read/write access to it. Framelog can only ever see the folder you pick.
 
-A folder can be linked at any time afterwards, from **Link folder** in the popup or **Link folder** on the dashboard's project card. Lens offers to copy everything the project already holds into it, so a folder linked late still ends up complete.
+A folder can be linked at any time afterwards, from **Link folder** in the popup or **Link folder** on the dashboard's project card. Framelog offers to copy everything the project already holds into it, so a folder linked late still ends up complete.
 
 ![The popup project card with a folder linked, showing the folder name under the project and the Change folder button](https://docs.vectored.dev/lens/assets/lens-folder-linked.png)
 
@@ -15035,15 +15035,15 @@ The popup project card with a folder linked, showing the folder name under the p
 
 4. **Annotate if you want to, then name it and save** the file lands in the project folder and appears in the popup timeline.
 
-![A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below](https://docs.vectored.dev/lens/assets/lens-region-selection.png)
+![A region selected on a web page, with the dimension pill above it and the delay, Cancel and Capture Image toolbar below](https://docs.vectored.dev/lens/assets/lens-region-selection.png)
 
 Screenshot needed
 
 lens-region-selection.png
 
-A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below
+A region selected on a web page, with the dimension pill above it and the delay, Cancel and Capture Image toolbar below
 
-A region selected on a web page, with the dimension pill above it and the Cancel / Record GIF / Capture Image toolbar below
+A region selected on a web page, with the dimension pill above it and the delay, Cancel and Capture Image toolbar below
 
 ### 5. Where to go next
 
@@ -15098,19 +15098,19 @@ Start a capture from the popup's **Capture** tile or the keyboard shortcut. The 
 
 The pill above the selection shows the size in CSS pixels and the native pixel size you will actually get — on a Retina display a 600×400 selection is captured at 1200×800.
 
-![A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes](https://docs.vectored.dev/lens/assets/lens-selection-handles.png)
+![A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes](https://docs.vectored.dev/lens/assets/lens-selection-handles.png)
 
 Screenshot needed
 
 lens-selection-handles.png
 
-A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes
+A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes
 
-A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes
+A selection with its eight resize handles visible and the dimension pill reading its CSS and native pixel sizes
 
 ### 2. Capturing a hover state or an open menu
 
-A hover, a dropdown and a pop-up menu all close the moment you click anywhere else — including on the **Capture Image** button — so on their own they can never be photographed. The delay beside that button solves it: choose **3s**, **5s**, **10s** or **30s** and Lens hands the page back to you for that long before the shutter fires.
+A hover, a dropdown and a pop-up menu all close the moment you click anywhere else — including on the **Capture Image** button — so on their own they can never be photographed. The delay beside that button solves it: choose **3s**, **5s**, **10s** or **30s** and Framelog hands the page back to you for that long before the shutter fires.
 
 1. **Drag the region** over the area the menu or tooltip will appear in, not over the control that opens it.
 
@@ -15142,7 +15142,7 @@ Tutorial 3: starting a full-page capture, stopping it part way, apps that scroll
 
 - **Headers and chat bubbles appear once.** Anything pinned to the screen is in the first screen and hidden for the rest, so it does not repeat down the picture.
 
-- **Apps that scroll a panel** — Gmail, Notion, Slack, most dashboards — are handled too. When the page itself does not scroll, Lens scrolls the panel in the middle of the screen, and the header and sidebars come from the first screen.
+- **Apps that scroll a panel** — Gmail, Notion, Slack, most dashboards — are handled too. When the page itself does not scroll, Framelog scrolls the panel in the middle of the screen, and the header and sidebars come from the first screen.
 
 - **Very long pages are scaled down** to fit the largest picture the browser can hold, and the save screen says so.
 
@@ -15152,7 +15152,7 @@ The private-data check runs over the whole stitched picture, not only the first 
 
 Tutorial 4: what the private-data check finds, blurring what you tick, the Before you share settings, and masking secrets before a browser agent captures. [Watch on YouTube](https://youtu.be/7EyQYgEjf0M)
 
-As the save screen opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered.
+As the save screen opens, Framelog looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered.
 
 It looks for password fields, fields named for a credential that have something in them, and text shaped like an API key, a JWT, a bearer token or a PEM private key. Unless you turn it off, it also flags email addresses and card numbers — card numbers are checksum-checked, so an order number is not mistaken for one.
 
@@ -15166,15 +15166,15 @@ The check runs on the structure of the page in your own browser. It uses no AI a
 
 Treat it as a safety net, not a guarantee. It recognises known shapes, so it will not catch a secret that does not look like one, or a name or figure that is sensitive only in context. Read the capture as well.
 
-![The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below](https://docs.vectored.dev/lens/assets/lens-redaction-hints.png)
+![The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot](https://docs.vectored.dev/lens/assets/lens-redaction-hints.png)
 
 Screenshot needed
 
 lens-redaction-hints.png
 
-The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
+The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot
 
-The save screen with an amber bar above the image listing two flagged regions, an API key and a password field, each outlined on the screenshot below
+The save screen with the private-data panel listing three flagged regions, a password field, a Stripe key and a GitHub token, each outlined on the screenshot
 
 ### 5. The save screen
 
@@ -15196,15 +15196,15 @@ The rail has two halves. Above the divider are **marks** you add on top of the p
 
 **Style** — colour, size and font — sits in the panel and applies to the next mark you make. Everything you add is listed under **Marks** in the order you made it, with blurs tagged *permanent*, so three edits later you can still see at a glance that a blur is in place.
 
-![The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right](https://docs.vectored.dev/lens/assets/lens-capture-saver.png)
+![The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right](https://docs.vectored.dev/lens/assets/lens-capture-saver.png)
 
 Screenshot needed
 
 lens-capture-saver.png
 
-The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right
+The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right
 
-The save screen with the tool rail on the left, an annotated screenshot in the middle, and the style panel, marks list and file name on the right
+The save screen with the tool rail on the left, an annotated and blurred screenshot in the middle, and the private-data panel, style controls and file name on the right
 
 ### 6. Cropping, adjusting and turning
 
@@ -15248,7 +15248,7 @@ Source: https://docs.vectored.dev/lens/docs/recording.html
 
 Record a region of a tab as a high-quality animated GIF or an MP4 video.
 
-Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen.
+Framelog records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen.
 
 Recording and encoding both happen inside your browser. Nothing is uploaded, no account or subscription is involved, and the whole flow works offline.
 
@@ -15288,7 +15288,7 @@ Set the output under **Settings > Capture and recording > Recording format**.
 | Quality controls | Framerate, speed and scale, set after you stop | None — recorded as captured |
 | Conversion step | Yes — a converter opens after you stop | No — the file is ready when you stop |
 
-MP4 recording depends on your Chrome build. Where Chrome cannot encode MP4, Lens records **WebM** instead and names the file accordingly, so the extension always matches the actual contents. The Settings page tells you which one your browser will produce before you record.
+MP4 recording depends on your Chrome build. Where Chrome cannot encode MP4, Framelog records **WebM** instead and names the file accordingly, so the extension always matches the actual contents. The Settings page tells you which one your browser will produce before you record.
 
 ### 3. The GIF converter
 
@@ -15330,13 +15330,13 @@ The GIF converter with the player showing a captured frame, the framerate, speed
 
 ### 5. You also get a guide
 
-If the recording had clicks in it, Lens builds a **step-by-step guide** from it as well: a screenshot taken at the moment of each click, cropped to the control, numbered and captioned. It appears for review under the file name on the save screen, and nothing is written until you approve it — you can untick individual steps, or untick the guide entirely and keep just the recording.
+If the recording had clicks in it, Framelog builds a **step-by-step guide** from it as well: a screenshot taken at the moment of each click, cropped to the control, numbered and captioned. It appears for review under the file name on the save screen, and nothing is written until you approve it — you can untick individual steps, or untick the guide entirely and keep just the recording.
 
 This is on by default and needs no AI. See [Guides](https://docs.vectored.dev/lens/docs/guides.html) for the review panel, the editor and exporting. If you want the walkthrough without the video, **Record steps** (⌘⇧E) captures one with no recording behind it and no time limit.
 
 ### 6. Writing steps from what you clicked
 
-While a recording runs, Lens notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, **Write steps from clicks** turns that into a numbered list and adds it to your note.
+While a recording runs, Framelog notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, **Write steps from clicks** turns that into a numbered list and adds it to your note.
 
 This works with no AI provider at all: the click list alone produces usable steps. If you have a provider connected, it rewrites the list into better prose instead — merging actions that are really one step and dropping navigation noise. The toast tells you which of the two you got.
 
@@ -15358,7 +15358,7 @@ A recording belongs to the **tab**, not the page. If you click a link and naviga
 
 ### 8. Stopping from another tab
 
-If you switch tabs, the Lens popup shows a **Recording** banner with the elapsed time and which tab it belongs to. **Stop & convert** there brings that tab forward and opens the converter; the cross button discards the recording.
+If you switch tabs, the Framelog popup shows a **Recording** banner with the elapsed time and which tab it belongs to. **Stop & convert** there brings that tab forward and opens the converter; the cross button discards the recording.
 
 ![The popup showing the red recording banner with elapsed time, the source tab name, and Stop & convert and discard buttons](https://docs.vectored.dev/lens/assets/lens-popup-recording-banner.png)
 
@@ -15378,9 +15378,9 @@ Recordings stop automatically at the cap set under **Settings > Maximum GIF reco
 
 Source: https://docs.vectored.dev/lens/docs/guides.html
 
-Click through a flow once. Lens writes the walkthrough.
+Click through a flow once. Framelog writes the walkthrough.
 
-A **guide** is a walkthrough of a flow: a screenshot per step with the control you used ringed and numbered, and a sentence under each. You click through the task once and Lens assembles the document, rather than asking you to screenshot each step and paste them together afterwards. A finished guide can also be played back against the live page, with each step's control highlighted on it — see **Guide Mode** below.
+A **guide** is a walkthrough of a flow: a screenshot per step with the control you used ringed and numbered, and a sentence under each. You click through the task once and Framelog assembles the document, rather than asking you to screenshot each step and paste them together afterwards. A finished guide can also be played back against the live page, with each step's control highlighted on it — see **Guide Mode** below.
 
 **No AI is involved in building a guide.** Step sentences come from the accessible name of each control — the name a screen reader would announce. A connected model can rewrite those sentences afterwards; it never writes them in the first place.
 
@@ -15412,21 +15412,21 @@ Only **Record steps** follows the flow into a new tab. A GIF recording is a capt
 
 The region you drag limits the *recording*, not the steps. Each step screenshot is a fresh capture of the **whole tab**, with the control you used ringed on it — so steps stay readable even when the recorded region was small.
 
-A step is the whole screen on purpose. A picture cropped tight around one button leaves out the part of the page a reader needs in order to know where they are, and a crop cannot be undone once it is saved. Lens works out where a tighter crop would go and offers it instead: open a step's crop tool in the editor and that box is already drawn, ready to accept or drag.
+A step is the whole screen on purpose. A picture cropped tight around one button leaves out the part of the page a reader needs in order to know where they are, and a crop cannot be undone once it is saved. Framelog works out where a tighter crop would go and offers it instead: open a step's crop tool in the editor and that box is already drawn, ready to accept or drag.
 
-![The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons](https://docs.vectored.dev/lens/assets/lens-steps-widget.png)
+![The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons](https://docs.vectored.dev/lens/assets/lens-steps-widget.png)
 
 Screenshot needed
 
 lens-steps-widget.png
 
-The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons
+The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons
 
-The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons
+The walkthrough widget in the corner of a page, showing the step count and the Finish and discard buttons
 
 ### 2. What does not become a step
 
-- Clicks on Lens's own controls. Pressing **Finish** does not appear in the guide it finishes.
+- Clicks on Framelog's own controls. Pressing **Finish** does not appear in the guide it finishes.
 
 - Clicks on nothing — empty space, a page background.
 
@@ -15456,15 +15456,15 @@ Nothing reaches your folder until you approve it. The review panel lists every s
 
 - **Rewrite with AI** — only if you have a model connected. It refuses any answer that changes the number of steps, so it can improve the words but cannot invent or lose a step.
 
-![The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption](https://docs.vectored.dev/lens/assets/lens-guide-review.png)
+![The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to](https://docs.vectored.dev/lens/assets/lens-guide-review.png)
 
 Screenshot needed
 
 lens-guide-review.png
 
-The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption
+The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to
 
-The review panel on the save screen listing numbered steps with their screenshots, each with a checkbox and an editable caption
+The save card after a walkthrough: the guide title, its step, word and image counts, and the project it will be saved to
 
 ### 4. Where guides live afterwards
 
@@ -15536,7 +15536,7 @@ Choose something other than what the guide recorded and the step stays where it 
 
 Beside the step number the panel says which it is — **Ringed on the page**, or **Not on this page**. A step with no control to point at, such as a page load or a scroll, says nothing there and shows no ring; press **Next** when you have done it.
 
-Lens looks for the control by the selector recorded at the time, then its id, then a test id, label or field name, then its position in the page, and finally by the words on it. A guide recorded before Guide Mode existed, or one recorded in Plain mode, still names the control each step is about — and that name alone is often enough to find it.
+Framelog looks for the control by the selector recorded at the time, then its id, then a test id, label or field name, then its position in the page, and finally by the words on it. A guide recorded before Guide Mode existed, or one recorded in Plain mode, still names the control each step is about — and that name alone is often enough to find it.
 
 It also keeps looking. A page that fetches its content draws its controls after the page has loaded, and a control behind a menu does not exist until you open that menu; the ring goes on the moment the control appears, however long that takes.
 
@@ -15652,9 +15652,9 @@ An import is always a **copy**: it is given a new id and its own folder, so impo
 
 Imports land in the **active project**. No folder need be linked — the project holds the guide itself, and a linked folder receives its copy like anything else. What kind of file it is is read from its first bytes rather than its name, so a bundle fetched from a link works whatever the address ends in.
 
-Importing from a link is the only time Lens reaches the network on its own. It downloads the address you paste and nothing else: no service in between, nothing of yours sent with the request, http and https only, and 50 MB or 30 seconds at the outside. See [Privacy](https://docs.vectored.dev/lens/privacy.html).
+Importing from a link is the only time Framelog reaches the network on its own. It downloads the address you paste and nothing else: no service in between, nothing of yours sent with the request, http and https only, and 50 MB or 30 seconds at the outside. See [Privacy](https://docs.vectored.dev/lens/privacy.html).
 
-**Find guides on disk** walks each project — what Lens holds and any linked folder — keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time.
+**Find guides on disk** walks each project — what Framelog holds and any linked folder — keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time.
 
 ### 14. The assistant
 
@@ -15676,7 +15676,7 @@ Source: https://docs.vectored.dev/lens/docs/projects.html
 
 Organise captures into named projects, and mirror each one into a local folder if you want to.
 
-Every capture goes into the **active project**. A project is a name and the captures filed under it, which Lens keeps itself. A folder on your machine is optional — link one and the project is mirrored into it.
+Every capture goes into the **active project**. A project is a name and the captures filed under it, which Framelog keeps itself. A folder on your machine is optional — link one and the project is mirrored into it.
 
 Tutorial 9: creating and switching projects, linking a folder, the popup timeline and the dashboard. [Watch on YouTube](https://youtu.be/buLFACqRinI)
 
@@ -15692,35 +15692,35 @@ Cancelling the folder picker cancels the folder, not the project — you keep th
 
 ### 2. Why the folder is optional
 
-Chrome hands out folder permission for as long as the extension is running and takes it back when it stops. That used to mean a capture taken after a lapse had nowhere to go. Lens now keeps the project's captures itself, so the folder is a **copy**, not the destination: losing access costs you the copy for a while, never the capture.
+Chrome hands out folder permission for as long as the extension is running and takes it back when it stops. That used to mean a capture taken after a lapse had nowhere to go. Framelog now keeps the project's captures itself, so the folder is a **copy**, not the destination: losing access costs you the copy for a while, never the capture.
 
 - **With no folder linked** — everything works. Captures, guides and the timeline live in the extension, and you get files out with **Copy** and **Save a copy** on any capture.
 
 - **With a folder linked** — the same, and every capture is written into the folder as well, so your files are on disk in a form any other tool can read.
 
-### 3. What Lens writes into the folder
+### 3. What Framelog writes into the folder
 
 - The capture files themselves — .png, .jpg, .gif, .mp4 or .webm.
 
 - project_metadata.json — a timeline entry per capture recording the file name, page title, page URL, timestamp, the captured region and your note.
 
-The metadata file is plain JSON and is meant to be read by other tools. Every entry and the file itself carry "createdBy": "Lens by Vectored".
+The metadata file is plain JSON and is meant to be read by other tools. Every entry and the file itself carry "createdBy": "Framelog by Vectored".
 
-![A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json](https://docs.vectored.dev/lens/assets/lens-project-folder.png)
+![A linked project folder listing the captured PNG and GIF files, the guides folder and project_metadata.json](https://docs.vectored.dev/lens/assets/lens-project-folder.png)
 
 Screenshot needed
 
 lens-project-folder.png
 
-A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json
+A linked project folder listing the captured PNG and GIF files, the guides folder and project_metadata.json
 
-A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json
+A linked project folder listing the captured PNG and GIF files, the guides folder and project_metadata.json
 
 ### 4. Linking a folder later
 
-Press **Link folder** in the popup or on the dashboard's project card. Lens counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is.
+Press **Link folder** in the popup or on the dashboard's project card. Framelog counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is.
 
-The copy runs in the background and survives the browser being closed part way through — it picks up where it stopped. Files the folder already has at the same size are left alone, so relinking a folder Lens was already writing into costs a look rather than a rewrite. Say no and **Copy everything across** stays on the project card for later.
+The copy runs in the background and survives the browser being closed part way through — it picks up where it stopped. Files the folder already has at the same size are left alone, so relinking a folder Framelog was already writing into costs a look rather than a rewrite. Say no and **Copy everything across** stays on the project card for later.
 
 ### 5. Switching the active project
 
@@ -15744,15 +15744,15 @@ The popup project card showing the amber paused flag on the folder line and the 
 
 The popup project card showing the amber paused flag on the folder line and the Reconnect button
 
-### 7. How much room Lens is using
+### 7. How much room Framelog is using
 
-Because a project holds its own captures, that storage is worth watching: a sixty-step guide is tens of megabytes, and a minute of GIF can be more. **Settings > Storage** shows what Lens is using against what your browser allows it, broken down per project, and warns when there is little room left.
+Because a project holds its own captures, that storage is worth watching: a sixty-step guide is tens of megabytes, and a minute of GIF can be more. **Settings > Storage** shows what Framelog is using against what your browser allows it, broken down per project, and warns when there is little room left.
 
 Linking a folder and deleting guides you have a copy of is the way to reclaim it. So is deleting a project you have finished with.
 
 ### 8. Deleting a project
 
-Delete a project from the dashboard's project card. Its captures are removed from Lens — **files already written to your folder are left alone**, because those are yours and in your own directory. The default project is protected and cannot be deleted.
+Delete a project from the dashboard's project card. Its captures are removed from Framelog — **files already written to your folder are left alone**, because those are yours and in your own directory. The default project is protected and cannot be deleted.
 
 ## Timeline and Dashboard
 
@@ -15760,7 +15760,7 @@ Source: https://docs.vectored.dev/lens/docs/timeline.html
 
 Review, search and export everything you have captured.
 
-Lens keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project.
+Framelog keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project.
 
 Tutorial 9: projects, the popup timeline, and searching, filtering and exporting from the dashboard. [Watch on YouTube](https://youtu.be/buLFACqRinI)
 
@@ -15774,7 +15774,7 @@ Captures are grouped by project. The active project is open at the top and marke
 | Copy | Puts the capture itself on the clipboard — the file, not the thumbnail. A GIF copies as its first frame, which is all a clipboard holds; a recording cannot be copied and says so |
 | Edit | Opens a screenshot in the image tools, or a guide in the guide editor. Recordings and GIFs cannot be edited |
 | Delete | Removes the entry from the timeline |
-| More (⋮) | **Rename** the file and its metadata entry, **Save a copy** to your downloads (how a file leaves Lens when no folder is linked), or **Show in folder** |
+| More (⋮) | **Rename** the file and its metadata entry, **Save a copy** to your downloads (how a file leaves Framelog when no folder is linked), or **Show in folder** |
 | Search | The magnifier beside the heading. Filters every project by file name, page title or URL |
 | View all in dashboard | Opens the dashboard's master timeline |
 
@@ -15844,7 +15844,7 @@ The dashboard master timeline with the filter bar and capture cards grouped unde
 
 ### 6. Opening a capture
 
-The dashboard's detail view shows the file, what it is, and — under **Stored** — where it actually is: kept by Lens, and mirrored to a named folder when there is one. Alongside it sit **Copy**, **Save a copy** and, for a still image, **Edit image**.
+The dashboard's detail view shows the file, what it is, and — under **Stored** — where it actually is: kept by Framelog, and mirrored to a named folder when there is one. Alongside it sit **Copy**, **Save a copy** and, for a still image, **Edit image**.
 
 **Edit image** is hidden where it would not work. A recording cannot be opened by the image tools at all; a GIF can, but the tools open one frame and save one frame, so editing an animation would replace it with a still under the same name. Both are hidden rather than offered and then failing.
 
@@ -15856,7 +15856,7 @@ Open one and the preview reads the actual file instead: full size, a GIF that pl
 
 **Settings > Clear cached previews** empties that cache. The captures themselves are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place until you open one.
 
-A recording saved before Lens took thumbnails from recordings has no picture on its row. Opening it still plays it.
+A recording saved before Framelog took thumbnails from recordings has no picture on its row. Opening it still plays it.
 
 ## Settings
 
@@ -15892,17 +15892,17 @@ On by default, and about the copy on disk only. When off, capture files are stil
 
 ### 7. Storage
 
-Lens keeps each project's captures itself, so this panel is the disk that costs. It shows what Lens is using against what your browser allows it, a bar that turns amber past 80%, and a breakdown per project. **Refresh** re-measures.
+Framelog keeps each project's captures itself, so this panel is the disk that costs. It shows what Framelog is using against what your browser allows it, a bar that turns amber past 80%, and a breakdown per project. **Refresh** re-measures.
 
 The figures are worth a look before a long session: a sixty-step guide in PNG runs to hundreds of megabytes, and the same guide in JPEG to tens. Link a folder and delete guides you have a copy of to reclaim room, or delete a project you have finished with.
 
-Lens asks Chrome for persistent storage so these files are not cleared when the disk fills. If the browser has not granted it, the panel says so — link a folder for anything you cannot afford to lose.
+Framelog asks Chrome for persistent storage so these files are not cleared when the disk fills. If the browser has not granted it, the panel says so — link a folder for anything you cannot afford to lose.
 
 ### 8. Hold on to the folder
 
-**Off** by default. Chrome drops a folder's permission once nothing of Lens's is running, which is why a linked folder asks to be reconnected. Turning this on keeps Lens awake while a folder is linked, so that happens far less often — at the cost of some battery, and it makes the lapse rare rather than impossible, since a browser restart ends it regardless.
+**Off** by default. Chrome drops a folder's permission once nothing of Framelog's is running, which is why a linked folder asks to be reconnected. Turning this on keeps Framelog awake while a folder is linked, so that happens far less often — at the cost of some battery, and it makes the lapse rare rather than impossible, since a browser restart ends it regardless.
 
-It used to be on, because a lapse meant a capture that could not be saved. It no longer does: captures are kept by Lens and the folder catches up afterwards, so this only decides how promptly the copy on disk keeps up.
+It used to be on, because a lapse meant a capture that could not be saved. It no longer does: captures are kept by Framelog and the folder catches up afterwards, so this only decides how promptly the copy on disk keeps up.
 
 ### 9. Copy to clipboard on capture
 
@@ -15912,23 +15912,23 @@ Puts each capture on the clipboard as well as saving it. Because the clipboard o
 
 Draws a marker at each click while recording, so a walkthrough shows where you clicked. Markers are only drawn **inside** the recorded region — a marker outside it would never appear in the output.
 
-![A recording in progress with a red click marker expanding at the point of a click inside the recorded region](https://docs.vectored.dev/lens/assets/lens-click-marker.png)
+![A recording in progress with a click marker at the point of a click inside the recorded region](https://docs.vectored.dev/lens/assets/lens-click-marker.png)
 
 Screenshot needed
 
 lens-click-marker.png
 
-A recording in progress with a red click marker expanding at the point of a click inside the recorded region
+A recording in progress with a click marker at the point of a click inside the recorded region
 
-A recording in progress with a red click marker expanding at the point of a click inside the recorded region
+A recording in progress with a click marker at the point of a click inside the recorded region
 
 ### 11. Play shutter sound
 
 A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension.
 
-### 12. Open Lens after saving
+### 12. Open Framelog after saving
 
-On by default. A capture that is written opens the Lens menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a message that disappears. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures.
+On by default. A capture that is written opens the Framelog menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a message that disappears. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures.
 
 Because this opens the popup for you, a toolbar click straight afterwards is read by Chrome as *closing* the popup that is already open — a click that appears to do nothing. Clicking again, or switching tab first, opens it.
 
@@ -15938,9 +15938,9 @@ On by default. Before a walkthrough records anything, a short briefing explains 
 
 ### 14. Watermark
 
-Lens draws a small mark in the corner of the images it saves — screenshots, recordings and the step images in a guide — picking black or white to suit what is behind it. It also tiles faintly through exported documents, PDF and self-contained HTML, and closes Markdown and clipboard copies with a line.
+Framelog draws a small mark in the corner of the images it saves — screenshots, recordings and the step images in a guide — picking black or white to suit what is behind it. It also tiles faintly through exported documents, PDF and self-contained HTML, and closes Markdown and clipboard copies with a line.
 
-A licence puts it under your control: your own wording and logo, or off entirely. Without one the mark stays. Nothing else Lens does is affected either way — see [the licence](https://docs.vectored.dev/lens/index.html).
+A licence puts it under your control: your own wording and logo, or off entirely. Without one the mark stays. Nothing else Framelog does is affected either way — see [the licence](https://docs.vectored.dev/lens/index.html).
 
 Where a guide came from is recorded separately and is never removed: the source page, the date and the author go into every export whatever the licence says. Only the visible mark is licensed.
 
@@ -15958,7 +15958,7 @@ On by default. Any recording with clicks in it also produces a step-by-step guid
 
 ### 18. Walkthrough mode
 
-**Interactive** by default. As well as the screenshots and the words, Lens notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](https://docs.vectored.dev/lens/docs/guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup.
+**Interactive** by default. As well as the screenshots and the words, Framelog notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](https://docs.vectored.dev/lens/docs/guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup.
 
 The same setting sits under the capture tiles in the popup, as a switch. Both write the one value.
 
@@ -15976,7 +15976,7 @@ The screenshot for such a step is taken *after* you have typed, so what you ente
 
 **Off**, and deliberately so. When on, anything the private-data check flags in a step screenshot is blurred without asking.
 
-This is the only place in Lens where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason.
+This is the only place in Framelog where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason.
 
 ### 21. Guide marker colour
 
@@ -15998,7 +15998,7 @@ The clip is cut from footage the recording already sampled, so nothing is captur
 
 ### 25. AI models
 
-**None configured** by default, which means every AI feature is off and Lens makes no network requests at all. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine.
+**None configured** by default, which means every AI feature is off and Framelog makes no network requests at all. Framelog has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine.
 
 | Provider | Runs | Needs |
 | --- | --- | --- |
@@ -16012,7 +16012,7 @@ Add as many as you like. Each is saved with its own key and model name, one is m
 
 Picking one that runs in the cloud asks you to confirm first, because it changes what the extension does with page text. **Test** actually contacts the model, and a model that has not passed one is not offered anywhere — a key that looks well-formed is not a model that answers.
 
-An API key is stored in this browser only, in its own storage area, and is read only by the extension's background worker — never by the code Lens injects into a page. The settings screen can tell you a key is saved but cannot show it back to you. Vectored never receives it; see the [privacy policy](https://docs.vectored.dev/lens/privacy.html#ai).
+An API key is stored in this browser only, in its own storage area, and is read only by the extension's background worker — never by the code Framelog injects into a page. The settings screen can tell you a key is saved but cannot show it back to you. Vectored never receives it; see the [privacy policy](https://docs.vectored.dev/lens/privacy.html#ai).
 
 Connecting a model also puts buttons on the save screens — **Suggest name** on a screenshot, **Write steps from clicks** on a recording, **Rewrite with AI** on a guide — and opens the assistant in the guide editor. None of them runs on its own: you press them, per capture. See [Capturing](https://docs.vectored.dev/lens/docs/capturing.html), [Recording](https://docs.vectored.dev/lens/docs/recording.html) and [Guides](https://docs.vectored.dev/lens/docs/guides.html).
 
@@ -16022,7 +16022,7 @@ Off even when a provider is set. Lets the model re-rank what the check above fou
 
 The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one.
 
-### 27. Allow browser agents to drive Lens
+### 27. Allow browser agents to drive Framelog
 
 Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [AI Agent Skill](https://docs.vectored.dev/lens/docs/agent-skill.html) for how to set up Claude and other agents.
 
@@ -16032,7 +16032,7 @@ Controls the name each capture is given before you edit it. The extension is add
 
 | Token | Expands to | Example |
 | --- | --- | --- |
-| {name} | The capture type — Lens for stills, LensRecord for recordings | Lens |
+| {name} | The capture type — Framelog for stills, LensRecord for recordings | Framelog |
 | {date} | Capture date | 2026-08-17 |
 | {time} | Capture time | 09-04-07 |
 | {index} | A counter that increments through the day and resets at midnight | 007 |
@@ -16051,7 +16051,7 @@ Source: https://docs.vectored.dev/lens/docs/shortcuts.html
 
 The default bindings, and how to change them.
 
-Lens registers four commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension.
+Framelog registers four commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension.
 
 | Command | macOS | Windows / Linux | What it does |
 | --- | --- | --- | --- |
@@ -16076,7 +16076,7 @@ These are not Chrome commands and cannot be rebound — they belong to the edito
 
 1. **Open chrome://extensions/shortcuts** or follow the link at the top of the Settings page on the dashboard.
 
-2. **Find Lens in the list** each command has its own row.
+2. **Find Framelog in the list** each command has its own row.
 
 3. **Click the field and press the combination** Chrome refuses combinations already taken by the browser or another extension.
 
@@ -16098,9 +16098,9 @@ Source: https://docs.vectored.dev/lens/docs/ai.html
 
 Off by default. When you turn them on, you choose who does the work.
 
-Every AI feature is off when you install Lens, and with no provider selected the extension makes no network requests at all. Nothing on this page happens until you choose one.
+Every AI feature is off when you install Framelog, and with no provider selected the extension makes no network requests at all. Nothing on this page happens until you choose one.
 
-Lens has no AI service of its own. There is no Vectored model, no Vectored endpoint and no Vectored proxy — instead you pick who does the work, and that choice decides whether anything leaves your machine.
+Framelog has no AI service of its own. There is no Vectored model, no Vectored endpoint and no Vectored proxy — instead you pick who does the work, and that choice decides whether anything leaves your machine.
 
 Tutorial 10: choosing a provider, using your own models, and connecting an AI agent that drives Framelog in your browser. [Watch on YouTube](https://youtu.be/wVgPh0sLWuE)
 
@@ -16137,15 +16137,15 @@ The AI assistance panel on the Settings page listing several configured models, 
 
 The AI assistance panel on the Settings page listing several configured models, each with its provider, model name and a verified badge
 
-![The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options](https://docs.vectored.dev/lens/assets/lens-ai-provider.png)
+![The AI assistance panel on the Settings page with Claude picked under Add a model and its setup form open: name, model and API key](https://docs.vectored.dev/lens/assets/lens-ai-provider.png)
 
 Screenshot needed
 
 lens-ai-provider.png
 
-The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options
+The AI assistance panel on the Settings page with Claude picked under Add a model and its setup form open: name, model and API key
 
-The AI assistance panel on the Settings page with the provider dropdown open, showing the built-in, local, Claude and OpenAI options
+The AI assistance panel on the Settings page with Claude picked under Add a model and its setup form open: name, model and API key
 
 ### 3. What each feature sends
 
@@ -16156,10 +16156,10 @@ Only what that feature needs. The amounts differ, so they are listed separately 
 | Sharpen the private-data check | Automatically, only if you switch it on | The **type** of each flagged region — "an AWS access key", "a password field" — plus the page title and heading. Never the flagged text. |
 | Suggest name | A button you press, per capture | The page title and heading, the names of controls in the region, and **the text inside the region you captured**. |
 | Write steps from clicks | A button you press, per recording | The page title and the names of the controls you clicked. Never anything you typed into a field. |
-| Rewrite a guide's steps | A button you press, on the review panel | The step sentences Lens already wrote. The answer is rejected outright if it changes the number of steps. |
+| Rewrite a guide's steps | A button you press, on the review panel | The step sentences Framelog already wrote. The answer is rejected outright if it changes the number of steps. |
 | The guide editor's assistant | A message you send, per message | Your message, plus **whatever you attached to it** — a step, several steps, the whole guide, or a text selection — and nothing else. A question with nothing attached sends only the question. |
 
-Images are sent in one case only: the assistant's **Media** switch, which is off by default. With it off the screenshots are not even read from disk. Everywhere else, captured images are never sent to any provider. Lens does not keep a copy of any prompt or response.
+Images are sent in one case only: the assistant's **Media** switch, which is off by default. With it off the screenshots are not even read from disk. Everywhere else, captured images are never sent to any provider. Framelog does not keep a copy of any prompt or response.
 
 **Write steps from clicks** works with no provider at all — the click list alone produces usable numbered steps, and a model only rewrites them into better prose. The toast tells you which of the two you got.
 
@@ -16167,17 +16167,17 @@ Images are sent in one case only: the assistant's **Media** switch, which is off
 
 Edge and Chrome both expose an on-device model to extensions. Nothing is configured and nothing leaves the device, but the model has to be downloaded once and the hardware bar is real.
 
-1. **Open the Lens dashboard and go to Settings** then **AI assistance**.
+1. **Open the Framelog dashboard and go to Settings** then **AI assistance**.
 
 2. **Choose **Browser's built-in model**** no key or address is needed.
 
 3. **Press **Test connection**** it reports whether the model is present, unavailable, or not yet downloaded.
 
-4. **Press **Download model** if it appears** the download is several gigabytes and reports its progress. Lens never starts it during a capture.
+4. **Press **Download model** if it appears** the download is several gigabytes and reports its progress. Framelog never starts it during a capture.
 
-On Microsoft Edge this currently requires the Canary or Dev channel with the **Prompt API for on-device language model** flag enabled, and a capable GPU. If your device does not meet the bar, use a local model or a hosted provider instead — the rest of Lens is unaffected.
+On Microsoft Edge this currently requires the Canary or Dev channel with the **Prompt API for on-device language model** flag enabled, and a capable GPU. If your device does not meet the bar, use a local model or a hosted provider instead — the rest of Framelog is unaffected.
 
-Edge's built-in model is text-only. That is why every Lens AI feature is built on page text and structure rather than on the image, and why it behaves the same in both browsers.
+Edge's built-in model is text-only. That is why every Framelog AI feature is built on page text and structure rather than on the image, and why it behaves the same in both browsers.
 
 ### 5. Setting up a local model
 
@@ -16191,9 +16191,9 @@ A model running on your own machine keeps everything on the device while giving 
 
 ### 6. Setting up Claude, Gemini or OpenAI
 
-These run on the provider's servers. Lens sends the request straight from your browser using your key — there is no Vectored server in the path, and we never receive the key or the prompt.
+These run on the provider's servers. Framelog sends the request straight from your browser using your key — there is no Vectored server in the path, and we never receive the key or the prompt.
 
-1. **Create an API key with that provider** Lens cannot create one for you.
+1. **Create an API key with that provider** Framelog cannot create one for you.
 
 2. **Choose the provider in Settings and confirm the prompt** it explains what changes before anything is saved.
 
@@ -16205,7 +16205,7 @@ These run on the provider's servers. Lens sends the request straight from your b
 
 - In this browser only, in its own storage area, kept apart from your other settings.
 
-- Read only by the extension's background worker — never by the code Lens puts into a page. Injected code shares a process with the page it is injected into, so a key is never placed there.
+- Read only by the extension's background worker — never by the code Framelog puts into a page. Injected code shares a process with the page it is injected into, so a key is never placed there.
 
 - The Settings page can tell you a key is saved but cannot show it back to you.
 
@@ -16235,9 +16235,9 @@ That last limit exists because the page being captured is the same page whose ti
 
 Every one of these leaves your capture exactly as it was. No AI failure can lose work, block a capture, or change an image.
 
-### 10. Letting a browser agent drive Lens
+### 10. Letting a browser agent drive Framelog
 
-An AI agent that works in your browser, such as Claude in Chrome, can use Lens too: record GIFs and guides, take and annotate screenshots, including whole pages, and mask secrets before anything is captured. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it. [AI Agent Skill](https://docs.vectored.dev/lens/docs/agent-skill.html) explains how to set it up in Claude and other agents.
+An AI agent that works in your browser, such as Claude in Chrome, can use Framelog too: record GIFs and guides, take and annotate screenshots, including whole pages, and mask secrets before anything is captured. This is separate from the models above: the agent is yours and runs outside Framelog, and Framelog sends nothing to it. [AI Agent Skill](https://docs.vectored.dev/lens/docs/agent-skill.html) explains how to set it up in Claude and other agents.
 
 ### 11. Where to read the rest
 
@@ -16247,9 +16247,9 @@ The [privacy policy](https://docs.vectored.dev/lens/privacy.html#ai) sets out wh
 
 Source: https://docs.vectored.dev/lens/docs/agent-skill.html
 
-Let Claude, or another AI agent working in your browser, capture with Lens for you.
+Let Claude, or another AI agent working in your browser, capture with Framelog for you.
 
-AI agents that drive a browser, such as Claude in Chrome, act through the page: they click, type and run scripts in it. They cannot press Lens's shortcuts or open its popup. The **lens-capture-agent** skill teaches an agent to drive Lens another way, through an opt-in bridge on the page.
+AI agents that drive a browser, such as Claude in Chrome, act through the page: they click, type and run scripts in it. They cannot press Framelog's shortcuts or open its popup. The **lens-capture-agent** skill teaches an agent to drive Framelog another way, through an opt-in bridge on the page.
 
 With the skill, an agent can:
 
@@ -16261,7 +16261,7 @@ With the skill, an agent can:
 
 - find secrets on screen and mask them before anything is captured;
 
-- file everything into a Lens project, and pick up the saved file afterwards.
+- file everything into a Framelog project, and pick up the saved file afterwards.
 
 The skill is free and open source (MIT): [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills).
 
@@ -16269,13 +16269,13 @@ The skill is free and open source (MIT): [github.com/openAPI-Studio/lens-skills]
 
 ### 1. Before you start
 
-1. **Install Lens 1.24.0 or later** full-page screenshots need 1.24.0.
+1. **Install Framelog 1.24.0 or later** full-page screenshots need 1.24.0.
 
-2. **Turn on Allow browser agents to drive Lens** in the Lens dashboard, under Settings. It is off by default.
+2. **Turn on Allow browser agents to drive Framelog** in the Framelog dashboard, under Settings. It is off by default.
 
 3. **Reload the tabs that were already open** they pick up the setting when they load.
 
-While the setting is on, any script on a page you open can ask Lens to capture that page. Turn it on when you use an agent, and off again when you are done.
+While the setting is on, any script on a page you open can ask Framelog to capture that page. Turn it on when you use an agent, and off again when you are done.
 
 ### 2. Claude Code with Chrome
 
@@ -16309,13 +16309,13 @@ Kiro imports the repository as a power: **Powers → Add Custom Power → Import
 
 Any agent that reads skills or instruction files can use it. Copy skills/lens-capture-agent/ into the folder your agent loads skills from, for example .agents/skills/, and point its instruction file (such as AGENTS.md) at SKILL.md if it does not find skills on its own.
 
-Whatever the agent, it has to be able to run a script in the page it is driving, which is how it talks to Lens. Coding agents with no browser can still read the skill, but they have no page to run it in.
+Whatever the agent, it has to be able to run a script in the page it is driving, which is how it talks to Framelog. Coding agents with no browser can still read the skill, but they have no page to run it in.
 
 ### 6. Try it
 
 Open the page you want captured, then ask your agent something like:
 
-- "Record a GIF of signing up on this page and save it to a new Lens project called Onboarding."
+- "Record a GIF of signing up on this page and save it to a new Framelog project called Onboarding."
 
 - "Take a full-page screenshot of this page, mask any secrets first, and box the pricing table."
 
@@ -16329,15 +16329,15 @@ The agent picks or creates a project, scans for secrets and masks them, captures
 
 - A page can only reach captures and guides taken of its own site, so one tab cannot read a recording made of another.
 
-- Lens sends nothing to the agent's provider. Captures stay on your device and in the folders you link.
+- Framelog sends nothing to the agent's provider. Captures stay on your device and in the folders you link.
 
 - A project an agent creates has no folder until you link one, because only you can answer the folder picker.
 
-Recordings an agent starts run at about 4 frames a second, because Chrome only allows the smoother 15 fps capture after you have clicked the Lens icon on that tab. Click it once before asking for a GIF if motion matters.
+Recordings an agent starts run at about 4 frames a second, because Chrome only allows the smoother 15 fps capture after you have clicked the Framelog icon on that tab. Click it once before asking for a GIF if motion matters.
 
 ### 8. Where to read the rest
 
-The skill's [command reference](https://github.com/openAPI-Studio/lens-skills/blob/main/skills/lens-capture-agent/references/commands.md) lists every command the bridge accepts. [AI Features](https://docs.vectored.dev/lens/docs/ai.html) covers the separate models Lens itself can use.
+The skill's [command reference](https://github.com/openAPI-Studio/lens-skills/blob/main/skills/lens-capture-agent/references/commands.md) lists every command the bridge accepts. [AI Features](https://docs.vectored.dev/lens/docs/ai.html) covers the separate models Framelog itself can use.
 
 ## Troubleshooting
 
@@ -16345,7 +16345,7 @@ Source: https://docs.vectored.dev/lens/docs/troubleshooting.html
 
 What the errors mean and what to do about them.
 
-Lens reports failures where it can — an in-page toast when a content script can run, and the toolbar icon badge when one cannot.
+Framelog reports failures where it can — an in-page toast when a content script can run, and the toolbar icon badge when one cannot.
 
 ### 1. This page cannot be captured
 
@@ -16361,13 +16361,13 @@ Chrome forbids extensions from running on some pages, and no extension can work 
 
 - The built-in PDF viewer
 
-- file:// URLs, unless you enable **Allow access to file URLs** for Lens on chrome://extensions
+- file:// URLs, unless you enable **Allow access to file URLs** for Framelog on chrome://extensions
 
 On these pages the toolbar icon shows a red **!** with the reason in its tooltip, because a toast cannot be drawn.
 
 ### 2. The recording came out blank
 
-Tab capture succeeds on protected video but returns solid black — sites using DRM, such as YouTube and Netflix, are excluded from capture by design. Lens samples the recorded frames and warns you when they look blank, but still opens the converter so you can judge for yourself.
+Tab capture succeeds on protected video but returns solid black — sites using DRM, such as YouTube and Netflix, are excluded from capture by design. Framelog samples the recorded frames and warns you when they look blank, but still opens the converter so you can judge for yourself.
 
 If a whole page records black, the page is blocking capture. If only a video player area is black, that player is protected and the rest of the page is fine.
 
@@ -16375,15 +16375,15 @@ If a whole page records black, the page is blocking capture. If only a video pla
 
 Folder access has lapsed. Open the popup: the folder row reads **paused**, with a **Reconnect** button. One click fixes it, and everything taken meanwhile is written out straight afterwards.
 
-It lapses because re-granting access requires a click, and the extension's background worker never has one — so it cannot recover on its own. The captures are not lost in the meantime: Lens holds them, and the dashboard's project card says how many writes are waiting. See [Projects and folders](https://docs.vectored.dev/lens/docs/projects.html).
+It lapses because re-granting access requires a click, and the extension's background worker never has one — so it cannot recover on its own. The captures are not lost in the meantime: Framelog holds them, and the dashboard's project card says how many writes are waiting. See [Projects and folders](https://docs.vectored.dev/lens/docs/projects.html).
 
-If the folder is connected and the card still shows writes waiting, press **Catch up folder** on the card and read the message it gives back — a full disk or a folder moved out from under Lens both report themselves there.
+If the folder is connected and the card still shows writes waiting, press **Catch up folder** on the card and read the message it gives back — a full disk or a folder moved out from under Framelog both report themselves there.
 
 ### 4. I have no folder linked — where are my captures?
 
 In the project, which is where every capture goes first. Open any capture from the popup timeline or the dashboard and use **Save a copy** to write it to your downloads, or **Copy** to put it on the clipboard. The dashboard's detail view names the location under **Stored**.
 
-To get everything onto disk at once, link a folder: Lens offers to copy the whole project across, and tells you how much that is.
+To get everything onto disk at once, link a folder: Framelog offers to copy the whole project across, and tells you how much that is.
 
 ### 5. A capture saved but is not in the timeline
 
@@ -16395,9 +16395,9 @@ The capture was stored but its timeline entry could not be written. The save mes
 
 Two causes, both harmless.
 
-- **Lens had already opened it for you.** *Open Lens after saving* opens the popup after a capture, and a toolbar click while it is open is read by Chrome as closing it. Click again, or switch tab first.
+- **Framelog had already opened it for you.** *Open Framelog after saving* opens the popup after a capture, and a toolbar click while it is open is read by Chrome as closing it. Click again, or switch tab first.
 
-- **A permission bubble took the click.** Older builds asked for a lapsed folder back as the popup opened, and the bubble dismissed the popup. Fixed — Lens now highlights **Reconnect** and waits for you to press it. Update if you are seeing this.
+- **A permission bubble took the click.** Older builds asked for a lapsed folder back as the popup opened, and the bubble dismissed the popup. Fixed — Framelog now highlights **Reconnect** and waits for you to press it. Update if you are seeing this.
 
 Neither produces an error anywhere, which is why nothing shows in the console or on chrome://extensions.
 
@@ -16413,7 +16413,7 @@ A guide is written into the project the moment you approve it on the save screen
 
 The files are almost certainly still there. A guide is listed because a timeline entry names it, so a metadata file that was lost, replaced or hand-edited can take guides out of the list while the folders sit untouched.
 
-**Dashboard > Guides > Find guides on disk** walks each project — what Lens holds and any linked folder — and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason.
+**Dashboard > Guides > Find guides on disk** walks each project — what Framelog holds and any linked folder — and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason.
 
 ### 10. A dropdown step will not move on
 
@@ -16425,7 +16425,7 @@ That is deliberate. Opening a dropdown is not choosing from it, so the step wait
 
 Look at the label beside the step number in the panel.
 
-- **Not on this page** — the control could not be found. Either you are not on the page that step is about, or the page has changed since the guide was recorded. Lens keeps looking, so if the control is behind a menu, opening that menu will ring it.
+- **Not on this page** — the control could not be found. Either you are not on the page that step is about, or the page has changed since the guide was recorded. Framelog keeps looking, so if the control is behind a menu, opening that menu will ring it.
 
 - **Nothing at all** — that step has no control to point at. A page load and a scroll are instructions to follow, not things to click; press **Next** when you have done it.
 
@@ -16439,11 +16439,11 @@ If the recording itself looked soft on screen, the region was captured on a scal
 
 ### 13. Do I need an account or a subscription?
 
-No. Lens has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud [AI provider](https://docs.vectored.dev/lens/docs/ai.html) you connect with your own key — that is your account with that provider, not one with Vectored.
+No. Framelog has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud [AI provider](https://docs.vectored.dev/lens/docs/ai.html) you connect with your own key — that is your account with that provider, not one with Vectored.
 
 ### 14. An MP4 row has no picture on it
 
-Recordings saved before Lens started taking a still from them have no thumbnail, and there is no way to make one after the fact — the extension's background worker cannot decode MP4. Opening the row still plays the recording. New recordings get their picture from the recording itself.
+Recordings saved before Framelog started taking a still from them have no thumbnail, and there is no way to make one after the fact — the extension's background worker cannot decode MP4. Opening the row still plays the recording. New recordings get their picture from the recording itself.
 
 ### 15. Edit image is missing on a capture
 
@@ -16451,7 +16451,7 @@ It is hidden where it would not work. The image tools cannot open a recording at
 
 ### 16. The MP4 I recorded is a WebM
 
-Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an .mp4 that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it.
+Your Chrome build cannot encode MP4. Framelog falls back to WebM and names the file for what it actually wrote, rather than giving you an .mp4 that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it.
 
 ### 17. Nothing happened when I pressed the shortcut
 
@@ -16461,11 +16461,11 @@ See [Keyboard shortcuts](https://docs.vectored.dev/lens/docs/shortcuts.html) —
 
 [Open a support ticket](https://docs.vectored.dev/lens/support.html) and include what you were capturing, which browser version you are on, and what the toast or tooltip said. No account is needed.
 
-## Lens Support
+## Framelog Support
 
 Source: https://docs.vectored.dev/lens/docs/../support.html
 
-Lens is available for [Chrome and Edge](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). Use this form to report a problem, ask a question, or tell us what it should do next.
+Framelog is available for [Chrome and Edge](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). Use this form to report a problem, ask a question, or tell us what it should do next.
 
 ### Submit Feedback or Report an Issue
 
@@ -16489,7 +16489,7 @@ Your ticket is with our team. If you left an email, we'll reply there.
 
 ### Give Detailed Feedback
 
-The long-form feedback page asks Lens-specific questions — which capture type and output format, your Chrome version, and what you were capturing — which makes a bug far quicker to place. [Open the Lens feedback form →](https://docs.vectored.dev/lens/docs/feedback.html?tool=lens)
+The long-form feedback page asks Lens-specific questions — which capture type and output format, your Chrome version, and what you were capturing — which makes a bug far quicker to place. [Open the Framelog feedback form →](https://docs.vectored.dev/lens/docs/feedback.html?tool=lens)
 
 ### Before You Report a Bug
 
@@ -16499,7 +16499,7 @@ A few problems have known causes and an immediate fix:
 
 - **A black recording** — the page uses protected video, which the browser excludes from capture.
 
-- **A WebM instead of an MP4** — your Chrome build cannot encode MP4, so Lens named the file for what it actually wrote.
+- **A WebM instead of an MP4** — your Chrome build cannot encode MP4, so Framelog named the file for what it actually wrote.
 
 - The full list is in [Troubleshooting](https://docs.vectored.dev/lens/docs/../docs/troubleshooting.html).
 
@@ -16519,17 +16519,17 @@ If you discover a security vulnerability, please **do not** describe it in this 
 
 Source: https://docs.vectored.dev/lens/docs/../privacy.html
 
-Lens by Vectored · Last updated: August 2026
+Framelog by Vectored · Last updated: August 2026
 
-**The short version.** Lens has no account, no subscription, no server and no analytics. As installed it makes no network requests at all — it is a completely offline tool. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it — that last part stays true no matter what you turn on. The one thing that can change it is you connecting an AI provider of your own, which is off by default and covered in [section 7](#ai).
+**The short version.** Framelog has no account, no subscription, no server and no analytics. As installed it makes no network requests at all — it is a completely offline tool. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it — that last part stays true no matter what you turn on. The one thing that can change it is you connecting an AI provider of your own, which is off by default and covered in [section 7](#ai).
 
 ### 1. Who this covers
 
-This policy covers the Lens browser extension for Chrome, published by Vectored. It does not cover the documentation site you are reading, which is covered by the [site privacy policy](https://docs.vectored.dev/lens/docs/privacy.html).
+This policy covers the Framelog browser extension for Chrome, published by Vectored. It does not cover the documentation site you are reading, which is covered by the [site privacy policy](https://docs.vectored.dev/lens/docs/privacy.html).
 
-### 2. What Lens does not collect
+### 2. What Framelog does not collect
 
-Lens does not collect, transmit or receive any of the following:
+Framelog does not collect, transmit or receive any of the following:
 
 - Your screenshots, recordings or any part of them
 
@@ -16545,13 +16545,13 @@ Lens does not collect, transmit or receive any of the following:
 
 The extension contains no analytics SDK, no remote configuration and no update-check call of its own. Extension updates are delivered by the Chrome Web Store, not by us.
 
-This list is about Vectored, and it holds unconditionally. If you connect an AI provider, Lens talks to *that provider* using *your* key — not to us, and we learn nothing about it. See [section 7](#ai) and the [AI features documentation](https://docs.vectored.dev/lens/docs/../docs/ai.html).
+This list is about Vectored, and it holds unconditionally. If you connect an AI provider, Framelog talks to *that provider* using *your* key — not to us, and we learn nothing about it. See [section 7](#ai) and the [AI features documentation](https://docs.vectored.dev/lens/docs/../docs/ai.html).
 
-**One thing to be clear about: this documentation website is not Lens.** The site you are reading right now (docs.vectored.dev) uses cookieless analytics to count page views, described in the [main privacy policy](https://docs.vectored.dev/lens/docs/privacy.html#website). That measures *documentation pages* only. It collects nothing from the Lens extension, sees none of your captures, projects or settings, and does not change anything above — installing and using Lens still sends us nothing.
+**One thing to be clear about: this documentation website is not Framelog.** The site you are reading right now (docs.vectored.dev) uses cookieless analytics to count page views, described in the [main privacy policy](https://docs.vectored.dev/lens/docs/privacy.html#website). That measures *documentation pages* only. It collects nothing from the Framelog extension, sees none of your captures, projects or settings, and does not change anything above — installing and using Framelog still sends us nothing.
 
 ### 3. What is stored, and where
 
-Everything Lens stores is local to your browser profile, and additionally written to a folder you chose if you linked one. Nothing is stored by Vectored.
+Everything Framelog stores is local to your browser profile, and additionally written to a folder you chose if you linked one. Nothing is stored by Vectored.
 
 | What | Where it lives | Why |
 | --- | --- | --- |
@@ -16561,41 +16561,41 @@ Everything Lens stores is local to your browser profile, and additionally writte
 | Writes a linked folder has not taken yet — file paths only, never a second copy of the bytes | IndexedDB in your browser profile | So a capture taken while folder access had lapsed reaches the folder afterwards instead of being missed |
 | Settings | chrome.storage.local | To remember your preferences |
 | AI prompts and responses | Nowhere — held in memory for the length of the request | They are not needed after the answer arrives |
-| AI provider API key, only if you set one | chrome.storage.local, in its own area, separate from your settings | So Lens can reach the provider you chose. Written by the settings screen, read only by the background worker, never by page-injected code |
+| AI provider API key, only if you set one | chrome.storage.local, in its own area, separate from your settings | So Framelog can reach the provider you chose. Written by the settings screen, read only by the background worker, never by page-injected code |
 | Preview thumbnails, capped and downscaled | chrome.storage.local | So the timeline renders without reading every file from disk |
 | In-progress recording state | chrome.storage.session | So a recording survives navigation; cleared when the browser closes |
 
 ### 4. Access to your file system
 
-Lens uses the browser's File System Access API. This has specific and deliberately narrow properties:
+Framelog uses the browser's File System Access API. This has specific and deliberately narrow properties:
 
-- Lens can only read or write inside folders **you explicitly picked** in the browser's own folder picker. It cannot browse your disk, and it cannot reach a folder you did not choose.
+- Framelog can only read or write inside folders **you explicitly picked** in the browser's own folder picker. It cannot browse your disk, and it cannot reach a folder you did not choose.
 
-- Permission is granted per folder and can lapse — after a browser restart, for example. Lens cannot restore it silently; it needs a click from you.
+- Permission is granted per folder and can lapse — after a browser restart, for example. Framelog cannot restore it silently; it needs a click from you.
 
 - Revoking access is done in Chrome, under the site and extension permission controls, and takes effect immediately.
 
-No folder need be linked at all. A project keeps its own captures inside your browser profile, so Lens is fully usable without granting access to any folder — and a capture taken while a folder's access has lapsed is stored and written out to the folder once you reconnect it, rather than being missed. The extension says which of these is happening rather than failing quietly.
+No folder need be linked at all. A project keeps its own captures inside your browser profile, so Framelog is fully usable without granting access to any folder — and a capture taken while a folder's access has lapsed is stored and written out to the folder once you reconnect it, rather than being missed. The extension says which of these is happening rather than failing quietly.
 
 Captures held in the profile stay on your machine exactly as folder captures do: no copy is sent anywhere, and Vectored never receives any of it. Removing the extension removes them, so link a folder for anything you need to outlive the install.
 
 ### 5. Access to page content
 
-To draw the selection overlay and capture a region, Lens injects its capture interface into the tab you are capturing — but only at the moment you start a capture, and only into that tab. There is no content script running in the background on every page you visit.
+To draw the selection overlay and capture a region, Framelog injects its capture interface into the tab you are capturing — but only at the moment you start a capture, and only into that tab. There is no content script running in the background on every page you visit.
 
 Captured pixels are held in memory long enough to crop, annotate and encode them, then written to your chosen folder. They are not copied anywhere else.
 
 ### 6. Redaction
 
-Before a capture is saved, Lens checks the captured region for things that usually should not be shared — password fields, API keys, tokens, private keys, and optionally emails and card numbers — and offers to blur each one. That check reads the page structure in your own browser. It uses no AI, makes no network call, and is on by default. It only ever suggests: nothing is blurred until you ask for it.
+Before a capture is saved, Framelog checks the captured region for things that usually should not be shared — password fields, API keys, tokens, private keys, and optionally emails and card numbers — and offers to blur each one. That check reads the page structure in your own browser. It uses no AI, makes no network call, and is on by default. It only ever suggests: nothing is blurred until you ask for it.
 
 The blur tool rewrites the underlying image data rather than drawing an opaque shape over it. Once a blurred capture is saved, the original pixels are not recoverable from that file by removing a layer. This is intentional: a redaction that can be peeled off is not a redaction. Check the result before saving, because it cannot be undone after the fact.
 
 ### 7. AI features and your own provider
 
-**Every AI feature is off when you install Lens.** Until you pick a provider, none of this applies and Lens makes no network requests.
+**Every AI feature is off when you install Framelog.** Until you pick a provider, none of this applies and Framelog makes no network requests.
 
-Lens has no AI service of its own and never will — there is no Vectored model, no Vectored endpoint and no Vectored proxy in the path. Instead you choose who does the work, and the choice determines whether anything leaves your machine:
+Framelog has no AI service of its own and never will — there is no Vectored model, no Vectored endpoint and no Vectored proxy in the path. Instead you choose who does the work, and the choice determines whether anything leaves your machine:
 
 | Provider you choose | Where it runs | What leaves your machine |
 | --- | --- | --- |
@@ -16624,7 +16624,7 @@ Captured images are not sent to any provider.
 
 - It is stored in your browser profile, in its own storage area, separate from your other settings.
 
-- It is only ever read by the extension's background worker, never by the code Lens injects into a page — that code shares a process with the page, so a key must not be readable there.
+- It is only ever read by the extension's background worker, never by the code Framelog injects into a page — that code shares a process with the page, so a key must not be readable there.
 
 - The settings screen can tell you a key is saved but cannot show it back to you.
 
@@ -16636,9 +16636,9 @@ Captured images are not sent to any provider.
 
 Once a prompt reaches a hosted provider, that company's privacy policy and terms govern it, including how long they keep it and whether they train on it. That relationship is between you and them — you supplied the key, you chose the provider, and Vectored is not a party to it and cannot see it. Check their terms before enabling a cloud provider on work that is confidential.
 
-#### What Lens itself keeps
+#### What Framelog itself keeps
 
-Nothing. Prompts and responses are held in memory for the length of the request and are not written to disk, to extension storage or to a log. Generated text becomes yours the moment it lands in a field you can edit — Lens keeps no separate copy of it, and no record that a feature was used.
+Nothing. Prompts and responses are held in memory for the length of the request and are not written to disk, to extension storage or to a log. Generated text becomes yours the moment it lands in a field you can edit — Framelog keeps no separate copy of it, and no record that a feature was used.
 
 #### Accuracy
 
@@ -16650,17 +16650,17 @@ Setting the provider back to **None** stops every AI feature immediately and ret
 
 ### 8. Third parties
 
-Lens bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin. As installed it sends nothing to anyone.
+Framelog bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin. As installed it sends nothing to anyone.
 
-The one third party Lens can ever talk to on its own is an AI provider you chose and configured yourself, and only for a feature you turned on — see [section 7](#ai). There is no third party Lens contacts on its own initiative.
+The one third party Framelog can ever talk to on its own is an AI provider you chose and configured yourself, and only for a feature you turned on — see [section 7](#ai). There is no third party Framelog contacts on its own initiative.
 
-One other request exists, and you make it happen: **importing a guide from a link**. Paste an address into the dashboard and Lens downloads it from that address and no other — no service of ours in between, and nothing about you, your captures or your projects sent with the request. Whoever hosts the file sees an ordinary download, as they would from any browser. Only http and https addresses are accepted. Importing from a file on your machine makes no request at all.
+One other request exists, and you make it happen: **importing a guide from a link**. Paste an address into the dashboard and Framelog downloads it from that address and no other — no service of ours in between, and nothing about you, your captures or your projects sent with the request. Whoever hosts the file sees an ordinary download, as they would from any browser. Only http and https addresses are accepted. Importing from a file on your machine makes no request at all.
 
 If you choose to contact us through the [support form](https://docs.vectored.dev/lens/docs/../support.html), that is a separate, voluntary act: only what you type into the form is sent, and only then. The extension is not involved.
 
 ### 9. Retention and deletion
 
-- **Captures and metadata** are ordinary files. Delete them as you would any file; Lens keeps no second copy.
+- **Captures and metadata** are ordinary files. Delete them as you would any file; Framelog keeps no second copy.
 
 - **Cached thumbnails** can be cleared from the dashboard under Settings, without touching the files on disk.
 
@@ -16670,13 +16670,13 @@ Because Vectored holds none of your data, there is nothing for us to delete on r
 
 ### 10. GDPR and international transfers
 
-Lens performs no processing of personal data on behalf of Vectored: no personal data is transmitted to or held by us, and as installed there is no international transfer of your data because there is no transfer at all. Where you capture content containing personal data, you remain the controller of the resulting files, which stay on infrastructure you control.
+Framelog performs no processing of personal data on behalf of Vectored: no personal data is transmitted to or held by us, and as installed there is no international transfer of your data because there is no transfer at all. Where you capture content containing personal data, you remain the controller of the resulting files, which stay on infrastructure you control.
 
 If you connect a cloud AI provider, you are the one instructing a processor of your choosing, under your own account with them. Vectored is not a party to that arrangement and cannot see it — but it is a transfer, and if the content is subject to GDPR it is yours to assess.
 
 ### 11. Children's privacy
 
-Lens is a developer and documentation tool, not directed at children, and collects no personal information from anyone.
+Framelog is a developer and documentation tool, not directed at children, and collects no personal information from anyone.
 
 ### 12. Changes to this policy
 
@@ -16690,9 +16690,9 @@ Questions about this policy: [support@vectored.dev](mailto:support@vectored.dev)
 
 Source: https://docs.vectored.dev/lens/docs/../security.html
 
-Lens by Vectored · Last updated: August 2026
+Framelog by Vectored · Last updated: August 2026
 
-**Threat model in one line.** Lens runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in [section 4](#ai).
+**Threat model in one line.** Framelog runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in [section 4](#ai).
 
 ### 1. Permissions, and why each one exists
 
@@ -16702,7 +16702,7 @@ A screen-capture extension necessarily asks for broad permissions. Here is what 
 | --- | --- |
 | tabCapture | The video stream a GIF or MP4 recording is made from. Only for the tab you started recording on, and only while recording. |
 | scripting | Injecting the selection overlay and editor into the tab at the moment you start a capture. Nothing is injected before that. |
-| host_permissions for all sites | Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Lens has no code that does so. |
+| host_permissions for all sites | Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Framelog has no code that does so. |
 | tabs | Reading the active tab's title and URL to record alongside a capture, and bringing a recording's tab forward when you stop it from the popup. |
 | activeTab | Capturing the visible area of the current tab for still screenshots. |
 | downloads | Writing a copy of a capture to your downloads when you ask for one. |
@@ -16710,15 +16710,15 @@ A screen-capture extension necessarily asks for broad permissions. Here is what 
 | unlimitedStorage | A project keeps its own captures in the browser profile. This exempts them from being cleared when the disk fills — without it the browser may evict the lot, which here would mean deleting captures. |
 | offscreen | A hidden document that holds the recording stream, because a Manifest V3 service worker cannot. |
 
-Lens requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.
+Framelog requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.
 
-The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Lens contacts no host on its own initiative — see [section 4](#ai).
+The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Framelog contacts no host on its own initiative — see [section 4](#ai).
 
-The same permission covers one other request, and only when you ask for it: **importing a guide from a link**. Lens fetches the address you paste and nothing else, over http or https only, capped at 50 MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.
+The same permission covers one other request, and only when you ask for it: **importing a guide from a link**. Framelog fetches the address you paste and nothing else, over http or https only, capped at 50 MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.
 
 ### 2. File system scope
 
-Lens writes through the File System Access API, which is scoped by design:
+Framelog writes through the File System Access API, which is scoped by design:
 
 - It can only touch folders picked by you in the browser's own picker. There is no path entry, and no way for the extension to name a folder you did not choose.
 
@@ -16728,9 +16728,9 @@ Lens writes through the File System Access API, which is scoped by design:
 
 ### 3. No remote code
 
-Everything Lens executes ships inside the extension package and is reviewable in the Chrome Web Store listing:
+Everything Framelog executes ships inside the extension package and is reviewable in the Chrome Web Store listing:
 
-- No script is loaded from a CDN or any remote origin at runtime, which Manifest V3 forbids and Lens does not attempt.
+- No script is loaded from a CDN or any remote origin at runtime, which Manifest V3 forbids and Framelog does not attempt.
 
 - The GIF encoder is implemented in the extension rather than pulled from a third-party bundle, so there is no external package in the capture path.
 
@@ -16744,7 +16744,7 @@ AI features are off on install and there is no Vectored model, endpoint or proxy
 
 #### Where the key lives, and why
 
-- Requests to a keyed provider are made by the extension's **background service worker**, never by the code Lens injects into the page. Injected code shares a process with the page it is injected into, so a page-side compromise must not be able to read a key — it is never put there.
+- Requests to a keyed provider are made by the extension's **background service worker**, never by the code Framelog injects into the page. Injected code shares a process with the page it is injected into, so a page-side compromise must not be able to read a key — it is never put there.
 
 - The key is stored under its own storage area, separate from the settings the page-side code is allowed to read, so it cannot be picked up as a side effect of reading preferences.
 
@@ -16762,7 +16762,7 @@ Model output can only re-rank and relabel what the local rules already found. It
 
 #### Model output is treated as untrusted
 
-The page being captured is the same page whose title and headings go into the prompt that examines it. A hostile page can therefore write text aimed at the model — including text intended to talk it out of flagging that page's own credential fields. Lens is built on the assumption that this will be attempted:
+The page being captured is the same page whose title and headings go into the prompt that examines it. A hostile page can therefore write text aimed at the model — including text intended to talk it out of flagging that page's own credential fields. Framelog is built on the assumption that this will be attempted:
 
 - **A high-confidence finding cannot be cleared by the model.** A password field, or text matching a known key format, stays selected whatever the response says. The model can promote a lower-confidence finding but never demote a high one.
 
@@ -16770,29 +16770,29 @@ The page being captured is the same page whose title and headings go into the pr
 
 - **Nothing generated is executed.** Model output only ever becomes text in a field you can edit, or the order of a list. It is never run, never used to build a request, and never written to disk without passing through you.
 
-- **A suggested file name is sanitised** like any other name Lens writes — extension stripped, path separators and filesystem-rejected characters replaced, length capped — so a name cannot direct a write outside your project folder.
+- **A suggested file name is sanitised** like any other name Framelog writes — extension stripped, path separators and filesystem-rejected characters replaced, length capped — so a name cannot direct a write outside your project folder.
 
 The check that finds the regions in the first place runs on the page structure with no model involved, so with no provider configured none of this applies at all.
 
-### 5. What Lens deliberately cannot capture
+### 5. What Framelog deliberately cannot capture
 
 Some limits are Chrome's and are worth knowing, because they are security boundaries rather than bugs:
 
 - Browser pages — chrome://, about:, the Web Store, DevTools, other extensions' pages — cannot be captured by any extension.
 
-- DRM-protected video is excluded from tab capture by the platform and records as solid black. Lens detects this and warns rather than handing you a black file without explanation.
+- DRM-protected video is excluded from tab capture by the platform and records as solid black. Framelog detects this and warns rather than handing you a black file without explanation.
 
 - file:// URLs require you to enable file access for the extension explicitly.
 
 ### 6. Handling sensitive captures
 
-- Lens flags likely credentials in the captured region before you save and offers to blur them. That check runs on page structure in your browser, with no AI and no network call, and is on by default. Treat it as a safety net, not a guarantee — it looks for known shapes, so read the capture as well.
+- Framelog flags likely credentials in the captured region before you save and offers to blur them. That check runs on page structure in your browser, with no AI and no network call, and is on by default. Treat it as a safety net, not a guarantee — it looks for known shapes, so read the capture as well.
 
 - Use the **blur** tool for anything the check missed. It rewrites pixels rather than covering them, so the original cannot be recovered from the saved file.
 
 - Remember that a capture records the page **URL and title** into project_metadata.json. If the URL itself is sensitive — a signed link, a token in a query string — treat the metadata file with the same care as the image, or turn off **Write metadata file** in Settings.
 
-- Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Lens inherits the protection of the folder you choose and adds none of its own.
+- Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Framelog inherits the protection of the folder you choose and adds none of its own.
 
 ### 7. Reporting a vulnerability
 
@@ -16810,23 +16810,23 @@ Useful things to include: the extension version, your Chrome version and platfor
 
 ### 8. Related
 
-[Lens privacy policy](https://docs.vectored.dev/lens/docs/../privacy.html) · [Vectored site security](https://docs.vectored.dev/lens/docs/security.html) · [Support](https://docs.vectored.dev/lens/docs/../support.html)
+[Framelog privacy policy](https://docs.vectored.dev/lens/docs/../privacy.html) · [Vectored site security](https://docs.vectored.dev/lens/docs/security.html) · [Support](https://docs.vectored.dev/lens/docs/../support.html)
 
 ## Privacy Policy
 
 Source: https://docs.vectored.dev/lens/privacy.html
 
-Lens by Vectored · Last updated: August 2026
+Framelog by Vectored · Last updated: August 2026
 
-**The short version.** Lens has no account, no subscription, no server and no analytics. As installed it makes no network requests at all — it is a completely offline tool. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it — that last part stays true no matter what you turn on. The one thing that can change it is you connecting an AI provider of your own, which is off by default and covered in [section 7](#ai).
+**The short version.** Framelog has no account, no subscription, no server and no analytics. As installed it makes no network requests at all — it is a completely offline tool. Your captures, your project folders and your settings stay on the machine that made them, and Vectored never receives any of it — that last part stays true no matter what you turn on. The one thing that can change it is you connecting an AI provider of your own, which is off by default and covered in [section 7](#ai).
 
 ### 1. Who this covers
 
-This policy covers the Lens browser extension for Chrome, published by Vectored. It does not cover the documentation site you are reading, which is covered by the [site privacy policy](https://docs.vectored.dev/privacy.html).
+This policy covers the Framelog browser extension for Chrome, published by Vectored. It does not cover the documentation site you are reading, which is covered by the [site privacy policy](https://docs.vectored.dev/privacy.html).
 
-### 2. What Lens does not collect
+### 2. What Framelog does not collect
 
-Lens does not collect, transmit or receive any of the following:
+Framelog does not collect, transmit or receive any of the following:
 
 - Your screenshots, recordings or any part of them
 
@@ -16842,13 +16842,13 @@ Lens does not collect, transmit or receive any of the following:
 
 The extension contains no analytics SDK, no remote configuration and no update-check call of its own. Extension updates are delivered by the Chrome Web Store, not by us.
 
-This list is about Vectored, and it holds unconditionally. If you connect an AI provider, Lens talks to *that provider* using *your* key — not to us, and we learn nothing about it. See [section 7](#ai) and the [AI features documentation](https://docs.vectored.dev/lens/docs/ai.html).
+This list is about Vectored, and it holds unconditionally. If you connect an AI provider, Framelog talks to *that provider* using *your* key — not to us, and we learn nothing about it. See [section 7](#ai) and the [AI features documentation](https://docs.vectored.dev/lens/docs/ai.html).
 
-**One thing to be clear about: this documentation website is not Lens.** The site you are reading right now (docs.vectored.dev) uses cookieless analytics to count page views, described in the [main privacy policy](https://docs.vectored.dev/privacy.html#website). That measures *documentation pages* only. It collects nothing from the Lens extension, sees none of your captures, projects or settings, and does not change anything above — installing and using Lens still sends us nothing.
+**One thing to be clear about: this documentation website is not Framelog.** The site you are reading right now (docs.vectored.dev) uses cookieless analytics to count page views, described in the [main privacy policy](https://docs.vectored.dev/privacy.html#website). That measures *documentation pages* only. It collects nothing from the Framelog extension, sees none of your captures, projects or settings, and does not change anything above — installing and using Framelog still sends us nothing.
 
 ### 3. What is stored, and where
 
-Everything Lens stores is local to your browser profile, and additionally written to a folder you chose if you linked one. Nothing is stored by Vectored.
+Everything Framelog stores is local to your browser profile, and additionally written to a folder you chose if you linked one. Nothing is stored by Vectored.
 
 | What | Where it lives | Why |
 | --- | --- | --- |
@@ -16858,41 +16858,41 @@ Everything Lens stores is local to your browser profile, and additionally writte
 | Writes a linked folder has not taken yet — file paths only, never a second copy of the bytes | IndexedDB in your browser profile | So a capture taken while folder access had lapsed reaches the folder afterwards instead of being missed |
 | Settings | chrome.storage.local | To remember your preferences |
 | AI prompts and responses | Nowhere — held in memory for the length of the request | They are not needed after the answer arrives |
-| AI provider API key, only if you set one | chrome.storage.local, in its own area, separate from your settings | So Lens can reach the provider you chose. Written by the settings screen, read only by the background worker, never by page-injected code |
+| AI provider API key, only if you set one | chrome.storage.local, in its own area, separate from your settings | So Framelog can reach the provider you chose. Written by the settings screen, read only by the background worker, never by page-injected code |
 | Preview thumbnails, capped and downscaled | chrome.storage.local | So the timeline renders without reading every file from disk |
 | In-progress recording state | chrome.storage.session | So a recording survives navigation; cleared when the browser closes |
 
 ### 4. Access to your file system
 
-Lens uses the browser's File System Access API. This has specific and deliberately narrow properties:
+Framelog uses the browser's File System Access API. This has specific and deliberately narrow properties:
 
-- Lens can only read or write inside folders **you explicitly picked** in the browser's own folder picker. It cannot browse your disk, and it cannot reach a folder you did not choose.
+- Framelog can only read or write inside folders **you explicitly picked** in the browser's own folder picker. It cannot browse your disk, and it cannot reach a folder you did not choose.
 
-- Permission is granted per folder and can lapse — after a browser restart, for example. Lens cannot restore it silently; it needs a click from you.
+- Permission is granted per folder and can lapse — after a browser restart, for example. Framelog cannot restore it silently; it needs a click from you.
 
 - Revoking access is done in Chrome, under the site and extension permission controls, and takes effect immediately.
 
-No folder need be linked at all. A project keeps its own captures inside your browser profile, so Lens is fully usable without granting access to any folder — and a capture taken while a folder's access has lapsed is stored and written out to the folder once you reconnect it, rather than being missed. The extension says which of these is happening rather than failing quietly.
+No folder need be linked at all. A project keeps its own captures inside your browser profile, so Framelog is fully usable without granting access to any folder — and a capture taken while a folder's access has lapsed is stored and written out to the folder once you reconnect it, rather than being missed. The extension says which of these is happening rather than failing quietly.
 
 Captures held in the profile stay on your machine exactly as folder captures do: no copy is sent anywhere, and Vectored never receives any of it. Removing the extension removes them, so link a folder for anything you need to outlive the install.
 
 ### 5. Access to page content
 
-To draw the selection overlay and capture a region, Lens injects its capture interface into the tab you are capturing — but only at the moment you start a capture, and only into that tab. There is no content script running in the background on every page you visit.
+To draw the selection overlay and capture a region, Framelog injects its capture interface into the tab you are capturing — but only at the moment you start a capture, and only into that tab. There is no content script running in the background on every page you visit.
 
 Captured pixels are held in memory long enough to crop, annotate and encode them, then written to your chosen folder. They are not copied anywhere else.
 
 ### 6. Redaction
 
-Before a capture is saved, Lens checks the captured region for things that usually should not be shared — password fields, API keys, tokens, private keys, and optionally emails and card numbers — and offers to blur each one. That check reads the page structure in your own browser. It uses no AI, makes no network call, and is on by default. It only ever suggests: nothing is blurred until you ask for it.
+Before a capture is saved, Framelog checks the captured region for things that usually should not be shared — password fields, API keys, tokens, private keys, and optionally emails and card numbers — and offers to blur each one. That check reads the page structure in your own browser. It uses no AI, makes no network call, and is on by default. It only ever suggests: nothing is blurred until you ask for it.
 
 The blur tool rewrites the underlying image data rather than drawing an opaque shape over it. Once a blurred capture is saved, the original pixels are not recoverable from that file by removing a layer. This is intentional: a redaction that can be peeled off is not a redaction. Check the result before saving, because it cannot be undone after the fact.
 
 ### 7. AI features and your own provider
 
-**Every AI feature is off when you install Lens.** Until you pick a provider, none of this applies and Lens makes no network requests.
+**Every AI feature is off when you install Framelog.** Until you pick a provider, none of this applies and Framelog makes no network requests.
 
-Lens has no AI service of its own and never will — there is no Vectored model, no Vectored endpoint and no Vectored proxy in the path. Instead you choose who does the work, and the choice determines whether anything leaves your machine:
+Framelog has no AI service of its own and never will — there is no Vectored model, no Vectored endpoint and no Vectored proxy in the path. Instead you choose who does the work, and the choice determines whether anything leaves your machine:
 
 | Provider you choose | Where it runs | What leaves your machine |
 | --- | --- | --- |
@@ -16921,7 +16921,7 @@ Captured images are not sent to any provider.
 
 - It is stored in your browser profile, in its own storage area, separate from your other settings.
 
-- It is only ever read by the extension's background worker, never by the code Lens injects into a page — that code shares a process with the page, so a key must not be readable there.
+- It is only ever read by the extension's background worker, never by the code Framelog injects into a page — that code shares a process with the page, so a key must not be readable there.
 
 - The settings screen can tell you a key is saved but cannot show it back to you.
 
@@ -16933,9 +16933,9 @@ Captured images are not sent to any provider.
 
 Once a prompt reaches a hosted provider, that company's privacy policy and terms govern it, including how long they keep it and whether they train on it. That relationship is between you and them — you supplied the key, you chose the provider, and Vectored is not a party to it and cannot see it. Check their terms before enabling a cloud provider on work that is confidential.
 
-#### What Lens itself keeps
+#### What Framelog itself keeps
 
-Nothing. Prompts and responses are held in memory for the length of the request and are not written to disk, to extension storage or to a log. Generated text becomes yours the moment it lands in a field you can edit — Lens keeps no separate copy of it, and no record that a feature was used.
+Nothing. Prompts and responses are held in memory for the length of the request and are not written to disk, to extension storage or to a log. Generated text becomes yours the moment it lands in a field you can edit — Framelog keeps no separate copy of it, and no record that a feature was used.
 
 #### Accuracy
 
@@ -16947,17 +16947,17 @@ Setting the provider back to **None** stops every AI feature immediately and ret
 
 ### 8. Third parties
 
-Lens bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin. As installed it sends nothing to anyone.
+Framelog bundles no third-party analytics, advertising or error-reporting service, and loads no code at runtime from any remote origin. As installed it sends nothing to anyone.
 
-The one third party Lens can ever talk to on its own is an AI provider you chose and configured yourself, and only for a feature you turned on — see [section 7](#ai). There is no third party Lens contacts on its own initiative.
+The one third party Framelog can ever talk to on its own is an AI provider you chose and configured yourself, and only for a feature you turned on — see [section 7](#ai). There is no third party Framelog contacts on its own initiative.
 
-One other request exists, and you make it happen: **importing a guide from a link**. Paste an address into the dashboard and Lens downloads it from that address and no other — no service of ours in between, and nothing about you, your captures or your projects sent with the request. Whoever hosts the file sees an ordinary download, as they would from any browser. Only http and https addresses are accepted. Importing from a file on your machine makes no request at all.
+One other request exists, and you make it happen: **importing a guide from a link**. Paste an address into the dashboard and Framelog downloads it from that address and no other — no service of ours in between, and nothing about you, your captures or your projects sent with the request. Whoever hosts the file sees an ordinary download, as they would from any browser. Only http and https addresses are accepted. Importing from a file on your machine makes no request at all.
 
 If you choose to contact us through the [support form](https://docs.vectored.dev/lens/support.html), that is a separate, voluntary act: only what you type into the form is sent, and only then. The extension is not involved.
 
 ### 9. Retention and deletion
 
-- **Captures and metadata** are ordinary files. Delete them as you would any file; Lens keeps no second copy.
+- **Captures and metadata** are ordinary files. Delete them as you would any file; Framelog keeps no second copy.
 
 - **Cached thumbnails** can be cleared from the dashboard under Settings, without touching the files on disk.
 
@@ -16967,13 +16967,13 @@ Because Vectored holds none of your data, there is nothing for us to delete on r
 
 ### 10. GDPR and international transfers
 
-Lens performs no processing of personal data on behalf of Vectored: no personal data is transmitted to or held by us, and as installed there is no international transfer of your data because there is no transfer at all. Where you capture content containing personal data, you remain the controller of the resulting files, which stay on infrastructure you control.
+Framelog performs no processing of personal data on behalf of Vectored: no personal data is transmitted to or held by us, and as installed there is no international transfer of your data because there is no transfer at all. Where you capture content containing personal data, you remain the controller of the resulting files, which stay on infrastructure you control.
 
 If you connect a cloud AI provider, you are the one instructing a processor of your choosing, under your own account with them. Vectored is not a party to that arrangement and cannot see it — but it is a transfer, and if the content is subject to GDPR it is yours to assess.
 
 ### 11. Children's privacy
 
-Lens is a developer and documentation tool, not directed at children, and collects no personal information from anyone.
+Framelog is a developer and documentation tool, not directed at children, and collects no personal information from anyone.
 
 ### 12. Changes to this policy
 
@@ -16987,9 +16987,9 @@ Questions about this policy: [support@vectored.dev](mailto:support@vectored.dev)
 
 Source: https://docs.vectored.dev/lens/security.html
 
-Lens by Vectored · Last updated: August 2026
+Framelog by Vectored · Last updated: August 2026
 
-**Threat model in one line.** Lens runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in [section 4](#ai).
+**Threat model in one line.** Framelog runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in [section 4](#ai).
 
 ### 1. Permissions, and why each one exists
 
@@ -16999,7 +16999,7 @@ A screen-capture extension necessarily asks for broad permissions. Here is what 
 | --- | --- |
 | tabCapture | The video stream a GIF or MP4 recording is made from. Only for the tab you started recording on, and only while recording. |
 | scripting | Injecting the selection overlay and editor into the tab at the moment you start a capture. Nothing is injected before that. |
-| host_permissions for all sites | Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Lens has no code that does so. |
+| host_permissions for all sites | Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Framelog has no code that does so. |
 | tabs | Reading the active tab's title and URL to record alongside a capture, and bringing a recording's tab forward when you stop it from the popup. |
 | activeTab | Capturing the visible area of the current tab for still screenshots. |
 | downloads | Writing a copy of a capture to your downloads when you ask for one. |
@@ -17007,15 +17007,15 @@ A screen-capture extension necessarily asks for broad permissions. Here is what 
 | unlimitedStorage | A project keeps its own captures in the browser profile. This exempts them from being cleared when the disk fills — without it the browser may evict the lot, which here would mean deleting captures. |
 | offscreen | A hidden document that holds the recording stream, because a Manifest V3 service worker cannot. |
 
-Lens requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.
+Framelog requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.
 
-The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Lens contacts no host on its own initiative — see [section 4](#ai).
+The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Framelog contacts no host on its own initiative — see [section 4](#ai).
 
-The same permission covers one other request, and only when you ask for it: **importing a guide from a link**. Lens fetches the address you paste and nothing else, over http or https only, capped at 50 MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.
+The same permission covers one other request, and only when you ask for it: **importing a guide from a link**. Framelog fetches the address you paste and nothing else, over http or https only, capped at 50 MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.
 
 ### 2. File system scope
 
-Lens writes through the File System Access API, which is scoped by design:
+Framelog writes through the File System Access API, which is scoped by design:
 
 - It can only touch folders picked by you in the browser's own picker. There is no path entry, and no way for the extension to name a folder you did not choose.
 
@@ -17025,9 +17025,9 @@ Lens writes through the File System Access API, which is scoped by design:
 
 ### 3. No remote code
 
-Everything Lens executes ships inside the extension package and is reviewable in the Chrome Web Store listing:
+Everything Framelog executes ships inside the extension package and is reviewable in the Chrome Web Store listing:
 
-- No script is loaded from a CDN or any remote origin at runtime, which Manifest V3 forbids and Lens does not attempt.
+- No script is loaded from a CDN or any remote origin at runtime, which Manifest V3 forbids and Framelog does not attempt.
 
 - The GIF encoder is implemented in the extension rather than pulled from a third-party bundle, so there is no external package in the capture path.
 
@@ -17041,7 +17041,7 @@ AI features are off on install and there is no Vectored model, endpoint or proxy
 
 #### Where the key lives, and why
 
-- Requests to a keyed provider are made by the extension's **background service worker**, never by the code Lens injects into the page. Injected code shares a process with the page it is injected into, so a page-side compromise must not be able to read a key — it is never put there.
+- Requests to a keyed provider are made by the extension's **background service worker**, never by the code Framelog injects into the page. Injected code shares a process with the page it is injected into, so a page-side compromise must not be able to read a key — it is never put there.
 
 - The key is stored under its own storage area, separate from the settings the page-side code is allowed to read, so it cannot be picked up as a side effect of reading preferences.
 
@@ -17059,7 +17059,7 @@ Model output can only re-rank and relabel what the local rules already found. It
 
 #### Model output is treated as untrusted
 
-The page being captured is the same page whose title and headings go into the prompt that examines it. A hostile page can therefore write text aimed at the model — including text intended to talk it out of flagging that page's own credential fields. Lens is built on the assumption that this will be attempted:
+The page being captured is the same page whose title and headings go into the prompt that examines it. A hostile page can therefore write text aimed at the model — including text intended to talk it out of flagging that page's own credential fields. Framelog is built on the assumption that this will be attempted:
 
 - **A high-confidence finding cannot be cleared by the model.** A password field, or text matching a known key format, stays selected whatever the response says. The model can promote a lower-confidence finding but never demote a high one.
 
@@ -17067,29 +17067,29 @@ The page being captured is the same page whose title and headings go into the pr
 
 - **Nothing generated is executed.** Model output only ever becomes text in a field you can edit, or the order of a list. It is never run, never used to build a request, and never written to disk without passing through you.
 
-- **A suggested file name is sanitised** like any other name Lens writes — extension stripped, path separators and filesystem-rejected characters replaced, length capped — so a name cannot direct a write outside your project folder.
+- **A suggested file name is sanitised** like any other name Framelog writes — extension stripped, path separators and filesystem-rejected characters replaced, length capped — so a name cannot direct a write outside your project folder.
 
 The check that finds the regions in the first place runs on the page structure with no model involved, so with no provider configured none of this applies at all.
 
-### 5. What Lens deliberately cannot capture
+### 5. What Framelog deliberately cannot capture
 
 Some limits are Chrome's and are worth knowing, because they are security boundaries rather than bugs:
 
 - Browser pages — chrome://, about:, the Web Store, DevTools, other extensions' pages — cannot be captured by any extension.
 
-- DRM-protected video is excluded from tab capture by the platform and records as solid black. Lens detects this and warns rather than handing you a black file without explanation.
+- DRM-protected video is excluded from tab capture by the platform and records as solid black. Framelog detects this and warns rather than handing you a black file without explanation.
 
 - file:// URLs require you to enable file access for the extension explicitly.
 
 ### 6. Handling sensitive captures
 
-- Lens flags likely credentials in the captured region before you save and offers to blur them. That check runs on page structure in your browser, with no AI and no network call, and is on by default. Treat it as a safety net, not a guarantee — it looks for known shapes, so read the capture as well.
+- Framelog flags likely credentials in the captured region before you save and offers to blur them. That check runs on page structure in your browser, with no AI and no network call, and is on by default. Treat it as a safety net, not a guarantee — it looks for known shapes, so read the capture as well.
 
 - Use the **blur** tool for anything the check missed. It rewrites pixels rather than covering them, so the original cannot be recovered from the saved file.
 
 - Remember that a capture records the page **URL and title** into project_metadata.json. If the URL itself is sensitive — a signed link, a token in a query string — treat the metadata file with the same care as the image, or turn off **Write metadata file** in Settings.
 
-- Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Lens inherits the protection of the folder you choose and adds none of its own.
+- Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Framelog inherits the protection of the folder you choose and adds none of its own.
 
 ### 7. Reporting a vulnerability
 
@@ -17107,13 +17107,13 @@ Useful things to include: the extension version, your Chrome version and platfor
 
 ### 8. Related
 
-[Lens privacy policy](https://docs.vectored.dev/lens/privacy.html) · [Vectored site security](https://docs.vectored.dev/security.html) · [Support](https://docs.vectored.dev/lens/support.html)
+[Framelog privacy policy](https://docs.vectored.dev/lens/privacy.html) · [Vectored site security](https://docs.vectored.dev/security.html) · [Support](https://docs.vectored.dev/lens/support.html)
 
-## Lens Support
+## Framelog Support
 
 Source: https://docs.vectored.dev/lens/support.html
 
-Lens is available for [Chrome and Edge](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). Use this form to report a problem, ask a question, or tell us what it should do next.
+Framelog is available for [Chrome and Edge](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki). Use this form to report a problem, ask a question, or tell us what it should do next.
 
 ### Submit Feedback or Report an Issue
 
@@ -17137,7 +17137,7 @@ Your ticket is with our team. If you left an email, we'll reply there.
 
 ### Give Detailed Feedback
 
-The long-form feedback page asks Lens-specific questions — which capture type and output format, your Chrome version, and what you were capturing — which makes a bug far quicker to place. [Open the Lens feedback form →](https://docs.vectored.dev/feedback.html?tool=lens)
+The long-form feedback page asks Lens-specific questions — which capture type and output format, your Chrome version, and what you were capturing — which makes a bug far quicker to place. [Open the Framelog feedback form →](https://docs.vectored.dev/feedback.html?tool=lens)
 
 ### Before You Report a Bug
 
@@ -17147,7 +17147,7 @@ A few problems have known causes and an immediate fix:
 
 - **A black recording** — the page uses protected video, which the browser excludes from capture.
 
-- **A WebM instead of an MP4** — your Chrome build cannot encode MP4, so Lens named the file for what it actually wrote.
+- **A WebM instead of an MP4** — your Chrome build cannot encode MP4, so Framelog named the file for what it actually wrote.
 
 - The full list is in [Troubleshooting](https://docs.vectored.dev/lens/docs/troubleshooting.html).
 
@@ -17162,6 +17162,170 @@ A few problems have known causes and an immediate fix:
 ### Security Issues
 
 If you discover a security vulnerability, please **do not** describe it in this form. Email [security@vectored.dev](mailto:security@vectored.dev) directly — see the [security page](https://docs.vectored.dev/lens/security.html) for what to include and what to expect.
+
+# Depotex
+
+## Every package your teams build and use, on a server you run.
+
+Source: https://docs.vectored.dev/depotex/
+
+Coming soonIn active development
+
+## Every package your teams build and use, on a server you run.
+
+Depotex is a self-hosted artifact repository for 18 package formats. It caches the public registries your builds depend on and gives security teams SBOMs, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.
+
+[User guide ](https://docs.vectored.dev/depotex/docs/getting-started.html) [Admin guide](https://docs.vectored.dev/depotex/admin/index.html) [Request early access](https://docs.vectored.dev/support.html?tool=depotex&type=access) Container images · Helm chart · setup wizard
+
+![The Depotex dashboard: what needs attention, the installation's figures, spaces by size and the health of every part of the system](https://docs.vectored.dev/depotex/assets/dashboard-overview.png)
+
+The dashboard: what needs attention, spaces by size and the health of every part of the system.
+
+18 formats
+
+### Works with the tools developers already use.
+
+Point your package manager at Depotex and keep your existing commands. Each space has one address per format: `/repository/<space>/<format>/`
+
+[All supported formats →](https://docs.vectored.dev/depotex/docs/formats.html)
+
+[Mavenmvn · gradle](https://docs.vectored.dev/depotex/docs/maven.html)[npmnpm · pnpm · yarn](https://docs.vectored.dev/depotex/docs/npm.html)[PyPIpip · uv · twine](https://docs.vectored.dev/depotex/docs/pypi.html)[Docker & OCIdocker](https://docs.vectored.dev/depotex/docs/docker.html)[Helmhelm](https://docs.vectored.dev/depotex/docs/helm.html)[Gogo](https://docs.vectored.dev/depotex/docs/go.html)[NuGetdotnet](https://docs.vectored.dev/depotex/docs/nuget.html)[Cargocargo](https://docs.vectored.dev/depotex/docs/cargo.html)
+
+[APTapt](https://docs.vectored.dev/depotex/docs/apt.html)[YUMdnf](https://docs.vectored.dev/depotex/docs/yum.html)[Terraformterraform init](https://docs.vectored.dev/depotex/docs/terraform.html)[Hugging Facehuggingface_hub](https://docs.vectored.dev/depotex/docs/huggingface.html)[Git LFSgit lfs](https://docs.vectored.dev/depotex/docs/git-lfs.html)[Composercomposer](https://docs.vectored.dev/depotex/docs/composer.html)[RubyGemsgem](https://docs.vectored.dev/depotex/docs/rubygems.html)[Condaconda · pixi](https://docs.vectored.dev/depotex/docs/conda.html)[Conanconan](https://docs.vectored.dev/depotex/docs/conan.html)[Rawcurl](https://docs.vectored.dev/depotex/docs/raw.html)
+
+For developers and CI
+
+#### Host, cache and group behind one URL.
+
+Hosted repositories hold what you publish. Proxy repositories fetch from Maven Central, npm, PyPI, Docker Hub or another Depotex and keep a copy, so builds keep working when the internet doesn't. Group repositories put both behind a single address.
+
+[Repositories→](https://docs.vectored.dev/depotex/docs/repositories.html)[Upstreams→](https://docs.vectored.dev/depotex/admin/upstreams.html)[Repository groups→](https://docs.vectored.dev/depotex/docs/repository-groups.html)
+
+![The repositories list](https://docs.vectored.dev/depotex/assets/repositories-list.png)
+
+![Searching across repositories in the artifact browser](https://docs.vectored.dev/depotex/assets/browse-search.png)
+
+For everyone
+
+#### Find any version and see what's inside it.
+
+The artifact browser searches every repository you can see. Open a version for its install command, files, dependencies and security status. Depotex reads the SPDX and CycloneDX SBOMs stored with artifacts, finds a component everywhere it's used and checks it against known vulnerabilities from OSV.
+
+[Browse→](https://docs.vectored.dev/depotex/docs/browse.html)[SBOMs→](https://docs.vectored.dev/depotex/docs/sbom.html)
+
+For security teams
+
+#### Keep bad versions out, even through proxies.
+
+Quarantine holds new or suspect versions until someone releases them. The block list refuses a version everywhere, including through proxies. Integrity checks confirm every stored file is present and unchanged, and hostile metadata is quarantined on arrival.
+
+[Quarantine→](https://docs.vectored.dev/depotex/docs/quarantine.html)[Block list→](https://docs.vectored.dev/depotex/docs/blocklist.html)[Integrity→](https://docs.vectored.dev/depotex/admin/integrity.html)
+
+![Quarantined versions awaiting release](https://docs.vectored.dev/depotex/assets/quarantine.png)
+
+![Editing a policy](https://docs.vectored.dev/depotex/assets/policies-editor.png)
+
+For platform teams
+
+#### Enforce rules and react to events.
+
+Every major operation is an event. Policies can block, warn about or adjust it before it happens, with a dry run first. Automation sends alerts, webhooks and emails after. Signed plugins add checks, screens and tools for AI agents.
+
+[Policies→](https://docs.vectored.dev/depotex/admin/policies.html)[Automation→](https://docs.vectored.dev/depotex/admin/automation.html)[Plugins→](https://docs.vectored.dev/depotex/admin/plugins.html)
+
+How it's organised
+
+### Spaces hold repositories. Repositories hold versions.
+
+01SpacePrivate, internal or public. Viewer, Developer, Maintainer and Owner roles, upload rules, cleanup and quotas.
+
+02RepositoryOne format and one type: hosted, proxy or group.
+
+03VersionA component's release, with its files, dependencies, SBOMs and security status.
+
+Address/repository/<space>/<repository>/…What package managers and CI use. People use the same Depotex in the browser.
+
+Permissions come from a person's system role and their role in each space. Tokens and applications never do more than the person behind them.
+
+For admins
+
+### Runs where you do, and looks after itself.
+
+Backups with encryption and test restores, a system check with per-server cluster health, scheduled jobs, an audit log and Prometheus metrics. Recovery mode explains what's wrong when an installed server can't start.
+
+[Admin guide →](https://docs.vectored.dev/depotex/admin/index.html)[Install with Helm →](https://docs.vectored.dev/depotex/admin/helm-chart.html)[Single node & cluster →](https://docs.vectored.dev/depotex/admin/deployment-modes.html)[Backups →](https://docs.vectored.dev/depotex/admin/backups.html)[Recovery mode →](https://docs.vectored.dev/depotex/admin/recovery.html)
+
+DeployContainer images, Helm chart
+
+TopologyOne server or a cluster
+
+DatabasePostgreSQL
+
+CacheRedis, optional on one server, required for a cluster
+
+FilesLocal disk, S3, MinIO or Azure Blob
+
+DirectoriesLocal, LDAP, Active Directory, Entra ID, Google Workspace, SCIM
+
+Sign-inOpenID Connect, SAML, device sign-in, workload identity
+
+SetupSetup wizard or an unattended setup file
+
+Editions
+
+### Start with Standard. Add what you need.
+
+[Licensing →](https://docs.vectored.dev/depotex/admin/licensing.html)
+
+StandardHosted and group repositories in every format, spaces, the artifact browser, users and groups, backups and email.
+
+ProStandard, plusProxy repositories, clustering, the system check, the audit log, policies, automation and plugins.
+
+EnterprisePro, plusSingle sign-on, quarantine, the block list, branding and managing everyone's API tokens.
+
+Each feature's page says which tier it needs.
+
+Documentation
+
+### Everything in the docs, by topic.
+
+Start here09
+
+[Getting startedSign in, find a repository and publish your first package.](https://docs.vectored.dev/depotex/docs/getting-started.html)[Admin guideInstall, set up, configure and run Depotex.](https://docs.vectored.dev/depotex/admin/index.html)[Install DepotexThe server, the setup key and the reverse proxy.](https://docs.vectored.dev/depotex/admin/install.html)[Install with HelmThe chart, its values and first-boot setup.](https://docs.vectored.dev/depotex/admin/helm-chart.html)[Docker & KubernetesContainer images and the Helm chart.](https://docs.vectored.dev/depotex/admin/kubernetes.html)[Single Node & ClusterOne node or many, with the same features.](https://docs.vectored.dev/depotex/admin/deployment-modes.html)[Recovery ModeWhen an installed server can't start, and how to fix it.](https://docs.vectored.dev/depotex/admin/recovery.html)[DashboardWhat needs a look, figures and system health.](https://docs.vectored.dev/depotex/docs/dashboard.html)[ChangelogWhat each release includes, newest first.](https://docs.vectored.dev/depotex/docs/changelog.html)
+
+Repositories08
+
+[SpacesWho can use repositories, visibility and allowed formats.](https://docs.vectored.dev/depotex/docs/spaces.html)[RepositoriesCreate and manage artifact repositories.](https://docs.vectored.dev/depotex/docs/repositories.html)[Repository groupsSeveral repositories of one format behind one URL.](https://docs.vectored.dev/depotex/docs/repository-groups.html)[UpstreamsExternal registries spaces may proxy.](https://docs.vectored.dev/depotex/admin/upstreams.html)[BrowseSearch, walk trees and open any version.](https://docs.vectored.dev/depotex/docs/browse.html)[Repository settingsSize limits, remote timeouts, proxies and CA certificates.](https://docs.vectored.dev/depotex/docs/repository-settings.html)[StorageWhere files live, credentials and upload limits.](https://docs.vectored.dev/depotex/admin/storage.html)[Supported formatsEvery format and the tools that work with it.](https://docs.vectored.dev/depotex/docs/formats.html)
+
+Security07
+
+[SBOMsWhat your software is made of, and known vulnerabilities.](https://docs.vectored.dev/depotex/docs/sbom.html)[QuarantineHold new or suspect versions until released.](https://docs.vectored.dev/depotex/docs/quarantine.html)[Block listStop a version from being used anywhere.](https://docs.vectored.dev/depotex/docs/blocklist.html)[IntegrityCheck every stored file is present and unchanged.](https://docs.vectored.dev/depotex/admin/integrity.html)[PoliciesRules that block, warn or adjust actions.](https://docs.vectored.dev/depotex/admin/policies.html)[Rate Limits & QuotasRequest and download limits per person, token and address.](https://docs.vectored.dev/depotex/admin/rate-limits.html)[Security advisoriesSecurity fixes, with an RSS feed to subscribe to.](https://docs.vectored.dev/depotex/docs/security-advisories.html)
+
+Identity & access05
+
+[Users & DirectoriesWhere accounts come from and how people sign in.](https://docs.vectored.dev/depotex/admin/users-and-directories.html)[Single Sign-OnEntra ID, Google, Okta, Keycloak, any OIDC or SAML provider.](https://docs.vectored.dev/depotex/admin/single-sign-on.html)[OAuth ApplicationsPipelines, CLIs and AI agents without personal tokens.](https://docs.vectored.dev/depotex/docs/oauth-applications.html)[API TokensScoped tokens for automation and integrations.](https://docs.vectored.dev/depotex/docs/api-tokens.html)[LicensingTiers, getting a license and updating it.](https://docs.vectored.dev/depotex/admin/licensing.html)
+
+Operations07
+
+[BackupsEncrypted, checked and test-restored backups.](https://docs.vectored.dev/depotex/admin/backups.html)[System CheckHealth of every dependency and server, with alerts.](https://docs.vectored.dev/depotex/admin/system-check.html)[Logging & AuditLog levels, log files and who changed what.](https://docs.vectored.dev/depotex/admin/logging-and-audit.html)[Monitoring (Prometheus)Each server's metrics for Prometheus.](https://docs.vectored.dev/depotex/admin/monitoring.html)[Scheduled JobsThe background jobs Depotex runs.](https://docs.vectored.dev/depotex/admin/scheduler.html)[EmailSMTP, SES, Microsoft 365, SendGrid and more.](https://docs.vectored.dev/depotex/admin/email.html)[Branding & BannersApp name, colors, logos and announcements.](https://docs.vectored.dev/depotex/admin/branding-and-banners.html)
+
+Events & automation05
+
+[EventsWhat Depotex raises for policies, automation and plugins.](https://docs.vectored.dev/depotex/docs/events.html)[AutomationAlerts, webhooks and emails when something happens.](https://docs.vectored.dev/depotex/admin/automation.html)[PluginsSigned plugins, including MCP tools for AI.](https://docs.vectored.dev/depotex/admin/plugins.html)[AlertsThe bell, toasts and your preferences.](https://docs.vectored.dev/depotex/docs/alerts.html)[Managing AlertsSend alerts, force categories, the alerts API.](https://docs.vectored.dev/depotex/admin/alerts-admin.html)
+
+Help03
+
+[Known issuesLimits and gaps to know about, with workarounds.](https://docs.vectored.dev/depotex/admin/known-issues.html)[FAQAnswers to common questions.](https://docs.vectored.dev/depotex/admin/faq.html)[SupportHow to get help and what to send.](https://docs.vectored.dev/depotex/admin/support.html)
+
+Coming soon
+
+### Install, enter the setup key, and follow the wizard.
+
+Then create a space and its first repository, and point your package manager at it.
+
+Depotex isn't released yet. Early adopters: [contact us for access](https://docs.vectored.dev/support.html?tool=depotex&type=access).
+
+[Request early access →](https://docs.vectored.dev/support.html?tool=depotex&type=access)[Install Depotex](https://docs.vectored.dev/depotex/admin/install.html)[User guide](https://docs.vectored.dev/depotex/docs/getting-started.html)[Changelog](https://docs.vectored.dev/depotex/docs/changelog.html)
 
 # About
 
@@ -17269,7 +17433,7 @@ Browser 1 app
 
 [BYOAI*](#byoai)
 
-#### Lens
+#### Framelog
 
 for Chrome & Edge
 
@@ -17329,7 +17493,7 @@ Recognition Hub brings peer recognition into monday.com — a live kudos mural, 
 
 #### Chrome Web Store
 
-Lens installs from the Chrome Web Store and runs in Chrome and Edge — capture, annotate, and file screenshots and recordings, fully offline.
+Framelog installs from the Chrome Web Store and runs in Chrome and Edge — capture, annotate, and file screenshots and recordings, fully offline.
 
 ### Security & trust
 

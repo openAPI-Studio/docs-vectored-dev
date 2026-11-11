@@ -1,11 +1,25 @@
-"""Block markup for the Lens docs.
+"""Block markup for the Framelog docs.
 
 Mirrors timesheets/_build/engine.py, trimmed to the blocks these pages use. A
 page is a list of blocks so the content file reads like an outline rather than a
 template language.
 """
 import html
+import os
 import re
+import struct
+
+ASSETS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets")
+
+
+def png_width(filename):
+    """The pixel width of a PNG in lens/assets, or None if it is not there yet."""
+    try:
+        with open(os.path.join(ASSETS, filename), "rb") as fh:
+            head = fh.read(24)
+        return struct.unpack(">I", head[16:20])[0] if head[:8] == b"\x89PNG\r\n\x1a\n" else None
+    except OSError:
+        return None
 
 SHOTS = []  # (filename, caption, page_label) — collected for SCREENSHOTS.md
 
@@ -163,8 +177,12 @@ def render(blocks, page_label):
             # The <img> is attempted first; if the file is not there yet its
             # onerror reveals the placeholder frame, so an unshot page looks
             # unfinished rather than showing a broken image.
+            # A narrow picture (the popup, a file listing) is shown at its own
+            # size rather than stretched to the column, which would blur it.
+            width = png_width(filename)
+            narrow = " shot-narrow" if width and width < 800 else ""
             out.append(
-                '<figure class="shot mb-6">\n'
+                '<figure class="shot%s mb-6">\n'
                 '        <img src="../assets/%s" alt="%s" loading="lazy"\n'
                 '             class="rounded-lg border border-border"\n'
                 '             onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">\n'
@@ -177,7 +195,7 @@ def render(blocks, page_label):
                 '        </div>\n'
                 '        <figcaption class="text-xs text-muted mt-2">%s</figcaption>\n'
                 '      </figure>'
-                % (filename, html.escape(caption, quote=True), SHOT_ICON,
+                % (narrow, filename, html.escape(caption, quote=True), SHOT_ICON,
                    html.escape(filename), html.escape(caption), html.escape(caption)))
 
         else:
@@ -195,7 +213,7 @@ PAGE = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} — Lens Docs</title>
+  <title>{title} — Framelog Docs</title>
   <meta name="description" content="{desc}">
   <meta name="vc-updated" content="{updated}">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -214,7 +232,7 @@ PAGE = """<!DOCTYPE html>
 <script src="../../assets/nav.js"></script>
 <script src="../../assets/header.js"></script>
 
-<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><span class="text-cta">Lens is out.</span> <a class="text-cta hover:underline" href="https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki" data-store="lens" target="_blank" rel="noopener">Install for Chrome or Edge &rarr;</a></div>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><span class="text-cta">Framelog is out.</span> <a class="text-cta hover:underline" href="https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki" data-store="lens" target="_blank" rel="noopener">Install for Chrome or Edge &rarr;</a></div>
 
 <div class="vc-shell">
   <aside class="vc-side" data-noprint="1"></aside>

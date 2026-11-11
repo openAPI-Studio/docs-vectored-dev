@@ -25,7 +25,7 @@ SUMMARY = (
     "Documentation for Vectored's developer tools. API Studio is an offline API "
     "client for VS Code and the command line covering REST, GraphQL, WebSocket "
     "and gRPC, with mock servers, MCP servers, CI/CD integration and git-based "
-    "collections. Lens captures screenshots and high-quality GIF recordings and "
+    "collections. Framelog captures screenshots and high-quality GIF recordings and "
     "documents flows locally, completely offline and with no subscription. "
     "TimeSheets, Macro Toolkit, Forms & Frontdoor and Recognition Hub are "
     "Atlassian Confluence apps. Everything here is offline-first: the apps "
@@ -62,7 +62,7 @@ def sidecars(pdir):
         src = open(path, encoding='utf-8').read()
         m = re.search(r'<title>(.*?)</title>', src, re.S)
         if m:
-            # Titles read "Privacy Policy — Lens"; keep the leading part.
+            # Titles read "Privacy Policy — Framelog"; keep the leading part.
             title = html.unescape(re.sub(r'\s+', ' ', m.group(1))).split('—')[0].strip()
         found.append((f'{pdir}/{name}', title or name))
     return found

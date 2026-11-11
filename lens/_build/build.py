@@ -57,7 +57,7 @@ def write_screenshot_worklist():
     outstanding = [s for s in SHOTS if s[0] not in have]
 
     lines = [
-        "# Lens docs — screenshots needed",
+        "# Framelog docs — screenshots needed",
         "",
         "%d screenshots. Save each one into `lens/assets/` using the" % len(outstanding),
         "exact filename below. The docs pick them up automatically on the next page",
