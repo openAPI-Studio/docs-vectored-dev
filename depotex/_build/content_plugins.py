@@ -97,6 +97,7 @@ PLUGINS = [
                 "**Nothing carries over between calls** in memory: each tool call starts the plugin fresh. A plugin that needs to remember something uses its own data.",
                 "Two plugins can't define the same permission, so one approval never covers another plugin's tools.",
             ]),
+            P("Calls to a plugin's MCP server are counted per day and per application (kept 90 days) and read with `GET /api/plugins/{name}/endpoint-usage`; the plugin's screens read them through the `endpoint.usage` host method. The sample plugin uses them for its **AI agent connections** card on the [dashboard](dashboard.html#plugin-cards)."),
             P("The sample plugin `depotex-mcp` has these tools:"),
             TABLE(["Tool", "What it does"], [
                 ["`whoami`", "The account the AI application acts for"],
@@ -215,6 +216,7 @@ PLUGINS = [
                 ["PUT", "`/api/plugins/{name}/settings`", "admin", "`{\"values\", \"writes\", \"disabledTools\"}`: its settings (`null` resets one), MCP mode, tools switched off"],
                 ["GET / PUT", "`/api/plugins/write-tools`", "read / admin", "`{\"allowed\"}`: write tools for AI agents on this installation"],
                 ["GET", "`/api/plugins/ui`", "signed in", "The screens of active plugins you may see, by slot"],
+                ["GET", "`/api/plugins/{name}/endpoint-usage?days=`", "read", "Calls to the plugin's protected endpoint (its MCP server) per day and per application over the last `days` (1–90, default 7), failures included"],
                 ["GET", "`/api/plugin-ui/{name}/{file}`", "—", "An active plugin's screen files, served sandboxed"],
                 ["GET", "`/api/plugins/data`", "admin", "Leftover data"],
                 ["DELETE", "`/api/plugins/data/{key}`", "admin", "`{\"confirm\": \"<plugin name>\"}`: delete leftover data"],

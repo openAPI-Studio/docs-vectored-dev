@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://docs.vectored.dev/</loc><lastmod>2026-08-25</lastmod><priority>1.0</priority></url>
+  <url><loc>https://docs.vectored.dev/</loc><lastmod>2026-11-09</lastmod><priority>1.0</priority></url>
   <url><loc>https://docs.vectored.dev/macrotoolkit/</loc><lastmod>2026-08-16</lastmod><priority>1.0</priority></url>
   <url><loc>https://docs.vectored.dev/macrotoolkit/docs/3d-viewer.html</loc><lastmod>2026-08-16</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/macrotoolkit/docs/carousel.html</loc><lastmod>2026-08-16</lastmod><priority>0.8</priority></url>
@@ -181,6 +181,102 @@
   <url><loc>https://docs.vectored.dev/rewardhub-monday/docs/privacy-security.html</loc><lastmod>2026-09-24</lastmod><priority>0.7</priority></url>
   <url><loc>https://docs.vectored.dev/feedback.html</loc><lastmod>2026-08-16</lastmod><priority>0.6</priority></url>
   <url><loc>https://docs.vectored.dev/support.html</loc><lastmod>2026-08-16</lastmod><priority>0.6</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/</loc><lastmod>2026-11-09</lastmod><priority>1.0</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/alerts-admin.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/alerts.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/api-tokens.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/apt.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/automation.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/backups.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/blocklist.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/branding-and-banners.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/browse.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/cargo.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/changelog.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/composer.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/conan.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/conda.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/dashboard.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/deployment-modes.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/docker.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/email.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/events.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/formats.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/getting-started.html</loc><lastmod>2026-11-09</lastmod><priority>0.9</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/git-lfs.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/go.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/helm.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/huggingface.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/integrity.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/kubernetes.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/licensing.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/logging-and-audit.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/maven.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/monitoring.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/npm.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/nuget.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/oauth-applications.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/plugins.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/policies.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/profile.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/pypi.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/quarantine.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/rate-limits.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/raw.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/recovery.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/repositories.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/repository-groups.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/repository-settings.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/rubygems.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/sbom.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/scheduler.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/search.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/security-advisories.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/single-sign-on.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/spaces.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/storage.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/system-check.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/terraform.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/upstreams.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/users-and-directories.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/vibe-artifacts.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/docs/yum.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/access-overview.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/alert-tuning.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/alerts-admin.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/automation.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/backups.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/branding-and-banners.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/deployment-modes.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/email.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/environment-variables.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/faq.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/headless-setup.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/helm-chart.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/index.html</loc><lastmod>2026-11-09</lastmod><priority>0.9</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/install-planning.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/install.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/integrity.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/known-issues.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/kubernetes.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/licensing.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/logging-and-audit.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/monitoring.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/plugins.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/policies.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/rate-limits.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/recovery.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/scheduler.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/security-hardening.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/settings-reference.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/setup-wizard.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/single-sign-on.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/storage.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/support.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/system-check.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/upgrades.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/upstreams.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/users-and-directories.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/privacy.html</loc><lastmod>2026-08-18</lastmod><priority>0.5</priority></url>
   <url><loc>https://docs.vectored.dev/security.html</loc><lastmod>2026-08-16</lastmod><priority>0.5</priority></url>
   <url><loc>https://docs.vectored.dev/rewardhub-monday/terms.html</loc><lastmod>2026-09-25</lastmod><priority>0.3</priority></url>

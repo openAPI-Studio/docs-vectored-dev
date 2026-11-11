@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects and Folders — Lens Docs</title>
   <meta name="description" content="Create projects, link local folders, switch the active project, catch a folder up after access lapses, and see how much storage Lens is using.">
-  <meta name="vc-updated" content="16 Oct 2026">
+  <meta name="vc-updated" content="11 Nov 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -39,6 +39,15 @@
 
       <article class="vc-doc">
 <p class="text-muted mb-4">Every capture goes into the <strong class="text-text">active project</strong>. A project is a name and the captures filed under it, which Lens keeps itself. A folder on your machine is optional — link one and the project is mirrored into it.</p>
+<figure class="video mb-6">
+        <div class="relative w-full overflow-hidden rounded-lg border border-border bg-black" style="aspect-ratio:16/9">
+          <iframe src="https://www.youtube-nocookie.com/embed/buLFACqRinI?rel=0" title="Framelog Tutorial 09: Projects, timeline and the dashboard"
+                  class="absolute inset-0 w-full h-full" style="border:0" loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Tutorial 9: creating and switching projects, linking a folder, the popup timeline and the dashboard. <a href="https://youtu.be/buLFACqRinI" target="_blank" rel="noopener" class="text-cta hover:underline">Watch on YouTube</a></figcaption>
+      </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Creating a project</h2>
 <ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press <strong class="text-text">New project</strong> in the popup, or <strong class="text-text">New project</strong> on the dashboard</strong> <span class="text-muted">both open the same flow.</span></li><li class="mb-3"><strong class="text-text">Give it a name</strong> <span class="text-muted">this is what appears in the project dropdown and in <span class="font-mono text-sm">project_metadata.json</span>.</span></li><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Create</strong></strong> <span class="text-muted">or <strong class="text-text">Create &amp; link folder</strong> to pick a folder at the same time. Chrome asks for read/write access to that one folder.</span></li></ol>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Cancelling the folder picker cancels the folder, not the project — you keep the name you just typed.</p></div>

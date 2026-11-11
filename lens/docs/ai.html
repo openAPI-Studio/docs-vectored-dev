@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Features — Lens Docs</title>
   <meta name="description" content="Lens AI features, the providers you can connect, exactly what each feature sends, and how your API key is stored.">
-  <meta name="vc-updated" content="16 Oct 2026">
+  <meta name="vc-updated" content="11 Nov 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -40,6 +40,15 @@
       <article class="vc-doc">
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Every AI feature is off when you install Lens, and with no provider selected the extension makes no network requests at all. Nothing on this page happens until you choose one.</p></div>
 <p class="text-muted mb-4">Lens has no AI service of its own. There is no Vectored model, no Vectored endpoint and no Vectored proxy — instead you pick who does the work, and that choice decides whether anything leaves your machine.</p>
+<figure class="video mb-6">
+        <div class="relative w-full overflow-hidden rounded-lg border border-border bg-black" style="aspect-ratio:16/9">
+          <iframe src="https://www.youtube-nocookie.com/embed/wVgPh0sLWuE?rel=0" title="Framelog Tutorial 10: AI features, your own models and AI agents"
+                  class="absolute inset-0 w-full h-full" style="border:0" loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Tutorial 10: choosing a provider, using your own models, and connecting an AI agent that drives Framelog in your browser. <a href="https://youtu.be/wVgPh0sLWuE" target="_blank" rel="noopener" class="text-cta hover:underline">Watch on YouTube</a></figcaption>
+      </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Choosing a provider</h2>
 <div class="tbl-wrap"><table><thead><tr><th>Provider</th><th>Where it runs</th><th>What leaves your machine</th><th>You need</th></tr></thead><tbody><tr><td><strong class="text-text">None</strong> — the default</td><td>Nowhere</td><td>Nothing</td><td>—</td></tr><tr><td><strong class="text-text">Your browser's built-in model</strong></td><td>On your device</td><td>Nothing</td><td>Edge or Chrome with the model available</td></tr><tr><td><strong class="text-text">A local model</strong></td><td>On your device</td><td>Nothing</td><td>Ollama, LM Studio or similar</td></tr><tr><td><strong class="text-text">Claude</strong></td><td>Anthropic's servers</td><td>The prompt for the feature you used</td><td>An Anthropic API key</td></tr><tr><td><strong class="text-text">Gemini</strong></td><td>Google's servers</td><td>The prompt for the feature you used</td><td>A Google AI API key</td></tr><tr><td><strong class="text-text">OpenAI or compatible</strong></td><td>OpenAI, or an endpoint you name</td><td>The prompt for the feature you used</td><td>An API key</td></tr></tbody></table></div>
 <p class="text-muted mb-4">Choosing one that runs in the cloud asks you to confirm first, because it genuinely changes what the extension does with page text.</p>
