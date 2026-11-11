@@ -91,7 +91,7 @@ SCHEDULER = [
             P('**Old Metadata Rebuilds (`repository-repair-prune`)**'),
             TABLE(['Setting', 'Value'], [['Schedule', 'Daily at 04:40, once per cluster'], ['Purpose', "Forgets rebuilds finished more than 30 days ago, keeping each repository's latest"], ['Toggleable', 'No'], ['Schedule Editable', 'Yes'], ['Manual Run', 'Yes']]),
             P('**Background Promotions (`promotion-run`)**'),
-            TABLE(['Setting', 'Value'], [['Schedule', 'Every minute, once per cluster'], ['Purpose', 'Runs the [promotions](spaces.html#promotion) asked to run in the background, one at a time, with the access the person who asked had then (Pro)'], ['Run history', 'Only failed runs are recorded'], ['Toggleable', 'No'], ['Schedule Editable', 'Yes'], ['Manual Run', 'Yes']]),
+            TABLE(['Setting', 'Value'], [['Schedule', 'Every minute, once per cluster'], ['Purpose', 'Runs the [promotions](spaces.html#promotion) asked to run in the background, one at a time, with the access the person who asked had then, which must cover the whole source and target repositories (Pro)'], ['Run history', 'Only failed runs are recorded'], ['Toggleable', 'No'], ['Schedule Editable', 'Yes'], ['Manual Run', 'Yes']]),
             P('**Old Promotions (`promotion-prune`)**'),
             TABLE(['Setting', 'Value'], [['Schedule', 'Daily at 04:50, once per cluster'], ['Purpose', 'Forgets background promotions finished more than 30 days ago'], ['Toggleable', 'No'], ['Schedule Editable', 'Yes'], ['Manual Run', 'Yes']]),
             P('**Unused Artifact Content (`artifact-blob-gc`)**'),

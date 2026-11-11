@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-203 screenshots. Save each one into `depotex/assets/` using the
+205 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -183,8 +183,12 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `conan-usage.png`
       Use this repository on the Conan group a space uses by default: its universal address, the remote name, then the commands to add the remote first, turn ConanCenter off, sign in with an API token and install
+- [ ] `conan-promote.png`
+      Promoting a Conan version to a release repository
 - [ ] `conan-proxy-usage.png`
       Use this repository on a proxy of ConanCenter: add it as the first remote, turn ConanCenter off, sign in with an API token and install
+- [ ] `conan-recipes-only.png`
+      A Conan proxy's Settings tab, Conan card: Recipes only, turned on
 - [ ] `conan-group-settings.png`
       A Conan group's Conan card: Hosted recipes hide upstream recipes of the same name, on (the default)
 - [ ] `conan-integrity.png`
