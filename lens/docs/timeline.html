@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Timeline and Dashboard — Lens Docs</title>
   <meta name="description" content="Browse captures in the popup timeline and the dashboard master timeline, search and filter them, and export the metadata as JSON from the dashboard.">
-  <meta name="vc-updated" content="16 Oct 2026">
+  <meta name="vc-updated" content="11 Nov 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -39,6 +39,15 @@
 
       <article class="vc-doc">
 <p class="text-muted mb-4">Lens keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project.</p>
+<figure class="video mb-6">
+        <div class="relative w-full overflow-hidden rounded-lg border border-border bg-black" style="aspect-ratio:16/9">
+          <iframe src="https://www.youtube-nocookie.com/embed/buLFACqRinI?rel=0" title="Framelog Tutorial 09: Projects, timeline and the dashboard"
+                  class="absolute inset-0 w-full h-full" style="border:0" loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Tutorial 9: projects, the popup timeline, and searching, filtering and exporting from the dashboard. <a href="https://youtu.be/buLFACqRinI" target="_blank" rel="noopener" class="text-cta hover:underline">Watch on YouTube</a></figcaption>
+      </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. The popup timeline</h2>
 <p class="text-muted mb-4">Captures are grouped by project. The active project is open at the top and marked <strong class="text-text">Active</strong>; the others are listed under it, and open with a click. Inside each one captures are newest first, and each row shows a thumbnail, the page title, its type and when it was taken.</p>
 <div class="tbl-wrap"><table><thead><tr><th>Control</th><th>What it does</th></tr></thead><tbody><tr><td>Thumbnail</td><td>Opens a larger preview with the page URL and capture time. The preview shows the real file, so a GIF plays and a recording gets a player</td></tr><tr><td>Copy</td><td>Puts the capture itself on the clipboard — the file, not the thumbnail. A GIF copies as its first frame, which is all a clipboard holds; a recording cannot be copied and says so</td></tr><tr><td>Edit</td><td>Opens a screenshot in the image tools, or a guide in the guide editor. Recordings and GIFs cannot be edited</td></tr><tr><td>Delete</td><td>Removes the entry from the timeline</td></tr><tr><td>More (⋮)</td><td><strong class="text-text">Rename</strong> the file and its metadata entry, <strong class="text-text">Save a copy</strong> to your downloads (how a file leaves Lens when no folder is linked), or <strong class="text-text">Show in folder</strong></td></tr><tr><td>Search</td><td>The magnifier beside the heading. Filters every project by file name, page title or URL</td></tr><tr><td>View all in dashboard</td><td>Opens the dashboard's master timeline</td></tr></tbody></table></div>

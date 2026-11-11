@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Capturing a Region — Lens Docs</title>
   <meta name="description" content="Select a region of a page or capture the whole scrolling page, annotate it with shapes, text and blur, then save it into your project folder.">
-  <meta name="vc-updated" content="16 Oct 2026">
+  <meta name="vc-updated" content="11 Nov 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -39,6 +39,15 @@
 
       <article class="vc-doc">
 <p class="text-muted mb-4">A still capture is one screen after the selection: the picture, the tools that change it, and the name it will be saved under are all in front of you at once. Nothing is written until you press Save.</p>
+<figure class="video mb-6">
+        <div class="relative w-full overflow-hidden rounded-lg border border-border bg-black" style="aspect-ratio:16/9">
+          <iframe src="https://www.youtube-nocookie.com/embed/r0ymB31hDno?rel=0" title="Framelog Tutorial 02: Screenshots and the annotation editor"
+                  class="absolute inset-0 w-full h-full" style="border:0" loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Tutorial 2: capturing a region, a hover state or an open menu, then annotating, cropping and saving it in the editor. <a href="https://youtu.be/r0ymB31hDno" target="_blank" rel="noopener" class="text-cta hover:underline">Watch on YouTube</a></figcaption>
+      </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Selecting the region</h2>
 <p class="text-muted mb-4">Start a capture from the popup's <strong class="text-text">Capture</strong> tile or the keyboard shortcut. The page dims, and the region you drag stays bright.</p>
 <div class="tbl-wrap"><table><thead><tr><th>Action</th><th>How</th></tr></thead><tbody><tr><td>Draw a region</td><td>Click and drag anywhere on the page</td></tr><tr><td>Resize</td><td>Drag any of the eight handles on the selection edge</td></tr><tr><td>Move</td><td>Drag from inside the selection</td></tr><tr><td>Confirm</td><td>Press <strong class="text-text">Capture Image</strong>, or press Enter</td></tr><tr><td>Cancel</td><td>Press <strong class="text-text">Cancel</strong>, or press Escape</td></tr></tbody></table></div>
@@ -62,10 +71,28 @@
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Native dropdowns — a plain <span class="font-mono text-sm">&lt;select&gt;</span> — are drawn by the operating system rather than by the page, so Chrome cannot photograph them and they will not appear. Menus, tooltips, hover states and focus rings built in HTML and CSS, which is the great majority, all capture normally.</p></div>
 <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted">The region is fixed to the screen, not to the page. If you scroll during the delay, the capture takes whatever has moved under the box.</p></div>
 <h2 class="text-2xl font-semibold mt-10 mb-4">3. Capturing a whole page</h2>
+<figure class="video mb-6">
+        <div class="relative w-full overflow-hidden rounded-lg border border-border bg-black" style="aspect-ratio:16/9">
+          <iframe src="https://www.youtube-nocookie.com/embed/ImSt4J8rdrk?rel=0" title="Framelog Tutorial 03: Full-page screenshots"
+                  class="absolute inset-0 w-full h-full" style="border:0" loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Tutorial 3: starting a full-page capture, stopping it part way, apps that scroll a panel, and raising the limit for very long pages. <a href="https://youtu.be/ImSt4J8rdrk" target="_blank" rel="noopener" class="text-cta hover:underline">Watch on YouTube</a></figcaption>
+      </figure>
 <p class="text-muted mb-4"><strong class="text-text">Full page</strong> in the popup, or <strong class="text-text">Alt+Shift+F</strong> (<strong class="text-text">⌥⇧F</strong> on a Mac), scrolls the page from the top to the bottom, takes a screenshot of each screen and stitches them into one tall picture. There is no selection step. A pill at the bottom of the page counts the screens, with <strong class="text-text">Stop</strong> beside it. The picture opens in the save screen like any other capture, fitted to the width, and scrolls.</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2"><strong class="text-text">Anything you do stops it.</strong> Scrolling, clicking, a key press, switching tabs or resizing the window stops the run before the next screen. You get the picture down to where it stopped, with a note saying why. If you scrolled, the page stays where you took it; otherwise it goes back to where it was.</li><li class="mb-2"><strong class="text-text">Lazy pages are waited for.</strong> Each screen waits for its images to load and the page to stop growing, up to a second and a half. Scroll animations are switched off for the run. If an image was still blank when its screen was taken, the save screen says how many were.</li><li class="mb-2"><strong class="text-text">Pages that never end stop at a limit.</strong> 30 screens by default; set it from 10 to 100 under <em>Full page: most screenshots</em> in <a href="settings.html" class="text-cta hover:underline">Settings</a>. A page that stalls outright is stopped after two seconds per allowed screen.</li><li class="mb-2"><strong class="text-text">Headers and chat bubbles appear once.</strong> Anything pinned to the screen is in the first screen and hidden for the rest, so it does not repeat down the picture.</li><li class="mb-2"><strong class="text-text">Apps that scroll a panel</strong> — Gmail, Notion, Slack, most dashboards — are handled too. When the page itself does not scroll, Lens scrolls the panel in the middle of the screen, and the header and sidebars come from the first screen.</li><li class="mb-2"><strong class="text-text">Very long pages are scaled down</strong> to fit the largest picture the browser can hold, and the save screen says so.</li></ul>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The private-data check runs over the whole stitched picture, not only the first screen, so a key three screens down is flagged like any other.</p></div>
 <h2 class="text-2xl font-semibold mt-10 mb-4">4. The private-data check</h2>
+<figure class="video mb-6">
+        <div class="relative w-full overflow-hidden rounded-lg border border-border bg-black" style="aspect-ratio:16/9">
+          <iframe src="https://www.youtube-nocookie.com/embed/7EyQYgEjf0M?rel=0" title="Framelog Tutorial 04: Masking secrets and private data"
+                  class="absolute inset-0 w-full h-full" style="border:0" loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Tutorial 4: what the private-data check finds, blurring what you tick, the Before you share settings, and masking secrets before a browser agent captures. <a href="https://youtu.be/7EyQYgEjf0M" target="_blank" rel="noopener" class="text-cta hover:underline">Watch on YouTube</a></figcaption>
+      </figure>
 <p class="text-muted mb-4">As the save screen opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered.</p>
 <p class="text-muted mb-4">It looks for password fields, fields named for a credential that have something in them, and text shaped like an API key, a JWT, a bearer token or a PEM private key. Unless you turn it off, it also flags email addresses and card numbers — card numbers are checksum-checked, so an order number is not mistaken for one.</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">Tick or untick anything in the list, then press <strong class="text-text">Blur selected</strong> to cover the ticked ones in a single step that a single <strong class="text-text">Undo</strong> reverses.</li><li class="mb-2"><strong class="text-text">Dismiss</strong> hides the bar and changes nothing.</li><li class="mb-2">High-confidence findings are ticked for you; the rest are listed but left unticked.</li></ul>

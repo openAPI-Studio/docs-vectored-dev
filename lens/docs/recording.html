@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recording GIF and MP4 — Lens Docs</title>
   <meta name="description" content="Record part of a tab as a high-quality animated GIF or MP4, with click-through interaction, navigation support and a converter that controls GIF framerate, speed and scale. Runs entirely offline.">
-  <meta name="vc-updated" content="03 Sep 2026">
+  <meta name="vc-updated" content="11 Nov 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -40,6 +40,15 @@
       <article class="vc-doc">
 <p class="text-muted mb-4">Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen.</p>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">Recording and encoding both happen inside your browser. Nothing is uploaded, no account or subscription is involved, and the whole flow works offline.</p></div>
+<figure class="video mb-6">
+        <div class="relative w-full overflow-hidden rounded-lg border border-border bg-black" style="aspect-ratio:16/9">
+          <iframe src="https://www.youtube-nocookie.com/embed/1M4NM3OnOmw?rel=0" title="Framelog Tutorial 05: Recording GIFs and MP4 videos"
+                  class="absolute inset-0 w-full h-full" style="border:0" loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Tutorial 5: recording a region as a GIF or an MP4, the GIF converter, and the guide you get from a recording. <a href="https://youtu.be/1M4NM3OnOmw" target="_blank" rel="noopener" class="text-cta hover:underline">Watch on YouTube</a></figcaption>
+      </figure>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Starting a recording</h2>
 <ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Record GIF</strong> in the popup</strong> <span class="text-muted">or use the recording shortcut. The region selector opens exactly as it does for a still capture.</span></li><li class="mb-3"><strong class="text-text">Drag the region and press <strong class="text-text">Record GIF</strong></strong> <span class="text-muted">on the selection toolbar.</span></li><li class="mb-3"><strong class="text-text">Use the page normally</strong> <span class="text-muted">a dashed red frame marks the recorded area and a REC widget shows elapsed time.</span></li><li class="mb-3"><strong class="text-text">Press <strong class="text-text">Stop &amp; Convert</strong></strong> <span class="text-muted">when you are done.</span></li></ol>
 <div class="flex gap-3 rounded-xl border border-cta/30 bg-cta/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-cta mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg><p class="text-sm text-muted">The dashed frame and the REC widget sit <strong class="text-text">outside</strong> the recorded region, so neither appears in the output. If your selection covers the whole viewport there is nowhere to put the widget, and it will be captured.</p></div>

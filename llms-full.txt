@@ -14845,7 +14845,7 @@ Capture a region of any tab as a PNG, a high-quality animated GIF or an MP4, or 
 
 Works completely offline No subscription No account or sign-in High-quality GIF output
 
-A 75-second tour: masking secrets, screenshots, step-by-step guides, Guide Mode, GIFs and the AI agent. [Watch on YouTube](https://youtu.be/ADe5jHcBDhE)
+A 75-second tour: masking secrets, screenshots, step-by-step guides, Guide Mode, GIFs and the AI agent. [Watch on YouTube](https://youtu.be/ADe5jHcBDhE) · [All ten tutorials](https://www.youtube.com/playlist?list=PLV_tXFIdjKSU)
 
 4
 
@@ -14971,6 +14971,8 @@ A 75-second tour: masking secrets, capturing and annotating a screenshot, record
 
 ### 1. Install and pin
 
+Tutorial 1: installing and pinning Framelog, a tour of the popup, your first project and your first capture. [Watch on YouTube](https://youtu.be/mc-U8RzEhX8)
+
 1. **Install Lens from the Chrome Web Store** or load the unpacked folder via chrome://extensions with Developer mode on.
 
 2. **Pin it to the toolbar** click the puzzle-piece icon in Chrome's toolbar and press the pin next to Lens. The toolbar icon is where recording status and capture errors are reported.
@@ -15055,6 +15057,23 @@ A region selected on a web page, with the dimension pill above it and the Cancel
 
 - [Settings](https://docs.vectored.dev/lens/docs/settings.html) — every preference and what it changes.
 
+### 6. Video tutorials
+
+Each feature has a short tutorial on YouTube, embedded on the page it belongs to. Watch them in order in the [Framelog Tutorials playlist](https://www.youtube.com/playlist?list=PLV_tXFIdjKSU).
+
+| # | Tutorial | Read about it |
+| --- | --- | --- |
+| 1 | [Getting started with Framelog](https://youtu.be/mc-U8RzEhX8) | [Getting started](https://docs.vectored.dev/lens/docs/getting-started.html) |
+| 2 | [Screenshots and the annotation editor](https://youtu.be/r0ymB31hDno) | [Capturing a region](https://docs.vectored.dev/lens/docs/capturing.html) |
+| 3 | [Full-page screenshots](https://youtu.be/ImSt4J8rdrk) | [Capturing a whole page](https://docs.vectored.dev/lens/docs/capturing.html#3-capturing-a-whole-page) |
+| 4 | [Masking secrets and private data](https://youtu.be/7EyQYgEjf0M) | [The private-data check](https://docs.vectored.dev/lens/docs/capturing.html#4-the-private-data-check) |
+| 5 | [Recording GIFs and MP4 videos](https://youtu.be/1M4NM3OnOmw) | [Recording GIF and MP4](https://docs.vectored.dev/lens/docs/recording.html) |
+| 6 | [Smart Capture step-by-step guides](https://youtu.be/SSaIqgJulCo) | [Step-by-step guides](https://docs.vectored.dev/lens/docs/guides.html) |
+| 7 | [Editing and exporting guides](https://youtu.be/d5vGMSkO1Nk) | [The guide editor](https://docs.vectored.dev/lens/docs/guides.html#9-the-guide-editor) |
+| 8 | [Guide Mode, playing a guide back](https://youtu.be/505t5QiYOTg) | [Guide Mode](https://docs.vectored.dev/lens/docs/guides.html#5-guide-mode-playing-a-guide-back) |
+| 9 | [Projects, timeline and the dashboard](https://youtu.be/buLFACqRinI) | [Timeline and dashboard](https://docs.vectored.dev/lens/docs/timeline.html) |
+| 10 | [AI features, your own models and AI agents](https://youtu.be/wVgPh0sLWuE) | [AI features](https://docs.vectored.dev/lens/docs/ai.html) |
+
 ## Capturing a Region
 
 Source: https://docs.vectored.dev/lens/docs/capturing.html
@@ -15062,6 +15081,8 @@ Source: https://docs.vectored.dev/lens/docs/capturing.html
 Select, annotate and save a still image from any tab.
 
 A still capture is one screen after the selection: the picture, the tools that change it, and the name it will be saved under are all in front of you at once. Nothing is written until you press Save.
+
+Tutorial 2: capturing a region, a hover state or an open menu, then annotating, cropping and saving it in the editor. [Watch on YouTube](https://youtu.be/r0ymB31hDno)
 
 ### 1. Selecting the region
 
@@ -15109,6 +15130,8 @@ The region is fixed to the screen, not to the page. If you scroll during the del
 
 ### 3. Capturing a whole page
 
+Tutorial 3: starting a full-page capture, stopping it part way, apps that scroll a panel, and raising the limit for very long pages. [Watch on YouTube](https://youtu.be/ImSt4J8rdrk)
+
 **Full page** in the popup, or **Alt+Shift+F** (**⌥⇧F** on a Mac), scrolls the page from the top to the bottom, takes a screenshot of each screen and stitches them into one tall picture. There is no selection step. A pill at the bottom of the page counts the screens, with **Stop** beside it. The picture opens in the save screen like any other capture, fitted to the width, and scrolls.
 
 - **Anything you do stops it.** Scrolling, clicking, a key press, switching tabs or resizing the window stops the run before the next screen. You get the picture down to where it stopped, with a note saying why. If you scrolled, the page stays where you took it; otherwise it goes back to where it was.
@@ -15126,6 +15149,8 @@ The region is fixed to the screen, not to the page. If you scroll during the del
 The private-data check runs over the whole stitched picture, not only the first screen, so a key three screens down is flagged like any other.
 
 ### 4. The private-data check
+
+Tutorial 4: what the private-data check finds, blurring what you tick, the Before you share settings, and masking secrets before a browser agent captures. [Watch on YouTube](https://youtu.be/7EyQYgEjf0M)
 
 As the save screen opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered.
 
@@ -15226,6 +15251,8 @@ Record a region of a tab as a high-quality animated GIF or an MP4 video.
 Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen.
 
 Recording and encoding both happen inside your browser. Nothing is uploaded, no account or subscription is involved, and the whole flow works offline.
+
+Tutorial 5: recording a region as a GIF or an MP4, the GIF converter, and the guide you get from a recording. [Watch on YouTube](https://youtu.be/1M4NM3OnOmw)
 
 ### 1. Starting a recording
 
@@ -15359,6 +15386,8 @@ A **guide** is a walkthrough of a flow: a screenshot per step with the control y
 
 ### 1. Two ways to capture one
 
+Tutorial 6: recording a flow with Smart Capture, how typing becomes a step, what produces no step, and reviewing the guide before it is saved. [Watch on YouTube](https://youtu.be/SSaIqgJulCo)
+
 **Record steps** (⌘⇧E, Alt+Shift+E) is the light one: no region to drag, no video, and **no time limit** — nothing accumulates between clicks, so a walkthrough can take as long as the work does.
 
 1. **Press **Record steps** in the popup** or use the shortcut. A small widget appears in the corner of the page.
@@ -15464,6 +15493,8 @@ The dashboard Guides tab with guide cards, each showing the site's logo, title, 
 
 ### 5. Guide Mode: playing a guide back
 
+Tutorial 8: playing a guide back over the live page, moving between steps, and what happens when a control cannot be found. [Watch on YouTube](https://youtu.be/505t5QiYOTg)
+
 An exported guide is something you read next to the work. **Guide Mode** puts it *on* the work: a small panel floats over the real page with the current step and its screenshot, and a ring is drawn around the control that step is about, on the page itself.
 
 Start it from **Dashboard > Guides > Play**, or from **Guide Mode** in the editor's toolbar.
@@ -15520,6 +15551,8 @@ The time needed is worked out from the steps themselves: a click reads quicker t
 The name and address are filled in for you — from Settings, or from the address this Chrome profile is signed in with when Settings is blank. A guide someone else wrote keeps their name when you open it, and nothing is sent anywhere: it goes into that guide's own file in your folder. See [Privacy](https://docs.vectored.dev/lens/privacy.html).
 
 ### 9. The guide editor
+
+Tutorial 7: the details table, editing step text in Markdown, reordering and cropping steps, and exporting a guide. [Watch on YouTube](https://youtu.be/d5vGMSkO1Nk)
 
 The editor opens in its own tab and reads as a document: the sheet is the width of the exported page, and the steps run down it in order.
 
@@ -15645,6 +15678,8 @@ Organise captures into named projects, and mirror each one into a local folder i
 
 Every capture goes into the **active project**. A project is a name and the captures filed under it, which Lens keeps itself. A folder on your machine is optional — link one and the project is mirrored into it.
 
+Tutorial 9: creating and switching projects, linking a folder, the popup timeline and the dashboard. [Watch on YouTube](https://youtu.be/buLFACqRinI)
+
 ### 1. Creating a project
 
 1. **Press **New project** in the popup, or **New project** on the dashboard** both open the same flow.
@@ -15726,6 +15761,8 @@ Source: https://docs.vectored.dev/lens/docs/timeline.html
 Review, search and export everything you have captured.
 
 Lens keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project.
+
+Tutorial 9: projects, the popup timeline, and searching, filtering and exporting from the dashboard. [Watch on YouTube](https://youtu.be/buLFACqRinI)
 
 ### 1. The popup timeline
 
@@ -16065,6 +16102,8 @@ Every AI feature is off when you install Lens, and with no provider selected the
 
 Lens has no AI service of its own. There is no Vectored model, no Vectored endpoint and no Vectored proxy — instead you pick who does the work, and that choice decides whether anything leaves your machine.
 
+Tutorial 10: choosing a provider, using your own models, and connecting an AI agent that drives Framelog in your browser. [Watch on YouTube](https://youtu.be/wVgPh0sLWuE)
+
 ### 1. Choosing a provider
 
 | Provider | Where it runs | What leaves your machine | You need |
@@ -16225,6 +16264,8 @@ With the skill, an agent can:
 - file everything into a Lens project, and pick up the saved file afterwards.
 
 The skill is free and open source (MIT): [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills).
+
+[Tutorial 10](https://youtu.be/wVgPh0sLWuE?t=165) shows the setup from 2:45: the switch that lets agents drive Framelog, installing the skill, and a first prompt to try.
 
 ### 1. Before you start
 
@@ -17140,7 +17181,7 @@ Vectored builds production-grade apps for Atlassian Confluence & Jira, VS Code, 
 
 Everything ships with full documentation, a support channel, and Marketplace-managed billing where applicable.
 
-7 products · 6 live
+8 products · 6 live
 
 Atlassian Cloud 4 apps
 
@@ -17239,6 +17280,22 @@ Screenshot and screen recording for documentation — capture a region of any ta
 Supports AI Region capture High-quality GIF & MP4 Annotation & blur Local folders Fully offline No subscription
 
 [Install →](https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki) [Documentation](https://docs.vectored.dev/lens/)
+
+Self-hosted 1 app
+
+#### Depotex
+
+on your own servers · Docker, Kubernetes & Helm
+
+COMING SOON
+
+A self-hosted artifact repository for 18 package formats — npm, Maven, PyPI, Docker, NuGet, Go, Cargo and more. It caches the public registries your builds depend on and gives security teams SBOMs, vulnerability checks, quarantine and policies around every version. Run it on one server or a cluster, with the same features either way.
+
+18 package formats Registry proxy & cache SBOMs & vulnerabilities Quarantine & policies Single sign-on Single node or cluster
+
+**Early adopters:** Depotex isn't released yet. Contact us for access to the server and a license.
+
+[Request early access →](https://docs.vectored.dev/support.html?tool=depotex&type=access) [Documentation](https://docs.vectored.dev/depotex/)
 
 BYOAI* — **Bring Your Own AI.** These products work with an AI provider you already use: plug in your own API key (or connect your own AI assistant, in API Studio's case) and AI requests go to that provider under your own account and terms. You choose the provider, and usage is billed by them — never through a Vectored plan. Tiles marked *Supports AI* have AI features; Recognition Hub for Confluence uses Atlassian-hosted AI, so no key is needed there.
 

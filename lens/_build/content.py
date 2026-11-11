@@ -1,6 +1,43 @@
 """Lens doc content. Edit here, not the generated HTML under lens/docs/."""
 from engine import P, H, UL, OL, STEPS, TABLE, NOTE, WARN, SHOT, VIDEO
 
+PLAYLIST = "https://www.youtube.com/playlist?list=PLV_tXFIdjKSU"
+
+# The Framelog tutorial series on YouTube: number -> (video id, title, doc page).
+TUTORIALS = {
+    1: ("mc-U8RzEhX8", "Getting started with Framelog", "getting-started.html"),
+    2: ("r0ymB31hDno", "Screenshots and the annotation editor", "capturing.html"),
+    3: ("ImSt4J8rdrk", "Full-page screenshots", "capturing.html#3-capturing-a-whole-page"),
+    4: ("7EyQYgEjf0M", "Masking secrets and private data", "capturing.html#4-the-private-data-check"),
+    5: ("1M4NM3OnOmw", "Recording GIFs and MP4 videos", "recording.html"),
+    6: ("SSaIqgJulCo", "Smart Capture step-by-step guides", "guides.html"),
+    7: ("d5vGMSkO1Nk", "Editing and exporting guides", "guides.html#9-the-guide-editor"),
+    8: ("505t5QiYOTg", "Guide Mode, playing a guide back", "guides.html#5-guide-mode-playing-a-guide-back"),
+    9: ("buLFACqRinI", "Projects, timeline and the dashboard", "timeline.html"),
+    10: ("wVgPh0sLWuE", "AI features, your own models and AI agents", "ai.html"),
+}
+
+DOC_LABELS = {
+    "getting-started.html": "Getting started",
+    "capturing.html": "Capturing a region",
+    "capturing.html#3-capturing-a-whole-page": "Capturing a whole page",
+    "capturing.html#4-the-private-data-check": "The private-data check",
+    "recording.html": "Recording GIF and MP4",
+    "guides.html": "Step-by-step guides",
+    "guides.html#9-the-guide-editor": "The guide editor",
+    "guides.html#5-guide-mode-playing-a-guide-back": "Guide Mode",
+    "timeline.html": "Timeline and dashboard",
+    "ai.html": "AI features",
+}
+
+
+def TUTORIAL(n, caption):
+    """Embed tutorial n of the series, with a link to the whole playlist."""
+    vid, title = TUTORIALS[n][:2]
+    return VIDEO(vid, "Framelog Tutorial %02d: %s" % (n, title),
+                 "Tutorial %d: %s" % (n, caption))
+
+
 # Each page: slug -> dict(title, lede, desc, icon, blocks)
 
 PAGES = {}
@@ -17,6 +54,7 @@ PAGES["getting-started"] = dict(
         VIDEO("ADe5jHcBDhE", "Framelog demo: screenshots, GIFs and step-by-step guides with secrets masked", "A 75-second tour: masking secrets, capturing and annotating a screenshot, recording a step-by-step guide, replaying it with Guide Mode, recording a GIF, and letting an AI agent drive it."),
 
         H("Install and pin"),
+        TUTORIAL(1, "installing and pinning Framelog, a tour of the popup, your first project and your first capture."),
         STEPS([
             "Install Lens from the Chrome Web Store|or load the unpacked folder via chrome://extensions with Developer mode on.",
             "Pin it to the toolbar|click the puzzle-piece icon in Chrome's toolbar and press the pin next to Lens. The toolbar icon is where recording status and capture errors are reported.",
@@ -63,6 +101,12 @@ PAGES["getting-started"] = dict(
             "[Projects and folders](projects.html) — multiple projects, switching, linking folders and catching one up.",
             "[Settings](settings.html) — every preference and what it changes.",
         ]),
+
+        H("Video tutorials"),
+        P("Each feature has a short tutorial on YouTube, embedded on the page it belongs to. Watch them in order in the [Framelog Tutorials playlist](%s)." % PLAYLIST),
+        TABLE(["#", "Tutorial", "Read about it"],
+              [[str(n), "[%s](https://youtu.be/%s)" % (t, v), "[%s](%s)" % (DOC_LABELS[page], page)]
+               for n, (v, t, page) in TUTORIALS.items()]),
     ],
 )
 
@@ -73,6 +117,7 @@ PAGES["capturing"] = dict(
     icon="crop",
     blocks=[
         P("A still capture is one screen after the selection: the picture, the tools that change it, and the name it will be saved under are all in front of you at once. Nothing is written until you press Save."),
+        TUTORIAL(2, "capturing a region, a hover state or an open menu, then annotating, cropping and saving it in the editor."),
 
         H("Selecting the region"),
         P("Start a capture from the popup's **Capture** tile or the keyboard shortcut. The page dims, and the region you drag stays bright."),
@@ -100,6 +145,7 @@ PAGES["capturing"] = dict(
         WARN("The region is fixed to the screen, not to the page. If you scroll during the delay, the capture takes whatever has moved under the box."),
 
         H("Capturing a whole page"),
+        TUTORIAL(3, "starting a full-page capture, stopping it part way, apps that scroll a panel, and raising the limit for very long pages."),
         P("**Full page** in the popup, or **Alt+Shift+F** (**⌥⇧F** on a Mac), scrolls the page from the top to the bottom, takes a screenshot of each screen and stitches them into one tall picture. There is no selection step. A pill at the bottom of the page counts the screens, with **Stop** beside it. The picture opens in the save screen like any other capture, fitted to the width, and scrolls."),
         UL([
             "**Anything you do stops it.** Scrolling, clicking, a key press, switching tabs or resizing the window stops the run before the next screen. You get the picture down to where it stopped, with a note saying why. If you scrolled, the page stays where you took it; otherwise it goes back to where it was.",
@@ -112,6 +158,7 @@ PAGES["capturing"] = dict(
         NOTE("The private-data check runs over the whole stitched picture, not only the first screen, so a key three screens down is flagged like any other."),
 
         H("The private-data check"),
+        TUTORIAL(4, "what the private-data check finds, blurring what you tick, the Before you share settings, and masking secrets before a browser agent captures."),
         P("As the save screen opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered."),
         P("It looks for password fields, fields named for a credential that have something in them, and text shaped like an API key, a JWT, a bearer token or a PEM private key. Unless you turn it off, it also flags email addresses and card numbers — card numbers are checksum-checked, so an order number is not mistaken for one."),
         UL([
@@ -175,6 +222,7 @@ PAGES["recording"] = dict(
     blocks=[
         P("Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen."),
         NOTE("Recording and encoding both happen inside your browser. Nothing is uploaded, no account or subscription is involved, and the whole flow works offline."),
+        TUTORIAL(5, "recording a region as a GIF or an MP4, the GIF converter, and the guide you get from a recording."),
 
         H("Starting a recording"),
         STEPS([
@@ -258,6 +306,7 @@ PAGES["guides"] = dict(
         NOTE("**No AI is involved in building a guide.** Step sentences come from the accessible name of each control — the name a screen reader would announce. A connected model can rewrite those sentences afterwards; it never writes them in the first place."),
 
         H("Two ways to capture one"),
+        TUTORIAL(6, "recording a flow with Smart Capture, how typing becomes a step, what produces no step, and reviewing the guide before it is saved."),
         P("**Record steps** (⌘⇧E, Alt+Shift+E) is the light one: no region to drag, no video, and **no time limit** — nothing accumulates between clicks, so a walkthrough can take as long as the work does."),
         STEPS([
             "Press **Record steps** in the popup|or use the shortcut. A small widget appears in the corner of the page.",
@@ -311,6 +360,7 @@ PAGES["guides"] = dict(
         SHOT("lens-guides-list.png", "The dashboard Guides tab with guide cards, each showing the site's logo, title, step count and the folder path it was written to"),
 
         H("Guide Mode: playing a guide back"),
+        TUTORIAL(8, "playing a guide back over the live page, moving between steps, and what happens when a control cannot be found."),
         P("An exported guide is something you read next to the work. **Guide Mode** puts it *on* the work: a small panel floats over the real page with the current step and its screenshot, and a ring is drawn around the control that step is about, on the page itself."),
         P("Start it from **Dashboard > Guides > Play**, or from **Guide Mode** in the editor's toolbar."),
         TABLE(["Control", "What it does"], [
@@ -346,6 +396,7 @@ PAGES["guides"] = dict(
         NOTE("The name and address are filled in for you — from Settings, or from the address this Chrome profile is signed in with when Settings is blank. A guide someone else wrote keeps their name when you open it, and nothing is sent anywhere: it goes into that guide's own file in your folder. See [Privacy](../privacy.html)."),
 
         H("The guide editor"),
+        TUTORIAL(7, "the details table, editing step text in Markdown, reordering and cropping steps, and exporting a guide."),
         P("The editor opens in its own tab and reads as a document: the sheet is the width of the exported page, and the steps run down it in order."),
         P("Step text is **Markdown**, and the toolbar offers exactly what Markdown can carry — bold, italic, strikethrough, code, highlight, links with an optional tooltip, pictures, bullet and numbered lists, task lists, nesting a list item deeper or bringing it back out, a line break inside a paragraph, tables, code blocks, rules, callouts and headings. Nothing else is offered on purpose: a font size or a colour would be something one of the two exports could not represent, and the same text is written to `guide.md` and rendered into `guide.html`."),
         P("Typed by hand, the whole of the [basic syntax](https://www.markdownguide.org/basic-syntax/) works: headings, bold, italic and both at once, blockquotes, ordered and unordered lists (`-`, `*` and `+`) nested by indentation, code spans — including the doubled-backtick form that holds a backtick — fenced code blocks, horizontal rules, links with titles, autolinked addresses such as `<https://example.com>` and bare email addresses, pictures, two-space hard line breaks, and backslash escapes. On top of that: strikethrough, `==highlight==`, tables, task lists, GitHub-style callouts and `:emoji:` shortcodes."),
@@ -429,6 +480,7 @@ PAGES["projects"] = dict(
     icon="folder",
     blocks=[
         P("Every capture goes into the **active project**. A project is a name and the captures filed under it, which Lens keeps itself. A folder on your machine is optional — link one and the project is mirrored into it."),
+        TUTORIAL(9, "creating and switching projects, linking a folder, the popup timeline and the dashboard."),
 
         H("Creating a project"),
         STEPS([
@@ -482,6 +534,7 @@ PAGES["timeline"] = dict(
     icon="list",
     blocks=[
         P("Lens keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project."),
+        TUTORIAL(9, "projects, the popup timeline, and searching, filtering and exporting from the dashboard."),
 
         H("The popup timeline"),
         P("Captures are grouped by project. The active project is open at the top and marked **Active**; the others are listed under it, and open with a click. Inside each one captures are newest first, and each row shows a thumbnail, the page title, its type and when it was taken."),
@@ -544,6 +597,7 @@ PAGES["ai"] = dict(
         NOTE("Every AI feature is off when you install Lens, and with no provider selected the extension makes no network requests at all. Nothing on this page happens until you choose one."),
 
         P("Lens has no AI service of its own. There is no Vectored model, no Vectored endpoint and no Vectored proxy — instead you pick who does the work, and that choice decides whether anything leaves your machine."),
+        TUTORIAL(10, "choosing a provider, using your own models, and connecting an AI agent that drives Framelog in your browser."),
 
         H("Choosing a provider"),
         TABLE(["Provider", "Where it runs", "What leaves your machine", "You need"], [
@@ -656,6 +710,7 @@ PAGES["agent-skill"] = dict(
             "file everything into a Lens project, and pick up the saved file afterwards.",
         ]),
         P("The skill is free and open source (MIT): [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills)."),
+        P("[Tutorial 10](https://youtu.be/wVgPh0sLWuE?t=165) shows the setup from 2:45: the switch that lets agents drive Framelog, installing the skill, and a first prompt to try."),
 
         H("Before you start"),
         STEPS([
