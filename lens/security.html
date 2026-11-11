@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Security — Lens</title>
-  <meta name="description" content="Security model for Lens by Vectored: what each Chrome permission is used for, how folder access is scoped, and how to report a vulnerability.">
+  <title>Security — Framelog</title>
+  <meta name="description" content="Security model for Framelog by Vectored: what each Chrome permission is used for, how folder access is scoped, and how to report a vulnerability.">
   <link rel="canonical" href="https://docs.vectored.dev/lens/security.html">
-  <meta property="og:title" content="Security — Lens">
-  <meta property="og:description" content="Security model for Lens by Vectored: permissions, folder scope, and vulnerability reporting.">
+  <meta property="og:title" content="Security — Framelog">
+  <meta property="og:description" content="Security model for Framelog by Vectored: permissions, folder scope, and vulnerability reporting.">
   <meta property="og:url" content="https://docs.vectored.dev/lens/security.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Vectored">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Security — Lens">
-  <meta name="twitter:description" content="Security model for Lens by Vectored: permissions, folder scope, and vulnerability reporting.">
+  <meta name="twitter:title" content="Security — Framelog">
+  <meta name="twitter:description" content="Security model for Framelog by Vectored: permissions, folder scope, and vulnerability reporting.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="../assets/tailwind-config.js"></script>
@@ -36,12 +36,12 @@
     <main class="vc-main">
       <div class="vc-col">
         <h1 class="vc-h1">Security</h1>
-<p class="vc-lede">Lens by Vectored &middot; Last updated: August 2026</p>
+<p class="vc-lede">Framelog by Vectored &middot; Last updated: August 2026</p>
 
         <article class="vc-doc">
 
     <div class="bg-cta/10 border border-cta/20 rounded-xl p-5 mb-10">
-      <p class="text-sm text-muted"><strong class="text-text">Threat model in one line.</strong> Lens runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in <a href="#ai" class="text-cta hover:underline">section 4</a>.</p>
+      <p class="text-sm text-muted"><strong class="text-text">Threat model in one line.</strong> Framelog runs on your machine and, as installed, has no network surface of its own — it works completely offline, with no account, no subscription and no licence check to phone home — so the risks worth documenting are what it can reach locally and what it is trusted with. Connecting an AI provider adds one outbound path — to a company you chose, holding a key you supplied — covered in <a href="#ai" class="text-cta hover:underline">section 4</a>.</p>
     </div>
 
     <section class="mb-10">
@@ -53,7 +53,7 @@
           <tbody>
             <tr><td><span class="font-mono text-xs">tabCapture</span></td><td>The video stream a GIF or MP4 recording is made from. Only for the tab you started recording on, and only while recording.</td></tr>
             <tr><td><span class="font-mono text-xs">scripting</span></td><td>Injecting the selection overlay and editor into the tab at the moment you start a capture. Nothing is injected before that.</td></tr>
-            <tr><td><span class="font-mono text-xs">host_permissions</span> for all sites</td><td>Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Lens has no code that does so.</td></tr>
+            <tr><td><span class="font-mono text-xs">host_permissions</span> for all sites</td><td>Required for the above to work on whichever page you choose to capture. It is not used to read pages in the background, and Framelog has no code that does so.</td></tr>
             <tr><td><span class="font-mono text-xs">tabs</span></td><td>Reading the active tab's title and URL to record alongside a capture, and bringing a recording's tab forward when you stop it from the popup.</td></tr>
             <tr><td><span class="font-mono text-xs">activeTab</span></td><td>Capturing the visible area of the current tab for still screenshots.</td></tr>
             <tr><td><span class="font-mono text-xs">downloads</span></td><td>Writing a copy of a capture to your downloads when you ask for one.</td></tr>
@@ -63,14 +63,14 @@
           </tbody>
         </table>
       </div>
-      <p class="text-muted mt-4">Lens requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.</p>
-      <p class="text-muted mt-4">The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Lens contacts no host on its own initiative — see <a href="#ai" class="text-cta hover:underline">section 4</a>.</p>
-      <p class="text-muted mt-4">The same permission covers one other request, and only when you ask for it: <strong class="text-text">importing a guide from a link</strong>. Lens fetches the address you paste and nothing else, over <span class="font-mono text-xs">http</span> or <span class="font-mono text-xs">https</span> only, capped at 50&nbsp;MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.</p>
+      <p class="text-muted mt-4">Framelog requests no permission for native messaging, browsing history, cookies, bookmarks, the clipboard beyond an explicit copy you asked for, or identity.</p>
+      <p class="text-muted mt-4">The all-sites host permission above is what makes an outbound AI request technically possible once you configure a provider. No AI provider is configured by default, and Framelog contacts no host on its own initiative — see <a href="#ai" class="text-cta hover:underline">section 4</a>.</p>
+      <p class="text-muted mt-4">The same permission covers one other request, and only when you ask for it: <strong class="text-text">importing a guide from a link</strong>. Framelog fetches the address you paste and nothing else, over <span class="font-mono text-xs">http</span> or <span class="font-mono text-xs">https</span> only, capped at 50&nbsp;MB and 30 seconds. What comes back is treated as untrusted data — it is parsed as a guide and refused if it is not one, exported guides carry no scripts, and an import is always written as a new copy, so nothing already in your folder is overwritten.</p>
     </section>
 
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">2. File system scope</h2>
-      <p class="text-muted mb-4">Lens writes through the File System Access API, which is scoped by design:</p>
+      <p class="text-muted mb-4">Framelog writes through the File System Access API, which is scoped by design:</p>
       <ul class="list-disc pl-6 text-muted space-y-2">
         <li>It can only touch folders picked by you in the browser's own picker. There is no path entry, and no way for the extension to name a folder you did not choose.</li>
         <li>A granted handle is stored in the extension's IndexedDB, but the grant itself is held by the browser and is revocable there.</li>
@@ -80,9 +80,9 @@
 
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">3. No remote code</h2>
-      <p class="text-muted mb-4">Everything Lens executes ships inside the extension package and is reviewable in the Chrome Web Store listing:</p>
+      <p class="text-muted mb-4">Everything Framelog executes ships inside the extension package and is reviewable in the Chrome Web Store listing:</p>
       <ul class="list-disc pl-6 text-muted space-y-2">
-        <li>No script is loaded from a CDN or any remote origin at runtime, which Manifest V3 forbids and Lens does not attempt.</li>
+        <li>No script is loaded from a CDN or any remote origin at runtime, which Manifest V3 forbids and Framelog does not attempt.</li>
         <li>The GIF encoder is implemented in the extension rather than pulled from a third-party bundle, so there is no external package in the capture path.</li>
         <li>MP4 and WebM encoding is done by Chrome's own <span class="font-mono text-sm">MediaRecorder</span>, not by bundled codec code.</li>
         <li>The shutter sound is synthesised at runtime rather than shipped as an audio asset.</li>
@@ -95,7 +95,7 @@
 
       <h3 class="text-lg font-semibold mt-6 mb-3">Where the key lives, and why</h3>
       <ul class="list-disc pl-6 text-muted space-y-2">
-        <li>Requests to a keyed provider are made by the extension's <strong class="text-text">background service worker</strong>, never by the code Lens injects into the page. Injected code shares a process with the page it is injected into, so a page-side compromise must not be able to read a key — it is never put there.</li>
+        <li>Requests to a keyed provider are made by the extension's <strong class="text-text">background service worker</strong>, never by the code Framelog injects into the page. Injected code shares a process with the page it is injected into, so a page-side compromise must not be able to read a key — it is never put there.</li>
         <li>The key is stored under its own storage area, separate from the settings the page-side code is allowed to read, so it cannot be picked up as a side effect of reading preferences.</li>
         <li>The settings screen writes keys but cannot read them back; it can only tell you whether one is saved.</li>
         <li>A key is sent to exactly one place: the provider it belongs to. It never reaches Vectored, and there is no Vectored endpoint for it to reach.</li>
@@ -107,22 +107,22 @@
       <p class="text-muted mb-4">Model output can only re-rank and relabel what the local rules already found. It can never add a region, and it can never blur one — blurring stays a click you make. A provider that is slow, unreachable or answers badly leaves the local results exactly as they were.</p>
 
       <h3 class="text-lg font-semibold mt-6 mb-3">Model output is treated as untrusted</h3>
-      <p class="text-muted mb-4">The page being captured is the same page whose title and headings go into the prompt that examines it. A hostile page can therefore write text aimed at the model — including text intended to talk it out of flagging that page's own credential fields. Lens is built on the assumption that this will be attempted:</p>
+      <p class="text-muted mb-4">The page being captured is the same page whose title and headings go into the prompt that examines it. A hostile page can therefore write text aimed at the model — including text intended to talk it out of flagging that page's own credential fields. Framelog is built on the assumption that this will be attempted:</p>
       <ul class="list-disc pl-6 text-muted space-y-2">
         <li><strong class="text-text">A high-confidence finding cannot be cleared by the model.</strong> A password field, or text matching a known key format, stays selected whatever the response says. The model can promote a lower-confidence finding but never demote a high one.</li>
         <li><strong class="text-text">A demoted finding is still shown.</strong> Nothing is ever removed from the list — at most it is left unticked, in front of you.</li>
         <li><strong class="text-text">Nothing generated is executed.</strong> Model output only ever becomes text in a field you can edit, or the order of a list. It is never run, never used to build a request, and never written to disk without passing through you.</li>
-        <li><strong class="text-text">A suggested file name is sanitised</strong> like any other name Lens writes — extension stripped, path separators and filesystem-rejected characters replaced, length capped — so a name cannot direct a write outside your project folder.</li>
+        <li><strong class="text-text">A suggested file name is sanitised</strong> like any other name Framelog writes — extension stripped, path separators and filesystem-rejected characters replaced, length capped — so a name cannot direct a write outside your project folder.</li>
       </ul>
       <p class="text-muted mt-4">The check that finds the regions in the first place runs on the page structure with no model involved, so with no provider configured none of this applies at all.</p>
     </section>
 
     <section class="mb-10">
-      <h2 class="text-xl font-semibold mb-4">5. What Lens deliberately cannot capture</h2>
+      <h2 class="text-xl font-semibold mb-4">5. What Framelog deliberately cannot capture</h2>
       <p class="text-muted mb-4">Some limits are Chrome's and are worth knowing, because they are security boundaries rather than bugs:</p>
       <ul class="list-disc pl-6 text-muted space-y-2">
         <li>Browser pages — <span class="font-mono text-xs">chrome://</span>, <span class="font-mono text-xs">about:</span>, the Web Store, DevTools, other extensions' pages — cannot be captured by any extension.</li>
-        <li>DRM-protected video is excluded from tab capture by the platform and records as solid black. Lens detects this and warns rather than handing you a black file without explanation.</li>
+        <li>DRM-protected video is excluded from tab capture by the platform and records as solid black. Framelog detects this and warns rather than handing you a black file without explanation.</li>
         <li><span class="font-mono text-xs">file://</span> URLs require you to enable file access for the extension explicitly.</li>
       </ul>
     </section>
@@ -130,10 +130,10 @@
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">6. Handling sensitive captures</h2>
       <ul class="list-disc pl-6 text-muted space-y-2">
-        <li>Lens flags likely credentials in the captured region before you save and offers to blur them. That check runs on page structure in your browser, with no AI and no network call, and is on by default. Treat it as a safety net, not a guarantee — it looks for known shapes, so read the capture as well.</li>
+        <li>Framelog flags likely credentials in the captured region before you save and offers to blur them. That check runs on page structure in your browser, with no AI and no network call, and is on by default. Treat it as a safety net, not a guarantee — it looks for known shapes, so read the capture as well.</li>
         <li>Use the <strong class="text-text">blur</strong> tool for anything the check missed. It rewrites pixels rather than covering them, so the original cannot be recovered from the saved file.</li>
         <li>Remember that a capture records the page <strong class="text-text">URL and title</strong> into <span class="font-mono text-sm">project_metadata.json</span>. If the URL itself is sensitive — a signed link, a token in a query string — treat the metadata file with the same care as the image, or turn off <strong class="text-text">Write metadata file</strong> in Settings.</li>
-        <li>Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Lens inherits the protection of the folder you choose and adds none of its own.</li>
+        <li>Point projects at a folder covered by whatever disk encryption and backup policy your captures warrant. Framelog inherits the protection of the folder you choose and adds none of its own.</li>
       </ul>
     </section>
 
@@ -153,7 +153,7 @@
 
     <section class="mb-10">
       <h2 class="text-xl font-semibold mb-4">8. Related</h2>
-      <p class="text-muted"><a href="privacy.html" class="text-cta hover:underline">Lens privacy policy</a> &middot; <a href="../security.html" class="text-cta hover:underline">Vectored site security</a> &middot; <a href="support.html" class="text-cta hover:underline">Support</a></p>
+      <p class="text-muted"><a href="privacy.html" class="text-cta hover:underline">Framelog privacy policy</a> &middot; <a href="../security.html" class="text-cta hover:underline">Vectored site security</a> &middot; <a href="support.html" class="text-cta hover:underline">Support</a></p>
     </section>
         </article>
       </div>

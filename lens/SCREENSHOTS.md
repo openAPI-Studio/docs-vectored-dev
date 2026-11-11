@@ -1,4 +1,4 @@
-# Lens docs — screenshots needed
+# Framelog docs — screenshots needed
 
 22 screenshots. Save each one into `lens/assets/` using the
 exact filename below. The docs pick them up automatically on the next page
@@ -15,7 +15,7 @@ these end up on a public docs site.
 ## Getting Started
 
 - [ ] `lens-popup-first-run.png`
-      The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
+      The Framelog popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles
 - [ ] `lens-folder-linked.png`
       The popup project card with a folder linked, showing the folder name under the project and the Change folder button
 - [ ] `lens-region-selection.png`

@@ -1,4 +1,4 @@
-"""Lens doc content. Edit here, not the generated HTML under lens/docs/."""
+"""Framelog doc content. Edit here, not the generated HTML under lens/docs/."""
 from engine import P, H, UL, OL, STEPS, TABLE, NOTE, WARN, SHOT, VIDEO
 
 PLAYLIST = "https://www.youtube.com/playlist?list=PLV_tXFIdjKSU"
@@ -44,23 +44,23 @@ PAGES = {}
 
 PAGES["getting-started"] = dict(
     title="Getting Started",
-    lede="Install Lens, link a project folder, and take your first capture.",
-    desc="Install the Lens Chrome extension, link a local project folder and take your first screenshot or recording. Works completely offline, with no account and no subscription.",
+    lede="Install Framelog, link a project folder, and take your first capture.",
+    desc="Install the Framelog Chrome extension, link a local project folder and take your first screenshot or recording. Works completely offline, with no account and no subscription.",
     icon="rocket",
     blocks=[
-        P("Lens is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a project — kept by the extension itself, and mirrored into a folder on your own machine if you link one — along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](guides.html). Nothing is uploaded — see [Privacy](../privacy.html)."),
-        NOTE("**Lens works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](ai.html) you connect yourself, which is off on install and optional."),
+        P("Framelog is a Chrome extension that captures a region of any tab as a **PNG**, a **JPEG**, a high-quality animated **GIF** or an **MP4**, then files it into a project — kept by the extension itself, and mirrored into a folder on your own machine if you link one — along with a metadata timeline. It also turns a flow you click through into a [step-by-step guide](guides.html). Nothing is uploaded — see [Privacy](../privacy.html)."),
+        NOTE("**Framelog works completely offline, and there is no subscription.** No account, no sign-in and no licence check: install it and every feature on these pages works with the network switched off. The only thing that ever touches the network is a cloud [AI provider](ai.html) you connect yourself, which is off on install and optional."),
 
         VIDEO("ADe5jHcBDhE", "Framelog demo: screenshots, GIFs and step-by-step guides with secrets masked", "A 75-second tour: masking secrets, capturing and annotating a screenshot, recording a step-by-step guide, replaying it with Guide Mode, recording a GIF, and letting an AI agent drive it."),
 
         H("Install and pin"),
         TUTORIAL(1, "installing and pinning Framelog, a tour of the popup, your first project and your first capture."),
         STEPS([
-            "Install Lens from the Chrome Web Store|or load the unpacked folder via chrome://extensions with Developer mode on.",
-            "Pin it to the toolbar|click the puzzle-piece icon in Chrome's toolbar and press the pin next to Lens. The toolbar icon is where recording status and capture errors are reported.",
-            "Open the popup|click the Lens icon. This is where you pick the active project and start a capture.",
+            "Install Framelog from the Chrome Web Store|or load the unpacked folder via chrome://extensions with Developer mode on.",
+            "Pin it to the toolbar|click the puzzle-piece icon in Chrome's toolbar and press the pin next to Framelog. The toolbar icon is where recording status and capture errors are reported.",
+            "Open the popup|click the Framelog icon. This is where you pick the active project and start a capture.",
         ]),
-        SHOT("lens-popup-first-run.png", "The Lens popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles"),
+        SHOT("lens-popup-first-run.png", "The Framelog popup on first run, showing the default project card with no folder linked, the Dashboard button, and the four capture tiles"),
 
         H("What is in the popup"),
         P("Top to bottom: the header, the project card, the capture tiles, and the timeline."),
@@ -75,13 +75,13 @@ PAGES["getting-started"] = dict(
         ]),
 
         H("Make a project"),
-        P("A **project** is a name, and the captures filed under it. Lens keeps those itself, so a project works straight away with nothing else set up. Linking a folder on your computer is optional: do it and every capture is *also* written there, next to a `project_metadata.json` file recording what was captured, from which page, and when."),
+        P("A **project** is a name, and the captures filed under it. Framelog keeps those itself, so a project works straight away with nothing else set up. Linking a folder on your computer is optional: do it and every capture is *also* written there, next to a `project_metadata.json` file recording what was captured, from which page, and when."),
         STEPS([
             "Open the popup and press **New project**|the default project is already there if you would rather just start capturing.",
             "Name the project|for example, the documentation set or release you are capturing for.",
-            "Press **Create**, or **Create & link folder**|the second asks Chrome for a folder and read/write access to it. Lens can only ever see the folder you pick.",
+            "Press **Create**, or **Create & link folder**|the second asks Chrome for a folder and read/write access to it. Framelog can only ever see the folder you pick.",
         ]),
-        NOTE("A folder can be linked at any time afterwards, from **Link folder** in the popup or **Link folder** on the dashboard's project card. Lens offers to copy everything the project already holds into it, so a folder linked late still ends up complete."),
+        NOTE("A folder can be linked at any time afterwards, from **Link folder** in the popup or **Link folder** on the dashboard's project card. Framelog offers to copy everything the project already holds into it, so a folder linked late still ends up complete."),
         SHOT("lens-folder-linked.png", "The popup project card with a folder linked, showing the folder name under the project and the Change folder button"),
 
         H("Take your first capture"),
@@ -132,7 +132,7 @@ PAGES["capturing"] = dict(
         SHOT("lens-selection-handles.png", "A selection with its eight resize handles visible and the dimension pill reading both CSS and native pixel sizes"),
 
         H("Capturing a hover state or an open menu"),
-        P("A hover, a dropdown and a pop-up menu all close the moment you click anywhere else \u2014 including on the **Capture Image** button \u2014 so on their own they can never be photographed. The delay beside that button solves it: choose **3s**, **5s**, **10s** or **30s** and Lens hands the page back to you for that long before the shutter fires."),
+        P("A hover, a dropdown and a pop-up menu all close the moment you click anywhere else \u2014 including on the **Capture Image** button \u2014 so on their own they can never be photographed. The delay beside that button solves it: choose **3s**, **5s**, **10s** or **30s** and Framelog hands the page back to you for that long before the shutter fires."),
         STEPS([
             "Drag the region|over the area the menu or tooltip will appear in, not over the control that opens it.",
             "Pick a delay|from the clock menu on the left of the capture toolbar.",
@@ -152,14 +152,14 @@ PAGES["capturing"] = dict(
             "**Lazy pages are waited for.** Each screen waits for its images to load and the page to stop growing, up to a second and a half. Scroll animations are switched off for the run. If an image was still blank when its screen was taken, the save screen says how many were.",
             "**Pages that never end stop at a limit.** 30 screens by default; set it from 10 to 100 under *Full page: most screenshots* in [Settings](settings.html). A page that stalls outright is stopped after two seconds per allowed screen.",
             "**Headers and chat bubbles appear once.** Anything pinned to the screen is in the first screen and hidden for the rest, so it does not repeat down the picture.",
-            "**Apps that scroll a panel** — Gmail, Notion, Slack, most dashboards — are handled too. When the page itself does not scroll, Lens scrolls the panel in the middle of the screen, and the header and sidebars come from the first screen.",
+            "**Apps that scroll a panel** — Gmail, Notion, Slack, most dashboards — are handled too. When the page itself does not scroll, Framelog scrolls the panel in the middle of the screen, and the header and sidebars come from the first screen.",
             "**Very long pages are scaled down** to fit the largest picture the browser can hold, and the save screen says so.",
         ]),
         NOTE("The private-data check runs over the whole stitched picture, not only the first screen, so a key three screens down is flagged like any other."),
 
         H("The private-data check"),
         TUTORIAL(4, "what the private-data check finds, blurring what you tick, the Before you share settings, and masking secrets before a browser agent captures."),
-        P("As the save screen opens, Lens looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered."),
+        P("As the save screen opens, Framelog looks over the region it just captured for things that usually should not be shared, and shows a bar above the image listing what it found. Each one is outlined on the image so you can see exactly what would be covered."),
         P("It looks for password fields, fields named for a credential that have something in them, and text shaped like an API key, a JWT, a bearer token or a PEM private key. Unless you turn it off, it also flags email addresses and card numbers — card numbers are checksum-checked, so an order number is not mistaken for one."),
         UL([
             "Tick or untick anything in the list, then press **Blur selected** to cover the ticked ones in a single step that a single **Undo** reverses.",
@@ -220,7 +220,7 @@ PAGES["recording"] = dict(
     desc="Record part of a tab as a high-quality animated GIF or MP4, with click-through interaction, navigation support and a converter that controls GIF framerate, speed and scale. Runs entirely offline.",
     icon="video",
     blocks=[
-        P("Lens records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen."),
+        P("Framelog records the region you select, not the whole screen, and you keep using the page while it records — clicks and scrolling pass straight through. GIFs are captured at the region's own pixel size and encode at up to 30 frames a second, so the output is as sharp as what was on screen."),
         NOTE("Recording and encoding both happen inside your browser. Nothing is uploaded, no account or subscription is involved, and the whole flow works offline."),
         TUTORIAL(5, "recording a region as a GIF or an MP4, the GIF converter, and the guide you get from a recording."),
 
@@ -243,7 +243,7 @@ PAGES["recording"] = dict(
             ["Quality controls", "Framerate, speed and scale, set after you stop", "None — recorded as captured"],
             ["Conversion step", "Yes — a converter opens after you stop", "No — the file is ready when you stop"],
         ]),
-        WARN("MP4 recording depends on your Chrome build. Where Chrome cannot encode MP4, Lens records **WebM** instead and names the file accordingly, so the extension always matches the actual contents. The Settings page tells you which one your browser will produce before you record."),
+        WARN("MP4 recording depends on your Chrome build. Where Chrome cannot encode MP4, Framelog records **WebM** instead and names the file accordingly, so the extension always matches the actual contents. The Settings page tells you which one your browser will produce before you record."),
 
         H("The GIF converter"),
         P("Stopping a GIF recording opens a converter with a player, so you can check the result before committing to an encode."),
@@ -267,11 +267,11 @@ PAGES["recording"] = dict(
         SHOT("lens-gif-converter.png", "The GIF converter with the player showing a captured frame, the framerate, speed and scale controls, and the frame count in the header"),
 
         H("You also get a guide"),
-        P("If the recording had clicks in it, Lens builds a **step-by-step guide** from it as well: a screenshot taken at the moment of each click, cropped to the control, numbered and captioned. It appears for review under the file name on the save screen, and nothing is written until you approve it — you can untick individual steps, or untick the guide entirely and keep just the recording."),
+        P("If the recording had clicks in it, Framelog builds a **step-by-step guide** from it as well: a screenshot taken at the moment of each click, cropped to the control, numbered and captioned. It appears for review under the file name on the save screen, and nothing is written until you approve it — you can untick individual steps, or untick the guide entirely and keep just the recording."),
         P("This is on by default and needs no AI. See [Guides](guides.html) for the review panel, the editor and exporting. If you want the walkthrough without the video, **Record steps** (⌘⇧E) captures one with no recording behind it and no time limit."),
 
         H("Writing steps from what you clicked"),
-        P("While a recording runs, Lens notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, **Write steps from clicks** turns that into a numbered list and adds it to your note."),
+        P("While a recording runs, Framelog notes the name of each control you click — the name a screen reader would announce, never anything you type into a field. On the save screen, **Write steps from clicks** turns that into a numbered list and adds it to your note."),
         P("This works with no AI provider at all: the click list alone produces usable steps. If you have a provider connected, it rewrites the list into better prose instead — merging actions that are really one step and dropping navigation noise. The toast tells you which of the two you got."),
         UL([
             "The log follows the recording across pages, so a walkthrough that navigates keeps its steps.",
@@ -288,7 +288,7 @@ PAGES["recording"] = dict(
         ]),
 
         H("Stopping from another tab"),
-        P("If you switch tabs, the Lens popup shows a **Recording** banner with the elapsed time and which tab it belongs to. **Stop & convert** there brings that tab forward and opens the converter; the cross button discards the recording."),
+        P("If you switch tabs, the Framelog popup shows a **Recording** banner with the elapsed time and which tab it belongs to. **Stop & convert** there brings that tab forward and opens the converter; the cross button discards the recording."),
         SHOT("lens-popup-recording-banner.png", "The popup showing the red recording banner with elapsed time, the source tab name, and Stop & convert and discard buttons"),
 
         H("Length limit"),
@@ -298,11 +298,11 @@ PAGES["recording"] = dict(
 
 PAGES["guides"] = dict(
     title="Step-by-step Guides",
-    lede="Click through a flow once. Lens writes the walkthrough.",
+    lede="Click through a flow once. Framelog writes the walkthrough.",
     desc="Capture a step-by-step guide from your clicks, review it before saving, edit it in the guide editor and export it as HTML, Markdown or rich text.",
     icon="book",
     blocks=[
-        P("A **guide** is a walkthrough of a flow: a screenshot per step with the control you used ringed and numbered, and a sentence under each. You click through the task once and Lens assembles the document, rather than asking you to screenshot each step and paste them together afterwards. A finished guide can also be played back against the live page, with each step's control highlighted on it — see **Guide Mode** below."),
+        P("A **guide** is a walkthrough of a flow: a screenshot per step with the control you used ringed and numbered, and a sentence under each. You click through the task once and Framelog assembles the document, rather than asking you to screenshot each step and paste them together afterwards. A finished guide can also be played back against the live page, with each step's control highlighted on it — see **Guide Mode** below."),
         NOTE("**No AI is involved in building a guide.** Step sentences come from the accessible name of each control — the name a screen reader would announce. A connected model can rewrite those sentences afterwards; it never writes them in the first place."),
 
         H("Two ways to capture one"),
@@ -321,12 +321,12 @@ PAGES["guides"] = dict(
         P("**Record GIF** (⌘⇧R) produces a guide as well as the recording, as long as **Build a guide from each recording** is on — it is by default. The review panel appears under the file name on the save screen."),
         NOTE("Only **Record steps** follows the flow into a new tab. A GIF recording is a capture stream bound to one tab, so it stays on the tab it started in."),
         NOTE("The region you drag limits the *recording*, not the steps. Each step screenshot is a fresh capture of the **whole tab**, with the control you used ringed on it — so steps stay readable even when the recorded region was small."),
-        P("A step is the whole screen on purpose. A picture cropped tight around one button leaves out the part of the page a reader needs in order to know where they are, and a crop cannot be undone once it is saved. Lens works out where a tighter crop would go and offers it instead: open a step's crop tool in the editor and that box is already drawn, ready to accept or drag."),
+        P("A step is the whole screen on purpose. A picture cropped tight around one button leaves out the part of the page a reader needs in order to know where they are, and a crop cannot be undone once it is saved. Framelog works out where a tighter crop would go and offers it instead: open a step's crop tool in the editor and that box is already drawn, ready to accept or drag."),
         SHOT("lens-steps-widget.png", "The walkthrough widget in the corner of a page, showing a step count, a clip count, and the Record clip, Finish and discard buttons"),
 
         H("What does not become a step"),
         UL([
-            "Clicks on Lens's own controls. Pressing **Finish** does not appear in the guide it finishes.",
+            "Clicks on Framelog's own controls. Pressing **Finish** does not appear in the guide it finishes.",
             "Clicks on nothing — empty space, a page background.",
             "A repeated click on the same control within a second, which is counted once.",
             "A drag or a text selection, which is not a click at all.",
@@ -386,7 +386,7 @@ PAGES["guides"] = dict(
 
         H("When the control cannot be found"),
         P("Beside the step number the panel says which it is — **Ringed on the page**, or **Not on this page**. A step with no control to point at, such as a page load or a scroll, says nothing there and shows no ring; press **Next** when you have done it."),
-        P("Lens looks for the control by the selector recorded at the time, then its id, then a test id, label or field name, then its position in the page, and finally by the words on it. A guide recorded before Guide Mode existed, or one recorded in Plain mode, still names the control each step is about — and that name alone is often enough to find it."),
+        P("Framelog looks for the control by the selector recorded at the time, then its id, then a test id, label or field name, then its position in the page, and finally by the words on it. A guide recorded before Guide Mode existed, or one recorded in Plain mode, still names the control each step is about — and that name alone is often enough to find it."),
         P("It also keeps looking. A page that fetches its content draws its controls after the page has loaded, and a control behind a menu does not exist until you open that menu; the ring goes on the moment the control appears, however long that takes."),
         NOTE("Guide Mode needs an ordinary website tab. Started from the dashboard or the editor — both extension pages, which Chrome does not allow any script into — it opens the page the guide starts on in a new tab."),
 
@@ -458,8 +458,8 @@ PAGES["guides"] = dict(
         ]),
         P("An import is always a **copy**: it is given a new id and its own folder, so importing the same bundle twice leaves two guides rather than quietly overwriting the first. Nothing already on disk is replaced. A `guide.json` that arrives without its screenshots imports anyway and says so — those steps keep their words and have no picture."),
         P("Imports land in the **active project**. No folder need be linked — the project holds the guide itself, and a linked folder receives its copy like anything else. What kind of file it is is read from its first bytes rather than its name, so a bundle fetched from a link works whatever the address ends in."),
-        NOTE("Importing from a link is the only time Lens reaches the network on its own. It downloads the address you paste and nothing else: no service in between, nothing of yours sent with the request, `http` and `https` only, and 50 MB or 30 seconds at the outside. See [Privacy](../privacy.html)."),
-        P("**Find guides on disk** walks each project — what Lens holds and any linked folder — keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time."),
+        NOTE("Importing from a link is the only time Framelog reaches the network on its own. It downloads the address you paste and nothing else: no service in between, nothing of yours sent with the request, `http` and `https` only, and 50 MB or 30 seconds at the outside. See [Privacy](../privacy.html)."),
+        P("**Find guides on disk** walks each project — what Framelog holds and any linked folder — keeps each guide's existing id, and adds only what is missing. Run it after copying a folder in, or to repair a metadata file. Running it twice adds nothing the second time."),
 
         H("The assistant"),
         P("The editor has a chat panel, and it stays shut until you have configured a model **and** a test has actually reached it. See [AI features](ai.html) for setting one up."),
@@ -476,10 +476,10 @@ PAGES["guides"] = dict(
 PAGES["projects"] = dict(
     title="Projects and Folders",
     lede="Organise captures into named projects, and mirror each one into a local folder if you want to.",
-    desc="Create projects, link local folders, switch the active project, catch a folder up after access lapses, and see how much storage Lens is using.",
+    desc="Create projects, link local folders, switch the active project, catch a folder up after access lapses, and see how much storage Framelog is using.",
     icon="folder",
     blocks=[
-        P("Every capture goes into the **active project**. A project is a name and the captures filed under it, which Lens keeps itself. A folder on your machine is optional — link one and the project is mirrored into it."),
+        P("Every capture goes into the **active project**. A project is a name and the captures filed under it, which Framelog keeps itself. A folder on your machine is optional — link one and the project is mirrored into it."),
         TUTORIAL(9, "creating and switching projects, linking a folder, the popup timeline and the dashboard."),
 
         H("Creating a project"),
@@ -491,23 +491,23 @@ PAGES["projects"] = dict(
         NOTE("Cancelling the folder picker cancels the folder, not the project — you keep the name you just typed."),
 
         H("Why the folder is optional"),
-        P("Chrome hands out folder permission for as long as the extension is running and takes it back when it stops. That used to mean a capture taken after a lapse had nowhere to go. Lens now keeps the project's captures itself, so the folder is a **copy**, not the destination: losing access costs you the copy for a while, never the capture."),
+        P("Chrome hands out folder permission for as long as the extension is running and takes it back when it stops. That used to mean a capture taken after a lapse had nowhere to go. Framelog now keeps the project's captures itself, so the folder is a **copy**, not the destination: losing access costs you the copy for a while, never the capture."),
         UL([
             "**With no folder linked** — everything works. Captures, guides and the timeline live in the extension, and you get files out with **Copy** and **Save a copy** on any capture.",
             "**With a folder linked** — the same, and every capture is written into the folder as well, so your files are on disk in a form any other tool can read.",
         ]),
 
-        H("What Lens writes into the folder"),
+        H("What Framelog writes into the folder"),
         UL([
             "The capture files themselves — `.png`, `.jpg`, `.gif`, `.mp4` or `.webm`.",
             "`project_metadata.json` — a timeline entry per capture recording the file name, page title, page URL, timestamp, the captured region and your note.",
         ]),
-        P("The metadata file is plain JSON and is meant to be read by other tools. Every entry and the file itself carry `\"createdBy\": \"Lens by Vectored\"`."),
+        P("The metadata file is plain JSON and is meant to be read by other tools. Every entry and the file itself carry `\"createdBy\": \"Framelog by Vectored\"`."),
         SHOT("lens-project-folder.png", "A project folder in Finder showing captured PNG and GIF files alongside project_metadata.json"),
 
         H("Linking a folder later"),
-        P("Press **Link folder** in the popup or on the dashboard's project card. Lens counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is."),
-        P("The copy runs in the background and survives the browser being closed part way through — it picks up where it stopped. Files the folder already has at the same size are left alone, so relinking a folder Lens was already writing into costs a look rather than a rewrite. Say no and **Copy everything across** stays on the project card for later."),
+        P("Press **Link folder** in the popup or on the dashboard's project card. Framelog counts what the project already holds and asks whether to copy it across, telling you how many files and how much disk that is."),
+        P("The copy runs in the background and survives the browser being closed part way through — it picks up where it stopped. Files the folder already has at the same size are left alone, so relinking a folder Framelog was already writing into costs a look rather than a rewrite. Say no and **Copy everything across** stays on the project card for later."),
 
         H("Switching the active project"),
         P("Click the project's name on the card at the top of the popup and pick another from the menu. Only the active project receives new captures; the others keep their files and history untouched, and stay listed in the popup timeline."),
@@ -518,12 +518,12 @@ PAGES["projects"] = dict(
         NOTE("Captures taken while access was gone are **queued, not lost**. Reconnecting writes them out, and so does simply reopening the browser. **Catch up folder** on the project card does it on demand."),
         SHOT("lens-folder-access-lost.png", "The popup project card showing the amber paused flag on the folder line and the Reconnect button"),
 
-        H("How much room Lens is using"),
-        P("Because a project holds its own captures, that storage is worth watching: a sixty-step guide is tens of megabytes, and a minute of GIF can be more. **Settings > Storage** shows what Lens is using against what your browser allows it, broken down per project, and warns when there is little room left."),
+        H("How much room Framelog is using"),
+        P("Because a project holds its own captures, that storage is worth watching: a sixty-step guide is tens of megabytes, and a minute of GIF can be more. **Settings > Storage** shows what Framelog is using against what your browser allows it, broken down per project, and warns when there is little room left."),
         P("Linking a folder and deleting guides you have a copy of is the way to reclaim it. So is deleting a project you have finished with."),
 
         H("Deleting a project"),
-        P("Delete a project from the dashboard's project card. Its captures are removed from Lens — **files already written to your folder are left alone**, because those are yours and in your own directory. The default project is protected and cannot be deleted."),
+        P("Delete a project from the dashboard's project card. Its captures are removed from Framelog — **files already written to your folder are left alone**, because those are yours and in your own directory. The default project is protected and cannot be deleted."),
     ],
 )
 
@@ -533,7 +533,7 @@ PAGES["timeline"] = dict(
     desc="Browse captures in the popup timeline and the dashboard master timeline, search and filter them, and export the metadata as JSON from the dashboard.",
     icon="list",
     blocks=[
-        P("Lens keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project."),
+        P("Framelog keeps two views of what you have captured: a compact timeline in the popup, and a master timeline on the dashboard. Both cover every project."),
         TUTORIAL(9, "projects, the popup timeline, and searching, filtering and exporting from the dashboard."),
 
         H("The popup timeline"),
@@ -543,7 +543,7 @@ PAGES["timeline"] = dict(
             ["Copy", "Puts the capture itself on the clipboard — the file, not the thumbnail. A GIF copies as its first frame, which is all a clipboard holds; a recording cannot be copied and says so"],
             ["Edit", "Opens a screenshot in the image tools, or a guide in the guide editor. Recordings and GIFs cannot be edited"],
             ["Delete", "Removes the entry from the timeline"],
-            ["More (⋮)", "**Rename** the file and its metadata entry, **Save a copy** to your downloads (how a file leaves Lens when no folder is linked), or **Show in folder**"],
+            ["More (⋮)", "**Rename** the file and its metadata entry, **Save a copy** to your downloads (how a file leaves Framelog when no folder is linked), or **Show in folder**"],
             ["Search", "The magnifier beside the heading. Filters every project by file name, page title or URL"],
             ["View all in dashboard", "Opens the dashboard's master timeline"],
         ]),
@@ -577,26 +577,26 @@ PAGES["timeline"] = dict(
         ]),
 
         H("Opening a capture"),
-        P("The dashboard's detail view shows the file, what it is, and — under **Stored** — where it actually is: kept by Lens, and mirrored to a named folder when there is one. Alongside it sit **Copy**, **Save a copy** and, for a still image, **Edit image**."),
+        P("The dashboard's detail view shows the file, what it is, and — under **Stored** — where it actually is: kept by Framelog, and mirrored to a named folder when there is one. Alongside it sit **Copy**, **Save a copy** and, for a still image, **Edit image**."),
         P("**Edit image** is hidden where it would not work. A recording cannot be opened by the image tools at all; a GIF can, but the tools open one frame and save one frame, so editing an animation would replace it with a still under the same name. Both are hidden rather than offered and then failing."),
 
         H("Thumbnails, and the file behind them"),
         P("What the timeline shows beside each entry is a small JPEG of the **first frame**, held in extension storage so the list loads instantly. That is why a GIF sits still in the popup timeline and in the dashboard grid, and why a screenshot there is thumbnail-sized rather than full resolution. A recording's thumbnail is taken from the recording itself when you save it."),
         P("Open one and the preview reads the actual file instead: full size, a GIF that plays, a recording in a player. The project holds that file whether or not a folder is linked, so this works with nothing mounted."),
         P("**Settings > Clear cached previews** empties that cache. The captures themselves are untouched — only the thumbnails go, and the timeline then shows a placeholder icon in their place until you open one."),
-        NOTE("A recording saved before Lens took thumbnails from recordings has no picture on its row. Opening it still plays it."),
+        NOTE("A recording saved before Framelog took thumbnails from recordings has no picture on its row. Opening it still plays it."),
     ],
 )
 
 PAGES["ai"] = dict(
     title="AI Features",
     lede="Off by default. When you turn them on, you choose who does the work.",
-    desc="Lens AI features, the providers you can connect, exactly what each feature sends, and how your API key is stored.",
+    desc="Framelog AI features, the providers you can connect, exactly what each feature sends, and how your API key is stored.",
     icon="sparkles",
     blocks=[
-        NOTE("Every AI feature is off when you install Lens, and with no provider selected the extension makes no network requests at all. Nothing on this page happens until you choose one."),
+        NOTE("Every AI feature is off when you install Framelog, and with no provider selected the extension makes no network requests at all. Nothing on this page happens until you choose one."),
 
-        P("Lens has no AI service of its own. There is no Vectored model, no Vectored endpoint and no Vectored proxy — instead you pick who does the work, and that choice decides whether anything leaves your machine."),
+        P("Framelog has no AI service of its own. There is no Vectored model, no Vectored endpoint and no Vectored proxy — instead you pick who does the work, and that choice decides whether anything leaves your machine."),
         TUTORIAL(10, "choosing a provider, using your own models, and connecting an AI agent that drives Framelog in your browser."),
 
         H("Choosing a provider"),
@@ -626,22 +626,22 @@ PAGES["ai"] = dict(
             ["Sharpen the private-data check", "Automatically, only if you switch it on", "The **type** of each flagged region — \"an AWS access key\", \"a password field\" — plus the page title and heading. Never the flagged text."],
             ["Suggest name", "A button you press, per capture", "The page title and heading, the names of controls in the region, and **the text inside the region you captured**."],
             ["Write steps from clicks", "A button you press, per recording", "The page title and the names of the controls you clicked. Never anything you typed into a field."],
-            ["Rewrite a guide's steps", "A button you press, on the review panel", "The step sentences Lens already wrote. The answer is rejected outright if it changes the number of steps."],
+            ["Rewrite a guide's steps", "A button you press, on the review panel", "The step sentences Framelog already wrote. The answer is rejected outright if it changes the number of steps."],
             ["The guide editor's assistant", "A message you send, per message", "Your message, plus **whatever you attached to it** — a step, several steps, the whole guide, or a text selection — and nothing else. A question with nothing attached sends only the question."],
         ]),
-        P("Images are sent in one case only: the assistant's **Media** switch, which is off by default. With it off the screenshots are not even read from disk. Everywhere else, captured images are never sent to any provider. Lens does not keep a copy of any prompt or response."),
+        P("Images are sent in one case only: the assistant's **Media** switch, which is off by default. With it off the screenshots are not even read from disk. Everywhere else, captured images are never sent to any provider. Framelog does not keep a copy of any prompt or response."),
         NOTE("**Write steps from clicks** works with no provider at all — the click list alone produces usable numbered steps, and a model only rewrites them into better prose. The toast tells you which of the two you got."),
 
         H("Setting up the browser's built-in model"),
         P("Edge and Chrome both expose an on-device model to extensions. Nothing is configured and nothing leaves the device, but the model has to be downloaded once and the hardware bar is real."),
         STEPS([
-            "Open the Lens dashboard and go to Settings|then **AI assistance**.",
+            "Open the Framelog dashboard and go to Settings|then **AI assistance**.",
             "Choose **Browser's built-in model**|no key or address is needed.",
             "Press **Test connection**|it reports whether the model is present, unavailable, or not yet downloaded.",
-            "Press **Download model** if it appears|the download is several gigabytes and reports its progress. Lens never starts it during a capture.",
+            "Press **Download model** if it appears|the download is several gigabytes and reports its progress. Framelog never starts it during a capture.",
         ]),
-        WARN("On Microsoft Edge this currently requires the Canary or Dev channel with the **Prompt API for on-device language model** flag enabled, and a capable GPU. If your device does not meet the bar, use a local model or a hosted provider instead — the rest of Lens is unaffected."),
-        NOTE("Edge's built-in model is text-only. That is why every Lens AI feature is built on page text and structure rather than on the image, and why it behaves the same in both browsers."),
+        WARN("On Microsoft Edge this currently requires the Canary or Dev channel with the **Prompt API for on-device language model** flag enabled, and a capable GPU. If your device does not meet the bar, use a local model or a hosted provider instead — the rest of Framelog is unaffected."),
+        NOTE("Edge's built-in model is text-only. That is why every Framelog AI feature is built on page text and structure rather than on the image, and why it behaves the same in both browsers."),
 
         H("Setting up a local model"),
         P("A model running on your own machine keeps everything on the device while giving you a full-size model. Anything that speaks the OpenAI chat format works — Ollama, LM Studio, llama.cpp, vLLM."),
@@ -652,9 +652,9 @@ PAGES["ai"] = dict(
         ]),
 
         H("Setting up Claude, Gemini or OpenAI"),
-        P("These run on the provider's servers. Lens sends the request straight from your browser using your key — there is no Vectored server in the path, and we never receive the key or the prompt."),
+        P("These run on the provider's servers. Framelog sends the request straight from your browser using your key — there is no Vectored server in the path, and we never receive the key or the prompt."),
         STEPS([
-            "Create an API key with that provider|Lens cannot create one for you.",
+            "Create an API key with that provider|Framelog cannot create one for you.",
             "Choose the provider in Settings and confirm the prompt|it explains what changes before anything is saved.",
             "Paste the key and pick a model|the key is saved as soon as you leave the field.",
             "Press **Test connection**|then use a feature to confirm end to end.",
@@ -663,7 +663,7 @@ PAGES["ai"] = dict(
         H("How your API key is stored"),
         UL([
             "In this browser only, in its own storage area, kept apart from your other settings.",
-            "Read only by the extension's background worker — never by the code Lens puts into a page. Injected code shares a process with the page it is injected into, so a key is never placed there.",
+            "Read only by the extension's background worker — never by the code Framelog puts into a page. Injected code shares a process with the page it is injected into, so a key is never placed there.",
             "The Settings page can tell you a key is saved but cannot show it back to you.",
             "Sent only to the provider it belongs to. Vectored never receives it, and there is nowhere for it to be sent to us.",
             "Removed when you clear the field, and when you uninstall the extension.",
@@ -686,8 +686,8 @@ PAGES["ai"] = dict(
         ]),
         NOTE("Every one of these leaves your capture exactly as it was. No AI failure can lose work, block a capture, or change an image."),
 
-        H("Letting a browser agent drive Lens"),
-        P("An AI agent that works in your browser, such as Claude in Chrome, can use Lens too: record GIFs and guides, take and annotate screenshots, including whole pages, and mask secrets before anything is captured. This is separate from the models above: the agent is yours and runs outside Lens, and Lens sends nothing to it. [AI Agent Skill](agent-skill.html) explains how to set it up in Claude and other agents."),
+        H("Letting a browser agent drive Framelog"),
+        P("An AI agent that works in your browser, such as Claude in Chrome, can use Framelog too: record GIFs and guides, take and annotate screenshots, including whole pages, and mask secrets before anything is captured. This is separate from the models above: the agent is yours and runs outside Framelog, and Framelog sends nothing to it. [AI Agent Skill](agent-skill.html) explains how to set it up in Claude and other agents."),
 
         H("Where to read the rest"),
         P("The [privacy policy](../privacy.html#ai) sets out what each feature sends and whose terms apply to it. The [security page](../security.html#ai) covers key handling and why the request is made where it is."),
@@ -696,29 +696,29 @@ PAGES["ai"] = dict(
 
 PAGES["agent-skill"] = dict(
     title="AI Agent Skill",
-    lede="Let Claude, or another AI agent working in your browser, capture with Lens for you.",
-    desc="Set up the lens-capture-agent skill so Claude Code with Chrome, the Claude app, Kiro and other AI agents can take screenshots, record GIFs and write guides with Lens, masking secrets first.",
+    lede="Let Claude, or another AI agent working in your browser, capture with Framelog for you.",
+    desc="Set up the lens-capture-agent skill so Claude Code with Chrome, the Claude app, Kiro and other AI agents can take screenshots, record GIFs and write guides with Framelog, masking secrets first.",
     icon="sparkles",
     blocks=[
-        P("AI agents that drive a browser, such as Claude in Chrome, act through the page: they click, type and run scripts in it. They cannot press Lens's shortcuts or open its popup. The **lens-capture-agent** skill teaches an agent to drive Lens another way, through an opt-in bridge on the page."),
+        P("AI agents that drive a browser, such as Claude in Chrome, act through the page: they click, type and run scripts in it. They cannot press Framelog's shortcuts or open its popup. The **lens-capture-agent** skill teaches an agent to drive Framelog another way, through an opt-in bridge on the page."),
         P("With the skill, an agent can:"),
         UL([
             "take a screenshot of a region or a full page, and annotate it with boxes, arrows, text or blur;",
             "record a GIF of a flow;",
             "record a step-by-step guide, export it as Markdown, HTML or a bundle, check that each step still matches the page, and replay it in Guide Mode;",
             "find secrets on screen and mask them before anything is captured;",
-            "file everything into a Lens project, and pick up the saved file afterwards.",
+            "file everything into a Framelog project, and pick up the saved file afterwards.",
         ]),
         P("The skill is free and open source (MIT): [github.com/openAPI-Studio/lens-skills](https://github.com/openAPI-Studio/lens-skills)."),
         P("[Tutorial 10](https://youtu.be/wVgPh0sLWuE?t=165) shows the setup from 2:45: the switch that lets agents drive Framelog, installing the skill, and a first prompt to try."),
 
         H("Before you start"),
         STEPS([
-            "Install Lens 1.24.0 or later|full-page screenshots need 1.24.0.",
-            "Turn on Allow browser agents to drive Lens|in the Lens dashboard, under Settings. It is off by default.",
+            "Install Framelog 1.24.0 or later|full-page screenshots need 1.24.0.",
+            "Turn on Allow browser agents to drive Framelog|in the Framelog dashboard, under Settings. It is off by default.",
             "Reload the tabs that were already open|they pick up the setting when they load.",
         ]),
-        WARN("While the setting is on, any script on a page you open can ask Lens to capture that page. Turn it on when you use an agent, and off again when you are done."),
+        WARN("While the setting is on, any script on a page you open can ask Framelog to capture that page. Turn it on when you use an agent, and off again when you are done."),
 
         H("Claude Code with Chrome"),
         P("The most complete setup: Claude Code drives your Chrome through the Claude in Chrome extension, and loads the skill as a plugin."),
@@ -743,12 +743,12 @@ PAGES["agent-skill"] = dict(
 
         H("Other agents"),
         P("Any agent that reads skills or instruction files can use it. Copy `skills/lens-capture-agent/` into the folder your agent loads skills from, for example `.agents/skills/`, and point its instruction file (such as `AGENTS.md`) at `SKILL.md` if it does not find skills on its own."),
-        P("Whatever the agent, it has to be able to run a script in the page it is driving, which is how it talks to Lens. Coding agents with no browser can still read the skill, but they have no page to run it in."),
+        P("Whatever the agent, it has to be able to run a script in the page it is driving, which is how it talks to Framelog. Coding agents with no browser can still read the skill, but they have no page to run it in."),
 
         H("Try it"),
         P("Open the page you want captured, then ask your agent something like:"),
         UL([
-            "\"Record a GIF of signing up on this page and save it to a new Lens project called Onboarding.\"",
+            "\"Record a GIF of signing up on this page and save it to a new Framelog project called Onboarding.\"",
             "\"Take a full-page screenshot of this page, mask any secrets first, and box the pricing table.\"",
             "\"Write a step-by-step guide for creating an API key here, export it as Markdown, and give me the file.\"",
         ]),
@@ -758,20 +758,20 @@ PAGES["agent-skill"] = dict(
         UL([
             "It is told what kind of secret was found and where, never the value.",
             "A page can only reach captures and guides taken of its own site, so one tab cannot read a recording made of another.",
-            "Lens sends nothing to the agent's provider. Captures stay on your device and in the folders you link.",
+            "Framelog sends nothing to the agent's provider. Captures stay on your device and in the folders you link.",
             "A project an agent creates has no folder until you link one, because only you can answer the folder picker.",
         ]),
-        NOTE("Recordings an agent starts run at about 4 frames a second, because Chrome only allows the smoother 15 fps capture after you have clicked the Lens icon on that tab. Click it once before asking for a GIF if motion matters."),
+        NOTE("Recordings an agent starts run at about 4 frames a second, because Chrome only allows the smoother 15 fps capture after you have clicked the Framelog icon on that tab. Click it once before asking for a GIF if motion matters."),
 
         H("Where to read the rest"),
-        P("The skill's [command reference](https://github.com/openAPI-Studio/lens-skills/blob/main/skills/lens-capture-agent/references/commands.md) lists every command the bridge accepts. [AI Features](ai.html) covers the separate models Lens itself can use."),
+        P("The skill's [command reference](https://github.com/openAPI-Studio/lens-skills/blob/main/skills/lens-capture-agent/references/commands.md) lists every command the bridge accepts. [AI Features](ai.html) covers the separate models Framelog itself can use."),
     ],
 )
 
 PAGES["settings"] = dict(
     title="Settings",
     lede="Every preference, and exactly what it changes.",
-    desc="Reference for every Lens setting: recording and image format, guides, private-data flagging, AI models, file name pattern, clipboard, metadata and sounds.",
+    desc="Reference for every Framelog setting: recording and image format, guides, private-data flagging, AI models, file name pattern, clipboard, metadata and sounds.",
     icon="sliders",
     blocks=[
         P("Settings live on the dashboard under **Settings**, and apply to every project. A change takes effect on your next capture, not one already in progress."),
@@ -795,13 +795,13 @@ PAGES["settings"] = dict(
         P("On by default, and about the copy on disk only. When off, capture files are still written to a linked folder but its `project_metadata.json` is not updated. The project's own timeline is always kept — it is what the popup and the dashboard read, and a capture that exists and is listed nowhere would be worse than an extra file."),
 
         H("Storage"),
-        P("Lens keeps each project's captures itself, so this panel is the disk that costs. It shows what Lens is using against what your browser allows it, a bar that turns amber past 80%, and a breakdown per project. **Refresh** re-measures."),
+        P("Framelog keeps each project's captures itself, so this panel is the disk that costs. It shows what Framelog is using against what your browser allows it, a bar that turns amber past 80%, and a breakdown per project. **Refresh** re-measures."),
         P("The figures are worth a look before a long session: a sixty-step guide in PNG runs to hundreds of megabytes, and the same guide in JPEG to tens. Link a folder and delete guides you have a copy of to reclaim room, or delete a project you have finished with."),
-        NOTE("Lens asks Chrome for persistent storage so these files are not cleared when the disk fills. If the browser has not granted it, the panel says so — link a folder for anything you cannot afford to lose."),
+        NOTE("Framelog asks Chrome for persistent storage so these files are not cleared when the disk fills. If the browser has not granted it, the panel says so — link a folder for anything you cannot afford to lose."),
 
         H("Hold on to the folder"),
-        P("**Off** by default. Chrome drops a folder's permission once nothing of Lens's is running, which is why a linked folder asks to be reconnected. Turning this on keeps Lens awake while a folder is linked, so that happens far less often — at the cost of some battery, and it makes the lapse rare rather than impossible, since a browser restart ends it regardless."),
-        P("It used to be on, because a lapse meant a capture that could not be saved. It no longer does: captures are kept by Lens and the folder catches up afterwards, so this only decides how promptly the copy on disk keeps up."),
+        P("**Off** by default. Chrome drops a folder's permission once nothing of Framelog's is running, which is why a linked folder asks to be reconnected. Turning this on keeps Framelog awake while a folder is linked, so that happens far less often — at the cost of some battery, and it makes the lapse rare rather than impossible, since a browser restart ends it regardless."),
+        P("It used to be on, because a lapse meant a capture that could not be saved. It no longer does: captures are kept by Framelog and the folder catches up afterwards, so this only decides how promptly the copy on disk keeps up."),
 
         H("Copy to clipboard on capture"),
         P("Puts each capture on the clipboard as well as saving it. Because the clipboard only accepts PNG images, a JPEG capture is converted before copying. The save toast reports whether the copy succeeded."),
@@ -813,16 +813,16 @@ PAGES["settings"] = dict(
         H("Play shutter sound"),
         P("A short camera click when a capture completes. It is synthesised in the page, so nothing is downloaded and no audio file ships with the extension."),
 
-        H("Open Lens after saving"),
-        P("On by default. A capture that is written opens the Lens menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a message that disappears. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures."),
+        H("Open Framelog after saving"),
+        P("On by default. A capture that is written opens the Framelog menu on its timeline with the new row picked out, so a save is seen rather than taken on trust from a message that disappears. A saved guide opens the dashboard's Guides tab instead. Turn it off for a long run of captures."),
         NOTE("Because this opens the popup for you, a toolbar click straight afterwards is read by Chrome as *closing* the popup that is already open — a click that appears to do nothing. Clicking again, or switching tab first, opens it."),
 
         H("Explain Smart Capture before it starts"),
         P("On by default. Before a walkthrough records anything, a short briefing explains how the recorder behaves \u2014 when each screenshot is taken, how fast you can click, what does and does not become a step \u2014 with **Start recording** and **Cancel**. Nothing is recorded until you press Start, and Cancel leaves nothing behind. The dialog carries its own **Don't show this again**."),
 
         H("Watermark"),
-        P("Lens draws a small mark in the corner of the images it saves \u2014 screenshots, recordings and the step images in a guide \u2014 picking black or white to suit what is behind it. It also tiles faintly through exported documents, PDF and self-contained HTML, and closes Markdown and clipboard copies with a line."),
-        P("A licence puts it under your control: your own wording and logo, or off entirely. Without one the mark stays. Nothing else Lens does is affected either way \u2014 see [the licence](../index.html)."),
+        P("Framelog draws a small mark in the corner of the images it saves \u2014 screenshots, recordings and the step images in a guide \u2014 picking black or white to suit what is behind it. It also tiles faintly through exported documents, PDF and self-contained HTML, and closes Markdown and clipboard copies with a line."),
+        P("A licence puts it under your control: your own wording and logo, or off entirely. Without one the mark stays. Nothing else Framelog does is affected either way \u2014 see [the licence](../index.html)."),
         NOTE("Where a guide came from is recorded separately and is never removed: the source page, the date and the author go into every export whatever the licence says. Only the visible mark is licensed."),
 
         H("Flag private data in captures"),
@@ -835,7 +835,7 @@ PAGES["settings"] = dict(
         P("On by default. Any recording with clicks in it also produces a step-by-step guide, offered for review on the save screen — see [Guides](guides.html). Turn it off and recordings are just recordings."),
 
         H("Walkthrough mode"),
-        P("**Interactive** by default. As well as the screenshots and the words, Lens notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup."),
+        P("**Interactive** by default. As well as the screenshots and the words, Framelog notes which control each step points at — enough to find it again later, which is what lets a guide be [played back against the live page](guides.html). **Plain** records the screenshots and the words only, and writes nothing about the page's own markup."),
         P("The same setting sits under the capture tiles in the popup, as a switch. Both write the one value."),
 
         H("Quote what you typed"),
@@ -846,7 +846,7 @@ PAGES["settings"] = dict(
 
         H("Auto-blur guide steps"),
         P("**Off**, and deliberately so. When on, anything the private-data check flags in a step screenshot is blurred without asking."),
-        WARN("This is the only place in Lens where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason."),
+        WARN("This is the only place in Framelog where blurring happens without a click, and blurring cannot be undone once saved. It exists because clicking through the findings on a forty-step guide is impractical — but it means a false positive is covered permanently, so leave it off unless you have a reason."),
 
         H("Guide marker colour"),
         P("The colour of the numbered callout drawn on each step screenshot. Red by default. Pick something that stands out against the product you are documenting."),
@@ -862,7 +862,7 @@ PAGES["settings"] = dict(
         P("The clip is cut from footage the recording already sampled, so nothing is captured twice. Three controls tune it: the longest gap between clicks that still counts as one run, the longest a merged step may be, and its frame rate. An animated step can always be split back into its individual clicks in the editor — each click kept its own still."),
 
         H("AI models"),
-        P("**None configured** by default, which means every AI feature is off and Lens makes no network requests at all. Lens has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine."),
+        P("**None configured** by default, which means every AI feature is off and Framelog makes no network requests at all. Framelog has no AI service of its own — you choose who does the work, and that choice decides whether anything leaves your machine."),
         TABLE(["Provider", "Runs", "Needs"], [
             ["Your browser's built-in model", "On your device", "Edge or Chrome with the model available"],
             ["A local model", "On your device", "Ollama, LM Studio or similar, and the model name"],
@@ -872,7 +872,7 @@ PAGES["settings"] = dict(
         ]),
         P("Add as many as you like. Each is saved with its own key and model name, one is marked active for the capture screens, and the guide editor's assistant lets you switch between them per message."),
         P("Picking one that runs in the cloud asks you to confirm first, because it changes what the extension does with page text. **Test** actually contacts the model, and a model that has not passed one is not offered anywhere — a key that looks well-formed is not a model that answers."),
-        NOTE("An API key is stored in this browser only, in its own storage area, and is read only by the extension's background worker — never by the code Lens injects into a page. The settings screen can tell you a key is saved but cannot show it back to you. Vectored never receives it; see the [privacy policy](../privacy.html#ai)."),
+        NOTE("An API key is stored in this browser only, in its own storage area, and is read only by the extension's background worker — never by the code Framelog injects into a page. The settings screen can tell you a key is saved but cannot show it back to you. Vectored never receives it; see the [privacy policy](../privacy.html#ai)."),
 
         P("Connecting a model also puts buttons on the save screens — **Suggest name** on a screenshot, **Write steps from clicks** on a recording, **Rewrite with AI** on a guide — and opens the assistant in the guide editor. None of them runs on its own: you press them, per capture. See [Capturing](capturing.html), [Recording](recording.html) and [Guides](guides.html)."),
 
@@ -880,13 +880,13 @@ PAGES["settings"] = dict(
         P("Off even when a provider is set. Lets the model re-rank what the check above found, so a key in a documentation example is not flagged as hard as one in a live console."),
         P("The model is told the **type** of each flagged region and the page title and heading — never the flagged text itself. Sending a key to a model to ask whether it is a key would defeat the feature. The model can only re-rank and relabel: it cannot add a region, and it cannot blur one."),
 
-        H("Allow browser agents to drive Lens"),
+        H("Allow browser agents to drive Framelog"),
         P("Off by default. Lets an AI agent working in your browser, such as Claude in Chrome, start captures, recordings and guides on the page it is working on. See [AI Agent Skill](agent-skill.html) for how to set up Claude and other agents."),
 
         H("File name pattern"),
         P("Controls the name each capture is given before you edit it. The extension is added automatically."),
         TABLE(["Token", "Expands to", "Example"], [
-            ["`{name}`", "The capture type — `Lens` for stills, `LensRecord` for recordings", "Lens"],
+            ["`{name}`", "The capture type — `Framelog` for stills, `LensRecord` for recordings", "Framelog"],
             ["`{date}`", "Capture date", "2026-08-17"],
             ["`{time}`", "Capture time", "09-04-07"],
             ["`{index}`", "A counter that increments through the day and resets at midnight", "007"],
@@ -902,10 +902,10 @@ PAGES["settings"] = dict(
 PAGES["shortcuts"] = dict(
     title="Keyboard Shortcuts",
     lede="The default bindings, and how to change them.",
-    desc="Lens keyboard shortcuts for region capture, step recording, GIF recording and full-page capture, and how to remap them in Chrome.",
+    desc="Framelog keyboard shortcuts for region capture, step recording, GIF recording and full-page capture, and how to remap them in Chrome.",
     icon="keyboard",
     blocks=[
-        P("Lens registers four commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension."),
+        P("Framelog registers four commands. Chrome owns the bindings, so they are changed in Chrome rather than in the extension."),
         TABLE(["Command", "macOS", "Windows / Linux", "What it does"], [
             ["Capture region", "⌘⇧S", "Alt+Shift+S", "Opens the region selector"],
             ["Capture full page", "⌥⇧F", "Alt+Shift+F", "Scrolls the page top to bottom and stitches one tall screenshot"],
@@ -926,7 +926,7 @@ PAGES["shortcuts"] = dict(
         H("Changing a shortcut"),
         STEPS([
             "Open `chrome://extensions/shortcuts`|or follow the link at the top of the Settings page on the dashboard.",
-            "Find Lens in the list|each command has its own row.",
+            "Find Framelog in the list|each command has its own row.",
             "Click the field and press the combination|Chrome refuses combinations already taken by the browser or another extension.",
         ]),
         NOTE("Chrome allows a limited number of *suggested* shortcuts per extension, and any command can be left unbound. An unbound command shows as **not set** on the Settings page; the popup buttons still work."),
@@ -947,7 +947,7 @@ PAGES["troubleshooting"] = dict(
     desc="Diagnose blocked pages, blank recordings, low-quality GIFs, lapsed folder access, a popup that will not open and captures missing from the timeline.",
     icon="life-buoy",
     blocks=[
-        P("Lens reports failures where it can — an in-page toast when a content script can run, and the toolbar icon badge when one cannot."),
+        P("Framelog reports failures where it can — an in-page toast when a content script can run, and the toolbar icon badge when one cannot."),
 
         H("This page cannot be captured"),
         P("Chrome forbids extensions from running on some pages, and no extension can work around it."),
@@ -957,22 +957,22 @@ PAGES["troubleshooting"] = dict(
             "`devtools://` and `view-source:` pages",
             "Other extensions' pages",
             "The built-in PDF viewer",
-            "`file://` URLs, unless you enable **Allow access to file URLs** for Lens on `chrome://extensions`",
+            "`file://` URLs, unless you enable **Allow access to file URLs** for Framelog on `chrome://extensions`",
         ]),
         P("On these pages the toolbar icon shows a red **!** with the reason in its tooltip, because a toast cannot be drawn."),
 
         H("The recording came out blank"),
-        P("Tab capture succeeds on protected video but returns solid black — sites using DRM, such as YouTube and Netflix, are excluded from capture by design. Lens samples the recorded frames and warns you when they look blank, but still opens the converter so you can judge for yourself."),
+        P("Tab capture succeeds on protected video but returns solid black — sites using DRM, such as YouTube and Netflix, are excluded from capture by design. Framelog samples the recorded frames and warns you when they look blank, but still opens the converter so you can judge for yourself."),
         P("If a whole page records black, the page is blocking capture. If only a video player area is black, that player is protected and the rest of the page is fine."),
 
         H("My captures are not appearing in my folder"),
         P("Folder access has lapsed. Open the popup: the folder row reads **paused**, with a **Reconnect** button. One click fixes it, and everything taken meanwhile is written out straight afterwards."),
-        P("It lapses because re-granting access requires a click, and the extension's background worker never has one — so it cannot recover on its own. The captures are not lost in the meantime: Lens holds them, and the dashboard's project card says how many writes are waiting. See [Projects and folders](projects.html)."),
-        P("If the folder is connected and the card still shows writes waiting, press **Catch up folder** on the card and read the message it gives back — a full disk or a folder moved out from under Lens both report themselves there."),
+        P("It lapses because re-granting access requires a click, and the extension's background worker never has one — so it cannot recover on its own. The captures are not lost in the meantime: Framelog holds them, and the dashboard's project card says how many writes are waiting. See [Projects and folders](projects.html)."),
+        P("If the folder is connected and the card still shows writes waiting, press **Catch up folder** on the card and read the message it gives back — a full disk or a folder moved out from under Framelog both report themselves there."),
 
         H("I have no folder linked — where are my captures?"),
         P("In the project, which is where every capture goes first. Open any capture from the popup timeline or the dashboard and use **Save a copy** to write it to your downloads, or **Copy** to put it on the clipboard. The dashboard's detail view names the location under **Stored**."),
-        P("To get everything onto disk at once, link a folder: Lens offers to copy the whole project across, and tells you how much that is."),
+        P("To get everything onto disk at once, link a folder: Framelog offers to copy the whole project across, and tells you how much that is."),
 
         H("A capture saved but is not in the timeline"),
         P("The capture was stored but its timeline entry could not be written. The save message says so explicitly. This is a storage failure rather than a folder one — check **Settings > Storage** for how much room is left."),
@@ -981,8 +981,8 @@ PAGES["troubleshooting"] = dict(
         H("I clicked the toolbar icon and the popup did not open"),
         P("Two causes, both harmless."),
         UL([
-            "**Lens had already opened it for you.** *Open Lens after saving* opens the popup after a capture, and a toolbar click while it is open is read by Chrome as closing it. Click again, or switch tab first.",
-            "**A permission bubble took the click.** Older builds asked for a lapsed folder back as the popup opened, and the bubble dismissed the popup. Fixed — Lens now highlights **Reconnect** and waits for you to press it. Update if you are seeing this.",
+            "**Framelog had already opened it for you.** *Open Framelog after saving* opens the popup after a capture, and a toolbar click while it is open is read by Chrome as closing it. Click again, or switch tab first.",
+            "**A permission bubble took the click.** Older builds asked for a lapsed folder back as the popup opened, and the bubble dismissed the popup. Fixed — Framelog now highlights **Reconnect** and waits for you to press it. Update if you are seeing this.",
         ]),
         P("Neither produces an error anywhere, which is why nothing shows in the console or on `chrome://extensions`."),
 
@@ -994,7 +994,7 @@ PAGES["troubleshooting"] = dict(
 
         H("My guides have disappeared from the dashboard"),
         P("The files are almost certainly still there. A guide is listed because a timeline entry names it, so a metadata file that was lost, replaced or hand-edited can take guides out of the list while the folders sit untouched."),
-        P("**Dashboard > Guides > Find guides on disk** walks each project — what Lens holds and any linked folder — and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason."),
+        P("**Dashboard > Guides > Find guides on disk** walks each project — what Framelog holds and any linked folder — and lists whatever is missing, keeping each guide's own id. The same action picks up a guide folder you copied in by hand, which is otherwise invisible for the same reason."),
 
         H("A dropdown step will not move on"),
         P("That is deliberate. Opening a dropdown is not choosing from it, so the step waits for the option the guide recorded — the panel names which one. Pick something else and the step stays put and tells you what to look for. Where the list is drawn in the page, the option itself is ringed; where the operating system draws it, as with a plain `<select>` on macOS, there is nothing in the page to ring and the tag names it instead."),
@@ -1003,7 +1003,7 @@ PAGES["troubleshooting"] = dict(
         H("Guide Mode is not highlighting anything"),
         P("Look at the label beside the step number in the panel."),
         UL([
-            "**Not on this page** — the control could not be found. Either you are not on the page that step is about, or the page has changed since the guide was recorded. Lens keeps looking, so if the control is behind a menu, opening that menu will ring it.",
+            "**Not on this page** — the control could not be found. Either you are not on the page that step is about, or the page has changed since the guide was recorded. Framelog keeps looking, so if the control is behind a menu, opening that menu will ring it.",
             "**Nothing at all** — that step has no control to point at. A page load and a scroll are instructions to follow, not things to click; press **Next** when you have done it.",
             "**Plain walkthrough** — the guide was recorded with **Walkthrough mode** set to Plain, so nothing was written down about the page's controls. Guides recorded that way show their words and pictures only. Re-record with Interactive to get the highlighting.",
         ]),
@@ -1013,16 +1013,16 @@ PAGES["troubleshooting"] = dict(
         P("If the recording itself looked soft on screen, the region was captured on a scaled display. Recording at 100% scale keeps whatever the tab actually rendered; it cannot add detail that was never drawn."),
 
         H("Do I need an account or a subscription?"),
-        P("No. Lens has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud [AI provider](ai.html) you connect with your own key — that is your account with that provider, not one with Vectored."),
+        P("No. Framelog has no account, no sign-in and no subscription, and it does not check a licence at any point. Everything on these pages works offline. The one optional exception is a cloud [AI provider](ai.html) you connect with your own key — that is your account with that provider, not one with Vectored."),
 
         H("An MP4 row has no picture on it"),
-        P("Recordings saved before Lens started taking a still from them have no thumbnail, and there is no way to make one after the fact — the extension's background worker cannot decode MP4. Opening the row still plays the recording. New recordings get their picture from the recording itself."),
+        P("Recordings saved before Framelog started taking a still from them have no thumbnail, and there is no way to make one after the fact — the extension's background worker cannot decode MP4. Opening the row still plays the recording. New recordings get their picture from the recording itself."),
 
         H("Edit image is missing on a capture"),
         P("It is hidden where it would not work. The image tools cannot open a recording at all. They can open a GIF, but they open one frame and save one frame, so editing an animation would quietly replace it with a still under the same name — so that is hidden too. **Copy** on a GIF copies its first frame, and says so."),
 
         H("The MP4 I recorded is a WebM"),
-        P("Your Chrome build cannot encode MP4. Lens falls back to WebM and names the file for what it actually wrote, rather than giving you an `.mp4` that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it."),
+        P("Your Chrome build cannot encode MP4. Framelog falls back to WebM and names the file for what it actually wrote, rather than giving you an `.mp4` that is not one. The Settings page says which format your browser will produce. Updating Chrome usually resolves it."),
 
         H("Nothing happened when I pressed the shortcut"),
         P("See [Keyboard shortcuts](shortcuts.html) — the usual causes are a restricted page, a conflicting binding, or a page that has not finished loading."),

@@ -205,7 +205,7 @@
 
     lens: {
       id: 'lens',
-      name: 'Lens',
+      name: 'Framelog',
       platform: 'for Chrome',
       tagline: 'Region screenshots, GIF and MP4 capture, filed into local folders.',
       badge: 'COMING SOON',
@@ -214,7 +214,7 @@
       icon: 'lens/assets/icon.png',
       accent: '#F59E0B',
       initial: 'L',
-      ratingLabel: 'How useful would Lens be for you?',
+      ratingLabel: 'How useful would Framelog be for you?',
       areas: ['Region capture', 'Annotation & blur', 'GIF recording', 'MP4 recording', 'Projects & folders', 'Timeline & search', 'File naming', 'Keyboard shortcuts', 'Something else'],
       questions: [
         { id: 'earlyAccess', label: 'Want early access?', type: 'radio', options: ['Yes, put me on the beta list', 'No, just leaving feedback'] },
@@ -224,7 +224,7 @@
         { id: 'sitePattern', label: 'What were you capturing?', type: 'textarea', rows: 2, placeholder: 'The kind of page — an internal dashboard, a docs site, a video player. No need to name anything confidential.' },
       ],
       nextSteps: [
-        { label: 'Getting started with Lens', href: 'https://docs.vectored.dev/lens/docs/getting-started.html' },
+        { label: 'Getting started with Framelog', href: 'https://docs.vectored.dev/lens/docs/getting-started.html' },
         { label: 'Recording GIF and MP4', href: 'https://docs.vectored.dev/lens/docs/recording.html' },
         { label: 'Troubleshooting', href: 'https://docs.vectored.dev/lens/docs/troubleshooting.html' },
       ],

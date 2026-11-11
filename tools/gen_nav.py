@@ -52,7 +52,7 @@ GROUPS = {
    ('Configure', ['settings','shortcuts']),
    ('AI', ['ai','agent-skill']),
    ('Help', ['troubleshooting','../support']),
-   # Lens keeps these at the product root rather than under docs/, unlike
+   # Framelog keeps these at the product root rather than under docs/, unlike
    # timesheets which has privacy-security as an ordinary page. A leading ../
    # says so: the file is looked for beside the product's index.html, and the
    # entry is kept out of prev/next because it is not part of the reading order.
@@ -114,11 +114,11 @@ PRODUCTS = [
       # supplied. Where a product provides one, the header renders it instead of
       # the house CTA; ctaLabel stays as the accessible name.
       ctaImage='https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/uploads/Tal/4b5d9548-0598-436e-a5b6-9bc5f29ee1d9_Group12441.png'),
- dict(key='lens', label='Lens', blurb='Screenshots, GIF & guides',
+ dict(key='lens', label='Framelog', blurb='Screenshots, GIF & guides',
       dir='lens', icon='lens/assets/icon-64.png',
       cta='https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki',
       ctaLabel='Try now',
-      homeLabel='Lens Overview'),
+      homeLabel='Framelog Overview'),
  # Depotex builds its own sidebars and search entries (depotex/_build/build.py
  # writes depotex/assets/nav-local.js, which only Depotex pages load and which
  # replaces this entry there). Here it is listed in the switcher only, marked

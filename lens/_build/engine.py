@@ -1,4 +1,4 @@
-"""Block markup for the Lens docs.
+"""Block markup for the Framelog docs.
 
 Mirrors timesheets/_build/engine.py, trimmed to the blocks these pages use. A
 page is a list of blocks so the content file reads like an outline rather than a
@@ -195,7 +195,7 @@ PAGE = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} — Lens Docs</title>
+  <title>{title} — Framelog Docs</title>
   <meta name="description" content="{desc}">
   <meta name="vc-updated" content="{updated}">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -214,7 +214,7 @@ PAGE = """<!DOCTYPE html>
 <script src="../../assets/nav.js"></script>
 <script src="../../assets/header.js"></script>
 
-<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><span class="text-cta">Lens is out.</span> <a class="text-cta hover:underline" href="https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki" data-store="lens" target="_blank" rel="noopener">Install for Chrome or Edge &rarr;</a></div>
+<div class="bg-cta/10 border-b border-cta/20 px-4 py-2 text-center text-sm font-medium"><span class="text-cta">Framelog is out.</span> <a class="text-cta hover:underline" href="https://chromewebstore.google.com/detail/lens-by-vectored-tab-capt/gjonlnbkjjlhkcbbebagiadphdfipdki" data-store="lens" target="_blank" rel="noopener">Install for Chrome or Edge &rarr;</a></div>
 
 <div class="vc-shell">
   <aside class="vc-side" data-noprint="1"></aside>
