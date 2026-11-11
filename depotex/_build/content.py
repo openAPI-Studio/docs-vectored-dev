@@ -52,6 +52,13 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-11", "Security", "Files served from repositories can no longer act as the person viewing them: every download carries a sandbox Content-Security-Policy and `X-Content-Type-Options: nosniff`, so an HTML or SVG file opened in a browser runs no scripts and sends no requests. Package managers are unaffected."),
+    ("2026-11-11", "Security", "Other people's sign-in details (last sign-in and address, failed attempts, lock and password state, sign-in history, the **Locked** filter) now need the new `users:security` permission, held by organization admins. Members still see who exists; everyone sees their own. API tokens and applications that read sign-in history need the new scope."),
+    ("2026-11-11", "Security", "The web app's Content-Security-Policy is enforced by default. `CSP_ENFORCE=false` sends it report-only."),
+    ("2026-11-11", "API tokens", "A person's API tokens are refused (401 `password_change_required`) while they must replace a temporary password, and work again once they have."),
+    ("2026-11-11", "Quarantine", "A new, re-enabled or widened vulnerable-version rule now also checks the versions already stored, within a few minutes, and handles them as the re-check setting says."),
+    ("2026-11-11", "Kubernetes", "The Helm chart gives the server pod's `/tmp` 8 GiB (was 2) and limits container image inspection to images of 1 GiB compressed and 4 GiB unpacked, so inspecting a large image can no longer evict the pod. Raise `IMAGE_SCAN_MAX_BYTES` and `IMAGE_SCAN_MAX_UNPACKED` together with `backend.tmpSize`."),
+    ("2026-11-11", "API", "A request whose address contains a NUL byte is answered 400 instead of 500."),
     ("2026-11-09", "Dashboard", "The [dashboard](dashboard.html) is redesigned. Administrators get a line of health chips, six figures (now with vulnerable versions and refused requests), backups, supply-chain security, 14-day traffic, formats in use, cluster and rate-limit cards, and a vulnerable column in the spaces table. Members get their usage, tokens, security in their spaces, watched packages and vibe check-ins. Plugins can add their own cards."),
     ("2026-11-09", "Browse", "**Watch** on a version's page follows its package: watched packages show on your dashboard with their newest version and known vulnerabilities."),
     ("2026-11-09", "Plugins", "Calls to a plugin's MCP server are counted per day and per application (`GET /api/plugins/{name}/endpoint-usage`); the `depotex-mcp` plugin shows them on an **AI agent connections** dashboard card."),
@@ -192,7 +199,7 @@ location / {
             WARN("List every address your tools use before turning the switch on: a client at an address that isn't listed gets links to the Depotex address, which an isolated network may not reach. The page warns when the address you're using isn't listed."),
             NOTE("Depotex needs its own host name: it can't be served under a path such as `https://tools.example.com/depotex/`."),
             H("Security headers"),
-            P("Pages are served with security headers (frames from other sites are refused, the referrer is trimmed, HSTS). A Content-Security-Policy is sent in report-only mode by default; violations are logged by the frontend as `[csp]` lines. Set `CSP_ENFORCE=true` on the frontend once the log stays quiet."),
+            P("Pages are served with security headers (frames from other sites are refused, the referrer is trimmed, HSTS). A Content-Security-Policy is enforced on every page; violations are logged by the frontend as `[csp]` lines (`CSP_ENFORCE=false` sends it report-only, blocking nothing). Files downloaded from repositories carry their own sandbox policy and `nosniff`: an HTML or SVG file someone uploaded, opened in a browser, runs no scripts and can't use your session."),
             H("Help menu and footer"),
             P("Once signed in, everyone has a **?** (Help) menu at the top of every page and a footer at the bottom:"),
             TABLE(["Where", "What"], [

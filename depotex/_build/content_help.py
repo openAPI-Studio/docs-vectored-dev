@@ -31,7 +31,7 @@ HELP = [
                 ["Turning on **Require single sign-on** doesn't end password sessions already open, and OAuth refresh tokens issued before it keep working", "Revoke sessions (Settings → Access → Users) and applications' tokens after turning it on"],
                 ["The setup wizard takes an 8-character first password, though people's passwords need 12 by default; there is no breached-password check", "Choose a long first password; enforce password quality in your identity provider"],
                 ["Anyone who knows an account's name can lock it for `AUTH_LOCKOUT_DURATION` by failing sign-ins, and the answer reveals the account exists", "The per-address limit caps it; unlock in Settings → Access → Users; use single sign-on"],
-                ["API tokens keep working while their owner must change a temporary password", "Revoke the person's tokens when resetting their password"],
+                ["Applications' OAuth tokens keep working while their owner must change a temporary password (API tokens are refused until then)", "Revoke the person's application tokens when resetting their password"],
                 ["SCIM: no bulk operations, sorting or ETags; filters only `attribute eq \"value\"`", "Enough for Okta and Entra ID provisioning"],
                 ["Entra ID and Google Workspace sync read the whole directory each run", "Fine for tens of thousands of people hourly; sync less often for larger tenants"],
                 ["Global roles are fixed (member, organization admin, super admin): you can't define your own", "Use groups and space roles for fine-grained access"],
