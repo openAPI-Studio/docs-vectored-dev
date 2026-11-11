@@ -53,7 +53,7 @@ DIRECTORIES = [
             P("There is nothing to configure: the setup wizard creates the Local directory and your first administrator in it. People in the Local directory sign in with their **email address**, which is their username. Email addresses are unique within a directory regardless of case: `Ann@example.com` and `ann@example.com` are the same account."),
 
             H("Managing users"),
-            P("**Settings → Users** lists everyone in your organization: profile picture, name, email, directory, role, status and last sign-in. Search by email, name or username, and filter by directory or status (Active, Disabled, Locked, Invited, Anonymized). Select a user to see their details, account status and sign-in history. Seeing users needs `users:read` and `profiles:view` (see [Profile pictures and finding people](#profile-pictures-and-finding-people))."),
+            P("**Settings → Users** lists everyone in your organization: profile picture, name, email, directory, role, status and last sign-in. Search by email, name or username, and filter by directory or status (Active, Disabled, Locked, Invited, Anonymized). Select a user to see their details, account status and sign-in history. Seeing users needs `users:read` and `profiles:view` (see [Profile pictures and finding people](#profile-pictures-and-finding-people)). Other people's sign-in details need `users:security` as well, which organization admins hold: without it the list has no last sign-in column or **Locked** filter, and a user's page shows their profile and groups only. Everyone sees their own."),
             SHOT("users-list.png", "Settings → Users: everyone who can sign in, their directory, role, status and last sign-in"),
             TABLE(["Badge", "Meaning"], [
                 ["**Active**", "Can sign in"],
@@ -75,8 +75,8 @@ DIRECTORIES = [
             P("Select a user in **Settings → Users** to open their page. The header shows their name, email, username, status, role and directory. Below it, a banner explains any state that keeps them from signing in normally (locked, disabled, invitation not accepted, shadowed, must choose a new password), with the fix beside it: **Unlock**, **Enable** or **Resend invitation**."),
             SHOT("users-user.png", "A user's page: profile, sign-in and security, and groups"),
             UL([
-                "**Overview**: their profile and groups, and a **Sign-in & security** card with their last sign-in, failed attempts, password state and latest sign-ins.",
-                "**Sign-in history**: every sign-in, newest first, with the address and browser. Filter it to **Signed in** or **Refused**; refused ones say why.",
+                "**Overview**: their profile and groups, and a **Sign-in & security** card with their last sign-in, failed attempts, password state and latest sign-ins (`users:security`, or your own page).",
+                "**Sign-in history**: every sign-in, newest first, with the address and browser. Filter it to **Signed in** or **Refused**; refused ones say why. Shown with `users:security`, or on your own page.",
                 "**Privacy**: download their personal data or anonymize them (see below). Shown to people with `users:export` or `users:anonymize`.",
             ]),
             H("Actions on a user"),
@@ -152,7 +152,7 @@ DIRECTORIES = [
 
             H("Your password"),
             P("Open the profile menu, choose **Edit Profile → Security**, enter your current password and the new one twice, then **Change password**. Your other devices are signed out; this one stays signed in. Users from directories that sign in another way (for example single sign-on) don't have a password here."),
-            P("If an administrator set a temporary password for you, you'll see **Set a new password** right after signing in. Choose your own to continue."),
+            P("If an administrator set a temporary password for you, you'll see **Set a new password** right after signing in. Choose your own to continue. Your API tokens are refused until you have."),
 
             H("Setting up a Delegated directory"),
             P("A Delegated directory holds people whose passwords live somewhere else: they sign in through your identity provider with [single sign-on](single-sign-on.html). You manage their accounts here: name, email, role, groups, enabled or disabled. Typical uses: contractors or partners from another company's identity provider, or staff who should only ever use single sign-on. Accounts can also be created automatically the first time someone signs in (see [Single sign-on → Accounts](single-sign-on.html#accounts))."),

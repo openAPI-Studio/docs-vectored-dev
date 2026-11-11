@@ -52,7 +52,7 @@ ENV_VARS = [
                 ["`FRONTEND_BEHIND_PROXY`", "`false`", "Web app: `true` when a proxy in front sets `X-Forwarded-For`, `-Host` and `-Proto`, so they're passed on. Then only the proxy may reach the web app's port"],
                 ["`FRONTEND_API_BODY_LIMIT`", "`33554432` (32 MiB)", "Web app: largest `/api` request body it forwards; raise it with `BROWSE_GUARD_MAX_SBOM`, `PLUGIN_MAX_PACKAGE_SIZE` or `BACKUP_UPLOAD_CHUNK_SIZE`"],
                 ["`BACKEND_URL`", "`http://127.0.0.1:8080`", "Web app: where the server is"],
-                ["`CSP_ENFORCE`", "unset (report only)", "Web app: `true` enforces the Content-Security-Policy; unset, violations are only logged as `[csp]` lines"],
+                ["`CSP_ENFORCE`", "unset (enforced)", "Web app: the Content-Security-Policy is enforced; `false` sends it report-only, so violations are only logged as `[csp]` lines"],
                 ["`PORT`, `HOSTNAME`", "`3000`, `0.0.0.0` (image)", "Web app: its port and listen address"],
             ]),
 

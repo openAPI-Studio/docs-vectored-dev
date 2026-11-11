@@ -205,7 +205,8 @@ ADMIN = [
             ]),
             H("Browser security"),
             UL([
-                "Set `CSP_ENFORCE=true` on the web app once its log has no `[csp]` lines for a while.",
+                "Leave the web app's Content-Security-Policy enforced (the default): don't set `CSP_ENFORCE=false` in production, and look into any `[csp]` line in its log.",
+                "Give `users:security` (other people's sign-in history and addresses) only to the people who investigate sign-ins; organization admins hold it by default.",
                 "Package links use only known addresses: list them under **Settings → General** and turn on **Package links use only these addresses**.",
             ]),
             H("Identity and access"),

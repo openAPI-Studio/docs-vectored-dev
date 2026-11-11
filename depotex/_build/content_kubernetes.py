@@ -84,7 +84,7 @@ docker push registry.example.com/depotex-frontend:1.0.0"""),
             WARN("Never use the test environment in production: it has test users, plain HTTP and relaxed security settings."),
 
             H("Backups"),
-            P("The server stages each [backup](backups.html) in the pod's `/tmp` before writing it to storage. The chart gives `/tmp` 2 GiB: set `backend.tmpSize` larger than a compressed dump of your database plus the platform files, or point `BACKUP_TEMP_DIR` (in `backend.env`) at a larger volume. Back up the artifact storage itself with your storage platform's tools."),
+            P("The server stages each [backup](backups.html) in the pod's `/tmp` before writing it to storage. The chart gives `/tmp` 8 GiB, shared with container image inspection (which the chart limits to images of 1 GiB compressed and 4 GiB unpacked; larger ones are stored and served, not inspected): set `backend.tmpSize` larger than a compressed dump of your database plus the platform files and those two limits, or point `BACKUP_TEMP_DIR` (in `backend.env`) at a larger volume. To inspect larger images, raise `IMAGE_SCAN_MAX_BYTES` and `IMAGE_SCAN_MAX_UNPACKED` in `backend.env` together with `tmpSize`. Back up the artifact storage itself with your storage platform's tools."),
             CODE("""backend:
   tmpSize: 20Gi"""),
 
