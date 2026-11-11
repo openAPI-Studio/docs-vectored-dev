@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Agent Skill — Lens Docs</title>
   <meta name="description" content="Set up the lens-capture-agent skill so Claude Code with Chrome, the Claude app, Kiro and other AI agents can take screenshots, record GIFs and write guides with Lens, masking secrets first.">
-  <meta name="vc-updated" content="16 Oct 2026">
+  <meta name="vc-updated" content="11 Nov 2026">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -42,6 +42,7 @@
 <p class="text-muted mb-4">With the skill, an agent can:</p>
 <ul class="list-disc pl-6 text-muted mb-4"><li class="mb-2">take a screenshot of a region or a full page, and annotate it with boxes, arrows, text or blur;</li><li class="mb-2">record a GIF of a flow;</li><li class="mb-2">record a step-by-step guide, export it as Markdown, HTML or a bundle, check that each step still matches the page, and replay it in Guide Mode;</li><li class="mb-2">find secrets on screen and mask them before anything is captured;</li><li class="mb-2">file everything into a Lens project, and pick up the saved file afterwards.</li></ul>
 <p class="text-muted mb-4">The skill is free and open source (MIT): <a href="https://github.com/openAPI-Studio/lens-skills" class="text-cta hover:underline">github.com/openAPI-Studio/lens-skills</a>.</p>
+<p class="text-muted mb-4"><a href="https://youtu.be/wVgPh0sLWuE?t=165" class="text-cta hover:underline">Tutorial 10</a> shows the setup from 2:45: the switch that lets agents drive Framelog, installing the skill, and a first prompt to try.</p>
 <h2 class="text-2xl font-semibold mt-10 mb-4">1. Before you start</h2>
 <ol class="list-decimal pl-6 text-muted mb-4"><li class="mb-3"><strong class="text-text">Install Lens 1.24.0 or later</strong> <span class="text-muted">full-page screenshots need 1.24.0.</span></li><li class="mb-3"><strong class="text-text">Turn on Allow browser agents to drive Lens</strong> <span class="text-muted">in the Lens dashboard, under Settings. It is off by default.</span></li><li class="mb-3"><strong class="text-text">Reload the tabs that were already open</strong> <span class="text-muted">they pick up the setting when they load.</span></li></ol>
 <div class="flex gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-6" role="note"><svg class="w-5 h-5 shrink-0 text-amber-400 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg><p class="text-sm text-muted">While the setting is on, any script on a page you open can ask Lens to capture that page. Turn it on when you use an agent, and off again when you are done.</p></div>
