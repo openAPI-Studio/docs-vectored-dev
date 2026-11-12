@@ -372,7 +372,7 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `vulnerability-data-distributions.png`
       Settings → Vulnerability data: the Amazon Linux, Fedora and Oracle Linux releases read, and the repository mirror
 - [ ] `vulnerability-data-offline.png`
-      Settings → Vulnerability data: downloading OSV's data files, each ecosystem's state, and uploading OSV data
+      Settings → Vulnerability data, Offline data: each ecosystem with its advisories, how far its data goes and the last attempt; one ecosystem shows three records skipped
 
 ## Users &amp; Directories
 
