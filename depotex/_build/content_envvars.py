@@ -219,6 +219,7 @@ ENV_VARS = [
                 ["`IMAGE_SCAN_ENABLED`", "`true`", "Catalog container images (and proxied conda packages) without an SBOM with Syft (Pro)"],
                 ["`IMAGE_SCAN_TIMEOUT`, `IMAGE_SCAN_MAX_BYTES`, `IMAGE_SCAN_MAX_UNPACKED`, `IMAGE_SCAN_MAX_LAYERS`, `IMAGE_SCAN_MAX_PLATFORMS`", "`10m`, 4 GiB, 16 GiB, `128`, `4`", "Scan limits; larger images are skipped"],
                 ["`IMAGE_SCAN_TMP_DIR`", "system temp", "Where images are unpacked: needs room for the largest image expanded"],
+                ["`TEMP_SPACE_LIMIT`", "none", "Size limit of this server's temporary directory when something outside the file system enforces one (a Kubernetes `emptyDir` limit), as bytes or `20Gi`. Scans and vulnerability data files that don't fit in what is left wait. Set per server; the Helm chart sets it from `backend.tmpSize`"],
                 ["`VULN_ARCHIVE_MAX_BYTES`", "2 GiB", "Largest offline vulnerability archive (Settings → Vulnerability data)"],
             ]),
 

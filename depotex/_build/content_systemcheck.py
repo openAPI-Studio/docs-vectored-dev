@@ -35,6 +35,8 @@ SYSTEM_CHECK = [
                 ["Event delivery", "Deliveries late or failed for good in the last 24 hours", "More than 100 deliveries late"],
                 ["Audit log (each server)", "Entries waiting to be written", "Entries were lost"],
                 ["Log file (each server)", "", "The log file can't be written"],
+                ["Temporary space for scans (each server)", "The temporary directory is smaller than one full-size image or package scan (`IMAGE_SCAN_MAX_BYTES` + `IMAGE_SCAN_MAX_UNPACKED`): scans that don't fit wait. Give it more room or lower the two limits", ""],
+                ["Vulnerability data (Pro)", "Checks are turned off or paused, the last update failed, or the data is older than two re-check periods (change the number under the check's settings). Opens **Settings → Vulnerability data**", ""],
                 ["Live updates", "Browsers can't open live updates through the Depotex address: the reverse proxy doesn't route `/api/ws` to the backend (alerts then refresh every 30 seconds). See Getting Started → Behind a proxy", ""],
                 ["Secure cookies (each server)", "`AUTH_COOKIE_SECURE=false` while Depotex is reached at an address other than localhost, so session cookies could travel over plain HTTP. Serve Depotex over HTTPS (or terminate TLS in a reverse proxy in front of it) and remove the setting", ""],
             ]),

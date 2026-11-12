@@ -84,9 +84,10 @@ docker push registry.example.com/depotex-frontend:1.0.0"""),
             WARN("Never use the test environment in production: it has test users, plain HTTP and relaxed security settings."),
 
             H("Backups"),
-            P("The server stages each [backup](backups.html) in the pod's `/tmp` before writing it to storage. The chart gives `/tmp` 8 GiB, shared with container image inspection (which the chart limits to images of 1 GiB compressed and 4 GiB unpacked; larger ones are stored and served, not inspected): set `backend.tmpSize` larger than a compressed dump of your database plus the platform files and those two limits, or point `BACKUP_TEMP_DIR` (in `backend.env`) at a larger volume. To inspect larger images, raise `IMAGE_SCAN_MAX_BYTES` and `IMAGE_SCAN_MAX_UNPACKED` in `backend.env` together with `tmpSize`. Back up the artifact storage itself with your storage platform's tools."),
+            P("The server stages each [backup](backups.html) in the pod's `/tmp` before writing it to storage. The chart gives `/tmp` 20 GiB, shared with image and package inspection (up to 4 GiB compressed and 16 GiB unpacked per image) and vulnerability data files: set `backend.tmpSize` larger than a compressed dump of your database plus the platform files and those two limits, or point `BACKUP_TEMP_DIR` (in `backend.env`) at a larger volume. Back up the artifact storage itself with your storage platform's tools."),
+            P("The server is told the size of `/tmp` (`TEMP_SPACE_LIMIT`, set by the chart from `tmpSize`). A scan that doesn't fit in what is left waits and is tried again, and the system check **Temporary space for scans** warns when `/tmp` is smaller than one full-size scan. The pod requests the same amount of ephemeral storage, so it is scheduled only on a node that has it. On small nodes, lower `tmpSize` together with `IMAGE_SCAN_MAX_BYTES` and `IMAGE_SCAN_MAX_UNPACKED`; for images larger than a node can hold, set `backend.scratch.enabled: true` to mount `/tmp` from a volume of its own (`backend.scratch.size`, 50 GiB by default)."),
             CODE("""backend:
-  tmpSize: 20Gi"""),
+  tmpSize: 40Gi"""),
 
             H("Upgrades"),
             P("Build and push the new images, then `helm upgrade` with the new tags. Server pods restart one at a time; database changes run once, on the first server to start."),

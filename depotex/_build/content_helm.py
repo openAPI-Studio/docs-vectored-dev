@@ -45,7 +45,7 @@ ingress:
             CODE("""publicUrl: https://depotex.example.com
 backend:
   replicas: 3          # cluster mode: Pro license and Redis
-  tmpSize: 20Gi        # room to stage backups
+  tmpSize: 40Gi        # scans plus room to stage backups
   resources:
     requests: { cpu: "2", memory: 4Gi }
     limits: { memory: 8Gi }
@@ -133,7 +133,8 @@ kubectl -n depotex logs -f depotex-backend-0"""),
                 ["`backend.image.*`", "`ghcr.io/openapi-studio/depotex-backend`, tag = chart `appVersion`", "Server image: `registry`, `repository`, `tag`, `digest`, `pullPolicy`"],
                 ["`backend.replicas`", "`1`", "Servers. More than one is a cluster (Pro, Redis, shared storage). Keep 1 until setup has finished"],
                 ["`backend.persistence.*`", "enabled, `ReadWriteOnce`, `10Gi`", "Per-pod data: bootstrap file, search index, this server's log files. Never artifacts"],
-                ["`backend.tmpSize`", "`8Gi`", "The pod's `/tmp`, where backups are staged and container images are unpacked for inspection: larger than a compressed dump of your database, and than `IMAGE_SCAN_MAX_BYTES` + `IMAGE_SCAN_MAX_UNPACKED` (the chart sets those to 1 GiB and 4 GiB in `backend.env`)"],
+                ["`backend.tmpSize`", "`20Gi`", "The pod's `/tmp`, where backups are staged and images, packages and vulnerability data files are unpacked: larger than a compressed dump of your database, and than `IMAGE_SCAN_MAX_BYTES` + `IMAGE_SCAN_MAX_UNPACKED` (4 GiB + 16 GiB unless you set them in `backend.env`). The chart tells the server the limit (`TEMP_SPACE_LIMIT`) and requests the same ephemeral storage from the node"],
+                ["`backend.scratch.enabled`, `backend.scratch.storageClass`, `backend.scratch.size`", "`false`, cluster default, `50Gi`", "Mount `/tmp` from a volume created and deleted with each pod instead of the node's disk, for images larger than your nodes can spare. `tmpSize` is not used then"],
                 ["`backend.trustedProxies`", "loopback and private ranges", "Proxies whose `X-Forwarded-For` is trusted (`TRUSTED_PROXIES`); narrow it to your pod network"],
                 ["`backend.logLevel`", "`info`", "`debug`, `info`, `warn` or `error`"],
                 ["`backend.env`", "`{}`", "Any other [environment variable](environment-variables.html), as `NAME: value`"],

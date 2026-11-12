@@ -163,7 +163,7 @@ FORMATS = [
                 "**Version policy**: a **Release** repository refuses snapshot versions, a **Snapshot** repository refuses releases, **Mixed** takes both. Proxy repositories apply it too: a release proxy doesn't fetch snapshots.",
                 "**maven-metadata.xml** of hosted repositories is generated from what they hold: the versions in Maven's order, with the latest and the latest release, and for snapshots the newest build of each file. Blocked versions are left out, and the metadata's checksum files match.",
                 "**Checksum files** that mvn uploads next to each file are checked against it; a mismatch is refused. `.sha1`, `.md5`, `.sha256` and `.sha512` downloads are always answered.",
-                "**Publishing once** (**Allow once**) stops a file from being overwritten, but metadata is rewritten freely, as every deploy needs.",
+                "**Publishing once** (**Allow once**, the default for new hosted Maven repositories) refuses a release file that already exists with `409`, so a released version never changes. Snapshot files and metadata are still replaced, as every snapshot deploy needs; replacing a snapshot file needs the Overwrite permission. Set **Publishing** to **Allow** to let releases be redeployed.",
                 "**Strict layout** refuses paths outside the Maven layout (`group/artifact/version/artifact-version[-classifier].ext`); **permissive** stores them like raw files.",
             ]),
             H("Proxy repositories"),
