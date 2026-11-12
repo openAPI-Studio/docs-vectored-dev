@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-205 screenshots. Save each one into `depotex/assets/` using the
+207 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -331,6 +331,10 @@ realistic but fictional names and figures rather than real people's data.
       A version's Security tab with an SBOM marked Unreadable and the reason under it
 - [ ] `sbom-security-tab.png`
       A version's Security tab beside the version's side panel: the summary with vulnerabilities, coverage and re-check, and the vulnerabilities as cards
+- [ ] `sbom-finding-merged.png`
+      A finding that two advisory records describe: both ids beside the CVE, and the note that they are counted once
+- [ ] `sbom-left-out.png`
+      An SBOM made from a Maven POM: the note that two dependencies not installed with the package were left out, and the component with its scope
 - [ ] `sbom-finding-malicious.png`
       A finding marked Known malicious on a version's Security tab
 - [ ] `sbom-finding-details.png`
