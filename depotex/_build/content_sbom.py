@@ -152,6 +152,16 @@ SBOM = [
                 ["`GET /api/browse/advisories/{id}`", "An advisory (with `knownMalicious` for a malicious-package record, its whole `details`, `cwes` and `ranges`: each release line's affected versions) and everything you can see that it affects, each with the fix of its own line"],
             ]),
 
+            H("Every finding in one list"),
+            P("**Browse → Findings** lists the vulnerabilities of every SBOM you can see, stored with artifacts or uploaded for applications: one row per vulnerability, component and SBOM, with the severity and score, the version that fixes it, where it was found and whether it is open or suppressed by an [assessment](#assessing-a-vulnerability-vex). Several advisory records of one vulnerability are one row, as on the SBOM itself. Filter by severity, status, repository format, space, repository and **Fix available**; the filters are in the address, so a filtered list can be bookmarked or sent to a colleague. It needs a Pro license."),
+            SHOT("browse-findings.png", "Browse → Findings filtered to one space: each vulnerability with its severity, the component, the fixed version, the artifact it was found in and its status, and the Export links"),
+            P("**Export** downloads everything the filters match, as **CSV** for a spreadsheet or **JSON** for a script, with no row limit. In the CSV, a value a spreadsheet would run as a formula (a component name starting with `=`, for example) is prefixed with a quote. Each export is in the audit log with its filters and the number of rows."),
+            NOTE("The list is ordered by package URL, then advisory, not by severity: use the severity filter to see the worst first. It covers repositories you can browse whole and spaces you can read, like the component search."),
+            TABLE(["Request", "Returns"], [
+                ["`GET /api/sbom/findings?severity=&status=&format=&space=&repository=&fixable=true`", "The findings you can see, paged by `cursor`: the advisory, the records merged into it (`merged`), `severity`, `score`, `fixed`, `firstSeen`, the component and its package URL, the artifact version or application version, and `status` (`open` or `suppressed`). `severity` takes several values separated by commas; a wrong filter value answers 400 `invalid_finding_filter`"],
+                ["`GET /api/sbom/findings/export?type=csv|json`", "The same findings as a download, with the same filters (`type` is the file type, `format` stays the repository format)"],
+            ]),
+
             H("Applications"),
             P("An application belongs to a space and has a key (`shop`, `billing-api`), a name and a description. Its versions appear as SBOMs are uploaded for them: there's nothing to create first. A version can hold more than one document (one for the service, one for its base image) and can be linked to the artifact versions it was built from, so the connection between what was published and what was deployed is recorded. Everything is in the space's **SBOMs** tab: the applications with search, each one's versions with an upload form and the CI command, and each version's SBOMs with their components, vulnerabilities and downloads, plus the linked artifact versions."),
             SHOT("sbom-applications.png", "A space's SBOMs tab: registered applications"),
