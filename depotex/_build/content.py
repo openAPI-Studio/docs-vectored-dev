@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-12", "Promotion", "Pro: Terraform provider and module versions, Hugging Face commits and Git LFS objects can be [promoted](spaces.html#promotion) to another repository of their format, without copying their content. A promoted Hugging Face commit becomes the target's `main`, and can come from a proxy once all its files are cached."),
     ("2026-11-12", "Vulnerability data", "Go advisories load again from OSV's data files: one advisory with long non-English text stopped the whole Go download, so Go modules were shown without known vulnerabilities. They are checked again after the next download."),
     ("2026-11-12", "PyPI", "With vulnerability data on (Pro), the JSON API lists a release's known advisories, so `pip-audit` against a Depotex repository reports them."),
     ("2026-11-12", "NuGet", "With vulnerability data on (Pro), package metadata names the known advisories of hosted packages too, so `dotnet list package --vulnerable` reports them."),
