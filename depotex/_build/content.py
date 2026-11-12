@@ -52,6 +52,10 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-12", "Vulnerability data", "Go advisories load again from OSV's data files: one advisory with long non-English text stopped the whole Go download, so Go modules were shown without known vulnerabilities. They are checked again after the next download."),
+    ("2026-11-12", "PyPI", "With vulnerability data on (Pro), the JSON API lists a release's known advisories, so `pip-audit` against a Depotex repository reports them."),
+    ("2026-11-12", "NuGet", "With vulnerability data on (Pro), package metadata names the known advisories of hosted packages too, so `dotnet list package --vulnerable` reports them."),
+    ("2026-11-12", "Hugging Face", "The download link of a commit's file on its version page works (it answered 404)."),
     ("2026-11-11", "Security", "Files served from repositories can no longer act as the person viewing them: every download carries a sandbox Content-Security-Policy and `X-Content-Type-Options: nosniff`, so an HTML or SVG file opened in a browser runs no scripts and sends no requests. Package managers are unaffected."),
     ("2026-11-11", "Security", "Other people's sign-in details (last sign-in and address, failed attempts, lock and password state, sign-in history, the **Locked** filter) now need the new `users:security` permission, held by organization admins. Members still see who exists; everyone sees their own. API tokens and applications that read sign-in history need the new scope."),
     ("2026-11-11", "Security", "The web app's Content-Security-Policy is enforced by default. `CSP_ENFORCE=false` sends it report-only."),

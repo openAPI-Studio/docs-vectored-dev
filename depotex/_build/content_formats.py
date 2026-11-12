@@ -250,7 +250,7 @@ FORMATS = [
                 "`uv pip install`, `uv pip compile`, `uv add`, `uv lock`, `uv sync`; `poetry add` and `poetry install`; `pdm add` and `pdm install`.",
                 "**pip search** works against the repository (`pip search --index https://…/repository/my-space/py/pypi term`), although pypi.org turned it off.",
             ]),
-            P("Every file is listed with its SHA-256, its Python requirement and its core metadata (PEP 658), so installers resolve without downloading every wheel. The JSON API (`/pypi/{project}/json`) answers tools such as pip-audit."),
+            P("Every file is listed with its SHA-256, its Python requirement and its core metadata (PEP 658), so installers resolve without downloading every wheel. The JSON API (`/pypi/{project}/json`) answers tools such as pip-audit, and with [vulnerability data](sbom.html) turned on (Pro) it lists each release's known advisories with the version that fixes them, so `pip-audit --index-url` against Depotex reports what the release's Security tab shows."),
             H("Publish"),
             UL([
                 "Wheels and source distributions, with Publish permission. Depotex checks the file's own metadata against its name and refuses unreadable or unsafe files.",
@@ -423,6 +423,7 @@ FORMATS = [
             ]),
             H("Unlist or delete a version"),
             P("`dotnet nuget delete Acme.Tools 1.0.0 --source … --api-key …` **unlists** the version by default, as nuget.org does: it leaves search and the version lists in Visual Studio, but projects that reference it exactly still restore it. Unlist and relist from the version's page in the [browser](browse.html) too (**Unlist**, **Relist**), with Overwrite permission."),
+            P("With [vulnerability data](sbom.html) turned on (Pro), a package's metadata names each version's known advisories with their severity, for hosted packages as well as proxied ones, so `dotnet list package --vulnerable` and Visual Studio warn about them. Depotex has no vulnerability database resource for restore's NuGetAudit, no search autocomplete and no symbol packages (`.snupkg` files are skipped by `dotnet nuget push`)."),
             P("To have `dotnet nuget delete` remove the package instead, a repository admin sets **When a package is deleted with dotnet nuget delete** to **Delete it** in the repository's **Settings** (hosted repositories). Unlisting and relisting raise `nuget.package.list`, and changing the setting raises `nuget.settings.update`; organization [policies](policies.html) can refuse either."),
             H("Versions and policies"),
             UL([
