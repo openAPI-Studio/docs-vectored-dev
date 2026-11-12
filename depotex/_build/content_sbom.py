@@ -65,11 +65,14 @@ SBOM = [
             UL([
                 "**CycloneDX** 1.5 JSON, with the known vulnerabilities, their scores and the VEX statements merged in. A component's scope goes out as CycloneDX's `required` or `optional`, with the package format's own word in the property `depotex:dependency-scope`; SPDX carries it in the package comment.",
                 "**SPDX** 2.3 JSON, with package URLs, checksums, licenses and relationships (no vulnerabilities: SPDX 2.3 has no place for them).",
-                "**Share link**: a link anyone can open until it expires (1 to 90 days, 30 by default), without an account, to hand an SBOM to a customer or an auditor. Making one needs `spaces:sbom:write`, raises `sbom.share.create` (a policy can forbid sharing or cap the days) and is in the audit log. A link can't be revoked before it expires.",
+                "**Share link**: a link anyone can open until it expires (1 to 90 days, 30 by default), without an account, to hand an SBOM to a customer or an auditor. Making one needs `spaces:sbom:write`, raises `sbom.share.create` (a policy can forbid sharing or cap the days) and is in the audit log. The link is shown once, when it is made: copy it then. **Share link** also lists the links an SBOM already has (format, who made each and when, when it expires, how often it was opened, and whether it is active, expired or revoked) and **Revoke** closes one at once, on every server; that raises `sbom.share.revoke` and is in the audit log. An SBOM can have 50 open links; links that ended are listed for another 30 days.",
             ]),
+            SHOT("sbom-share-links.png", "The Share this SBOM dialog: the form for a new link, and below it the links this SBOM has, one active with Revoke and one revoked"),
             P("Exports and share links need **Pro**."),
             TABLE(["Request", "Returns"], [
                 ["`GET …/sbom/{n}/export?format=cyclonedx` or `spdx`, `&vex=1` (a version); `GET …/documents/{n}/export?…` (an application)", "The export as a file"],
+                ["`GET …/sbom/{n}/shares`, `GET …/documents/{n}/shares`", "The SBOM's share links, newest first, with `status` (`active`, `expired`, `revoked`), `opens` and `lastOpenedAt`; never the links themselves. Needs `spaces:sbom:write`"],
+                ["`DELETE …/sbom/{n}/shares/{id}`, `DELETE …/documents/{n}/shares/{id}`", "Revokes a link (204). Needs `spaces:sbom:write`"],
                 ["`POST …/sbom/{n}/share`, `POST …/documents/{n}/share` `{format, vex, expiresDays}`", "A link: `url`, `expiresAt`"],
                 ["`GET /api/sbom/shared/{token}`", "The export, for anyone, until the link expires"],
             ]),
@@ -269,7 +272,7 @@ curl -f -X POST -H "Authorization: Bearer $DEPOTEX_TOKEN" \\
             ]),
 
             H("Events"),
-            P("Registering and deleting an application and uploading and deleting a document raise `sbom.application.create`, `sbom.application.delete`, `sbom.document.upload` and `sbom.document.delete` (before and after). Policies can refuse them: for example only CycloneDX, or no document listing fewer than ten components. The upload event carries the format, the tool, the component count and whether the document was truncated. Changing the vulnerability data settings raises `sbom.vulnerability_data.update`, each import of offline data `sbom.vulnerability_data.import`, and **Re-scan now** and every re-check or re-inspection `sbom.rescan.request`; VEX statements raise `sbom.vex.update` and `sbom.vex.delete`; every SBOM is evaluated by `sbom.document.evaluate`, new advisories raise `sbom.vulnerability.found`, and a share link raises `sbom.share.create`. See [Events](events.html)."),
+            P("Registering and deleting an application and uploading and deleting a document raise `sbom.application.create`, `sbom.application.delete`, `sbom.document.upload` and `sbom.document.delete` (before and after). Policies can refuse them: for example only CycloneDX, or no document listing fewer than ten components. The upload event carries the format, the tool, the component count and whether the document was truncated. Changing the vulnerability data settings raises `sbom.vulnerability_data.update`, each import of offline data `sbom.vulnerability_data.import`, and **Re-scan now** and every re-check or re-inspection `sbom.rescan.request`; VEX statements raise `sbom.vex.update` and `sbom.vex.delete`; every SBOM is evaluated by `sbom.document.evaluate`, new advisories raise `sbom.vulnerability.found`, and a share link raises `sbom.share.create` when it is made and `sbom.share.revoke` when it is revoked. See [Events](events.html)."),
 
             H("API"),
             P("Applications live under the space; SBOMs of artifact versions under the browser's version. Lists use cursor paging (`cursor`, `limit`)."),
