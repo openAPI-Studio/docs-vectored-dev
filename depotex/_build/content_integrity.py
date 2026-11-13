@@ -29,6 +29,7 @@ INTEGRITY = [
                 "**How files are checked:** **Compare sizes** (fast; catches missing and truncated files) or **Verify checksums** (re-reads every file and compares its SHA-256; catches any change, slow on large storage).",
                 "The nightly time is the `artifact-integrity-check` job under **Settings → Advanced → Scheduled jobs**.",
             ]),
+            P("An upload that stops halfway through storing content that files already use (its server crashed) no longer leaves that content in limbo: once it is older than the upload grace period (an hour by default), the next check looks at it like any other content. Stored: its files are fine, and it counts as healed. Not stored: its files are listed as broken."),
             P("**Recent checks** lists each run: what it checked, found (missing, changed, orphaned, healed) and deleted. The system check warns when files are broken, or the last check failed, was skipped or is over a week old."),
             H("Events"),
             P("`artifact.integrity.broken` (after) is raised when a check finds missing or changed content, so automation can alert someone; `artifact.integrity.repair` (before and after) wraps deleting. Repairs and setting changes are recorded in the audit log. See [Events](events.html)."),

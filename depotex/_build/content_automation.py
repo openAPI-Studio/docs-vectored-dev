@@ -114,7 +114,7 @@ AUTOMATION = [
                 ["`AUTOMATION_WEBHOOK_TIMEOUT`", "`10s`", "How long a webhook call may take"],
                 ["`AUTOMATION_WEBHOOK_ALLOW_PRIVATE`", "`false`", "Allow webhooks to private or loopback addresses"],
                 ["`AUTOMATION_WEBHOOK_ALLOW_HTTP`", "`false`", "Allow plain http webhook URLs"],
-                ["`AUTOMATION_RUN_RETENTION_DAYS`", "`30`", "How long runs are kept (cleaned up by the automation-run-cleanup job)"],
+                ["`AUTOMATION_RUN_RETENTION_DAYS`", "`30`", "How long runs are kept (cleaned up by the automation-run-cleanup job, which also marks a run that a stopped server left running as failed)"],
                 ["`AUTOMATION_RUN_CLEANUP_SCHEDULE`", "`50 4 * * *`", "When the cleanup job runs"],
             ]),
         ],

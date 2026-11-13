@@ -85,6 +85,13 @@ SETUP = [
                 ["Setup couldn't be completed", "The step named in the message has a value that no longer works; go back to it. The server log says what failed"],
             ]),
             P("Nothing is saved until **Complete setup** succeeds, so you can restart the server and begin again at any point before that."),
+            H("A database that is already set up"),
+            P("Setup never changes an installation that exists. When the database you gave already holds a Depotex installation (you entered the address of one, **Complete setup** was pressed twice, or another server finished setup first), this server only **joins** it: it remembers the database and restarts as one more server of that installation. The administrator, license and storage you entered are not applied, and nobody's password changes. Sign in with an account of that installation."),
+            UL([
+                "The server must run with that installation's `CONFIG_ENCRYPTION_KEY`. With another key, setup stops and says so, and nothing is changed.",
+                "**Restore from a backup** is refused for such a database, because it would replace the installation's data. Use an empty database, or restore from the installed server ([Backups](backups.html#disaster-recovery)).",
+                "To start over instead, use an empty database or **Wipe database** in step 2.",
+            ]),
         ])),
 
     ("headless-setup", dict(
