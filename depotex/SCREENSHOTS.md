@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-209 screenshots. Save each one into `depotex/assets/` using the
+210 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -431,6 +431,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `system-check.png`
       Settings → System check: what needs attention and every check's result
+- [ ] `system-check-inspection-queue.png`
+      System check with new uploads waiting for inspection: the Inspection queue warning, and the Inspection queue and Scan queue lines under Shared services
 
 ## Alert Tuning
 

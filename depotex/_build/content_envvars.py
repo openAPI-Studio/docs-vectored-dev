@@ -216,6 +216,7 @@ ENV_VARS = [
                 ["`BROWSE_GUARD_MAX_METADATA`, `…_MAX_SBOM`, `…_MAX_ENVELOPE`", "4 MiB, 32 MiB, 16 MiB", "Largest metadata, SBOM and signature envelope read from an artifact; over a limit quarantines the version"],
                 ["`BROWSE_GUARD_MAX_DEPTH`, `…_MAX_ELEMENTS`, `…_MAX_RATIO`, `…_TIMEOUT`", "`64`, `2000000`, `100`, `10s`", "Parser limits against hostile files"],
                 ["`BROWSE_GUARD_MAX_COMPONENTS`, `BROWSE_GUARD_MAX_DOC`", "`50000`, 1 MiB", "Components kept per SBOM; documentation text kept per file"],
+                ["`INSPECT_WORKERS`", "`2`", "How many versions this server inspects at once (1 to 32); see [how fast content is read](browse.html#how-fast-content-is-read)"],
                 ["`IMAGE_SCAN_ENABLED`", "`true`", "Catalog container images (and proxied conda packages) without an SBOM with Syft (Pro)"],
                 ["`IMAGE_SCAN_TIMEOUT`, `IMAGE_SCAN_MAX_BYTES`, `IMAGE_SCAN_MAX_UNPACKED`, `IMAGE_SCAN_MAX_LAYERS`, `IMAGE_SCAN_MAX_PLATFORMS`", "`10m`, 4 GiB, 16 GiB, `128`, `4`", "Scan limits; larger images are skipped"],
                 ["`IMAGE_SCAN_TMP_DIR`", "system temp", "Where images are unpacked: needs room for the largest image expanded"],

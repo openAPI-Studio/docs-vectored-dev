@@ -74,9 +74,29 @@ BROWSE = [
             ]),
             P("Content is checked within seconds of being published or fetched. The version's **Security** tab lists what was refused, and the quarantine shows the reason (source **Refused content (automatic)** in the quarantine list). After checking, release the version as usual: the same content isn't refused again. The quarantine raises `artifact.quarantine` (after, with source `guard`) and is recorded in the audit log."),
 
+            H("How fast content is read"),
+            P("Reading a version (its dependencies, SBOMs, signatures and attestations, and the checks above) is called inspection. Versions wait in one queue for the whole installation, and every server works it: each inspects `INSPECT_WORKERS` versions at once (2 unless you change it), so adding a server adds inspection capacity. No Redis is needed, and it doesn't matter which server took the upload."),
+            UL([
+                "**New uploads go first.** A new or changed version is read ahead of bulk work: re-inspecting a repository or the installation, versions from before an upgrade, and versions queued when a Pro licence is applied. A version you re-inspect from its own page goes ahead of both.",
+                "**Image and package scans** (Pro, with Syft) have queues of their own, so a large image never holds up other versions. Each server runs one image scan and one package scan at a time, and a scan takes the place in line of the version that asked for it.",
+                "**Watching it.** [System check](system-check.html) has an **Inspection queue** and a **Scan queue** line: how much is waiting, and a warning when new uploads have waited longer than 15 minutes or a scan longer than two hours (both changeable under the check's settings).",
+            ]),
+            P("On each server's `/metrics` ([Monitoring](monitoring.html)):"),
+            TABLE(["Metric", "Meaning"], [
+                ["`depotex_inspection_queue_versions{state}`", "Versions in the queue: `pending` (waiting), `ahead` (the waiting ones that go ahead of bulk work, such as new uploads), `failed` (given up after five errors). The whole installation's number, the same on every server: use `max`, not `sum`"],
+                ["`depotex_inspection_queue_oldest_seconds{state}`", "How long the oldest `pending` and the oldest `ahead` version has waited"],
+                ["`depotex_inspections_total{result}`", "Versions this server inspected (`inspected`, `failed`); its rate, summed over servers, is the installation's inspection rate"],
+                ["`depotex_inspection_duration_seconds{result}`", "How long one inspection took on this server"],
+                ["`depotex_inspection_workers`", "This server's `INSPECT_WORKERS`"],
+                ["`depotex_scan_queue_scans{kind}`, `depotex_scan_queue_oldest_seconds{kind}`", "Image and package scans waiting (`kind` is `image` or `package`) and how long the oldest has waited; the same on every server"],
+                ["`depotex_scans_total{kind}`, `depotex_scan_duration_seconds{kind}`", "Scans this server ran and how long each took"],
+            ]),
+            P("The queue numbers are refreshed about once a minute. When the queue stays long, add a server, or raise `INSPECT_WORKERS` on servers with CPU to spare (inspection is mostly CPU and reads from storage)."),
+
             H("Configuration"),
             P("Per server, in the environment:"),
             TABLE(["Variable", "Default", "Meaning"], [
+                ["`INDEX_DIR`""`INSPECT_WORKERS`", "2", "How many versions this server inspects at once (1 to 32). Per server: give larger servers more"],
                 ["`INDEX_DIR`", "`./data/index`", "Where this server keeps its search index. It is rebuilt from the database when missing, so it needn't be backed up; give it fast local disk."],
                 ["`BROWSE_GUARD_MAX_METADATA`", "4194304", "Largest POM, manifest, image config or package.json read, in bytes"],
                 ["`BROWSE_GUARD_MAX_SBOM`", "33554432", "Largest SBOM (and attestation layer) read, in bytes"],
