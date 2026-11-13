@@ -333,4 +333,57 @@
     spy();
     window.addEventListener('scroll', spy, { passive: true });
   }
+
+  /* ---------------------------------------------------------- new badges --
+     assets/new.js (written by tools/gen_new.py from git history) holds the
+     date each page and each section first went live. Anything newer than
+     NEW_DAYS gets a "New" pill: pages in the sidebar, sections in the rail.
+     Nothing is tagged by hand, and badges lapse on their own. */
+  var NEW_DAYS = 30;
+  function keyOf(href) {
+    var p = new URL(href, location.href).pathname.replace(/^\//, '');
+    if (!p || /\/$/.test(p)) p += 'index.html';
+    else if (!/\.[a-z]+$/i.test(p)) p += '.html';
+    return p;
+  }
+  function isNew(day) {
+    if (!day) return false;
+    var t = Date.parse(day + 'T00:00:00Z');
+    return !isNaN(t) && Date.now() - t < NEW_DAYS * 864e5;
+  }
+  function pill() {
+    var b = el('span', 'vc-new', 'New');
+    b.setAttribute('aria-label', 'new');
+    return b;
+  }
+  /* Append the pill glued to the label's last word, so a wrapped label never
+     leaves the pill alone on a line of its own. */
+  function badge(a) {
+    var t = a.lastChild;
+    var m = t && t.nodeType === 3 && t.nodeValue.match(/^([\s\S]*?)(\S+)\s*$/);
+    if (!m) { a.appendChild(pill()); return; }
+    t.nodeValue = m[1];
+    var glue = el('span', 'vc-new-glue');
+    glue.appendChild(document.createTextNode(m[2]));
+    glue.appendChild(pill());
+    a.appendChild(glue);
+  }
+  function badges() {
+    var d = window.VC_NEW;
+    if (!d) return;
+    if (side) [].slice.call(side.querySelectorAll('.vc-grp-links a')).forEach(function (a) {
+      if (isNew((d.pages || {})[keyOf(a.href)])) badge(a);
+    });
+    var secs = (d.sections || {})[keyOf(location.href)] || {};
+    if (rail) [].slice.call(rail.querySelectorAll('.vc-toc a')).forEach(function (a) {
+      if (isNew(secs[a.getAttribute('href').slice(1)])) badge(a);
+    });
+  }
+  if (window.VC_NEW) badges();
+  else {
+    var ns = document.createElement('script');
+    ns.src = u('assets/new.js');
+    ns.onload = badges;
+    document.head.appendChild(ns);
+  }
 })();

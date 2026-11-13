@@ -444,6 +444,18 @@ html.light .vc-psoon, [data-theme="light"] .vc-psoon { color: #B45309; }
 .vc-toc a:hover { color: var(--tx); text-decoration: none; }
 .vc-toc a.active { border-left-color: var(--green); color: var(--green); font-weight: 500; }
 .vc-toc a.lvl3 { padding-left: 24px; font-size: 13px; }
+
+/* "New" pill on recently published pages (sidebar) and sections (rail). */
+.vc-new {
+  display: inline-flex; align-items: center; height: 18px; box-sizing: border-box;
+  margin-left: 7px; padding: 0 7px; border-radius: 999px;
+  font-size: 10.5px; line-height: 1; font-weight: 600; letter-spacing: .03em;
+  text-transform: uppercase; vertical-align: 2px; white-space: nowrap;
+  color: var(--onGreen); background: var(--green);
+}
+/* Keeps the pill on the same line as the last word of a wrapped label. */
+.vc-new-glue { white-space: nowrap; }
+@media print { .vc-new { display: none; } }
 .vc-rail-links {
   margin-top: 26px; border-top: 1px solid var(--border); padding-top: 18px;
   display: flex; flex-direction: column; gap: 10px;
