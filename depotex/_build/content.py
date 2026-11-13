@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-13", "Install", "The server and web app [container images](kubernetes.html#the-images) are published to GitHub Container Registry: a tag per release (`1.2.3`, and `1.2` for its newest patch) and `latest` for the newest development build."),
     ("2026-11-13", "Clustering", "A server marked **dead** after a pause or a network break becomes active again by itself with its next heartbeat. It stayed dead in [Settings → Clustering](clustering.html) until it was restarted, although it was serving requests."),
     ("2026-11-13", "Plugins", "Two changes to one plugin at the same moment (an upgrade while someone deactivates it, from any two servers) now run one after the other, and the one decided on an outdated state is refused with a message to reload (`plugin_changed`). An upgrade could turn a plugin back on right after it was deactivated."),
     ("2026-11-13", "Promotion", "A background [promotion](spaces.html#promotion) or metadata rebuild that the job's time limit or a server shutdown interrupts goes back to the queue and runs again within a minute. It used to stay Running for up to an hour first. A promotion that can't finish within 6 hours of its first start fails with `promote_time_limit`."),

@@ -7,7 +7,7 @@ KUBERNETES = [
         label="Docker &amp; Kubernetes", title="Docker &amp; Kubernetes", icon="grid",
         desc="Run Depotex from its container images, on Kubernetes with the Helm chart",
         keywords=["docker", "kubernetes", "k8s", "helm", "chart", "container", "image", "distroless", "statefulset", "prometheus", "servicemonitor", "metrics",
-                  "minio", "postgresql", "redis", "ingress", "secrets", "sealed secrets", "sops", "network policy", "install"],
+                  "minio", "postgresql", "redis", "ingress", "secrets", "sealed secrets", "sops", "network policy", "install", "ghcr", "image tags", "latest"],
         blocks=[
             P("Depotex ships as two container images: the server (API) and the web app. A Helm chart deploys them on Kubernetes, with PostgreSQL, Redis and MinIO built in, and each of them can be switched off for a managed service. A script creates every Kubernetes Secret outside the chart, and writes the installation's keys to a private file you keep."),
 
@@ -17,7 +17,15 @@ KUBERNETES = [
                 "**Web app:** the Next.js server on the same kind of base image.",
                 "Neither image contains a key, licence or configuration: they come from the environment at run time.",
             ]),
-            NOTE("Images aren't published to a public registry yet. Build them from the source and push them to your own registry, then set `backend.image` and `frontend.image` in the chart's values."),
+            P("The images are published to GitHub Container Registry as `ghcr.io/openapi-studio/depotex-backend` and `ghcr.io/openapi-studio/depotex-frontend`, linux/amd64. Each image carries its build provenance and a software bill of materials."),
+            TABLE(["Tag", "What it is", "Use it for"], [
+                ["`1.2.3`", "A release", "Installations: pin the exact version, and the same one for both images"],
+                ["`1.2`", "The newest patch release of 1.2", "Following patch releases automatically"],
+                ["`latest`", "The newest build of the development line, after its tests passed. Not a release, and it changes with every build", "Trying out what's coming; never production"],
+                ["`sha-<commit>`", "One development build, by the first 7 characters of its commit", "Holding on to a development build `latest` has moved past"],
+            ]),
+            NOTE("Pulling the images needs access to them: sign in with `docker login ghcr.io`, and give the Helm chart a docker-registry secret in `global.imagePullSecrets`."),
+            P("To build the images yourself (another architecture, your own registry):"),
             CODE("""docker build -f deploy/docker/backend.Dockerfile  -t registry.example.com/depotex-backend:1.0.0 --build-arg VERSION=1.0.0 .
 docker build -f deploy/docker/frontend.Dockerfile -t registry.example.com/depotex-frontend:1.0.0 .
 docker push registry.example.com/depotex-backend:1.0.0
