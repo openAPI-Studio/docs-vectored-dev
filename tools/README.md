@@ -6,6 +6,7 @@ need only Python 3 (`beautifulsoup4`) or Node (`jsdom`, for the smoke test).
 | Script | What it does |
 | --- | --- |
 | `gen_nav.py` | Regenerates `assets/nav.js` — the grouped sidebar, search index and switcher counts — from the pages on disk. Run after adding, removing or renaming a doc page, and add the new page to that script's `GROUPS` table first; it fails loudly if a page belongs to no group. |
+| `gen_new.py` | Writes `assets/new.js`: the date each doc page, and each `<h2>` section in it, first appeared on `main`, from git history. `docs.js` turns anything from the last 30 days into a "New" pill in the sidebar (pages) and the "On this page" rail (sections added to an existing page). The `New badges` workflow runs it on every push to `main`, so nothing needs tagging by hand. Section matching ignores "3."-style numbering, so renumbering is not news; a reworded heading or a moved page is. |
 | `stamp_updated.py` | Writes each doc page's `<meta name="vc-updated">` from the file's last commit date, which is what the meta row prints. Run after regenerating pages. |
 | `migrate_docs.py` | One-shot: ported the 130 doc pages onto the shared shell. Kept because it documents exactly what was stripped from each page and can be re-run if a page is restored from an old revision. |
 | `migrate_pages.py` | The same, for the landing, support, legal, blog and error pages. |
@@ -25,6 +26,6 @@ comes from:
 - `assets/tailwind-config.js` — the shared Tailwind CDN config;
 - `assets/nav.js` — per-product navigation, search index and switcher data;
 - `assets/header.js`, `assets/footer.js` — the header and footer;
-- `assets/docs.js` — sidebar, breadcrumbs, meta row, TOC and scrollspy,
+- `assets/docs.js` — sidebar, breadcrumbs, meta row, TOC and scrollspy, "New" badges (from `assets/new.js`),
   code-block framing, figures, feedback, prev/next and the print blocks;
 - `assets/print-guide.js` — the per-product `docs/print.html` full-guide export.

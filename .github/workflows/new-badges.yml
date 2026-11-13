@@ -1,0 +1,44 @@
+# Keeps assets/new.js in step with what is published, so "New" badges need no
+# hand-tagging: publish a page (or add a section) and this records the date.
+#
+# docs.js decides what is still "new" in the reader's browser, so badges also
+# expire on their own; this only has to run when pages change.
+name: New badges
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'tools/gen_new.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: new-badges
+  cancel-in-progress: false
+
+jobs:
+  stamp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the dates come from history, so it needs all of it
+
+      - name: Date pages and sections
+        run: python3 tools/gen_new.py
+
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet -- assets/new.js; then
+            echo "assets/new.js already current"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/new.js
+          git commit -m "Update New badges"
+          git push
