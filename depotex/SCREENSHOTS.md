@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-208 screenshots. Save each one into `depotex/assets/` using the
+209 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -351,6 +351,8 @@ realistic but fictional names and figures rather than real people's data.
       Browse → Components: find every SBOM that lists a component
 - [ ] `advisory-page.png`
       An advisory's page: the weakness, what an attacker needs and can affect, its references, the affected versions of each release line with the one in use marked, and what it affects
+- [ ] `browse-findings.png`
+      Browse → Findings filtered to one space: each vulnerability with its severity, the component, the fixed version, the artifact it was found in and its status, and the Export links
 - [ ] `sbom-applications.png`
       A space's SBOMs tab: registered applications
 - [ ] `sbom-version.png`
