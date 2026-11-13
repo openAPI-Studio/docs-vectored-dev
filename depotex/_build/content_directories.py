@@ -148,7 +148,7 @@ DIRECTORIES = [
                 "A new link makes older ones stop working.",
             ]),
             H("Inviting users"),
-            P("With email set up, **New user** offers **Email an invitation instead of setting a password** for the Local directory. The person gets a link to choose their own password; until then they show as **Invited** and can't sign in. The link expires after 7 days (`AUTH_INVITATION_TTL`); **Resend invitation** on their page sends a new one and stops the old link. Accepting needs a free license seat."),
+            P("With email set up, **New user** offers **Email an invitation instead of setting a password** for the Local directory. The person gets a link to choose their own password; until then they show as **Invited** and can't sign in. The link expires after 7 days (`AUTH_INVITATION_TTL`); **Resend invitation** on their page sends a new one and stops the old link. Accepting needs a free license seat. **Enable** never accepts an invitation for someone: an invited person you disabled and enabled again is **Invited** again and their link works again; they become active only by choosing a password."),
 
             H("Your password"),
             P("Open the profile menu, choose **Edit Profile → Security**, enter your current password and the new one twice, then **Change password**. Your other devices are signed out; this one stays signed in. Users from directories that sign in another way (for example single sign-on) don't have a password here."),
