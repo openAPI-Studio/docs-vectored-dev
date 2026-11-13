@@ -52,6 +52,8 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-13", "Automation", "A rule's run now shows **Retrying** while Depotex will try a failed step again, and **Failed** only once it gave up; each finished step is saved at once, so a server stopping in the middle of a run no longer repeats the steps that had finished (a webhook or email sent twice). See [Automation](automation.html)."),
+    ("2026-11-13", "Users", "Enabling a disabled user who was invited and never chose a password makes them **Invited** again instead of active without a password; directory sync and SCIM now follow the same rules for disabling and re-enabling people, and neither touches an anonymized account."),
     ("2026-11-13", "Setup", "Setup never changes an installation that exists: completing it against a database that is already set up (the wizard pointed at one, or **Complete setup** pressed twice) only joins this server to that installation. It used to replace that administrator's password and the saved license and storage settings. See [Setup wizard](setup-wizard.html#a-database-that-is-already-set-up)."),
     ("2026-11-13", "Integrity", "Content an interrupted upload left half-stored while files use it is now judged by the [integrity check](integrity.html) after the upload grace period, instead of being skipped forever: its files are confirmed, or listed as broken."),
     ("2026-11-13", "Directories", "A directory sync or automation run that a stopped server left **Running** is marked failed by the nightly cleanup instead of showing as running forever."),
