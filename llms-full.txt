@@ -14,7 +14,7 @@ Source: https://docs.vectored.dev/apistudio/
 
 v1.4.66
 
-A fully offline, privacy-first API client for **VS Code**, **CLI**, and **Electron desktop**. Test REST, GraphQL, WebSocket, and gRPC APIs without cloud accounts, telemetry, or network dependencies. Your data stays on your machine — always.
+A fully offline, privacy-first API client for **VS Code**, **CLI**, and **Electron desktop**. Test REST, GraphQL, WebSocket, and gRPC APIs without cloud accounts, telemetry, or network dependencies. Your data stays on your machine — always. The only thing ever sent to us is feedback you choose to submit.
 
 [Get Started →](https://docs.vectored.dev/apistudio/docs/quick-start.html) [Install from Marketplace](https://marketplace.visualstudio.com/items?itemName=open-post.open-post)
 
@@ -157,7 +157,7 @@ New to API Studio? Start with the installation guide, then follow the quick star
 
 Source: https://docs.vectored.dev/apistudio/docs/index.html
 
-A fully offline, privacy-first API client for **VS Code**, **CLI**, and **Electron desktop**. Test REST, GraphQL, WebSocket, and gRPC APIs without cloud accounts, telemetry, or network dependencies. Your data stays on your machine — always.
+A fully offline, privacy-first API client for **VS Code**, **CLI**, and **Electron desktop**. Test REST, GraphQL, WebSocket, and gRPC APIs without cloud accounts, telemetry, or network dependencies. Your data stays on your machine — always. The only thing ever sent to us is feedback you choose to submit.
 
 [Get Started →](https://docs.vectored.dev/apistudio/docs/quick-start.html) [Install from Marketplace](https://marketplace.visualstudio.com/items?itemName=open-post.open-post)
 
@@ -8089,7 +8089,7 @@ SETTINGS & DATA
 
 ### Overview
 
-All data is stored as plain JSON files on your machine. No cloud, no accounts, no telemetry. Your data never leaves your computer.
+All data is stored as plain JSON files on your machine. No cloud, no accounts, no telemetry. Your data never leaves your computer. The only thing API Studio ever sends us is feedback you choose to submit, and only when you press Send (https://docs.vectored.dev/privacy.html#api-studio-feedback).
 
 ##### Local Scope
 

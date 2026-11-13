@@ -211,7 +211,7 @@
 - [Vectored Docs Home](https://docs.vectored.dev/index.html): Vectored builds developer tools for Atlassian Confluence, Jira, VS Code, and the command line — Macro Toolkit, Forms, API Studio, and more. Documentation, guides, and support.
 - [Support](https://docs.vectored.dev/support.html): Get help with Confluence Macro Toolkit. Submit feedback, report bugs, or request features.
 - [Security](https://docs.vectored.dev/security.html): Security policy for all Vectored apps. Forge-sandboxed, no external servers, CSP enforced, open source.
-- [Privacy Policy](https://docs.vectored.dev/privacy.html): Privacy policy for all Vectored apps. No data collection, no tracking, no analytics in our apps.
+- [Privacy Policy](https://docs.vectored.dev/privacy.html): Privacy policy for all Vectored apps. No data collection, no tracking, no analytics in our apps; API Studio sends only feedback you choose to submit.
 - [Feedback](https://docs.vectored.dev/feedback.html): Tell the Vectored team what is working, what is broken, and what to build next across Macro Toolkit, Forms & Frontdoor, API Studio, Recognition Hub and TimeSheets.
 - [Blog](https://docs.vectored.dev/blog/): Product news, guides, and engineering notes from Vectored — Atlassian apps, VS Code tools, and more.
 - [Blog — Introducing Forms & Frontdoor for Confluence](https://docs.vectored.dev/blog/posts/introducing-forms-and-frontdoor.html): Forms & Frontdoor is live on the Atlassian Marketplace: a visual form builder for Confluence with post-submit automation across Confluence, Jira, Slack, and Teams.
