@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-13", "APT", "`InRelease` always carries the armor checksum line. Without it, `apt update` could refuse a hosted repository or group with a signature error although the signature was good: about one index in 256 for an RSA 2048 signing key, and every index for an imported RSA 3072 key."),
     ("2026-11-13", "Setup", "Setup never changes an installation that exists: completing it against a database that is already set up (the wizard pointed at one, or **Complete setup** pressed twice) only joins this server to that installation. It used to replace that administrator's password and the saved license and storage settings. See [Setup wizard](setup-wizard.html#a-database-that-is-already-set-up)."),
     ("2026-11-13", "Integrity", "Content an interrupted upload left half-stored while files use it is now judged by the [integrity check](integrity.html) after the upload grace period, instead of being skipped forever: its files are confirmed, or listed as broken."),
     ("2026-11-13", "Directories", "A directory sync or automation run that a stopped server left **Running** is marked failed by the nightly cleanup instead of showing as running forever."),
