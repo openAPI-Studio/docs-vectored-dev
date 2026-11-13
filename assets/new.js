@@ -261,6 +261,9 @@ window.VC_NEW = {
    "release-validity": "2026-10-22",
    "vulnerabilities": "2026-10-22"
   },
+  "depotex/docs/browse.html": {
+   "how-fast-content-is-read": "2026-11-13"
+  },
   "depotex/docs/changelog.html": {
    "since-the-initial-release": "2026-10-14"
   },
