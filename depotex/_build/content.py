@@ -52,6 +52,8 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-13", "SBOM", "**New since upload** means found by a later check: what an SBOM's first vulnerability check finds no longer reads as new. A package nobody had stored before showed all its findings as new on the first report."),
+    ("2026-11-13", "SBOM", "`sbom.vulnerability.resolved` is no longer lost when a server stops in the middle of a vulnerability check: it is raised after the restart, as `sbom.vulnerability.found` already was. Findings that scanner plugins add or take away are delivered the same way."),
     ("2026-11-13", "Automation", "A rule's run now shows **Retrying** while Depotex will try a failed step again, and **Failed** only once it gave up; each finished step is saved at once, so a server stopping in the middle of a run no longer repeats the steps that had finished (a webhook or email sent twice). See [Automation](automation.html)."),
     ("2026-11-13", "Users", "Enabling a disabled user who was invited and never chose a password makes them **Invited** again instead of active without a password; directory sync and SCIM now follow the same rules for disabling and re-enabling people, and neither touches an anonymized account."),
     ("2026-11-13", "APT", "`InRelease` always carries the armor checksum line. Without it, `apt update` could refuse a hosted repository or group with a signature error although the signature was good: about one index in 256 for an RSA 2048 signing key, and every index for an imported RSA 3072 key."),
