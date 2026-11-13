@@ -249,6 +249,9 @@ window.VC_NEW = {
    "token-refresh": "2026-07-04",
    "token-storage": "2026-07-04"
   },
+  "depotex/admin/setup-wizard.html": {
+   "a-database-that-is-already-set-up": "2026-11-13"
+  },
   "depotex/admin/users-and-directories.html": {
    "attestation-trust": "2026-11-09"
   },
