@@ -40,7 +40,7 @@
 <!-- Overview -->
 <section class="mb-12 scroll-mt-28" id="overview">
 <h2 class="text-xl font-semibold mb-4">Overview</h2>
-<p class="text-sm text-gray-600 dark:text-muted mb-4">All data is stored as plain JSON files on your machine. No cloud, no accounts, no telemetry. Your data never leaves your computer.</p>
+<p class="text-sm text-gray-600 dark:text-muted mb-4">All data is stored as plain JSON files on your machine. No cloud, no accounts, no telemetry. Your data never leaves your computer. The only thing API Studio ever sends us is feedback you choose to submit (a star rating and what you type), and only when you press Send. <a href="../../privacy.html#api-studio-feedback" class="text-cta hover:underline">What is sent</a>.</p>
 <div class="grid sm:grid-cols-2 gap-4 mb-4">
 <div class="p-4 rounded-lg border border-gray-100 dark:border-border/50">
 <div class="flex items-center gap-2 mb-2">
@@ -97,7 +97,8 @@
 ├── environments.json       ← global environments
 ├── history.json            ← global request history
 ├── config.json             ← settings, proxy profiles, license key,
-│                              vault providers, secret sets
+│                              vault providers, secret sets,
+│                              feedback card state
 └── vault.enc               ← encrypted vault (AES-256-GCM)</code></pre>
 </div>
 <div class="p-4 rounded-lg border border-yellow-200 dark:border-yellow-500/30 bg-yellow-50 dark:bg-yellow-500/5 text-xs text-gray-600 dark:text-muted">
