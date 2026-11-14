@@ -249,6 +249,9 @@ window.VC_NEW = {
    "token-refresh": "2026-07-04",
    "token-storage": "2026-07-04"
   },
+  "apistudio/docs/ui-overview.html": {
+   "feedback-card": "2026-11-14"
+  },
   "depotex/admin/setup-wizard.html": {
    "a-database-that-is-already-set-up": "2026-11-13"
   },
