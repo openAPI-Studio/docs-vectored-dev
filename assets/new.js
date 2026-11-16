@@ -65,6 +65,7 @@ window.VC_NEW = {
   "apistudio/docs/support-us.html": "2026-06-21",
   "apistudio/docs/tabs-sessions.html": "2026-06-21",
   "apistudio/docs/test-scripts.html": "2026-06-21",
+  "apistudio/docs/tutorials.html": "2026-11-16",
   "apistudio/docs/ui-overview.html": "2026-06-21",
   "apistudio/docs/variable-priority.html": "2026-06-21",
   "apistudio/docs/variables-interpolation.html": "2026-06-21",
