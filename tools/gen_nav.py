@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GROUPS = {
  'apistudio': [
    ('Overview', ['index']),
-   ('Getting started', ['installation','quick-start','ui-overview']),
+   ('Getting started', ['installation','quick-start','ui-overview','tutorials']),
    ('HTTP client', ['sending-requests','request-body','params-headers','response-viewer','request-history','tabs-sessions']),
    ('Protocols', ['graphql','websocket','grpc','sse']),
    ('Collections', ['creating-collections','folders-organization','collection-editor','collection-runs','import-export','collection-schema']),

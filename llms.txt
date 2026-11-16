@@ -9,6 +9,7 @@
 - [Getting started — Installation](https://docs.vectored.dev/apistudio/docs/installation.html): Install API Studio from VS Code Marketplace or Open VSX. Supports VS Code, Cursor, Windsurf, Kiro, and all VS Code-based editors.
 - [Getting started — Quick Start](https://docs.vectored.dev/apistudio/docs/quick-start.html): Send your first API request in under 60 seconds. Learn the API Studio UI layout, create environments, save collections, and export code.
 - [Getting started — UI Overview](https://docs.vectored.dev/apistudio/docs/ui-overview.html): Complete guide to the API Studio interface — Simple vs Advanced mode, sidebar tabs, request builder, response viewer, layout options, and keyboard shortcuts.
+- [Getting started — Video Tutorials](https://docs.vectored.dev/apistudio/docs/tutorials.html): The API Studio: Complete Tutorial Series on YouTube — 46 short videos covering the desktop app, VS Code, the openpost CLI, mocks, MCP and AI agent skills.
 - [HTTP client — Sending Requests](https://docs.vectored.dev/apistudio/docs/sending-requests.html): Send HTTP requests with any method, URL variables, concurrent tabs, and HTTP/2 auto-negotiation. Complete guide to the API Studio HTTP client.
 - [HTTP client — Request Body](https://docs.vectored.dev/apistudio/docs/request-body.html): All 7 body types: JSON, raw, XML, form-data, urlencoded, binary, and GraphQL. Inline comments, Content-Type auto-sync, and CodeMirror editor.
 - [HTTP client — Parameters & Headers](https://docs.vectored.dev/apistudio/docs/params-headers.html): Query parameters with bidirectional URL sync, custom request headers with autocomplete, enable/disable rows, and variable interpolation.
@@ -211,7 +212,7 @@
 - [Vectored Docs Home](https://docs.vectored.dev/index.html): Vectored builds developer tools for Atlassian Confluence, Jira, VS Code, and the command line — Macro Toolkit, Forms, API Studio, and more. Documentation, guides, and support.
 - [Support](https://docs.vectored.dev/support.html): Get help with Confluence Macro Toolkit. Submit feedback, report bugs, or request features.
 - [Security](https://docs.vectored.dev/security.html): Security policy for all Vectored apps. Forge-sandboxed, no external servers, CSP enforced, open source.
-- [Privacy Policy](https://docs.vectored.dev/privacy.html): Privacy policy for all Vectored apps. No data collection, no tracking, no analytics in our apps; API Studio sends only feedback you choose to submit.
+- [Privacy Policy](https://docs.vectored.dev/privacy.html): Privacy policy for all Vectored apps. No data collection, no tracking, no analytics in our apps.
 - [Feedback](https://docs.vectored.dev/feedback.html): Tell the Vectored team what is working, what is broken, and what to build next across Macro Toolkit, Forms & Frontdoor, API Studio, Recognition Hub and TimeSheets.
 - [Blog](https://docs.vectored.dev/blog/): Product news, guides, and engineering notes from Vectored — Atlassian apps, VS Code tools, and more.
 - [Blog — Introducing Forms & Frontdoor for Confluence](https://docs.vectored.dev/blog/posts/introducing-forms-and-frontdoor.html): Forms & Frontdoor is live on the Atlassian Marketplace: a visual form builder for Confluence with post-submit automation across Confluence, Jira, Slack, and Teams.
