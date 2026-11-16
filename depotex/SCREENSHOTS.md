@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-210 screenshots. Save each one into `depotex/assets/` using the
+211 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -107,6 +107,11 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `repository-group.png`
       A group repository: its members in the order they're asked, and the space's universal URL
+
+## Supported formats
+
+- [ ] `formats-logos.png`
+      The repository list in the light theme: official logos beside Go, Maven, PyPI, Cargo, Composer, Helm and Git LFS, simple icons for the other formats
 
 ## APT
 
