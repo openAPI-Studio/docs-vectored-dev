@@ -159,6 +159,10 @@ Source: https://docs.vectored.dev/apistudio/docs/index.html
 
 A fully offline, privacy-first API client for **VS Code**, **CLI**, and **Electron desktop**. Test REST, GraphQL, WebSocket, and gRPC APIs without cloud accounts, telemetry, or network dependencies. Your data stays on your machine — always. The only thing ever sent to us is feedback you choose to submit.
 
+Video tutorial #1 · What is API Studio? · 2:08 · [Watch on YouTube](https://www.youtube.com/watch?v=XNi-RNKDfsY&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 [Get Started →](https://docs.vectored.dev/apistudio/docs/quick-start.html) [Install from Marketplace](https://marketplace.visualstudio.com/items?itemName=open-post.open-post)
 
 ### Key Highlights
@@ -302,6 +306,10 @@ Source: https://docs.vectored.dev/apistudio/docs/installation.html
 
 API Studio is available on both the VS Code Marketplace and Open VSX Registry. It works with all major VS Code-based editors.
 
+Video tutorial #2 · Installing API Studio · 1:43 · [Watch on YouTube](https://www.youtube.com/watch?v=jIcXwzZG-bo&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 GETTING STARTED
 
 ### Supported Editors
@@ -431,6 +439,10 @@ Installed? Send your first request in under 60 seconds.
 Source: https://docs.vectored.dev/apistudio/docs/quick-start.html
 
 Send your first API request in under 60 seconds. This guide walks you through the UI, making a request, reading the response, and saving your work.
+
+Video tutorial #4 · Send your first request · 2:25 · [Watch on YouTube](https://www.youtube.com/watch?v=HCVXjV4Z7Y0&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 GETTING STARTED
 
@@ -630,6 +642,12 @@ Source: https://docs.vectored.dev/apistudio/docs/ui-overview.html
 
 A detailed walkthrough of every UI component in API Studio — modes, sidebar, tabs, request builder, response viewer, layout options, and shortcuts.
 
+Video tutorial #3 · UI tour and Advanced mode · 2:32 · [Watch on YouTube](https://www.youtube.com/watch?v=xubzZvTf85s&list=PLL0Sge2Sie6I)
+
+Video tutorial #36 · API Studio inside VS Code · 1:37 · [Watch on YouTube](https://www.youtube.com/watch?v=913_UmYC6v4&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 GETTING STARTED
 
 ### Simple Mode vs Advanced Mode
@@ -780,6 +798,20 @@ The top bar shows the active environment. Click to switch. Variables in the acti
 
 ![Environment dropdown showing local environments](https://docs.vectored.dev/apistudio/assets/local env dropdown open view.png)
 
+### Feedback Card
+
+Open **? › Send Feedback** in the top bar any time to rate API Studio from 1 to 5 stars and tell us what you like and what you don't. The same small card may also appear by itself once, at a random time a few days after you start using a new version.
+
+- It sits in the bottom-right corner, never blocks the app and never takes keyboard focus.
+
+- Only the star rating is required. Email is optional, and only needed if you want a reply.
+
+- **Not now**, the close button or `Esc` dismisses it, and it will not pop up again.
+
+- Nothing is sent unless you press **Send**. See [exactly what is sent](https://docs.vectored.dev/privacy.html#api-studio-feedback).
+
+![Feedback card with a star rating, what you like, what you don't like and an optional email](https://docs.vectored.dev/apistudio/assets/feedback-card.png)
+
 ### Keyboard Shortcuts
 
 | Action | macOS | Windows / Linux |
@@ -791,11 +823,321 @@ The top bar shows the active environment. Click to switch. Variables in the acti
 | Close Tab | Cmd+W | Ctrl+W |
 | Search in Response | Cmd+F | Ctrl+F |
 
+## Video Tutorials
+
+Source: https://docs.vectored.dev/apistudio/docs/tutorials.html
+
+The API Studio: Complete Tutorial Series on YouTube. Short, focused videos, most under two minutes, from your first request to AI agents that test your API for you.
+
+### Watch the whole series
+
+Play the series from the start, or pick a topic below. Every video also appears on the doc page it covers. Open the [playlist on YouTube](https://www.youtube.com/playlist?list=PLL0Sge2Sie6I) to subscribe or watch full screen.
+
+API Studio: Complete Tutorial Series · 46 videos · [Open on YouTube](https://www.youtube.com/playlist?list=PLL0Sge2Sie6I)
+
+### Getting started
+
+[2:08](https://www.youtube.com/watch?v=XNi-RNKDfsY&list=PLL0Sge2Sie6I)
+
+#1 [What is API Studio?](https://www.youtube.com/watch?v=XNi-RNKDfsY&list=PLL0Sge2Sie6I)
+
+2:08 · [Read the docs](https://docs.vectored.dev/apistudio/docs/index.html)
+
+[1:43](https://www.youtube.com/watch?v=jIcXwzZG-bo&list=PLL0Sge2Sie6I)
+
+#2 [Installing API Studio](https://www.youtube.com/watch?v=jIcXwzZG-bo&list=PLL0Sge2Sie6I)
+
+1:43 · [Read the docs](https://docs.vectored.dev/apistudio/docs/installation.html)
+
+[2:32](https://www.youtube.com/watch?v=xubzZvTf85s&list=PLL0Sge2Sie6I)
+
+#3 [UI tour and Advanced mode](https://www.youtube.com/watch?v=xubzZvTf85s&list=PLL0Sge2Sie6I)
+
+2:32 · [Read the docs](https://docs.vectored.dev/apistudio/docs/ui-overview.html)
+
+[2:25](https://www.youtube.com/watch?v=HCVXjV4Z7Y0&list=PLL0Sge2Sie6I)
+
+#4 [Send your first request](https://www.youtube.com/watch?v=HCVXjV4Z7Y0&list=PLL0Sge2Sie6I)
+
+2:25 · [Read the docs](https://docs.vectored.dev/apistudio/docs/quick-start.html)
+
+### Requests and responses
+
+[2:10](https://www.youtube.com/watch?v=3q6udm3NNfY&list=PLL0Sge2Sie6I)
+
+#5 [Request body editors](https://www.youtube.com/watch?v=3q6udm3NNfY&list=PLL0Sge2Sie6I)
+
+2:10 · [Read the docs](https://docs.vectored.dev/apistudio/docs/request-body.html)
+
+[2:17](https://www.youtube.com/watch?v=PZW4fl7_26A&list=PLL0Sge2Sie6I)
+
+#6 [Reading responses](https://www.youtube.com/watch?v=PZW4fl7_26A&list=PLL0Sge2Sie6I)
+
+2:17 · [Read the docs](https://docs.vectored.dev/apistudio/docs/response-viewer.html)
+
+[1:52](https://www.youtube.com/watch?v=96ApSjbD-KA&list=PLL0Sge2Sie6I)
+
+#7 [Collections and folders](https://www.youtube.com/watch?v=96ApSjbD-KA&list=PLL0Sge2Sie6I)
+
+1:52 · [Read the docs](https://docs.vectored.dev/apistudio/docs/creating-collections.html)
+
+[1:38](https://www.youtube.com/watch?v=Jd_u0KxJvqM&list=PLL0Sge2Sie6I)
+
+#8 [Tabs and session restore](https://www.youtube.com/watch?v=Jd_u0KxJvqM&list=PLL0Sge2Sie6I)
+
+1:38 · [Read the docs](https://docs.vectored.dev/apistudio/docs/tabs-sessions.html)
+
+[1:36](https://www.youtube.com/watch?v=mv9CFRbamIU&list=PLL0Sge2Sie6I)
+
+#9 [Request history](https://www.youtube.com/watch?v=mv9CFRbamIU&list=PLL0Sge2Sie6I)
+
+1:36 · [Read the docs](https://docs.vectored.dev/apistudio/docs/request-history.html)
+
+[1:49](https://www.youtube.com/watch?v=0uEJyH4o3Jk&list=PLL0Sge2Sie6I)
+
+#10 [Environments and variables](https://www.youtube.com/watch?v=0uEJyH4o3Jk&list=PLL0Sge2Sie6I)
+
+1:49 · [Read the docs](https://docs.vectored.dev/apistudio/docs/managing-environments.html)
+
+### Testing
+
+[1:40](https://www.youtube.com/watch?v=9mL_Rw8s0go&list=PLL0Sge2Sie6I)
+
+#11 [Extract values from responses](https://www.youtube.com/watch?v=9mL_Rw8s0go&list=PLL0Sge2Sie6I)
+
+1:40 · [Read the docs](https://docs.vectored.dev/apistudio/docs/set-variables.html)
+
+[1:30](https://www.youtube.com/watch?v=v8bwyK8yAPs&list=PLL0Sge2Sie6I)
+
+#12 [No-code test rules](https://www.youtube.com/watch?v=v8bwyK8yAPs&list=PLL0Sge2Sie6I)
+
+1:30 · [Read the docs](https://docs.vectored.dev/apistudio/docs/gui-test-rules.html)
+
+[1:41](https://www.youtube.com/watch?v=9zrXVUJt9Zs&list=PLL0Sge2Sie6I)
+
+#13 [Pre-request and test scripts](https://www.youtube.com/watch?v=9zrXVUJt9Zs&list=PLL0Sge2Sie6I)
+
+1:41 · [Read the docs](https://docs.vectored.dev/apistudio/docs/pre-request-scripts.html)
+
+[1:41](https://www.youtube.com/watch?v=QWMylqxYET4&list=PLL0Sge2Sie6I)
+
+#14 [Collection editor and inheritance](https://www.youtube.com/watch?v=QWMylqxYET4&list=PLL0Sge2Sie6I)
+
+1:41 · [Read the docs](https://docs.vectored.dev/apistudio/docs/collection-editor.html)
+
+[1:37](https://www.youtube.com/watch?v=6TI_KnqK77s&list=PLL0Sge2Sie6I)
+
+#15 [Running a whole collection](https://www.youtube.com/watch?v=6TI_KnqK77s&list=PLL0Sge2Sie6I)
+
+1:37 · [Read the docs](https://docs.vectored.dev/apistudio/docs/collection-runs.html)
+
+[1:30](https://www.youtube.com/watch?v=Ge-O02PHKCY&list=PLL0Sge2Sie6I)
+
+#16 [Snapshots and contract tracking](https://www.youtube.com/watch?v=Ge-O02PHKCY&list=PLL0Sge2Sie6I)
+
+1:30
+
+### Auth and security
+
+[1:48](https://www.youtube.com/watch?v=jfPaiBKE5VI&list=PLL0Sge2Sie6I)
+
+#17 [Auth basics: Basic, API key, Bearer, Digest](https://www.youtube.com/watch?v=jfPaiBKE5VI&list=PLL0Sge2Sie6I)
+
+1:48 · [Read the docs](https://docs.vectored.dev/apistudio/docs/auth-overview.html)
+
+[1:33](https://www.youtube.com/watch?v=bZ-eVX0YI80&list=PLL0Sge2Sie6I)
+
+#18 [OAuth 2.0 and AWS SigV4](https://www.youtube.com/watch?v=bZ-eVX0YI80&list=PLL0Sge2Sie6I)
+
+1:33 · [Read the docs](https://docs.vectored.dev/apistudio/docs/oauth2.html)
+
+[1:30](https://www.youtube.com/watch?v=tCkA0drpil0&list=PLL0Sge2Sie6I)
+
+#19 [The encrypted vault](https://www.youtube.com/watch?v=tCkA0drpil0&list=PLL0Sge2Sie6I)
+
+1:30 · [Read the docs](https://docs.vectored.dev/apistudio/docs/creating-vault.html)
+
+[1:34](https://www.youtube.com/watch?v=ZnY3-ZLMWMg&list=PLL0Sge2Sie6I)
+
+#20 [Secret sets and certificates](https://www.youtube.com/watch?v=ZnY3-ZLMWMg&list=PLL0Sge2Sie6I)
+
+1:34 · [Read the docs](https://docs.vectored.dev/apistudio/docs/secret-sets.html)
+
+[1:43](https://www.youtube.com/watch?v=-3Tg5gXn54c&list=PLL0Sge2Sie6I)
+
+#21 [Proxies, SSL and cookies](https://www.youtube.com/watch?v=-3Tg5gXn54c&list=PLL0Sge2Sie6I)
+
+1:43 · [Read the docs](https://docs.vectored.dev/apistudio/docs/proxy.html)
+
+### Protocols
+
+[1:42](https://www.youtube.com/watch?v=xVeIKAtWc8M&list=PLL0Sge2Sie6I)
+
+#22 [The GraphQL client](https://www.youtube.com/watch?v=xVeIKAtWc8M&list=PLL0Sge2Sie6I)
+
+1:42 · [Read the docs](https://docs.vectored.dev/apistudio/docs/graphql.html)
+
+[1:32](https://www.youtube.com/watch?v=LoOi_lxRk-Q&list=PLL0Sge2Sie6I)
+
+#23 [GraphQL subscriptions](https://www.youtube.com/watch?v=LoOi_lxRk-Q&list=PLL0Sge2Sie6I)
+
+1:32 · [Read the docs](https://docs.vectored.dev/apistudio/docs/graphql.html)
+
+[1:37](https://www.youtube.com/watch?v=EnqIogWyyKQ&list=PLL0Sge2Sie6I)
+
+#24 [The WebSocket client](https://www.youtube.com/watch?v=EnqIogWyyKQ&list=PLL0Sge2Sie6I)
+
+1:37 · [Read the docs](https://docs.vectored.dev/apistudio/docs/websocket.html)
+
+[1:40](https://www.youtube.com/watch?v=7Hse65cBd0k&list=PLL0Sge2Sie6I)
+
+#25 [Server-Sent Events](https://www.youtube.com/watch?v=7Hse65cBd0k&list=PLL0Sge2Sie6I)
+
+1:40 · [Read the docs](https://docs.vectored.dev/apistudio/docs/sse.html)
+
+[1:44](https://www.youtube.com/watch?v=_NFkhq4Y2cY&list=PLL0Sge2Sie6I)
+
+#26 [The gRPC client](https://www.youtube.com/watch?v=_NFkhq4Y2cY&list=PLL0Sge2Sie6I)
+
+1:44 · [Read the docs](https://docs.vectored.dev/apistudio/docs/grpc.html)
+
+### Mocks, MCP and AI
+
+[1:35](https://www.youtube.com/watch?v=LQvCU_RAfSc&list=PLL0Sge2Sie6I)
+
+#27 [Build a mock server](https://www.youtube.com/watch?v=LQvCU_RAfSc&list=PLL0Sge2Sie6I)
+
+1:35 · [Read the docs](https://docs.vectored.dev/apistudio/docs/creating-mock-servers.html)
+
+[1:21](https://www.youtube.com/watch?v=ouIvzP5KJ34&list=PLL0Sge2Sie6I)
+
+#28 [Mock request log and Swagger](https://www.youtube.com/watch?v=ouIvzP5KJ34&list=PLL0Sge2Sie6I)
+
+1:21 · [Read the docs](https://docs.vectored.dev/apistudio/docs/mock-request-log.html)
+
+[2:04](https://www.youtube.com/watch?v=x0BXe2-e_rA&list=PLL0Sge2Sie6I)
+
+#29 [Turn a collection into MCP tools](https://www.youtube.com/watch?v=x0BXe2-e_rA&list=PLL0Sge2Sie6I)
+
+2:04 · [Read the docs](https://docs.vectored.dev/apistudio/docs/collection-mcp.html)
+
+[1:51](https://www.youtube.com/watch?v=pzWmbdHQLAE&list=PLL0Sge2Sie6I)
+
+#30 [Mock MCP and the management MCP](https://www.youtube.com/watch?v=pzWmbdHQLAE&list=PLL0Sge2Sie6I)
+
+1:51 · [Read the docs](https://docs.vectored.dev/apistudio/docs/mock-mcp.html)
+
+[1:09](https://www.youtube.com/watch?v=KDoLaKTzuFQ&list=PLL0Sge2Sie6I)
+
+#31 [Code export](https://www.youtube.com/watch?v=KDoLaKTzuFQ&list=PLL0Sge2Sie6I)
+
+1:09 · [Read the docs](https://docs.vectored.dev/apistudio/docs/code-export-languages.html)
+
+[1:21](https://www.youtube.com/watch?v=kTyPAtNKwFQ&list=PLL0Sge2Sie6I)
+
+#32 [AI prompts](https://www.youtube.com/watch?v=kTyPAtNKwFQ&list=PLL0Sge2Sie6I)
+
+1:21 · [Read the docs](https://docs.vectored.dev/apistudio/docs/ai-prompts.html)
+
+### Workflow
+
+[1:24](https://www.youtube.com/watch?v=VnOyUQ_c1Bk&list=PLL0Sge2Sie6I)
+
+#33 [Import and export](https://www.youtube.com/watch?v=VnOyUQ_c1Bk&list=PLL0Sge2Sie6I)
+
+1:24 · [Read the docs](https://docs.vectored.dev/apistudio/docs/import-export.html)
+
+[1:31](https://www.youtube.com/watch?v=DMCNvx6jOFo&list=PLL0Sge2Sie6I)
+
+#34 [Version control with Git](https://www.youtube.com/watch?v=DMCNvx6jOFo&list=PLL0Sge2Sie6I)
+
+1:31 · [Read the docs](https://docs.vectored.dev/apistudio/docs/version-control.html)
+
+[2:08](https://www.youtube.com/watch?v=WMkTvZIy838&list=PLL0Sge2Sie6I)
+
+#35 [Settings and keyboard shortcuts](https://www.youtube.com/watch?v=WMkTvZIy838&list=PLL0Sge2Sie6I)
+
+2:08 · [Read the docs](https://docs.vectored.dev/apistudio/docs/settings.html)
+
+[1:37](https://www.youtube.com/watch?v=913_UmYC6v4&list=PLL0Sge2Sie6I)
+
+#36 [API Studio inside VS Code](https://www.youtube.com/watch?v=913_UmYC6v4&list=PLL0Sge2Sie6I)
+
+1:37 · [Read the docs](https://docs.vectored.dev/apistudio/docs/ui-overview.html)
+
+### The openpost CLI
+
+[1:19](https://www.youtube.com/watch?v=HPDe1ZjWKMo&list=PLL0Sge2Sie6I)
+
+#37 [CLI getting started](https://www.youtube.com/watch?v=HPDe1ZjWKMo&list=PLL0Sge2Sie6I)
+
+1:19 · [Read the docs](https://docs.vectored.dev/apistudio/docs/cli-overview.html)
+
+[1:07](https://www.youtube.com/watch?v=xLXY2QDbPWE&list=PLL0Sge2Sie6I)
+
+#38 [Run collections from the terminal](https://www.youtube.com/watch?v=xLXY2QDbPWE&list=PLL0Sge2Sie6I)
+
+1:07 · [Read the docs](https://docs.vectored.dev/apistudio/docs/cli-run.html)
+
+[1:21](https://www.youtube.com/watch?v=LHwnNe9KuR0&list=PLL0Sge2Sie6I)
+
+#39 [Load testing from the CLI](https://www.youtube.com/watch?v=LHwnNe9KuR0&list=PLL0Sge2Sie6I)
+
+1:21 · [Read the docs](https://docs.vectored.dev/apistudio/docs/cli-perf.html)
+
+[1:23](https://www.youtube.com/watch?v=MOrajEs4TgM&list=PLL0Sge2Sie6I)
+
+#40 [Security scan (openpost scan)](https://www.youtube.com/watch?v=MOrajEs4TgM&list=PLL0Sge2Sie6I)
+
+1:23 · [Read the docs](https://docs.vectored.dev/apistudio/docs/management-mcp.html)
+
+[1:17](https://www.youtube.com/watch?v=CydUsx-WhIU&list=PLL0Sge2Sie6I)
+
+#41 [CLI import, environments and vault](https://www.youtube.com/watch?v=CydUsx-WhIU&list=PLL0Sge2Sie6I)
+
+1:17 · [Read the docs](https://docs.vectored.dev/apistudio/docs/cli-import-export.html)
+
+[1:09](https://www.youtube.com/watch?v=VoZP8ktAdrI&list=PLL0Sge2Sie6I)
+
+#42 [Mock and MCP servers from the CLI](https://www.youtube.com/watch?v=VoZP8ktAdrI&list=PLL0Sge2Sie6I)
+
+1:09 · [Read the docs](https://docs.vectored.dev/apistudio/docs/cli-serve.html)
+
+[1:36](https://www.youtube.com/watch?v=_y6XyJ_dBuI&list=PLL0Sge2Sie6I)
+
+#43 [API tests in CI/CD](https://www.youtube.com/watch?v=_y6XyJ_dBuI&list=PLL0Sge2Sie6I)
+
+1:36 · [Read the docs](https://docs.vectored.dev/apistudio/docs/cicd.html)
+
+### AI agents
+
+[1:17](https://www.youtube.com/watch?v=_-mu-6TIx7A&list=PLL0Sge2Sie6I)
+
+#46 [The agent skill in Cursor, Copilot and Kiro](https://www.youtube.com/watch?v=_-mu-6TIx7A&list=PLL0Sge2Sie6I)
+
+1:17 · [Read the docs](https://docs.vectored.dev/apistudio/docs/ai-agent-skills.html)
+
+[1:29](https://www.youtube.com/watch?v=M4C5iWpMYOI&list=PLL0Sge2Sie6I)
+
+#47 [YAML API tests and reports](https://www.youtube.com/watch?v=M4C5iWpMYOI&list=PLL0Sge2Sie6I)
+
+1:29 · [Read the docs](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html)
+
+[1:13](https://www.youtube.com/watch?v=3gmncmCbEuA&list=PLL0Sge2Sie6I)
+
+#48 [Generate API docs from tests](https://www.youtube.com/watch?v=3gmncmCbEuA&list=PLL0Sge2Sie6I)
+
+1:13 · [Read the docs](https://docs.vectored.dev/apistudio/docs/cli-api-tests.html)
+
 ## Sending Requests
 
 Source: https://docs.vectored.dev/apistudio/docs/sending-requests.html
 
 Everything about making HTTP requests — methods, URLs with variables, concurrent execution, HTTP/2 negotiation, SSL settings, and cURL import.
+
+Video tutorial #4 · Send your first request · 2:25 · [Watch on YouTube](https://www.youtube.com/watch?v=HCVXjV4Z7Y0&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 HTTP CLIENT
 
@@ -929,6 +1271,10 @@ API Studio has a built-in cookie jar that automatically stores and sends cookies
 Source: https://docs.vectored.dev/apistudio/docs/request-body.html
 
 API Studio supports 7 body types. Select from the dropdown in the Body tab. Each type has a dedicated editor with syntax highlighting, variable resolution, and inline comment support.
+
+Video tutorial #5 · Request body editors · 2:10 · [Watch on YouTube](https://www.youtube.com/watch?v=3q6udm3NNfY&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 HTTP CLIENT
 
@@ -1074,6 +1420,10 @@ Source: https://docs.vectored.dev/apistudio/docs/params-headers.html
 
 Query parameters with bidirectional URL sync and request headers with autocomplete. Both use the same key-value row editor with enable/disable toggles and variable support.
 
+Video tutorial #4 · Send your first request · 2:25 · [Watch on YouTube](https://www.youtube.com/watch?v=HCVXjV4Z7Y0&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 HTTP CLIENT
 
 ### Query Parameters
@@ -1163,6 +1513,10 @@ Unresolved variables (not found in any source) are sent as the literal text `{{v
 Source: https://docs.vectored.dev/apistudio/docs/response-viewer.html
 
 Everything about reading API responses — status codes, timing, body views, headers, cookies, the actual request sent, test results, and schema extraction.
+
+Video tutorial #6 · Reading responses · 2:17 · [Watch on YouTube](https://www.youtube.com/watch?v=PZW4fl7_26A&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 HTTP CLIENT
 
@@ -1304,6 +1658,10 @@ Source: https://docs.vectored.dev/apistudio/docs/request-history.html
 
 Every request you send is automatically saved. Browse, search, and manage your request history across workspaces — with automatic secret scrubbing for security.
 
+Video tutorial #9 · Request history · 1:36 · [Watch on YouTube](https://www.youtube.com/watch?v=mv9CFRbamIU&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 HTTP CLIENT
 
 ![History sidebar tab showing past requests with method, URL, status, and time](https://docs.vectored.dev/apistudio/assets/side bar history tab open.png)
@@ -1421,6 +1779,10 @@ Vault secrets are automatically scrubbed from persisted history entries before w
 Source: https://docs.vectored.dev/apistudio/docs/tabs-sessions.html
 
 Multi-tab interface with session persistence, grouping, concurrent requests, and smart close behavior.
+
+Video tutorial #8 · Tabs and session restore · 1:38 · [Watch on YouTube](https://www.youtube.com/watch?v=Jd_u0KxJvqM&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 HTTP CLIENT
 
@@ -1551,6 +1913,12 @@ Closing a tab triggers cleanup to prevent orphaned resources:
 Source: https://docs.vectored.dev/apistudio/docs/graphql.html
 
 Full-featured GraphQL client with CodeMirror 6 editor, schema introspection and SDL import, visual query builder, docs panel, multi-operation support, and live subscriptions via `graphql-transport-ws`.
+
+Video tutorial #22 · The GraphQL client · 1:42 · [Watch on YouTube](https://www.youtube.com/watch?v=xVeIKAtWc8M&list=PLL0Sge2Sie6I)
+
+Video tutorial #23 · GraphQL subscriptions · 1:32 · [Watch on YouTube](https://www.youtube.com/watch?v=LoOi_lxRk-Q&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 PROTOCOLS
 
@@ -1702,6 +2070,10 @@ Source: https://docs.vectored.dev/apistudio/docs/websocket.html
 
 Real-time two-way communication testing — connect to WebSocket endpoints, send and receive messages, and inspect traffic with direction indicators and timestamps.
 
+Video tutorial #24 · The WebSocket client · 1:37 · [Watch on YouTube](https://www.youtube.com/watch?v=EnqIogWyyKQ&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 PROTOCOLS
 
 ### Connecting
@@ -1809,6 +2181,10 @@ Authentication and custom headers are injected into the WebSocket upgrade reques
 Source: https://docs.vectored.dev/apistudio/docs/grpc.html
 
 Full gRPC API testing with unary and server-streaming calls — proto file loading, service/method picker, metadata headers, auth, TLS certificates, and grpcurl code export.
+
+Video tutorial #26 · The gRPC client · 1:44 · [Watch on YouTube](https://www.youtube.com/watch?v=_NFkhq4Y2cY&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 PROTOCOLS
 
@@ -1957,6 +2333,10 @@ Source: https://docs.vectored.dev/apistudio/docs/sse.html
 
 Real-time streaming over HTTP — auto-detected, with a live event viewer, mid-stream cancellation, and full history persistence.
 
+Video tutorial #25 · Server-Sent Events · 1:40 · [Watch on YouTube](https://www.youtube.com/watch?v=7Hse65cBd0k&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 PROTOCOLS
 
 ### Auto-Detection
@@ -2077,6 +2457,10 @@ Source: https://docs.vectored.dev/apistudio/docs/creating-collections.html
 
 Organize your API requests into collections — choose between Local (workspace-specific) and Global (shared across all workspaces) scope.
 
+Video tutorial #7 · Collections and folders · 1:52 · [Watch on YouTube](https://www.youtube.com/watch?v=96ApSjbD-KA&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 COLLECTIONS
 
 ![Collections sidebar with Local and Global groups](https://docs.vectored.dev/apistudio/assets/new collection side bar.png)
@@ -2192,6 +2576,10 @@ Source: https://docs.vectored.dev/apistudio/docs/folders-organization.html
 
 Organize requests into nested folder trees with drag-and-drop reordering, deep search, and inheritance of auth, scripts, and certificates.
 
+Video tutorial #7 · Collections and folders · 1:52 · [Watch on YouTube](https://www.youtube.com/watch?v=96ApSjbD-KA&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 COLLECTIONS
 
 ![Nested folders with child and grandchild structure](https://docs.vectored.dev/apistudio/assets/collection menu with child and grandchild folder created.png)
@@ -2305,6 +2693,10 @@ Keep one collection per API or microservice for clear boundaries and easy sharin
 Source: https://docs.vectored.dev/apistudio/docs/collection-editor.html
 
 Edit collection settings, documentation, auth, scripts, run all requests, and configure MCP servers — all from a dedicated editor tab.
+
+Video tutorial #14 · Collection editor and inheritance · 1:41 · [Watch on YouTube](https://www.youtube.com/watch?v=QWMylqxYET4&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 - **Note:** Some collection editor tabs (Scripts, Runs, MCP, Settings) are only available in [Advanced Mode](https://docs.vectored.dev/apistudio/docs/settings.html). Enable it via Settings → Advanced Mode checkbox.
 
@@ -2441,6 +2833,10 @@ Click a folder name in the sidebar to open its editor. Similar to the collection
 Source: https://docs.vectored.dev/apistudio/docs/collection-runs.html
 
 Execute all requests in a collection in one click — sequentially for chaining or in parallel for speed. View live progress, results, and export HTML reports.
+
+Video tutorial #15 · Running a whole collection · 1:37 · [Watch on YouTube](https://www.youtube.com/watch?v=6TI_KnqK77s&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 - **Note:** Collection Runs require [Advanced Mode](https://docs.vectored.dev/apistudio/docs/settings.html). Enable it via Settings → Advanced Mode checkbox.
 
@@ -2587,6 +2983,10 @@ Example chaining workflow:
 Source: https://docs.vectored.dev/apistudio/docs/import-export.html
 
 Bring in collections from Postman, OpenAPI specs, and cURL commands. Export to multiple formats for sharing, backup, and interoperability.
+
+Video tutorial #33 · Import and export · 1:24 · [Watch on YouTube](https://www.youtube.com/watch?v=VnOyUQ_c1Bk&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 COLLECTIONS
 
@@ -2941,6 +3341,10 @@ Source: https://docs.vectored.dev/apistudio/docs/managing-environments.html
 
 Create and manage environments with key-value variables for different stages of your development workflow — Development, Staging, Production, and more.
 
+Video tutorial #10 · Environments and variables · 1:49 · [Watch on YouTube](https://www.youtube.com/watch?v=0uEJyH4o3Jk&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 ENVIRONMENTS
 
 ![Creating a new environment with variables](https://docs.vectored.dev/apistudio/assets/new environment.png)
@@ -3085,6 +3489,10 @@ Source: https://docs.vectored.dev/apistudio/docs/variables-interpolation.html
 
 Use `{{variable}}` placeholders anywhere in your requests. Variables are resolved at send-time from environments, vault secrets, and collection variables.
 
+Video tutorial #10 · Environments and variables · 1:49 · [Watch on YouTube](https://www.youtube.com/watch?v=0uEJyH4o3Jk&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 ENVIRONMENTS
 
 ### {{variable}} Syntax
@@ -3205,6 +3613,10 @@ Extract values from responses and save them as variables — no scripting requir
 Source: https://docs.vectored.dev/apistudio/docs/variable-priority.html
 
 How API Studio resolves conflicts when the same `{{variable}}` is defined in multiple sources — and how to use that to your advantage.
+
+Video tutorial #10 · Environments and variables · 1:49 · [Watch on YouTube](https://www.youtube.com/watch?v=0uEJyH4o3Jk&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 ENVIRONMENTS
 
@@ -3342,6 +3754,10 @@ Source: https://docs.vectored.dev/apistudio/docs/auth-overview.html
 
 API Studio supports 7 authentication types — all injected transparently at send time, all supporting environment variables and vault secrets.
 
+Video tutorial #17 · Auth basics: Basic, API key, Bearer, Digest · 1:48 · [Watch on YouTube](https://www.youtube.com/watch?v=jfPaiBKE5VI&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 AUTHENTICATION
 
 ![Auth type selector showing all 7 options](https://docs.vectored.dev/apistudio/assets/request auth screen wher all suppoterd auth menu is open.png)
@@ -3434,6 +3850,10 @@ Use this decision table to pick the right auth type for your API:
 Source: https://docs.vectored.dev/apistudio/docs/basic-auth.html
 
 HTTP Basic Authentication sends a Base64-encoded username and password in the Authorization header with every request.
+
+Video tutorial #17 · Auth basics: Basic, API key, Bearer, Digest · 1:48 · [Watch on YouTube](https://www.youtube.com/watch?v=jfPaiBKE5VI&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 AUTHENTICATION
 
@@ -3568,6 +3988,10 @@ Source: https://docs.vectored.dev/apistudio/docs/bearer-token.html
 
 Adds an `Authorization: Bearer <token>` header to your request. The most common auth method for JWT-based APIs.
 
+Video tutorial #17 · Auth basics: Basic, API key, Bearer, Digest · 1:48 · [Watch on YouTube](https://www.youtube.com/watch?v=jfPaiBKE5VI&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 AUTHENTICATION
 
 ### How It Works
@@ -3667,6 +4091,10 @@ Auth credentials appear in multiple places:
 Source: https://docs.vectored.dev/apistudio/docs/api-key.html
 
 Send an API key as a custom header or query parameter. Flexible naming lets you match any API's expected key format.
+
+Video tutorial #17 · Auth basics: Basic, API key, Bearer, Digest · 1:48 · [Watch on YouTube](https://www.youtube.com/watch?v=jfPaiBKE5VI&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 AUTHENTICATION
 
@@ -3793,6 +4221,10 @@ Auth credentials appear in multiple places:
 Source: https://docs.vectored.dev/apistudio/docs/oauth2.html
 
 Industry-standard authorization framework with support for Authorization Code and Client Credentials grant types, token management, and configurable token prefix.
+
+Video tutorial #18 · OAuth 2.0 and AWS SigV4 · 1:33 · [Watch on YouTube](https://www.youtube.com/watch?v=bZ-eVX0YI80&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 AUTHENTICATION
 
@@ -3980,6 +4412,10 @@ Source: https://docs.vectored.dev/apistudio/docs/aws-sigv4.html
 
 Sign requests to AWS services using the AWS Signature Version 4 algorithm — the standard authentication mechanism for all AWS API calls.
 
+Video tutorial #18 · OAuth 2.0 and AWS SigV4 · 1:33 · [Watch on YouTube](https://www.youtube.com/watch?v=bZ-eVX0YI80&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 AUTHENTICATION
 
 ### How It Works
@@ -4100,6 +4536,10 @@ Source: https://docs.vectored.dev/apistudio/docs/digest-auth.html
 
 RFC 7616 Digest authentication with automatic challenge-response flow — API Studio handles the 401 handshake transparently so you only see the final successful response.
 
+Video tutorial #17 · Auth basics: Basic, API key, Bearer, Digest · 1:48 · [Watch on YouTube](https://www.youtube.com/watch?v=jfPaiBKE5VI&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 AUTHENTICATION
 
 ### How It Works
@@ -4191,6 +4631,10 @@ Auth credentials appear in multiple places:
 Source: https://docs.vectored.dev/apistudio/docs/auth-inheritance.html
 
 Set authentication once at the collection or folder level and let child requests inherit it automatically — no need to repeat credentials on every request.
+
+Video tutorial #14 · Collection editor and inheritance · 1:41 · [Watch on YouTube](https://www.youtube.com/watch?v=QWMylqxYET4&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 AUTHENTICATION
 
@@ -4313,6 +4757,10 @@ Source: https://docs.vectored.dev/apistudio/docs/gui-test-rules.html
 
 No-code assertions for validating API responses — add rules via dropdown, no JavaScript needed.
 
+Video tutorial #12 · No-code test rules · 1:30 · [Watch on YouTube](https://www.youtube.com/watch?v=v8bwyK8yAPs&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 TESTING
 
 ![Tests tab with 2 assertion rules and a set variable](https://docs.vectored.dev/apistudio/assets/request tab with test tab open it has 2 assertions and one set variables.png)
@@ -4427,6 +4875,10 @@ Source: https://docs.vectored.dev/apistudio/docs/pre-request-scripts.html
 
 JavaScript that runs before every HTTP request — dynamically modify headers, change URLs, generate tokens, and set timestamps in a sandboxed environment.
 
+Video tutorial #13 · Pre-request and test scripts · 1:41 · [Watch on YouTube](https://www.youtube.com/watch?v=9zrXVUJt9Zs&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 TESTING
 
 ![Scripts tab with pre-request and test script editors](https://docs.vectored.dev/apistudio/assets/request tab with script tab open.png)
@@ -4516,6 +4968,10 @@ Source: https://docs.vectored.dev/apistudio/docs/test-scripts.html
 
 JavaScript that runs after the response is received — assert values, extract data, set environment variables, and log debug information.
 
+Video tutorial #13 · Pre-request and test scripts · 1:41 · [Watch on YouTube](https://www.youtube.com/watch?v=9zrXVUJt9Zs&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 TESTING
 
 ### Purpose
@@ -4602,6 +5058,10 @@ Source: https://docs.vectored.dev/apistudio/docs/scripting-api.html
 
 Complete reference for all objects and globals available inside pre-request and test scripts.
 
+Video tutorial #13 · Pre-request and test scripts · 1:41 · [Watch on YouTube](https://www.youtube.com/watch?v=9zrXVUJt9Zs&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 TESTING
 
 ### request Object
@@ -4687,6 +5147,10 @@ JSON Math Date parseInt parseFloat encodeURIComponent decodeURIComponent atob bt
 Source: https://docs.vectored.dev/apistudio/docs/set-variables.html
 
 Extract values from API responses and save them as environment variables — no code needed. Perfect for request chaining and dynamic workflows.
+
+Video tutorial #11 · Extract values from responses · 1:40 · [Watch on YouTube](https://www.youtube.com/watch?v=9mL_Rw8s0go&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 TESTING
 
@@ -4828,6 +5292,10 @@ Source: https://docs.vectored.dev/apistudio/docs/creating-mock-servers.html
 
 Built-in multi-instance mock servers for offline API simulation — no external tools needed.
 
+Video tutorial #27 · Build a mock server · 1:35 · [Watch on YouTube](https://www.youtube.com/watch?v=LQvCU_RAfSc&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 MOCK SERVERS
 
 ![Creating a new mock server with name and port](https://docs.vectored.dev/apistudio/assets/creatinge mock server.png)
@@ -4949,6 +5417,10 @@ Load an exported JSON file to recreate a server with all its routes and configur
 Source: https://docs.vectored.dev/apistudio/docs/mock-routes.html
 
 Define mock routes with path matching, response bodies, headers, status codes, file-based responses, snapshot responses, and dynamic variable interpolation.
+
+Video tutorial #27 · Build a mock server · 1:35 · [Watch on YouTube](https://www.youtube.com/watch?v=LQvCU_RAfSc&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 MOCK SERVERS
 
@@ -5102,6 +5574,10 @@ Source: https://docs.vectored.dev/apistudio/docs/mock-request-log.html
 
 Real-time logging of every request hitting your mock server — see what matched, what didn't, and inspect full request details.
 
+Video tutorial #28 · Mock request log and Swagger · 1:21 · [Watch on YouTube](https://www.youtube.com/watch?v=ouIvzP5KJ34&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 MOCK SERVERS
 
 ![Request log showing matched and unmatched requests with timestamps](https://docs.vectored.dev/apistudio/assets/mock request log with 3 matched and 1 unmatched entries with time and clear button visible.png)
@@ -5167,6 +5643,10 @@ When the log gets busy during development, use filters to focus:
 Source: https://docs.vectored.dev/apistudio/docs/mock-swagger.html
 
 Auto-generated OpenAPI 3.0 documentation and interactive Swagger UI from your mock server routes — no manual spec writing needed.
+
+Video tutorial #28 · Mock request log and Swagger · 1:21 · [Watch on YouTube](https://www.youtube.com/watch?v=ouIvzP5KJ34&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 MOCK SERVERS
 
@@ -5234,6 +5714,10 @@ Full Swagger UI with "Try it out" functionality:
 Source: https://docs.vectored.dev/apistudio/docs/collection-mcp.html
 
 Expose your collection requests as MCP tools so any AI client can discover and invoke your API endpoints via the Model Context Protocol.
+
+Video tutorial #29 · Turn a collection into MCP tools · 2:04 · [Watch on YouTube](https://www.youtube.com/watch?v=x0BXe2-e_rA&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 MCP SERVERS
 
@@ -5370,6 +5854,10 @@ Source: https://docs.vectored.dev/apistudio/docs/mock-mcp.html
 
 Expose mock server routes as MCP tools for AI clients — predictable, controlled API responses without hitting real endpoints.
 
+Video tutorial #30 · Mock MCP and the management MCP · 1:51 · [Watch on YouTube](https://www.youtube.com/watch?v=pzWmbdHQLAE&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 MCP SERVERS
 
 ### Overview
@@ -5448,6 +5936,12 @@ AI always gets consistent data for testing logic
 Source: https://docs.vectored.dev/apistudio/docs/management-mcp.html
 
 A built-in MCP server with 33 tools that gives any AI client full workspace management capabilities — collections, environments, requests, mock servers, security scanning, and more via natural language.
+
+Video tutorial #30 · Mock MCP and the management MCP · 1:51 · [Watch on YouTube](https://www.youtube.com/watch?v=pzWmbdHQLAE&list=PLL0Sge2Sie6I)
+
+Video tutorial #40 · Security scan (openpost scan) · 1:23 · [Watch on YouTube](https://www.youtube.com/watch?v=MOrajEs4TgM&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 MCP SERVERS
 
@@ -5643,6 +6137,10 @@ Source: https://docs.vectored.dev/apistudio/docs/connecting-ai-clients.html
 
 How to connect any MCP-compatible AI client to API Studio's Management MCP server — Claude Desktop, Cursor, Kiro, VS Code Copilot, Amazon Q, and headless CLI environments.
 
+Video tutorial #29 · Turn a collection into MCP tools · 2:04 · [Watch on YouTube](https://www.youtube.com/watch?v=x0BXe2-e_rA&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 MCP SERVERS
 
 ### Overview
@@ -5725,6 +6223,10 @@ Replace `/usr/local/bin/node` with output of `which node`. Replace YOUR_USERNAME
 Source: https://docs.vectored.dev/apistudio/docs/creating-vault.html
 
 Set up an encrypted local vault to store secrets and certificates — fully offline, protected by a master password.
+
+Video tutorial #19 · The encrypted vault · 1:30 · [Watch on YouTube](https://www.youtube.com/watch?v=tCkA0drpil0&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 SECRET VAULT
 
@@ -5850,6 +6352,10 @@ Source: https://docs.vectored.dev/apistudio/docs/managing-secrets.html
 
 Add, view, edit, and delete secrets in the encrypted vault. Automatic scrubbing ensures secret values never leak to persisted files on disk.
 
+Video tutorial #19 · The encrypted vault · 1:30 · [Watch on YouTube](https://www.youtube.com/watch?v=tCkA0drpil0&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 SECRET VAULT
 
 ![Adding a new secret to the vault](https://docs.vectored.dev/apistudio/assets/vault view with creating new secret.png)
@@ -5942,6 +6448,10 @@ Manage vault secrets from the command line:
 Source: https://docs.vectored.dev/apistudio/docs/secret-sets.html
 
 Bridge your encrypted vault secrets to `{{variable}}` placeholders — switch between credential profiles without changing your requests.
+
+Video tutorial #20 · Secret sets and certificates · 1:34 · [Watch on YouTube](https://www.youtube.com/watch?v=ZnY3-ZLMWMg&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 SECRET VAULT
 
@@ -6057,6 +6567,10 @@ Share the secret set configuration (key mappings) via git in `config.json`. Each
 Source: https://docs.vectored.dev/apistudio/docs/certificates.html
 
 Store and manage TLS client certificates in the encrypted vault for mutual TLS (mTLS) authentication with APIs that require client certificate verification.
+
+Video tutorial #20 · Secret sets and certificates · 1:34 · [Watch on YouTube](https://www.youtube.com/watch?v=ZnY3-ZLMWMg&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 SECRET VAULT
 
@@ -6184,6 +6698,10 @@ Source: https://docs.vectored.dev/apistudio/docs/cli-overview.html
 
 Install and use the `openpost` CLI to run collections, manage environments, import/export, and integrate with CI/CD pipelines.
 
+Video tutorial #37 · CLI getting started · 1:19 · [Watch on YouTube](https://www.youtube.com/watch?v=HPDe1ZjWKMo&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 CLI
 
 ### Installation
@@ -6294,6 +6812,12 @@ Use in test frameworks (Jest, Mocha) or custom scripts. The programmatic API use
 Source: https://docs.vectored.dev/apistudio/docs/cli-api-tests.html
 
 Write API tests as YAML files in your repository, run them with `openpost test`, and reuse the same files for load tests, documentation and CI.
+
+Video tutorial #47 · YAML API tests and reports · 1:29 · [Watch on YouTube](https://www.youtube.com/watch?v=M4C5iWpMYOI&list=PLL0Sge2Sie6I)
+
+Video tutorial #48 · Generate API docs from tests · 1:13 · [Watch on YouTube](https://www.youtube.com/watch?v=3gmncmCbEuA&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 CLI
 
@@ -6501,6 +7025,10 @@ Source: https://docs.vectored.dev/apistudio/docs/cli-perf.html
 
 Run the same API test files under load with `openpost perf`, with thresholds that fail the build when latency or error rate regresses.
 
+Video tutorial #39 · Load testing from the CLI · 1:21 · [Watch on YouTube](https://www.youtube.com/watch?v=LHwnNe9KuR0&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 CLI
 
 ### Basic Usage
@@ -6589,6 +7117,10 @@ Source: https://docs.vectored.dev/apistudio/docs/cli-reports.html
 
 Every `openpost test`, `perf` and `run` can write a shareable HTML dashboard, JUnit XML for CI, Markdown for pull requests and JSON for scripts.
 
+Video tutorial #47 · YAML API tests and reports · 1:29 · [Watch on YouTube](https://www.youtube.com/watch?v=M4C5iWpMYOI&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 CLI
 
 ![openpost HTML test report](https://docs.vectored.dev/apistudio/assets/openpost test report html.png)
@@ -6668,6 +7200,10 @@ In GitHub Actions, the Markdown summary is also written to the job summary autom
 Source: https://docs.vectored.dev/apistudio/docs/cli-run.html
 
 Execute collection requests from the command line — sequential or parallel, with filtering, environment selection, and CI/CD-ready output.
+
+Video tutorial #38 · Run collections from the terminal · 1:07 · [Watch on YouTube](https://www.youtube.com/watch?v=xLXY2QDbPWE&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 CLI
 
@@ -6816,6 +7352,10 @@ Source: https://docs.vectored.dev/apistudio/docs/cli-import-export.html
 
 Import cURL commands and OpenAPI specs into collections, export requests as cURL or OpenAPI, and list workspace resources from the command line.
 
+Video tutorial #41 · CLI import, environments and vault · 1:17 · [Watch on YouTube](https://www.youtube.com/watch?v=CydUsx-WhIU&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 CLI
 
 ### Import cURL
@@ -6897,6 +7437,10 @@ openpost list environments
 Source: https://docs.vectored.dev/apistudio/docs/cli-vault.html
 
 Create, unlock, and manage the AES-256-GCM encrypted secret vault from the command line. The same vault file is shared with the VS Code extension.
+
+Video tutorial #41 · CLI import, environments and vault · 1:17 · [Watch on YouTube](https://www.youtube.com/watch?v=CydUsx-WhIU&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 CLI
 
@@ -6983,6 +7527,10 @@ openpost license status
 Source: https://docs.vectored.dev/apistudio/docs/cli-serve.html
 
 Start the Management MCP server without VS Code — headless mode for CI/CD pipelines, remote AI access, and automated testing.
+
+Video tutorial #42 · Mock and MCP servers from the CLI · 1:09 · [Watch on YouTube](https://www.youtube.com/watch?v=VoZP8ktAdrI&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 CLI
 
@@ -7078,6 +7626,10 @@ Source: https://docs.vectored.dev/apistudio/docs/ai-agent-skills.html
 
 Teach Claude Code, Cursor, Kiro, Copilot, Windsurf, Codex, Gemini and Cline to test, load-test and document your APIs with the openpost CLI.
 
+Video tutorial #46 · The agent skill in Cursor, Copilot and Kiro · 1:17 · [Watch on YouTube](https://www.youtube.com/watch?v=_-mu-6TIx7A&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 CLI
 
 ### Why
@@ -7159,6 +7711,10 @@ npx openpost agent print --reference  # full syntax reference
 Source: https://docs.vectored.dev/apistudio/docs/version-control.html
 
 Collections, environments and mock servers are plain JSON in your repository. They travel through the same branches, pull requests and code review as the code they describe — no cloud workspace, no seats, no sync service.
+
+Video tutorial #34 · Version control with Git · 1:31 · [Watch on YouTube](https://www.youtube.com/watch?v=DMCNvx6jOFo&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 TEAM & CI/CD
 
@@ -7320,6 +7876,10 @@ Collections that genuinely belong to everyone can live in global storage instead
 Source: https://docs.vectored.dev/apistudio/docs/cicd.html
 
 Run your collections as automated integration tests inside any continuous integration pipeline. The same `openpost` CLI that runs locally runs in CI, fails the build on a failed assertion, and writes machine-readable reports.
+
+Video tutorial #43 · API tests in CI/CD · 1:36 · [Watch on YouTube](https://www.youtube.com/watch?v=_y6XyJ_dBuI&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 TEAM & CI/CD
 
@@ -7580,6 +8140,10 @@ Source: https://docs.vectored.dev/apistudio/docs/code-export-languages.html
 
 Generate ready-to-use code from any API request in 15 languages. One click to export, one click to copy.
 
+Video tutorial #31 · Code export · 1:09 · [Watch on YouTube](https://www.youtube.com/watch?v=KDoLaKTzuFQ&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 CODE EXPORT
 
 ![Code export panel with language dropdown showing all 15 options](https://docs.vectored.dev/apistudio/assets/code export window with all supported languages drop down open.png)
@@ -7747,6 +8311,10 @@ Source: https://docs.vectored.dev/apistudio/docs/ai-prompts.html
 
 Generate copy-paste-ready prompts for AI tools from your current request and response — 5 dialects tailored for different tasks.
 
+Video tutorial #32 · AI prompts · 1:21 · [Watch on YouTube](https://www.youtube.com/watch?v=kTyPAtNKwFQ&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
+
 CODE EXPORT
 
 ![AI Prompt generator with dialect selector and generated prompt](https://docs.vectored.dev/apistudio/assets/code export window with ai prompt view.png)
@@ -7854,6 +8422,10 @@ Response (if available)
 Source: https://docs.vectored.dev/apistudio/docs/settings.html
 
 Configure API Studio — mode selection, SSL, cookies, tab layout, history limits, and notification preferences.
+
+Video tutorial #35 · Settings and keyboard shortcuts · 2:08 · [Watch on YouTube](https://www.youtube.com/watch?v=WMkTvZIy838&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 SETTINGS & DATA
 
@@ -7965,6 +8537,10 @@ Controls how API Studio notifies you when a response returns a new JSON structur
 Source: https://docs.vectored.dev/apistudio/docs/proxy.html
 
 Named proxy profiles for routing HTTP and HTTPS traffic through intermediary servers — corporate proxies, debugging tools, and staging environments.
+
+Video tutorial #21 · Proxies, SSL and cookies · 1:43 · [Watch on YouTube](https://www.youtube.com/watch?v=-3Tg5gXn54c&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 SETTINGS & DATA
 
@@ -8089,7 +8665,7 @@ SETTINGS & DATA
 
 ### Overview
 
-All data is stored as plain JSON files on your machine. No cloud, no accounts, no telemetry. Your data never leaves your computer. The only thing API Studio ever sends us is feedback you choose to submit, and only when you press Send (https://docs.vectored.dev/privacy.html#api-studio-feedback).
+All data is stored as plain JSON files on your machine. No cloud, no accounts, no telemetry. Your data never leaves your computer. The only thing API Studio ever sends us is feedback you choose to submit (a star rating and what you type), and only when you press Send. [What is sent](https://docs.vectored.dev/privacy.html#api-studio-feedback).
 
 ##### Local Scope
 
@@ -8134,7 +8710,8 @@ Located in the user home directory. Shared across ALL workspaces. Not committed 
 ├── environments.json       ← global environments
 ├── history.json            ← global request history
 ├── config.json             ← settings, proxy profiles, license key,
-│                              vault providers, secret sets
+│                              vault providers, secret sets,
+│                              feedback card state
 └── vault.enc               ← encrypted vault (AES-256-GCM)
 ```
 
@@ -8226,6 +8803,10 @@ Global storage changes sync across VS Code windows automatically via file system
 Source: https://docs.vectored.dev/apistudio/docs/keyboard-shortcuts.html
 
 All keyboard shortcuts available in API Studio for panel navigation, request execution, tab management, and editor actions.
+
+Video tutorial #35 · Settings and keyboard shortcuts · 2:08 · [Watch on YouTube](https://www.youtube.com/watch?v=WMkTvZIy838&list=PLL0Sge2Sie6I)
+
+Part of the [API Studio: Complete Tutorial Series](https://docs.vectored.dev/apistudio/docs/tutorials.html), 46 short videos covering every feature.
 
 SETTINGS & DATA
 
@@ -17461,6 +18042,20 @@ A self-hosted artifact repository for 18 package formats — npm, Maven, PyPI, D
 
 [Request early access →](https://docs.vectored.dev/support.html?tool=depotex&type=access) [Documentation](https://docs.vectored.dev/depotex/)
 
+![The Depotex sign-in page with single sign-on buttons for Acme Entra ID and Okta, and an email and password form.](https://docs.vectored.dev/depotex/assets/tour/sign-in.webp)
+
+![The administrator dashboard: health chips, six figures, a needs-attention list, backups, security, a traffic chart, formats, cluster nodes, rate limits and the fullest spaces.](https://docs.vectored.dev/depotex/assets/tour/dashboard.webp)
+
+![The Browse page listing recently updated artifacts with space, format, type and vulnerability filters.](https://docs.vectored.dev/depotex/assets/tour/browse.webp)
+
+![A version's Security tab showing 17 known vulnerabilities, coverage, and advisories with the fixed version.](https://docs.vectored.dev/depotex/assets/tour/security.webp)
+
+![The Quarantine page with held versions and installation rules.](https://docs.vectored.dev/depotex/assets/tour/quarantine.webp)
+
+![The Repositories list grouped by space, with format, type and publishing rules.](https://docs.vectored.dev/depotex/assets/tour/repositories.webp)
+
+![The setup wizard's licence step.](https://docs.vectored.dev/depotex/assets/tour/setup.webp)
+
 BYOAI* — **Bring Your Own AI.** These products work with an AI provider you already use: plug in your own API key (or connect your own AI assistant, in API Studio's case) and AI requests go to that provider under your own account and terms. You choose the provider, and usage is billed by them — never through a Vectored plan. Tiles marked *Supports AI* have AI features; Recognition Hub for Confluence uses Atlassian-hosted AI, so no key is needed there.
 
 On the roadmap
@@ -17700,13 +18295,13 @@ Source: https://docs.vectored.dev/privacy.html
 
 ## Privacy Policy
 
-Last updated: August 2026 · Effective: June 1, 2026
+Last updated: November 2026 · Effective: June 1, 2026
 
 ### 1. Introduction
 
 This Privacy Policy describes how Vectored ("we", "us", "our") handles information in connection with our applications distributed through the Atlassian Marketplace. We are committed to protecting the privacy and security of our users.
 
-Sections 2 through 4 describe our apps, which collect nothing. This documentation website is separate and is covered in section 5. This policy applies to all Vectored apps, including:
+Sections 2 through 4 describe our apps, which collect nothing on their own. The one exception is feedback you choose to send from API Studio for VS Code and desktop, covered in section 6. This documentation website is separate and is covered in section 5. This policy applies to all Vectored apps, including:
 
 - **Macro Toolkit** — Confluence macros for diagrams, polls, charts, and more
 
@@ -17727,6 +18322,8 @@ Our apps do **not** collect, process, store, or transmit any of the following:
 - Cookies, tracking pixels, or advertising identifiers
 
 - Content of your forms, diagrams, API specs, or any user-created content
+
+The only exception is feedback you choose to send from API Studio for VS Code and desktop, which can include an email address if you type one in. See [section 6](#api-studio-feedback).
 
 ### 3. Data Storage & Processing
 
@@ -17755,7 +18352,7 @@ Most functionality operates entirely client-side with no external calls. The fol
 
 - No personal data or authentication tokens are sent to any external service
 
-- FormForge and API Studio make no external network calls whatsoever
+- FormForge and API Studio for Confluence make no external network calls whatsoever
 
 - Our apps use no third-party analytics, advertising, or data-processing services (see section 5 for this documentation website)
 
@@ -17775,11 +18372,25 @@ Everything above describes the apps themselves. This website (docs.vectored.dev)
 
 - The beacon is skipped entirely if your browser sends Do Not Track or Global Privacy Control
 
-- This applies to the website only. Installing or using our apps sends us nothing — see sections 2 through 4
+- This applies to the website only. Installing or using our apps sends us nothing, except feedback you choose to submit — see sections 2 through 4 and section 6
 
 This site is hosted on GitHub Pages and served over Cloudflare. Like any web host, they process standard request logs to deliver the page. Web fonts are loaded from Google Fonts.
 
-### 6. Atlassian API Scopes
+### 6. API Studio In-App Feedback
+
+API Studio for VS Code and the API Studio desktop app have no telemetry and no analytics. They can show a small feedback card once per release round, and you can also open it from **? › Send Feedback**. Nothing is sent unless you press **Send**. If you skip or close the card, nothing is sent and it does not come back.
+
+| Sent to | Data Sent | Purpose |
+| --- | --- | --- |
+| vectored.dev/api/feedback | Your 1–5 star rating, what you typed, the app version, the app (VS Code or desktop) and your OS. Your email address only if you type one in. | Reading your feedback, and replying if you left an email |
+
+- **Nothing else.** No requests, responses, collections, environments, secrets, file paths or machine identifiers are sent
+
+- **Email is optional.** It is used only to reply to that feedback, and never for marketing or shared with anyone
+
+- Feedback is kept only as long as we need it to act on it. Email [support@vectored.dev](mailto:support@vectored.dev) to have yours deleted
+
+### 7. Atlassian API Scopes
 
 Our apps request only the minimum Atlassian scopes required for functionality:
 
@@ -17791,7 +18402,7 @@ Our apps request only the minimum Atlassian scopes required for functionality:
 
 These scopes follow the principle of least privilege. Our apps do not request write access to page content, user management, or space administration.
 
-### 7. Data Retention & Deletion
+### 8. Data Retention & Deletion
 
 - **Uninstall:** Uninstalling an app removes all its Forge Storage data for that site
 
@@ -17801,7 +18412,7 @@ These scopes follow the principle of least privilege. Our apps do not request wr
 
 - **No data export:** We never export, aggregate, or access your instance data
 
-### 8. Security Measures
+### 9. Security Measures
 
 - All apps run on Atlassian Forge — sandboxed execution environment
 
@@ -17813,21 +18424,21 @@ These scopes follow the principle of least privilege. Our apps do not request wr
 
 - Source code publicly auditable (open source)
 
-### 9. Children's Privacy
+### 10. Children's Privacy
 
 Our apps are business productivity tools and are not directed at children under 16. We do not knowingly collect data from children.
 
-### 10. GDPR & International Compliance
+### 11. GDPR & International Compliance
 
-Since our apps do not collect or process personal data, GDPR data subject rights (access, rectification, erasure, portability) are not applicable to our apps directly. Your Confluence instance data is governed by your organization's agreement with Atlassian.
+Apart from API Studio feedback you choose to send (section 6), our apps do not collect or process personal data, so GDPR data subject rights (access, rectification, erasure, portability) are not applicable to them directly. For feedback you send us, we are the data controller, and you can ask for access to or erasure of it at any time via the contact details below. Your Confluence instance data is governed by your organization's agreement with Atlassian.
 
-For GDPR purposes: we act as neither a data controller nor data processor, as no personal data flows through our systems.
+For everything else: we act as neither a data controller nor data processor, as no other personal data flows through our systems.
 
-### 11. Changes to This Policy
+### 12. Changes to This Policy
 
 We may update this policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Material changes will be noted in the respective app's changelog. Continued use after changes constitutes acceptance.
 
-### 12. Contact
+### 13. Contact
 
 If you have questions about this policy or our privacy practices:
 
