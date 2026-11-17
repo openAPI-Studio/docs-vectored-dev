@@ -512,7 +512,7 @@ USER_A = [
             P("[Plugins](plugins.html) can add their own blocks, such as a progress bar or a diagram. While such a plugin is active, its blocks are listed in the \"/\" menu under their own names; the block is drawn by the plugin, inside the page, and its settings are inside the block."),
             SHOT("macros-plugin-block.png", "A plugin block on a page: a progress bar from a sample plugin"),
             UL([
-                "If the plugin is turned off or removed, readers see the block's short text description instead, and the block is kept on the page.",
+                "If the plugin is turned off or removed, or the licence is below Pro (plugins need Pro), readers see the block's short text description instead, and the block is kept on the page.",
                 "Visitors who aren't signed in, and pages that include another page, see the text too.",
                 "A page can hold up to 50 plugin blocks; the first 20 are drawn, the rest show their text.",
             ]),
