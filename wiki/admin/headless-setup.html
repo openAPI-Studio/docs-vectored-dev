@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set up without the UI — Wiki Admin Guide</title>
+  <meta name="description" content="Unattended setup from a YAML file for scripts, containers and configuration management">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+      <h1 class="vc-h1">Set up without the UI</h1>
+      <p class="vc-lede">Unattended setup from a YAML file for scripts, containers and configuration management</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Everything the setup wizard asks can come from a YAML file instead, so a new installation can be set up by a script, a container entrypoint or configuration management with nobody at a browser.</p>
+      <h2 id="how-it-works" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. How it works</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Get the installation ID</span> &mdash; <span class="font-mono text-sm break-words">./wiki-server --machine-id</span> prints it and exits. Run it on the machine that will run the Wiki: the ID belongs to that machine.</li><li class="pl-2"><span class="text-text font-medium">Get the licence</span> &mdash; Request it for that ID (see <a href="licensing.html" class="text-cta hover:underline">Licensing</a>).</li><li class="pl-2"><span class="text-text font-medium">Write the setup file</span> &mdash; The same sections as the wizard; secrets as <span class="font-mono text-sm break-words">${VARIABLE}</span> references.</li><li class="pl-2"><span class="text-text font-medium">Start the server once with it</span> &mdash; <span class="font-mono text-sm break-words">--setup-config setup.yaml</span>, or <span class="font-mono text-sm break-words">SETUP_CONFIG_FILE=setup.yaml</span>. The server checks the file, sets up, and continues in normal mode.</li><li class="pl-2"><span class="text-text font-medium">Remove the file</span> &mdash; It's read only on a fresh installation and ignored afterwards.</li></ol>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">chmod 600 setup.yaml
+export CONFIG_ENCRYPTION_KEY=&quot;$(cat /run/secrets/wiki-encryption-key)&quot;
+export DATABASE_URL=&#x27;postgres://wiki:…@db.internal:5432/wiki?sslmode=verify-full&#x27;
+export ADMIN_PASSWORD=&quot;$(cat /run/secrets/wiki-admin-password)&quot;
+./wiki-server --setup-config setup.yaml</code></pre>
+      <h2 id="the-setup-file" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. The setup file</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">database:
+  url: ${DATABASE_URL}           # may be left out when DATABASE_URL is set
+
+cache:
+  redis_url: &quot;&quot;                  # empty: single server without Redis; required for a cluster
+
+storage:
+  backend: s3                    # local | s3 | minio | azure
+  local:
+    path: /var/lib/wiki/files
+  s3:
+    bucket: my-wiki-files
+    region: eu-west-1
+    access_key: ${S3_ACCESS_KEY} # leave both keys out to use the server&#x27;s IAM role
+    secret_key: ${S3_SECRET_KEY}
+  minio:
+    endpoint: minio.internal:9000
+    bucket: wiki
+    use_ssl: true
+    access_key: ${MINIO_ACCESS_KEY}
+    secret_key: ${MINIO_SECRET_KEY}
+  azure:
+    container: wiki
+    account: ${AZURE_STORAGE_ACCOUNT}
+    key: ${AZURE_STORAGE_KEY}
+
+license:
+  file: license.json             # relative to this file; or data: | with the JSON inline
+
+admin:
+  email: admin@example.com
+  name: Administrator
+  password: ${ADMIN_PASSWORD}    # at least 8 characters</code></pre>
+      <div class="tbl-wrap"><table><thead><tr><th>Key</th><th>Required</th><th>Meaning</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">database.url</span></td><td>When <span class="font-mono text-sm break-words">DATABASE_URL</span> isn't set</td><td>PostgreSQL URL; query options such as <span class="font-mono text-sm break-words">sslmode</span> and <span class="font-mono text-sm break-words">pool_max_conns</span> are kept</td></tr><tr><td><span class="font-mono text-sm break-words">cache.redis_url</span></td><td>For a cluster</td><td>Redis URL: one server, Sentinel or Redis Cluster</td></tr><tr><td><span class="font-mono text-sm break-words">storage.backend</span></td><td>Yes</td><td><span class="font-mono text-sm break-words">local</span>, <span class="font-mono text-sm break-words">s3</span>, <span class="font-mono text-sm break-words">minio</span> or <span class="font-mono text-sm break-words">azure</span>; only that backend's section is read</td></tr><tr><td><span class="font-mono text-sm break-words">storage.s3.*</span></td><td>With <span class="font-mono text-sm break-words">s3</span></td><td><span class="font-mono text-sm break-words">bucket</span>, <span class="font-mono text-sm break-words">region</span>; <span class="font-mono text-sm break-words">access_key</span> and <span class="font-mono text-sm break-words">secret_key</span> (or neither, for the IAM role); optional <span class="font-mono text-sm break-words">role_arn</span>, <span class="font-mono text-sm break-words">external_id</span></td></tr><tr><td><span class="font-mono text-sm break-words">license.file</span> or <span class="font-mono text-sm break-words">license.data</span></td><td>Yes, one of them</td><td>The licence JSON: a file (relative to the setup file) or inline</td></tr><tr><td><span class="font-mono text-sm break-words">admin.email</span>, <span class="font-mono text-sm break-words">admin.name</span>, <span class="font-mono text-sm break-words">admin.password</span></td><td>Yes</td><td>The first super admin</td></tr></tbody></table></div>
+      <h2 id="rules-the-server-enforces" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Rules the server enforces</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Private file.</strong> The file must not be readable by group or others (<span class="font-mono text-sm break-words">chmod 600</span>); otherwise the server stops and prints the <span class="font-mono text-sm break-words">chmod</span> to run.</li><li><strong class="text-text">No unknown keys.</strong> A misspelled key is an error.</li><li><strong class="text-text">Secrets from the environment.</strong> Any value may use <span class="font-mono text-sm break-words">${NAME}</span>; a referenced variable that isn't set stops the server with its name.</li><li><strong class="text-text">Fresh installations only.</strong> On an installed server the file is ignored.</li><li><strong class="text-text">Fails loudly.</strong> If a value doesn't work, the server stops with an error that says what to fix; nothing is half set up.</li></ul>
+      <h2 id="after-setup-without-the-ui" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. After setup, without the UI</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Everything in the web app is also an API: <span class="font-mono text-sm break-words">GET /api/openapi.json</span> describes every route, its permission and its licence tier. Sign in once to create an <a href="../docs/api-tokens.html" class="text-cta hover:underline">API token</a>, or register an <a href="../docs/oauth-applications.html" class="text-cta hover:underline">OAuth application</a> with a service account.</li><li>Pages can be brought in from Confluence or Markdown with an <a href="confluence-import.html" class="text-cta hover:underline">import</a> once a space exists.</li></ul>
+      <h2 id="command-line-flags" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Command-line flags</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Flag</th><th>What it does</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">--setup-config &lt;file&gt;</span></td><td>Set up a fresh installation from this file (overrides <span class="font-mono text-sm break-words">SETUP_CONFIG_FILE</span>)</td></tr><tr><td><span class="font-mono text-sm break-words">--machine-id</span></td><td>Print this machine's installation ID, for a licence request, and exit</td></tr><tr><td><span class="font-mono text-sm break-words">--restore-file &lt;file&gt;</span></td><td>Check a backup archive with no server running; with <span class="font-mono text-sm break-words">--yes</span>, restore it, then exit. See <a href="backups.html" class="text-cta hover:underline">Backups</a></td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

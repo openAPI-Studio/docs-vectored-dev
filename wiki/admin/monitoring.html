@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitoring with Prometheus — Wiki Admin Guide</title>
+  <meta name="description" content="Expose each server's metrics to Prometheus: live editing, background work on pages, backups, rate limits, caches and the server process">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <h1 class="vc-h1">Monitoring with Prometheus</h1>
+      <p class="vc-lede">Expose each server's metrics to Prometheus: live editing, background work on pages, backups, rate limits, caches and the server process</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Each Wiki server can expose its metrics in the Prometheus format at <span class="font-mono text-sm break-words">/metrics</span>. It's off by default, works on every license tier and in any license state, and isn't served in setup or recovery mode. Each server reports its own numbers, so scrape every server.</p>
+      <h2 id="turn-it-on" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Turn it on</h2>
+      <p class="text-muted mb-4">Choose one, or both:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Variable</th><th>What</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">METRICS_ADDR</span></td><td>A separate listener, such as <span class="font-mono text-sm break-words">:9090</span> or <span class="font-mono text-sm break-words">10.0.0.5:9090</span>, serving <span class="font-mono text-sm break-words">/metrics</span> <strong class="text-text">without authentication</strong>. It must differ from <span class="font-mono text-sm break-words">PORT</span>. Bind it to a private interface or firewall it.</td></tr><tr><td><span class="font-mono text-sm break-words">METRICS_TOKEN</span></td><td>Also serves <span class="font-mono text-sm break-words">/metrics</span> on the server's main port to requests with <span class="font-mono text-sm break-words">Authorization: Bearer &lt;token&gt;</span>. At least 16 printable characters without spaces, for example <span class="font-mono text-sm break-words">openssl rand -hex 32</span>.</td></tr></tbody></table></div>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted"># prometheus.yml
+scrape_configs:
+  - job_name: wiki
+    static_configs:
+      - targets: [&quot;wiki-1.internal:9090&quot;, &quot;wiki-2.internal:9090&quot;]
+
+  # or, on the main port with a token
+  - job_name: wiki-token
+    authorization: { credentials_file: /etc/prometheus/wiki-token }
+    static_configs:
+      - targets: [&quot;wiki-1.internal:8080&quot;]</code></pre>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted"><span class="font-mono text-sm break-words">/metrics</span> is never reachable through the web app's address: Prometheus scrapes the servers directly. A scrape isn't rate limited and isn't counted in the metrics.</p></div>
+      <h2 id="metrics" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Metrics</h2>
+      <p class="text-muted mb-4">Every metric name starts with <span class="font-mono text-sm break-words">depotex_</span>, the name of the platform the Wiki is built on.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Metric</th><th>What</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">depotex_collab_connections</span></td><td>Live editing connections this server serves now</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_collab_updates_total</span>, <span class="font-mono text-sm break-words">depotex_collab_update_bytes_total</span></td><td>Edits that browsers sent and that were stored, and their size in bytes</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_collab_closed_total{code}</span></td><td>Live editing connections the server closed, by close code</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_collab_presence_dropped_total</span></td><td>Cursor and presence messages dropped because a queue was full</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_wiki_doc_compactions_total</span>, <span class="font-mono text-sm break-words">depotex_wiki_doc_compaction_failures_total{reason}</span></td><td>Page documents whose stored edits were merged, and merges that failed</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_wiki_draft_snapshots_total</span>, <span class="font-mono text-sm break-words">depotex_wiki_draft_snapshot_failures_total{reason}</span></td><td>Draft snapshots taken (the draft history of a page), and snapshots that failed</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_backup_runs_total{kind, outcome}</span>, <span class="font-mono text-sm break-words">depotex_backup_verifications_total{outcome}</span></td><td>Backups taken and checked, by result</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_backup_duration_seconds{kind}</span>, <span class="font-mono text-sm break-words">depotex_backup_last_size_bytes</span></td><td>How long backups take, and the size of the last one</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_backup_last_success_timestamp_seconds</span></td><td>When the last backup succeeded</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_backup_cleanup_deleted_total</span></td><td>Backups the cleanup job deleted</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_backup_restore_runs_total{outcome}</span>, <span class="font-mono text-sm break-words">depotex_backup_restore_duration_seconds</span></td><td>Restores and how long they took</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_backup_test_restore_runs_total{outcome}</span>, <span class="font-mono text-sm break-words">depotex_backup_test_restore_last_success_timestamp_seconds</span></td><td>Test restores, and when the last one passed</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_ratelimit_requests_total{class, result}</span></td><td>Requests checked against a budget, per kind of traffic and result: <span class="font-mono text-sm break-words">allowed</span>, <span class="font-mono text-sm break-words">limited</span> (refused) or <span class="font-mono text-sm break-words">dry_run</span> (over, but let through by a dry run). A request counts once per budget it is checked against</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_ratelimit_fallback_total{reason}</span></td><td>Checks a server made in its own memory although Redis is configured: <span class="font-mono text-sm break-words">redis_error</span>, <span class="font-mono text-sm break-words">backoff</span> (Redis skipped for a few seconds after an error) or <span class="font-mono text-sm break-words">canceled</span></td></tr><tr><td><span class="font-mono text-sm break-words">depotex_ratelimit_redis_up</span></td><td>1 while the server reaches Redis for rate limits, 0 while it counts on its own. Missing on servers without Redis</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_ratelimit_check_duration_seconds{store}</span></td><td>How long a rate limit check took, in Redis or in memory</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_read_cache_hits_total{cache}</span>, <span class="font-mono text-sm break-words">depotex_read_cache_misses_total{cache}</span></td><td>Reads of settings answered from this server's memory, and reads that went to the database</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_read_cache_checks_total{result}</span>, <span class="font-mono text-sm break-words">depotex_read_cache_notices_total</span></td><td>How often the server checked whether its cached settings changed, and change notices it received</td></tr><tr><td><span class="font-mono text-sm break-words">depotex_oauth_workload_exchanges_total{grant, endpoint, outcome}</span></td><td>CI identity tokens exchanged for access tokens (see <a href="../docs/oauth-applications.html" class="text-cta hover:underline">OAuth applications</a>)</td></tr><tr><td><span class="font-mono text-sm break-words">go_*</span>, <span class="font-mono text-sm break-words">process_*</span></td><td>The server process: memory, goroutines, CPU, open files</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Metrics never carry who made a request, or which page or space it was about (no user, token, page or address labels). To see who was limited, use the <strong class="text-text">Activity</strong> tab of <a href="rate-limits.html" class="text-cta hover:underline">Rate limits</a>.</p>
+      <h2 id="alerting-examples" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Alerting examples</h2>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted"># No successful backup for more than a day (with the scheduled backup on)
+- alert: WikiBackupStale
+  expr: time() - depotex_backup_last_success_timestamp_seconds &gt; 26 * 3600
+  for: 15m
+
+# Pages&#x27; drafts can&#x27;t be snapshotted
+- alert: WikiDraftSnapshotsFailing
+  expr: sum(rate(depotex_wiki_draft_snapshot_failures_total[15m])) &gt; 0
+  for: 30m
+
+# A server lost Redis: rate limits are per server until it&#x27;s back
+- alert: WikiRateLimitRedisDown
+  expr: depotex_ratelimit_redis_up == 0
+  for: 5m</code></pre>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

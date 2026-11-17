@@ -1,0 +1,65 @@
+"""Wiki doc pages, gathered from the content_*.py modules.
+
+Each feature page is kept in step with the code in the depotex repo
+(apps/wiki and the platform it builds on). When a feature is added or
+changed there, update its page and add a line at the top of CHANGELOG, then
+run `python3 wiki/_build/build.py`.
+"""
+from engine import H, P, UL, TABLE, NOTE, SHOT
+from content_user_a import USER_A
+from content_user_b import USER_B
+from content_admin_wiki import ADMIN_WIKI
+from content_platform_config import PLATFORM_CONFIG
+from content_platform_operate import PLATFORM_OPERATE
+
+# Releases after the initial one, newest first: (date, feature, one-sentence change).
+# Only changes people using or running the Wiki notice; nothing internal.
+CHANGELOG = []
+
+INTRO = [
+    NOTE("The Wiki isn't released yet. Early adopters: [contact us for access](../support.html?tool=wiki&type=access) to get the server and a license."),
+    P("The Wiki is a self-hosted team wiki. People write pages together in spaces, see each other's edits live, ask and answer questions, plan with space calendars and see what is read. It runs on a single server or as a cluster, with the same features either way, on the same platform as [Depotex](../depotex/): the same sign-in, settings, backups, plugins and audit log."),
+    SHOT("home-overview.png", "Spaces, where the Wiki opens: every space you can read, with its visibility and your role"),
+    H("What it does"),
+    TABLE(["Capability", "What the Wiki does"], [
+        ["**Spaces for every team**", "[Spaces](docs/spaces.html) hold pages and decide who reads and writes them: private, internal or public, with roles for people and groups."],
+        ["**Pages written together**", "A Word-like [editor](docs/editor.html) with headings, tables, images, videos and [macros](docs/macros.html); [live editing](docs/editing-together.html) with everyone's cursors; autosave, [drafts, reviews and publishing](docs/drafts-and-publishing.html), [versions](docs/page-history-and-versions.html) you can compare and restore, and [comments](docs/comments.html)."],
+        ["**Questions and answers**", "Company-wide [Q&A](docs/qna.html): ask, answer, vote and accept, with mentions and links to pages."],
+        ["**Calendars**", "[Space calendars](docs/calendar.html) with events, leave, publishing plans and review dates, and a feed for your own calendar app."],
+        ["**Analytics**", "[Page, space and personal analytics](docs/analytics.html) and content health: stale pages, broken links, searches that find nothing."],
+        ["**Moves in and out**", "[Import](docs/import-and-export.html) Markdown files or a whole space from Confluence; export pages as Word or PDF."],
+        ["**Runs where you do**", "PostgreSQL holds everything; Redis is optional on one server and required for a [cluster](admin/deployment-modes.html); attachments go to a local disk, S3, MinIO or Azure Blob. See the [admin guide](admin/index.html)."],
+    ]),
+    H("Where to start"),
+    UL([
+        "[Getting started](docs/getting-started.html): sign in, open a space and write your first page.",
+        "[Admin guide](admin/index.html): install, set up, configure and run the Wiki.",
+        "[Changelog](docs/changelog.html): what's new.",
+    ]),
+]
+
+CHANGELOG_PAGE = [
+    ("changelog", dict(
+        label="Changelog", title="Changelog", icon="history",
+        desc="What each release of the Wiki includes, newest first",
+        keywords=["changelog", "release notes", "whats new"],
+        blocks=[
+            *([H("Since the initial release"), TABLE(["Date", "Feature", "Change"], [list(row) for row in CHANGELOG])] if CHANGELOG else []),
+            H("Initial release"),
+            P("The first release of the Wiki: a self-hosted team wiki that runs on a single server or as a cluster, with the same features either way. Later releases are listed above this one as they ship."),
+            TABLE(["Area", "What's included"], [
+                ["Spaces", "[Spaces](spaces.html) that are private, internal or public, with roles for people and groups, a page tree, space settings, templates and a trash for deleted pages."],
+                ["Pages and the editor", "A Word-like [editor](editor.html) with headings and heading numbers, lists, tables, images with captions, videos and the \"/\" menu; [blocks and macros](macros.html) such as panels, expands, decisions, excerpts and includes, page properties and reports, status, child pages, the page tree, recently updated and spreadsheet tables with formulas; [labels and \"Was this page helpful?\"](labels-and-feedback.html); [copies and templates](copies-and-templates.html)."],
+                ["Writing together", "[Live editing](editing-together.html) with everyone's cursors, autosave, [drafts, publishing and scheduled publishing](drafts-and-publishing.html), [review requests and review-by dates](reviews.html), [versions you can compare and restore](page-history-and-versions.html), [comments](comments.html), and [watching and mentions](profile-and-notifications.html)."],
+                ["Q&A", "Company-wide [questions and answers](qna.html): votes, accepted answers, comments, follows, duplicates, mentions of people and pages, reputation, and public questions for anonymous readers; [moderation](qna-moderation.html)."],
+                ["Calendars", "[Space calendars](calendar.html) with events, leave and repeats, publishing plans and review dates, and a [secret feed address](calendar-feeds.html) for calendar apps."],
+                ["Analytics", "[Page, space and personal analytics](analytics.html) and content health (stale pages, old drafts, broken links, disliked pages, searches that find nothing), with CSV export (Pro)."],
+                ["Moving content", "[Import](import-and-export.html) Markdown files or [a space from Confluence](confluence-import.html), and export pages as Word or PDF."],
+                ["Readers outside the company", "[Anonymous access](anonymous-access.html) to public spaces and public questions, and [robots.txt for search engines](search-engines-and-robots.html)."],
+                ["Platform", "Everything the Wiki shares with Depotex: [users and directories](users-and-directories.html), [single sign-on](single-sign-on.html), [API tokens](api-tokens.html), [OAuth applications](oauth-applications.html), [rate limits](rate-limits.html), [policies](policies.html), [automation](automation.html) on [events](events.html), [plugins](plugins.html) (including plugin blocks in pages), the [audit log](logging-and-audit.html), [personal data export and erasure](personal-data.html), [backups](backups.html), the [system check](system-check.html), [monitoring](monitoring.html), [email](email.html) and [branding](branding-and-banners.html)."],
+                ["Installation", "A [setup wizard](setup-wizard.html) or an [unattended setup file](headless-setup.html); a [single server or a cluster](deployment-modes.html); [storage](storage.html) on a local disk, S3, MinIO or Azure Blob; [recovery mode](recovery.html) when an installed server can't start; phones and tablets supported throughout ([Mobile](mobile.html))."],
+            ]),
+        ])),
+]
+
+PAGES = USER_A + USER_B + ADMIN_WIKI + PLATFORM_CONFIG + PLATFORM_OPERATE + CHANGELOG_PAGE

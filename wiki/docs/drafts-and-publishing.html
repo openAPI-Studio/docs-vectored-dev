@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drafts and Publishing — Wiki Docs</title>
+  <meta name="description" content="Page status, saving as you type, the draft's history, publishing a version and publishing later">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+      <h1 class="vc-h1">Drafts and Publishing</h1>
+      <p class="vc-lede">Page status, saving as you type, the draft's history, publishing a version and publishing later</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Every page has a <strong class="text-text">draft</strong> that the people who edit it change together, and <strong class="text-text">versions</strong> that readers see. Editing never changes what readers see: the draft becomes the next version only when someone publishes it. Opening a page you may edit (the space's Editor and Admin roles) opens it in the editor; everyone else gets the reading view.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/drafts-and-publishing-editor.png" alt="A page in the editor: the save state and Publish at the top, and the page&#x27;s status in Page details" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">drafts-and-publishing-editor.png</p>
+          <p class="text-xs text-muted max-w-md">A page in the editor: the save state and Publish at the top, and the page's status in Page details</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A page in the editor: the save state and Publish at the top, and the page's status in Page details</figcaption>
+      </figure>
+      <h2 id="status" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Status</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Page details</strong>, beside the page (under it on a phone), shows the page's status. Pick another one to change it:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Status</th><th>Who sees the page</th></tr></thead><tbody><tr><td><strong class="text-text">Draft</strong></td><td>Only people who can edit pages in the space. New pages start here.</td></tr><tr><td><strong class="text-text">In review</strong></td><td>The same as a draft: a sign for the other editors that the page is waiting to be checked. See <a href="reviews.html" class="text-cta hover:underline">Reviews</a>.</td></tr><tr><td><strong class="text-text">Published</strong></td><td>Everyone who can read the space, at the latest version.</td></tr><tr><td><strong class="text-text">Archived</strong></td><td>Only people who can edit pages, like a draft: the page is kept, out of readers' way.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Picking <strong class="text-text">Published</strong> opens the publish dialog, because publishing always makes a version. Under the status a line says what readers see now: nothing until the page is published, or the version they get until you publish again.</p>
+      <h2 id="saving-as-you-type" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Saving as you type</h2>
+      <p class="text-muted mb-4">There is no Save button. Every change is saved within moments, and the top of the editor says where it stands:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>It says</th><th>Meaning</th></tr></thead><tbody><tr><td><strong class="text-text">All changes saved</strong></td><td>The server has stored every change you made.</td></tr><tr><td><strong class="text-text">Saving…</strong></td><td>Changes are on their way.</td></tr><tr><td><strong class="text-text">Offline. Your changes are kept in this tab and saved when the connection returns.</strong></td><td>You can keep typing; nothing is lost while the tab stays open.</td></tr><tr><td><strong class="text-text">Editing stopped</strong></td><td>The page can't be edited from this tab any more (it was deleted, your access changed or your session ended). The message says what to do.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">If you leave the page before everything is saved, the Wiki keeps sending your changes in the background and warns you before you close the site. See <a href="editing-together.html" class="text-cta hover:underline">Editing together</a> for working on a page with other people.</p>
+      <h2 id="preview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Preview</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Preview</strong> at the top shows the draft as readers will see it once you publish, with heading and figure numbers. <strong class="text-text">Edit</strong> goes back to the editor.</p>
+      <h2 id="publish-a-version" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Publish a version</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Publish</strong></span> &mdash; At the top of the editor, or <strong class="text-text">Published</strong> under the status.</li><li class="pl-2"><span class="text-text font-medium">Say what changed (optional)</span> &mdash; A short note, such as "Fixed the escalation steps", shown with the version in the page's history.</li><li class="pl-2"><span class="text-text font-medium">Tick <strong class="text-text">Minor change, such as a typo</strong> if it is one</span> &mdash; People watching the page aren't told about a minor change.</li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Publish</strong></span> &mdash; The draft becomes the page's next version: version 1, 2, 3 and so on. The dialog waits until your latest changes are saved first.</li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/drafts-and-publishing-publish.png" alt="The publish dialog: a note about what changed and the minor change box" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">drafts-and-publishing-publish.png</p>
+          <p class="text-xs text-muted max-w-md">The publish dialog: a note about what changed and the minor change box</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The publish dialog: a note about what changed and the minor change box</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>A page can only be published under published pages: publish the page above it first.</li><li>If nothing changed since the last version, there is nothing to publish and the Wiki says so.</li><li>Publishing tells the people who watch the page (unless it was minor) and the people the new version mentions for the first time. See <a href="profile-and-notifications.html" class="text-cta hover:underline">Profile &amp; notifications</a>.</li><li>Your administrators can set a <a href="../admin/policies.html" class="text-cta hover:underline">policy</a> that a page needs an approved review before it is published.</li></ul>
+      <h2 id="publish-later" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Publish later</h2>
+      <p class="text-muted mb-4">Under <strong class="text-text">Plans</strong> in Page details, <strong class="text-text">Schedule a publish</strong> publishes the draft as it is now at a time you pick, from a minute to a year ahead, as you, with an optional note and minor change box. Only members of the space who edit pages can schedule one, and only in the browser.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Any edit to the page after you schedule it, by you or anyone else, cancels the publish: the Wiki publishes exactly the draft you scheduled or nothing. Schedule once the draft is final. If the draft changed, Plans says so and offers <strong class="text-text">Schedule again</strong>, and you get an alert at the time it would have published.</p></div>
+      <p class="text-muted mb-4"><strong class="text-text">Change time</strong> moves the publish and <strong class="text-text">Cancel publish</strong> drops it. A page has one scheduled publish at a time. Scheduled publishes show on the <a href="calendar.html" class="text-cta hover:underline">calendar</a>. They are dropped when you sign out of your other sessions or change your password, and you get an alert when one couldn't be made.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/drafts-and-publishing-plans.png" alt="Plans in Page details: a page scheduled to publish" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">drafts-and-publishing-plans.png</p>
+          <p class="text-xs text-muted max-w-md">Plans in Page details: a page scheduled to publish</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Plans in Page details: a page scheduled to publish</figcaption>
+      </figure>
+      <h2 id="draft-history" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Draft history</h2>
+      <p class="text-muted mb-4">Between versions, the Wiki keeps snapshots of the draft: a couple of minutes after people stop editing, and every ten minutes while they keep going. <strong class="text-text">Draft history</strong> in Page details lists the newest five, each with <strong class="text-text">Open</strong>, <strong class="text-text">Compare</strong> (with the snapshot before) and <strong class="text-text">Restore</strong>; <strong class="text-text">All draft snapshots</strong> opens the full list on the page's history page.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each snapshot names who edited since the one before (when you may see people in the space).</li><li><strong class="text-text">Restore</strong> replaces the draft for everyone editing the page. The draft as it was is kept in the history first, and readers see nothing new until someone publishes.</li><li>Snapshots are kept for 30 days, at most 200 per page, and only people who can edit the page see them.</li></ul>
+      <p class="text-muted mb-4">Published versions have their own history, which readers can open too: see <a href="page-history-and-versions.html" class="text-cta hover:underline">Page history &amp; versions</a>.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

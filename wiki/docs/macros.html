@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blocks and macros — Wiki Docs</title>
+  <meta name="description" content="Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables and plugin blocks">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+      <h1 class="vc-h1">Blocks and macros</h1>
+      <p class="vc-lede">Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables and plugin blocks</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Besides text, a page can hold blocks: boxes that stand out, blocks that show other pages, videos, spreadsheet tables and blocks from plugins. Insert any of them from the <strong class="text-text">"/"</strong> menu in the <a href="editor.html" class="text-cta hover:underline">editor</a>. To change one later, select it and choose <strong class="text-text">Block settings</strong> in the toolbar. Pages imported from Confluence get these blocks for the macros they used; see <a href="import-and-export.html" class="text-cta hover:underline">Import and export</a>.</p>
+      <h2 id="boxes-panels-expand-decision" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Boxes: panels, expand, decision</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-boxes.png" alt="An info panel, a note panel, a code block, a closed expand, a decision, an open question and a tip" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-boxes.png</p>
+          <p class="text-xs text-muted max-w-md">An info panel, a note panel, a code block, a closed expand, a decision, an open question and a tip</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">An info panel, a note panel, a code block, a closed expand, a decision, an open question and a tip</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Block</th><th>What it does</th><th>Example</th></tr></thead><tbody><tr><td><strong class="text-text">Info panel</strong> / <strong class="text-text">Warning panel</strong></td><td>A coloured box around text. Its <strong class="text-text">Type</strong> can be <strong class="text-text">Info</strong>, <strong class="text-text">Note</strong>, <strong class="text-text">Warning</strong>, <strong class="text-text">Tip</strong> or <strong class="text-text">Success</strong>, with an optional <strong class="text-text">Title</strong>.</td><td>A <strong class="text-text">Before you start</strong> info panel at the top of a runbook.</td></tr><tr><td><strong class="text-text">Expand</strong></td><td>A section readers click to open. Its title defaults to <strong class="text-text">Show more</strong>; <strong class="text-text">Open by default</strong> shows it open.</td><td><strong class="text-text">What the verify step checks</strong>, with details most readers skip.</td></tr><tr><td><strong class="text-text">Decision</strong></td><td>Records a <strong class="text-text">Decision</strong> or an <strong class="text-text">Open question</strong>, each with its own colour.</td><td><strong class="text-text">Decision</strong>: we fail over to the standby region rather than restoring from backup.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">Remove box, keep content</strong> in a box's settings takes the box away and leaves its text on the page.</p>
+      <h2 id="status" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Status</h2>
+      <p class="text-muted mb-4">A small coloured label inside a line of text. Enter its <strong class="text-text">Text</strong> and pick a <strong class="text-text">Colour</strong>: grey, blue, green, yellow, red or purple. Example: <span class="font-mono text-sm break-words">APPROVED</span> in green next to <strong class="text-text">Current state</strong>.</p>
+      <h2 id="anchor" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Anchor</h2>
+      <p class="text-muted mb-4">An invisible mark you can link to. Give it a <strong class="text-text">Name</strong> (letters, digits, - and _, up to 64); link to it by adding <span class="font-mono text-sm break-words">#</span> and the name to the page's address. Headings have anchors of their own already.</p>
+      <h2 id="code-block" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Code block</h2>
+      <p class="text-muted mb-4">Code in a fixed-width font. Its settings add a <strong class="text-text">File name</strong> above it and <strong class="text-text">Line numbers</strong>. Example: <span class="font-mono text-sm break-words">failover.sh</span> with four numbered lines.</p>
+      <h2 id="excerpt-and-include-excerpt" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Excerpt and Include excerpt</h2>
+      <p class="text-muted mb-4">An <strong class="text-text">Excerpt</strong> marks part of a page so other pages can show it. Give it an optional <strong class="text-text">Name</strong> when a page has more than one. <strong class="text-text">Hide on this page</strong> shows it only where it is included.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Include excerpt</strong> shows another page's excerpt: paste the page's <strong class="text-text">Page link</strong> from the address bar and, if needed, the <strong class="text-text">Excerpt name</strong>. It shows <strong class="text-text">Excerpt from &lt;page&gt;</strong> and always shows the current published text. Example: the overview of a team's area quotes the first lines of its failover runbook.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">A hidden excerpt isn't private: it still shows where other pages include it, and in search and page history.</p></div>
+      <h2 id="include-page" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Include page</h2>
+      <p class="text-muted mb-4">Shows the whole published content of another page, by its <strong class="text-text">Page link</strong>. A page can't include itself, and blocks that show other pages aren't shown inside an included page.</p>
+      <h2 id="page-properties-and-page-properties-report" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Page properties and Page properties report</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Page properties</strong> holds a two-column table of facts about the page (owner, tier, on-call). Give it an optional <strong class="text-text">Name</strong> when a page has more than one.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Page properties report</strong> gathers those tables into one: for each published page in the space with a given <strong class="text-text">Label</strong>, one row, with a column per property. Example: a <strong class="text-text">Services</strong> report on the team's overview lists every page labelled <span class="font-mono text-sm break-words">service</span> with its <strong class="text-text">Owner</strong>, <strong class="text-text">Tier</strong> and <strong class="text-text">On call</strong>. A report shows up to 12 columns.</p>
+      <h2 id="child-pages-page-tree-recently-updated" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Child pages, Page tree, Recently updated</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-other-pages.png" alt="Child pages two levels deep, an included excerpt, a page properties report and a recently updated list" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-other-pages.png</p>
+          <p class="text-xs text-muted max-w-md">Child pages two levels deep, an included excerpt, a page properties report and a recently updated list</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Child pages two levels deep, an included excerpt, a page properties report and a recently updated list</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Block</th><th>Shows</th><th>Settings</th></tr></thead><tbody><tr><td><strong class="text-text">Child pages</strong></td><td>The pages under this one</td><td><strong class="text-text">Levels</strong>: 1 to 3 (default 1)</td></tr><tr><td><strong class="text-text">Page tree</strong></td><td>The space's page tree</td><td><strong class="text-text">Levels</strong> (default 2)</td></tr><tr><td><strong class="text-text">Recently updated</strong></td><td>The space's most recently changed pages, with when</td><td><strong class="text-text">Pages to list</strong>: 5, 10 or 20 (default 10)</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">These blocks show each reader only the pages they can see: what you see in the editor may be more than a reader sees. <strong class="text-text">Preview</strong> the page to check it. <strong class="text-text">Not every page is listed</strong> appears when a list is cut short.</p>
+      <h2 id="video" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Video</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Video</strong> adds a video from a file or a video site.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Upload a file</strong>: MP4 or WebM, up to 200 MB. A poster frame is taken from it. Add <strong class="text-text">Subtitles</strong> as a WebVTT (.vtt) file up to 512 KB, with its <strong class="text-text">Language</strong> (such as <span class="font-mono text-sm break-words">en</span> or <span class="font-mono text-sm break-words">pt-BR</span>).</li><li><strong class="text-text">Link from a video site</strong>: paste the link. Only sites your administrator allows can be used (YouTube and Vimeo, or your organization's own video platform), set in Settings → Security → Video sites. If a site is taken off the list later, its videos stop playing.</li><li>Both take a <strong class="text-text">Caption</strong> and a <strong class="text-text">Start at</strong> time (m:ss).</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-video.png" alt="An uploaded video with its poster frame and caption" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-video.png</p>
+          <p class="text-xs text-muted max-w-md">An uploaded video with its poster frame and caption</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">An uploaded video with its poster frame and caption</figcaption>
+      </figure>
+      <h2 id="spreadsheet-tables" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. Spreadsheet tables</h2>
+      <p class="text-muted mb-4">A <strong class="text-text">Spreadsheet table</strong> is a table whose cells can hold formulas. Select a cell and type a value, or a formula starting with <span class="font-mono text-sm break-words">=</span>, such as <span class="font-mono text-sm break-words">=SUM(B2:B4)</span>, in the bar above the table. The bar also sets the cell's <strong class="text-text">Number format</strong> (as typed, number, currency, percent or date), its <strong class="text-text">Decimal places</strong> and, for currencies, the <strong class="text-text">Currency code</strong>.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-spreadsheet.png" alt="A spreadsheet table: amounts in euros with a total worked out by a formula" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-spreadsheet.png</p>
+          <p class="text-xs text-muted max-w-md">A spreadsheet table: amounts in euros with a total worked out by a formula</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A spreadsheet table: amounts in euros with a total worked out by a formula</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>References are A1-style within the same table: A1 is the first row's first cell. Another table can't be referenced.</li><li>Values are worked out in the editor as you type and saved with the page, so readers see them at once. Hover over a cell to see its formula.</li><li>Readers can sort a column and <strong class="text-text">Filter rows</strong> for themselves, when the first row is headers and there are no merged cells.</li><li>Numbers and dates show in each reader's language.</li><li>Errors show in the cell: <span class="font-mono text-sm break-words">#DIV/0!</span>, <span class="font-mono text-sm break-words">#VALUE!</span>, <span class="font-mono text-sm break-words">#REF!</span>, <span class="font-mono text-sm break-words">#NAME?</span> (a function that isn't available), <span class="font-mono text-sm break-words">#CIRCULAR!</span> (a formula that reads itself) or <span class="font-mono text-sm break-words">#CALC!</span> (too slow to work out).</li></ul>
+      <p class="text-muted mb-4">Functions you can use:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Kind</th><th>Functions</th></tr></thead><tbody><tr><td>Sums and counts</td><td>SUM, AVERAGE, COUNT, COUNTA, COUNTBLANK, MIN, MAX, MEDIAN, PRODUCT, SUMIF, COUNTIF, AVERAGEIF</td></tr><tr><td>Numbers</td><td>ROUND, ROUNDUP, ROUNDDOWN, ABS, INT, MOD, POWER, SQRT, CEILING, FLOOR</td></tr><tr><td>Logic</td><td>IF, IFERROR, AND, OR, NOT, TRUE, FALSE, ISBLANK, ISNUMBER, ISTEXT, ISERROR</td></tr><tr><td>Lookup</td><td>VLOOKUP, HLOOKUP, INDEX</td></tr><tr><td>Text</td><td>CONCAT, CONCATENATE, LEN, LEFT, RIGHT, MID, UPPER, LOWER, TRIM, TEXT, T</td></tr><tr><td>Dates</td><td>TODAY, DATE, DATEDIF, YEAR, MONTH, DAY, DAYS</td></tr></tbody></table></div>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">A table holds at most 2,000 formulas.</p></div>
+      <h2 id="plugin-blocks" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">12. Plugin blocks</h2>
+      <p class="text-muted mb-4"><a href="../admin/plugins.html" class="text-cta hover:underline">Plugins</a> can add their own blocks, such as a progress bar or a diagram. While such a plugin is active, its blocks are listed in the "/" menu under their own names; the block is drawn by the plugin, inside the page, and its settings are inside the block.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-plugin-block.png" alt="A plugin block on a page: a progress bar from a sample plugin" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-plugin-block.png</p>
+          <p class="text-xs text-muted max-w-md">A plugin block on a page: a progress bar from a sample plugin</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A plugin block on a page: a progress bar from a sample plugin</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>If the plugin is turned off or removed, readers see the block's short text description instead, and the block is kept on the page.</li><li>Visitors who aren't signed in, and pages that include another page, see the text too.</li><li>A page can hold up to 50 plugin blocks; the first 20 are drawn, the rest show their text.</li></ul>
+      <p class="text-muted mb-4">A macro from another wiki that an import couldn't convert shows as <strong class="text-text">Imported macro</strong>, with <strong class="text-text">What it held</strong>. You can leave it or replace it with a block.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

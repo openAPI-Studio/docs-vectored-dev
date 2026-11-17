@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imports from Confluence and Markdown — Wiki Admin Guide</title>
+  <meta name="description" content="Turn imports on or off, set the largest export, and what space admins can import from Confluence and Markdown">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><polyline points="15 2 15 7 20 7"/></svg></div>
+      <h1 class="vc-h1">Imports from Confluence and Markdown</h1>
+      <p class="vc-lede">Turn imports on or off, set the largest export, and what space admins can import from Confluence and Markdown</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Space admins can bring pages into their space from a <strong class="text-text">Confluence space export</strong> or from <strong class="text-text">Markdown</strong> files. Administrators decide whether imports are allowed and how large an export may be. How a space admin runs an import is in the user guide's <a href="../docs/import-and-export.html" class="text-cta hover:underline">Import &amp; export</a>.</p>
+      <h2 id="settings" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Settings</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/confluence-import-settings.png" alt="Settings → Security → Imports: Allow imports and the largest export" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">confluence-import-settings.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Security → Imports: Allow imports and the largest export</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Security → Imports: Allow imports and the largest export</figcaption>
+      </figure>
+      <p class="text-muted mb-4"><strong class="text-text">Settings → Security → Imports</strong> (<span class="font-mono text-sm break-words">settings:write</span>):</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Default</th><th>Effect</th></tr></thead><tbody><tr><td><strong class="text-text">Allow imports</strong></td><td>On</td><td>Space admins see an <strong class="text-text">Import</strong> tab in their spaces. Turning it off also stops imports under way after their current step</td></tr><tr><td><strong class="text-text">Largest export (MiB)</strong></td><td>2,048</td><td>Between 1 and 102,400. The upload is kept in file storage until the import ends, so make sure storage has room</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Changing them raises the <span class="font-mono text-sm break-words">import_settings.update</span> event and is audited.</p>
+      <h2 id="what-can-be-imported" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. What can be imported</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/confluence-import-space-tab.png" alt="A space&#x27;s Import tab: choose a Confluence export or Markdown, and earlier imports" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">confluence-import-space-tab.png</p>
+          <p class="text-xs text-muted max-w-md">A space's Import tab: choose a Confluence export or Markdown, and earlier imports</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A space's Import tab: choose a Confluence export or Markdown, and earlier imports</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Source</th><th>What comes in</th></tr></thead><tbody><tr><td><strong class="text-text">Confluence space export</strong> (Space tools → Export, XML, full export, a <span class="font-mono text-sm break-words">.zip</span>)</td><td>Pages with their tree, versions with dates and authors, comments, labels, blog posts (under a page you name), and images and videos as attachments. Common macros become Wiki blocks; others become a plain-text block a plugin may convert</td></tr><tr><td><strong class="text-text">Markdown</strong>: one <span class="font-mono text-sm break-words">.md</span> file, or a <span class="font-mono text-sm break-words">.zip</span> of a folder</td><td>Each folder becomes a page holding its files' pages (<span class="font-mono text-sm break-words">index.md</span> or <span class="font-mono text-sm break-words">README.md</span> is the folder's text); titles from front matter or the first heading; <span class="font-mono text-sm break-words">tags</span> become labels; images in the upload become attachments</td></tr></tbody></table></div>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Every import is <strong class="text-text">checked first</strong> (a dry run with a report) and writes nothing until the space admin starts it.</li><li>Authors are matched to accounts by email; others keep the name the export gave.</li><li>Importing the same export again <strong class="text-text">updates</strong> the pages the earlier import made, and leaves pages edited in the Wiki since as they are.</li><li>Uploads resume after a dropped connection. Imports run in the background, one step at a time, on any server.</li></ul>
+      <h2 id="what-isn-t-imported" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. What isn't imported</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>View and edit restrictions: imported pages get the space's access.</li><li>Attachments other than images and videos.</li><li>Notifications: nobody is told about imported pages, comments or mentions.</li><li>Other formats than Confluence XML exports and Markdown.</li></ul>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Limits</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Limit</th><th>Value</th></tr></thead><tbody><tr><td>Export size</td><td>The <strong class="text-text">Largest export</strong> setting</td></tr><tr><td>Markdown</td><td>1 MiB per file, 20,000 pages, 200,000 entries in a <span class="font-mono text-sm break-words">.zip</span></td></tr><tr><td>A check</td><td>30 minutes</td></tr><tr><td>Failed steps</td><td>An import that fails 5 steps in a row stops</td></tr><tr><td>Waiting</td><td>An unfinished upload is cancelled after a day; a checked import not started within 7 days</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Starting an import raises <span class="font-mono text-sm break-words">space.import.start</span>, which a <a href="policies.html" class="text-cta hover:underline">policy</a> can refuse; <span class="font-mono text-sm break-words">space.import.complete</span> follows when it ends. Both are in the audit log.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

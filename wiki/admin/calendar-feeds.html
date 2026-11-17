@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar feeds — Wiki Admin Guide</title>
+  <meta name="description" content="Personal calendar addresses for Outlook, Google Calendar and Apple Calendar: how they work and how to keep them safe">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <h1 class="vc-h1">Calendar feeds</h1>
+      <p class="vc-lede">Personal calendar addresses for Outlook, Google Calendar and Apple Calendar: how they work and how to keep them safe</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Everyone can subscribe to their Wiki calendar from a calendar app: events and leave of their spaces, scheduled publishes and review-by dates. Each person makes their own <strong class="text-text">calendar address</strong> on the <strong class="text-text">Calendar</strong> page with <strong class="text-text">Subscribe</strong>. How people use it is in the user guide's <a href="../docs/calendar.html" class="text-cta hover:underline">Calendar</a>; this page is what administrators need to know.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/calendar-feeds-subscribe.png" alt="Calendar → Subscribe: making a calendar address for a calendar app" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">calendar-feeds-subscribe.png</p>
+          <p class="text-xs text-muted max-w-md">Calendar → Subscribe: making a calendar address for a calendar app</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Calendar → Subscribe: making a calendar address for a calendar app</figcaption>
+      </figure>
+      <h2 id="how-a-feed-works" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. How a feed works</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The address holds a secret. It is shown <strong class="text-text">once</strong>, when it's made; the Wiki keeps only a hash of it, so nobody, administrators included, can read it back.</li><li>Each person has at most one address. <strong class="text-text">Make a new address</strong> replaces it (the old one stops at once); <strong class="text-text">Stop the address</strong> deletes it.</li><li>A calendar app reads it without signing in, at <span class="font-mono text-sm break-words">/api/calendar/ical</span>, through the web app like any other address. Keep query strings of that path out of your proxy's access logs: the secret is in the query.</li><li>It shows what the person may see <strong class="text-text">now</strong>: their current roles decide, so losing access to a space removes its entries from the feed.</li><li>A feed covers 30 days back to a year ahead, at most 2,000 entries. Repeating events are sent as single occurrences.</li><li>An address can only be made or replaced from a browser session, not with an API token.</li></ul>
+      <h2 id="when-a-feed-stops-by-itself" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. When a feed stops by itself</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The person is suspended or deactivated, their directory is disabled, or they must change a temporary password.</li><li>Their other sessions are signed out: a password change, <strong class="text-text">Sign out other sessions</strong>, or an administrator ending their sessions.</li><li>Their personal data is erased.</li></ul>
+      <p class="text-muted mb-4">They then make a new address and give it to their calendar app.</p>
+      <h2 id="keeping-feeds-private" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Keeping feeds private</h2>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">The secret travels in the address, because calendar apps can't send headers. The Wiki never logs request queries, but a reverse proxy may: leave queries out of the access log for <span class="font-mono text-sm break-words">/api/calendar/ical</span>, or protect that log like the feeds themselves.</p></div>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>If an address leaks, the person makes a new one; an administrator can also end the person's sessions, which stops it.</li><li>Requests with an unknown address are limited per network address, so addresses can't be guessed at speed.</li><li>Making, replacing and stopping an address are recorded in the <a href="logging-and-audit.html" class="text-cta hover:underline">audit log</a>, and raise the <span class="font-mono text-sm break-words">calendar.feed.create</span> and <span class="font-mono text-sm break-words">calendar.feed.delete</span> <a href="../docs/events.html" class="text-cta hover:underline">events</a>; a <a href="policies.html" class="text-cta hover:underline">policy</a> can refuse new addresses.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

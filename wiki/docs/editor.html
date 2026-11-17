@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The editor — Wiki Docs</title>
+  <meta name="description" content="Formatting, headings and heading numbers, lists, tables, images, the "/" menu, keyboard shortcuts and full screen">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+      <h1 class="vc-h1">The editor</h1>
+      <p class="vc-lede">Formatting, headings and heading numbers, lists, tables, images, the "/" menu, keyboard shortcuts and full screen</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Editors of a space open a page straight into the editor. Your changes are saved as you type (<strong class="text-text">All changes saved</strong> at the top), and everyone editing the page sees them at once; see <a href="editing-together.html" class="text-cta hover:underline">Editing together</a>. Readers keep seeing the published version until someone chooses <strong class="text-text">Publish</strong>; see <a href="drafts-and-publishing.html" class="text-cta hover:underline">Drafts and publishing</a>.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/editor-workspace.png" alt="The editor: the toolbar, the page, and the side panel with status, reviews, plans and comments" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">editor-workspace.png</p>
+          <p class="text-xs text-muted max-w-md">The editor: the toolbar, the page, and the side panel with status, reviews, plans and comments</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The editor: the toolbar, the page, and the side panel with status, reviews, plans and comments</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The top bar holds the breadcrumbs, the save state, who else is here, <strong class="text-text">Preview</strong> (the draft as readers will see it) and <strong class="text-text">Publish</strong>.</li><li>The side panel holds the page's <strong class="text-text">Status</strong>, <a href="reviews.html" class="text-cta hover:underline">reviews</a>, plans (<a href="calendar.html" class="text-cta hover:underline">scheduled publishing and review-by dates</a>), versions, heading and figure numbers, comments, labels, the pages under this one, <strong class="text-text">Move</strong> and <strong class="text-text">Delete</strong>.</li><li>If the connection drops, the editor says <strong class="text-text">Offline. Reconnecting…</strong> and keeps your changes in the tab until it is back.</li></ul>
+      <h2 id="the-toolbar" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. The toolbar</h2>
+      <figure class="shot mb-6">
+        <img src="../assets/editor-toolbar.png" alt="The formatting toolbar" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">editor-toolbar.png</p>
+          <p class="text-xs text-muted max-w-md">The formatting toolbar</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The formatting toolbar</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Group</th><th>Tools</th></tr></thead><tbody><tr><td>Text style</td><td><strong class="text-text">Text</strong>, <strong class="text-text">Heading 1</strong>, <strong class="text-text">Heading 2</strong>, <strong class="text-text">Heading 3</strong>, <strong class="text-text">Code block</strong></td></tr><tr><td>History</td><td><strong class="text-text">Undo</strong>, <strong class="text-text">Redo</strong> (your own changes only, not other people's)</td></tr><tr><td>Marks</td><td><strong class="text-text">Bold</strong>, <strong class="text-text">Italic</strong>, <strong class="text-text">Underline</strong>, <strong class="text-text">Strikethrough</strong>, <strong class="text-text">Code</strong></td></tr><tr><td>Alignment</td><td><strong class="text-text">Align left</strong>, <strong class="text-text">Center</strong>, <strong class="text-text">Align right</strong>, <strong class="text-text">Justify</strong></td></tr><tr><td>Lists</td><td><strong class="text-text">Bulleted list</strong>, <strong class="text-text">Numbered list</strong>, <strong class="text-text">Checklist</strong>, <strong class="text-text">Outdent</strong>, <strong class="text-text">Indent</strong></td></tr><tr><td>Blocks</td><td><strong class="text-text">Quote</strong>, <strong class="text-text">Divider</strong></td></tr><tr><td>Insert</td><td><strong class="text-text">Link</strong>, <strong class="text-text">Insert image</strong>, <strong class="text-text">Insert video</strong>, <strong class="text-text">Insert table of contents</strong>, <strong class="text-text">Insert table</strong></td></tr><tr><td>Other</td><td><strong class="text-text">Comment on selection</strong>, <strong class="text-text">Full screen</strong></td></tr></tbody></table></div>
+      <p class="text-muted mb-4">When a table, image, video or block is selected, its own settings appear in the toolbar (<strong class="text-text">Table</strong>, <strong class="text-text">Image settings</strong>, <strong class="text-text">Video settings</strong>, <strong class="text-text">Block settings</strong>). On a phone, the toolbar scrolls sideways.</p>
+      <h2 id="the-menu" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. The "/" menu</h2>
+      <p class="text-muted mb-4">Type <strong class="text-text">/</strong> at the start of a line or after a space to insert any block. Keep typing to narrow the list, use <strong class="text-text">↑</strong> and <strong class="text-text">↓</strong> to move, <strong class="text-text">Enter</strong> to insert and <strong class="text-text">Esc</strong> to close it.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/editor-slash-menu.png" alt="The &quot;/&quot; menu, listing the blocks you can insert" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">editor-slash-menu.png</p>
+          <p class="text-xs text-muted max-w-md">The "/" menu, listing the blocks you can insert</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The "/" menu, listing the blocks you can insert</figcaption>
+      </figure>
+      <p class="text-muted mb-4">It lists text styles and lists, <strong class="text-text">Quote</strong>, <strong class="text-text">Code block</strong>, <strong class="text-text">Divider</strong>, <strong class="text-text">Table</strong>, <strong class="text-text">Spreadsheet table</strong>, <strong class="text-text">Image</strong>, <strong class="text-text">Video</strong>, <strong class="text-text">Table of contents</strong>, and the blocks described in <a href="macros.html" class="text-cta hover:underline">Blocks and macros</a>: panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, and blocks from plugins.</p>
+      <h2 id="headings-and-heading-numbers" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Headings and heading numbers</h2>
+      <p class="text-muted mb-4">Use <strong class="text-text">Heading 1</strong> to <strong class="text-text">Heading 3</strong> to structure a page. Each heading gets an anchor from its words, so you can link to it with <span class="font-mono text-sm break-words">#section-…</span> after the page's address, and a table of contents lists it.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Heading numbers</strong> in the side panel numbers a page's headings: <strong class="text-text">None</strong>, <strong class="text-text">1, 1.1, 1.1.1</strong> or <strong class="text-text">1., 1.1., a.</strong>. Numbers are added when the page is shown; the text stays as you write it, so moving a section renumbers everything after it.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/editor-heading-numbers.png" alt="A page with numbered headings and a numbered table of contents" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">editor-heading-numbers.png</p>
+          <p class="text-xs text-muted max-w-md">A page with numbered headings and a numbered table of contents</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A page with numbered headings and a numbered table of contents</figcaption>
+      </figure>
+      <p class="text-muted mb-4"><strong class="text-text">Insert table of contents</strong> lists the page's headings where you put it. Its settings choose the <strong class="text-text">Headings to list</strong> (top level only, two levels or three levels) and whether to <strong class="text-text">Number the entries</strong>; when the page numbers its headings, the same numbers are used.</p>
+      <h2 id="lists-and-checklists" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Lists and checklists</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Bulleted list</strong>, <strong class="text-text">Numbered list</strong> and <strong class="text-text">Checklist</strong> start a list; <strong class="text-text">Indent</strong> and <strong class="text-text">Outdent</strong> (or <strong class="text-text">Tab</strong> and <strong class="text-text">Shift+Tab</strong>) nest an item. Readers see checklist boxes as you left them.</p>
+      <h2 id="links-and-mentions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Links and mentions</h2>
+      <p class="text-muted mb-4">Select text and choose <strong class="text-text">Link</strong> to link it to a web address (<span class="font-mono text-sm break-words">https://…</span>), an email (<span class="font-mono text-sm break-words">mailto:…</span>) or a path in the Wiki (<span class="font-mono text-sm break-words">/spaces/…</span>). Type <strong class="text-text">@</strong> and part of a name to mention someone; see <a href="profile-and-notifications.html#mentions" class="text-cta hover:underline">Profile and notifications</a>.</p>
+      <h2 id="tables" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Tables</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Insert table</strong> adds a table with a header row. With the cursor in it, the <strong class="text-text">Table</strong> tools add a row below or a column after, delete rows, columns or the table, turn the header row on or off, and merge or split cells. For sums and other calculations use a <strong class="text-text">Spreadsheet table</strong>; see <a href="macros.html#spreadsheet-tables" class="text-cta hover:underline">Blocks and macros</a>.</p>
+      <h2 id="images-and-videos" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Images and videos</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Insert image</strong>, or paste or drop an image onto the page. <strong class="text-text">Image settings</strong> sets the <strong class="text-text">Alternative text</strong> (describe the image for people who can't see it), a <strong class="text-text">Caption</strong>, the <strong class="text-text">Width</strong> (a quarter, half, three quarters or full width) and the <strong class="text-text">Position</strong>. With <strong class="text-text">Figure numbers</strong> turned on in the side panel, captioned images are numbered Figure 1, Figure 2… in reading order.</p>
+      <p class="text-muted mb-4">Images can be PNG, JPEG, GIF or WebP up to 20 MB. For videos, files and limits see <a href="attachments-and-media.html" class="text-cta hover:underline">Attachments and media</a> and <a href="macros.html#video" class="text-cta hover:underline">Blocks and macros</a>.</p>
+      <h2 id="full-screen" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Full screen</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Full screen</strong> at the right end of the toolbar hides the sidebar and header so only the page and toolbar remain. <strong class="text-text">Leave full screen</strong>, or <strong class="text-text">Esc</strong>, brings them back.</p>
+      <h2 id="keyboard-shortcuts" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Keyboard shortcuts</h2>
+      <p class="text-muted mb-4">Use <strong class="text-text">Ctrl</strong> on Windows and Linux, <strong class="text-text">⌘</strong> on a Mac.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Shortcut</th><th>Does</th></tr></thead><tbody><tr><td>Ctrl+B / Ctrl+I / Ctrl+U</td><td>Bold / italic / underline</td></tr><tr><td>Ctrl+Shift+S</td><td>Strikethrough</td></tr><tr><td>Ctrl+E</td><td>Code</td></tr><tr><td>Ctrl+Alt+1, 2, 3</td><td>Heading 1, 2, 3</td></tr><tr><td>Ctrl+Alt+0</td><td>Text</td></tr><tr><td>Ctrl+Shift+8 / Ctrl+Shift+7 / Ctrl+Shift+9</td><td>Bulleted list / numbered list / checklist</td></tr><tr><td>Ctrl+Shift+B</td><td>Quote</td></tr><tr><td>Ctrl+Z / Ctrl+Shift+Z or Ctrl+Y</td><td>Undo / redo your own changes</td></tr><tr><td>Shift+Enter</td><td>Line break inside a paragraph</td></tr><tr><td>/</td><td>The "/" menu</td></tr><tr><td>@</td><td>Mention someone</td></tr><tr><td>Ctrl+K</td><td>Search</td></tr><tr><td>Esc</td><td>Close a menu, leave full screen</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Markdown-style typing works too: <span class="font-mono text-sm break-words"># </span> to <span class="font-mono text-sm break-words">### </span> at the start of a line make headings, <span class="font-mono text-sm break-words">- </span> or <span class="font-mono text-sm break-words">* </span> a bulleted list, <span class="font-mono text-sm break-words">1. </span> a numbered list, <span class="font-mono text-sm break-words">[ ] </span> a checklist item, <span class="font-mono text-sm break-words">&gt; </span> a quote, three backticks a code block and <span class="font-mono text-sm break-words">---</span> a divider. <span class="font-mono text-sm break-words"><strong class="text-text">bold</strong></span>, <span class="font-mono text-sm break-words">*italic*</span> and `<span class="font-mono text-sm break-words"> </span>code<span class="font-mono text-sm break-words"> </span>` format the text as you type.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

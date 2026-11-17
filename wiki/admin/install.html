@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install the Wiki — Wiki Admin Guide</title>
+  <meta name="description" content="Start the server and the web app, the setup key, the reverse proxy with its WebSocket paths, and request sizes">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg></div>
+      <h1 class="vc-h1">Install the Wiki</h1>
+      <p class="vc-lede">Start the server and the web app, the setup key, the reverse proxy with its WebSocket paths, and request sizes</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">The Wiki isn't released yet. Early adopters: <a href="../../support.html?tool=wiki&amp;type=access" class="text-cta hover:underline">contact us for access</a> to get the server and a licence.</p></div>
+      <p class="text-muted mb-4">The Wiki is self-hosted: a server program and a web app, in front of PostgreSQL, optional Redis and file storage. Before you start, <a href="install-planning.html" class="text-cta hover:underline">plan the installation</a>. There are no container images or Helm chart for the Wiki yet: run the two programs as services on your own hosts or in your own containers.</p>
+      <h2 id="the-two-programs" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. The two programs</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Program</th><th>Listens on</th><th>Needs</th></tr></thead><tbody><tr><td>Server (<span class="font-mono text-sm break-words">wiki-server</span>)</td><td><span class="font-mono text-sm break-words">PORT</span> (8080) on <span class="font-mono text-sm break-words">BIND_ADDR</span> (127.0.0.1)</td><td><span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span> on every start; <span class="font-mono text-sm break-words">DATABASE_URL</span> on its first start</td></tr><tr><td>Web app</td><td>Port 3002</td><td><span class="font-mono text-sm break-words">BACKEND_URL</span>, where the server is (default <span class="font-mono text-sm break-words">http://127.0.0.1:8080</span>)</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Keep the default <span class="font-mono text-sm break-words">BIND_ADDR</span> when the web app and the proxy run on the same host as the server; set <span class="font-mono text-sm break-words">0.0.0.0</span> (or a private address) when they don't.</p>
+      <h2 id="first-boot" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. First boot</h2>
+      <p class="text-muted mb-4">Set <span class="font-mono text-sm break-words">DATABASE_URL</span> and <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>, then start the server. After the first boot the database URL is saved encrypted on the server, so later boots only need the encryption key.</p>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">export CONFIG_ENCRYPTION_KEY=&quot;$(cat /run/secrets/wiki-encryption-key)&quot;
+export DATABASE_URL=&#x27;postgres://wiki:…@db.internal:5432/wiki?sslmode=verify-full&#x27;
+./wiki-server</code></pre>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted"><span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span> is required on every start and protects every stored credential. Use a long random value (for example <span class="font-mono text-sm break-words">openssl rand -base64 32</span>), the same on every server, and keep it somewhere safe: without it the installation can't start.</p></div>
+      <h2 id="the-setup-key" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. The setup key</h2>
+      <p class="text-muted mb-4">A fresh installation starts in setup mode and prints a one-time setup key in its log, in a line like <span class="font-mono text-sm break-words">open the setup wizard … setup_url=https://…/setup?token=…</span>. Open that address: setup only proceeds with the key, so nobody else who can reach the server can take it over first. The page removes the key from the address bar as soon as it has read it. The key changes on every restart; set <span class="font-mono text-sm break-words">SETUP_TOKEN</span> to choose it yourself.</p>
+      <p class="text-muted mb-4">The <a href="setup-wizard.html" class="text-cta hover:underline">setup wizard</a> then asks for the licence, the database, storage, the optional Redis cache and the first administrator. To set up with nobody at a browser, see <a href="headless-setup.html" class="text-cta hover:underline">Set up without the UI</a>.</p>
+      <h2 id="behind-a-proxy" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Behind a proxy</h2>
+      <p class="text-muted mb-4">Set <span class="font-mono text-sm break-words">TRUSTED_PROXIES</span> on the server to the addresses of your load balancer and any other proxy in front (IPs or CIDRs, comma-separated). Client addresses are used for IP allowlists, <a href="rate-limits.html" class="text-cta hover:underline">rate limits</a>, the audit log and the per-address limits on anonymous readers and calendar feeds: without the right setting, everyone behind the proxy shares one address and one budget.</p>
+      <p class="text-muted mb-4">Set <span class="font-mono text-sm break-words">FRONTEND_BEHIND_PROXY=true</span> on the web app when the proxy in front of it sets <span class="font-mono text-sm break-words">X-Forwarded-For</span>, <span class="font-mono text-sm break-words">X-Forwarded-Host</span> and <span class="font-mono text-sm break-words">X-Forwarded-Proto</span> (Caddy does by default, the nginx example below does). The web app then passes them on to the server. Without it they're ignored, because anyone who reaches the web app's port directly could send their own.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">With <span class="font-mono text-sm break-words">FRONTEND_BEHIND_PROXY=true</span>, only the proxy may reach the web app's port: a client that reaches it directly can choose the address the Wiki sees.</p></div>
+      <h2 id="route-live-editing-to-the-server" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Route live editing to the server</h2>
+      <p class="text-muted mb-4">Live editing and instant alerts use WebSockets under <span class="font-mono text-sm break-words">/api/ws</span> on the same address as the app: each page being edited has its own connection at <span class="font-mono text-sm break-words">/api/ws/spaces/&lt;space&gt;/pages/&lt;page&gt;/collab</span>. The web app can't pass these on, so the proxy must send <span class="font-mono text-sm break-words">/api/ws</span> and everything under it straight to the server, with WebSocket upgrades allowed, and everything else to the web app:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Path</th><th>Goes to</th><th>Notes</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">/api/ws</span>, <span class="font-mono text-sm break-words">/api/ws/…</span></td><td>Server (port 8080)</td><td>Allow the WebSocket upgrade; keep idle connections open for at least an hour</td></tr><tr><td>Everything else</td><td>Web app (port 3002)</td><td></td></tr></tbody></table></div>
+      <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted"># Caddy
+wiki.example.com {
+    @live path /api/ws /api/ws/*
+    reverse_proxy @live 127.0.0.1:8080
+    reverse_proxy 127.0.0.1:3002
+}
+
+# nginx (inside server { … })
+client_max_body_size 201m;  # page videos; other API requests stay at 32 MiB
+location /api/ws {
+    proxy_pass http://127.0.0.1:8080;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection &quot;upgrade&quot;;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 1h;
+}
+location / {
+    proxy_pass http://127.0.0.1:3002;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}</code></pre>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Without this route, the editor can't connect: after three tries it says so, and people can't edit pages together. Alerts still arrive, every 30 seconds instead of at once, and the system check shows a <strong class="text-text">Live updates</strong> warning until it's fixed.</p></div>
+      <p class="text-muted mb-4">Cloud load balancers (AWS ALB, Azure Application Gateway, Google Cloud Load Balancing) pass WebSockets through: add a path rule for <span class="font-mono text-sm break-words">/api/ws*</span> to the server and raise the idle timeout.</p>
+      <h2 id="request-size" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Request size</h2>
+      <p class="text-muted mb-4">The web app refuses API requests larger than <span class="font-mono text-sm break-words">FRONTEND_API_BODY_LIMIT</span> bytes (32 MiB by default) with <span class="font-mono text-sm break-words">413 payload_too_large</span> before they reach the server. Uploads to a page (images and videos) have their own limit of 201 MiB, enough for a 200 MiB video, whatever that variable says. Let the proxy in front take bodies that large (nginx: <span class="font-mono text-sm break-words">client_max_body_size 201m</span>).</p>
+      <h2 id="logs-and-secrets-in-addresses" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Logs and secrets in addresses</h2>
+      <p class="text-muted mb-4">Calendar apps read a person's <a href="calendar-feeds.html" class="text-cta hover:underline">calendar feed</a> with its secret in the address, because they can't send headers. The Wiki's server never logs request queries, but a proxy in front may: leave queries out of your proxy's access log for <span class="font-mono text-sm break-words">/api/calendar/ical</span>, or keep that log as private as the feeds.</p>
+      <h2 id="after-an-update" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. After an update</h2>
+      <p class="text-muted mb-4">When the Wiki is updated, pages people already have open notice within a few minutes, or as soon as they return to the tab, and show <strong class="text-text">A new version is available</strong> with <strong class="text-text">Reload</strong> and <strong class="text-text">Later</strong>. Nothing reloads on its own. Proxies and CDNs must not cache the <span class="font-mono text-sm break-words">/app-version</span> address.</p>
+      <h2 id="security-headers" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Security headers</h2>
+      <p class="text-muted mb-4">Pages are served with security headers (frames from other sites are refused, the referrer is trimmed, HSTS) and an enforced Content-Security-Policy; violations are logged by the web app as <span class="font-mono text-sm break-words">[csp]</span> lines (<span class="font-mono text-sm break-words">CSP_ENFORCE=false</span> sends it report-only). Pages may frame videos only from the sites allowed in <strong class="text-text">Settings → Security → Video sites</strong>.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">The Wiki needs its own host name: it can't be served under a path such as <span class="font-mono text-sm break-words">https://tools.example.com/wiki/</span>.</p></div>
+      <h2 id="help-menu-and-footer" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Help menu and footer</h2>
+      <p class="text-muted mb-4">Once signed in, everyone has a <strong class="text-text">?</strong> (Help) menu at the top of every page and a footer at the bottom with the version, build and the server that answered. Out of the box, <strong class="text-text">Documentation</strong>, <strong class="text-text">Getting started</strong> and <strong class="text-text">What's new</strong> open these docs, and <strong class="text-text">Report a bug</strong> and <strong class="text-text">Contact support</strong> reach Vectored. Point them at your own help desk under <strong class="text-text">Settings → General → Help menu</strong> (<span class="font-mono text-sm break-words">settings:write</span>), or leave a link empty to hide it.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

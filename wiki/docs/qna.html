@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q&amp;A — Wiki Docs</title>
+  <meta name="description" content="Ask your organization a question, answer, vote, accept the answer that worked, and follow topics">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h1 class="vc-h1">Q&amp;A</h1>
+      <p class="vc-lede">Ask your organization a question, answer, vote, accept the answer that worked, and follow topics</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Q&amp;A</strong> in the left menu is a place for questions and answers across your organization, separate from spaces. Everyone in the organization reads, asks, answers and votes; the organization's admins moderate. Answers that help get votes, and the person who asked accepts the one that worked.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/qna-list.png" alt="The Q&amp;A list: questions with their votes, answers and tags, and the tabs and order" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">qna-list.png</p>
+          <p class="text-xs text-muted max-w-md">The Q&amp;A list: questions with their votes, answers and tags, and the tabs and order</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Q&amp;A list: questions with their votes, answers and tags, and the tabs and order</figcaption>
+      </figure>
+      <h2 id="find-a-question" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Find a question</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The tabs show <strong class="text-text">All</strong>, <strong class="text-text">Unanswered</strong>, <strong class="text-text">Mine</strong> and <strong class="text-text">Following</strong>; <strong class="text-text">Order</strong> sorts by <strong class="text-text">Active</strong>, <strong class="text-text">Newest</strong> or <strong class="text-text">Most votes</strong>.</li><li>Select a tag to see its questions. Questions also come up in the Wiki's <a href="search.html" class="text-cta hover:underline">search</a>.</li></ul>
+      <h2 id="ask-a-question" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Ask a question</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Ask a question</strong></span> &mdash; In Q&amp;A, or <strong class="text-text">+ Create</strong> at the top of the Wiki.</li><li class="pl-2"><span class="text-text font-medium">Write a specific title</span> &mdash; 10 to 200 characters. While you type, <strong class="text-text">Questions that may already answer yours</strong> lists similar ones.</li><li class="pl-2"><span class="text-text font-medium">Add the details</span> &mdash; What you expected, what happened, what you tried. The editor has headings, lists, quotes, code blocks, tables, links and images (paste or add them, up to 20 per post), and <strong class="text-text">@</strong> mentions people in your organization.</li><li class="pl-2"><span class="text-text font-medium">Add up to 5 tags</span> &mdash; Lower-case words such as <span class="font-mono text-sm break-words">backups</span>; suggestions show as you type.</li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Post question</strong></span> &mdash; You follow it from now on.</li></ol>
+      <p class="text-muted mb-4">Under a published page, <strong class="text-text">Questions about this page</strong> lists questions that link to it, and <strong class="text-text">Ask about this page</strong> starts a question with a link to it. A question lists the <strong class="text-text">Wiki pages</strong> it links to that you can read.</p>
+      <h2 id="answer-vote-and-accept" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Answer, vote and accept</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Write in <strong class="text-text">Your answer</strong> and select <strong class="text-text">Post answer</strong>. Your answer is saved as a draft while you type and kept for 30 days; <strong class="text-text">Discard draft</strong> throws it away. Answering follows the question.</li><li>Vote a question or an answer up (<strong class="text-text">This is useful</strong>) or down (<strong class="text-text">This isn't useful</strong>). You can't vote on your own posts.</li><li>The person who asked (or a moderator) selects <strong class="text-text">Accept this answer</strong> on the one that worked; <strong class="text-text">Take back the accept</strong> undoes it. One answer is accepted at a time.</li><li>Comments under a question or an answer are short notes on one line, up to 600 characters and 30 per post.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/qna-question.png" alt="A question with its votes, an accepted answer and comments" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">qna-question.png</p>
+          <p class="text-xs text-muted max-w-md">A question with its votes, an accepted answer and comments</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A question with its votes, an accepted answer and comments</figcaption>
+      </figure>
+      <h2 id="edit-history-and-delete" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Edit, history and delete</h2>
+      <p class="text-muted mb-4">You edit your own questions, answers and comments. <strong class="text-text">History</strong> shows what a post said before each edit, to its author and moderators. You can delete your own question while it has no answers, and your own answers and comments.</p>
+      <h2 id="follow" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Follow</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Follow</strong> on a question tells you about new answers; <strong class="text-text">Follow tag</strong> on a tag tells you about new questions with it. The <strong class="text-text">Following</strong> tab lists both. You also get an alert when someone comments on your post, accepts your answer or mentions you.</p>
+      <h2 id="reputation" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Reputation</h2>
+      <p class="text-muted mb-4">People earn points for posts others find useful: 10 for each vote up and 2 off for each vote down on their questions and answers, and 15 for each accepted answer (not on their own question). Points show next to names and are counted again every 15 minutes.</p>
+      <h2 id="moderation" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Moderation</h2>
+      <p class="text-muted mb-4">Moderators (the organization's admins) edit, <strong class="text-text">Close</strong> and <strong class="text-text">Reopen</strong>, and delete any post; <strong class="text-text">Mark as duplicate</strong> points a question to an earlier one (it then takes no answers); <strong class="text-text">Lock comments</strong>; and merge one tag into another. See <a href="../admin/qna-moderation.html" class="text-cta hover:underline">Q&amp;A moderation</a>.</p>
+      <h2 id="public-questions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Public questions</h2>
+      <p class="text-muted mb-4">When your administrators allow anonymous access and the moderators turn on <strong class="text-text">Allow public questions</strong> in Q&amp;A <strong class="text-text">Settings</strong>, a question can be a <strong class="text-text">Public question</strong>: anyone can read it and its answers, even without signing in, at the Wiki's <strong class="text-text">Public questions</strong> list. People are shown there by name only.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The person who asked can make a question public before anyone answers or comments; moderators can at any time.</li><li>Signed-out readers can't answer or vote: <strong class="text-text">Answer or vote in Q&amp;A</strong> sends them to sign in.</li><li>Turning the setting off hides every public question again.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
