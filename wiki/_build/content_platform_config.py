@@ -707,7 +707,7 @@ PLATFORM_CONFIG = [
             P("Scripts calling the API should wait and try again on 429, using `Retry-After`."),
 
             H("Changing the limits"),
-            P("The **Rate limits** tab of **Settings → Security** (`settings:write`) has four views: **Limits**, **Overrides**, **Activity** and **Downloads**. Changed limits are saved with the page's **Save**, together with anything changed on the other Security tabs."),
+            P("The **Rate limits** tab of **Settings → Security** (`settings:write`) has three views: **Limits**, **Overrides** and **Activity**. Changed limits are saved with the page's **Save**, together with anything changed on the other Security tabs."),
             SHOT("rate-limits-tab.png", "Settings → Security → Rate limits: requests per period for each kind of caller"),
             STEPS([
                 "Limits|One table lists every budget, grouped by kind of traffic. Each shows its value and where it comes from: **Saved**, **Environment variable**, **By license** or **Built in**. Change the requests, period and burst, or select **Use default**.",
@@ -751,8 +751,6 @@ PLATFORM_CONFIG = [
                 "**One agent's share of a plugin:** a plugin has calls per second for everyone together; one AI app connection or MCP key may use 50% of them (`PLUGIN_CALLER_SHARE_PCT`), so one agent can't use up a plugin.",
                 "**A plugin's page** (Settings → Plugins → the plugin → **Call limits**) sets its calls per second, each caller's share, and calls per second for a particular AI app instead of the share. **Use defaults** goes back to the plugin's and the installation's values.",
             ]),
-
-            NOTE("The tab also lists **Package traffic** and **Download quotas**: they come from the platform the Wiki is built on, which other products use to serve packages. The Wiki has no package traffic, so they never count anything here."),
 
             H("Redis and clusters"),
             UL([

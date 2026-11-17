@@ -224,7 +224,7 @@ USER_A = [
                 "Clearing only hides the alert for you. A cleared alert shows **Undo** for a moment.",
                 "**Preferences** opens your notification preferences; **Load more** shows older alerts.",
             ]),
-            NOTE("An alert's category on this page is technical (it names the page it is about). To stop alerts about a page, use **Stop watching** on the page rather than muting its category."),
+            NOTE("**Category** lists kinds of alert by name (Watched pages, Comments, Mentions in pages, Review requests, Answers…), each covering every page or question of that kind. To stop alerts about one page, use **Stop watching** on the page."),
         ])),
 
     # ------------------------------------------------------------------
