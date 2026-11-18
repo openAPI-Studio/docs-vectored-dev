@@ -488,7 +488,7 @@ admin:
             P("A Wiki licence is a signed file bound to the installation's ID. Its tier decides which features are available; it can also cap how many people may sign in and how many servers may run."),
             ACCESS_NOTE,
             H("What each tier turns on"),
-            P("Every Wiki feature works on every tier except page analytics, which needs **Pro**, and whiteboards, which need **Enterprise**. Plugin blocks need plugins, which need Pro:"),
+            P("Every Wiki feature works on every tier except page analytics and mirror spaces, which need **Pro**, and whiteboards, which need **Enterprise**. Plugin blocks need plugins, which need Pro:"),
             TABLE(["Wiki feature", "Tier"], [
                 ["Spaces, pages and the editor with its built-in blocks, drafts, versions, reviews, page restrictions, copies and templates", "Standard"],
                 ["Editing together, comments, attachments and videos, labels and page feedback", "Standard"],
@@ -496,6 +496,7 @@ admin:
                 ["Imports (Confluence, Markdown) and exports (Word, PDF)", "Standard"],
                 ["Anonymous access to public spaces and questions", "Standard"],
                 ["Page [analytics](analytics-settings.html)", "Pro"],
+                ["[Mirror spaces](mirror-spaces.html): spaces that follow a git repository or uploaded archives", "Pro"],
                 ["Plugin blocks in pages", "Pro, as for every plugin"],
                 ["[Whiteboards](whiteboards.html): live canvases, facilitation, whiteboard templates and the whiteboard block", "Enterprise"],
             ]),
@@ -601,6 +602,7 @@ admin:
                 ["**Video sites**", "YouTube, Vimeo and other sites whose players pages may embed; taking a site off stops it on every page", "`settings:write`", "[Attachments & media](attachments-and-media.html)"],
                 ["**HTML blocks**", "Whether pages may hold HTML blocks (off by default), who adds them, and the only sites they may reach", "`settings:write`", "[Blocks and macros](macros.html#html-blocks)"],
                 ["**Imports**", "Whether space admins may import, and the largest export", "`settings:write`", "[Imports](confluence-import.html)"],
+                ["**Mirrors**", "Whether spaces may mirror git repositories and uploaded archives (Pro), who sets mirrors up, the largest archive and internal git hosts", "`settings:write`", "[Mirror spaces](mirror-spaces.html#for-administrators)"],
             ]),
             H("Advanced"),
             TABLE(["Page", "What it configures", "Permission", "Tier", "Docs"], [

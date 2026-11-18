@@ -16,6 +16,16 @@ _WIKI_EVENTS = [
         ['`space.import.start`', 'before, after', 'yes · policies', "An import of another wiki's export (Confluence) or of Markdown files into a wiki space is started. Policies can refuse imports, for example outside some spaces."],
         ['`space.update`', 'before, after', 'yes · policies', "A wiki space's name, description or visibility change."],
     ]),
+    ('Mirror spaces', [
+        ['`mirror.convert`', 'before, after', 'yes · policies', 'A mirror space is converted into a normal space: its mirrors are removed and its pages can be edited in the wiki.'],
+        ['`mirror.create`', 'before, after', 'yes · policies', "A mirror is set up in a wiki space: the space's pages will follow a git repository's docs or uploaded archives. Policies can, for example, allow only some hosts or repositories."],
+        ['`mirror.delete`', 'before, after', 'yes · policies', 'A mirror is removed from a wiki space. Its pages stay.'],
+        ['`mirror.failed`', 'after', 'no', 'A sync of a mirror failed or was cancelled, with the reason.'],
+        ['`mirror.suggestion.create`', 'after', 'no', 'A reader suggested an edit to a mirrored page: a pull or merge request was opened on the source.'],
+        ['`mirror.synced`', 'after', 'no', 'A sync of a mirror finished: how many pages it created, updated and removed.'],
+        ['`mirror.update`', 'before, after', 'yes · policies', "A mirror's source, schedule or settings change."],
+        ['`mirror_settings.update`', 'before, after', 'yes', "The installation's mirror settings (mirrors allowed, who sets them up, the largest archive, internal git hosts) change."],
+    ]),
     ('Pages', [
         ['`html_block.create`', 'before, after', 'yes · policies', "A space admin saves an HTML block for a wiki space's pages (new or changed: every save is a new block). Policies can, for example, refuse HTML that loads scripts."],
         ['`page.attachment.create`', 'before, after', 'yes · policies', 'A file (an image, a video or subtitles) is uploaded to a wiki page. Policies can, for example, refuse uploads in some spaces.'],
