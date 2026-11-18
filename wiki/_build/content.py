@@ -15,6 +15,8 @@ from content_platform_operate import PLATFORM_OPERATE
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-18", "Whiteboards", "Whiteboards can be facilitated (a shared timer, dot voting, private mode that hides new notes until revealed, and follow me), new boards can start with notes hidden, mind maps grow with Enter and Tab, an items list reads the board in order for keyboards and screen readers, and the toolbar folds to seven tools on phones."),
+    ("2026-11-18", "Whiteboards", "Live whiteboards (Enterprise): sticky notes, pens, shapes, connectors and frames drawn together with everyone's cursors, six canvas types and space templates, comments, versions and downloads, a read-only view, and a whiteboard block for pages."),
     ("2026-11-18", "Space blogs", "Blog posts in a Confluence export can become posts on the space's blog, a post downloaded as Word or PDF starts with its date, authors and cover image, and plugins can add a panel to a space's Blog tab."),
     ("2026-11-18", "Space blogs", "A Blogs page gathers the posts of every blog you can read, the dashboard shows the latest posts of the blogs you follow, search finds posts, and space analytics have a Posts tab."),
     ("2026-11-17", "Space blogs", "Blogs can require review before a post is first published, tell their followers about new posts, and be followed in a feed reader through a public or personal feed address."),
@@ -29,6 +31,7 @@ INTRO = [
     TABLE(["Capability", "What the Wiki does"], [
         ["**Spaces for every team**", "[Spaces](docs/spaces.html) hold pages and decide who reads and writes them: private, internal or public, with roles for people and groups."],
         ["**Pages written together**", "A Word-like [editor](docs/editor.html) with headings, tables, images, videos and [macros](docs/macros.html); [live editing](docs/editing-together.html) with everyone's cursors; autosave, [drafts, reviews and publishing](docs/drafts-and-publishing.html), [versions](docs/page-history-and-versions.html) you can compare and restore, and [comments](docs/comments.html)."],
+        ["**Whiteboards**", "[Live whiteboards](docs/whiteboards.html) to sketch, plan and run retrospectives together, with timers, dot voting and notes hidden until revealed (Enterprise)."],
         ["**Questions and answers**", "Company-wide [Q&A](docs/qna.html): ask, answer, vote and accept, with mentions and links to pages."],
         ["**Calendars**", "[Space calendars](docs/calendar.html) with events, leave, publishing plans and review dates, and a feed for your own calendar app."],
         ["**Analytics**", "[Page, space and personal analytics](docs/analytics.html) and content health: stale pages, broken links, searches that find nothing."],

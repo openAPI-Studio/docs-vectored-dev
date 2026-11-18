@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-124 screenshots. Save each one into `wiki/assets/` using the
+133 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -171,6 +171,25 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `blog-settings.png`
       Space settings, Blog: on or off, who writes posts, comments on new posts, the company Blogs page, review before publishing and the public feed
 
+## Whiteboards
+
+- [ ] `whiteboard-live.png`
+      A whiteboard with two other people on it: their cursors with names, a note one of them selected, the toolbar and the zoom bar
+- [ ] `whiteboard-new.png`
+      The new whiteboard form: name, space, location, and the canvas types to start from
+- [ ] `whiteboard-facilitation.png`
+      A retrospective being facilitated: the timer and voting in the bar, vote buttons on the notes, a note hidden until revealed, and the Facilitate panel
+- [ ] `whiteboard-history.png`
+      A flowchart with its history open: a named version and an automatic one
+- [ ] `whiteboard-block.png`
+      A page with a whiteboard block: the board's picture and a link to open it
+- [ ] `whiteboard-read-view.png`
+      The read-only view of a whiteboard
+- [ ] `mobile-whiteboard.png`
+      A whiteboard on a phone: the seven tools at the bottom and the zoom bar
+- [ ] `mobile-whiteboard-items.png`
+      The items list as a bottom sheet on a phone, with the picked note shown above it
+
 ## Q&amp;A
 
 - [ ] `qna-list.png`
@@ -206,6 +225,8 @@ realistic but fictional names and figures rather than real people's data.
       The editor on a phone, with the toolbar above the page
 - [ ] `mobile-calendar.png`
       The calendar's month view on a phone, with a day selected
+- [ ] `mobile-whiteboard.png`
+      A whiteboard on a phone: the seven tools at the bottom and the zoom bar
 
 ## Setup wizard
 

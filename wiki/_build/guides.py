@@ -40,7 +40,7 @@ USER_GROUPS = [
                     "api-tokens", "@admin"]),
     ("Spaces & pages", ["spaces", "pages-and-the-page-tree", "editor", "macros", "drafts-and-publishing", "reviews",
                         "page-history-and-versions", "comments", "editing-together", "copies-and-templates",
-                        "attachments-and-media", "labels-and-feedback", "import-and-export", "blogs"]),
+                        "attachments-and-media", "labels-and-feedback", "import-and-export", "blogs", "whiteboards"]),
     ("Q&A", ["qna"]),
     ("Calendar & analytics", ["calendar", "analytics"]),
     ("Mobile", ["mobile"]),

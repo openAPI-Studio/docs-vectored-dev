@@ -392,7 +392,7 @@ USER_A = [
             H("The \"/\" menu"),
             P("Type **/** at the start of a line or after a space to insert any block. Keep typing to narrow the list, use **↑** and **↓** to move, **Enter** to insert and **Esc** to close it."),
             SHOT("editor-slash-menu.png", "The \"/\" menu, listing the blocks you can insert"),
-            P("It lists text styles and lists, **Quote**, **Code block**, **Divider**, **Table**, **Spreadsheet table**, **Image**, **Video**, **Table of contents**, and the blocks described in [Blocks and macros](macros.html): panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, and blocks from plugins."),
+            P("It lists text styles and lists, **Quote**, **Code block**, **Divider**, **Table**, **Spreadsheet table**, **Image**, **Video**, **Table of contents**, and the blocks described in [Blocks and macros](macros.html): panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, a [whiteboard](whiteboards.html) (Enterprise), and blocks from plugins."),
 
             H("Headings and heading numbers"),
             P("Use **Heading 1** to **Heading 3** to structure a page. Each heading gets an anchor from its words, so you can link to it with `#section-…` after the page's address, and a table of contents lists it."),
