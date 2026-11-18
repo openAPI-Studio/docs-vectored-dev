@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-145 screenshots. Save each one into `wiki/assets/` using the
+146 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -242,6 +242,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `mirror-spaces-tab.png`
       A space's Mirror tab: a git source with its last sync, and the sync history
+- [ ] `mirror-spaces-new.png`
+      New space: choosing a mirror space instead of a normal one
 - [ ] `mirror-spaces-setup.png`
       Set up a mirror: the host, repository, branch, folder, schedule and access token
 - [ ] `mirror-spaces-webhook.png`
