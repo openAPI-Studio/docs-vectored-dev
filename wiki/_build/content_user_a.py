@@ -59,8 +59,9 @@ USER_A = [
 
             H("The sidebar"),
             TABLE(["Entry", "What it opens"], [
-                ["**Dashboard**", "Your dashboard, the platform's overview page."],
+                ["**Dashboard**", "Your dashboard: the newest posts of the blogs you follow and of your spaces, and widgets from plugins."],
                 ["**Spaces**", "Every space you can see. See [Spaces](spaces.html)."],
+                ["**Blogs**", "Posts from every space's blog you can read. See [Space blogs](blogs.html#the-company-blogs-page)."],
                 ["**Labels**", "Every label in use, and the pages that carry each one. See [Labels and feedback](labels-and-feedback.html)."],
                 ["**Q&A**", "Questions and answers for your organization, when you may read them. See [Q&A](qna.html)."],
                 ["**Calendar**", "Space calendars, scheduled publishes and review-by dates. See [Calendar](calendar.html)."],
@@ -90,7 +91,7 @@ USER_A = [
     ("search", dict(
         label="Search", title="Search", icon="search",
         desc="Find spaces, pages, labels and questions from the search box at the top of every screen",
-        keywords=["search", "find", "palette", "ctrl+k", "cmd+k", "shortcut", "spaces", "pages", "labels", "questions", "api"],
+        keywords=["search", "find", "palette", "ctrl+k", "cmd+k", "shortcut", "spaces", "pages", "posts", "labels", "questions", "api"],
         blocks=[
             H("Overview"),
             P("The search box at the top of every screen finds what you can open across the Wiki: spaces, pages, labels and questions, and for administrators settings, people and groups. Open it by clicking the box, with **Ctrl+K** (**⌘K** on a Mac), or with **/** when you aren't typing in a field. On a phone, tap the search button in the header; the search fills the screen."),
@@ -107,6 +108,7 @@ USER_A = [
                 ["Spaces", "Name and key", "The space's overview"],
                 ["Pages", "Words of the page's title (published pages only)", "The page"],
                 ["Labels", "Labels that start with what you typed, on pages you can read", "The label's list of pages"],
+                ["Posts", "Words of a blog post's title (published posts only)", "The post. See [Space blogs](blogs.html)"],
                 ["Questions", "Title and text of a question", "The question in [Q&A](qna.html)"],
                 ["Settings", "A setting's label, tab or page", "For people who can open Settings"],
                 ["People and groups", "Name, username, email", "For administrators who may see them"],
@@ -240,6 +242,8 @@ USER_A = [
             P("**Spaces** in the sidebar lists every space you can see, with its visibility, when it last changed and your role. **All** shows them all, **Yours** only those where you have a role. Filter by name with **Search spaces** or by visibility."),
             SHOT("spaces-list.png", "Spaces: every space you can see, with its visibility and your role"),
 
+            P("Besides its pages, each space has a **Blog** tab for dated posts: updates, announcements and stories. See [Space blogs](blogs.html)."),
+
             H("Who can see a space"),
             TABLE(["Visibility", "Who can read", "Who can edit"], [
                 ["**Private**", "Only members of the space", "Members with the Editor or Admin role"],
@@ -254,6 +258,8 @@ USER_A = [
                 ["Read pages", "Yes", "Yes", "Yes", "Yes"],
                 ["Comment on pages", "No", "Yes", "Yes", "Yes"],
                 ["Create, edit, move and delete pages", "No", "No", "Yes", "Yes"],
+                ["Write blog posts and edit your own", "No", "If the space allows", "Yes", "Yes"],
+                ["Edit anyone's blog post, manage the blog", "No", "No", "No", "Yes"],
                 ["Manage members", "No", "No", "No", "Yes"],
                 ["Change name, description and visibility", "No", "No", "No", "Yes"],
                 ["Delete the space", "No", "No", "No", "Yes"],

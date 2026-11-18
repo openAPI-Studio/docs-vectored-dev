@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-113 screenshots. Save each one into `wiki/assets/` using the
+124 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -145,8 +145,31 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `import-and-export-download.png`
       The Download menu above a page: Word document or PDF
+- [ ] `export-blog-post-pdf.png`
+      The first page of a blog post downloaded as PDF: title, date and authors, cover image
 - [ ] `import-and-export-report.png`
       The Import tab's report for a checked export, before the import starts
+- [ ] `import-blog-posts.png`
+      A checked Confluence export with a blog post: Where blog posts go, On the space's blog or Under a page
+
+## Space blogs
+
+- [ ] `blog-tab.png`
+      A space's Blog tab: the featured post, the posts newest first, your drafts and the archive by month
+- [ ] `blog-post.png`
+      A post as readers see it, with Edit for its authors and Feature for the space's admins
+- [ ] `blog-feed.png`
+      The Feed dialog: the blog's public address and your personal addresses, shown once
+- [ ] `blog-company.png`
+      The company Blogs page: Following and All spaces, the space filter, posts with their comments and likes, and the blogs you follow
+- [ ] `blog-dashboard.png`
+      The dashboard's Latest posts card
+- [ ] `blog-editor-post-settings.png`
+      The editor for a post: the Post panel with summary, cover, comments and co-authors
+- [ ] `blog-review.png`
+      A reviewer reading a draft post, with the review requests under it
+- [ ] `blog-settings.png`
+      Space settings, Blog: on or off, who writes posts, comments on new posts, the company Blogs page, review before publishing and the public feed
 
 ## Q&amp;A
 
@@ -168,6 +191,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `analytics-overview.png`
       Analytics: views, readers, pages published and editors, the views by day chart and the most viewed spaces
+- [ ] `analytics-posts.png`
+      A space's analytics, Posts: posts and new posts, views and readers, the most read posts and their authors
 - [ ] `analytics-page.png`
       A page's analytics: views, readers, reading time and the helpful answers
 - [ ] `analytics-health.png`

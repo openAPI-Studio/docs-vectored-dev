@@ -14,7 +14,12 @@ from content_platform_operate import PLATFORM_OPERATE
 
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
-CHANGELOG = []
+CHANGELOG = [
+    ("2026-11-18", "Space blogs", "Blog posts in a Confluence export can become posts on the space's blog, a post downloaded as Word or PDF starts with its date, authors and cover image, and plugins can add a panel to a space's Blog tab."),
+    ("2026-11-18", "Space blogs", "A Blogs page gathers the posts of every blog you can read, the dashboard shows the latest posts of the blogs you follow, search finds posts, and space analytics have a Posts tab."),
+    ("2026-11-17", "Space blogs", "Blogs can require review before a post is first published, tell their followers about new posts, and be followed in a feed reader through a public or personal feed address."),
+    ("2026-11-17", "Space blogs", "Each space has a Blog tab for dated posts, with featured posts, an archive by month, following, co-authors, cover images and blog settings for space admins."),
+]
 
 INTRO = [
     NOTE("The Wiki isn't released yet. Early adopters: [contact us for access](../support.html?tool=wiki&type=access) to get the server and a license."),

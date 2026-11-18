@@ -649,14 +649,15 @@ admin:
             TABLE(["Space role", "Can"], [
                 ["Viewer", "Read pages"],
                 ["Commenter", "Also comment on pages"],
-                ["Editor", "Also create, edit, move and delete pages"],
-                ["Admin", "Also manage members and settings, import pages, and delete the space"],
+                ["Editor", "Also create, edit, move and delete pages, and write blog posts"],
+                ["Admin", "Also manage members and settings, import pages, and delete the space; edit any blog post and manage the space's blog"],
             ]),
             UL([
                 "When someone has several roles in a space (their own and their groups'), **the highest one counts**.",
                 "Removing a person from **Members** leaves the roles they have through groups.",
                 "Nothing stops an admin from removing the space's last admin; a super admin can still add one back.",
                 "The Wiki has no per-page restrictions yet: every page of a space is readable by everyone who can read the space. Drafts are seen only by those who edit the space.",
+                "Blog posts are the exception for editing: only a post's authors (its writer and co-authors) and the space's admins edit it, and only they see it while it is a draft. A space's admins can let Commenters write posts too.",
             ]),
             H("Visibility"),
             TABLE(["Visibility", "Who reads it", "Who writes"], [
@@ -784,7 +785,7 @@ admin:
             H("What can be imported"),
             SHOT("confluence-import-space-tab.png", "A space's Import tab: choose a Confluence export or Markdown, and earlier imports"),
             TABLE(["Source", "What comes in"], [
-                ["**Confluence space export** (Space tools → Export, XML, full export, a `.zip`)", "Pages with their tree, versions with dates and authors, comments, labels, blog posts (under a page you name), and images and videos as attachments. Common macros become Wiki blocks; others become a plain-text block a plugin may convert"],
+                ["**Confluence space export** (Space tools → Export, XML, full export, a `.zip`)", "Pages with their tree, versions with dates and authors, comments, labels, blog posts (as posts on the space's blog, or under a page you name), and images and videos as attachments. Common macros become Wiki blocks; others become a plain-text block a plugin may convert"],
                 ["**Markdown**: one `.md` file, or a `.zip` of a folder", "Each folder becomes a page holding its files' pages (`index.md` or `README.md` is the folder's text); titles from front matter or the first heading; `tags` become labels; images in the upload become attachments"],
             ]),
             UL([

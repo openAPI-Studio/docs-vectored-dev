@@ -331,7 +331,9 @@ USER_B = [
                 "PNG, JPEG and GIF images are included; other images and videos become a note or a link.",
                 "The Word file shows every language. The PDF draws Latin, Greek and Cyrillic text; other scripts and emoji don't show there yet, so use Word for them. Pages are A4.",
                 "A very large page can take too long to turn into a file; try again later or download a smaller page. When many people export at once, the Wiki asks you to try again in a moment.",
+                "A [blog post](blogs.html)'s file starts with its title, its date and authors, and its cover image.",
             ]),
+            SHOT("export-blog-post-pdf.png", "The first page of a blog post downloaded as PDF: title, date and authors, cover image"),
 
             H("Import Markdown"),
             P("A space's admins import Markdown on the space's **Import** tab: one `.md` file, or a `.zip` of a folder of `.md` files with their images."),
@@ -347,9 +349,113 @@ USER_B = [
             H("Import from Confluence"),
             P("A Confluence space export (Space tools → Export, XML, full export, as a `.zip`) is imported the same way, with its page tree, versions, comments, labels, images and videos, and people matched by email. "
               "See [Import from Confluence](confluence-import.html) for the steps and what converts."),
+            P("When the export has blog posts and the space's [blog](blogs.html) is on, the report asks **Where blog posts go**:"),
+            UL([
+                "**On the space's blog** (the default): each becomes a post on the Blog tab, dated when it was written in Confluence, with its authors where they have an account here. Followers aren't alerted about imported posts.",
+                "**Under a page**: as before blogs came to the Wiki, the posts become pages under a page with the title you give.",
+            ]),
+            P("With the space's blog off, blog posts always go under a page."),
+            SHOT("import-blog-posts.png", "A checked Confluence export with a blog post: Where blog posts go, On the space's blog or Under a page"),
             NOTE("Imports are for the space's admins, and your administrator can turn them off or limit the upload size."),
         ])),
 
+    ("blogs", dict(
+        label="Space blogs", title="Space blogs", icon="rss",
+        desc="Dated posts for a space's updates, announcements and stories: reading, following, writing and managing a blog",
+        keywords=["blog", "blogs", "post", "posts", "announcement", "news", "updates", "follow", "featured", "co-author", "cover", "archive", "summary", "feed", "atom", "rss", "feed reader", "review", "approval", "notify followers", "company blogs", "dashboard", "latest posts", "confluence", "import", "export", "pdf", "word"],
+        blocks=[
+            H("Overview"),
+            P("Every space can have a **blog**: dated posts for its updates, announcements and stories, newest first. A post is written, published, commented on and versioned like a page, but it isn't part of the page tree: it lives on the space's **Blog** tab, has an address of its own, a date, its authors, a summary and an optional cover image."),
+            P("New spaces start with the blog on. In spaces that existed before blogs came to the Wiki, it is off until a space admin turns it on."),
+
+            H("Reading a blog"),
+            P("Open a space and choose the **Blog** tab. A post the space's admins featured comes first, then the published posts, newest first; **More posts** loads older ones. **Archive** on the side lists the months with posts: choose one to see that month's only, or **All posts** to go back."),
+            SHOT("blog-tab.png", "A space's Blog tab: the featured post, the posts newest first, your drafts and the archive by month"),
+            P("Open a post to read it: its cover, title, date and authors, the published text, its labels and its comments. When the authors closed comments, the post says so, and the comments it already has stay."),
+            SHOT("blog-post.png", "A post as readers see it, with Edit for its authors and Feature for the space's admins"),
+            P("If the blog is off, the tab says the space has no blog. Posts written while it was on aren't shown in the list, but links to them still work."),
+
+            H("Following a blog"),
+            P("**Follow** on the Blog tab adds you to the blog's followers; the tab shows how many there are. **Unfollow** takes you off again. You need to be signed in."),
+            P("When a post is published for the first time, its blog's followers get an alert with a link to it (in the bell menu, and by email or digest as their alert preferences say). Its authors aren't told, nor anyone who can no longer read the space. Authors can turn this off for a small post, such as a correction; later publishes of a post tell nobody."),
+
+            H("Following in a feed reader"),
+            P("**Feed** on the Blog tab gives addresses a feed reader (Feedly, Thunderbird, Outlook and others that read Atom feeds) uses to show new posts: each post's title, summary, date, authors and a link."),
+            UL([
+                "**Public address of this blog**: shown when the space is public and its admins allow a public feed. Anyone can read it without signing in.",
+                "**Your personal address**: choose **Make an address** to get two addresses, one for this blog and one for every blog you can read. They read the blogs as you, without signing in, so keep them to yourself. They are shown only once: copy them right away.",
+            ]),
+            P("Lost the address, or shared it by mistake? Choose **Make a new address**: the old one stops working. **Stop the address** turns it off. Signing out of your other sessions also stops it."),
+            SHOT("blog-feed.png", "The Feed dialog: the blog's public address and your personal addresses, shown once"),
+
+            H("The company Blogs page"),
+            P("**Blogs** in the left menu gathers the posts of every blog you can read, newest first, twelve at a time with **Load more**. Each post shows its space (a link to that blog), title, summary, authors, date, and how many comments and likes it has."),
+            UL([
+                "**Following** shows posts from the blogs you follow; **All spaces** shows every blog. The page starts on Following when you follow at least one blog.",
+                "**Space** narrows the list to one blog.",
+                "**Blogs you follow** lists the blogs you follow, each a link to its Blog tab.",
+                "**Feed** gives your personal feed address for every blog you can read (see [Following in a feed reader](#following-in-a-feed-reader)).",
+            ]),
+            SHOT("blog-company.png", "The company Blogs page: Following and All spaces, the space filter, posts with their comments and likes, and the blogs you follow"),
+            P("A space's posts appear here only while its admins keep **Show posts in the company Blogs page** on. While [anonymous access](anonymous-access.html) is on, visitors who aren't signed in see the posts of public spaces, without the tabs or a feed address."),
+
+            H("Latest posts on your dashboard"),
+            P("Your **Dashboard** shows **Latest posts**: the five newest posts from the blogs you follow and from the spaces you are a member of, with **All blogs** to open the Blogs page."),
+            SHOT("blog-dashboard.png", "The dashboard's Latest posts card"),
+            P("Posts are also found by [search](search.html), by the words of their title. **Download** on a post saves it as Word or PDF, with its date, authors and cover image ([Import and export](import-and-export.html))."),
+            P("A plugin your administrator installed may add a panel beside a blog's posts."),
+
+            H("Writing a post"),
+            P("**New post** appears on the Blog tab for people who may write posts in the space: editors and admins, and commenters too when the space allows it (see [Managing a space's blog](#managing-a-space-s-blog))."),
+            STEPS([
+                "Choose **New post** and give it a title. The post starts as a draft that only you, its co-authors and the space's admins see.",
+                "Write it in the editor, as you would a page. Several authors can write at the same time. See [The editor](editor.html).",
+                "In the editor's side panel, under **Post**, add a **Summary** (shown in lists and feeds, at most 300 characters), a **Cover image** and where it stays in view when cropped, whether it **Takes comments**, whether to **Tell followers when it's published**, and its **Authors**.",
+                "If the space reviews posts, ask for a review (see [Review before publishing](#review-before-publishing)).",
+                "Choose **Publish**. The post appears on the Blog tab, dated the day it was first published; later publishes update it and keep that date.",
+            ]),
+            SHOT("blog-editor-post-settings.png", "The editor for a post: the Post panel with summary, cover, comments and co-authors"),
+            P("Your unpublished posts are listed under **Your drafts** on the Blog tab, to pick up where you left off."),
+
+            H("Review before publishing"),
+            P("A space's admins can ask for every post to be reviewed before it is first published. Then **Publish** works only once someone who edits the space approved the post and no reviewer's request for changes is still open; the Post panel in the editor says where the post stands. Space admins can publish without a review, and later publishes of a published post need none."),
+            STEPS([
+                "In the editor, under **Reviews** in the side panel, choose **Ask for review** and pick one or more editors of the space, with a note and a date if you like.",
+                "Each reviewer gets an alert. Opening the post shows them the draft as it is now, with the review requests under it, where they choose **Approve** or **Ask for changes**.",
+                "After changes, ask the reviewer again: their newest answer is the one that counts.",
+                "Once approved, publish the post.",
+            ]),
+            SHOT("blog-review.png", "A reviewer reading a draft post, with the review requests under it"),
+            P("A reviewer reads the draft and its images and answers the request; they can't edit the post."),
+
+            H("Co-authors"),
+            P("A post's creator can add up to 10 co-authors, found by name among the space's people. Each must be someone who may write posts in the space. Co-authors edit, publish and change the post's settings as its creator does; the post lists them after its creator."),
+
+            H("Who can change a post"),
+            P("Only a post's authors and the space's admins edit a post, change its settings or delete it. Other editors of the space read it like everyone else and don't see its drafts. An author who can no longer write posts in the space (their role changed, or the blog was turned off) can no longer edit it; the space's admins still can."),
+            TABLE(["You are", "Read posts", "Write posts", "Edit a post", "Feature a post, blog settings"], [
+                ["Viewer", "Yes", "No", "No", "No"],
+                ["Commenter", "Yes", "If the space allows", "Your own", "No"],
+                ["Editor", "Yes", "Yes", "Your own", "No"],
+                ["Admin", "Yes", "Yes", "Any", "Yes"],
+            ]),
+
+            H("Managing a space's blog"),
+            P("Space admins find the blog's settings in the space's **Settings** tab, under **Blog**:"),
+            UL([
+                "**Blog on**: shows the Blog tab's posts and lets people write them. Turning it off hides the posts and keeps them.",
+                "**Who writes posts**: editors and admins, or commenters too.",
+                "**New posts take comments**: the starting choice for new posts; each post's authors can still change it.",
+                "**Show posts in the company Blogs page**: whether the space's published posts also appear on the Wiki's Blogs page, for everyone who can see the space.",
+                "**Review posts before they are published**: a post's first publish needs an approval (see [Review before publishing](#review-before-publishing)).",
+                "**Public feed**: while the space is public, anyone can follow its blog in a feed reader without signing in. Off, only signed-in people and personal feed addresses read it.",
+            ]),
+            SHOT("blog-settings.png", "Space settings, Blog: on or off, who writes posts, comments on new posts, the company Blogs page, review before publishing and the public feed"),
+            P("Posts from a Confluence space export come in as posts of the blog when you import the export on the space's **Import** tab ([Import and export](import-and-export.html#import-from-confluence))."),
+            P("To feature a post, open it and choose **Feature**: it moves to the top of the Blog tab until another post is featured or you choose **Stop featuring**. Only published posts can be featured."),
+            NOTE("Changes to a blog's settings, to a post's own settings and to the featured post raise events that policies, automation and plugins can use (`blog.settings.update`, `blog.post.update`, `blog.post.feature`, `blog.follow`), and are in the audit log. A post's first publish raises `blog.post.publish`, which a policy can refuse; making a personal feed address raises `blog.feed.create` and stopping it `blog.feed.delete`. Creating, publishing and deleting a post also raise the page events with `kind` set to `blog`. See [Events](events.html)."),
+        ],
+    )),
     ("qna", dict(
         label="Q&amp;A", title="Q&amp;A", icon="help",
         desc="Ask your organization a question, answer, vote, accept the answer that worked, and follow topics",
@@ -473,6 +579,10 @@ USER_B = [
                 ["A space's **Analytics** tab", "The same for one space, with **People** (who read and who published) for the space's admins"],
                 ["**Analytics** under a page's title", "One published page: its views, readers, reading time and **Was this page helpful?** answers"],
             ]),
+
+            H("Blog posts"),
+            P("A space's Analytics tab has a **Posts** tab for its [blog](blogs.html): how many posts the space has and how many were published in the period, their views and readers, the most read posts (views, readers, reading time, likes and comments in the period) and the authors whose posts were read most. Posts aren't included in the lists of pages."),
+            SHOT("analytics-posts.png", "A space's analytics, Posts: posts and new posts, views and readers, the most read posts and their authors"),
 
             H("What is counted"),
             UL([

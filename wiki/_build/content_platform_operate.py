@@ -43,6 +43,15 @@ _WIKI_EVENTS = [
         ['`wiki.label.delete`', 'before, after', 'yes', 'A site admin removes a wiki label from every page.'],
         ['`wiki.label.update`', 'before, after', 'yes', 'A site admin renames a wiki label, or merges it into another label.'],
     ]),
+    ('Blogs', [
+        ['`blog.follow`', 'after', 'no', "Someone starts or stops following a wiki space's blog (followers are told about new posts)."],
+        ['`blog.feed.create`', 'before, after', 'yes · fail closed', "Someone makes a personal feed address for the wiki's blogs (the old one stops). A policy can refuse it."],
+        ['`blog.feed.delete`', 'after', 'no', "A personal feed address for the wiki's blogs is stopped: by its owner, or by signing out of their other sessions."],
+        ['`blog.post.feature`', 'before, after', 'yes · policies', "A space admin pins a post to the top of the space's blog, or unpins it."],
+        ['`blog.post.publish`', 'before, after', 'yes · policies', "A blog post is published for the first time (later publishes are page.publish only). After it, the blog's followers are told unless its authors turned that off."],
+        ['`blog.post.update`', 'before, after', 'yes · policies', "A blog post's summary, cover, co-authors, comment setting or whether followers are told changes. Its title and content are page events (page.update, page.publish with kind blog)."],
+        ['`blog.settings.update`', 'before, after', 'yes · policies', "A wiki space's blog settings change: the blog is turned on or off, who may write posts, whether new posts take comments, whether posts show on the company Blogs page, review before publishing, the public feed."],
+    ]),
     ('Calendar', [
         ['`calendar.event.create`', 'before, after', 'yes · policies', "An event or someone's leave is added to a wiki space's calendar. Policies can refuse it; automation can, for example, copy events to another calendar."],
         ['`calendar.event.delete`', 'before, after', 'yes · policies', "An event or leave is removed from a wiki space's calendar."],
@@ -1128,6 +1137,7 @@ CONFIG_ENCRYPTION_KEY=... ./wiki-server --restore-file /backups/wiki-20261011T02
             P("A plugin can bring its own screens. They are declared in its package and appear only while the plugin is active; deactivating or uninstalling it removes them everywhere at once. Each screen runs in a sandboxed frame styled like the Wiki, sees nothing but what the host hands it, and may show only to people with the permission the plugin names for it."),
             TABLE(["Where", "What a plugin can add"], [
                 ["Pages (`content.macro`)", "A block writers insert from the editor's **/** menu (see [Plugin blocks in pages](#plugin-blocks-in-pages))"],
+                ["A space's Blog tab (`blog.sidebar`)", "A panel beside the posts, under the drafts and the archive. It is told the space and the month shown, and is drawn for everyone who reads the blog"],
                 ["Left nav → **Plugins**", "A full page of its own, listed as a sub-item (`/plugins/<plugin>`); the plugin draws everything but the left and top nav"],
                 ["Dashboard", "A widget"],
                 ["Profile menu, Profile → settings", "A menu entry that opens a dialog; a section in the **Access** group of your profile settings"],
@@ -1190,7 +1200,7 @@ CONFIG_ENCRYPTION_KEY=... ./wiki-server --restore-file /backups/wiki-20261011T02
                 ["`secrets`", "Values administrators set, added as a header for the hosts listed; `required`, `placeholder` and `helpUrl` work as for settings"],
                 ["`settings`", "Up to 30 options: `boolean`, `string` (with `maxLength`), `integer` (with `min`/`max`) or `choice` (with `options`), each with a `default`; `required: true` needs a value saved before activation"],
                 ["`docsUrl`", "The plugin's documentation (https), linked from the setup guide"],
-                ["`ui.slots`", "The plugin's screens: each with an `id`, a `slot` (`content.macro`, `nav.page`, `dashboard.widget`, `profile.menu`, `profile.settings`, `settings.page`, `settings.section` with its `page`, `plugin.details`, `setup.step`), a `label` per language, an optional `icon`, the `entry` page under the package's `ui/` folder, and optionally the `permission` a viewer needs. A package whose entries are missing is refused"],
+                ["`ui.slots`", "The plugin's screens: each with an `id`, a `slot` (`content.macro`, `blog.sidebar`, `nav.page`, `dashboard.widget`, `profile.menu`, `profile.settings`, `settings.page`, `settings.section` with its `page`, `plugin.details`, `setup.step`), a `label` per language, an optional `icon`, the `entry` page under the package's `ui/` folder, and optionally the `permission` a viewer needs. A package whose entries are missing is refused"],
                 ["`icon`", "The plugin's own icon: an SVG file in the package's `ui/` folder, at most 32 KB, drawn in one colour that follows the theme. Plain shapes only: a file with scripts, event attributes, embedded images or links is refused on install"],
                 ["`mobile`", "`false` when the plugin's screens don't work on small screens: on phones its page, menu items and dashboard widgets are then hidden, and **Settings → Plugins** marks it **Desktop only**. Default `true`"],
             ]),

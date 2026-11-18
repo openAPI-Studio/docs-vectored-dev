@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space blogs — Wiki Docs</title>
+  <meta name="description" content="Dated posts for a space's updates, announcements and stories: reading, following, writing and managing a blog">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></div>
+      <h1 class="vc-h1">Space blogs</h1>
+      <p class="vc-lede">Dated posts for a space's updates, announcements and stories: reading, following, writing and managing a blog</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Every space can have a <strong class="text-text">blog</strong>: dated posts for its updates, announcements and stories, newest first. A post is written, published, commented on and versioned like a page, but it isn't part of the page tree: it lives on the space's <strong class="text-text">Blog</strong> tab, has an address of its own, a date, its authors, a summary and an optional cover image.</p>
+      <p class="text-muted mb-4">New spaces start with the blog on. In spaces that existed before blogs came to the Wiki, it is off until a space admin turns it on.</p>
+      <h2 id="reading-a-blog" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Reading a blog</h2>
+      <p class="text-muted mb-4">Open a space and choose the <strong class="text-text">Blog</strong> tab. A post the space's admins featured comes first, then the published posts, newest first; <strong class="text-text">More posts</strong> loads older ones. <strong class="text-text">Archive</strong> on the side lists the months with posts: choose one to see that month's only, or <strong class="text-text">All posts</strong> to go back.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/blog-tab.png" alt="A space&#x27;s Blog tab: the featured post, the posts newest first, your drafts and the archive by month" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">blog-tab.png</p>
+          <p class="text-xs text-muted max-w-md">A space's Blog tab: the featured post, the posts newest first, your drafts and the archive by month</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A space's Blog tab: the featured post, the posts newest first, your drafts and the archive by month</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Open a post to read it: its cover, title, date and authors, the published text, its labels and its comments. When the authors closed comments, the post says so, and the comments it already has stay.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/blog-post.png" alt="A post as readers see it, with Edit for its authors and Feature for the space&#x27;s admins" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">blog-post.png</p>
+          <p class="text-xs text-muted max-w-md">A post as readers see it, with Edit for its authors and Feature for the space's admins</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A post as readers see it, with Edit for its authors and Feature for the space's admins</figcaption>
+      </figure>
+      <p class="text-muted mb-4">If the blog is off, the tab says the space has no blog. Posts written while it was on aren't shown in the list, but links to them still work.</p>
+      <h2 id="following-a-blog" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Following a blog</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Follow</strong> on the Blog tab adds you to the blog's followers; the tab shows how many there are. <strong class="text-text">Unfollow</strong> takes you off again. You need to be signed in.</p>
+      <p class="text-muted mb-4">When a post is published for the first time, its blog's followers get an alert with a link to it (in the bell menu, and by email or digest as their alert preferences say). Its authors aren't told, nor anyone who can no longer read the space. Authors can turn this off for a small post, such as a correction; later publishes of a post tell nobody.</p>
+      <h2 id="following-in-a-feed-reader" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Following in a feed reader</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Feed</strong> on the Blog tab gives addresses a feed reader (Feedly, Thunderbird, Outlook and others that read Atom feeds) uses to show new posts: each post's title, summary, date, authors and a link.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Public address of this blog</strong>: shown when the space is public and its admins allow a public feed. Anyone can read it without signing in.</li><li><strong class="text-text">Your personal address</strong>: choose <strong class="text-text">Make an address</strong> to get two addresses, one for this blog and one for every blog you can read. They read the blogs as you, without signing in, so keep them to yourself. They are shown only once: copy them right away.</li></ul>
+      <p class="text-muted mb-4">Lost the address, or shared it by mistake? Choose <strong class="text-text">Make a new address</strong>: the old one stops working. <strong class="text-text">Stop the address</strong> turns it off. Signing out of your other sessions also stops it.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/blog-feed.png" alt="The Feed dialog: the blog&#x27;s public address and your personal addresses, shown once" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">blog-feed.png</p>
+          <p class="text-xs text-muted max-w-md">The Feed dialog: the blog's public address and your personal addresses, shown once</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Feed dialog: the blog's public address and your personal addresses, shown once</figcaption>
+      </figure>
+      <h2 id="the-company-blogs-page" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. The company Blogs page</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Blogs</strong> in the left menu gathers the posts of every blog you can read, newest first, twelve at a time with <strong class="text-text">Load more</strong>. Each post shows its space (a link to that blog), title, summary, authors, date, and how many comments and likes it has.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Following</strong> shows posts from the blogs you follow; <strong class="text-text">All spaces</strong> shows every blog. The page starts on Following when you follow at least one blog.</li><li><strong class="text-text">Space</strong> narrows the list to one blog.</li><li><strong class="text-text">Blogs you follow</strong> lists the blogs you follow, each a link to its Blog tab.</li><li><strong class="text-text">Feed</strong> gives your personal feed address for every blog you can read (see <a href="#following-in-a-feed-reader" class="text-cta hover:underline">Following in a feed reader</a>).</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/blog-company.png" alt="The company Blogs page: Following and All spaces, the space filter, posts with their comments and likes, and the blogs you follow" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">blog-company.png</p>
+          <p class="text-xs text-muted max-w-md">The company Blogs page: Following and All spaces, the space filter, posts with their comments and likes, and the blogs you follow</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The company Blogs page: Following and All spaces, the space filter, posts with their comments and likes, and the blogs you follow</figcaption>
+      </figure>
+      <p class="text-muted mb-4">A space's posts appear here only while its admins keep <strong class="text-text">Show posts in the company Blogs page</strong> on. While <a href="../admin/anonymous-access.html" class="text-cta hover:underline">anonymous access</a> is on, visitors who aren't signed in see the posts of public spaces, without the tabs or a feed address.</p>
+      <h2 id="latest-posts-on-your-dashboard" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Latest posts on your dashboard</h2>
+      <p class="text-muted mb-4">Your <strong class="text-text">Dashboard</strong> shows <strong class="text-text">Latest posts</strong>: the five newest posts from the blogs you follow and from the spaces you are a member of, with <strong class="text-text">All blogs</strong> to open the Blogs page.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/blog-dashboard.png" alt="The dashboard&#x27;s Latest posts card" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">blog-dashboard.png</p>
+          <p class="text-xs text-muted max-w-md">The dashboard's Latest posts card</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The dashboard's Latest posts card</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Posts are also found by <a href="search.html" class="text-cta hover:underline">search</a>, by the words of their title. <strong class="text-text">Download</strong> on a post saves it as Word or PDF, with its date, authors and cover image (<a href="import-and-export.html" class="text-cta hover:underline">Import and export</a>).</p>
+      <p class="text-muted mb-4">A plugin your administrator installed may add a panel beside a blog's posts.</p>
+      <h2 id="writing-a-post" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Writing a post</h2>
+      <p class="text-muted mb-4"><strong class="text-text">New post</strong> appears on the Blog tab for people who may write posts in the space: editors and admins, and commenters too when the space allows it (see <a href="#managing-a-space-s-blog" class="text-cta hover:underline">Managing a space's blog</a>).</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Choose <strong class="text-text">New post</strong> and give it a title. The post starts as a draft that only you, its co-authors and the space's admins see.</span></li><li class="pl-2"><span class="text-text font-medium">Write it in the editor, as you would a page. Several authors can write at the same time. See <a href="editor.html" class="text-cta hover:underline">The editor</a>.</span></li><li class="pl-2"><span class="text-text font-medium">In the editor's side panel, under <strong class="text-text">Post</strong>, add a <strong class="text-text">Summary</strong> (shown in lists and feeds, at most 300 characters), a <strong class="text-text">Cover image</strong> and where it stays in view when cropped, whether it <strong class="text-text">Takes comments</strong>, whether to <strong class="text-text">Tell followers when it's published</strong>, and its <strong class="text-text">Authors</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">If the space reviews posts, ask for a review (see <a href="#review-before-publishing" class="text-cta hover:underline">Review before publishing</a>).</span></li><li class="pl-2"><span class="text-text font-medium">Choose <strong class="text-text">Publish</strong>. The post appears on the Blog tab, dated the day it was first published; later publishes update it and keep that date.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/blog-editor-post-settings.png" alt="The editor for a post: the Post panel with summary, cover, comments and co-authors" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">blog-editor-post-settings.png</p>
+          <p class="text-xs text-muted max-w-md">The editor for a post: the Post panel with summary, cover, comments and co-authors</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The editor for a post: the Post panel with summary, cover, comments and co-authors</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Your unpublished posts are listed under <strong class="text-text">Your drafts</strong> on the Blog tab, to pick up where you left off.</p>
+      <h2 id="review-before-publishing" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Review before publishing</h2>
+      <p class="text-muted mb-4">A space's admins can ask for every post to be reviewed before it is first published. Then <strong class="text-text">Publish</strong> works only once someone who edits the space approved the post and no reviewer's request for changes is still open; the Post panel in the editor says where the post stands. Space admins can publish without a review, and later publishes of a published post need none.</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">In the editor, under <strong class="text-text">Reviews</strong> in the side panel, choose <strong class="text-text">Ask for review</strong> and pick one or more editors of the space, with a note and a date if you like.</span></li><li class="pl-2"><span class="text-text font-medium">Each reviewer gets an alert. Opening the post shows them the draft as it is now, with the review requests under it, where they choose <strong class="text-text">Approve</strong> or <strong class="text-text">Ask for changes</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">After changes, ask the reviewer again: their newest answer is the one that counts.</span></li><li class="pl-2"><span class="text-text font-medium">Once approved, publish the post.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/blog-review.png" alt="A reviewer reading a draft post, with the review requests under it" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">blog-review.png</p>
+          <p class="text-xs text-muted max-w-md">A reviewer reading a draft post, with the review requests under it</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A reviewer reading a draft post, with the review requests under it</figcaption>
+      </figure>
+      <p class="text-muted mb-4">A reviewer reads the draft and its images and answers the request; they can't edit the post.</p>
+      <h2 id="co-authors" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Co-authors</h2>
+      <p class="text-muted mb-4">A post's creator can add up to 10 co-authors, found by name among the space's people. Each must be someone who may write posts in the space. Co-authors edit, publish and change the post's settings as its creator does; the post lists them after its creator.</p>
+      <h2 id="who-can-change-a-post" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Who can change a post</h2>
+      <p class="text-muted mb-4">Only a post's authors and the space's admins edit a post, change its settings or delete it. Other editors of the space read it like everyone else and don't see its drafts. An author who can no longer write posts in the space (their role changed, or the blog was turned off) can no longer edit it; the space's admins still can.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>You are</th><th>Read posts</th><th>Write posts</th><th>Edit a post</th><th>Feature a post, blog settings</th></tr></thead><tbody><tr><td>Viewer</td><td>Yes</td><td>No</td><td>No</td><td>No</td></tr><tr><td>Commenter</td><td>Yes</td><td>If the space allows</td><td>Your own</td><td>No</td></tr><tr><td>Editor</td><td>Yes</td><td>Yes</td><td>Your own</td><td>No</td></tr><tr><td>Admin</td><td>Yes</td><td>Yes</td><td>Any</td><td>Yes</td></tr></tbody></table></div>
+      <h2 id="managing-a-space-s-blog" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. Managing a space's blog</h2>
+      <p class="text-muted mb-4">Space admins find the blog's settings in the space's <strong class="text-text">Settings</strong> tab, under <strong class="text-text">Blog</strong>:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Blog on</strong>: shows the Blog tab's posts and lets people write them. Turning it off hides the posts and keeps them.</li><li><strong class="text-text">Who writes posts</strong>: editors and admins, or commenters too.</li><li><strong class="text-text">New posts take comments</strong>: the starting choice for new posts; each post's authors can still change it.</li><li><strong class="text-text">Show posts in the company Blogs page</strong>: whether the space's published posts also appear on the Wiki's Blogs page, for everyone who can see the space.</li><li><strong class="text-text">Review posts before they are published</strong>: a post's first publish needs an approval (see <a href="#review-before-publishing" class="text-cta hover:underline">Review before publishing</a>).</li><li><strong class="text-text">Public feed</strong>: while the space is public, anyone can follow its blog in a feed reader without signing in. Off, only signed-in people and personal feed addresses read it.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/blog-settings.png" alt="Space settings, Blog: on or off, who writes posts, comments on new posts, the company Blogs page, review before publishing and the public feed" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">blog-settings.png</p>
+          <p class="text-xs text-muted max-w-md">Space settings, Blog: on or off, who writes posts, comments on new posts, the company Blogs page, review before publishing and the public feed</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Space settings, Blog: on or off, who writes posts, comments on new posts, the company Blogs page, review before publishing and the public feed</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Posts from a Confluence space export come in as posts of the blog when you import the export on the space's <strong class="text-text">Import</strong> tab (<a href="import-and-export.html#import-from-confluence" class="text-cta hover:underline">Import and export</a>).</p>
+      <p class="text-muted mb-4">To feature a post, open it and choose <strong class="text-text">Feature</strong>: it moves to the top of the Blog tab until another post is featured or you choose <strong class="text-text">Stop featuring</strong>. Only published posts can be featured.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Changes to a blog's settings, to a post's own settings and to the featured post raise events that policies, automation and plugins can use (<span class="font-mono text-sm break-words">blog.settings.update</span>, <span class="font-mono text-sm break-words">blog.post.update</span>, <span class="font-mono text-sm break-words">blog.post.feature</span>, <span class="font-mono text-sm break-words">blog.follow</span>), and are in the audit log. A post's first publish raises <span class="font-mono text-sm break-words">blog.post.publish</span>, which a policy can refuse; making a personal feed address raises <span class="font-mono text-sm break-words">blog.feed.create</span> and stopping it <span class="font-mono text-sm break-words">blog.feed.delete</span>. Creating, publishing and deleting a post also raise the page events with <span class="font-mono text-sm break-words">kind</span> set to <span class="font-mono text-sm break-words">blog</span>. See <a href="events.html" class="text-cta hover:underline">Events</a>.</p></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
