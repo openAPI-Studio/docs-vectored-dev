@@ -15,6 +15,7 @@ from content_platform_operate import PLATFORM_OPERATE
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-18", "Whiteboards", "Whiteboards are safer to share: visitors of public spaces who aren't signed in no longer see history or downloads, a board too large to read keeps showing its last picture and can be reset to it, very complex boards are drawn within limits (downloads say when a board is too complex), and new comment pins need the Enterprise licence."),
     ("2026-11-18", "Whiteboards", "Whiteboards can be facilitated (a shared timer, dot voting, private mode that hides new notes until revealed, and follow me), new boards can start with notes hidden, mind maps grow with Enter and Tab, an items list reads the board in order for keyboards and screen readers, and the toolbar folds to seven tools on phones."),
     ("2026-11-18", "Whiteboards", "Live whiteboards (Enterprise): sticky notes, pens, shapes, connectors and frames drawn together with everyone's cursors, six canvas types and space templates, comments, versions and downloads, a read-only view, and a whiteboard block for pages."),
     ("2026-11-18", "Space blogs", "Blog posts in a Confluence export can become posts on the space's blog, a post downloaded as Word or PDF starts with its date, authors and cover image, and plugins can add a panel to a space's Blog tab."),

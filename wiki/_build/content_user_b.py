@@ -552,7 +552,7 @@ USER_B = [
             SHOT("whiteboard-block.png", "A page with a whiteboard block: the board's picture and a link to open it"),
 
             H("Read-only view"),
-            P("Viewers, guests and visitors of public spaces see a read-only view: the board as last saved, with pan, zoom, the items list, comments (for those who may comment), history and downloads. It refreshes every 30 seconds while open."),
+            P("Viewers and guests see a read-only view: the board as last saved, with pan, zoom, the items list, comments (for those who may comment), history and downloads. It refreshes every 30 seconds while open. Visitors of a public space who aren't signed in see the board, its picture and its comments, but not its history or downloads; signing in shows those."),
             SHOT("whiteboard-read-view.png", "The read-only view of a whiteboard"),
 
             H("The items list and keyboard"),
@@ -578,7 +578,8 @@ USER_B = [
 
             H("Who can do what"),
             TABLE(["You are", "View", "Comment", "Draw and facilitate", "Make, save as template, delete"], [
-                ["Viewer (and guests, public visitors)", "Read-only view", "No", "No", "No"],
+                ["Viewer (and guests)", "Read-only view, history and downloads", "No", "No", "No"],
+                ["Public visitor, not signed in", "Read-only view, without history or downloads", "No", "No", "No"],
                 ["Commenter", "Read-only view", "Yes", "No", "No"],
                 ["Editor", "Live", "Yes", "Yes", "Make and delete; templates need a space admin"],
                 ["Admin", "Live", "Yes", "Yes", "Yes"],
@@ -589,12 +590,13 @@ USER_B = [
                 ["Items on a whiteboard", "20,000"],
                 ["Images on a whiteboard", "500"],
                 ["Text in one item", "2,000 characters"],
-                ["People on a whiteboard at once", "50 on each server"],
+                ["People on a whiteboard at once", "50 on each server, 3 connections each"],
                 ["Automatic versions", "Kept 30 days, at most 200 per board; named versions are kept"],
                 ["Votes each in a round", "20"],
                 ["A timer", "Up to 4 hours"],
             ]),
-            P("A whiteboard that reaches its item or image limit, or grows too large, stops taking changes and says why; an editor can reset it to one of its versions from **History**."),
+            P("A whiteboard that reaches its item or image limit, or grows too large to read, stops taking changes and says why. It keeps showing the board as it was last read. An editor can reset it from **History**: to one of its versions, or with **Reset the board to how it was last shown** when there is none to pick. A board that can still be read is kept as a version first. Notes hidden by private mode come back blank after a reset to how the board was last shown."),
+            P("A whiteboard too complex to download (thousands of large shapes or long texts) answers **This whiteboard is too complex to export**: download one of its frames instead. Its picture in pages and lists is still drawn, as far as it goes. Drawing pictures on request is limited per person (about 30 a minute) and per server, so a very busy server may ask you to try again in a moment."),
             NOTE("Creating a whiteboard raises `page.create` with `kind` `board`; changes raise `board.update` once people stop for a while, and versions raise `board.version.create`, `board.version.restore` and `board.version.delete` (`board.reset` when a stopped board is reset). The board's watchers are told about changes. Timers, voting and private mode raise no events. See [Events](events.html)."),
         ],
     )),
