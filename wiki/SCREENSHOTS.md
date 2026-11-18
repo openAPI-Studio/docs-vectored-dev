@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-133 screenshots. Save each one into `wiki/assets/` using the
+138 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -86,6 +86,16 @@ realistic but fictional names and figures rather than real people's data.
       An uploaded video with its poster frame and caption
 - [ ] `macros-spreadsheet.png`
       A spreadsheet table: amounts in euros with a total worked out by a formula
+- [ ] `macros-mermaid-editor.png`
+      A Mermaid diagram in the editor: its text above, the drawing below
+- [ ] `macros-mermaid-error.png`
+      A mistake on line 11: the block names the line and dims the last drawing that worked
+- [ ] `macros-html-block.png`
+      A page with a Mermaid diagram and an HTML block showing a live release train
+- [ ] `settings-html-blocks.png`
+      Settings → Security → HTML blocks: on, space admins add them, one allowed site
+- [ ] `macros-html-dialog.png`
+      Adding an HTML block: the preview runs, and a call to a site that isn't allowed is listed as blocked
 - [ ] `macros-plugin-block.png`
       A plugin block on a page: a progress bar from a sample plugin
 

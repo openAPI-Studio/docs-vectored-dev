@@ -392,7 +392,7 @@ USER_A = [
             H("The \"/\" menu"),
             P("Type **/** at the start of a line or after a space to insert any block. Keep typing to narrow the list, use **↑** and **↓** to move, **Enter** to insert and **Esc** to close it."),
             SHOT("editor-slash-menu.png", "The \"/\" menu, listing the blocks you can insert"),
-            P("It lists text styles and lists, **Quote**, **Code block**, **Divider**, **Table**, **Spreadsheet table**, **Image**, **Video**, **Table of contents**, and the blocks described in [Blocks and macros](macros.html): panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, a [whiteboard](whiteboards.html) (Enterprise), and blocks from plugins."),
+            P("It lists text styles and lists, **Quote**, **Code block**, **Divider**, **Table**, **Spreadsheet table**, **Image**, **Video**, **Table of contents**, and the blocks described in [Blocks and macros](macros.html): Mermaid diagrams, HTML blocks (when turned on), panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, a [whiteboard](whiteboards.html) (Enterprise), and blocks from plugins."),
 
             H("Headings and heading numbers"),
             P("Use **Heading 1** to **Heading 3** to structure a page. Each heading gets an anchor from its words, so you can link to it with `#section-…` after the page's address, and a table of contents lists it."),
@@ -439,8 +439,8 @@ USER_A = [
     # ------------------------------------------------------------------
     ("macros", dict(
         label="Blocks and macros", title="Blocks and macros", icon="sliders",
-        desc="Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables and plugin blocks",
-        keywords=["macro", "macros", "block", "panel", "info", "warning", "tip", "expand", "decision", "excerpt", "include", "page properties", "properties report", "status", "lozenge", "anchor", "child pages", "page tree", "recently updated", "video", "spreadsheet", "formula", "sum", "plugin block"],
+        desc="Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables, Mermaid diagrams, HTML blocks and plugin blocks",
+        keywords=["macro", "macros", "block", "panel", "info", "warning", "tip", "expand", "decision", "excerpt", "include", "page properties", "properties report", "status", "lozenge", "anchor", "child pages", "page tree", "recently updated", "video", "spreadsheet", "formula", "sum", "mermaid", "diagram", "flowchart", "sequence diagram", "html", "html block", "iframe", "embed", "plugin block"],
         blocks=[
             H("Overview"),
             P("Besides text, a page can hold blocks: boxes that stand out, blocks that show other pages, videos, spreadsheet tables and blocks from plugins. Insert any of them from the **\"/\"** menu in the [editor](editor.html). To change one later, select it and choose **Block settings** in the toolbar. Pages imported from Confluence get these blocks for the macros they used; see [Import and export](import-and-export.html)."),
@@ -513,6 +513,44 @@ USER_A = [
                 ["Dates", "TODAY, DATE, DATEDIF, YEAR, MONTH, DAY, DAYS"],
             ]),
             NOTE("A table holds at most 2,000 formulas."),
+
+            H("Mermaid diagrams"),
+            P("**Mermaid diagram** draws a diagram from text written in [Mermaid](https://mermaid.js.org/) syntax: flowcharts, sequence diagrams, class and state diagrams, Gantt charts, pie charts and more. Anyone who edits the page can add one from the \"/\" menu (type `diagram`, `flowchart` or `sequence`). It starts with a small flowchart to change."),
+            SHOT("macros-mermaid-editor.png", "A Mermaid diagram in the editor: its text above, the drawing below"),
+            UL([
+                "Write the diagram's text in the block; the drawing under it follows as you type. Everyone editing the page edits the same text, as in a code block.",
+                "If the text has a mistake, the block says which line when it can, and keeps showing the last drawing that worked until it is fixed.",
+                "Add a **Caption** in the field at the top of the block; readers see it under the drawing.",
+                "Diagrams are drawn in the reader's theme, light or dark, and redrawn when they switch. Lines that set colours (`style`, `classDef`, `linkStyle`) and `%%{init}%%` settings are ignored, so every diagram stays readable in every theme.",
+                "A diagram wider than the page scrolls sideways rather than shrinking its labels until they can't be read.",
+                "Word, PDF and Markdown downloads show the diagram's text as a code block.",
+            ]),
+            SHOT("macros-mermaid-error.png", "A mistake on line 11: the block names the line and dims the last drawing that worked"),
+            P("A page holds up to 50 diagrams, each up to 20,000 characters."),
+
+            H("HTML blocks"),
+            P("An **HTML block** runs your own HTML, CSS and JavaScript on a page, such as a status widget that reads your build server. Each block runs in a sandbox: it can't read the Wiki, its cookies or the page around it, and it can reach only the sites your administrator lists."),
+            SHOT("macros-html-block.png", "A page with a Mermaid diagram and an HTML block showing a live release train"),
+            P("HTML blocks are off until an administrator turns them on:"),
+            STEPS([
+                "Open the setting|Go to **Settings → Security → HTML blocks** (needs `settings:write`).",
+                "Turn them on|Tick **Allow HTML blocks**.",
+                "Choose who adds them|**Space admins** (in the spaces they manage; recommended) or **Installation admins only** (space admins can then only move or remove blocks).",
+                "List the sites|Under **Sites blocks may reach**, add each host name blocks may load from or call, such as `status.example.com`. HTTPS only; up to 20. Everything else is blocked, including the Wiki itself.",
+                "Save|Use the page's **Save** bar.",
+            ]),
+            SHOT("settings-html-blocks.png", "Settings → Security → HTML blocks: on, space admins add them, one allowed site"),
+            P("To add a block, type `/html` in the editor (the item shows only to people who may add blocks), paste the HTML, and press **Run preview**: the block runs exactly as readers will see it, and any call to a site that isn't allowed is listed under the preview. Set a **Height** in pixels (60 to 1,200), or leave it empty to fit the content. **Save block** puts it on the page."),
+            SHOT("macros-html-dialog.png", "Adding an HTML block: the preview runs, and a call to a site that isn't allowed is listed as blocked"),
+            UL([
+                "Style the block with the theme's colours, such as `var(--dx-color-text)`, `var(--dx-color-border)` and `var(--dx-color-surface)`: they follow the reader's light or dark theme.",
+                "Anyone who edits the page can move or remove a block; only people allowed to add blocks can change what it shows (the pencil on the block). Every save is a new block, so an older version of the page keeps showing the HTML it had.",
+                "Readers see **HTML block · sandboxed** under it; people who edit the page also see the sites it may reach.",
+                "Turning the setting off hides every HTML block at once, and taking a site off the list stops it in every block. Visitors who aren't signed in see blocks only on public spaces.",
+                "A page holds up to 20 HTML blocks, each up to 64 KB. Word and PDF downloads show a note in their place: open the page in the Wiki to see it.",
+                "Saving a block raises the `html_block.create` event and changing the setting `html_block_settings.update`, so a [policy](policies.html) can, for example, refuse HTML that loads scripts. See [Events](events.html).",
+            ]),
+            WARN("The sandbox protects the Wiki and its readers, but a block's JavaScript can still send anything it shows or a reader types to the sites you list. Only list sites you trust."),
 
             H("Plugin blocks"),
             P("[Plugins](plugins.html) can add their own blocks, such as a progress bar or a diagram. While such a plugin is active, its blocks are listed in the \"/\" menu under their own names; the block is drawn by the plugin, inside the page, and its settings are inside the block."),

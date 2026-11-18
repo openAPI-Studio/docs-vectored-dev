@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blocks and macros — Wiki Docs</title>
-  <meta name="description" content="Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables and plugin blocks">
+  <meta name="description" content="Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables, Mermaid diagrams, HTML blocks and plugin blocks">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -34,7 +34,7 @@
       <div data-vc="crumbs"></div>
       <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
       <h1 class="vc-h1">Blocks and macros</h1>
-      <p class="vc-lede">Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables and plugin blocks</p>
+      <p class="vc-lede">Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables, Mermaid diagrams, HTML blocks and plugin blocks</p>
       <div data-vc="meta"></div>
       <div data-vc="contents"></div>
 
@@ -119,7 +119,78 @@
       <p class="text-muted mb-4">Functions you can use:</p>
       <div class="tbl-wrap"><table><thead><tr><th>Kind</th><th>Functions</th></tr></thead><tbody><tr><td>Sums and counts</td><td>SUM, AVERAGE, COUNT, COUNTA, COUNTBLANK, MIN, MAX, MEDIAN, PRODUCT, SUMIF, COUNTIF, AVERAGEIF</td></tr><tr><td>Numbers</td><td>ROUND, ROUNDUP, ROUNDDOWN, ABS, INT, MOD, POWER, SQRT, CEILING, FLOOR</td></tr><tr><td>Logic</td><td>IF, IFERROR, AND, OR, NOT, TRUE, FALSE, ISBLANK, ISNUMBER, ISTEXT, ISERROR</td></tr><tr><td>Lookup</td><td>VLOOKUP, HLOOKUP, INDEX</td></tr><tr><td>Text</td><td>CONCAT, CONCATENATE, LEN, LEFT, RIGHT, MID, UPPER, LOWER, TRIM, TEXT, T</td></tr><tr><td>Dates</td><td>TODAY, DATE, DATEDIF, YEAR, MONTH, DAY, DAYS</td></tr></tbody></table></div>
       <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">A table holds at most 2,000 formulas.</p></div>
-      <h2 id="plugin-blocks" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">12. Plugin blocks</h2>
+      <h2 id="mermaid-diagrams" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">12. Mermaid diagrams</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Mermaid diagram</strong> draws a diagram from text written in <a href="https://mermaid.js.org/" class="text-cta hover:underline">Mermaid</a> syntax: flowcharts, sequence diagrams, class and state diagrams, Gantt charts, pie charts and more. Anyone who edits the page can add one from the "/" menu (type <span class="font-mono text-sm break-words">diagram</span>, <span class="font-mono text-sm break-words">flowchart</span> or <span class="font-mono text-sm break-words">sequence</span>). It starts with a small flowchart to change.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-mermaid-editor.png" alt="A Mermaid diagram in the editor: its text above, the drawing below" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-mermaid-editor.png</p>
+          <p class="text-xs text-muted max-w-md">A Mermaid diagram in the editor: its text above, the drawing below</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A Mermaid diagram in the editor: its text above, the drawing below</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Write the diagram's text in the block; the drawing under it follows as you type. Everyone editing the page edits the same text, as in a code block.</li><li>If the text has a mistake, the block says which line when it can, and keeps showing the last drawing that worked until it is fixed.</li><li>Add a <strong class="text-text">Caption</strong> in the field at the top of the block; readers see it under the drawing.</li><li>Diagrams are drawn in the reader's theme, light or dark, and redrawn when they switch. Lines that set colours (<span class="font-mono text-sm break-words">style</span>, <span class="font-mono text-sm break-words">classDef</span>, <span class="font-mono text-sm break-words">linkStyle</span>) and <span class="font-mono text-sm break-words">%%{init}%%</span> settings are ignored, so every diagram stays readable in every theme.</li><li>A diagram wider than the page scrolls sideways rather than shrinking its labels until they can't be read.</li><li>Word, PDF and Markdown downloads show the diagram's text as a code block.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-mermaid-error.png" alt="A mistake on line 11: the block names the line and dims the last drawing that worked" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-mermaid-error.png</p>
+          <p class="text-xs text-muted max-w-md">A mistake on line 11: the block names the line and dims the last drawing that worked</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A mistake on line 11: the block names the line and dims the last drawing that worked</figcaption>
+      </figure>
+      <p class="text-muted mb-4">A page holds up to 50 diagrams, each up to 20,000 characters.</p>
+      <h2 id="html-blocks" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">13. HTML blocks</h2>
+      <p class="text-muted mb-4">An <strong class="text-text">HTML block</strong> runs your own HTML, CSS and JavaScript on a page, such as a status widget that reads your build server. Each block runs in a sandbox: it can't read the Wiki, its cookies or the page around it, and it can reach only the sites your administrator lists.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-html-block.png" alt="A page with a Mermaid diagram and an HTML block showing a live release train" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-html-block.png</p>
+          <p class="text-xs text-muted max-w-md">A page with a Mermaid diagram and an HTML block showing a live release train</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A page with a Mermaid diagram and an HTML block showing a live release train</figcaption>
+      </figure>
+      <p class="text-muted mb-4">HTML blocks are off until an administrator turns them on:</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the setting</span> &mdash; Go to <strong class="text-text">Settings → Security → HTML blocks</strong> (needs <span class="font-mono text-sm break-words">settings:write</span>).</li><li class="pl-2"><span class="text-text font-medium">Turn them on</span> &mdash; Tick <strong class="text-text">Allow HTML blocks</strong>.</li><li class="pl-2"><span class="text-text font-medium">Choose who adds them</span> &mdash; <strong class="text-text">Space admins</strong> (in the spaces they manage; recommended) or <strong class="text-text">Installation admins only</strong> (space admins can then only move or remove blocks).</li><li class="pl-2"><span class="text-text font-medium">List the sites</span> &mdash; Under <strong class="text-text">Sites blocks may reach</strong>, add each host name blocks may load from or call, such as <span class="font-mono text-sm break-words">status.example.com</span>. HTTPS only; up to 20. Everything else is blocked, including the Wiki itself.</li><li class="pl-2"><span class="text-text font-medium">Save</span> &mdash; Use the page's <strong class="text-text">Save</strong> bar.</li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/settings-html-blocks.png" alt="Settings → Security → HTML blocks: on, space admins add them, one allowed site" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">settings-html-blocks.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Security → HTML blocks: on, space admins add them, one allowed site</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Security → HTML blocks: on, space admins add them, one allowed site</figcaption>
+      </figure>
+      <p class="text-muted mb-4">To add a block, type <span class="font-mono text-sm break-words">/html</span> in the editor (the item shows only to people who may add blocks), paste the HTML, and press <strong class="text-text">Run preview</strong>: the block runs exactly as readers will see it, and any call to a site that isn't allowed is listed under the preview. Set a <strong class="text-text">Height</strong> in pixels (60 to 1,200), or leave it empty to fit the content. <strong class="text-text">Save block</strong> puts it on the page.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/macros-html-dialog.png" alt="Adding an HTML block: the preview runs, and a call to a site that isn&#x27;t allowed is listed as blocked" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">macros-html-dialog.png</p>
+          <p class="text-xs text-muted max-w-md">Adding an HTML block: the preview runs, and a call to a site that isn't allowed is listed as blocked</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Adding an HTML block: the preview runs, and a call to a site that isn't allowed is listed as blocked</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Style the block with the theme's colours, such as <span class="font-mono text-sm break-words">var(--dx-color-text)</span>, <span class="font-mono text-sm break-words">var(--dx-color-border)</span> and <span class="font-mono text-sm break-words">var(--dx-color-surface)</span>: they follow the reader's light or dark theme.</li><li>Anyone who edits the page can move or remove a block; only people allowed to add blocks can change what it shows (the pencil on the block). Every save is a new block, so an older version of the page keeps showing the HTML it had.</li><li>Readers see <strong class="text-text">HTML block · sandboxed</strong> under it; people who edit the page also see the sites it may reach.</li><li>Turning the setting off hides every HTML block at once, and taking a site off the list stops it in every block. Visitors who aren't signed in see blocks only on public spaces.</li><li>A page holds up to 20 HTML blocks, each up to 64 KB. Word and PDF downloads show a note in their place: open the page in the Wiki to see it.</li><li>Saving a block raises the <span class="font-mono text-sm break-words">html_block.create</span> event and changing the setting <span class="font-mono text-sm break-words">html_block_settings.update</span>, so a <a href="../admin/policies.html" class="text-cta hover:underline">policy</a> can, for example, refuse HTML that loads scripts. See <a href="events.html" class="text-cta hover:underline">Events</a>.</li></ul>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">The sandbox protects the Wiki and its readers, but a block's JavaScript can still send anything it shows or a reader types to the sites you list. Only list sites you trust.</p></div>
+      <h2 id="plugin-blocks" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">14. Plugin blocks</h2>
       <p class="text-muted mb-4"><a href="../admin/plugins.html" class="text-cta hover:underline">Plugins</a> can add their own blocks, such as a progress bar or a diagram. While such a plugin is active, its blocks are listed in the "/" menu under their own names; the block is drawn by the plugin, inside the page, and its settings are inside the block.</p>
       <figure class="shot mb-6">
         <img src="../assets/macros-plugin-block.png" alt="A plugin block on a page: a progress bar from a sample plugin" loading="lazy"
