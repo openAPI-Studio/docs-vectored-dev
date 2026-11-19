@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whiteboards — Wiki Docs</title>
+  <meta name="description" content="Live whiteboards in a space: drawing and planning together, facilitation, versions, the whiteboard block, phones and keys">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Whiteboards</h1>
+      <p class="vc-lede">Live whiteboards in a space: drawing and planning together, facilitation, versions, the whiteboard block, phones and keys</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">A <strong class="text-text">whiteboard</strong> is a live canvas in a space where people draw, write sticky notes, sketch flows and plan together, each seeing the others' cursors and changes as they happen. It sits in the space's page tree like a page, has its own history of versions, and can be shown inside a page with the whiteboard block.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/whiteboard-live.png" alt="A whiteboard with two other people on it: their cursors with names, a note one of them selected, the toolbar and the zoom bar" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">whiteboard-live.png</p>
+          <p class="text-xs text-muted max-w-md">A whiteboard with two other people on it: their cursors with names, a note one of them selected, the toolbar and the zoom bar</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A whiteboard with two other people on it: their cursors with names, a note one of them selected, the toolbar and the zoom bar</figcaption>
+      </figure>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Whiteboards need an <strong class="text-text">Enterprise</strong> licence (<a href="../admin/licensing.html" class="text-cta hover:underline">Licensing</a>). Without one, the Create menu and the space don't offer them, and opening one says what it needs. Whiteboards made while the licence covered them stay in the page tree.</p></div>
+      <h2 id="making-a-whiteboard" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Making a whiteboard</h2>
+      <p class="text-muted mb-4">People who edit a space make whiteboards. Choose <strong class="text-text">Create → Whiteboard</strong> in the header, or <strong class="text-text">New whiteboard</strong> on a space's overview, then:</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Give it a <strong class="text-text">Name</strong> and pick the <strong class="text-text">Space</strong>, and under <strong class="text-text">Location</strong> where it goes: the top level of the space or under a published page. Nothing goes under a whiteboard.</span></li><li class="pl-2"><span class="text-text font-medium">Under <strong class="text-text">Start from</strong>, pick a canvas type, or one of <strong class="text-text">This space's templates</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Optionally pick the <strong class="text-text">Background</strong> (dots, grid or plain) and the <strong class="text-text">Canvas size</strong> (endless, a 16:9 slide or A4). A slide or A4 board shows the page's edges, and <strong class="text-text">Zoom to fit</strong> fits them.</span></li><li class="pl-2"><span class="text-text font-medium">Tick <strong class="text-text">Hide notes until revealed</strong> when people should write without seeing each other's notes first (a retrospective, a silent brainstorm). See <a href="#private-mode" class="text-cta hover:underline">Private mode</a>.</span></li><li class="pl-2"><span class="text-text font-medium">Choose <strong class="text-text">Create whiteboard</strong>. It is live at once: there is no draft and nothing to publish.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/whiteboard-new.png" alt="The new whiteboard form: name, space, location, and the canvas types to start from" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">whiteboard-new.png</p>
+          <p class="text-xs text-muted max-w-md">The new whiteboard form: name, space, location, and the canvas types to start from</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The new whiteboard form: name, space, location, and the canvas types to start from</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Canvas type</th><th>Starts with</th></tr></thead><tbody><tr><td><strong class="text-text">Blank</strong></td><td>An empty canvas</td></tr><tr><td><strong class="text-text">Brainstorm</strong></td><td>A topic in the middle and four zones (ideas, questions, risks, next steps) with notes ready</td></tr><tr><td><strong class="text-text">Retrospective</strong></td><td>Three frames: Went well, To improve, Actions</td></tr><tr><td><strong class="text-text">Flowchart</strong></td><td>A grid with snapping on, start and end shapes, a step, a decision and elbow arrows</td></tr><tr><td><strong class="text-text">Mind map</strong></td><td>One idea in the middle with branches on both sides; Enter and Tab add nodes (see <a href="#mind-maps" class="text-cta hover:underline">Mind maps</a>)</td></tr><tr><td><strong class="text-text">Kanban</strong></td><td>To do, Doing and Done columns with a card</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The board's starting text is in the language of the person who made it. Everything on it can be changed after.</p>
+      <h2 id="tools" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Tools</h2>
+      <p class="text-muted mb-4">The toolbar is on the left (at the bottom on a phone). Each tool has a key, shown in its tooltip:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Tool</th><th>Key</th><th>What it does</th></tr></thead><tbody><tr><td><strong class="text-text">Select</strong></td><td>V</td><td>Select, move, resize and turn items; drag on empty canvas to select several</td></tr><tr><td><strong class="text-text">Hand</strong></td><td>H, or hold Space</td><td>Move around the board</td></tr><tr><td><strong class="text-text">Pen</strong> and <strong class="text-text">Highlighter</strong></td><td>P, M</td><td>Draw freehand in a colour and width; the highlighter is see-through</td></tr><tr><td><strong class="text-text">Smart shape</strong></td><td>S</td><td>Draw a rough circle, box, triangle, diamond, line or arrow and it becomes a clean one; hold Shift to keep your ink, or choose <strong class="text-text">Keep my ink</strong> after</td></tr><tr><td><strong class="text-text">Eraser</strong></td><td>E</td><td>Removes whole ink strokes it touches</td></tr><tr><td><strong class="text-text">Sticky note</strong></td><td>N</td><td>Eight colours and three sizes; text shrinks to fit. <strong class="text-text">Show my name on new notes</strong> tags notes with your name</td></tr><tr><td><strong class="text-text">Shape</strong></td><td>R</td><td>Rectangle, rounded rectangle, ellipse, diamond, triangle, parallelogram, cylinder, speech bubble and star, each with text</td></tr><tr><td><strong class="text-text">Connector</strong></td><td>L</td><td>A straight, elbow or curved line with arrows, attached to the items it joins: it follows them when they move</td></tr><tr><td><strong class="text-text">Text</strong></td><td>T</td><td>Free text on the board</td></tr><tr><td><strong class="text-text">Frame</strong></td><td>F</td><td>A named area that groups what is in it; moving the frame moves its items</td></tr><tr><td><strong class="text-text">Comment</strong></td><td>C</td><td>Pin a comment to a place or an item (see <a href="#comments" class="text-cta hover:underline">Comments</a>)</td></tr><tr><td><strong class="text-text">Laser pointer</strong></td><td>K</td><td>A trail everyone sees for a second, to point at something; nothing is kept</td></tr><tr><td><strong class="text-text">Image</strong> and <strong class="text-text">Page link</strong></td><td></td><td>Add an image (PNG, JPEG, GIF or WebP; or drop images on the board) or a card linking a page of the space</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Select items to get the bar above them: colour, fill and border, text size and alignment, line style and arrows, order (front, back), <strong class="text-text">Lock</strong>, <strong class="text-text">Duplicate</strong>, and under <strong class="text-text">More</strong>: group, align, distribute, copy and delete. Copy and paste work between whiteboards. Undo and redo take back only your own changes, never someone else's.</p>
+      <p class="text-muted mb-4">The ⋯ menu holds <strong class="text-text">Canvas</strong> (background, size and snap to grid, for everyone), <strong class="text-text">Save as template</strong>, <strong class="text-text">Duplicate</strong> and the downloads.</p>
+      <h2 id="working-together" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Working together</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Everyone on the board sees each other's cursors with their names and what they are doing (drawing, typing, moving), their selections, and strokes and moves as they happen. The faces in the header show who is here.</li><li>Click someone's face to <strong class="text-text">follow</strong> them: your view moves with theirs until you move on your own.</li><li>Changes are saved as you make them (<strong class="text-text">Live · saved</strong>). If the connection drops, keep the tab open: your changes go out when it is back. After two minutes offline the board turns read-only until it reconnects, and nothing you changed is lost.</li><li>Up to 50 people can be on one whiteboard at a time on each server.</li></ul>
+      <h2 id="facilitation" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Facilitation</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Facilitate</strong> in the header (in the ⋯ menu on a phone) opens tools to run a session for everyone on the board. Anyone who can draw on the whiteboard can use them; what they start, everyone sees in the bar at the top of the board.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/whiteboard-facilitation.png" alt="A retrospective being facilitated: the timer and voting in the bar, vote buttons on the notes, a note hidden until revealed, and the Facilitate panel" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">whiteboard-facilitation.png</p>
+          <p class="text-xs text-muted max-w-md">A retrospective being facilitated: the timer and voting in the bar, vote buttons on the notes, a note hidden until revealed, and the Facilitate panel</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A retrospective being facilitated: the timer and voting in the bar, vote buttons on the notes, a note hidden until revealed, and the Facilitate panel</figcaption>
+      </figure>
+      <h2 id="timer" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Timer</h2>
+      <p class="text-muted mb-4">Pick 1, 3, 5, 10 or 15 minutes. Everyone sees the same time left, whatever their computer's clock says. <strong class="text-text">Pause</strong>, <strong class="text-text">Resume</strong>, <strong class="text-text">+1 min</strong> and <strong class="text-text">Stop</strong> work for everyone. When it runs out, the bar says <strong class="text-text">Time's up</strong> (screen readers announce it).</p>
+      <h2 id="voting" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Voting</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Choose how many <strong class="text-text">Votes each</strong> person has (up to 20) and, under <strong class="text-text">Where</strong>, the frames to vote in, or none for the whole whiteboard.</span></li><li class="pl-2"><span class="text-text font-medium">Choose <strong class="text-text">Start voting</strong>. Each note and shape gets a <strong class="text-text">+</strong> button; each click is a vote, and <strong class="text-text">−</strong> takes one back. The bar shows how many votes you have left and how many people voted. The panel lists who has voted.</span></li><li class="pl-2"><span class="text-text font-medium">Choose <strong class="text-text">End voting</strong>. Every note shows its count, and the panel ranks the results: choose one to go to it. <strong class="text-text">Clear the results</strong> removes them.</span></li></ol>
+      <p class="text-muted mb-4">Results stay hidden until voting ends, so nobody follows the crowd.</p>
+      <h2 id="private-mode" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Private mode</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Hide notes until revealed</strong> hides the notes other people add from then on: each person sees their own notes, and everyone else's as gray <strong class="text-text">Hidden until revealed</strong> placeholders, until someone chooses <strong class="text-text">Reveal all notes</strong>. The panel shows how many people are still writing. Notes that were on the board before stay visible, and hidden notes take no votes until they are revealed.</p>
+      <p class="text-muted mb-4">A board made with <strong class="text-text">Hide notes until revealed</strong> starts in private mode, with its starting notes visible. Hidden notes are also hidden in the read-only view, thumbnails, downloads and search.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Private mode is for focus, not secrecy: a hidden note's text reaches the browsers of everyone who can draw on the board.</p></div>
+      <h2 id="bring-everyone-here" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Bring everyone here</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Follow me</strong> makes everyone on the board follow your view, so they see what you show. Each person stops following when they move on their own; <strong class="text-text">Stop leading</strong> ends it for all.</p>
+      <h2 id="mind-maps" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Mind maps</h2>
+      <p class="text-muted mb-4">On a mind map, select a node and press <strong class="text-text">Enter</strong> to add a sibling or <strong class="text-text">Tab</strong> to add a child, joined by a line. The map lays itself out: children on the side their branch is on, without overlaps, the centre where it was. Each addition is one undo step.</p>
+      <h2 id="comments" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. Comments</h2>
+      <p class="text-muted mb-4">People who may comment pin a comment with the <strong class="text-text">Comment</strong> tool (C) to a place or an item; a pin on an item moves with it. <strong class="text-text">Comments</strong> in the header lists the board's threads; <strong class="text-text">Show on the whiteboard</strong> goes to one. Readers who may comment pin comments on the read-only view too. See <a href="comments.html" class="text-cta hover:underline">Comments</a>.</p>
+      <h2 id="versions-and-history" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">12. Versions and history</h2>
+      <p class="text-muted mb-4"><strong class="text-text">History</strong> in the header opens the versions on the side of the board. The board keeps a version on its own each time people stop changing it for a while (kept 30 days), and you can <strong class="text-text">Name the board as it is now</strong> or name an automatic version; named versions are kept until deleted. Choose a version to see it, then <strong class="text-text">Restore this version</strong> to put its items back as a new change everyone sees, or download it.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/whiteboard-history.png" alt="A flowchart with its history open: a named version and an automatic one" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">whiteboard-history.png</p>
+          <p class="text-xs text-muted max-w-md">A flowchart with its history open: a named version and an automatic one</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A flowchart with its history open: a named version and an automatic one</figcaption>
+      </figure>
+      <p class="text-muted mb-4"><strong class="text-text">Download as SVG</strong> or <strong class="text-text">Download as PDF</strong> saves the board, a version or a frame.</p>
+      <h2 id="templates-and-copies" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">13. Templates and copies</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Save as template</strong> (⋯ menu, space admins) makes a whiteboard template of the space: new whiteboards can start from it under <strong class="text-text">This space's templates</strong>. <strong class="text-text">Duplicate</strong> makes a copy beside the board, with its images. Images aren't part of a template.</p>
+      <h2 id="the-whiteboard-block" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">14. The whiteboard block</h2>
+      <p class="text-muted mb-4">Show a whiteboard inside a page: in the <a href="editor.html" class="text-cta hover:underline">editor</a>, type <strong class="text-text">/whiteboard</strong>, pick a whiteboard of the space and its height, and optionally a frame. Readers see the board's latest picture and <strong class="text-text">Open the whiteboard</strong>. A reader who may not see the board, or a board that was deleted, shows nothing.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/whiteboard-block.png" alt="A page with a whiteboard block: the board&#x27;s picture and a link to open it" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">whiteboard-block.png</p>
+          <p class="text-xs text-muted max-w-md">A page with a whiteboard block: the board's picture and a link to open it</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A page with a whiteboard block: the board's picture and a link to open it</figcaption>
+      </figure>
+      <h2 id="read-only-view" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">15. Read-only view</h2>
+      <p class="text-muted mb-4">Viewers and guests see a read-only view: the board as last saved, with pan, zoom, the items list, comments (for those who may comment), history and downloads. It refreshes every 30 seconds while open. Visitors of a public space who aren't signed in see the board, its picture and its comments, but not its history or downloads; signing in shows those.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/whiteboard-read-view.png" alt="The read-only view of a whiteboard" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">whiteboard-read-view.png</p>
+          <p class="text-xs text-muted max-w-md">The read-only view of a whiteboard</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The read-only view of a whiteboard</figcaption>
+      </figure>
+      <h2 id="the-items-list-and-keyboard" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">16. The items list and keyboard</h2>
+      <p class="text-muted mb-4">The list button in the zoom bar opens <strong class="text-text">Items on this whiteboard</strong>: everything on the board in reading order, frame by frame and row by row, with what each item is, who made a note and where its arrows go. <strong class="text-text">Find an item</strong> searches it. Choose an item to go to it. With a keyboard, the arrow keys move from item to item and select it on the board, and <strong class="text-text">Enter</strong> writes in it.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Key</th><th>Does</th></tr></thead><tbody><tr><td>V H P M S E N R L T F C K</td><td>Pick a tool (see <a href="#tools" class="text-cta hover:underline">Tools</a>)</td></tr><tr><td>Space (held)</td><td>Hand, while held</td></tr><tr><td>Arrows (Shift for further)</td><td>Move the selected items</td></tr><tr><td>Enter or F2</td><td>Write in the selected item</td></tr><tr><td>Delete</td><td>Delete the selected items</td></tr><tr><td>Ctrl+Z, Ctrl+Shift+Z</td><td>Undo and redo your own changes</td></tr><tr><td>Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+D</td><td>Select all, copy, paste, duplicate</td></tr><tr><td>Ctrl+G (Shift to ungroup), Ctrl+Shift+L</td><td>Group, lock</td></tr><tr><td>] and [ (Ctrl for front or back)</td><td>Stacking order</td></tr><tr><td>Enter, Tab on a mind map</td><td>Add a sibling, a child</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Screen readers announce when someone else changes or removes the item you have selected. On a Mac, use Cmd instead of Ctrl.</p>
+      <h2 id="on-a-phone" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">17. On a phone</h2>
+      <p class="text-muted mb-4">On a phone the toolbar keeps <strong class="text-text">Select</strong>, <strong class="text-text">Hand</strong>, <strong class="text-text">Pen</strong>, <strong class="text-text">Sticky note</strong>, <strong class="text-text">Shape</strong>, <strong class="text-text">Text</strong> and undo at the bottom, and the header's comments, history and facilitation move into the ⋯ menu. Pinch to zoom and drag with two fingers to move around; view, pan, add and edit notes and draw with your finger. The items list opens as a sheet from the bottom, and the item you pick shows above it.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/mobile-whiteboard.png" alt="A whiteboard on a phone: the seven tools at the bottom and the zoom bar" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">mobile-whiteboard.png</p>
+          <p class="text-xs text-muted max-w-md">A whiteboard on a phone: the seven tools at the bottom and the zoom bar</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A whiteboard on a phone: the seven tools at the bottom and the zoom bar</figcaption>
+      </figure>
+      <figure class="shot mb-6">
+        <img src="../assets/mobile-whiteboard-items.png" alt="The items list as a bottom sheet on a phone, with the picked note shown above it" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">mobile-whiteboard-items.png</p>
+          <p class="text-xs text-muted max-w-md">The items list as a bottom sheet on a phone, with the picked note shown above it</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The items list as a bottom sheet on a phone, with the picked note shown above it</figcaption>
+      </figure>
+      <h2 id="who-can-do-what" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">18. Who can do what</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>You are</th><th>View</th><th>Comment</th><th>Draw and facilitate</th><th>Make, save as template, delete</th></tr></thead><tbody><tr><td>Viewer (and guests)</td><td>Read-only view, history and downloads</td><td>No</td><td>No</td><td>No</td></tr><tr><td>Public visitor, not signed in</td><td>Read-only view, without history or downloads</td><td>No</td><td>No</td><td>No</td></tr><tr><td>Commenter</td><td>Read-only view</td><td>Yes</td><td>No</td><td>No</td></tr><tr><td>Editor</td><td>Live</td><td>Yes</td><td>Yes</td><td>Make and delete; templates need a space admin</td></tr><tr><td>Admin</td><td>Live</td><td>Yes</td><td>Yes</td><td>Yes</td></tr></tbody></table></div>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">19. Limits</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>What</th><th>Limit</th></tr></thead><tbody><tr><td>Items on a whiteboard</td><td>20,000</td></tr><tr><td>Images on a whiteboard</td><td>500</td></tr><tr><td>Text in one item</td><td>2,000 characters</td></tr><tr><td>People on a whiteboard at once</td><td>50 on each server, 3 connections each</td></tr><tr><td>Automatic versions</td><td>Kept 30 days, at most 200 per board; named versions are kept</td></tr><tr><td>Votes each in a round</td><td>20</td></tr><tr><td>A timer</td><td>Up to 4 hours</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">A whiteboard that reaches its item or image limit, or grows too large to read, stops taking changes and says why. It keeps showing the board as it was last read. An editor can reset it from <strong class="text-text">History</strong>: to one of its versions, or with <strong class="text-text">Reset the board to how it was last shown</strong> when there is none to pick. A board that can still be read is kept as a version first. Notes hidden by private mode come back blank after a reset to how the board was last shown.</p>
+      <p class="text-muted mb-4">A whiteboard too complex to download (thousands of large shapes or long texts) answers <strong class="text-text">This whiteboard is too complex to export</strong>: download one of its frames instead. Its picture in pages and lists is still drawn, as far as it goes. Drawing pictures on request is limited per person (about 30 a minute) and per server, so a very busy server may ask you to try again in a moment.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Creating a whiteboard raises <span class="font-mono text-sm break-words">page.create</span> with <span class="font-mono text-sm break-words">kind</span> <span class="font-mono text-sm break-words">board</span>; changes raise <span class="font-mono text-sm break-words">board.update</span> once people stop for a while, and versions raise <span class="font-mono text-sm break-words">board.version.create</span>, <span class="font-mono text-sm break-words">board.version.restore</span> and <span class="font-mono text-sm break-words">board.version.delete</span> (<span class="font-mono text-sm break-words">board.reset</span> when a stopped board is reset). The board's watchers are told about changes. Timers, voting and private mode raise no events. See <a href="events.html" class="text-cta hover:underline">Events</a>.</p></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

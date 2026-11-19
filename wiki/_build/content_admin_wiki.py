@@ -488,7 +488,7 @@ admin:
             P("A Wiki licence is a signed file bound to the installation's ID. Its tier decides which features are available; it can also cap how many people may sign in and how many servers may run."),
             ACCESS_NOTE,
             H("What each tier turns on"),
-            P("Every Wiki feature works on every tier except page analytics, which needs **Pro**. Plugin blocks need plugins, which need Pro:"),
+            P("Every Wiki feature works on every tier except page analytics, which needs **Pro**, and whiteboards, which need **Enterprise**. Plugin blocks need plugins, which need Pro:"),
             TABLE(["Wiki feature", "Tier"], [
                 ["Spaces, pages and the editor with its built-in blocks, drafts, versions, reviews, page restrictions, copies and templates", "Standard"],
                 ["Editing together, comments, attachments and videos, labels and page feedback", "Standard"],
@@ -497,14 +497,15 @@ admin:
                 ["Anonymous access to public spaces and questions", "Standard"],
                 ["Page [analytics](analytics-settings.html)", "Pro"],
                 ["Plugin blocks in pages", "Pro, as for every plugin"],
+                ["[Whiteboards](whiteboards.html): live canvases, facilitation, whiteboard templates and the whiteboard block", "Enterprise"],
             ]),
             P("The tiers add these platform features:"),
             TABLE(["Tier", "Adds"], [
                 ["**Standard**", "The Wiki features above marked Standard, users and groups, Local and Delegated directories, backups, email, banners"],
                 ["**Pro**", "Page [analytics](analytics-settings.html), clustering (several servers), the [system check](system-check.html), the audit log, [policies](policies.html), [automation](automation.html), [plugins](plugins.html), LDAP and Active Directory, API token IP allowlists and rotation"],
-                ["**Enterprise**", "[Single sign-on](single-sign-on.html), [branding](branding-and-banners.html), SCIM, Entra ID and Google Workspace directories, managing everyone's API tokens"],
+                ["**Enterprise**", "[Whiteboards](whiteboards.html), [single sign-on](single-sign-on.html), [branding](branding-and-banners.html), SCIM, Entra ID and Google Workspace directories, managing everyone's API tokens"],
             ]),
-            P("A feature the licence doesn't cover shows what it would need instead of its settings, and its API answers `402`. Without Pro, the Analytics entry in the left navigation and the spaces' Analytics tab aren't shown, and page views aren't recorded. Below Pro the \"/\" menu offers no plugin blocks and existing plugin blocks show their saved text; moving back to Pro brings them back, and nothing is lost."),
+            P("A feature the licence doesn't cover shows what it would need instead of its settings, and its API answers `402`. Without Pro, the Analytics entry in the left navigation and the spaces' Analytics tab aren't shown, and page views aren't recorded. Below Pro the \"/\" menu offers no plugin blocks and existing plugin blocks show their saved text; moving back to Pro brings them back, and nothing is lost. Below Enterprise nobody can make or open whiteboards, and whiteboard blocks in pages show nothing; the whiteboards and their versions are kept, and come back with an Enterprise licence."),
             H("The licence page"),
             SHOT("licensing-overview.png", "Settings → Application → Licensing: tier, licensee and expiry, limits, the installation ID and Update license"),
             P("**Settings → Application → Licensing** (the `licenses:admin` permission) shows the tier and status, who it's issued to, when it expires, and how many users and servers are in use against its limits. Below are the features it turns on, its licence ID, and the **Installation ID** to quote when requesting a new licence (**Copy** puts it on the clipboard)."),
@@ -974,7 +975,7 @@ admin:
         keywords=["known issues", "limitations", "bugs", "workaround", "not supported", "caveats", "not yet"],
         blocks=[
             P("What doesn't work yet, or works with a catch, in the current release, and what to do meanwhile. Fixed issues leave this list and appear in the [changelog](changelog.html)."),
-            NOTE("Last reviewed: 17 November 2026."),
+            NOTE("Last reviewed: 18 November 2026."),
             H("Installation"),
             TABLE(["Issue", "Workaround"], [
                 ["No container images or Helm chart yet", "Run the server and web app as services, or in containers you build"],
@@ -1007,6 +1008,17 @@ admin:
                 ["Analytics days are UTC days", "—"],
                 ["Calendar feeds send at most 2,000 entries over a year and a month; repeats can't have exceptions", "—"],
                 ["A calendar feed's secret is in its address, which a proxy may log", "Leave queries out of the proxy log for `/api/calendar/ical`"],
+            ]),
+            H("Whiteboards"),
+            TABLE(["Issue", "Workaround"], [
+                ["The read-only view and whiteboard blocks refresh every 30 seconds, not live", "Open the whiteboard to see it live"],
+                ["Private mode hides notes on screen, in downloads and in search, but their text reaches the browsers of everyone who can draw on the board; votes aren't secret either", "Don't use private mode for confidential input"],
+                ["A template or copy made while private mode is on gets the hidden notes as blank notes", "Reveal the notes first"],
+                ["Starting a timer or a vote isn't in the audit log and raises no event", "—"],
+                ["Adding a node to a mind map lays out the whole map again, moving nodes placed by hand", "Undo the addition to put them back"],
+                ["Word and PDF downloads of a page show a whiteboard block as a link, not its picture", "Download the whiteboard itself as SVG or PDF"],
+                ["The PDF download doesn't turn rotated text, and wraps text a little differently from the board", "Use the SVG download"],
+                ["Copies of a whiteboard stay in its space", "Copy its items and paste them into a new whiteboard in the other space"],
             ]),
         ])),
 
