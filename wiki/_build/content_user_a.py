@@ -232,15 +232,20 @@ USER_A = [
     # ------------------------------------------------------------------
     ("spaces", dict(
         label="Spaces", title="Spaces", icon="book",
-        desc="What a space is, who can see it, roles and members, space settings, and creating one",
-        keywords=["space", "spaces", "visibility", "private", "internal", "public", "members", "roles", "viewer", "commenter", "editor", "admin", "groups", "service accounts", "settings", "delete space", "templates", "key"],
+        desc="What a space is, who can see it, roles and members, icons, labels, categories, archiving, stars, space settings, and creating one",
+        keywords=["space", "spaces", "visibility", "private", "internal", "public", "members", "roles", "viewer", "commenter", "editor", "admin", "groups", "service accounts", "settings", "delete space", "templates", "key", "icon", "image", "labels", "category", "categories", "archive", "archived", "restore", "star", "starred", "favourite"],
         blocks=[
             H("What a space is"),
             P("A space holds a team's or a project's pages, and has its own members. Every page belongs to one space, and the space decides who can read it and who can write. Pages have no access rules of their own: everyone who can read the space can read all of its published pages."),
 
             H("The space list"),
-            P("**Spaces** in the sidebar lists every space you can see, with its visibility, when it last changed and your role. **All** shows them all, **Yours** only those where you have a role. Filter by name with **Search spaces** or by visibility."),
-            SHOT("spaces-list.png", "Spaces: every space you can see, with its visibility and your role"),
+            P("**Spaces** in the sidebar lists every space you can see, with its icon, visibility, category, labels, when it last changed and your role. **All** shows them all, **Yours** only those where you have a role. Filter by name with **Search spaces**, by visibility, or by category with the chips above the list (each shows how many spaces it holds)."),
+            UL([
+                "**Starred** spaces show as cards at the top. Select the star next to a space, on the list or on its overview, to star or unstar it. Stars are yours alone: nobody else sees them.",
+                "Select a label on a space to list only the spaces with that label; select it again, or the cross on the filter, to see them all.",
+                "Archived spaces are left out. Turn on **Show archived** to list them too.",
+            ]),
+            SHOT("spaces-list.png", "Spaces: starred spaces as cards, category chips, and each space's icon, labels and role"),
 
             P("Besides its pages, each space has a **Blog** tab for dated posts: updates, announcements and stories. See [Space blogs](blogs.html)."),
 
@@ -285,15 +290,55 @@ USER_A = [
                 ["**Visibility**", "Private, internal or public (above)."],
             ]),
 
+            H("Icon, labels and category"),
+            P("Each space has an icon, which shows next to its name on the space list, its overview and the space switcher. Until an admin picks one, the space shows the first letters of its name. Space admins change it in **Settings → General** with **Change icon…**:"),
+            TABLE(["Kind", "What it is"], [
+                ["**Gallery**", "One of 24 built-in abstract images, grouped by style (gradients, rings, stripes, waves, shapes, dots). **Surprise me** picks one at random."],
+                ["**Initials**", "Up to 8 characters, such as two letters or an emoji, on one of six theme colours. Left empty, the letters come from the space's name."],
+                ["**Upload**", "Your own image: PNG, JPEG or WebP, up to 2 MB. It is cropped to a square from the middle."],
+            ]),
+            P("The preview shows the icon as it will appear. **Use this icon** saves it at once."),
+            SHOT("spaces-icon.png", "Space icon: the gallery with its style filters, and the preview"),
+            UL([
+                "**Labels**: up to 10 per space. They are the same labels pages carry, so a label's page lists the spaces with it as well as its pages. See [Labels and feedback](labels-and-feedback.html).",
+                "**Category**: one per space, or none. Categories group the space list; the list of categories is kept by administrators in **Settings → Space categories** (below).",
+            ]),
+
+            H("Archiving a space"),
+            P("A space that is no longer worked on can be archived instead of deleted. Space admins set **Status** to **Archived** in **Settings → General** and save."),
+            UL([
+                "Its pages stay readable by the same people, but nobody can create, edit, move or delete pages, write blog posts, comment or import into it, admins included.",
+                "It is left out of the space list (unless **Show archived** is on) and of the space switcher. Links and search still find its pages.",
+                "Its overview says it is archived and since when.",
+                "To restore it, set **Status** back to **Active**. Members, roles and settings are kept while it is archived.",
+            ]),
+
+            H("Space categories"),
+            P("**Settings → Space categories** holds the categories spaces can be in, such as Teams, Projects or Knowledge base: add, rename, reorder or remove them, then **Save**. Up to 50 categories, each up to 50 characters. Removing a category leaves its spaces in none. It needs the `settings:write` permission, which super admins have."),
+            SHOT("spaces-categories.png", "Settings → Space categories: the list in the order the space list shows it"),
+
             H("Space settings"),
             P("The space's admins see a **Settings** tab:"),
             UL([
-                "**General**: the name, description and visibility. **Save** applies them. The key is fixed.",
+                "**General**: the name, description, visibility, icon, labels, category and status. **Save** applies them; **Discard** puts back what is saved. The key is fixed.",
                 "**Templates**: the space's own templates, and which of the library's templates it offers. See [Copies and templates](copies-and-templates.html).",
                 "**Delete space**: removes the space, its pages and its members' roles for good. Type the space's key to confirm.",
             ]),
-            SHOT("spaces-settings.png", "Space settings: General, Page templates and Delete space"),
+            SHOT("spaces-settings.png", "Space settings → General: icon, name, description, labels, category, status and visibility"),
             WARN("Deleting a space can't be undone. Its pages don't go to the trash."),
+
+            H("Events and API for space properties"),
+            P("Changing a space's icon, category or status raises `space.update`; archiving and restoring also raise `space.archive` and `space.restore`, changing its labels raises `space.label.update`, and saving the category list raises `space_categories.update`. [Policies](policies.html) can refuse them, for example to keep certain spaces from being archived, and [automation](automation.html) can react. Stars raise no event: they are personal, like watching a page. Every change except a star is in the [audit log](logging-and-audit.html)."),
+            TABLE(["Method", "Path", "Permission", "What it does"], [
+                ["PATCH", "`/api/spaces/{key}`", "Space admin", "Also sets `icon` (initials or gallery), `categoryId` (0 for none) and `status` (`active` or `archived`)"],
+                ["PUT", "`/api/spaces/{key}/icon`", "Space admin", "Upload an image as the icon (the raw PNG, JPEG or WebP as the body)"],
+                ["GET", "`/api/spaces/{key}/icon`", "Read the space", "The uploaded icon"],
+                ["PUT", "`/api/spaces/{key}/labels`", "Space admin", "Replace the space's labels"],
+                ["PUT, DELETE", "`/api/spaces/{key}/star`", "Read the space, signed in", "Star or unstar the space for yourself"],
+                ["GET", "`/api/spaces`", "Signed in or anonymous", "Also filters by `status`, `category`, `label` and `starred=true`"],
+                ["GET", "`/api/wiki/space-categories`", "Anyone who may list spaces", "The categories"],
+                ["PUT", "`/api/wiki/space-categories`", "`settings:write`", "Save the category list whole"],
+            ]),
 
             H("Other tabs"),
             UL([

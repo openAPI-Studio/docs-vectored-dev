@@ -14,7 +14,11 @@ _WIKI_EVENTS = [
         ['`space.delete`', 'before, after', 'yes · policies', "A wiki space is deleted, with its members' roles in it."],
         ['`space.import.complete`', 'after', 'no', 'An import into a wiki space ended: done, failed or cancelled, with how many pages it created, updated and left out.'],
         ['`space.import.start`', 'before, after', 'yes · policies', "An import of another wiki's export (Confluence) or of Markdown files into a wiki space is started. Policies can refuse imports, for example outside some spaces."],
-        ['`space.update`', 'before, after', 'yes · policies', "A wiki space's name, description or visibility change."],
+        ['`space.archive`', 'before, after', 'yes · policies', 'A wiki space is archived: read-only for everyone until restored. Policies can, for example, keep certain spaces from being archived.'],
+        ['`space.label.update`', 'before, after', 'yes · policies', "A wiki space's labels change (the same labels pages carry), with the labels added and removed."],
+        ['`space.restore`', 'before, after', 'yes · policies', 'An archived wiki space is restored: its pages can be written again.'],
+        ['`space.update`', 'before, after', 'yes · policies', "A wiki space's name, description, visibility, icon, category or status change (archiving and restoring also raise `space.archive` and `space.restore`)."],
+        ['`space_categories.update`', 'before, after', 'yes', 'The list of space categories (which group the space list) is saved. Removing a category leaves its spaces in none.'],
     ]),
     ('Mirror spaces', [
         ['`mirror.convert`', 'before, after', 'yes · policies', 'A mirror space is converted into a normal space: its mirrors are removed and its pages can be edited in the wiki.'],

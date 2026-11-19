@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-149 screenshots. Save each one into `wiki/assets/` using the
+151 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -46,13 +46,17 @@ realistic but fictional names and figures rather than real people's data.
 ## Spaces
 
 - [ ] `spaces-list.png`
-      Spaces: every space you can see, with its visibility and your role
+      Spaces: starred spaces as cards, category chips, and each space's icon, labels and role
 - [ ] `spaces-members.png`
       Members: each member's kind and role, with the role comparison open
 - [ ] `spaces-new.png`
       New space: name, key, description and visibility
+- [ ] `spaces-icon.png`
+      Space icon: the gallery with its style filters, and the preview
+- [ ] `spaces-categories.png`
+      Settings → Space categories: the list in the order the space list shows it
 - [ ] `spaces-settings.png`
-      Space settings: General, Page templates and Delete space
+      Space settings → General: icon, name, description, labels, category, status and visibility
 
 ## Pages and the page tree
 
@@ -151,7 +155,7 @@ realistic but fictional names and figures rather than real people's data.
 ## Labels &amp; feedback
 
 - [ ] `labels-and-feedback-label-page.png`
-      A label's page: published pages with the label, with their space
+      A label's page: the spaces with the label, then published pages with it, with their space
 - [ ] `labels-and-feedback-helpful.png`
       Was this page helpful? after a reader answered No, with the note field
 

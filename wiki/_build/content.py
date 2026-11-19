@@ -15,6 +15,7 @@ from content_platform_operate import PLATFORM_OPERATE
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-19", "Spaces", "Spaces get an icon (one of 24 built-in images, initials in a theme colour, or an uploaded image), up to 10 labels shared with pages, a category from Settings → Space categories, archiving (read-only until restored) and personal stars that pin spaces to the top of the space list, which can now be filtered by category and label."),
     ("2026-11-19", "Templates", "A template library under Settings → Templates that every space starts pages from, with twelve ready-made templates; a template can create a whole tree of pages; spaces can switch library templates off or keep their own version; and templates can be written in a template editor."),
     ("2026-11-18", "Mirror spaces", "Mirror spaces (Pro): a space can show the docs of a git repository (GitHub, GitLab, Gitea, Forgejo, Bitbucket Cloud) or of uploaded archives as read-only pages, synced on a schedule, by webhook or from a pipeline, with suggested edits as pull or merge requests and a button to convert the space back. A mirror space is chosen when the space is created and has only the tabs a mirror needs."),
     ("2026-11-18", "Pages", "Mermaid diagrams: flowcharts, sequence diagrams and more drawn from text on any page, in the reader's light or dark theme."),
