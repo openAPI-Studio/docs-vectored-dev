@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-138 screenshots. Save each one into `wiki/assets/` using the
+146 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -237,6 +237,25 @@ realistic but fictional names and figures rather than real people's data.
       The calendar's month view on a phone, with a day selected
 - [ ] `mobile-whiteboard.png`
       A whiteboard on a phone: the seven tools at the bottom and the zoom bar
+
+## Mirror spaces
+
+- [ ] `mirror-spaces-tab.png`
+      A space's Mirror tab: a git source with its last sync, and the sync history
+- [ ] `mirror-spaces-new.png`
+      New space: choosing a mirror space instead of a normal one
+- [ ] `mirror-spaces-setup.png`
+      Set up a mirror: the host, repository, branch, folder, schedule and access token
+- [ ] `mirror-spaces-webhook.png`
+      The webhook's payload URL and secret, shown once after setting a mirror up
+- [ ] `mirror-spaces-removals.png`
+      A sync waiting for a yes before it removes pages, with the list of pages
+- [ ] `mirror-spaces-page.png`
+      A mirrored page: the strip with its source file, Edit at source and Suggest an edit
+- [ ] `mirror-spaces-suggest.png`
+      Suggest an edit: the page's Markdown source and a line saying what changed
+- [ ] `mirror-spaces-settings.png`
+      Settings → Security → Mirrors: allow mirror spaces, who sets them up, the largest archive and internal git hosts
 
 ## Setup wizard
 
