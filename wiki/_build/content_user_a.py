@@ -439,8 +439,8 @@ USER_A = [
 
             H("What a locked page looks like"),
             P("A locked page carries a **Locked** badge in the bar at the top; a page under a locked page says **Locked by** and the page that carries the lock. "
-              "Choose the badge to see who is on the lock and whether you can edit. In the page tree, a lock icon marks the page that carries a lock."),
-            SHOT("page-locks-badge.png", "A page under a lock: the Locked by badge and who is on the lock"),
+              "Choose the badge to see what the lock does and whether you can edit; on the page that carries the lock it also lists who is on it. In the page tree, a lock icon marks the page that carries a lock."),
+            SHOT("page-locks-badge.png", "A page under a lock: the Locked by badge, and lock marks in the page tree"),
             P("For someone not on an **Only these people can see it** lock, the pages aren't there at all: not in the page tree, search, labels, the calendar, analytics, alerts, page tree and recently updated blocks, includes, templates or exports. "
               "A link to one answers that the page doesn't exist."),
 

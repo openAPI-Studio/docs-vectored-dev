@@ -72,7 +72,7 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `page-locks-dialog.png`
       Lock: who can see the page, and the people and groups on the lock
 - [ ] `page-locks-badge.png`
-      A page under a lock: the Locked by badge and who is on the lock
+      A page under a lock: the Locked by badge, and lock marks in the page tree
 - [ ] `page-locks-settings.png`
       Space settings → Locked pages: the locks with who locked each page and Unlock
 
