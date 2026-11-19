@@ -15,6 +15,7 @@ from content_platform_operate import PLATFORM_OPERATE
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-19", "Templates", "A template library under Settings → Templates that every space starts pages from, with twelve ready-made templates; a template can create a whole tree of pages; spaces can switch library templates off or keep their own version; and templates can be written in a template editor."),
     ("2026-11-18", "Mirror spaces", "Mirror spaces (Pro): a space can show the docs of a git repository (GitHub, GitLab, Gitea, Forgejo, Bitbucket Cloud) or of uploaded archives as read-only pages, synced on a schedule, by webhook or from a pipeline, with suggested edits as pull or merge requests and a button to convert the space back. A mirror space is chosen when the space is created and has only the tabs a mirror needs."),
     ("2026-11-18", "Pages", "Mermaid diagrams: flowcharts, sequence diagrams and more drawn from text on any page, in the reader's light or dark theme."),
     ("2026-11-18", "Pages", "HTML blocks: space admins can run their own HTML, CSS and JavaScript on pages in a sandbox that reaches only the sites listed in Settings → Security → HTML blocks (off by default)."),

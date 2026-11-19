@@ -222,8 +222,8 @@ USER_B = [
 
     ("copies-and-templates", dict(
         label="Copies &amp; templates", title="Copies and Templates", icon="file",
-        desc="Copy a page into any space you write in, and start new pages from a space's templates",
-        keywords=["copy", "duplicate page", "template", "templates", "page template", "save as template", "start from"],
+        desc="Copy a page into any space you write in, start pages or whole page trees from templates, and write a space's own templates",
+        keywords=["copy", "duplicate page", "template", "templates", "page template", "blueprint", "page tree", "template library", "template editor", "customise", "save as template", "start from"],
         blocks=[
             H("Copy a page"),
             P("**Copy** in the reading view (or Page details in the editor) makes a new page with this page's content and images:"),
@@ -240,13 +240,46 @@ USER_B = [
             SHOT("copies-and-templates-copy.png", "The Copy dialog: title, space and where the copy goes"),
 
             H("Start from a template"),
-            P("When you create a page, **Start from** lists the space's templates beside **Blank page**. The new page starts with the template's content, which you then edit like any draft. "
-              "A page keeps its content when the template changes later."),
+            P("When you create a page, **Start from** offers **Empty page** and the templates you can use in this space: the space's own under **This space**, and the ones your administrators keep for every space under **Library**. "
+              "Search them, or pick a group such as **Meetings** or **Engineering**."),
+            SHOT("pages-new-page.png", "New page: a template with pages picked, the pages it creates and a preview of its top page"),
+            UL([
+                "A template is **one page** or **a tree of pages**. One with a pages badge (such as **6 pages**) creates its top page with your title and every page under it, all as drafts, in one go. The button says how many: **Create 6 pages**.",
+                "The preview shows the pages a template creates and the content of its top page before you create anything.",
+                "A page under the top page keeps the title the template gives it. If a page beside it already has that title, the top page's name is added (**Goals and scope – Hermes rollout**).",
+                "Pages keep their content when the template changes later.",
+            ]),
+            P("The library starts with twelve ready-made templates: Meeting notes, Decision record, How-to guide, Postmortem, Product requirements, Retrospective, Service runbook and Weekly status report (one page each), and Knowledge base, Project workspace, Software release and Team space starter (a tree of pages each). Your administrators can change them and add their own."),
 
-            H("Make a template"),
-            P("Space admins make templates from a page: **Save as template** in Page details saves the page's draft as it is now, without its images, as a **New template** with a name and an optional description, or replaces an existing one (**Replace one** keeps its name and description)."),
+            H("A space's templates"),
+            P("Space admins manage what the space offers under **Templates** in the space's Settings tab."),
+            SHOT("copies-and-templates-space.png", "A space's Templates settings: its own templates, and the library's with a switch for this space"),
+            UL([
+                "**This space's templates** are the space's own: up to 100, with names unique in the space. Each has **Edit** (name, description, group and icon), **Edit content**, **Add to library** (for people who manage the library) and **Delete**.",
+                "**From the library** lists the templates kept for every space. Switch one off to hide it from this space's **New page**; other spaces aren't affected.",
+                "**Customise** keeps this space's own version of a library template. It opens in the template editor, is marked **Customised**, and is offered here instead of the library's. **Reset to library** deletes the copy and offers the library's version again.",
+                "Deleting or changing a template never changes pages made from it.",
+            ]),
+
+            H("Write or edit a template"),
+            P("**New template** opens the template editor on an empty template, and **Edit content** opens it on an existing one. It is the page editor with a list of the template's pages beside it."),
+            SHOT("copies-and-templates-editor.png", "The template editor: the template's pages and details on the left, the selected page's content on the right"),
+            UL([
+                "**Pages**: **Top page** is the page that takes the title people type. **Add page** adds a page under it; each page's menu has **Rename**, **Add page under it**, **Move up**, **Move down**, **Move in a level**, **Move out a level** and **Delete page**. Select a page to edit its content.",
+                "**Details**: the name, an optional description shown when people pick a template, an optional group, and an icon.",
+                "**Save** saves the details, every page and its content together. Leaving with unsaved changes asks first. If someone else saved the template while you were editing, your save is refused: reload to get their version.",
+            ]),
+            TABLE(["Limit", "Value"], [
+                ["Pages in one template", "50, counting the top page"],
+                ["Levels", "5, counting the top page"],
+                ["Page titles", "Unique among the pages beside them"],
+                ["Content", "Text, tables and blocks. Templates hold no images or videos, and people can't be mentioned while editing one."],
+            ]),
+
+            H("Make a template from a page"),
+            P("**Save as template** in a page's Page details saves the page's draft as it is now, without its images, as a **New template**, or replaces an existing one (**Replace one** keeps its name and description). "
+              "**Include child pages** makes the pages under it that you can read part of the template. **New template** in the space's Templates settings offers the same under **From an existing page**."),
             SHOT("copies-and-templates-save.png", "Save as template: a new template's name and description"),
-            P("**Page templates** in the space's Settings tab lists them, with **Edit** (name and description) and **Delete**. A space holds up to 100 templates, with names unique in the space. Deleting one doesn't change pages made from it."),
         ])),
 
     ("attachments-and-media", dict(

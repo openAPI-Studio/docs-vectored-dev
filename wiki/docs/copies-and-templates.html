@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Copies and Templates — Wiki Docs</title>
-  <meta name="description" content="Copy a page into any space you write in, and start new pages from a space's templates">
+  <meta name="description" content="Copy a page into any space you write in, start pages or whole page trees from templates, and write a space's own templates">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -34,7 +34,7 @@
       <div data-vc="crumbs"></div>
       <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><polyline points="15 2 15 7 20 7"/></svg></div>
       <h1 class="vc-h1">Copies and Templates</h1>
-      <p class="vc-lede">Copy a page into any space you write in, and start new pages from a space's templates</p>
+      <p class="vc-lede">Copy a page into any space you write in, start pages or whole page trees from templates, and write a space's own templates</p>
       <div data-vc="meta"></div>
       <div data-vc="contents"></div>
 
@@ -56,9 +56,54 @@
         <figcaption class="text-xs text-muted mt-2">The Copy dialog: title, space and where the copy goes</figcaption>
       </figure>
       <h2 id="start-from-a-template" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Start from a template</h2>
-      <p class="text-muted mb-4">When you create a page, <strong class="text-text">Start from</strong> lists the space's templates beside <strong class="text-text">Blank page</strong>. The new page starts with the template's content, which you then edit like any draft. A page keeps its content when the template changes later.</p>
-      <h2 id="make-a-template" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Make a template</h2>
-      <p class="text-muted mb-4">Space admins make templates from a page: <strong class="text-text">Save as template</strong> in Page details saves the page's draft as it is now, without its images, as a <strong class="text-text">New template</strong> with a name and an optional description, or replaces an existing one (<strong class="text-text">Replace one</strong> keeps its name and description).</p>
+      <p class="text-muted mb-4">When you create a page, <strong class="text-text">Start from</strong> offers <strong class="text-text">Empty page</strong> and the templates you can use in this space: the space's own under <strong class="text-text">This space</strong>, and the ones your administrators keep for every space under <strong class="text-text">Library</strong>. Search them, or pick a group such as <strong class="text-text">Meetings</strong> or <strong class="text-text">Engineering</strong>.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/pages-new-page.png" alt="New page: a template with pages picked, the pages it creates and a preview of its top page" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">pages-new-page.png</p>
+          <p class="text-xs text-muted max-w-md">New page: a template with pages picked, the pages it creates and a preview of its top page</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">New page: a template with pages picked, the pages it creates and a preview of its top page</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>A template is <strong class="text-text">one page</strong> or <strong class="text-text">a tree of pages</strong>. One with a pages badge (such as <strong class="text-text">6 pages</strong>) creates its top page with your title and every page under it, all as drafts, in one go. The button says how many: <strong class="text-text">Create 6 pages</strong>.</li><li>The preview shows the pages a template creates and the content of its top page before you create anything.</li><li>A page under the top page keeps the title the template gives it. If a page beside it already has that title, the top page's name is added (<strong class="text-text">Goals and scope – Hermes rollout</strong>).</li><li>Pages keep their content when the template changes later.</li></ul>
+      <p class="text-muted mb-4">The library starts with twelve ready-made templates: Meeting notes, Decision record, How-to guide, Postmortem, Product requirements, Retrospective, Service runbook and Weekly status report (one page each), and Knowledge base, Project workspace, Software release and Team space starter (a tree of pages each). Your administrators can change them and add their own.</p>
+      <h2 id="a-space-s-templates" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. A space's templates</h2>
+      <p class="text-muted mb-4">Space admins manage what the space offers under <strong class="text-text">Templates</strong> in the space's Settings tab.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/copies-and-templates-space.png" alt="A space&#x27;s Templates settings: its own templates, and the library&#x27;s with a switch for this space" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">copies-and-templates-space.png</p>
+          <p class="text-xs text-muted max-w-md">A space's Templates settings: its own templates, and the library's with a switch for this space</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A space's Templates settings: its own templates, and the library's with a switch for this space</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">This space's templates</strong> are the space's own: up to 100, with names unique in the space. Each has <strong class="text-text">Edit</strong> (name, description, group and icon), <strong class="text-text">Edit content</strong>, <strong class="text-text">Add to library</strong> (for people who manage the library) and <strong class="text-text">Delete</strong>.</li><li><strong class="text-text">From the library</strong> lists the templates kept for every space. Switch one off to hide it from this space's <strong class="text-text">New page</strong>; other spaces aren't affected.</li><li><strong class="text-text">Customise</strong> keeps this space's own version of a library template. It opens in the template editor, is marked <strong class="text-text">Customised</strong>, and is offered here instead of the library's. <strong class="text-text">Reset to library</strong> deletes the copy and offers the library's version again.</li><li>Deleting or changing a template never changes pages made from it.</li></ul>
+      <h2 id="write-or-edit-a-template" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Write or edit a template</h2>
+      <p class="text-muted mb-4"><strong class="text-text">New template</strong> opens the template editor on an empty template, and <strong class="text-text">Edit content</strong> opens it on an existing one. It is the page editor with a list of the template's pages beside it.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/copies-and-templates-editor.png" alt="The template editor: the template&#x27;s pages and details on the left, the selected page&#x27;s content on the right" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">copies-and-templates-editor.png</p>
+          <p class="text-xs text-muted max-w-md">The template editor: the template's pages and details on the left, the selected page's content on the right</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The template editor: the template's pages and details on the left, the selected page's content on the right</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Pages</strong>: <strong class="text-text">Top page</strong> is the page that takes the title people type. <strong class="text-text">Add page</strong> adds a page under it; each page's menu has <strong class="text-text">Rename</strong>, <strong class="text-text">Add page under it</strong>, <strong class="text-text">Move up</strong>, <strong class="text-text">Move down</strong>, <strong class="text-text">Move in a level</strong>, <strong class="text-text">Move out a level</strong> and <strong class="text-text">Delete page</strong>. Select a page to edit its content.</li><li><strong class="text-text">Details</strong>: the name, an optional description shown when people pick a template, an optional group, and an icon.</li><li><strong class="text-text">Save</strong> saves the details, every page and its content together. Leaving with unsaved changes asks first. If someone else saved the template while you were editing, your save is refused: reload to get their version.</li></ul>
+      <div class="tbl-wrap"><table><thead><tr><th>Limit</th><th>Value</th></tr></thead><tbody><tr><td>Pages in one template</td><td>50, counting the top page</td></tr><tr><td>Levels</td><td>5, counting the top page</td></tr><tr><td>Page titles</td><td>Unique among the pages beside them</td></tr><tr><td>Content</td><td>Text, tables and blocks. Templates hold no images or videos, and people can't be mentioned while editing one.</td></tr></tbody></table></div>
+      <h2 id="make-a-template-from-a-page" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Make a template from a page</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Save as template</strong> in a page's Page details saves the page's draft as it is now, without its images, as a <strong class="text-text">New template</strong>, or replaces an existing one (<strong class="text-text">Replace one</strong> keeps its name and description). <strong class="text-text">Include child pages</strong> makes the pages under it that you can read part of the template. <strong class="text-text">New template</strong> in the space's Templates settings offers the same under <strong class="text-text">From an existing page</strong>.</p>
       <figure class="shot mb-6">
         <img src="../assets/copies-and-templates-save.png" alt="Save as template: a new template&#x27;s name and description" loading="lazy"
              class="rounded-lg border border-border"
@@ -71,7 +116,6 @@
         </div>
         <figcaption class="text-xs text-muted mt-2">Save as template: a new template's name and description</figcaption>
       </figure>
-      <p class="text-muted mb-4"><strong class="text-text">Page templates</strong> in the space's Settings tab lists them, with <strong class="text-text">Edit</strong> (name and description) and <strong class="text-text">Delete</strong>. A space holds up to 100 templates, with names unique in the space. Deleting one doesn't change pages made from it.</p>
       </article>
 
       <div data-vc="pagefoot"></div>
