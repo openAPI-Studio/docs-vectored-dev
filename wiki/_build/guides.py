@@ -38,7 +38,7 @@ SHARED = ["changelog", "api-tokens", "oauth-applications", "spaces", "events"]
 USER_GROUPS = [
     ("Start here", ["getting-started", "home-and-navigation", "search", "profile-and-notifications", "alerts",
                     "api-tokens", "@admin"]),
-    ("Spaces & pages", ["spaces", "pages-and-the-page-tree", "editor", "macros", "drafts-and-publishing", "reviews",
+    ("Spaces & pages", ["spaces", "pages-and-the-page-tree", "page-locks", "editor", "macros", "drafts-and-publishing", "reviews",
                         "page-history-and-versions", "comments", "editing-together", "copies-and-templates",
                         "attachments-and-media", "labels-and-feedback", "import-and-export", "mirror-spaces", "blogs", "whiteboards"]),
     ("Q&A", ["qna"]),

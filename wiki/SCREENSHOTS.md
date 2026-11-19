@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-151 screenshots. Save each one into `wiki/assets/` using the
+154 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -66,6 +66,15 @@ realistic but fictional names and figures rather than real people's data.
       Move: choose the page to put it under and where among its neighbours
 - [ ] `pages-trash.png`
       Trash: deleted pages with Restore and Delete for good
+
+## Page locks
+
+- [ ] `page-locks-dialog.png`
+      Lock: who can see the page, and the people and groups on the lock
+- [ ] `page-locks-badge.png`
+      A page under a lock: the Locked by badge and who is on the lock
+- [ ] `page-locks-settings.png`
+      Space settings → Locked pages: the locks with who locked each page and Unlock
 
 ## The editor
 
