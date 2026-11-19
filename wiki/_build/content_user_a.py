@@ -289,7 +289,7 @@ USER_A = [
             P("The space's admins see a **Settings** tab:"),
             UL([
                 "**General**: the name, description and visibility. **Save** applies them. The key is fixed.",
-                "**Page templates**: content new pages of this space can start with. See [Copies and templates](copies-and-templates.html).",
+                "**Templates**: the space's own templates, and which of the library's templates it offers. See [Copies and templates](copies-and-templates.html).",
                 "**Delete space**: removes the space, its pages and its members' roles for good. Type the space's key to confirm.",
             ]),
             SHOT("spaces-settings.png", "Space settings: General, Page templates and Delete space"),
@@ -325,10 +325,9 @@ USER_A = [
             H("Creating a page"),
             STEPS([
                 "In the space, choose **New page** above the tree (a top-level page), or **Add a page** on a page (a page under it).",
-                "Enter the **Title**. Under **Start from**, keep **Blank page** or pick one of the space's templates.",
-                "**Create page**. It opens in the [editor](editor.html).",
+                "Enter the **Title**. Under **Start from**, keep **Empty page** or pick a template: one of the space's or one from the library. A template can create a whole tree of pages. See [Copies and templates](copies-and-templates.html).",
+                "**Create page** (or **Create 6 pages** for a template with pages). The page opens in the [editor](editor.html).",
             ]),
-            SHOT("pages-new-page.png", "New page: the title and the template to start from"),
             P("A new page starts as a draft: only people who can edit pages in the space see it until it is published. See [Drafts and publishing](drafts-and-publishing.html)."),
 
             H("Page status"),

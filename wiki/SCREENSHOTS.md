@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-146 screenshots. Save each one into `wiki/assets/` using the
+149 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -58,8 +58,6 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `pages-reading-view.png`
       A published page as a reader sees it
-- [ ] `pages-new-page.png`
-      New page: the title and the template to start from
 - [ ] `pages-move.png`
       Move: choose the page to put it under and where among its neighbours
 - [ ] `pages-trash.png`
@@ -134,6 +132,12 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `copies-and-templates-copy.png`
       The Copy dialog: title, space and where the copy goes
+- [ ] `pages-new-page.png`
+      New page: a template with pages picked, the pages it creates and a preview of its top page
+- [ ] `copies-and-templates-space.png`
+      A space's Templates settings: its own templates, and the library's with a switch for this space
+- [ ] `copies-and-templates-editor.png`
+      The template editor: the template's pages and details on the left, the selected page's content on the right
 - [ ] `copies-and-templates-save.png`
       Save as template: a new template's name and description
 
@@ -305,6 +309,11 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `qna-moderation-settings.png`
       Q&A → Settings: Allow public questions
+
+## Template library
+
+- [ ] `template-library.png`
+      Settings → Templates: the library with each template's group, pages, last change, use in spaces and its switch
 
 ## Anonymous access
 
