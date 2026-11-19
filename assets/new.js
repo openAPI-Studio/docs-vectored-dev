@@ -303,6 +303,7 @@ window.VC_NEW = {
   "wiki/docs/mobile.html": "2026-11-19",
   "wiki/docs/oauth-applications.html": "2026-11-19",
   "wiki/docs/page-history-and-versions.html": "2026-11-19",
+  "wiki/docs/page-locks.html": "2026-11-20",
   "wiki/docs/pages-and-the-page-tree.html": "2026-11-19",
   "wiki/docs/profile-and-notifications.html": "2026-11-19",
   "wiki/docs/qna.html": "2026-11-19",
