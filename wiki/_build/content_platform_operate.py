@@ -17,6 +17,7 @@ _WIKI_EVENTS = [
         ['`space.update`', 'before, after', 'yes · policies', "A wiki space's name, description or visibility change."],
     ]),
     ('Pages', [
+        ['`html_block.create`', 'before, after', 'yes · policies', "A space admin saves an HTML block for a wiki space's pages (new or changed: every save is a new block). Policies can, for example, refuse HTML that loads scripts."],
         ['`page.attachment.create`', 'before, after', 'yes · policies', 'A file (an image, a video or subtitles) is uploaded to a wiki page. Policies can, for example, refuse uploads in some spaces.'],
         ['`page.attachment.delete`', 'before, after', 'yes · policies', 'A file (an image, a video or subtitles) is deleted from a wiki page, also from the published versions that showed it.'],
         ['`page.comment.create`', 'before, after', 'yes · policies', 'Someone comments on a wiki page: a new thread on the page or on a stretch of its text (inline), or a reply in a thread.'],
@@ -85,6 +86,7 @@ _WIKI_EVENTS = [
         ['`qna.vote`', 'after', 'no', "Someone votes a question or an answer up or down, or takes their vote back. The voter isn't in the event."],
     ]),
     ('Wiki settings', [
+        ['`html_block_settings.update`', 'before, after', 'yes', "The HTML blocks setting changes: on or off, who may add blocks, and the sites blocks may reach. Taking a site off stops it in every block."],
         ['`import_settings.update`', 'before, after', 'yes', "The installation's wiki import settings (imports allowed, largest export) change."],
         ['`robots.update`', 'before, after', 'yes', "What the wiki's robots.txt tells search engines changes (block all, allow public spaces, or custom text)."],
         ['`video_sites.update`', 'before, after', 'yes', 'The sites wiki pages may embed videos from change (YouTube, Vimeo, other hosts). Embeds from a site taken off stop playing in every page.'],

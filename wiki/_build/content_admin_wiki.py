@@ -189,7 +189,7 @@ location / {
             H("After an update"),
             P("When the Wiki is updated, pages people already have open notice within a few minutes, or as soon as they return to the tab, and show **A new version is available** with **Reload** and **Later**. Nothing reloads on its own. Proxies and CDNs must not cache the `/app-version` address."),
             H("Security headers"),
-            P("Pages are served with security headers (frames from other sites are refused, the referrer is trimmed, HSTS) and an enforced Content-Security-Policy; violations are logged by the web app as `[csp]` lines (`CSP_ENFORCE=false` sends it report-only). Pages may frame videos only from the sites allowed in **Settings → Security → Video sites**."),
+            P("Pages are served with security headers (frames from other sites are refused, the referrer is trimmed, HSTS) and an enforced Content-Security-Policy; violations are logged by the web app as `[csp]` lines (`CSP_ENFORCE=false` sends it report-only). Pages may frame videos only from the sites allowed in **Settings → Security → Video sites**. [HTML blocks](macros.html#html-blocks) run in a sandboxed frame with a policy of their own: they can reach only the sites in **Settings → Security → HTML blocks**, and never the Wiki itself."),
             NOTE("The Wiki needs its own host name: it can't be served under a path such as `https://tools.example.com/wiki/`."),
             H("Help menu and footer"),
             P("Once signed in, everyone has a **?** (Help) menu at the top of every page and a footer at the bottom with the version, build and the server that answered. Out of the box, **Documentation**, **Getting started** and **What's new** open these docs, and **Report a bug** and **Contact support** reach Vectored. Point them at your own help desk under **Settings → General → Help menu** (`settings:write`), or leave a link empty to hide it."),
@@ -564,7 +564,7 @@ admin:
     ("settings-reference", dict(
         label="Settings reference", title="Settings reference", icon="settings",
         desc="Every page under Settings and the Wiki's own admin screens: what each configures, who may change it, and the licence it needs",
-        keywords=["settings", "configuration", "admin settings", "permissions", "general", "appearance", "security", "anonymous access", "search engines", "video sites", "imports", "labels", "q&a settings", "clustering", "storage", "backups", "licensing"],
+        keywords=["settings", "configuration", "admin settings", "permissions", "general", "appearance", "security", "anonymous access", "search engines", "video sites", "html blocks", "imports", "labels", "q&a settings", "clustering", "storage", "backups", "licensing"],
         blocks=[
             P("Settings live in PostgreSQL, encrypted where they hold a secret, and apply to every server as soon as they're saved. **Settings** (at the bottom of the left navigation) shows each person only the pages their permissions allow. Every change is recorded in the [audit log](logging-and-audit.html), and most raise an [event](events.html) a [policy](policies.html) can stop or [automation](automation.html) can react to."),
             SHOT("settings-reference-menu.png", "Settings: the menu and the Security tabs, with the Wiki's own Search engines, Video sites and Imports"),
@@ -599,6 +599,7 @@ admin:
                 ["**Rate limits**", "Request budgets and overrides", "`settings:write`", "[Rate limits](rate-limits.html)"],
                 ["**Search engines**", "What robots.txt tells crawlers", "`settings:write`", "[Search engines](search-engines-and-robots.html)"],
                 ["**Video sites**", "YouTube, Vimeo and other sites whose players pages may embed; taking a site off stops it on every page", "`settings:write`", "[Attachments & media](attachments-and-media.html)"],
+                ["**HTML blocks**", "Whether pages may hold HTML blocks (off by default), who adds them, and the only sites they may reach", "`settings:write`", "[Blocks and macros](macros.html#html-blocks)"],
                 ["**Imports**", "Whether space admins may import, and the largest export", "`settings:write`", "[Imports](confluence-import.html)"],
             ]),
             H("Advanced"),
