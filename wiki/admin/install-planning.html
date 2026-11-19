@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan an installation — Wiki Admin Guide</title>
+  <meta name="description" content="Components, requirements, sizing, network and storage to decide before installing the Wiki">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Plan an installation</h1>
+      <p class="vc-lede">Components, requirements, sizing, network and storage to decide before installing the Wiki</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">The Wiki is two programs, the <strong class="text-text">server</strong> (the API, live editing, background jobs) and the <strong class="text-text">web app</strong>, in front of PostgreSQL, optional Redis and file storage. Decide these before installing: they're the parts that are hard to change later.</p>
+      <h2 id="components" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Components</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Part</th><th>Role</th><th>Notes</th></tr></thead><tbody><tr><td>Server</td><td>Every API request, live editing sessions, scheduled jobs (imports, analytics, scheduled publishing), events, plugins</td><td>Port 8080. Stateless apart from a small per-server data folder. Several servers form a cluster</td></tr><tr><td>Web app</td><td>The pages people use; forwards <span class="font-mono text-sm break-words">/api</span> to the server</td><td>Port 3002 by default. Stateless; run two or more for availability</td></tr><tr><td>PostgreSQL</td><td>Every record: people, settings (encrypted), spaces, pages and their versions, comments, Q&amp;A, calendars, analytics, the audit log</td><td>Required. The single source of truth</td></tr><tr><td>Redis</td><td>Coordination between servers: rate limits, live updates</td><td>Optional on one server, required for a cluster. See <a href="deployment-modes.html" class="text-cta hover:underline">Single server &amp; cluster</a></td></tr><tr><td>File storage</td><td>Images and videos on pages, imports while they run, logos, avatars and plugin packages</td><td>Local disk, S3 (or S3-compatible), MinIO or Azure Blob</td></tr><tr><td>Reverse proxy</td><td>TLS, the public address, <span class="font-mono text-sm break-words">/api/ws</span> to the server</td><td>Any proxy or load balancer; examples for Caddy and nginx in <a href="install.html" class="text-cta hover:underline">Install the Wiki</a></td></tr></tbody></table></div>
+      <h2 id="single-server-or-cluster" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Single server or cluster</h2>
+      <div class="tbl-wrap"><table><thead><tr><th></th><th>Single server</th><th>Cluster</th></tr></thead><tbody><tr><td>Licence</td><td>Standard or higher</td><td>Pro or higher, with enough servers</td></tr><tr><td>Redis</td><td>Optional</td><td>Required (one server, Sentinel or Redis Cluster)</td></tr><tr><td>Storage</td><td>Any</td><td>Shared by every server: S3, MinIO, Azure, or one volume mounted at the same path everywhere</td></tr><tr><td>Availability</td><td>Downtime for restarts and upgrades</td><td>Rolling upgrades; a failed server's work is taken over</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Every feature behaves the same either way, live editing included: two people on different servers edit the same page together. Start with one server if you're unsure: going to a cluster later means adding Redis and shared storage, not reinstalling.</p>
+      <h2 id="postgresql" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. PostgreSQL</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>A supported PostgreSQL release, 15 or later. Managed services (Amazon RDS and Aurora PostgreSQL, Google Cloud SQL, Azure Database for PostgreSQL) work.</li><li>One database for the Wiki, owned by the role the Wiki connects as. The role needs <span class="font-mono text-sm break-words">CREATEROLE</span> if plugins use databases, and must not be a superuser.</li><li>Connections: each server opens up to <span class="font-mono text-sm break-words">pool_max_conns</span> (default 4, or the number of CPUs if more). Keep servers × <span class="font-mono text-sm break-words">pool_max_conns</span> plus room for maintenance under <span class="font-mono text-sm break-words">max_connections</span>.</li><li>Page views are kept month by month; on a busy installation the database grows with readers (see <a href="analytics-settings.html" class="text-cta hover:underline">Analytics</a> for what is kept and for how long).</li><li>Use TLS (<span class="font-mono text-sm break-words">sslmode=verify-full</span>) when the database isn't on the same host, and back it up with your platform's tools as well as with the Wiki's <a href="backups.html" class="text-cta hover:underline">backups</a>.</li><li>The Wiki's <a href="backups.html" class="text-cta hover:underline">backups</a> run <span class="font-mono text-sm break-words">pg_dump</span> and <span class="font-mono text-sm break-words">pg_restore</span> on the server: install the PostgreSQL client tools on each server host, at least as new as the database server.</li></ul>
+      <h2 id="storage" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Storage</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Size it for the images and videos people put on pages: images are up to 20 MiB each, videos up to 200 MiB. An import keeps its upload in storage until it ends (2 GiB per export by default).</li><li>Object storage (S3, MinIO, Azure) is the usual choice and the only one that needs nothing extra for a cluster. On AWS the server can use its IAM role instead of keys.</li><li>Each server also has a small <strong class="text-text">data folder</strong> of its own: the encrypted bootstrap file and its log files. Give it persistent disk.</li></ul>
+      <h2 id="network" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Network</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>From</th><th>To</th><th>Port</th><th>Why</th></tr></thead><tbody><tr><td>People</td><td>Reverse proxy</td><td>443</td><td>The web app and the API, on one host name</td></tr><tr><td>Calendar apps</td><td>Reverse proxy</td><td>443</td><td><a href="calendar-feeds.html" class="text-cta hover:underline">Calendar feeds</a>, without signing in</td></tr><tr><td>Reverse proxy</td><td>Web app</td><td>3002</td><td>Everything except <span class="font-mono text-sm break-words">/api/ws</span></td></tr><tr><td>Reverse proxy</td><td>Server</td><td>8080</td><td><span class="font-mono text-sm break-words">/api/ws</span>: live editing and alerts (WebSocket)</td></tr><tr><td>Web app</td><td>Server</td><td>8080</td><td>API traffic</td></tr><tr><td>Server</td><td>PostgreSQL, Redis, storage</td><td>5432, 6379, 443/9000</td><td>Its records, coordination and files</td></tr><tr><td>Servers</td><td>Each other</td><td>none</td><td>Servers coordinate through PostgreSQL and Redis only</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">Outbound from the server</strong>, only for what you use: identity providers (single sign-on, Entra ID, Google), SMTP or Amazon SES, webhook targets and plugins' declared hosts. Videos embedded from YouTube, Vimeo or the sites you allow are played by the reader's browser, not fetched by the server.</p>
+      <h2 id="address-and-tls" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Address and TLS</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Give the Wiki its own host name (<span class="font-mono text-sm break-words">https://wiki.example.com</span>); it can't be served under a path.</li><li>Terminate TLS at your proxy. Single sign-on and calendar apps need HTTPS in practice.</li><li>Set <span class="font-mono text-sm break-words">FRONTEND_BEHIND_PROXY=true</span> on the web app and <span class="font-mono text-sm break-words">TRUSTED_PROXIES</span> on the server, or every request seems to come from the proxy.</li><li>Allow request bodies of at least 201 MiB at the proxy, so videos up to 200 MiB can be uploaded (see <a href="install.html" class="text-cta hover:underline">Install the Wiki</a>).</li></ul>
+      <h2 id="before-you-install" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Before you install</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>PostgreSQL database and role created; Redis ready if you run a cluster; bucket or container created.</li><li>DNS name and TLS certificate.</li><li>A place to keep secrets: <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>, the first administrator's password, the setup and recovery keys.</li><li>Who will request the licence, and with which tier, user and server counts (see <a href="licensing.html" class="text-cta hover:underline">Licensing</a>).</li><li>Email (SMTP or Amazon SES) for invitations and password resets.</li><li>Your identity source: local accounts, LDAP or Active Directory, Entra ID, Google Workspace, SCIM, and single sign-on.</li><li>Whether anything will be public: public spaces and questions need <a href="anonymous-access.html" class="text-cta hover:underline">anonymous access</a>.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

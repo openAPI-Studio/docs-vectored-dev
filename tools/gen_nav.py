@@ -127,6 +127,12 @@ PRODUCTS = [
       dir='depotex', icon='depotex/assets/icon.svg',
       cta='support.html?tool=depotex&type=access', ctaLabel='Request access',
       homeLabel='Depotex Overview', docsHome='depotex/', soon=True, external=True),
+ # The Wiki is listed the same way: wiki/_build/build.py writes
+ # wiki/assets/nav-local.js with its two sidebars.
+ dict(key='wiki', label='Wiki', blurb='Self-hosted team wiki',
+      dir='wiki', icon='wiki/assets/icon.svg',
+      cta='support.html?tool=wiki&type=access', ctaLabel='Request access',
+      homeLabel='Wiki Overview', docsHome='wiki/', soon=True, external=True),
 ]
 
 

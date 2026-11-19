@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics — Wiki Docs</title>
+  <meta name="description" content="How pages and spaces are read, who publishes, and which pages need looking after (Pro)">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <h1 class="vc-h1">Analytics</h1>
+      <p class="vc-lede">How pages and spaces are read, who publishes, and which pages need looking after (Pro)</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Analytics needs a Pro or Enterprise licence. Without one, the Analytics entries don't show and no views are recorded. See <a href="../admin/licensing.html" class="text-cta hover:underline">Licensing</a>.</p></div>
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Analytics shows how the spaces you read are read and kept up. Numbers follow within a quarter of an hour. Pick the <strong class="text-text">Period</strong>: 7 days, 30 days, 90 days or 12 months, each compared with the same length of time before it.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/analytics-overview.png" alt="Analytics: views, readers, pages published and editors, the views by day chart and the most viewed spaces" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">analytics-overview.png</p>
+          <p class="text-xs text-muted max-w-md">Analytics: views, readers, pages published and editors, the views by day chart and the most viewed spaces</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Analytics: views, readers, pages published and editors, the views by day chart and the most viewed spaces</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Where</th><th>What it shows</th></tr></thead><tbody><tr><td><strong class="text-text">Analytics</strong> in the left menu</td><td>Every space you can read: views, readers, pages published, editors and average reading time, views or readers by day, the most viewed pages and spaces, who published, and content health</td></tr><tr><td>A space's <strong class="text-text">Analytics</strong> tab</td><td>The same for one space, with <strong class="text-text">People</strong> (who read and who published) for the space's admins</td></tr><tr><td><strong class="text-text">Analytics</strong> under a page's title</td><td>One published page: its views, readers, reading time and <strong class="text-text">Was this page helpful?</strong> answers</td></tr></tbody></table></div>
+      <h2 id="blog-posts" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Blog posts</h2>
+      <p class="text-muted mb-4">A space's Analytics tab has a <strong class="text-text">Posts</strong> tab for its <a href="blogs.html" class="text-cta hover:underline">blog</a>: how many posts the space has and how many were published in the period, their views and readers, the most read posts (views, readers, reading time, likes and comments in the period) and the authors whose posts were read most. Posts aren't included in the lists of pages.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/analytics-posts.png" alt="A space&#x27;s analytics, Posts: posts and new posts, views and readers, the most read posts and their authors" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">analytics-posts.png</p>
+          <p class="text-xs text-muted max-w-md">A space's analytics, Posts: posts and new posts, views and readers, the most read posts and their authors</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A space's analytics, Posts: posts and new posts, views and readers, the most read posts and their authors</figcaption>
+      </figure>
+      <h2 id="what-is-counted" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. What is counted</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>A view is a published page opened in the browser. The same person opening the same page again within 10 minutes is one view.</li><li>Readers who aren't signed in count as views (shown apart), not as readers.</li><li>Reading time is the time the page was on screen with the tab visible.</li><li>Pages read through API tokens aren't counted, and drafts never are.</li><li>Each view is kept 90 days, and who read what each day 25 months. Daily counts per page and space are kept as long as the page or space.</li></ul>
+      <p class="text-muted mb-4">Who read what is shown only to a space's admins. Everyone else sees counts. Names of people who published follow the space's rule for seeing people.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/analytics-page.png" alt="A page&#x27;s analytics: views, readers, reading time and the helpful answers" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">analytics-page.png</p>
+          <p class="text-xs text-muted max-w-md">A page's analytics: views, readers, reading time and the helpful answers</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A page's analytics: views, readers, reading time and the helpful answers</figcaption>
+      </figure>
+      <h2 id="content-health" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Content health</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Content health</strong> lists pages that need looking after, ten of each with a total:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>List</th><th>Pages</th></tr></thead><tbody><tr><td><strong class="text-text">Not updated in 180 days</strong></td><td>Published pages nobody has published a new version of in that time</td></tr><tr><td><strong class="text-text">Drafts left open</strong></td><td>Drafts and pages in review nobody has changed for 30 days (in a space's analytics, for people who edit pages there)</td></tr><tr><td><strong class="text-text">Broken links</strong></td><td>Pages that link to or include pages that are gone. Checked every hour.</td></tr><tr><td><strong class="text-text">Least helpful</strong></td><td>Pages readers marked as not helpful most often</td></tr><tr><td><strong class="text-text">Searches with no results</strong></td><td>What people in your organization searched for at least twice and didn't find (in Analytics in the left menu, for administrators)</td></tr><tr><td><strong class="text-text">Questions and answers</strong></td><td>Questions asked in the period, answered and with an accepted answer, and all still open (in Analytics in the left menu)</td></tr></tbody></table></div>
+      <figure class="shot mb-6">
+        <img src="../assets/analytics-health.png" alt="Content health: stale pages, drafts left open, broken links and searches with no results" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">analytics-health.png</p>
+          <p class="text-xs text-muted max-w-md">Content health: stale pages, drafts left open, broken links and searches with no results</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Content health: stale pages, drafts left open, broken links and searches with no results</figcaption>
+      </figure>
+      <h2 id="export" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Export</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Export CSV</strong> downloads the most viewed published pages of the period (up to 10,000): space, page, title, views, views by readers not signed in, readers and average reading time, for the spaces in view.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

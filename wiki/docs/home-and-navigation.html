@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home and navigation — Wiki Docs</title>
+  <meta name="description" content="The sidebar, the header, the Create button, and how links to spaces and pages work">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h1 class="vc-h1">Home and navigation</h1>
+      <p class="vc-lede">The sidebar, the header, the Create button, and how links to spaces and pages work</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">Every screen of the Wiki has the same frame: a sidebar on the left and a header across the top. The Wiki's home is the <strong class="text-text">Spaces</strong> list: opening the Wiki's address without a path takes you there.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/home-and-navigation-shell.png" alt="A space&#x27;s overview with the sidebar on the left and the header at the top" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">home-and-navigation-shell.png</p>
+          <p class="text-xs text-muted max-w-md">A space's overview with the sidebar on the left and the header at the top</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A space's overview with the sidebar on the left and the header at the top</figcaption>
+      </figure>
+      <h2 id="the-sidebar" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. The sidebar</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Entry</th><th>What it opens</th></tr></thead><tbody><tr><td><strong class="text-text">Dashboard</strong></td><td>Your dashboard: the newest posts of the blogs you follow and of your spaces, and widgets from plugins.</td></tr><tr><td><strong class="text-text">Spaces</strong></td><td>Every space you can see. See <a href="spaces.html" class="text-cta hover:underline">Spaces</a>.</td></tr><tr><td><strong class="text-text">Blogs</strong></td><td>Posts from every space's blog you can read. See <a href="blogs.html#the-company-blogs-page" class="text-cta hover:underline">Space blogs</a>.</td></tr><tr><td><strong class="text-text">Labels</strong></td><td>Every label in use, and the pages that carry each one. See <a href="labels-and-feedback.html" class="text-cta hover:underline">Labels and feedback</a>.</td></tr><tr><td><strong class="text-text">Q&amp;A</strong></td><td>Questions and answers for your organization, when you may read them. See <a href="qna.html" class="text-cta hover:underline">Q&amp;A</a>.</td></tr><tr><td><strong class="text-text">Calendar</strong></td><td>Space calendars, scheduled publishes and review-by dates. See <a href="calendar.html" class="text-cta hover:underline">Calendar</a>.</td></tr><tr><td><strong class="text-text">Analytics</strong></td><td>Who reads what. Shown only when your licence includes analytics. See <a href="analytics.html" class="text-cta hover:underline">Analytics</a>.</td></tr><tr><td><strong class="text-text">Org settings</strong> / <strong class="text-text">Settings</strong></td><td>At the bottom, for people who manage the installation. See <a href="../admin/settings-reference.html" class="text-cta hover:underline">Settings reference</a>.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Pages that installed <a href="../admin/plugins.html" class="text-cta hover:underline">plugins</a> add are listed under <strong class="text-text">Plugins</strong> in the sidebar. The button at the top left folds the sidebar. On a phone the sidebar opens from the menu button instead.</p>
+      <h2 id="the-header" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. The header</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Search</strong> finds spaces, pages, labels and questions. <strong class="text-text">/</strong> or <strong class="text-text">Ctrl+K</strong> opens it from anywhere. See <a href="search.html" class="text-cta hover:underline">Search</a>.</li><li><strong class="text-text">Create</strong> starts something new: a <strong class="text-text">Space</strong> (if you may create spaces) or a <strong class="text-text">Question</strong> (if you may ask). Each item shows only with its permission.</li><li>The <strong class="text-text">?</strong> button opens help.</li><li>The bell shows your alerts, with the number of unread ones. See <a href="alerts.html" class="text-cta hover:underline">Alerts</a>.</li><li>Your picture or initials open the profile menu: <strong class="text-text">Edit Profile</strong>, theme, language and sign out. See <a href="profile-and-notifications.html" class="text-cta hover:underline">Profile and notifications</a>.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/home-and-navigation-create.png" alt="The Create menu: a new space or a new question" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">home-and-navigation-create.png</p>
+          <p class="text-xs text-muted max-w-md">The Create menu: a new space or a new question</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Create menu: a new space or a new question</figcaption>
+      </figure>
+      <h2 id="inside-a-space" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Inside a space</h2>
+      <p class="text-muted mb-4">A space has tabs across the top: <strong class="text-text">Overview</strong> (its description and pages), <strong class="text-text">Members</strong>, and for the right roles <strong class="text-text">Analytics</strong>, <strong class="text-text">Settings</strong>, <strong class="text-text">Trash</strong> and <strong class="text-text">Import</strong>. The page tree on the left lists the space's pages. On a page, the breadcrumbs above the title show where it sits in the tree; each part is a link.</p>
+      <h2 id="links" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Links</h2>
+      <p class="text-muted mb-4">Every space and page has its own address, so you can bookmark it or paste it in a chat. A space's address uses its key (<span class="font-mono text-sm break-words">/spaces/eng</span>); a page's address uses a fixed id, so it keeps working when the page is renamed or moved within the space. People who can't see the space get a message that the page doesn't exist or can't be seen; nothing about it is shown.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

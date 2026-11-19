@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal data (GDPR) — Wiki Admin Guide</title>
+  <meta name="description" content="Download everything the Wiki stores about a person, or anonymize them for good: what each covers in pages, Q&A, the calendar and analytics">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+      <h1 class="vc-h1">Personal data (GDPR)</h1>
+      <p class="vc-lede">Download everything the Wiki stores about a person, or anonymize them for good: what each covers in pages, Q&amp;A, the calendar and analytics</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">The Wiki answers the two most common data-protection requests from a user's page: <strong class="text-text">Download personal data</strong> (access) and <strong class="text-text">Anonymize…</strong> (erasure). Both are on the user's <strong class="text-text">Privacy</strong> tab under <strong class="text-text">Settings → Users</strong>, and need permissions super admins hold: <span class="font-mono text-sm break-words">users:export</span> and <span class="font-mono text-sm break-words">users:anonymize</span>. Available on every license tier.</p>
+      <h2 id="access-download-a-person-s-data" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Access: download a person's data</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Download personal data</strong> saves a JSON file with everything the Wiki stores about the person: their profile and directory, role, groups, preferences, avatar choice, sessions, sign-in history, API tokens (never the secrets), alert preferences and the actions they performed (latest 5,000 audit entries), plus what the Wiki's own parts keep:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Part</th><th>In the download</th></tr></thead><tbody><tr><td>Pages</td><td>The publishes they scheduled and the review-by dates they set</td></tr><tr><td>Q&amp;A</td><td>The questions, answers and comments they wrote, their votes and what they follow</td></tr><tr><td>Calendar</td><td>The events they wrote, edited or are on leave in, and whether they have a calendar feed address (never the address itself)</td></tr><tr><td>Analytics</td><td>The pages they read, by day, as far back as reading history is kept (about 25 months)</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">People can download their own data under <strong class="text-text">Profile → Security → Download my data</strong>. Every download is recorded in the audit log.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Page comments and review requests aren't in the download yet.</p></div>
+      <h2 id="erasure-anonymize-a-person" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Erasure: anonymize a person</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Disable the user</span> &mdash; Only disabled users can be anonymized, so nobody is erased by accident while still working. For a user from LDAP or Active Directory, disable them in the Wiki (they may still be in the directory).</li><li class="pl-2"><span class="text-text font-medium">Download their data if you need it</span> &mdash; Anonymizing can't be undone.</li><li class="pl-2"><span class="text-text font-medium">Open the user's page</span> &mdash; On the <strong class="text-text">Privacy</strong> tab, select <strong class="text-text">Anonymize…</strong>.</li><li class="pl-2"><span class="text-text font-medium">Confirm</span> &mdash; Type the person's email address and your own password, then select <strong class="text-text">Anonymize permanently</strong>.</li></ol>
+      <p class="text-muted mb-4"><strong class="text-text">What is removed from the account:</strong> name, email, username, directory ID, password, avatar image, theme and language, sign-in and failed-attempt details, sessions (they're signed out everywhere), sign-in history, API tokens and keys, group memberships, roles and alert preferences. In the audit log and in stored events, their email address, network addresses and browser are removed.</p>
+      <p class="text-muted mb-4"><strong class="text-text">What the Wiki's own parts do:</strong></p>
+      <div class="tbl-wrap"><table><thead><tr><th>Part</th><th>Removed</th><th>Kept</th></tr></thead><tbody><tr><td>Pages</td><td>The publishes they scheduled (nobody would publish them), review requests they were asked to answer, their name on the review-by dates they set and on the review requests they made</td><td>Pages, versions, comments and the dates and requests themselves, which belong to the page; their comments show without their name</td></tr><tr><td>Q&amp;A</td><td>Their votes (scores drop with them), follows, reputation and drafts; their name on their questions, answers, comments and earlier versions; mentions of them in every post; images they uploaded that no post shows</td><td>The posts themselves, since other people's answers and votes hang on them; a moderator removes a post whose text names the person</td></tr><tr><td>Calendar</td><td>Their leave and their feed address; their name on the events they wrote or edited</td><td>The events, which belong to the space (its editors change a title that names the person)</td></tr><tr><td>Analytics</td><td>Who read what, by day</td><td>Their views, as anonymous ones, so page and space numbers don't change</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">What stays:</strong> the account itself, renamed <strong class="text-text">Deleted user</strong> with an unusable address, so the audit log and what they wrote still make sense. It can never sign in or be enabled again, and it doesn't use a license seat.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Directories:</strong> if the person still exists in an LDAP or Active Directory directory, sync doesn't bring them back; the run lists them as skipped (*anonymized*). The Wiki keeps only a keyed hash of their directory ID for that, not the ID itself.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Anonymizing erases the data inside the Wiki. Page text that names the person, database backups, exported files and logs you keep elsewhere still contain it: include them in your erasure process.</p></div>
+      <h2 id="events" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Events</h2>
+      <p class="text-muted mb-4">Anonymizing raises <span class="font-mono text-sm break-words">user.anonymize</span>. Plugins and automation can react to it to erase what they hold about the user ID, and <a href="policies.html" class="text-cta hover:underline">policies</a> can restrict who anonymizes whom. See <a href="../docs/events.html" class="text-cta hover:underline">Events</a>.</p>
+      <h2 id="permissions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Permissions</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Permission</th><th>Who</th><th>Allows</th></tr></thead><tbody><tr><td><span class="font-mono text-sm break-words">users:export</span></td><td>Super admins</td><td>Downloading another person's data</td></tr><tr><td><span class="font-mono text-sm break-words">users:anonymize</span></td><td>Super admins</td><td>Anonymizing a disabled person</td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Known issues — Wiki Admin Guide</title>
+  <meta name="description" content="Limitations and known problems in the current release, with workarounds">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h1 class="vc-h1">Known issues</h1>
+      <p class="vc-lede">Limitations and known problems in the current release, with workarounds</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">What doesn't work yet, or works with a catch, in the current release, and what to do meanwhile. Fixed issues leave this list and appear in the <a href="../docs/changelog.html" class="text-cta hover:underline">changelog</a>.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Last reviewed: 17 November 2026.</p></div>
+      <h2 id="installation" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Installation</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Issue</th><th>Workaround</th></tr></thead><tbody><tr><td>No container images or Helm chart yet</td><td>Run the server and web app as services, or in containers you build</td></tr><tr><td>Live editing needs <span class="font-mono text-sm break-words">/api/ws</span> routed to the server; without it the editor can't connect</td><td>Route it (see <a href="install.html" class="text-cta hover:underline">Install the Wiki</a>)</td></tr><tr><td>The Wiki can't be served under a path</td><td>Give it its own host name</td></tr><tr><td>Some platform screens still name Depotex (for example <strong class="text-text">Settings → General</strong>'s address field, and the anonymous access text about downloads)</td><td>—</td></tr></tbody></table></div>
+      <h2 id="spaces-pages-and-media" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Spaces, pages and media</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Issue</th><th>Workaround</th></tr></thead><tbody><tr><td>No per-page view or edit restrictions</td><td>Put pages that need other access in their own space</td></tr><tr><td>Nothing stops an admin from removing a space's last admin</td><td>A super admin adds an admin back</td></tr><tr><td>Attachments are images and videos only; no other files, and no per-space quota</td><td>Link to files kept elsewhere</td></tr><tr><td>Videos are played as uploaded: no transcoding</td><td>Upload MP4 (H.264) or WebM that browsers play</td></tr><tr><td>PDF export draws Latin, Greek and Cyrillic text only</td><td>Export to Word for other scripts</td></tr><tr><td>A scheduled publish runs up to a minute late, and any edit after scheduling cancels it</td><td>Schedule again after editing</td></tr><tr><td>Review-by reminders go only to whoever set the date, as an in-app alert</td><td>—</td></tr><tr><td>Tablets get the compact desktop sizes of controls</td><td>—</td></tr></tbody></table></div>
+      <h2 id="search-imports-and-q-a" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Search, imports and Q&amp;A</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Issue</th><th>Workaround</th></tr></thead><tbody><tr><td>Global search matches page titles only, not their text</td><td>Search titles and labels</td></tr><tr><td>Imports: Confluence XML exports and Markdown only; restrictions and attachments other than images and videos aren't imported</td><td>Recreate restrictions as separate spaces</td></tr><tr><td>Q&amp;A, comment and mention alerts are in-app only, with no email</td><td>—</td></tr><tr><td>Signed-out visitors can't use search or label pages in the web app</td><td>Link to pages directly</td></tr><tr><td>No sitemap; robots.txt lists at most 1,000 public spaces</td><td>—</td></tr></tbody></table></div>
+      <h2 id="analytics-and-calendars" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Analytics and calendars</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Issue</th><th>Workaround</th></tr></thead><tbody><tr><td>Analytics retention can't be changed, and recording who read what can't be turned off</td><td>See <a href="analytics-settings.html" class="text-cta hover:underline">Analytics</a> for what is kept</td></tr><tr><td>Analytics days are UTC days</td><td>—</td></tr><tr><td>Calendar feeds send at most 2,000 entries over a year and a month; repeats can't have exceptions</td><td>—</td></tr><tr><td>A calendar feed's secret is in its address, which a proxy may log</td><td>Leave queries out of the proxy log for <span class="font-mono text-sm break-words">/api/calendar/ical</span></td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting started with the Wiki — Wiki Docs</title>
+  <meta name="description" content="Sign in, find your spaces, read a page and write your first one">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg></div>
+      <h1 class="vc-h1">Getting started with the Wiki</h1>
+      <p class="vc-lede">Sign in, find your spaces, read a page and write your first one</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="what-the-wiki-is" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. What the Wiki is</h2>
+      <p class="text-muted mb-4">The Wiki holds your organization's pages: runbooks, handbooks, decisions, plans. Pages live in <strong class="text-text">spaces</strong>, one per team or project, and each space decides who can read and who can write. Inside a space, pages form a tree: a page can have pages under it, as many levels deep as you need.</p>
+      <p class="text-muted mb-4">Several people can edit a page at the same time. Readers see the last <strong class="text-text">published</strong> version; what editors change stays a draft until someone publishes it. See <a href="drafts-and-publishing.html" class="text-cta hover:underline">Drafts and publishing</a>.</p>
+      <h2 id="sign-in" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Sign in</h2>
+      <p class="text-muted mb-4">Open the address your administrator gave you and sign in with your email and password, or with your organization's single sign-on button when one is set up. <strong class="text-text">Forgot password?</strong> sends you a link to choose a new one.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/getting-started-sign-in.png" alt="The sign-in page" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">getting-started-sign-in.png</p>
+          <p class="text-xs text-muted max-w-md">The sign-in page</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The sign-in page</figcaption>
+      </figure>
+      <p class="text-muted mb-4">If your administrator turned on anonymous access, people without an account can read <strong class="text-text">public</strong> spaces without signing in. They see the reading view only: no editing, watching, copying or answering "Was this page helpful?". See <a href="../admin/anonymous-access.html" class="text-cta hover:underline">Anonymous access</a>.</p>
+      <h2 id="your-first-ten-minutes" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Your first ten minutes</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium"><strong class="text-text">Find your spaces.</strong> After signing in you land on <strong class="text-text">Spaces</strong>: every space you can see. <strong class="text-text">Yours</strong> lists only the spaces where you have a role. See <a href="spaces.html" class="text-cta hover:underline">Spaces</a>.</span></li><li class="pl-2"><span class="text-text font-medium"><strong class="text-text">Read a page.</strong> Open a space, then a page in its tree on the left. The page shows its last published version, who changed it and when.</span></li><li class="pl-2"><span class="text-text font-medium"><strong class="text-text">Watch what matters.</strong> <strong class="text-text">Watch</strong> on a page sends you an alert each time a new version is published. See <a href="profile-and-notifications.html" class="text-cta hover:underline">Profile and notifications</a>.</span></li><li class="pl-2"><span class="text-text font-medium"><strong class="text-text">Write a page.</strong> If you are an editor of the space, <strong class="text-text">New page</strong> in the page tree creates a draft. Write it, then <strong class="text-text">Publish</strong>. See <a href="pages-and-the-page-tree.html" class="text-cta hover:underline">Pages and the page tree</a> and <a href="editor.html" class="text-cta hover:underline">The editor</a>.</span></li><li class="pl-2"><span class="text-text font-medium"><strong class="text-text">Find anything later.</strong> Press <strong class="text-text">Ctrl+K</strong> (<strong class="text-text">⌘K</strong> on a Mac) or <strong class="text-text">/</strong> to search spaces, pages, labels and questions. See <a href="search.html" class="text-cta hover:underline">Search</a>.</span></li></ol>
+      <h2 id="what-you-can-do-depends-on-your-role" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. What you can do depends on your role</h2>
+      <p class="text-muted mb-4">Each space gives its members one of four roles. Your role in a space shows at the top of the space (<strong class="text-text">Your role: Editor</strong>) and in the <strong class="text-text">Your role</strong> column of the space list.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Role</th><th>Can</th></tr></thead><tbody><tr><td>Viewer</td><td>Read pages</td></tr><tr><td>Commenter</td><td>Read pages and comment on them</td></tr><tr><td>Editor</td><td>Read, create, edit, move and delete pages</td></tr><tr><td>Admin</td><td>Everything, including members, settings and deleting the space</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Spaces that are <strong class="text-text">internal</strong> or <strong class="text-text">public</strong> can be read by more people than their members; only members can edit them. Creating a new space is for super admins by default.</p>
+      <h2 id="where-to-go-next" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Where to go next</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><a href="home-and-navigation.html" class="text-cta hover:underline">Home and navigation</a>: the sidebar, the header and the <strong class="text-text">Create</strong> button.</li><li><a href="editor.html" class="text-cta hover:underline">The editor</a> and <a href="macros.html" class="text-cta hover:underline">Blocks and macros</a>: writing and formatting pages.</li><li><a href="comments.html" class="text-cta hover:underline">Comments</a>, <a href="reviews.html" class="text-cta hover:underline">Reviews</a> and <a href="editing-together.html" class="text-cta hover:underline">Editing together</a>: working on a page with others.</li><li><a href="qna.html" class="text-cta hover:underline">Q&amp;A</a>, <a href="calendar.html" class="text-cta hover:underline">Calendar</a> and <a href="analytics.html" class="text-cta hover:underline">Analytics</a>.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

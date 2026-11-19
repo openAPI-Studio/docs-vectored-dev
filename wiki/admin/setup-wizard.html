@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup wizard — Wiki Admin Guide</title>
+  <meta name="description" content="Set up a new installation step by step: licence, database, storage, cache and the first administrator">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg></div>
+      <h1 class="vc-h1">Setup wizard</h1>
+      <p class="vc-lede">Set up a new installation step by step: licence, database, storage, cache and the first administrator</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">A server that has never been set up starts in <strong class="text-text">setup mode</strong>: it serves only the setup wizard, protected by a one-time setup key. The wizard collects what the installation needs, stores every credential encrypted in the database, and restarts the server into normal mode. It takes about five minutes once PostgreSQL and your storage exist.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard-license.png" alt="Setup wizard, License: the installation ID to request a licence with, and the licence to upload or paste" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard-license.png</p>
+          <p class="text-xs text-muted max-w-md">Setup wizard, License: the installation ID to request a licence with, and the licence to upload or paste</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Setup wizard, License: the installation ID to request a licence with, and the licence to upload or paste</figcaption>
+      </figure>
+      <h2 id="before-you-start" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Before you start</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>You need</th><th>Details</th></tr></thead><tbody><tr><td>A PostgreSQL database</td><td>An empty database and a role that owns it. Not a superuser. See <a href="install-planning.html" class="text-cta hover:underline">Plan an installation</a>.</td></tr><tr><td>File storage</td><td>A directory on the server, an S3 bucket, a MinIO bucket or an Azure Blob container, which must already exist.</td></tr><tr><td>Redis (optional)</td><td>Needed only for a cluster.</td></tr><tr><td><span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span></td><td>Set on the server before its first start, and kept safe.</td></tr><tr><td>A licence</td><td>Bound to the installation ID the wizard shows on its first step. See <a href="licensing.html" class="text-cta hover:underline">Licensing</a>.</td></tr></tbody></table></div>
+      <h2 id="open-the-wizard" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Open the wizard</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Start the server</span> &mdash; With <span class="font-mono text-sm break-words">DATABASE_URL</span> and <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span> set (see <a href="install.html" class="text-cta hover:underline">Install the Wiki</a>).</li><li class="pl-2"><span class="text-text font-medium">Find the setup link</span> &mdash; The log prints a line like <span class="font-mono text-sm break-words">open the setup wizard … setup_url=https://wiki.example.com/setup?token=…</span>.</li><li class="pl-2"><span class="text-text font-medium">Open it</span> &mdash; The page reads the key and removes it from the address bar.</li><li class="pl-2"><span class="text-text font-medium">Choose your language</span> &mdash; The language menu at the top. The first administrator keeps it as their language.</li></ol>
+      <h2 id="the-steps" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. The steps</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Step</th><th>What it asks</th></tr></thead><tbody><tr><td><strong class="text-text">1. License</strong></td><td>Shows the <strong class="text-text">Installation ID</strong> (<strong class="text-text">Copy installation ID</strong>). <strong class="text-text">Upload file</strong> or <strong class="text-text">Paste text</strong>, then <strong class="text-text">Validate license</strong>. <strong class="text-text">Next</strong> stays off until the licence is valid for this installation</td></tr><tr><td><strong class="text-text">2. Database</strong></td><td>A <strong class="text-text">Connection string</strong> or <strong class="text-text">Connection details</strong> (host, port, database, user, password, SSL mode). <strong class="text-text">Test connection</strong> checks that the Wiki can sign in and create tables; a database that already holds tables is flagged, with <strong class="text-text">Wipe database</strong> for one you made for the Wiki</td></tr><tr><td><strong class="text-text">3. Storage</strong></td><td><strong class="text-text">Local filesystem</strong> (a base path), <strong class="text-text">AWS S3</strong> (bucket, region, keys or the server's IAM role), <strong class="text-text">MinIO</strong> or <strong class="text-text">Azure Blob Storage</strong>. The wizard writes and reads a test object before you go on</td></tr><tr><td><strong class="text-text">4. Cache</strong></td><td>An optional <strong class="text-text">Redis URL</strong>; leave it empty for a single server</td></tr><tr><td><strong class="text-text">5. Administrator</strong></td><td>The first <strong class="text-text">super admin</strong>'s name, email and password, or <strong class="text-text">Restore from a backup</strong></td></tr></tbody></table></div>
+      <figure class="shot mb-6">
+        <img src="../assets/setup-wizard-admin.png" alt="Setup wizard, Administrator: the first super admin, or restore from a backup" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">setup-wizard-admin.png</p>
+          <p class="text-xs text-muted max-w-md">Setup wizard, Administrator: the first super admin, or restore from a backup</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Setup wizard, Administrator: the first super admin, or restore from a backup</figcaption>
+      </figure>
+      <p class="text-muted mb-4"><strong class="text-text">Complete setup</strong> saves everything, runs the database migrations and restarts the server in normal mode. The page waits and then takes you to sign-in. Nothing is saved until <strong class="text-text">Complete setup</strong> succeeds, so you can restart the server and begin again at any point before that.</p>
+      <p class="text-muted mb-4">Setup never changes an installation that exists: when the database already holds one, this server only joins it as one more server (with that installation's <span class="font-mono text-sm break-words">CONFIG_ENCRYPTION_KEY</span>), and what you entered isn't applied.</p>
+      <h2 id="after-setup" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. After setup</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Sign in</span> &mdash; As the administrator you created.</li><li class="pl-2"><span class="text-text font-medium">Set the Wiki's address</span> &mdash; <strong class="text-text">Settings → General</strong>: the address people use. Links in emails and single sign-on depend on it.</li><li class="pl-2"><span class="text-text font-medium">Configure email</span> &mdash; <strong class="text-text">Settings → Application → Email</strong>, so invitations and password resets work. See <a href="email.html" class="text-cta hover:underline">Email</a>.</li><li class="pl-2"><span class="text-text font-medium">Bring people in</span> &mdash; Directories, single sign-on or invitations. See <a href="users-and-directories.html" class="text-cta hover:underline">Users &amp; directories</a>.</li><li class="pl-2"><span class="text-text font-medium">Create the first spaces</span> &mdash; Only super admins create spaces. See <a href="../docs/spaces.html" class="text-cta hover:underline">Spaces</a>.</li><li class="pl-2"><span class="text-text font-medium">Turn on backups</span> &mdash; <strong class="text-text">Settings → Backups</strong>. See <a href="backups.html" class="text-cta hover:underline">Backups</a>.</li><li class="pl-2"><span class="text-text font-medium">Harden it</span> &mdash; Work through the <a href="security-hardening.html" class="text-cta hover:underline">production checklist</a>.</li></ol>
+      <h2 id="if-setup-fails" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. If setup fails</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>The setup page says the key is missing or wrong</td><td>Open the exact <span class="font-mono text-sm break-words">setup_url</span> from the newest log line; the key changes on every restart unless <span class="font-mono text-sm break-words">SETUP_TOKEN</span> is set</td></tr><tr><td>Database: can't connect or can't create tables</td><td>Check host, port and SSL mode; the role needs to own the database</td></tr><tr><td>Storage isn't accessible</td><td>The bucket or container must exist; check the credentials, region or endpoint, and that the server can reach it</td></tr><tr><td>Couldn't connect to Redis</td><td>Check the URL scheme for Sentinel or Cluster, the password and TLS (<span class="font-mono text-sm break-words">rediss</span>)</td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

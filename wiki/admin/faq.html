@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently asked questions — Wiki Admin Guide</title>
+  <meta name="description" content="Answers to the questions administrators ask most">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h1 class="vc-h1">Frequently asked questions</h1>
+      <p class="vc-lede">Answers to the questions administrators ask most</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="licensing" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Licensing</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">How do I get a licence?</strong> Read the installation ID (setup wizard, Settings → Application → Licensing, or <span class="font-mono text-sm break-words">./wiki-server --machine-id</span>) and send it through <a href="https://vectored.dev/#contact" class="text-cta hover:underline">vectored.dev/#contact</a> or to support@vectored.dev. See <a href="licensing.html" class="text-cta hover:underline">Licensing</a>.</li><li><strong class="text-text">Why is there no Analytics menu?</strong> Page analytics need a Pro licence.</li><li><strong class="text-text">What happens when the licence expires?</strong> Any grace period first, with banners; then only sign-in, health checks and the licence page answer, until a new licence is applied. Nothing is deleted.</li><li><strong class="text-text">Does the Wiki call home?</strong> No. It doesn't need internet access to check its licence.</li></ul>
+      <h2 id="installation" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Installation</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Do I need Redis?</strong> Not for a single server. A cluster needs it. See <a href="deployment-modes.html" class="text-cta hover:underline">Single server &amp; cluster</a>.</li><li><strong class="text-text">Which PostgreSQL?</strong> 15 or later; managed services work.</li><li><strong class="text-text">People can't edit pages together; the editor says it can't connect.</strong> Route <span class="font-mono text-sm break-words">/api/ws</span> to the server with WebSocket upgrades allowed. See <a href="install.html" class="text-cta hover:underline">Install the Wiki</a>.</li><li><strong class="text-text">Video uploads fail with 413.</strong> The proxy in front of the Wiki refuses large bodies: let it take 201 MiB (nginx: <span class="font-mono text-sm break-words">client_max_body_size 201m</span>).</li><li><strong class="text-text">Can I set it up with no browser?</strong> Yes: <a href="headless-setup.html" class="text-cta hover:underline">Set up without the UI</a>.</li></ul>
+      <h2 id="content" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Content</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">How do we move from Confluence?</strong> Export each space (XML, full export) and import it into a Wiki space: <a href="confluence-import.html" class="text-cta hover:underline">Imports</a>. Importing again later updates what the first import made.</li><li><strong class="text-text">Who can create spaces?</strong> Super admins. They then hand a space to its team with the Admin role.</li><li><strong class="text-text">How do we publish a space to the internet?</strong> Turn on <a href="anonymous-access.html" class="text-cta hover:underline">anonymous access</a>, make the space public, and choose what <a href="search-engines-and-robots.html" class="text-cta hover:underline">search engines</a> may index.</li></ul>
+      <h2 id="access" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Access</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">I'm locked out: single sign-on is down.</strong> Start one server with <span class="font-mono text-sm break-words">SSO_ENFORCEMENT_OVERRIDE=true</span>, sign in with a password as a super admin, fix the provider, then remove the variable.</li><li><strong class="text-text">An account is locked after failed sign-ins.</strong> It unlocks after <span class="font-mono text-sm break-words">AUTH_LOCKOUT_DURATION</span> (15 minutes), or an administrator unlocks it in Settings → Access management → Users.</li><li><strong class="text-text">Someone's calendar address leaked.</strong> They make a new one on the Calendar page; ending their sessions also stops it. See <a href="calendar-feeds.html" class="text-cta hover:underline">Calendar feeds</a>.</li><li><strong class="text-text">Why does everyone seem to come from the same address?</strong> The web app ignores forwarding headers unless <span class="font-mono text-sm break-words">FRONTEND_BEHIND_PROXY=true</span> is set on it, and the server trusts them only from the proxies in <span class="font-mono text-sm break-words">TRUSTED_PROXIES</span>. Set both; see <a href="install.html" class="text-cta hover:underline">Install the Wiki</a>.</li></ul>
+      <h2 id="data" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Data</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">What's in a backup?</strong> See <a href="backups.html" class="text-cta hover:underline">Backups</a>.</li><li><strong class="text-text">I lost CONFIG_ENCRYPTION_KEY.</strong> Stored credentials and backups made with it can't be read; there is no recovery. Keep the key in a secret store and with your backup records.</li><li><strong class="text-text">How long are page views kept?</strong> Raw views 90 days, daily totals as long as the page. See <a href="analytics-settings.html" class="text-cta hover:underline">Analytics</a>.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

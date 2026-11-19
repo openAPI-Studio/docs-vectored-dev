@@ -251,6 +251,26 @@
       nextSteps: [{ label: 'Depotex documentation', href: 'https://docs.vectored.dev/depotex/' }],
     },
 
+    wiki: {
+      id: 'wiki',
+      name: 'Wiki',
+      platform: 'self-hosted',
+      tagline: 'A self-hosted team wiki with live editing, Q&A, calendars and analytics.',
+      badge: 'COMING SOON',
+      docs: 'https://docs.vectored.dev/wiki/',
+      marketplace: null,
+      icon: 'wiki/assets/icon.svg',
+      accent: '#22C55E',
+      initial: 'W',
+      ratingLabel: 'How interested are you in the Wiki?',
+      areas: ['Editing & macros', 'Spaces & permissions', 'Q&A', 'Calendar & analytics', 'Importing from Confluence', 'Single sign-on', 'Something else'],
+      questions: [
+        { id: 'earlyAccess', label: 'Want early access?', type: 'radio', options: ['Yes, I want early access', 'No, just leaving feedback'] },
+        { id: 'currentTool', label: 'What do you use for a wiki today?', type: 'text', placeholder: 'e.g. Confluence, Notion, MediaWiki, nothing' },
+      ],
+      nextSteps: [{ label: 'Wiki documentation', href: 'https://docs.vectored.dev/wiki/' }],
+    },
+
     frontdoor: {
       id: 'frontdoor',
       name: 'Front Door',
@@ -288,7 +308,7 @@
   };
 
   // Order the dropdown deliberately: live products first, then upcoming, then catch-alls.
-  var ORDER = ['macrotoolkit', 'forms', 'apistudio', 'rewardhub', 'rewardhub-monday', 'timesheets', 'lens', 'depotex', 'frontdoor', 'docs'];
+  var ORDER = ['macrotoolkit', 'forms', 'apistudio', 'rewardhub', 'rewardhub-monday', 'timesheets', 'lens', 'depotex', 'wiki', 'frontdoor', 'docs'];
 
   // Aliases so old links, marketplace slugs and in-app links all resolve.
   var ALIASES = {
@@ -315,6 +335,7 @@
     screensnap: 'lens',
     ln: 'lens',
     dx: 'depotex',
+    'team-wiki': 'wiki',
     'front-door': 'frontdoor',
     portal: 'frontdoor',
     documentation: 'docs',

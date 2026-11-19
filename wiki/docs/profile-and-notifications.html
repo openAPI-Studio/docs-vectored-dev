@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your profile and notifications — Wiki Docs</title>
+  <meta name="description" content="Your avatar, theme and language, watching pages, mentions, and which alerts you get">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h1 class="vc-h1">Your profile and notifications</h1>
+      <p class="vc-lede">Your avatar, theme and language, watching pages, mentions, and which alerts you get</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="your-profile-settings" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Your profile settings</h2>
+      <p class="text-muted mb-4">Open your profile settings from the profile menu (your picture or initials, top right) with <strong class="text-text">Edit Profile</strong>. The sections are in three groups: <strong class="text-text">Account</strong> (Profile, Preferences, Notifications), <strong class="text-text">Sign-in</strong> (Security, Active sessions) and <strong class="text-text">Access</strong> (API tokens, Connected apps, and sections that installed plugins add). On a phone the sections are a row of tabs above the content.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Profile</strong>: change your avatar (a preset picture, or upload JPEG, PNG or WebP up to 2 MB) and see your name, email and role. An administrator changes your name and email.</li><li><strong class="text-text">Preferences</strong>: the theme and language (below).</li><li><strong class="text-text">Notifications</strong>: which alerts you get (below).</li><li><strong class="text-text">Security</strong>: change your password, and <strong class="text-text">Download my data</strong>.</li><li><strong class="text-text">Active sessions</strong>: where you are signed in; sign out one session or all the others.</li><li><strong class="text-text">API tokens</strong>: tokens for scripts and integrations. See <a href="api-tokens.html" class="text-cta hover:underline">API tokens</a>.</li><li><strong class="text-text">Connected apps</strong>: applications you allowed to act for you. See <a href="oauth-applications.html" class="text-cta hover:underline">OAuth applications</a>.</li></ul>
+      <h2 id="theme-and-language" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Theme and language</h2>
+      <p class="text-muted mb-4">Under <strong class="text-text">Preferences</strong>, pick <strong class="text-text">Light</strong>, <strong class="text-text">Dark</strong> or <strong class="text-text">High contrast</strong>; each card previews that theme. <strong class="text-text">Language</strong> sets the language of menus, messages, numbers and dates: English or German (Deutsch). Both are saved for your account and follow you to other devices. The profile menu has the same two choices as a shortcut.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/profile-and-notifications-theme.png" alt="Profile settings → Preferences: the three themes and the language" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">profile-and-notifications-theme.png</p>
+          <p class="text-xs text-muted max-w-md">Profile settings → Preferences: the three themes and the language</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Profile settings → Preferences: the three themes and the language</figcaption>
+      </figure>
+      <h2 id="watching-a-page" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Watching a page</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Watch</strong> on a page sends you an alert each time a new version of it is published. <strong class="text-text">Stop watching</strong> ends that. You watch a page automatically when you create it or publish a version of it; once you stop watching, the Wiki doesn't sign you up again.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/profile-and-notifications-watch.png" alt="The Stop watching button on a page you watch" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">profile-and-notifications-watch.png</p>
+          <p class="text-xs text-muted max-w-md">The Stop watching button on a page you watch</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Stop watching button on a page you watch</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>A version published as a <strong class="text-text">Minor change</strong> doesn't alert watchers.</li><li>You aren't alerted about your own publish.</li><li>A new comment on a page you watch alerts you too. See <a href="comments.html" class="text-cta hover:underline">Comments</a>.</li><li>You are only alerted while you can still read the page.</li></ul>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Watching a whole space or a label isn't available yet: watch the pages you care about.</p></div>
+      <h2 id="mentions" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Mentions</h2>
+      <p class="text-muted mb-4">Editors can mention someone in a page by typing <strong class="text-text">@</strong> and part of their name, then picking them from the list. When the page is next published, each person it mentions gets an alert, once per page: being mentioned again in a later version of the same page doesn't alert them again. Mentions in <a href="comments.html" class="text-cta hover:underline">comments</a> alert the person when the comment is posted.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The list offers active people of the space's organization, matched on their name (never their email). In a private space, only the space's members can be mentioned.</li><li>Mentioning needs permission to see people's profiles; editors without it don't get the list.</li><li>Readers who may not see people's profiles, and visitors who aren't signed in, see the name only.</li></ul>
+      <h2 id="choosing-which-alerts-you-get" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Choosing which alerts you get</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Notifications</strong> in your profile settings (also the settings icon in the bell panel, and <strong class="text-text">Preferences</strong> on the notifications page) controls what reaches you:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Opt out of non-critical alerts</strong> stops everything but critical alerts and the categories your administrator forces on everyone.</li><li>Muted categories stop one kind of alert. Forced categories can't be muted and show a lock icon.</li><li>A summary below says what you'll receive. Changes wait in a bar at the bottom until you <strong class="text-text">Save preferences</strong> or <strong class="text-text">Discard</strong> them.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/profile-and-notifications-preferences.png" alt="Profile settings → Notifications: opt-out, muted and forced categories" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">profile-and-notifications-preferences.png</p>
+          <p class="text-xs text-muted max-w-md">Profile settings → Notifications: opt-out, muted and forced categories</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Profile settings → Notifications: opt-out, muted and forced categories</figcaption>
+      </figure>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">The Wiki's alerts arrive in the bell and on the notifications page. Email and digest delivery of page alerts isn't available yet. To stop alerts about one page, use <strong class="text-text">Stop watching</strong> on it.</p></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

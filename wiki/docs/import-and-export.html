@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import and Export — Wiki Docs</title>
+  <meta name="description" content="Bring Markdown or a Confluence space into a space, and download a page as Word or PDF">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+      <h1 class="vc-h1">Import and Export</h1>
+      <p class="vc-lede">Bring Markdown or a Confluence space into a space, and download a page as Word or PDF</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="download-a-page-as-word-or-pdf" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Download a page as Word or PDF</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Download</strong> above a published page offers <strong class="text-text">Word document (.docx)</strong> or <strong class="text-text">PDF</strong>. In the editor it is in Page details once the page has a version. Anyone who can read the page can download it, readers who aren't signed in too.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/import-and-export-download.png" alt="The Download menu above a page: Word document or PDF" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">import-and-export-download.png</p>
+          <p class="text-xs text-muted max-w-md">The Download menu above a page: Word document or PDF</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Download menu above a page: Word document or PDF</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The file holds the published version you are looking at, never the draft: heading and figure numbers, tables of contents, lists, tables, code, boxes, images with captions, and the content of blocks that show other pages you may read.</li><li>PNG, JPEG and GIF images are included; other images and videos become a note or a link.</li><li>The Word file shows every language. The PDF draws Latin, Greek and Cyrillic text; other scripts and emoji don't show there yet, so use Word for them. Pages are A4.</li><li>A very large page can take too long to turn into a file; try again later or download a smaller page. When many people export at once, the Wiki asks you to try again in a moment.</li><li>A <a href="blogs.html" class="text-cta hover:underline">blog post</a>'s file starts with its title, its date and authors, and its cover image.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/export-blog-post-pdf.png" alt="The first page of a blog post downloaded as PDF: title, date and authors, cover image" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">export-blog-post-pdf.png</p>
+          <p class="text-xs text-muted max-w-md">The first page of a blog post downloaded as PDF: title, date and authors, cover image</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The first page of a blog post downloaded as PDF: title, date and authors, cover image</figcaption>
+      </figure>
+      <h2 id="import-markdown" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Import Markdown</h2>
+      <p class="text-muted mb-4">A space's admins import Markdown on the space's <strong class="text-text">Import</strong> tab: one <span class="font-mono text-sm break-words">.md</span> file, or a <span class="font-mono text-sm break-words">.zip</span> of a folder of <span class="font-mono text-sm break-words">.md</span> files with their images.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Each folder becomes a page holding its files' pages; a folder's <span class="font-mono text-sm break-words">index.md</span>, <span class="font-mono text-sm break-words">README.md</span> or <span class="font-mono text-sm break-words">_index.md</span> is that page's text.</li><li>A file's title comes from its front matter <span class="font-mono text-sm break-words">title</span>, else its first top-level heading, else its name. A leading number (<span class="font-mono text-sm break-words">02-setup.md</span>) sets the order and is left out of the title.</li><li>Tables, task lists, strikethrough, links between the files and the images they show are kept. HTML inside the Markdown is left out.</li><li>Importing the same folder again into the same space updates the pages it made, except pages edited here since.</li></ul>
+      <p class="text-muted mb-4">The upload is checked first, and nothing is written until you start the import from its report. Each page gets one version.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/import-and-export-report.png" alt="The Import tab&#x27;s report for a checked export, before the import starts" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">import-and-export-report.png</p>
+          <p class="text-xs text-muted max-w-md">The Import tab's report for a checked export, before the import starts</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Import tab's report for a checked export, before the import starts</figcaption>
+      </figure>
+      <h2 id="import-from-confluence" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Import from Confluence</h2>
+      <p class="text-muted mb-4">A Confluence space export (Space tools → Export, XML, full export, as a <span class="font-mono text-sm break-words">.zip</span>) is imported the same way, with its page tree, versions, comments, labels, images and videos, and people matched by email. See <a href="../admin/confluence-import.html" class="text-cta hover:underline">Import from Confluence</a> for the steps and what converts.</p>
+      <p class="text-muted mb-4">When the export has blog posts and the space's <a href="blogs.html" class="text-cta hover:underline">blog</a> is on, the report asks <strong class="text-text">Where blog posts go</strong>:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">On the space's blog</strong> (the default): each becomes a post on the Blog tab, dated when it was written in Confluence, with its authors where they have an account here. Followers aren't alerted about imported posts.</li><li><strong class="text-text">Under a page</strong>: as before blogs came to the Wiki, the posts become pages under a page with the title you give.</li></ul>
+      <p class="text-muted mb-4">With the space's blog off, blog posts always go under a page.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/import-blog-posts.png" alt="A checked Confluence export with a blog post: Where blog posts go, On the space&#x27;s blog or Under a page" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">import-blog-posts.png</p>
+          <p class="text-xs text-muted max-w-md">A checked Confluence export with a blog post: Where blog posts go, On the space's blog or Under a page</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A checked Confluence export with a blog post: Where blog posts go, On the space's blog or Under a page</figcaption>
+      </figure>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Imports are for the space's admins, and your administrator can turn them off or limit the upload size.</p></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
