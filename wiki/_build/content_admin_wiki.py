@@ -565,7 +565,7 @@ admin:
     ("settings-reference", dict(
         label="Settings reference", title="Settings reference", icon="settings",
         desc="Every page under Settings and the Wiki's own admin screens: what each configures, who may change it, and the licence it needs",
-        keywords=["settings", "configuration", "admin settings", "permissions", "general", "appearance", "security", "anonymous access", "search engines", "video sites", "html blocks", "imports", "labels", "q&a settings", "clustering", "storage", "backups", "licensing"],
+        keywords=["settings", "configuration", "admin settings", "permissions", "general", "appearance", "security", "anonymous access", "search engines", "video sites", "html blocks", "imports", "labels", "space categories", "q&a settings", "clustering", "storage", "backups", "licensing"],
         blocks=[
             P("Settings live in PostgreSQL, encrypted where they hold a secret, and apply to every server as soon as they're saved. **Settings** (at the bottom of the left navigation) shows each person only the pages their permissions allow. Every change is recorded in the [audit log](logging-and-audit.html), and most raise an [event](events.html) a [policy](policies.html) can stop or [automation](automation.html) can react to."),
             SHOT("settings-reference-menu.png", "Settings: the menu and the Security tabs, with the Wiki's own Search engines, Video sites and Imports"),
@@ -615,9 +615,10 @@ admin:
             H("Wiki screens outside Settings"),
             TABLE(["Screen", "What it configures", "Who", "Docs"], [
                 ["**Templates**", "The template library every space starts pages from: ready-made and your own templates", "`wiki_templates:manage`: super admins", "[Template library](template-library.html)"],
-                ["**Labels** (left navigation)", "Rename, merge or remove a label on every page of the installation", "`wiki_labels:manage`: super admins", "[Labels & feedback](labels-and-feedback.html)"],
+                ["**Settings → Space categories**", "The categories that group the space list; each space is in one or none", "`settings:write`: super admins", "[Spaces](spaces.html#space-categories)"],
+                ["**Labels** (left navigation)", "Rename, merge or remove a label on every page and space of the installation", "`wiki_labels:manage`: super admins", "[Labels & feedback](labels-and-feedback.html)"],
                 ["**Q&A → Settings**", "Allow public questions in the organization", "Q&A moderators: organization admins", "[Q&A moderation](qna-moderation.html)"],
-                ["A space's **Settings**, **Members** and **Import** tabs", "Name, description and visibility; who has which role; imports", "The space's admins", "[Spaces](spaces.html)"],
+                ["A space's **Settings**, **Members** and **Import** tabs", "Name, description, visibility, icon, labels, category and archiving; who has which role; imports", "The space's admins", "[Spaces](spaces.html)"],
                 ["**Analytics** (left navigation)", "Nothing to set: views, readers and content health", "Pro licence", "[Analytics](analytics-settings.html)"],
             ]),
             H("Settings that aren't in Settings"),

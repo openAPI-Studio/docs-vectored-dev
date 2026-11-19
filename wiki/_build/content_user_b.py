@@ -324,7 +324,7 @@ USER_B = [
 
     ("labels-and-feedback", dict(
         label="Labels &amp; feedback", title="Labels and \"Was this page helpful?\"", icon="tag",
-        desc="Label pages across spaces, and tell a page's owner whether it helped",
+        desc="Label pages and spaces across the Wiki, and tell a page's owner whether it helped",
         keywords=["label", "labels", "tag", "tags", "helpful", "was this page helpful", "like", "dislike", "feedback",
                   "rating", "vote"],
         blocks=[
@@ -335,9 +335,10 @@ USER_B = [
                 "A label is letters, digits, `-`, `_` or `.`, without spaces, up to 50 characters, and is kept in lower case.",
                 "Labels show at the end of a published page. Signed in, select one to see every published page with it, in the spaces you can read.",
                 "**Labels** (at `/labels`) finds a label by its first letters.",
+                "Spaces carry labels too, up to 10 each, set by the space's admins in its settings ([Spaces](spaces.html#icon-labels-and-category)). A label's page lists the spaces you can see with it above its pages, and the space list can be filtered by a label.",
             ]),
-            SHOT("labels-and-feedback-label-page.png", "A label's page: published pages with the label, with their space"),
-            P("Administrators who manage labels see every label there with its page count, and can **Rename** one on every page (renaming to a label that exists merges the two) or **Remove** it from every page."),
+            SHOT("labels-and-feedback-label-page.png", "A label's page: the spaces with the label, then published pages with it, with their space"),
+            P("Administrators who manage labels see every label there with how many pages and spaces carry it, and can **Rename** one on every page and space (renaming to a label that exists merges the two) or **Remove** it from every page and space."),
 
             H("Was this page helpful?"),
             P("Under a published page, signed-in readers answer **Was this page helpful?** with **Yes** or **No**, and can change or take back their answer."),

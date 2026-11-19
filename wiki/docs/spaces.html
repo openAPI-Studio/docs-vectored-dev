@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spaces — Wiki Docs</title>
-  <meta name="description" content="What a space is, who can see it, roles and members, space settings, and creating one">
+  <meta name="description" content="What a space is, who can see it, roles and members, icons, labels, categories, archiving, stars, space settings, and creating one">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
     var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
@@ -34,7 +34,7 @@
       <div data-vc="crumbs"></div>
       <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
       <h1 class="vc-h1">Spaces</h1>
-      <p class="vc-lede">What a space is, who can see it, roles and members, space settings, and creating one</p>
+      <p class="vc-lede">What a space is, who can see it, roles and members, icons, labels, categories, archiving, stars, space settings, and creating one</p>
       <div data-vc="meta"></div>
       <div data-vc="contents"></div>
 
@@ -42,18 +42,19 @@
       <h2 id="what-a-space-is" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. What a space is</h2>
       <p class="text-muted mb-4">A space holds a team's or a project's pages, and has its own members. Every page belongs to one space, and the space decides who can read it and who can write. Pages have no access rules of their own: everyone who can read the space can read all of its published pages.</p>
       <h2 id="the-space-list" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. The space list</h2>
-      <p class="text-muted mb-4"><strong class="text-text">Spaces</strong> in the sidebar lists every space you can see, with its visibility, when it last changed and your role. <strong class="text-text">All</strong> shows them all, <strong class="text-text">Yours</strong> only those where you have a role. Filter by name with <strong class="text-text">Search spaces</strong> or by visibility.</p>
+      <p class="text-muted mb-4"><strong class="text-text">Spaces</strong> in the sidebar lists every space you can see, with its icon, visibility, category, labels, when it last changed and your role. <strong class="text-text">All</strong> shows them all, <strong class="text-text">Yours</strong> only those where you have a role. Filter by name with <strong class="text-text">Search spaces</strong>, by visibility, or by category with the chips above the list (each shows how many spaces it holds).</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Starred</strong> spaces show as cards at the top. Select the star next to a space, on the list or on its overview, to star or unstar it. Stars are yours alone: nobody else sees them.</li><li>Select a label on a space to list only the spaces with that label; select it again, or the cross on the filter, to see them all.</li><li>Archived spaces are left out. Turn on <strong class="text-text">Show archived</strong> to list them too.</li></ul>
       <figure class="shot mb-6">
-        <img src="../assets/spaces-list.png" alt="Spaces: every space you can see, with its visibility and your role" loading="lazy"
+        <img src="../assets/spaces-list.png" alt="Spaces: starred spaces as cards, category chips, and each space&#x27;s icon, labels and role" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
           <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           <p class="text-sm text-muted">Screenshot needed</p>
           <p class="font-mono text-xs text-cta break-all">spaces-list.png</p>
-          <p class="text-xs text-muted max-w-md">Spaces: every space you can see, with its visibility and your role</p>
+          <p class="text-xs text-muted max-w-md">Spaces: starred spaces as cards, category chips, and each space's icon, labels and role</p>
         </div>
-        <figcaption class="text-xs text-muted mt-2">Spaces: every space you can see, with its visibility and your role</figcaption>
+        <figcaption class="text-xs text-muted mt-2">Spaces: starred spaces as cards, category chips, and each space's icon, labels and role</figcaption>
       </figure>
       <p class="text-muted mb-4">Besides its pages, each space has a <strong class="text-text">Blog</strong> tab for dated posts: updates, announcements and stories. See <a href="blogs.html" class="text-cta hover:underline">Space blogs</a>.</p>
       <h2 id="who-can-see-a-space" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Who can see a space</h2>
@@ -93,23 +94,60 @@
         <figcaption class="text-xs text-muted mt-2">New space: name, key, description and visibility</figcaption>
       </figure>
       <div class="tbl-wrap"><table><thead><tr><th>Field</th><th>What to enter</th></tr></thead><tbody><tr><td><strong class="text-text">Name</strong></td><td>What people call the space, such as <strong class="text-text">Engineering handbook</strong>.</td></tr><tr><td><strong class="text-text">Key</strong></td><td>Used in links (<span class="font-mono text-sm break-words">/spaces/eng</span>). 2–40 lowercase letters and digits, optionally separated by single hyphens. It can't be changed later.</td></tr><tr><td><strong class="text-text">Description</strong></td><td>What the space is for, shown on its overview.</td></tr><tr><td><strong class="text-text">Visibility</strong></td><td>Private, internal or public (above).</td></tr></tbody></table></div>
-      <h2 id="space-settings" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Space settings</h2>
-      <p class="text-muted mb-4">The space's admins see a <strong class="text-text">Settings</strong> tab:</p>
-      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">General</strong>: the name, description and visibility. <strong class="text-text">Save</strong> applies them. The key is fixed.</li><li><strong class="text-text">Templates</strong>: the space's own templates, and which of the library's templates it offers. See <a href="copies-and-templates.html" class="text-cta hover:underline">Copies and templates</a>.</li><li><strong class="text-text">Delete space</strong>: removes the space, its pages and its members' roles for good. Type the space's key to confirm.</li></ul>
+      <h2 id="icon-labels-and-category" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Icon, labels and category</h2>
+      <p class="text-muted mb-4">Each space has an icon, which shows next to its name on the space list, its overview and the space switcher. Until an admin picks one, the space shows the first letters of its name. Space admins change it in <strong class="text-text">Settings → General</strong> with <strong class="text-text">Change icon…</strong>:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Kind</th><th>What it is</th></tr></thead><tbody><tr><td><strong class="text-text">Gallery</strong></td><td>One of 24 built-in abstract images, grouped by style (gradients, rings, stripes, waves, shapes, dots). <strong class="text-text">Surprise me</strong> picks one at random.</td></tr><tr><td><strong class="text-text">Initials</strong></td><td>Up to 8 characters, such as two letters or an emoji, on one of six theme colours. Left empty, the letters come from the space's name.</td></tr><tr><td><strong class="text-text">Upload</strong></td><td>Your own image: PNG, JPEG or WebP, up to 2 MB. It is cropped to a square from the middle.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The preview shows the icon as it will appear. <strong class="text-text">Use this icon</strong> saves it at once.</p>
       <figure class="shot mb-6">
-        <img src="../assets/spaces-settings.png" alt="Space settings: General, Page templates and Delete space" loading="lazy"
+        <img src="../assets/spaces-icon.png" alt="Space icon: the gallery with its style filters, and the preview" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">spaces-icon.png</p>
+          <p class="text-xs text-muted max-w-md">Space icon: the gallery with its style filters, and the preview</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Space icon: the gallery with its style filters, and the preview</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Labels</strong>: up to 10 per space. They are the same labels pages carry, so a label's page lists the spaces with it as well as its pages. See <a href="labels-and-feedback.html" class="text-cta hover:underline">Labels and feedback</a>.</li><li><strong class="text-text">Category</strong>: one per space, or none. Categories group the space list; the list of categories is kept by administrators in <strong class="text-text">Settings → Space categories</strong> (below).</li></ul>
+      <h2 id="archiving-a-space" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Archiving a space</h2>
+      <p class="text-muted mb-4">A space that is no longer worked on can be archived instead of deleted. Space admins set <strong class="text-text">Status</strong> to <strong class="text-text">Archived</strong> in <strong class="text-text">Settings → General</strong> and save.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Its pages stay readable by the same people, but nobody can create, edit, move or delete pages, write blog posts, comment or import into it, admins included.</li><li>It is left out of the space list (unless <strong class="text-text">Show archived</strong> is on) and of the space switcher. Links and search still find its pages.</li><li>Its overview says it is archived and since when.</li><li>To restore it, set <strong class="text-text">Status</strong> back to <strong class="text-text">Active</strong>. Members, roles and settings are kept while it is archived.</li></ul>
+      <h2 id="space-categories" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Space categories</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Settings → Space categories</strong> holds the categories spaces can be in, such as Teams, Projects or Knowledge base: add, rename, reorder or remove them, then <strong class="text-text">Save</strong>. Up to 50 categories, each up to 50 characters. Removing a category leaves its spaces in none. It needs the <span class="font-mono text-sm break-words">settings:write</span> permission, which super admins have.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/spaces-categories.png" alt="Settings → Space categories: the list in the order the space list shows it" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">spaces-categories.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Space categories: the list in the order the space list shows it</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Space categories: the list in the order the space list shows it</figcaption>
+      </figure>
+      <h2 id="space-settings" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. Space settings</h2>
+      <p class="text-muted mb-4">The space's admins see a <strong class="text-text">Settings</strong> tab:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">General</strong>: the name, description, visibility, icon, labels, category and status. <strong class="text-text">Save</strong> applies them; <strong class="text-text">Discard</strong> puts back what is saved. The key is fixed.</li><li><strong class="text-text">Templates</strong>: the space's own templates, and which of the library's templates it offers. See <a href="copies-and-templates.html" class="text-cta hover:underline">Copies and templates</a>.</li><li><strong class="text-text">Delete space</strong>: removes the space, its pages and its members' roles for good. Type the space's key to confirm.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/spaces-settings.png" alt="Space settings → General: icon, name, description, labels, category, status and visibility" loading="lazy"
              class="rounded-lg border border-border"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
           <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           <p class="text-sm text-muted">Screenshot needed</p>
           <p class="font-mono text-xs text-cta break-all">spaces-settings.png</p>
-          <p class="text-xs text-muted max-w-md">Space settings: General, Page templates and Delete space</p>
+          <p class="text-xs text-muted max-w-md">Space settings → General: icon, name, description, labels, category, status and visibility</p>
         </div>
-        <figcaption class="text-xs text-muted mt-2">Space settings: General, Page templates and Delete space</figcaption>
+        <figcaption class="text-xs text-muted mt-2">Space settings → General: icon, name, description, labels, category, status and visibility</figcaption>
       </figure>
       <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Deleting a space can't be undone. Its pages don't go to the trash.</p></div>
-      <h2 id="other-tabs" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Other tabs</h2>
+      <h2 id="events-and-api-for-space-properties" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. Events and API for space properties</h2>
+      <p class="text-muted mb-4">Changing a space's icon, category or status raises <span class="font-mono text-sm break-words">space.update</span>; archiving and restoring also raise <span class="font-mono text-sm break-words">space.archive</span> and <span class="font-mono text-sm break-words">space.restore</span>, changing its labels raises <span class="font-mono text-sm break-words">space.label.update</span>, and saving the category list raises <span class="font-mono text-sm break-words">space_categories.update</span>. <a href="../admin/policies.html" class="text-cta hover:underline">Policies</a> can refuse them, for example to keep certain spaces from being archived, and <a href="../admin/automation.html" class="text-cta hover:underline">automation</a> can react. Stars raise no event: they are personal, like watching a page. Every change except a star is in the <a href="../admin/logging-and-audit.html" class="text-cta hover:underline">audit log</a>.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Permission</th><th>What it does</th></tr></thead><tbody><tr><td>PATCH</td><td><span class="font-mono text-sm break-words">/api/spaces/{key}</span></td><td>Space admin</td><td>Also sets <span class="font-mono text-sm break-words">icon</span> (initials or gallery), <span class="font-mono text-sm break-words">categoryId</span> (0 for none) and <span class="font-mono text-sm break-words">status</span> (<span class="font-mono text-sm break-words">active</span> or <span class="font-mono text-sm break-words">archived</span>)</td></tr><tr><td>PUT</td><td><span class="font-mono text-sm break-words">/api/spaces/{key}/icon</span></td><td>Space admin</td><td>Upload an image as the icon (the raw PNG, JPEG or WebP as the body)</td></tr><tr><td>GET</td><td><span class="font-mono text-sm break-words">/api/spaces/{key}/icon</span></td><td>Read the space</td><td>The uploaded icon</td></tr><tr><td>PUT</td><td><span class="font-mono text-sm break-words">/api/spaces/{key}/labels</span></td><td>Space admin</td><td>Replace the space's labels</td></tr><tr><td>PUT, DELETE</td><td><span class="font-mono text-sm break-words">/api/spaces/{key}/star</span></td><td>Read the space, signed in</td><td>Star or unstar the space for yourself</td></tr><tr><td>GET</td><td><span class="font-mono text-sm break-words">/api/spaces</span></td><td>Signed in or anonymous</td><td>Also filters by <span class="font-mono text-sm break-words">status</span>, <span class="font-mono text-sm break-words">category</span>, <span class="font-mono text-sm break-words">label</span> and <span class="font-mono text-sm break-words">starred=true</span></td></tr><tr><td>GET</td><td><span class="font-mono text-sm break-words">/api/wiki/space-categories</span></td><td>Anyone who may list spaces</td><td>The categories</td></tr><tr><td>PUT</td><td><span class="font-mono text-sm break-words">/api/wiki/space-categories</span></td><td><span class="font-mono text-sm break-words">settings:write</span></td><td>Save the category list whole</td></tr></tbody></table></div>
+      <h2 id="other-tabs" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">12. Other tabs</h2>
       <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Trash</strong>: pages deleted in the space, for people who can edit pages. See <a href="pages-and-the-page-tree.html#deleting-and-the-trash" class="text-cta hover:underline">Pages and the page tree</a>.</li><li><strong class="text-text">Import</strong>: bring in a Confluence space export or Markdown files (space admins, when imports are allowed). See <a href="import-and-export.html" class="text-cta hover:underline">Import and export</a>.</li><li><strong class="text-text">Analytics</strong>: how the space's pages are read, when your licence includes analytics. See <a href="analytics.html" class="text-cta hover:underline">Analytics</a>.</li></ul>
       </article>
 
