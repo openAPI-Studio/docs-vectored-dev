@@ -59,7 +59,7 @@ LOGGING = [
             ]),
 
             H("Audit log"),
-            P("Every change to users, groups, directories, settings, tokens, licenses, plugins and policies, every sign-in and sign-out, and every export is recorded with who did it, from which address, what changed and whether it succeeded. Entries can't be edited. They are written in the background so they never slow down the action itself, and are kept even if the database is briefly unavailable."),
+            P("Every change to users, groups, directories, settings, tokens, licenses, plugins and policies, every sign-in and sign-out, and every export is recorded with who did it (name and email), from which network address and with which client (browser, CLI or package manager), what changed and whether it succeeded. Actions run by Depotex itself, such as scheduled jobs, have no address or client. Entries can't be edited. They are written in the background so they never slow down the action itself, and are kept even if the database is briefly unavailable."),
             SHOT("logging-audit.png", "The audit log: filters, and who did what, when and from where"),
             UL([
                 "**Who can read it:** organization admins see their organization's entries; super admins see all. Members don't (the log contains other people's email and network addresses). Pro license or higher.",
