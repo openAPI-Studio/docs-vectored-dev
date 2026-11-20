@@ -52,6 +52,8 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Spaces", "A space's **Repositories** and **Members** tabs keep their counts after you save its settings; they disappeared until the page was reloaded."),
+    ("2026-11-20", "Vibe artifacts", "The vibepack skill asks for a token with five permissions (`spaces:read`, `spaces:push`, `repo:browse`, `repo:read`, `repo:add`). It no longer asks for `depot:read`, which members can't grant and a push never needed."),
     ("2026-11-20", "Interface", "Counts read right for one: \"1 component\" on the Security tab, \"1 SBOM\", \"1 server running\" in the system check, \"In the group go-all\" for a repository in one group, and \"1 file is hidden because its content is missing\"; the same fix covers counts across every screen, in English and German, and counts of 1,000 or more no longer show \"NaN\" in SBOM and re-inspection notes."),
     ("2026-11-20", "Dashboard", "The administrator dashboard shows the **Cluster** health chip once; it was shown twice to anyone allowed to see the cluster."),
     ("2026-11-20", "Email", "Emails name the product with a capital letter (\"invited you to Depotex\"), unless Branding sets another name."),
