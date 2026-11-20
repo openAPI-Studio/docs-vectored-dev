@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Rate limits", "Rate limit activity and the dashboard's rate limits card no longer say Redis is unavailable on a single server that runs without Redis. When a configured Redis can't be reached, the Activity tab shows a warning."),
     ("2026-11-20", "Alerts", "Marking a notification read lowers the unread count by one (it dropped by two), and other open windows and tabs show it as read straight away, not only the new count."),
     ("2026-11-15", "Repositories", "Go, Maven, PyPI (the Python logo), Cargo (the Rust logo), Composer, Helm and Git LFS repositories show their ecosystem's official logo next to the format's name (Maven and Go, whose logos spell the name, show the logo alone), with a version for dark themes. Other formats keep their generic icon. **Connect an AI agent** shows the Model Context Protocol logo, and the API explorer shows the OpenAPI logo beside its version."),
     ("2026-11-13", "SBOM", "**New since upload** means found by a later check: what an SBOM's first vulnerability check finds no longer reads as new. A package nobody had stored before showed all its findings as new on the first report."),
