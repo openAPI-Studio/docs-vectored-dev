@@ -255,7 +255,7 @@ location / {
         blocks=[
             P("If an installed server can't start — the database is down, the encryption key is wrong, storage is unreachable, the Redis URL can't be read, the license no longer matches — it doesn't just exit. It starts in recovery mode, finds what's wrong, and shows you how to fix it."),
             H("Open the recovery page"),
-            P("The server log shows a line like `open the recovery page … recovery_url=https://…/recovery?token=…`. Open that URL. The key keeps the diagnostics private; set `RECOVERY_TOKEN` to choose it. Like the setup key, it is removed from the address bar once the page has read it."),
+            P("The server log shows a line like `open the recovery page … recovery_url=https://…/recovery?token=…`. Open that URL. It is built from `FRONTEND_URL`: when that isn't set, the link starts with `http://localhost:3000`, so open the line's `recovery_path` (`/recovery?token=…`) on your own address instead. The key keeps the diagnostics private; set `RECOVERY_TOKEN` to choose it. Like the setup key, it is removed from the address bar once the page has read it."),
             H("What it checks"),
             TABLE(["Check", "Common causes"], [
                 ["Bootstrap file", "The server was started with a different CONFIG_ENCRYPTION_KEY, or the file is damaged"],
