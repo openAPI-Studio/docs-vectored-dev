@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Audit log", "Audit log entries for what people do in the web app or with API tokens now record their email, network address and client (browser, CLI or package manager); before, only sign-ins did."),
     ("2026-11-20", "Rate limits", "**Add override** in **Settings → Security → Rate limits → Overrides** saves the override again; it saved nothing and jumped to the Sign-in tab. Any dialog with its own form inside a settings page now saves only its own form."),
     ("2026-11-20", "Policies", "A policy's **Decisions** tab shows who acted by name and the values the condition checked, such as the sign-in address; erasing a user's personal data clears both from their decisions."),
     ("2026-11-20", "SBOM", "A version's Security tab counts the components its list shows, so a package without dependencies shows **Components 1**, marked **This package**. A component's badge says how many open advisories it has, in the colour of the worst one, which its tooltip names."),
