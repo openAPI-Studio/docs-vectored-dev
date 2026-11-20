@@ -112,8 +112,12 @@ POLICIES = [
             H("Decisions and history"),
             UL([
                 "Every time a policy blocks, warns, adjusts, would have done so in dry run, is skipped by an exemption or fails, a decision is recorded (kept 30 days, `POLICY_DECISION_RETENTION_DAYS`).",
+                "Each decision on the **Decisions** tab shows when, the outcome, who acted (by name; point at the name to see the account id) and the values the condition checked, such as the sign-in address (`ip=198.51.100.23`). A policy that sets values also lists what it set. A failed check shows its error instead.",
+                "The details hold only the fields the policy's condition reads, and never passwords, tokens or other sensitive fields. They can still identify a person, such as their address: when a user's personal data is erased, their decisions keep the outcome but lose who acted and the details.",
+                "The **Exemptions** tab shows the user's name above an exempt `user:<id>`.",
                 "Every change creates a new version; you can roll back to any earlier version.",
             ]),
+            SHOT("policies-decisions.png", "A dry-run network policy's Decisions tab: Would block, the user's name and the sign-in address each decision checked"),
             H("Performance"),
             UL([
                 "An action with no policies for your organization isn't slowed down.",
