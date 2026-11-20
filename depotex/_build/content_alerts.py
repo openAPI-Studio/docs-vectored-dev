@@ -125,7 +125,7 @@ ALERTS = [
             P('All messages use a JSON envelope:'),
             CODE('{\n  "type": "alert.new",\n  "payload": { ... },\n  "timestamp": "2026-06-01T10:00:00.123Z"\n}'),
             P('**Message Types**'),
-            TABLE(['Type', 'Direction', 'Description'], [['`alert.init`', 'Server → Client', 'Initial state on connect (alerts + count)'], ['`alert.new`', 'Server → Client', 'New alert targeting you'], ['`alert.count`', 'Server → Client', 'Updated unread count'], ['`alert.superseded`', 'Server → Client', 'An alert was replaced']]),
+            TABLE(['Type', 'Direction', 'Description'], [['`alert.init`', 'Server → Client', 'Initial state on connect (alerts + count)'], ['`alert.new`', 'Server → Client', 'New alert targeting you'], ['`alert.state`', 'Server → Client', 'Alerts you read, marked unread, cleared or restored, in this or another window or tab: `{"action": "read", "alertIds": [42], "readAt": "…"}` (`read`, `unread`, `clear` or `restore`). Mark all read and clear all send `{"action": "read", "all": true}` with no ids: reload the list. Always followed by `alert.count`'], ['`alert.count`', 'Server → Client', 'Updated unread count'], ['`alert.superseded`', 'Server → Client', 'An alert was replaced']]),
             P('**Reconnection**'),
             P('If the WebSocket connection drops, the client automatically reconnects with exponential backoff (1s, 2s, 4s, ... up to 30s max). On reconnect, the server sends a fresh `alert.init` message to catch up on any missed notifications.'),
         ])),
