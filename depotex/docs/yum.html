@@ -78,7 +78,19 @@ sudo dnf install hello</code></pre>
       <h2 id="vulnerabilities" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. Vulnerabilities</h2>
       <p class="text-muted mb-4">Set the repository's <strong class="text-text">Distribution release</strong> under its <strong class="text-text">Settings</strong> (for example <span class="font-mono text-sm break-words">rhel-9</span>, <span class="font-mono text-sm break-words">rocky-9</span>, <span class="font-mono text-sm break-words">almalinux-9</span>, <span class="font-mono text-sm break-words">sles-15.6</span>, <span class="font-mono text-sm break-words">opensuse-leap-15.6</span> or <span class="font-mono text-sm break-words">azurelinux-3.0</span>, Pro): each binary package is then checked against that release's advisories, by its own name and its source RPM's (advisories use either) and with its epoch, and shows on its <strong class="text-text">Security</strong> tab. Red Hat Enterprise Linux, Rocky Linux, AlmaLinux, SUSE Linux Enterprise, openSUSE Leap and Tumbleweed, Azure Linux, Amazon Linux (<span class="font-mono text-sm break-words">amzn-2023</span>, <span class="font-mono text-sm break-words">amzn-2</span>), Fedora (<span class="font-mono text-sm break-words">fedora-43</span>) and Oracle Linux (<span class="font-mono text-sm break-words">ol-9</span>) are supported. For RHEL, the standard stream: fixes published only for EUS, E4S or AUS aren't looked up. For SLES, the advisories of every SUSE product of the service pack (the server, its modules and extensions) count, as an SBOM doesn't say which products are installed.</p>
       <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. In the artifact browser</h2>
-      <p class="text-muted mb-4">Packages show by name, then their versions, with each file's checksums.</p>
+      <p class="text-muted mb-4">Packages show by name, then their versions, with each file's checksums. A version's Overview has a card for each RPM with what its header says: summary, description, licence, homepage, packager, vendor, group, source RPM, build date, installed and package size, and what it requires and provides.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/browse-yum-overview.png" alt="An RPM version&#x27;s Overview: summary, licence, packager, build date, sizes and requirements" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">browse-yum-overview.png</p>
+          <p class="text-xs text-muted max-w-md">An RPM version's Overview: summary, licence, packager, build date, sizes and requirements</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">An RPM version's Overview: summary, licence, packager, build date, sizes and requirements</figcaption>
+      </figure>
       <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. Limits</h2>
       <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>No delta RPMs, zchunk or SQLite repodata: dnf uses the XML repodata. Generated repodata is gzip-compressed, which every yum and dnf reads; groups also read members' zstd, xz and bzip2 repodata (Fedora's proxies included).</li><li>Groups join members' <span class="font-mono text-sm break-words">modules.yaml</span> without removing duplicates.</li><li>Proxies verify only repodata files named by a SHA-256 checksum.</li><li>The browser doesn't show a package's dependencies yet.</li></ul>
       </article>

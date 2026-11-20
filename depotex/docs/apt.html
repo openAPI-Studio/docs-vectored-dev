@@ -136,7 +136,19 @@ curl -f -u &quot;me:$DEPOTEX_TOKEN&quot; -H &quot;Content-Type: application/vnd.
         <figcaption class="text-xs text-muted mt-2">An APT repository's settings with its distribution release set to debian-12</figcaption>
       </figure>
       <h2 id="in-the-artifact-browser" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">11. In the artifact browser</h2>
-      <p class="text-muted mb-4">Packages show by name, then their versions, with each file's checksums.</p>
+      <p class="text-muted mb-4">Packages show by name, then their versions, with each file's checksums. A version's Overview has a card for each package file (<span class="font-mono text-sm break-words">.deb</span>, <span class="font-mono text-sm break-words">.udeb</span> or <span class="font-mono text-sm break-words">.dsc</span>) with what its control file says: description, maintainer, section, priority, installed size, homepage, source package, the distributions and component it's published in, and its relations (Depends, Pre-Depends, Recommends, Suggests, Conflicts, Breaks, Provides, Replaces; Build-Depends for a source package).</p>
+      <figure class="shot mb-6">
+        <img src="../assets/browse-apt-overview.png" alt="A Debian package version&#x27;s Overview: description, maintainer, section, installed size and dependencies" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">browse-apt-overview.png</p>
+          <p class="text-xs text-muted max-w-md">A Debian package version's Overview: description, maintainer, section, installed size and dependencies</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A Debian package version's Overview: description, maintainer, section, installed size and dependencies</figcaption>
+      </figure>
       <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">12. Limits</h2>
       <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Groups don't merge <span class="font-mono text-sm break-words">Contents</span> or translation files: <span class="font-mono text-sm break-words">apt-file</span> through a group finds nothing.</li><li>Versions that differ only by epoch (<span class="font-mono text-sm break-words">1:2.0-1</span> and <span class="font-mono text-sm break-words">2.0-1</span>) count as one version for cleanup, quotas and the browser.</li><li>A proxy without upstream keys passes the upstream's signatures on unchecked; <span class="font-mono text-sm break-words">apt</span> checks them on your machines. With keys, the proxy checks <span class="font-mono text-sm break-words">Release</span> files; the package lists and packages they name are checked by groups and by <span class="font-mono text-sm break-words">apt</span>.</li><li><span class="font-mono text-sm break-words">Release</span> lists MD5 and SHA-256 checksums, not SHA-512; apt uses SHA-256.</li><li>A machine that doesn't download the key again during a key change's overlap refuses the indexes once the new key signs.</li><li>The browser doesn't show a package's control fields or dependencies yet.</li></ul>
       </article>
