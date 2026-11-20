@@ -63,15 +63,27 @@ def page_href(href):
 
 
 # --- inline markup -----------------------------------------------------------
-# **bold**, `code`, [text](href). Everything else is escaped.
+# **bold**, *emphasis*, `code`, [text](href). Everything else is escaped.
 
 def inline(text):
     out = html.escape(text, quote=False)
+    # Code spans first, kept aside so the asterisks in them (`*.tgz`,
+    # `0 2 * * *`) are never read as emphasis. A <wbr> after each dot and
+    # slash lets long names (`vibe.checkin.environment.update`) wrap there,
+    # so a table column of them doesn't push the table wider than the page.
+    codes = []
+
+    def keep(m):
+        code = re.sub(r"([./])", r"\1<wbr>", m.group(1))
+        codes.append(f'<span class="font-mono text-sm break-words">{code}</span>')
+        return f"\x00{len(codes) - 1}\x00"
+
+    out = re.sub(r"`([^`]+)`", keep, out)
     out = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
                  lambda m: f'<a href="{page_href(m.group(2))}" class="text-cta hover:underline">{m.group(1)}</a>', out)
     out = re.sub(r"\*\*([^*]+)\*\*", r'<strong class="text-text">\1</strong>', out)
-    out = re.sub(r"`([^`]+)`", r'<span class="font-mono text-sm break-words">\1</span>', out)
-    return out
+    out = re.sub(r"(?<![*\w])\*([^*\s](?:[^*]*[^*\s])?)\*(?![*\w])", r"<em>\1</em>", out)
+    return re.sub(r"\x00(\d+)\x00", lambda m: codes[int(m.group(1))], out)
 
 
 ICONS = {
