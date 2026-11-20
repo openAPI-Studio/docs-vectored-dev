@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+212 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -128,6 +128,8 @@ realistic but fictional names and figures rather than real people's data.
 
 ## YUM
 
+- [ ] `browse-version-rpm-signature.png`
+      A signed RPM's version page: the side panel names the trusted key that signed it and says it was checked
 - [ ] `yum-proxy-signatures.png`
       A YUM proxy's settings: the upstream's trusted key, with signed packages and signed repodata required
 
