@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Interface", "Counts read right for one: \"1 component\" on the Security tab, \"1 SBOM\", \"1 server running\" in the system check, \"In the group go-all\" for a repository in one group, and \"1 file is hidden because its content is missing\"; the same fix covers counts across every screen, in English and German, and counts of 1,000 or more no longer show \"NaN\" in SBOM and re-inspection notes."),
     ("2026-11-20", "Dashboard", "The administrator dashboard shows the **Cluster** health chip once; it was shown twice to anyone allowed to see the cluster."),
     ("2026-11-20", "Email", "Emails name the product with a capital letter (\"invited you to Depotex\"), unless Branding sets another name."),
     ("2026-11-20", "Setup", "When `FRONTEND_URL` isn't set, the setup and recovery links in the log say to open their path on your own address, since the full link would point at `localhost`; the install guide now lists `FRONTEND_URL`."),
