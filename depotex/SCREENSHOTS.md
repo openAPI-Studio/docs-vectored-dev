@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+212 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -368,6 +368,8 @@ realistic but fictional names and figures rather than real people's data.
       A version's Security tab: Re-check vulnerabilities, Re-inspect SBOMs and when it was last inspected
 - [ ] `sbom-not-covered.png`
       A version's Security tab: components no vulnerability data covers shown as not covered
+- [ ] `huggingface-version-security.png`
+      A Hugging Face model version's Security tab: no vulnerability data covers Hugging Face packages
 - [ ] `vulnerability-data.png`
       Settings → Vulnerability data: turning checks on and where components are checked: the OSV API, OSV's data files or uploaded files
 - [ ] `vuln-settings-malicious.png`
