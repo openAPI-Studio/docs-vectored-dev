@@ -32,7 +32,7 @@ ENV_VARS = [
                 ["`BOOTSTRAP_FILE_PATH`", "`./data/bootstrap.enc` (`/app/data/bootstrap.enc` in the image)", "Where the server keeps its encrypted bootstrap file (database URL and identity). Per server; keep it on persistent disk"],
                 ["`PORT`", "`8080`", "The server's HTTP port"],
                 ["`BIND_ADDR`", "`127.0.0.1` (`0.0.0.0` in the image)", "Address the server listens on. The default suits a web app and proxy on the same host"],
-                ["`FRONTEND_URL`", "`http://localhost:3000`", "Where the web app is; also the default allowed CORS origin"],
+                ["`FRONTEND_URL`", "`http://localhost:3000`", "The address people open the web app at. The setup and recovery links in the log start with it; set it on every install that isn't `localhost`. Also the default allowed CORS origin"],
                 ["`CORS_ALLOWED_ORIGINS`", "`FRONTEND_URL`", "Comma-separated origins allowed to call the API from a browser"],
                 ["`APP_ENV`", "empty", "`development` prints the log as readable console lines instead of JSON; leave it unset in production"],
             ]),

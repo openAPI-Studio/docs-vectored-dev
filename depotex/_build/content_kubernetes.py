@@ -15,7 +15,7 @@ KUBERNETES = [
             UL([
                 "**Server:** one program on a minimal base image, with no shell or package manager, plus the PostgreSQL client tools `pg_dump` and `pg_restore` 18 for [backups](backups.html) (they work with PostgreSQL 18 and older). It runs as an unprivileged user (UID 65532) and needs only its data folder and `/tmp` writable.",
                 "**Web app:** the Next.js server on the same kind of base image.",
-                "Neither image contains a key, licence or configuration: they come from the environment at run time.",
+                "Neither image contains a key, licence or configuration: they come from the environment at run time. Running the server image yourself (plain Docker, Compose), give it `CONFIG_ENCRYPTION_KEY`, `DATABASE_URL` on first start and `FRONTEND_URL`, the address people open: the setup and recovery links in its log start with it. The Helm chart sets `FRONTEND_URL` from `publicUrl`.",
             ]),
             NOTE("Images aren't published to a public registry yet. Build them from the source and push them to your own registry, then set `backend.image` and `frontend.image` in the chart's values."),
             CODE("""docker build -f deploy/docker/backend.Dockerfile  -t registry.example.com/depotex-backend:1.0.0 --build-arg VERSION=1.0.0 .
