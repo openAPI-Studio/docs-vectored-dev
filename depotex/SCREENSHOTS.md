@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+212 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -128,6 +128,8 @@ realistic but fictional names and figures rather than real people's data.
 
 ## YUM
 
+- [ ] `yum-setup-folder.png`
+      A YUM repository with one repodata per folder: the Usage tab's Repository folder picker, with the lines for el9/
 - [ ] `yum-proxy-signatures.png`
       A YUM proxy's settings: the upstream's trusted key, with signed packages and signed repodata required
 

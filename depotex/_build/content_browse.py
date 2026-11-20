@@ -9,7 +9,7 @@ BROWSE = [
         keywords=["browse", "search", "artifact", "tree", "version", "checksum", "sha256", "md5", "download", "dependencies", "dependents", "sbom", "spdx", "cyclonedx", "signature", "attestation", "provenance", "layers", "readme"],
         blocks=[
             H("Overview"),
-            P("**Browse** in the left menu lists every artifact you can see, in every space, one row per package: its format, name, newest version and status (a **Quarantined**, **Blocked** or **Content missing** badge), the space and repository it is in, how many versions it has, and when it last changed. The newest changes come first. Select a name to open its newest version, the repository to open its tree, or the space to show only that space."),
+            P("**Browse** in the left menu lists every artifact you can see, in every space, one row per package: its format, name, latest version and status (a **Quarantined**, **Blocked** or **Content missing** badge), the space and repository it is in, how many versions it has, and when it last changed. The newest changes come first. The latest version is the highest release by the format's own order, a pre-release only when there is no release (for npm, the version its `latest` tag names), so an older release uploaded later, such as a backport, doesn't take its place; Docker tags, Hugging Face and Git LFS versions, which have no order, show the last one uploaded. Select a name to open its latest version, the repository to open its tree, or the space to show only that space."),
             P("A space's overview lists its **Recent artifacts**, and each repository page has **Open in browser**; the version names in a repository's **Versions** tab open the browser too."),
 
             H("Search and filters"),
