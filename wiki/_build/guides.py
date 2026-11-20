@@ -20,7 +20,7 @@ import os
 
 # Pages written for the admin guide.
 ADMIN = [
-    "index", "install-planning", "install", "deployment-modes", "environment-variables",
+    "index", "install-planning", "sizing", "install", "deployment-modes", "environment-variables",
     "setup-wizard", "headless-setup", "licensing", "recovery",
     "settings-reference", "access-overview", "users-and-directories", "single-sign-on", "rate-limits",
     "storage", "email", "branding-and-banners",
@@ -49,7 +49,7 @@ USER_GROUPS = [
 
 ADMIN_GROUPS = [
     ("Admin guide", ["index", "@user"]),
-    ("Install", ["install-planning", "install", "deployment-modes", "environment-variables"]),
+    ("Install", ["install-planning", "sizing", "install", "deployment-modes", "environment-variables"]),
     ("Set up", ["setup-wizard", "headless-setup", "licensing", "recovery"]),
     ("Configure", ["settings-reference", "access-overview", "users-and-directories", "single-sign-on",
                    "oauth-applications", "api-tokens", "rate-limits", "storage", "email", "branding-and-banners"]),

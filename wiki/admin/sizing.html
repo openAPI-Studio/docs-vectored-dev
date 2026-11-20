@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sizing & performance — Wiki Admin Guide</title>
+  <meta name="description" content="How much CPU and memory the Wiki needs, from a team of 50 to 100,000 people, and the load test results behind the numbers">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <h1 class="vc-h1">Sizing &amp; performance</h1>
+      <p class="vc-lede">How much CPU and memory the Wiki needs, from a team of 50 to 100,000 people, and the load test results behind the numbers</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">How big the servers, the web app and PostgreSQL should be for the number of people who use the Wiki. The numbers come from load tests of the current release (results at the end of this page); start from the table for your size, then watch the real load and adjust.</p>
+      <h2 id="how-to-read-the-numbers" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. How to read the numbers</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">People</strong> is everyone with an account who uses the Wiki. <strong class="text-text">Active at peak</strong> is how many of them have the Wiki open and are clicking through pages at the busiest moment of the day. For a company wiki that is usually 5–10% of the people; the tables use <strong class="text-text">10%</strong>, so most installations have room to spare.</li><li>An active person in the tests opens a page every 10 seconds on average and keeps a tab open with its live connection. Someone reading a long page for a few minutes costs less.</li><li>The tables size for about <strong class="text-text">half</strong> the CPU at peak, so a spike, a large import or a server restart doesn't slow everyone down.</li><li>Every part scales out: more servers (a <a href="deployment-modes.html" class="text-cta hover:underline">cluster</a>, Pro), more web app processes behind your proxy, and a bigger PostgreSQL.</li></ul>
+      <h2 id="what-one-active-person-costs" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. What one active person costs</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Part</th><th>Per 1,000 active people</th><th>Notes</th></tr></thead><tbody><tr><td>Web app</td><td>About <strong class="text-text">2.3 CPU</strong>; 150 MB per process</td><td>The largest share: it draws every page and forwards every request to the server. One process handles about 300 active people and can't use more than about one CPU, so run several (one per CPU) behind the proxy</td></tr><tr><td>Server</td><td>About <strong class="text-text">0.3 CPU</strong> and 150 MB, plus about 200 MB for the server itself</td><td>Measured up to 3,500 active people on one CPU</td></tr><tr><td>PostgreSQL</td><td>About <strong class="text-text">0.3 CPU</strong></td><td>Plus memory for the data people read most (see below)</td></tr><tr><td>Redis</td><td>Small (well under 0.1 CPU)</td><td>Only for a cluster</td></tr></tbody></table></div>
+      <h2 id="recommended-sizes" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Recommended sizes</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>People</th><th>Active at peak</th><th>Servers</th><th>Web app</th><th>PostgreSQL</th><th>Redis</th></tr></thead><tbody><tr><td>Up to 500</td><td>50</td><td>1 × 1 CPU, 1 GB</td><td>1 process, 1 CPU, 1 GB</td><td>2 CPU, 4 GB</td><td>—</td></tr><tr><td>2,000</td><td>200</td><td>1 × 1 CPU, 1 GB</td><td>2 processes, 1 CPU, 1 GB each</td><td>2 CPU, 4 GB</td><td>—</td></tr><tr><td>5,000</td><td>500</td><td>1 × 2 CPU, 2 GB (2 for availability)</td><td>3 processes</td><td>2 CPU, 8 GB</td><td>Cluster only</td></tr><tr><td>10,000</td><td>1,000</td><td>2 × 2 CPU, 2 GB</td><td>5 processes</td><td>4 CPU, 16 GB</td><td>1 CPU, 1 GB</td></tr><tr><td>25,000</td><td>2,500</td><td>2 × 2 CPU, 4 GB</td><td>12 processes (for example 3 hosts × 4 CPU)</td><td>8 CPU, 32 GB</td><td>1 CPU, 2 GB</td></tr><tr><td>50,000</td><td>5,000</td><td>3 × 2 CPU, 4 GB</td><td>24 processes (6 hosts × 4 CPU)</td><td>8 CPU, 32 GB, a standby replica</td><td>2 CPU, 2 GB, Sentinel</td></tr><tr><td>100,000</td><td>10,000</td><td>4 × 2 CPU, 4 GB</td><td>48 processes (6 hosts × 8 CPU)</td><td>16 CPU, 64 GB, a standby replica</td><td>2 CPU, 4 GB, Sentinel</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Up to about 2,000 people everything can share one machine of 4 CPU and 8 GB (server, web app and PostgreSQL), as long as it is backed up. From 5,000 people, give PostgreSQL its own machine or use a managed database. A cluster needs the Pro licence, Redis and shared storage; see <a href="deployment-modes.html" class="text-cta hover:underline">Single server &amp; cluster</a>.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">If more of your people are active at once (for example everyone opens the Wiki at 9 a.m. for a stand-up), size by the number of active people you expect, not by the number of accounts.</p></div>
+      <h2 id="settings-that-matter-at-scale" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Settings that matter at scale</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Memory limit.</strong> Give each server at least 1 GB and set <span class="font-mono text-sm break-words">GOMEMLIMIT</span> to about 80% of its memory limit (for example <span class="font-mono text-sm break-words">GOMEMLIMIT=800MiB</span> for 1 GB). A server that runs out of CPU queues requests and its memory grows; past its limit it is stopped. Keep peak CPU at about half and add servers before that.</li><li><strong class="text-text">Database connections.</strong> Each server opens <span class="font-mono text-sm break-words">pool_max_conns</span> connections (default 4, or the number of CPUs if more). The default carried 3,500 active people per server CPU in the tests. Raise it at a server's first start, in <span class="font-mono text-sm break-words">DATABASE_URL</span> (<span class="font-mono text-sm break-words">…?pool_max_conns=16</span>), only when PostgreSQL has CPUs to spare, and keep servers × <span class="font-mono text-sm break-words">pool_max_conns</span> plus 20 under PostgreSQL's <span class="font-mono text-sm break-words">max_connections</span>.</li><li><strong class="text-text">PostgreSQL CPUs.</strong> Give PostgreSQL at least as many CPUs as the servers together: in the tests it needed as much CPU as the server did.</li><li><strong class="text-text">PostgreSQL memory.</strong> Enough to keep the pages, versions and people that are read most in memory: <span class="font-mono text-sm break-words">shared_buffers</span> about a quarter of its memory. The test database (2,000 people, 2,100 pages) was 31 MB; a page with its versions and analytics takes about 15 KB on average, so 100,000 pages with history is roughly 2–5 GB, plus page views (kept month by month, see <a href="analytics-settings.html" class="text-cta hover:underline">Analytics</a>).</li><li><strong class="text-text">Web app processes.</strong> Run one process per CPU on each host and spread them behind the proxy. Compress responses at the proxy (gzip or Brotli), and let it cache <span class="font-mono text-sm break-words">/_next/static/</span> for a long time: those files never change within a release.</li><li><strong class="text-text">The live connection.</strong> Every open tab holds one WebSocket on <span class="font-mono text-sm break-words">/api/ws</span>, and editors one more for the page they edit. Allow enough open files for them on each server (<span class="font-mono text-sm break-words">LimitNOFILE</span> in systemd, <span class="font-mono text-sm break-words">ulimits</span> in a container): at least 4 × the active people you expect per server.</li><li><strong class="text-text">Rate limits.</strong> The default limits suit the sizes above. Behind a proxy, set <span class="font-mono text-sm break-words">TRUSTED_PROXIES</span> so limits apply to each person's address, not the proxy's (see <a href="rate-limits.html" class="text-cta hover:underline">Rate limits</a>).</li></ul>
+      <h2 id="watching-the-load" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Watching the load</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Settings → Clustering</strong> shows each server's CPU and memory; the <a href="system-check.html" class="text-cta hover:underline">system check</a> warns when one is unhealthy.</li><li><a href="monitoring.html" class="text-cta hover:underline">Monitoring</a> gives Prometheus metrics for request rates, live editing and the server process. Add a server when peak CPU stays above about 60%, or when page loads in your monitoring slow down.</li><li>Watch the web app's CPU separately: it is the first part to run short.</li></ul>
+      <h2 id="load-test-results" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Load test results</h2>
+      <p class="text-muted mb-4">The numbers above come from these tests, run on 20 November 2026 against the current release. They are a guide for planning, not a promise: your pages, plugins and habits differ.</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>Machine</td><td>One 4-CPU cloud machine; each part pinned to its own CPUs and limited like a container (<span class="font-mono text-sm break-words">--cpus</span>, <span class="font-mono text-sm break-words">--memory</span>)</td></tr><tr><td>Data</td><td>2,000 people, 17 spaces, 2,100 pages made from the ready-made templates (720 published)</td></tr><tr><td>People</td><td>Signed in, a tab open with its live connection, a new page every 10 s on average: 60% reading pages, 10% space overviews, 8% the dashboard, 8% search, 4% editing (editors open the live editor), the rest the spaces list, Q&amp;A, history and blogs. One view in five is a full page load</td></tr><tr><td>Pass</td><td>95% of page loads (all of a screen's requests) within 1.5 seconds, under 1% of requests failing</td></tr><tr><td>Not included</td><td>Typing in the editor, uploads, imports and exports; static files the browser caches</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">The server alone</strong> (requests straight to the server, PostgreSQL on two CPUs):</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Server limit</th><th>Active people that passed</th><th>Page views per second</th><th>Requests per second</th><th>Page load, 95%</th><th>Server CPU used</th><th>Server memory</th><th>PostgreSQL CPU used</th></tr></thead><tbody><tr><td>0.5 CPU, 512 MB</td><td>1,500</td><td>150</td><td>1,520</td><td>0.15 s</td><td>0.44</td><td>213 MB</td><td>0.45</td></tr><tr><td>1 CPU, 1 GB</td><td>3,000</td><td>300</td><td>2,980</td><td>0.26 s</td><td>0.84</td><td>362 MB</td><td>0.89</td></tr><tr><td>1 CPU, 1 GB</td><td>3,500 (limit)</td><td>332</td><td>3,330</td><td>1.3 s</td><td>0.92</td><td>562 MB</td><td>0.91</td></tr></tbody></table></div>
+      <p class="text-muted mb-4"><strong class="text-text">With the web app</strong> in front (every page and request through one web app process limited to 1 CPU and 1 GB, the server at 1 CPU):</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Active people</th><th>Page views per second</th><th>Page load, 95%</th><th>Web app CPU used</th><th>Web app memory</th><th>Server CPU used</th></tr></thead><tbody><tr><td>100</td><td>10</td><td>0.12 s</td><td>0.22</td><td>126 MB</td><td>0.05</td></tr><tr><td>200</td><td>20</td><td>0.16 s</td><td>0.47</td><td>128 MB</td><td>0.09</td></tr><tr><td>300</td><td>30</td><td>0.29 s</td><td>0.67</td><td>143 MB</td><td>0.12</td></tr><tr><td>400 (over the limit)</td><td>38</td><td>1.7 s</td><td>0.86</td><td>160 MB</td><td>0.14</td></tr></tbody></table></div>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The server's cost grows in a straight line with the number of people until its CPU is used up; then page loads slow down within seconds. Plan for half.</li><li>Most of the CPU goes to the web app: forwarding a request costs it about ten times what answering it costs the server, and each full page load carries all of the interface's text. Making the web app lighter is planned; until then, size it from the table.</li><li>A server that ran out of CPU and memory together was stopped by its memory limit instead of slowing down: set <span class="font-mono text-sm break-words">GOMEMLIMIT</span> and keep headroom (above).</li><li>No screen asks the server for the same thing twice: a browser check of 24 screens found one repeated request (the space overview's "Start here" list), now fixed.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
