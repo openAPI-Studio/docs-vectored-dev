@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-220 screenshots. Save each one into `depotex/assets/` using the
+221 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -516,6 +516,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Policies: each policy's event, effect, mode, priority and decisions in the last 7 days
 - [ ] `policies-editor.png`
       A policy made from a template: its rule, effect, message and priority
+- [ ] `policies-decisions.png`
+      A dry-run network policy's Decisions tab: Would block, the user's name and the sign-in address each decision checked
 
 ## Automation
 

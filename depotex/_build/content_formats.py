@@ -209,6 +209,7 @@ FORMATS = [
             UL([
                 "Each package version is a version in Depotex: cleanup, quotas, quarantine and the block list apply to it.",
                 "Blocked versions are left out of package documents, and dist-tags move to the newest version left.",
+                "`npm audit` reports blocked versions as critical and quarantined ones as high. A version that is both blocked and quarantined shows only the block. npm prints no version range for a blocked version, because the version is hidden from clients; the advisory's title names the rule.",
                 "With **Hide quarantined versions**, quarantined versions are left out too; otherwise they're listed and their tarballs refused with the reason.",
             ]),
             H("Proxy repositories"),
