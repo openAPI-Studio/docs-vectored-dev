@@ -16,11 +16,12 @@ GROUPS = [
             P("Open the space's **Repositories** tab. Repositories are shown in a lane per format: the format's universal URL at the top, each group with its members in the order they're asked (a group inside a group is indented), then the repositories in no group. The repository that takes uploads is marked **Takes uploads**, and a member limited to some paths or packages shows them."),
             SHOT("repository-group.png", "A group repository: its members in the order they're asked, and the space's universal URL"),
             STEPS([
-                "Create|Choose **New repository**, type **Group**, pick the format and the members in the order they should be asked (drag them, or use the arrows), the **Default repository for uploads**, and whether it becomes the format's universal URL.",
+                "Create|Choose **New repository**, type **Group**, pick the format and the members in the order they should be asked (drag them, or use the arrows), the **Default repository for uploads**, and whether it becomes the format's universal URL. Members are hosted or proxy repositories of the same format in the space: if there are none yet, the form says so, and its link switches the form to a hosted repository to create one first.",
                 "Members|On the group's **Members** tab, reorder members, and set what each is asked for: everything, only what a pattern matches, or everything except it.",
                 "Rules|On the **Rules** tab, add write rules (checked in order), the default repository for uploads, paths or packages never served, and the largest download and upload.",
                 "Test|On the **Test** tab, enter a path or package (and a version and size) to see which members a download asks, or where an upload goes and which rule decided.",
             ]),
+            SHOT("repositories-group-empty.png", "New repository, type Group, in a space with no npm repositories yet: the form says so and links to creating one"),
             P("Warnings on the group's page point out a proxy asked before a hosted repository, a proxy that doesn't remember “not found”, an offline member, or a group that takes no uploads. Choose the space's default group per format in the lane's universal URL bar (space maintainers). Deleting a repository that is in groups says so first."),
 
             H("Using a group"),

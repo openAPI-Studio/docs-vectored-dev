@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+213 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -107,11 +107,18 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `repository-group.png`
       A group repository: its members in the order they're asked, and the space's universal URL
+- [ ] `repositories-group-empty.png`
+      New repository, type Group, in a space with no npm repositories yet: the form says so and links to creating one
 
 ## Supported formats
 
 - [ ] `formats-logos.png`
       The repository list in the light theme: official logos beside Go, Maven, PyPI, Cargo, Composer, Helm and Git LFS, simple icons for the other formats
+
+## npm
+
+- [ ] `repository-settings-publishing-npm.png`
+      An npm repository's Settings tab: Publishing set to never overwrite, with the note that npm never replaces a published version
 
 ## APT
 
