@@ -52,6 +52,8 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Alerts", "The bell lists and counts alerts sent to your role, such as **System health** for super admins, after a page reload and after you read an alert; until now it left them out until you opened the alerts page."),
+    ("2026-11-20", "System check", "The **System health** alert names each check as the system check does, such as **Synced directories (1: Acme LDAP); Disk space on web-1**, in your language (its email in English), instead of internal names like `identity.directories`. On the system check, a check that looked at one thing, such as **Disk space** on a server with one data directory, shows that item and what it found (**/data: Only 37.7 GB free of 270.6 GB (13 %)**) instead of **Free disk space.**"),
     ("2026-11-20", "Rate limits", "**Add override** in **Settings → Security → Rate limits → Overrides** saves the override again; it saved nothing and jumped to the Sign-in tab. Any dialog with its own form inside a settings page now saves only its own form."),
     ("2026-11-20", "Policies", "A policy's **Decisions** tab shows who acted by name and the values the condition checked, such as the sign-in address; erasing a user's personal data clears both from their decisions."),
     ("2026-11-20", "SBOM", "A version's Security tab counts the components its list shows, so a package without dependencies shows **Components 1**, marked **This package**. A component's badge says how many open advisories it has, in the colour of the worst one, which its tooltip names."),
