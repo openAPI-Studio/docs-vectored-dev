@@ -52,7 +52,7 @@ SSO = [
             ]),
             P("**OpenID Connect fields**"),
             TABLE(["Field", "What to enter"], [
-                ["Issuer URL", "The provider's issuer, starting with `https://`. Depotex reads everything else from `<issuer>/.well-known/openid-configuration`. For Entra ID, Okta, Keycloak and Auth0, enter the tenant, domain or realm and the issuer is filled in"],
+                ["Issuer URL", "The provider's issuer, starting with `https://`. Depotex reads everything else from `<issuer>/.well-known/openid-configuration`. For Entra ID, Okta, Keycloak and Auth0, enter the tenant, domain or realm and the issuer is filled in; a saved provider shows them again. If you change the issuer by hand so it no longer follows that pattern, those fields are hidden and you edit the issuer itself"],
                 ["Client ID", "The application (client) ID from the provider"],
                 ["Client secret", "The client secret. Stored encrypted and never shown again; leave it empty later to keep it"],
                 ["Scopes (Advanced)", "Default `openid email profile`"],
