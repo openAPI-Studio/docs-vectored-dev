@@ -52,6 +52,19 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Uploads", "The `X-Depotex-Tag` upload header now works through the web address: uploads are tagged, and an unknown tag is refused with 400 `unknown_tag`."),
+    ("2026-11-20", "Terraform", "`terraform login` works again through the web address; it failed with \"cannot fetch token: 405\"."),
+    ("2026-11-20", "npm", "`npm audit` through a group links a blocked version to the group, the repository you used, instead of whichever member answered first."),
+    ("2026-11-20", "Cargo", "`cargo owner --add` with one name says \"added alice as an owner of demo\"."),
+    ("2026-11-20", "Rust toolchains", "The rustup setup lines now include your API token in the address, so they work in spaces that need sign-in."),
+    ("2026-11-20", "Composer", "`composer audit` through a Packagist proxy or group no longer fails with 503 when none of your packages has an advisory."),
+    ("2026-11-20", "RubyGems", "The setup lines sign Bundler and `gem` in with the API token alone, so an email address as your user name no longer breaks them."),
+    ("2026-11-20", "RubyGems", "`gem owner` lists owners by email address for the gem's owners and repository admins, and by name for everyone else, instead of bare user ids."),
+    ("2026-11-20", "Conan", "Signing in with an account password says plainly to use an API token instead."),
+    ("2026-11-20", "APT", "Uploading a `.deb` that is already stored, to add a distribution, answers with its md5 and sha1 as well as its sha256."),
+    ("2026-11-20", "NuGet", "The NuGet setup no longer asks you to paste your token into `nuget.config`: it reads `%DEPOTEX_TOKEN%` from the environment."),
+    ("2026-11-20", "YUM", "The YUM setup now works in internal and private spaces: it downloads the `.repo` file with your API token and adds the credentials; `dnf config-manager` is offered for public spaces."),
+    ("2026-11-20", "Conda", "The setup's \"Use … instead\" choices read correctly (\"Use an attestation (trusted publishing) instead\")."),
     ("2026-11-15", "Repositories", "Go, Maven, PyPI (the Python logo), Cargo (the Rust logo), Composer, Helm and Git LFS repositories show their ecosystem's official logo next to the format's name (Maven and Go, whose logos spell the name, show the logo alone), with a version for dark themes. Other formats keep their generic icon. **Connect an AI agent** shows the Model Context Protocol logo, and the API explorer shows the OpenAPI logo beside its version."),
     ("2026-11-13", "SBOM", "**New since upload** means found by a later check: what an SBOM's first vulnerability check finds no longer reads as new. A package nobody had stored before showed all its findings as new on the first report."),
     ("2026-11-13", "SBOM", "`sbom.vulnerability.resolved` is no longer lost when a server stops in the middle of a vulnerability check: it is raised after the restart, as `sbom.vulnerability.found` already was. Findings that scanner plugins add or take away are delivered the same way."),
