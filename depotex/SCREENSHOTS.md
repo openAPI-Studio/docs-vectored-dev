@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-218 screenshots. Save each one into `depotex/assets/` using the
+219 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -490,6 +490,8 @@ realistic but fictional names and figures rather than real people's data.
       The bell's dropdown: unread alerts, newest first
 - [ ] `alerts-page.png`
       Notifications: filters by state, severity and category, and every alert with its actions
+- [ ] `profile-notifications-mute-picker.png`
+      Muted categories: pick from the kinds of notifications you have had
 - [ ] `profile-notifications.png`
       Profile settings → Notifications: opt-out, muted and forced categories, and the save bar
 

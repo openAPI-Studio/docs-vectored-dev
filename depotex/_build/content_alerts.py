@@ -41,6 +41,7 @@ ALERTS = [
             UL(['Critical-severity alerts', 'Alerts in forced categories (configured by your administrator)']),
             P('**Muted Categories**'),
             P('Tick the categories you don\'t want to receive. The list shows the kinds of notifications you have had in the last 90 days, by name (for example **New vulnerabilities** or **Scheduled jobs**), plus anything you muted before. Muting a category mutes all its notifications: muting **New vulnerabilities** mutes them for every SBOM and space, including ones that arrive later. Categories appear here once you\'ve had a notification of that kind.'),
+            SHOT("profile-notifications-mute-picker.png", "Muted categories: pick from the kinds of notifications you have had"),
             P('A mute you saved for one item before categories were listed (for example one SBOM\'s alerts) is listed on its own, with its id under the name. Untick it and save to remove it.'),
             NOTE('Some categories are forced by your administrator. They aren\'t in the list: they can\'t be muted and are always delivered, whatever your preferences. Everyone sees them under **Forced categories**, each with a lock icon.'),
             P("**What you'll receive**"),
