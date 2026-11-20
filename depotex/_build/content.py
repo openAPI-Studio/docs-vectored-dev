@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "SBOM", "A version's Security tab counts the components its list shows, so a package without dependencies shows **Components 1**, marked **This package**. A component's badge says how many open advisories it has, in the colour of the worst one, which its tooltip names."),
     ("2026-11-20", "npm", "`npm audit` no longer reports a blocked version as also waiting in quarantine: it shows only the block."),
     ("2026-11-20", "Spaces", "A space's **Repositories** and **Members** tabs keep their counts after you save its settings; they disappeared until the page was reloaded."),
     ("2026-11-20", "Vibe artifacts", "The vibepack skill asks for a token with five permissions (`spaces:read`, `spaces:push`, `repo:browse`, `repo:read`, `repo:add`). It no longer asks for `depot:read`, which members can't grant and a push never needed."),
