@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Backups", "Restoring a backup on a new server works when its database user has a different name, as with most managed databases; a failed restore now raises its alert."),
     ("2026-11-20", "Alerts", "An alert sent to a role, such as **System health** for super admins, now appears live only for people with that role; before, everyone with Depotex open saw it pop up until they reloaded the page."),
     ("2026-11-20", "Scheduled jobs", "**Settings → Advanced → Scheduled jobs** shows each job's last outcome after a restart and on every server, whichever server ran the job; it showed only the time, with no outcome, for runs from before the server started or from another server."),
     ("2026-11-20", "Audit log", "Audit log entries for what people do in the web app or with API tokens now record their email, network address and client (browser, CLI or package manager); before, only sign-ins did."),
