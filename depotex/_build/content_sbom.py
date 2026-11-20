@@ -164,6 +164,7 @@ SBOM = [
 
             H("Applications"),
             P("An application belongs to a space and has a key (`shop`, `billing-api`), a name and a description. Its versions appear as SBOMs are uploaded for them: there's nothing to create first. A version can hold more than one document (one for the service, one for its base image) and can be linked to the artifact versions it was built from, so the connection between what was published and what was deployed is recorded. Everything is in the space's **SBOMs** tab: the applications with search, each one's versions with an upload form and the CI command, and each version's SBOMs with their components, vulnerabilities and downloads, plus the linked artifact versions."),
+            P("An SBOM's component count, on the version page, in its **Components** tab, in the application's versions list and in the message after an upload, is the same number everywhere: the components Depotex keeps from the document, the application's own component (marked **This package**) included when the document names one. A document with more components than a server keeps says so in a note with how many it listed."),
             SHOT("sbom-applications.png", "A space's SBOMs tab: registered applications"),
             SHOT("sbom-version.png", "An application version: its SBOM with completeness, components, vulnerabilities and export"),
             TABLE(["Who", "Needs", "Can"], [
