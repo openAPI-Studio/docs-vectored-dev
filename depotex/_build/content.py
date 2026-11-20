@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Scheduled jobs", "**Settings → Advanced → Scheduled jobs** shows each job's last outcome after a restart and on every server, whichever server ran the job; it showed only the time, with no outcome, for runs from before the server started or from another server."),
     ("2026-11-20", "Audit log", "Audit log entries for what people do in the web app or with API tokens now record their email, network address and client (browser, CLI or package manager); before, only sign-ins did."),
     ("2026-11-20", "Alerts", "The bell lists and counts alerts sent to your role, such as **System health** for super admins, after a page reload and after you read an alert; until now it left them out until you opened the alerts page."),
     ("2026-11-20", "System check", "The **System health** alert names each check as the system check does, such as **Synced directories (1: Acme LDAP); Disk space on web-1**, in your language (its email in English), instead of internal names like `identity.directories`. On the system check, a check that looked at one thing, such as **Disk space** on a server with one data directory, shows that item and what it found (**/data: Only 37.7 GB free of 270.6 GB (13 %)**) instead of **Free disk space.**"),
