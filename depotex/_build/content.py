@@ -52,6 +52,12 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Dashboard", "The administrator dashboard shows the **Cluster** health chip once; it was shown twice to anyone allowed to see the cluster."),
+    ("2026-11-20", "Email", "Emails name the product with a capital letter (\"invited you to Depotex\"), unless Branding sets another name."),
+    ("2026-11-20", "Setup", "When `FRONTEND_URL` isn't set, the setup and recovery links in the log say to open their path on your own address, since the full link would point at `localhost`; the install guide now lists `FRONTEND_URL`."),
+    ("2026-11-20", "Setup", "Unattended setup no longer prints a setup wizard link and key, and no longer warns that the setup file is ignored after its own restart."),
+    ("2026-11-20", "Setup", "The Redis URL hint in the setup wizard wraps between words and shows its example addresses as code."),
+    ("2026-11-20", "Server", "Server commands no longer print a logger notice before their output (`./server --machine-id` prints only the installation ID)."),
     ("2026-11-15", "Repositories", "Go, Maven, PyPI (the Python logo), Cargo (the Rust logo), Composer, Helm and Git LFS repositories show their ecosystem's official logo next to the format's name (Maven and Go, whose logos spell the name, show the logo alone), with a version for dark themes. Other formats keep their generic icon. **Connect an AI agent** shows the Model Context Protocol logo, and the API explorer shows the OpenAPI logo beside its version."),
     ("2026-11-13", "SBOM", "**New since upload** means found by a later check: what an SBOM's first vulnerability check finds no longer reads as new. A package nobody had stored before showed all its findings as new on the first report."),
     ("2026-11-13", "SBOM", "`sbom.vulnerability.resolved` is no longer lost when a server stops in the middle of a vulnerability check: it is raised after the restart, as `sbom.vulnerability.found` already was. Findings that scanner plugins add or take away are delivered the same way."),
@@ -171,9 +177,10 @@ PAGES = [
             NOTE("Depotex isn't released yet. Early adopters: [contact us for access](../../support.html?tool=depotex&type=access) to get the server and a license."),
             P("Depotex is a self-hosted platform. It needs PostgreSQL. Redis is optional for a single node and required for a cluster. On Kubernetes, use the container images and the [Helm chart](helm-chart.html); see also [Docker & Kubernetes](kubernetes.html). Before you start, [plan the installation](install-planning.html): sizing, the database, storage and the address people will use."),
             H("First boot"),
-            P("Set `DATABASE_URL` and `CONFIG_ENCRYPTION_KEY`, then start the server. After the first boot the database URL is saved encrypted on the node, so later boots only need the encryption key."),
+            P("Set `DATABASE_URL`, `CONFIG_ENCRYPTION_KEY` and `FRONTEND_URL` (the address people open, such as `https://depotex.example.com`), then start the server. After the first boot the database URL is saved encrypted on the node, so later boots only need the encryption key."),
             H("The setup key"),
             P("A fresh installation starts in setup mode and prints a one-time setup key in its log, in a line like `open the setup wizard … setup_url=https://…/setup?token=…`. Open that URL: setup only proceeds with the key, so nobody else who can reach the server can take it over before you do. The page removes the key from the address bar as soon as it has read it and keeps it only for that browser tab, so it doesn't stay in your history; reloading the tab keeps working, a new tab needs the link again."),
+            P("The link is built from `FRONTEND_URL`. Without it the server prints `http://localhost:3000/…` and says to open the path (`setup_path=/setup?token=…`, in the same line) on your own address instead."),
             P("The key changes each time the server restarts. Set `SETUP_TOKEN` to choose it yourself, for example when several nodes share the setup."),
             H("Setup wizard"),
             SHOT("setup-wizard.png", "The setup wizard's first step: the installation ID to request a license with, and the license"),
@@ -248,7 +255,7 @@ location / {
         blocks=[
             P("If an installed server can't start — the database is down, the encryption key is wrong, storage is unreachable, the Redis URL can't be read, the license no longer matches — it doesn't just exit. It starts in recovery mode, finds what's wrong, and shows you how to fix it."),
             H("Open the recovery page"),
-            P("The server log shows a line like `open the recovery page … recovery_url=https://…/recovery?token=…`. Open that URL. The key keeps the diagnostics private; set `RECOVERY_TOKEN` to choose it. Like the setup key, it is removed from the address bar once the page has read it."),
+            P("The server log shows a line like `open the recovery page … recovery_url=https://…/recovery?token=…`. Open that URL. It is built from `FRONTEND_URL`: when that isn't set, the link starts with `http://localhost:3000`, so open the line's `recovery_path` (`/recovery?token=…`) on your own address instead. The key keeps the diagnostics private; set `RECOVERY_TOKEN` to choose it. Like the setup key, it is removed from the address bar once the page has read it."),
             H("What it checks"),
             TABLE(["Check", "Common causes"], [
                 ["Bootstrap file", "The server was started with a different CONFIG_ENCRYPTION_KEY, or the file is damaged"],
