@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+212 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -135,6 +135,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `terraform-login.png`
       The page terraform login opens: approve or deny the token for terraform on this computer
+- [ ] `terraform-module-install.png`
+      A module version's page: the install bar shows the module block to copy
 
 ## RubyGems (Ruby)
 
