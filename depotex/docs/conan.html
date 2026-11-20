@@ -60,7 +60,7 @@ conan remote login acme-conan me -p &quot;$DEPOTEX_TOKEN&quot;
 conan install --requires=acme-tools/1.0 -r acme-conan</code></pre>
       <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The address has no trailing slash: Conan adds its own paths to it.</li><li>Sign in with an <strong class="text-text">API token</strong> (Profile → API tokens) as the password; the user name can be anything. Conan keeps the token and sends it with every request, so revoking the token signs the client out.</li><li>Conan refuses your account password. The terminal shows the server's reason, then a line of Conan's own; the address is fine:</li></ul>
       <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">$ conan remote login acme-conan me -p &#x27;my account password&#x27;
-ERROR: b&#x27;Use an API token as the password: Profile, API tokens&#x27;
+ERROR: b&#x27;Depotex: sign in with an API token as the password (Profile, API tokens), not your account password.&#x27;
 
 Invalid server response, check remote URL and try again. [Remote: acme-conan]</code></pre>
       <h2 id="make-depotex-the-only-conan-remote" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Make Depotex the only Conan remote</h2>

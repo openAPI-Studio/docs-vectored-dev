@@ -42,16 +42,16 @@
       <p class="text-muted mb-4">NuGet repositories are NuGet v3 package sources for <span class="font-mono text-sm break-words">dotnet restore</span>, <span class="font-mono text-sm break-words">dotnet add package</span>, <span class="font-mono text-sm break-words">dotnet nuget push</span>, <span class="font-mono text-sm break-words">nuget.exe</span>, Visual Studio and Rider. Hosted repositories take the packages you push; proxy repositories cache nuget.org or another v3 feed. The source address is the repository's service index, <span class="font-mono text-sm break-words">https://&lt;depotex&gt;/repository/&lt;space&gt;/&lt;repository&gt;/index.json</span>.</p>
       <h2 id="add-the-source" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Add the source</h2>
       <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">dotnet nuget add source https://depotex.example.com/repository/my-space/nuget/index.json --name depotex \
-  --username me --password &quot;$DEPOTEX_TOKEN&quot; --store-password-in-clear-text
+  --username token --password &quot;$DEPOTEX_TOKEN&quot; --store-password-in-clear-text
 dotnet add package Acme.Tools --version 1.0.0</code></pre>
-      <p class="text-muted mb-4">Or in <span class="font-mono text-sm break-words">nuget.config</span>, with the token from the environment:</p>
+      <p class="text-muted mb-4">Or in <span class="font-mono text-sm break-words">nuget.config</span>, with the token from the environment: NuGet reads <span class="font-mono text-sm break-words">%DEPOTEX_TOKEN%</span> from the <span class="font-mono text-sm break-words">DEPOTEX_TOKEN</span> variable, so the token never goes in the file (which is often committed). The user name can be anything.</p>
       <pre class="bg-bg border border-border rounded-xl p-4 mb-6 overflow-x-auto"><code class="font-mono text-xs text-muted">&lt;configuration&gt;
   &lt;packageSources&gt;
     &lt;add key=&quot;depotex&quot; value=&quot;https://depotex.example.com/repository/my-space/nuget/index.json&quot; /&gt;
   &lt;/packageSources&gt;
   &lt;packageSourceCredentials&gt;
     &lt;depotex&gt;
-      &lt;add key=&quot;Username&quot; value=&quot;me&quot; /&gt;
+      &lt;add key=&quot;Username&quot; value=&quot;token&quot; /&gt;
       &lt;add key=&quot;ClearTextPassword&quot; value=&quot;%DEPOTEX_TOKEN%&quot; /&gt;
     &lt;/depotex&gt;
   &lt;/packageSourceCredentials&gt;
