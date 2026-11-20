@@ -21,7 +21,9 @@ QUICKSTART = [
             H("Find a repository"),
             P("Packages live in **repositories**, grouped in **spaces** (usually one per team or product). Open **Spaces** in the left menu, pick a space, then its **Repositories** tab and a repository. **Browse** in the left menu searches every artifact you can see instead."),
             SHOT("quickstart-find-repository.gif", "From the dashboard to a space, its repositories, and a repository's setup instructions"),
-            P("The repository page shows its address, what you may do in it (**Your access**), and its packages. Ask the space's owner for access if a repository you need isn't listed; see [Spaces](spaces.html#members)."),
+            P("The repository page shows its address, what you may do in it (**Your access**), and its packages. **Your access** lists only what the repository allows: a proxy repository never lists publishing (it only fetches from its upstream), a read-only one never lists publishing, and where files can't be replaced (read-only and publish-once repositories) **change versions** (yank, deprecate, unlist) takes the place of overwriting."),
+            SHOT("repository-your-access-proxy.png", "A proxy repository's header: Your access reads browse, download, and fetch from upstream"),
+            P("Ask the space's owner for access if a repository you need isn't listed; see [Spaces](spaces.html#members)."),
 
             H("Point your package manager at it"),
             P("Open **Use this repository → Show setup**. It shows the exact commands for that repository and format, ready to copy: **Install** to download packages, **Publish** to upload them. The address already includes the space and repository."),

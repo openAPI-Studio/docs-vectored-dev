@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+212 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -14,6 +14,8 @@ realistic but fictional names and figures rather than real people's data.
       The sign-in page
 - [ ] `quickstart-find-repository.gif`
       From the dashboard to a space, its repositories, and a repository's setup instructions
+- [ ] `repository-your-access-proxy.png`
+      A proxy repository's header: Your access reads browse, download, and fetch from upstream
 - [ ] `quickstart-repository-setup.png`
       An npm repository's setup: the address, then the commands to point npm, pnpm, Yarn and Bun at it
 
