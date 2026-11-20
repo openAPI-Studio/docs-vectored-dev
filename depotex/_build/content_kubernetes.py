@@ -60,7 +60,7 @@ docker push registry.example.com/depotex-frontend:1.0.0"""),
 
             H("Network and security"),
             UL([
-                "The ingress sends live updates (`/api/ws`) to the server and everything else to the web app, which forwards API and package-manager traffic. Set `ingress.className`, `ingress.tls` and your controller's annotations; for large uploads, raise its body size and timeouts (the values file shows the nginx annotations).",
+                "The ingress sends the API (`/api`, live updates at `/api/ws` included) straight to the server and everything else to the web app, which forwards package-manager traffic. The server trusts the forwarded headers of the addresses in `backend.trustedProxies` only: keep your ingress controller's pod network in it. Set `ingress.className`, `ingress.tls` and your controller's annotations; for large uploads, raise its body size and timeouts (the values file shows the nginx annotations).",
                 "Every pod runs as a non-root user with all capabilities dropped, a read-only root filesystem and no Kubernetes API token.",
                 "Network policies (`networkPolicy.enabled`) let only the server reach PostgreSQL, Redis and MinIO, and only the ingress controller reach the apps. The server may reach the internet by default (upstream registries, single sign-on, email, webhooks); set `networkPolicy.backendInternetEgress: false` to allow only DNS, the built-in services and `extraEgress`.",
                 "The web app never receives the setup or recovery key.",

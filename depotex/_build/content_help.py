@@ -105,7 +105,7 @@ HELP = [
                 "**An account is locked after failed sign-ins.** It unlocks after `AUTH_LOCKOUT_DURATION` (15 minutes), or a super admin unlocks it in Settings → Access → Users.",
                 "**A super admin forgot their password.** Another super admin resets it. If no one can sign in, use **Forgot password** with email configured, or contact [support](support.html).",
                 "**How do I give CI access without a person's token?** A service account with an OAuth application, or workload identity with no secret at all. See [OAuth Applications](oauth-applications.html).",
-                "**Why does everyone seem to come from the same address?** `TRUSTED_PROXIES` doesn't include your proxy. See [Behind a proxy](install.html#behind-a-proxy).",
+                "**Why does everyone seem to come from the same address?** `TRUSTED_PROXIES` doesn't include your proxy; the system check's **Forwarded headers** line names the address that was refused. See [Behind a proxy](install.html#behind-a-proxy).",
             ]),
             H("Data"),
             UL([

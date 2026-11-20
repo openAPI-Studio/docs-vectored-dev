@@ -1494,7 +1494,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://wiki.example.com/api/users
             H("Organization policy"),
             P("With an Enterprise license, administrators with `api_tokens:admin` can set, through the API (`GET`/`PUT /api/admin/tokens/policy`), the longest a new token may live, how many active tokens each person may have, and permissions no token may carry; and list or revoke every token in the organization (`GET /api/admin/tokens`, `DELETE /api/admin/tokens/{id}`). A [policy](policies.html) can also limit tokens on every tier from Pro: the **Maximum API token lifetime**, **Keep permissions out of API tokens** and **API tokens need an IP allowlist** templates."),
             H("IP allowlists behind a proxy"),
-            P("If the Wiki runs behind a load balancer or reverse proxy, list every proxy in `TRUSTED_PROXIES` so the allowlist sees the real client address. Forwarding headers from anyone else are ignored."),
+            P("If the Wiki runs behind a load balancer or reverse proxy, list every proxy in `TRUSTED_PROXIES` so the allowlist sees the real client address. Forwarding headers from anyone else are removed, and the [system check](system-check.html) says so."),
         ])),
 
     ("security-hardening", dict(
@@ -1516,7 +1516,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://wiki.example.com/api/users
                 "Only the reverse proxy is reachable from users; the web app's port (3002) and the server's port (8080) are not.",
                 "TLS everywhere: at the proxy, to PostgreSQL (`sslmode=verify-full`), to Redis (`rediss://`), to object storage.",
                 "`TRUSTED_PROXIES` lists exactly your proxies, and `FRONTEND_BEHIND_PROXY=true` is set only with a proxy that overwrites the forwarded headers. See [Behind a proxy](install.html#behind-a-proxy).",
-                "`/api/ws` routes to the server, so the system check has no **Live updates** warning.",
+                "`/api` routes to the server (at least `/api/ws`), so the system check has no **Live updates** warning, and none about **Forwarded headers**.",
                 "`METRICS_ADDR` is bound to a private interface, or metrics use `METRICS_TOKEN`. See [Monitoring](monitoring.html).",
                 "Restrict the server's outbound network access to what it needs (your identity provider, mail service, storage and the sites plugins call).",
                 "Automation webhooks to private addresses stay off (`AUTOMATION_WEBHOOK_ALLOW_PRIVATE=false`).",

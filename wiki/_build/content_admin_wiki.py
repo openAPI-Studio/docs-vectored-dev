@@ -23,7 +23,7 @@ ADMIN_WIKI = [
             H("From nothing to production"),
             STEPS([
                 "Plan|Choose a single server or a cluster, and size PostgreSQL, Redis and file storage. [Plan an installation](install-planning.html), [Sizing & performance](sizing.html)",
-                "Install|Start the server and the web app, and put a reverse proxy in front that sends `/api/ws` to the server. [Install the Wiki](install.html)",
+                "Install|Start the server and the web app, and put a reverse proxy in front that sends `/api` to the server. [Install the Wiki](install.html)",
                 "License|Read the installation ID and request a licence. [Licensing](licensing.html)",
                 "Set up|In the [setup wizard](setup-wizard.html), or [without the UI](headless-setup.html) from a YAML file.",
                 "Configure|The Wiki's address, email, directories and single sign-on, storage. [Settings reference](settings-reference.html)",
@@ -67,7 +67,7 @@ ADMIN_WIKI = [
                 ["PostgreSQL", "Every record: people, settings (encrypted), spaces, pages and their versions, comments, Q&A, calendars, analytics, the audit log", "Required. The single source of truth"],
                 ["Redis", "Coordination between servers: rate limits, live updates", "Optional on one server, required for a cluster. See [Single server & cluster](deployment-modes.html)"],
                 ["File storage", "Images and videos on pages, imports while they run, logos, avatars and plugin packages", "Local disk, S3 (or S3-compatible), MinIO or Azure Blob"],
-                ["Reverse proxy", "TLS, the public address, `/api/ws` to the server", "Any proxy or load balancer; examples for Caddy and nginx in [Install the Wiki](install.html)"],
+                ["Reverse proxy", "TLS, the public address, compression, `/api` to the server", "Any proxy or load balancer; examples for Caddy and nginx in [Install the Wiki](install.html)"],
             ]),
             NOTE("How much CPU and memory each part needs for your number of people: [Sizing & performance](sizing.html)."),
             H("Single server or cluster"),
@@ -97,9 +97,9 @@ ADMIN_WIKI = [
             TABLE(["From", "To", "Port", "Why"], [
                 ["People", "Reverse proxy", "443", "The web app and the API, on one host name"],
                 ["Calendar apps", "Reverse proxy", "443", "[Calendar feeds](calendar-feeds.html), without signing in"],
-                ["Reverse proxy", "Web app", "3002", "Everything except `/api/ws`"],
-                ["Reverse proxy", "Server", "8080", "`/api/ws`: live editing and alerts (WebSocket)"],
-                ["Web app", "Server", "8080", "API traffic"],
+                ["Reverse proxy", "Web app", "3002", "Pages, scripts and styles: everything except `/api`"],
+                ["Reverse proxy", "Server", "8080", "`/api`: the API, and live editing and alerts (WebSocket) under `/api/ws`"],
+                ["Web app", "Server", "8080", "What the web app asks for itself, and API calls that reach it instead of the server"],
                 ["Server", "PostgreSQL, Redis, storage", "5432, 6379, 443/9000", "Its records, coordination and files"],
                 ["Servers", "Each other", "none", "Servers coordinate through PostgreSQL and Redis only"],
             ]),
@@ -108,8 +108,8 @@ ADMIN_WIKI = [
             UL([
                 "Give the Wiki its own host name (`https://wiki.example.com`); it can't be served under a path.",
                 "Terminate TLS at your proxy. Single sign-on and calendar apps need HTTPS in practice.",
-                "Set `FRONTEND_BEHIND_PROXY=true` on the web app and `TRUSTED_PROXIES` on the server, or every request seems to come from the proxy.",
-                "Allow request bodies of at least 201 MiB at the proxy, so videos up to 200 MiB can be uploaded (see [Install the Wiki](install.html)).",
+                "Set `TRUSTED_PROXIES` on the server to your proxy's address (and `FRONTEND_BEHIND_PROXY=true` on the web app), or every request seems to come from the proxy.",
+                "Don't limit request bodies under `/api` at the proxy (the server does), or allow at least 201 MiB, so videos up to 200 MiB can be uploaded (see [Install the Wiki](install.html)).",
             ]),
             H("Before you install"),
             UL([
@@ -163,6 +163,7 @@ ADMIN_WIKI = [
                 "**Database connections.** Each server opens `pool_max_conns` connections (default 4, or the number of CPUs if more). The default carried 3,500 active people per server CPU in the tests. Raise it at a server's first start, in `DATABASE_URL` (`…?pool_max_conns=16`), only when PostgreSQL has CPUs to spare, and keep servers × `pool_max_conns` plus 20 under PostgreSQL's `max_connections`.",
                 "**PostgreSQL CPUs.** Give PostgreSQL at least as many CPUs as the servers together: in the tests it needed as much CPU as the server did.",
                 "**PostgreSQL memory.** Enough to keep the pages, versions and people that are read most in memory: `shared_buffers` about a quarter of its memory. The test database (2,000 people, 2,100 pages) was 31 MB; a page with its versions and analytics takes about 15 KB on average, so 100,000 pages with history is roughly 2–5 GB, plus page views (kept month by month, see [Analytics](analytics-settings.html)).",
+                "**API traffic.** Send `/api` from the proxy straight to the server, not through the web app (see [Behind a proxy](install.html)). A call passed on by the web app costs it several times the CPU the server spends answering it. The web app figures on this page were measured with API calls going through the web app; routed directly, the web app serves pages only and needs less.",
                 "**Web app processes.** Run one process per CPU on each host and spread them behind the proxy. Compress responses at the proxy (gzip or Brotli), and let it cache `/_next/static/` for a long time: those files never change within a release.",
                 "**The live connection.** Every open tab holds one WebSocket on `/api/ws`, and editors one more for the page they edit. Allow enough open files for them on each server (`LimitNOFILE` in systemd, `ulimits` in a container): at least 4 × the active people you expect per server.",
                 "**Rate limits.** The default limits suit the sizes above. Behind a proxy, set `TRUSTED_PROXIES` so limits apply to each person's address, not the proxy's (see [Rate limits](rate-limits.html)).",
@@ -228,31 +229,36 @@ ADMIN_WIKI = [
             P("Set `TRUSTED_PROXIES` on the server to the addresses of your load balancer and any other proxy in front (IPs or CIDRs, comma-separated). Client addresses are used for IP allowlists, [rate limits](rate-limits.html), the audit log and the per-address limits on anonymous readers and calendar feeds: without the right setting, everyone behind the proxy shares one address and one budget."),
             P("Set `FRONTEND_BEHIND_PROXY=true` on the web app when the proxy in front of it sets `X-Forwarded-For`, `X-Forwarded-Host` and `X-Forwarded-Proto` (Caddy does by default, the nginx example below does). The web app then passes them on to the server. Without it they're ignored, because anyone who reaches the web app's port directly could send their own."),
             WARN("With `FRONTEND_BEHIND_PROXY=true`, only the proxy may reach the web app's port: a client that reaches it directly can choose the address the Wiki sees."),
-            H("Route live editing to the server"),
-            P("Live editing and instant alerts use WebSockets under `/api/ws` on the same address as the app: each page being edited has its own connection at `/api/ws/spaces/<space>/pages/<page>/collab`. The web app can't pass these on, so the proxy must send `/api/ws` and everything under it straight to the server, with WebSocket upgrades allowed, and everything else to the web app:"),
+            H("Route the API to the server"),
+            P("Everything under `/api` is answered by the server: the API the pages call, and the WebSockets under `/api/ws` for live editing and instant alerts (each page being edited has its own connection at `/api/ws/spaces/<space>/pages/<page>/collab`). Have the proxy send `/api` and everything under it straight to the server, with WebSocket upgrades allowed, and everything else to the web app:"),
             TABLE(["Path", "Goes to", "Notes"], [
-                ["`/api/ws`, `/api/ws/…`", "Server (port 8080)", "Allow the WebSocket upgrade; keep idle connections open for at least an hour"],
-                ["Everything else", "Web app (port 3002)", ""],
+                ["`/api`, `/api/…`", "Server (port 8080)", "Allow the WebSocket upgrade; keep idle connections open for at least an hour; no body limit of the proxy's own"],
+                ["Everything else", "Web app (port 3002)", "Pages, scripts and styles"],
             ]),
             CODE("""# Caddy
 wiki.example.com {
-    @live path /api/ws /api/ws/*
-    reverse_proxy @live 127.0.0.1:8080
+    encode zstd gzip
+    @api path /api /api/*
+    reverse_proxy @api 127.0.0.1:8080
     reverse_proxy 127.0.0.1:3002
 }
 
 # nginx (inside server { … })
-client_max_body_size 201m;  # page videos; other API requests stay at 32 MiB
-location /api/ws {
+gzip on;
+gzip_proxied any;
+gzip_types application/json application/javascript text/css text/plain image/svg+xml;
+location /api/ {
     proxy_pass http://127.0.0.1:8080;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
+    proxy_set_header Connection $connection_upgrade;  # map $http_upgrade $connection_upgrade { default upgrade; '' ''; } in http { … }
     proxy_set_header Host $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_read_timeout 1h;
+    proxy_read_timeout 1h;        # live connections stay open
+    client_max_body_size 0;       # the server applies its own limits
+    proxy_request_buffering off;
 }
 location / {
     proxy_pass http://127.0.0.1:3002;
@@ -261,10 +267,13 @@ location / {
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-Proto $scheme;
 }"""),
-            WARN("Without this route, the editor can't connect: after three tries it says so, and people can't edit pages together. Alerts still arrive, every 30 seconds instead of at once, and the system check shows a **Live updates** warning until it's fixed."),
-            P("Cloud load balancers (AWS ALB, Azure Application Gateway, Google Cloud Load Balancing) pass WebSockets through: add a path rule for `/api/ws*` to the server and raise the idle timeout."),
+            P("The server sets the security headers of API responses itself and refuses requests that are too large, so it is safe to reach this way. It doesn't compress: turn compression on at the proxy, as in the examples."),
+            NOTE("The web app can pass API calls on too, and does when a request for `/api` reaches it. That keeps an installation without this route working, with two limits: WebSockets can't pass, so the route for `/api/ws` is the least a proxy needs, and every call uses the web app's CPU, which is the first thing to run out as more people use the Wiki. Route all of `/api` unless you have a reason not to."),
+            WARN("Without a route for `/api/ws`, the editor can't connect: after three tries it says so, and people can't edit pages together. Alerts still arrive, every 30 seconds instead of at once, and the system check shows a **Live updates** warning until it's fixed."),
+            P("Cloud load balancers (AWS ALB, Azure Application Gateway, Google Cloud Load Balancing) pass WebSockets through: add a path rule for `/api/*` to the server and raise the idle timeout."),
+            P("A proxy on another host than the server must be in the server's `TRUSTED_PROXIES`: the server removes `X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Proto` and `X-Real-IP` from any sender that isn't listed. The system check's **Forwarded headers** line on each server says when that happened and from which address."),
             H("Request size"),
-            P("The web app refuses API requests larger than `FRONTEND_API_BODY_LIMIT` bytes (32 MiB by default) with `413 payload_too_large` before they reach the server. Uploads to a page (images and videos) have their own limit of 201 MiB, enough for a 200 MiB video, whatever that variable says. The server applies the same limits itself, also to requests that reach it directly or arrive in chunks (`413 payload_too_large`). Let the proxy in front take bodies that large (nginx: `client_max_body_size 201m`)."),
+            P("The server refuses API requests larger than 32 MiB with `413 payload_too_large`, also when they arrive in chunks. Uploads to a page (images and videos) have their own limit of 201 MiB, enough for a 200 MiB video. With `/api` routed to the server, let the proxy take bodies of any size there (nginx: `client_max_body_size 0` in that location) and leave the limits to the server. API requests that go through the web app are checked there first, against `FRONTEND_API_BODY_LIMIT` bytes (32 MiB by default; page uploads 201 MiB whatever that variable says)."),
             H("Logs and secrets in addresses"),
             P("Calendar apps read a person's [calendar feed](calendar-feeds.html) with its secret in the address, because they can't send headers. The Wiki's server never logs request queries, but a proxy in front may: leave queries out of your proxy's access log for `/api/calendar/ical`, or keep that log as private as the feeds."),
             H("After an update"),
@@ -362,7 +371,7 @@ location / {
             ]),
             H("Reverse proxy and web app"),
             TABLE(T, [
-                ["`TRUSTED_PROXIES`", "`127.0.0.0/8,::1/128`", "Proxies whose forwarding headers the server trusts (IPs or CIDRs). List the web app and every proxy in front"],
+                ["`TRUSTED_PROXIES`", "`127.0.0.0/8,::1/128`", "Proxies whose forwarding headers the server trusts (IPs or CIDRs). List the web app and every proxy in front that reaches the server. `X-Forwarded-For`, `-Host`, `-Proto` and `X-Real-IP` from any other sender are removed, and the system check reports it"],
                 ["`FRONTEND_BEHIND_PROXY`", "`false`", "Web app: `true` when a proxy in front sets `X-Forwarded-For`, `-Host` and `-Proto`. Then only the proxy may reach the web app's port"],
                 ["`FRONTEND_API_BODY_LIMIT`", "`33554432` (32 MiB)", "Web app: largest `/api` request it forwards. Uploads to a page have their own 201 MiB limit"],
                 ["`BACKEND_URL`", "`http://127.0.0.1:8080`", "Web app: where the server is"],
@@ -1203,7 +1212,7 @@ admin:
                 "**I'm locked out: single sign-on is down.** Start one server with `SSO_ENFORCEMENT_OVERRIDE=true`, sign in with a password as a super admin, fix the provider, then remove the variable.",
                 "**An account is locked after failed sign-ins.** It unlocks after `AUTH_LOCKOUT_DURATION` (15 minutes), or an administrator unlocks it in Settings → Access management → Users.",
                 "**Someone's calendar address leaked.** They make a new one on the Calendar page; ending their sessions also stops it. See [Calendar feeds](calendar-feeds.html).",
-                "**Why does everyone seem to come from the same address?** The web app ignores forwarding headers unless `FRONTEND_BEHIND_PROXY=true` is set on it, and the server trusts them only from the proxies in `TRUSTED_PROXIES`. Set both; see [Install the Wiki](install.html).",
+                "**Why does everyone seem to come from the same address?** The web app ignores forwarding headers unless `FRONTEND_BEHIND_PROXY=true` is set on it, and the server trusts them only from the proxies in `TRUSTED_PROXIES` and removes them otherwise. Set both; the system check's **Forwarded headers** line names an address that was refused. See [Install the Wiki](install.html).",
             ]),
             H("Data"),
             UL([

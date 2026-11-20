@@ -12,7 +12,7 @@ ADMIN = [
             H("From nothing to production"),
             STEPS([
                 "Plan|Choose single server or cluster, size PostgreSQL, Redis and storage, and open the network paths. [Plan an installation](install-planning.html)",
-                "Install|On Kubernetes with the [Helm chart](helm-chart.html), or from the container images or the server program ([Install Depotex](install.html)). Behind a reverse proxy, route `/api/ws` to the server.",
+                "Install|On Kubernetes with the [Helm chart](helm-chart.html), or from the container images or the server program ([Install Depotex](install.html)). Behind a reverse proxy, route `/api` to the server.",
                 "License|Read the installation ID and request a license from Vectored ([Get a license](licensing.html#get-a-license)).",
                 "Set up|In the [setup wizard](setup-wizard.html), or [without the UI](headless-setup.html) from a YAML file.",
                 "Configure|The Depotex address, email, directories and single sign-on, storage, rate limits ([Settings reference](settings-reference.html)).",
@@ -54,7 +54,7 @@ ADMIN = [
                 ["PostgreSQL", "Every record: users, settings (encrypted), repositories, versions, events, the audit log", "Required. The single source of truth"],
                 ["Redis", "Coordination between servers: rate limits, live updates, locks", "Optional on one server, required for a cluster. Losing it is survivable: see [Single Node & Cluster](deployment-modes.html#redis)"],
                 ["Artifact storage", "The files of every artifact", "Local disk, S3 (or S3-compatible), MinIO or Azure Blob"],
-                ["Reverse proxy / ingress", "TLS, the public address, `/api/ws` to the server", "Any proxy or load balancer; examples for Caddy and nginx in [Install Depotex](install.html#behind-a-proxy)"],
+                ["Reverse proxy / ingress", "TLS, the public address, compression, `/api` to the server", "Any proxy or load balancer; examples for Caddy and nginx in [Install Depotex](install.html#behind-a-proxy)"],
             ]),
             H("Single server or cluster"),
             TABLE(["", "Single server", "Cluster"], [
@@ -93,8 +93,8 @@ ADMIN = [
             H("Network"),
             TABLE(["From", "To", "Port", "Why"], [
                 ["Users, CI", "Reverse proxy", "443", "Web app, API and package managers, on one host name"],
-                ["Reverse proxy", "Web app", "3000", "Everything except `/api/ws`"],
-                ["Reverse proxy", "Server", "8080", "`/api/ws` (live updates, WebSocket)"],
+                ["Reverse proxy", "Web app", "3000", "Pages and package-manager traffic: everything except `/api`"],
+                ["Reverse proxy", "Server", "8080", "`/api`: the API, and live updates (WebSocket) at `/api/ws`"],
                 ["Web app", "Server", "8080", "API and package traffic"],
                 ["Server", "PostgreSQL, Redis, storage", "5432, 6379, 443/9000", "Its records, coordination and files"],
                 ["Servers", "Each other", "none", "Servers coordinate through PostgreSQL and Redis only"],
@@ -198,7 +198,7 @@ ADMIN = [
                 "Only the reverse proxy is reachable from users; the web app's port (3000) and the server's port (8080) are not.",
                 "TLS everywhere: at the proxy, to PostgreSQL (`sslmode=verify-full`), to Redis (`rediss://`), to object storage.",
                 "`TRUSTED_PROXIES` lists exactly your proxies, and `FRONTEND_BEHIND_PROXY=true` is set only with a proxy that overwrites the forwarded headers. See [Behind a proxy](install.html#behind-a-proxy).",
-                "`/api/ws` routes to the server, so the system check has no **Live updates** warning.",
+                "`/api` routes to the server (at least `/api/ws`), so the system check has no **Live updates** warning, and none about **Forwarded headers**.",
                 "`METRICS_ADDR` is bound to a private interface, or metrics use `METRICS_TOKEN`. See [Monitoring](monitoring.html).",
                 "On Kubernetes, network policies stay enabled; restrict the server's egress to what it needs (`networkPolicy.backendInternetEgress: false` plus `extraEgress`).",
                 "Outbound calls go through your proxy (Settings → Repositories), and webhooks to private addresses stay off (`AUTOMATION_WEBHOOK_ALLOW_PRIVATE=false`).",

@@ -52,6 +52,10 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Install", "The reverse proxy can send everything under `/api` straight to the server, and the Caddy and nginx examples and the Helm chart's ingress (`ingress.backendPaths`, now `[/api]`) do: API calls no longer use the web app's CPU. The server sets the security headers of API responses itself and refuses API requests over 32 MiB. A proxy that routes only `/api/ws` keeps working. See [Behind a proxy](install.html#behind-a-proxy)."),
+    ("2026-11-20", "Security", "The server takes `X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Proto` and `X-Real-IP` only from the proxies in `TRUSTED_PROXIES` (the same host by default) and removes them from anyone else. If your reverse proxy runs on another host and isn't listed, add it: the system check's new **Forwarded headers** line names an address that was refused."),
+    ("2026-11-20", "Performance", "Pages are smaller: each one carried the texts of the screen's area again, and now the browser loads those once and keeps them."),
+    ("2026-11-20", "Sign-in", "Links from invitation and password emails now open when the web app passes API calls on: the link's token was dropped on the way, so the page said the link was invalid."),
     ("2026-11-15", "Repositories", "Go, Maven, PyPI (the Python logo), Cargo (the Rust logo), Composer, Helm and Git LFS repositories show their ecosystem's official logo next to the format's name (Maven and Go, whose logos spell the name, show the logo alone), with a version for dark themes. Other formats keep their generic icon. **Connect an AI agent** shows the Model Context Protocol logo, and the API explorer shows the OpenAPI logo beside its version."),
     ("2026-11-13", "SBOM", "**New since upload** means found by a later check: what an SBOM's first vulnerability check finds no longer reads as new. A package nobody had stored before showed all its findings as new on the first report."),
     ("2026-11-13", "SBOM", "`sbom.vulnerability.resolved` is no longer lost when a server stops in the middle of a vulnerability check: it is raised after the restart, as `sbom.vulnerability.found` already was. Findings that scanner plugins add or take away are delivered the same way."),
@@ -187,30 +191,35 @@ PAGES = [
             P("Set `TRUSTED_PROXIES` to the addresses of your load balancer and any other proxy in front of Depotex (IPs or CIDRs, comma-separated). The default trusts only the same host. Client addresses are used for IP allowlists, [rate limits](rate-limits.html) and audit logs: without the right setting, everyone behind the proxy shares one address and one budget."),
             P("**Tell the web frontend a proxy is in front.** Set `FRONTEND_BEHIND_PROXY=true` on the web frontend when a reverse proxy or load balancer in front of it sets `X-Forwarded-For`, `X-Forwarded-Host` and `X-Forwarded-Proto` (Caddy does by default, the nginx example below does, as do Kubernetes ingress controllers and cloud load balancers). The frontend then passes them on to the server. Without it the frontend ignores them, because anyone who reaches its port directly could send their own: every browser then counts as one address for rate limits, the sign-in lockout and the audit log, and repository addresses in package metadata (npm, PyPI) are built from the `Host` header the browser sent. The [Helm chart](kubernetes.html) sets it when its ingress is enabled."),
             WARN("With `FRONTEND_BEHIND_PROXY=true`, only the proxy may reach the frontend's port (3000 by default): a client that reaches it directly can choose the address Depotex sees."),
-            P("**Request size.** The web frontend refuses API requests (`/api`) larger than `FRONTEND_API_BODY_LIMIT` bytes with `413 payload_too_large` before they reach the server. The default, `33554432` (32 MiB), is the largest the server takes there: an SBOM upload (`BROWSE_GUARD_MAX_SBOM`). Raise it with `BROWSE_GUARD_MAX_SBOM`, or when `PLUGIN_MAX_PACKAGE_SIZE` goes above 31 MiB. Uploads to repositories, from the browser or a package manager, aren't affected. The proxy must allow bodies at least this large (nginx: `client_max_body_size`)."),
-            P("**Route live updates to the backend.** Alerts arrive instantly over a WebSocket at `/api/ws` on the same address as the app. The web frontend can't pass that connection on, so the proxy in front of Depotex must send `/api/ws` (and paths under it) straight to the backend with WebSocket upgrades allowed, and everything else to the frontend:"),
+            P("**Route the API to the server.** Everything under `/api` is answered by the server: the API the pages call, and the WebSocket at `/api/ws` that delivers alerts at once. Have the proxy in front of Depotex send `/api` (and paths under it) straight to the backend with WebSocket upgrades allowed, and everything else to the frontend:"),
             TABLE(["Path", "Goes to", "Notes"], [
-                ["`/api/ws`, `/api/ws/…`", "Backend (port 8080 by default)", "Allow the WebSocket upgrade; keep idle connections open for at least an hour"],
-                ["Everything else", "Frontend (port 3000 by default)", ""],
+                ["`/api`, `/api/…`", "Backend (port 8080 by default)", "Allow the WebSocket upgrade; keep idle connections open for at least an hour; no body limit of the proxy's own"],
+                ["Everything else", "Frontend (port 3000 by default)", "Pages, scripts and styles, and package-manager traffic, which the frontend passes on"],
             ]),
             CODE("""# Caddy
 depotex.example.com {
-    @live path /api/ws /api/ws/*
-    reverse_proxy @live 127.0.0.1:8080
+    encode zstd gzip
+    @api path /api /api/*
+    reverse_proxy @api 127.0.0.1:8080
     reverse_proxy 127.0.0.1:3000
 }
 
 # nginx (inside server { … })
-location /api/ws {
+gzip on;
+gzip_proxied any;
+gzip_types application/json application/javascript text/css text/plain image/svg+xml;
+location /api/ {
     proxy_pass http://127.0.0.1:8080;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
+    proxy_set_header Connection $connection_upgrade;  # map $http_upgrade $connection_upgrade { default upgrade; '' ''; } in http { … }
     proxy_set_header Host $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_read_timeout 1h;
+    proxy_read_timeout 1h;        # live connections stay open
+    client_max_body_size 0;       # the server applies its own limits
+    proxy_request_buffering off;
 }
 location / {
     proxy_pass http://127.0.0.1:3000;
@@ -219,7 +228,10 @@ location / {
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-Proto $scheme;
 }"""),
-            P("Cloud load balancers (AWS ALB, Azure Application Gateway, Google Cloud Load Balancing) pass WebSockets through; add a path rule for `/api/ws*` to the backend and raise the idle timeout. Without this route nothing breaks: alerts refresh every 30 seconds instead, and the system check shows a **Live updates** warning until it's fixed."),
+            P("The server sets the security headers of API responses itself and refuses requests that are too large, so it is safe to reach this way. It doesn't compress: turn compression on at the proxy, as in the examples. Cloud load balancers (AWS ALB, Azure Application Gateway, Google Cloud Load Balancing) pass WebSockets through; add a path rule for `/api/*` to the backend and raise the idle timeout. The [Helm chart](kubernetes.html)'s ingress routes `/api` this way by default."),
+            P("The web frontend can pass API calls on too, and does when a request for `/api` reaches it, so an installation without this route keeps working. Two things differ then: WebSockets can't pass, so alerts refresh every 30 seconds and the system check shows a **Live updates** warning unless at least `/api/ws` is routed to the backend; and every call uses the frontend's CPU as well as the server's."),
+            P("A proxy on another host than the server must be in the server's `TRUSTED_PROXIES`: the server removes `X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Proto` and `X-Real-IP` from any sender that isn't listed. The system check's **Forwarded headers** line on each server says when that happened and from which address."),
+            P("**Request size.** The server refuses API requests (`/api`) larger than 32 MiB with `413 payload_too_large`, the largest it takes there: an SBOM upload (`BROWSE_GUARD_MAX_SBOM`). Uploads to repositories, from the browser or a package manager, and vulnerability data bundles aren't limited this way. API requests that go through the web frontend are checked there first, against `FRONTEND_API_BODY_LIMIT` bytes (default `33554432`, 32 MiB); raise it with `BROWSE_GUARD_MAX_SBOM`, or when `PLUGIN_MAX_PACKAGE_SIZE` goes above 31 MiB. Under `/api`, let the proxy take bodies of any size (nginx: `client_max_body_size 0` in that location) and leave the limits to the server; elsewhere it must allow your largest package upload."),
             H("After an update"),
             P("When Depotex is updated, pages people already have open notice within a few minutes, or as soon as they return to the tab, and show **A new version is available** with **Reload** and **Later**. Nothing reloads on its own, so unsaved work isn't lost. During a rolling upgrade of several servers the message appears once the new version is serving. Proxies and CDNs must not cache the `/app-version` address. It answers anyone, signed in or not, with the build identifier of the running frontend; that is intended (open pages compare it) and it tells nothing else about the installation."),
             H("Addresses in package links"),
@@ -482,7 +494,7 @@ location / {
             H("Organization policy"),
             P("With an Enterprise license, administrators with `api_tokens:admin` can set, through the API (`GET`/`PUT /api/admin/tokens/policy`), the longest a new token may live, how many active tokens each person may have, and permissions no token may carry; and list or revoke every token in the organization (`GET /api/admin/tokens`, `DELETE /api/admin/tokens/{id}`). A [policy](policies.html) can also limit tokens on every tier from Pro: the **Maximum API token lifetime**, **Keep permissions out of API tokens** and **API tokens need an IP allowlist** templates."),
             H("IP allowlists behind a proxy"),
-            P("If Depotex runs behind a load balancer or reverse proxy, list every proxy in `TRUSTED_PROXIES` so the allowlist sees the real client address. Forwarding headers from anyone else are ignored."),
+            P("If Depotex runs behind a load balancer or reverse proxy, list every proxy in `TRUSTED_PROXIES` so the allowlist sees the real client address. Forwarding headers from anyone else are removed, and the [system check](system-check.html) says so."),
         ])),
 
     ("changelog", dict(

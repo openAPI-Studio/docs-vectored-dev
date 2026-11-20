@@ -48,7 +48,7 @@ ENV_VARS = [
 
             H("Reverse proxy and web app"),
             TABLE(T, [
-                ["`TRUSTED_PROXIES`", "`127.0.0.0/8,::1/128`", "Proxies whose `X-Forwarded-For` / `X-Real-IP` the server trusts (IPs or CIDRs). List the web app and every proxy and load balancer in front, or everyone shares one address for allowlists, rate limits, lockout and the audit log"],
+                ["`TRUSTED_PROXIES`", "`127.0.0.0/8,::1/128`", "Proxies whose `X-Forwarded-For` / `X-Real-IP` the server trusts (IPs or CIDRs). List the web app and every proxy and load balancer in front that reaches the server, or everyone shares one address for allowlists, rate limits, lockout and the audit log. `X-Forwarded-For`, `-Host`, `-Proto` and `X-Real-IP` from any other sender are removed, and the system check reports it"],
                 ["`FRONTEND_BEHIND_PROXY`", "`false`", "Web app: `true` when a proxy in front sets `X-Forwarded-For`, `-Host` and `-Proto`, so they're passed on. Then only the proxy may reach the web app's port"],
                 ["`FRONTEND_API_BODY_LIMIT`", "`33554432` (32 MiB)", "Web app: largest `/api` request body it forwards; raise it with `BROWSE_GUARD_MAX_SBOM`, `PLUGIN_MAX_PACKAGE_SIZE` or `BACKUP_UPLOAD_CHUNK_SIZE`"],
                 ["`BACKEND_URL`", "`http://127.0.0.1:8080`", "Web app: where the server is"],

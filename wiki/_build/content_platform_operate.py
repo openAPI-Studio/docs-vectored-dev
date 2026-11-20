@@ -283,6 +283,7 @@ PLATFORM_OPERATE = [
                 ["Audit log (each server)", "Entries waiting to be written", "Entries were lost"],
                 ["Log file (each server)", "", "The log file can't be written"],
                 ["Live updates", "Browsers can't open live updates through the Wiki's address: the reverse proxy doesn't route `/api/ws` to the backend (alerts then refresh every 30 seconds). Editing a page together uses the same path. Skipped until the Wiki's address is set", ""],
+                ["Forwarded headers (each server)", "The server removed `X-Forwarded-For`, `X-Forwarded-Host` or `X-Forwarded-Proto` from requests in the last 15 minutes, because the sender isn't in `TRUSTED_PROXIES`; the line names the latest address. If it is your reverse proxy or the web app, add it to `TRUSTED_PROXIES` and restart the server: until then everyone behind it shares one address for rate limits and the sign-in lockout. If it isn't, make sure only your proxy can reach the server's port", ""],
                 ["Secure cookies (each server)", "`AUTH_COOKIE_SECURE=false` while the Wiki is reached at an address other than localhost, so session cookies could travel over plain HTTP. Serve the Wiki over HTTPS (or terminate TLS in a reverse proxy in front of it) and remove the setting", ""],
             ]),
             P("A check that doesn't answer within its time limit (usually 20 seconds) counts as a problem. A server that doesn't report within five minutes is marked as not reporting."),
