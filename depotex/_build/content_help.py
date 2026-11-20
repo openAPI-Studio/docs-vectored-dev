@@ -96,7 +96,7 @@ HELP = [
                 "**Can it run without internet access?** Yes. Mirror the images, use Depotex or internal mirrors as upstreams, and upload vulnerability data offline (Settings → Vulnerability data).",
                 "**Can I run it under a path such as /depotex?** No, it needs its own host name.",
                 "**Can I set it up with no browser?** Yes, from a YAML file: [Set up without the UI](headless-setup.html).",
-                "**Where is the Helm chart?** The published chart location is TBD; see [Install with Helm](helm-chart.html).",
+                "**Where is the Helm chart?** It comes with the Depotex distribution you received, in `deploy/helm/depotex`, with the `prime-secrets.sh` script; it isn't in a public chart repository yet. See [Install with Helm](helm-chart.html), or ask [support](support.html) if you don't have it.",
                 "**How do I move from Nexus or Artifactory?** Create proxy repositories on your old server as an upstream to switch builds without downtime, then publish your hosted packages to Depotex with each format's client. Ask [support](support.html) for help planning a migration.",
             ]),
             H("Access"),
