@@ -22,6 +22,7 @@ GROUPS = [
                 "Test|On the **Test** tab, enter a path or package (and a version and size) to see which members a download asks, or where an upload goes and which rule decided.",
             ]),
             P("Only the group's repository admins change its members and rules. Everyone else who can open the group sees the **Members** and **Rules** tabs as text: the members in order with what each is asked for, the default repository for uploads, each write rule on one line, what the group never serves and its limits."),
+            SHOT("repository-group-read-only.png", "A group's Rules tab as someone who isn't its admin sees it: the default repository for uploads, each write rule on one line, and the limits"),
             P("Warnings on the group's page point out a proxy asked before a hosted repository, a proxy that doesn't remember “not found”, an offline member, or a group that takes no uploads. Choose the space's default group per format in the lane's universal URL bar (space maintainers). Deleting a repository that is in groups says so first."),
 
             H("Using a group"),
