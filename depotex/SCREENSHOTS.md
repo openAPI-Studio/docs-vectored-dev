@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+212 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -387,6 +387,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Users: everyone who can sign in, their directory, role, status and last sign-in
 - [ ] `users-user.png`
       A user's page: profile, sign-in and security, and groups
+- [ ] `users-detail-invited.png`
+      Sign-in & security for an invited user: the password is still to be chosen
 - [ ] `groups-group.png`
       A group: its directories and members
 - [ ] `security-proxy-checksums.png`

@@ -52,6 +52,8 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-20", "Setup", "A misspelled key in the setup file is now reported by its path and line, with a suggestion, instead of Go internals."),
+    ("2026-11-20", "Users", "An invited user's page says their password is still to be chosen from the invitation, instead of saying they sign in through the directory."),
     ("2026-11-15", "Repositories", "Go, Maven, PyPI (the Python logo), Cargo (the Rust logo), Composer, Helm and Git LFS repositories show their ecosystem's official logo next to the format's name (Maven and Go, whose logos spell the name, show the logo alone), with a version for dark themes. Other formats keep their generic icon. **Connect an AI agent** shows the Model Context Protocol logo, and the API explorer shows the OpenAPI logo beside its version."),
     ("2026-11-13", "SBOM", "**New since upload** means found by a later check: what an SBOM's first vulnerability check finds no longer reads as new. A package nobody had stored before showed all its findings as new on the first report."),
     ("2026-11-13", "SBOM", "`sbom.vulnerability.resolved` is no longer lost when a server stops in the middle of a vulnerability check: it is raised after the restart, as `sbom.vulnerability.found` already was. Findings that scanner plugins add or take away are delivered the same way."),

@@ -79,6 +79,15 @@ DIRECTORIES = [
                 "**Sign-in history**: every sign-in, newest first, with the address and browser. Filter it to **Signed in** or **Refused**; refused ones say why. Shown with `users:security`, or on your own page.",
                 "**Privacy**: download their personal data or anonymize them (see below). Shown to people with `users:export` or `users:anonymize`.",
             ]),
+            P("The **Password** line in **Sign-in & security** says:"),
+            TABLE(["It says", "When"], [
+                ["**Changed** and when", "The user has a password"],
+                ["**Set, never changed**", "The user has a password nobody has changed since it was set"],
+                ["**Not set yet: the invitation lets them choose one**", "The user was invited and hasn't accepted yet"],
+                ["**Not set**", "A Local user without a password; **Reset password** gives them one"],
+                ["**None: signs in through the directory**", "A user from LDAP, SSO or another external directory, who signs in there"],
+            ]),
+            SHOT("users-detail-invited.png", "Sign-in & security for an invited user: the password is still to be chosen"),
             H("Actions on a user"),
             P("**Reset password** and **Change role** are buttons in the page header; **Sign out everywhere**, **Disable user** and **Enable user** are in the **⋯** menu next to them."),
             TABLE(["Action", "What it does", "Permission"], [
