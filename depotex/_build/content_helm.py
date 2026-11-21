@@ -169,7 +169,7 @@ kubectl -n depotex logs -f depotex-backend-0"""),
                 ["`storage.azure.container`", "`depotex`", "Azure container; the access key is the account name, the secret key the account key"],
                 ["`storage.local.existingClaim`, `.path`", "empty, `/app/storage`", "A ReadWriteMany claim mounted on every server pod"],
                 ["`minio.enabled`, `.persistence.size`", "`true`, `100Gi`", "Built-in MinIO (single instance) with the bucket and a user limited to it"],
-                ["`minio.provision.resources`, `.goMemLimit`", "request `128Mi`, limit `320Mi`; `192MiB`", "Memory for each container of the job that creates the bucket and its user, and the Go memory limit inside it (about 60% of the limit). Raise both together"],
+                ["`minio.provision.resources`, `.goMemLimit`", "request `128Mi`, limit `320Mi`; `192MiB`", "Memory for each container of the job that creates the bucket and its user, and the Go memory limit inside it (about 60% of the limit, in Go units such as `192MiB`, not `Mi`). Raise both together"],
                 ["`dev.*`", "disabled", "Test tools (MailHog, Keycloak, OpenLDAP, a mock Okta) from `values-dev.yaml`. Never in production"],
             ]),
 
