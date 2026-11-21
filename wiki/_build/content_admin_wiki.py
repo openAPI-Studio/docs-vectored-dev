@@ -356,7 +356,7 @@ location / {
                 ["**left**", "Shut down cleanly. Removed from the list after a day (`CLUSTER_DEAD_NODE_TTL`)."],
                 ["**dead**", "Stopped sending heartbeats without shutting down cleanly. It becomes active again by itself with its next heartbeat; one that stays dead is removed after a day."],
             ]),
-            P("A server whose start is refused after it registered, for example because its storage isn't the cluster's shared storage, is not listed as **left**: it never served. A new server is taken off the list again; a server that ran before keeps the status it had, and its recent events show **Start refused**. **Statuses** under How clustering works on the page explains each status."),
+            P("A server whose start is refused after it registered, for example because its storage isn't the cluster's shared storage, is not listed as **left**: it never served. A new server is taken off the list again; a server that ran before goes back to how it was listed before that start (one that had crashed shows as **dead**), and its recent events show **Start refused**. **Statuses** under How clustering works on the page explains each status."),
         ])),
 
     # -------------------------------------------------- environment-variables
