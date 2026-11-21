@@ -117,7 +117,7 @@ SPACES = [
             SHOT("repository-settings-tab.png", "A repository's Settings tab: the Repository and Artifacts cards, with switches, choices and the largest artifact in MB"),
             TABLE(["Setting", "Choices"], [
                 ["Online", "An offline repository refuses downloads and uploads."],
-                ["Publishing (hosted)", "Allow publishing and overwriting; allow publishing but never overwrite a file; or read-only. In a publish-once repository, uploading a file that's already there is refused as a conflict (409), which `npm publish` and `dotnet nuget push --skip-duplicate` expect."],
+                ["Publishing (hosted)", "Allow publishing and overwriting; allow publishing but never overwrite a file; or read-only. In a publish-once repository, uploading a file that's already there is refused as a conflict (409), which `dotnet nuget push --skip-duplicate` expects. npm never replaces a published version under any setting (`403`, as on npmjs.com); its repositories say so here, and new ones are set to never overwrite."],
                 ["Delete mode (NuGet, hosted)", "Whether `dotnet nuget delete` unlists the version (the default, as nuget.org does) or deletes it. See [NuGet repositories](nuget.html#unlist-or-delete-a-version)."],
                 ["Versions", "Releases only, snapshots only, or both (for formats that tell them apart, such as Maven -SNAPSHOT)."],
                 ["Layout", "Strict refuses paths that don't follow the format's layout; permissive accepts any path."],

@@ -66,7 +66,7 @@ FORMATS = [
                 ["Groups route uploads by", "Package and release/snapshot", "Package", "Project and version", "Module and release/pre-release", "Chart and release/pre-release", "Package ID and release/pre-release", "Crate and release/pre-release", "Package and version", "Package", "Image", "Path"],
                 ["Proxy another Depotex over a [Depotex link](upstreams.html#depotex-link) (Enterprise)", "✓", "Not yet", "✓", "Not yet", "✓", "✓", "✓", "✓", "✓", "Not yet", "✓"],
                 ["What counts as a version", "`groupId:artifactId` version", "Package version", "Project release", "Module version", "Chart version", "Package version", "Crate version", "Package version (without the epoch)", "Package version-release", "Image tag", "Each file (no version)"],
-                ["Publish once by default", "No", "Always (npm rule)", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "No"],
+                ["Publish once by default", "Yes", "Yes (npm never replaces a version anyway)", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "No"],
                 ["Dependencies in the [browser](browse.html)", "From the POM", "From package.json", "From Requires-Dist, with extras", "—", "—", "—", "From the crate's metadata", "—", "—", "—", "—"],
                 ["Signatures and SBOMs in the browser", "`.asc`, SBOM files", "Provenance", "PEP 740 attestations", "—", "`.prov` files stored and served", "—", "—", "Indexes signed with the repository's key", "Repodata signed with the repository's key; package signatures checked against trusted keys", "Referrers and build attestations", "SBOM files"],
             ]),
@@ -205,6 +205,9 @@ FORMATS = [
                 ["`access get status`, `access list packages`", "Answered from the space's visibility and your permissions."],
             ]),
             NOTE("A few commands are for what npmjs.com manages itself: `npm token create`, password sign-in (`--auth-type=legacy`), `profile set`, two-factor, `team`, `org`, `hook` and changing access. Depotex refuses them and says where to do it instead: API tokens under Profile, sign-in with `npm login`, space members and repository access, groups, and automation rules."),
+            H("Publishing"),
+            P("npm never replaces a version that's already published, whatever the repository's **Publishing** setting: publishing it again is refused (`403`, as on npmjs.com), so publish a new version instead. New hosted npm repositories are set to **Allow publishing, never overwrite**, which says so; a repository set to **Allow publishing and overwriting** behaves the same, and its Settings tab explains it. Dist-tags, deprecation and unpublish work under either setting."),
+            SHOT("repository-settings-publishing-npm.png", "An npm repository's Settings tab: Publishing set to never overwrite, with the note that npm never replaces a published version"),
             H("Versions and policies"),
             UL([
                 "Each package version is a version in Depotex: cleanup, quotas, quarantine and the block list apply to it.",
