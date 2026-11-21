@@ -114,7 +114,7 @@ curl -H "Authorization: Bearer $DEPOTEX_TOKEN" https://depotex.example.com/api/b
             ]),
             P("The wizard's license, storage, Redis and installation ID are kept; everything else (people, settings, data) is the backup's. If the restore fails, the server opens the wizard again with the reason; retry, or create an administrator instead. An uploaded backup waits on the setup server's disk (`SETUP_UPLOAD_DIR`, default `./data/setup-upload`) until setup completes, so that disk needs room for it. A backup kept on a separate backup target must be uploaded or copied into the import folder of the installation's storage."),
             H("From the command line"),
-            P("On an installation that is already set up, restore a file without the web app. Stop every other server first: the command refuses while others are running, unless `--restore-force`."),
+            P("On an installation that is already set up, restore a file without the web app. Stop every server first: the command refuses while one is running, unless `--restore-force`."),
             CODE("""# check only: prints every pre-check, changes nothing
 CONFIG_ENCRYPTION_KEY=... ./server --restore-file /backups/depotex-2026-10-11.dxbak
 # restore
@@ -129,6 +129,8 @@ CONFIG_ENCRYPTION_KEY=... ./server --restore-file /backups/depotex-2026-10-11.dx
                 ["`--restore-force`", "Restore although other servers report as running"],
             ]),
             P("The command exits when it's done; start the servers normally afterwards. The first one to start finishes the restore (sessions reset, erasures replayed)."),
+            P("A server of the installation that is still running stops the command at once with `a Depotex server of this installation is still running (<server>, last seen <time>)`: stop it and run the command again, or add `--restore-force` if that server is gone and only its heartbeat is recent. A server stopped cleanly is no longer counted; one that crashed is counted until its heartbeat is about 30 seconds old."),
+            NOTE("`the search index in <folder> is in use by another process`: another Depotex process on this machine uses the same `INDEX_DIR`. A server or a restore command stops with this after 10 seconds instead of waiting. Stop the other process, or give each server its own `INDEX_DIR`."),
 
             H("Backup target"),
             P("By default backups are kept in the installation's own storage, under `backups/`, and Settings → Backups and the system check warn about it: **losing the storage loses the backups too.** On the **Settings** tab, under **Backup target**, choose **A separate location** (a local path shared by every server, Amazon S3, MinIO or Azure Blob Storage) for backups, checksum files, the import folder and uploads."),
