@@ -548,6 +548,18 @@ USER_A = [
             SHOT("editor-columns-reading.png", "The same page as readers see it: three columns, and a highlighted paragraph"),
             NOTE("A row of columns can't be put inside another row, a table or a panel. Word and PDF exports print the columns one after the other."),
 
+            H("Page width"),
+            P("A page is as wide as its editors choose. The width menu at the end of the toolbar, beside **Figures**, offers **Narrow** (the width for reading text, and what every page has until you change it), **Medium** (room for tables and rows of columns, with a margin on both sides) and **Full width** (the whole screen, for wide tables, diagrams and dashboards)."),
+            SHOT("editor-page-width.png", "The page width menu at the end of the editor toolbar"),
+            UL([
+                "The editor changes at once, so you write at the width people read.",
+                "The width belongs to the page, like heading numbers: readers see the new width as soon as you pick it, without publishing, and they have no control of their own. Everyone who edits the page can change it.",
+                "On a phone, and on any screen narrower than the chosen width, the page fills the screen whatever is chosen.",
+                "Lines of text get long at full width on a big screen. A row of [columns](#columns) keeps them short.",
+                "A copy of a page starts narrow. Word and PDF exports use the paper's width.",
+            ]),
+            SHOT("page-width-full.png", "A published page at full width on a large screen"),
+
             H("Headings and heading numbers"),
             P("Use **Heading 1** to **Heading 3** to structure a page. Each heading gets an anchor from its words, so you can link to it with `#section-…` after the page's address, and a table of contents lists it."),
             P("**Heading numbers** in the side panel numbers a page's headings: **None**, **1, 1.1, 1.1.1** or **1., 1.1., a.**. Numbers are added when the page is shown; the text stays as you write it, so moving a section renumbers everything after it."),

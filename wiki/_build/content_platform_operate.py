@@ -58,7 +58,7 @@ _WIKI_EVENTS = [
         ['`page.template.delete`', 'before, after', 'yes · policies', "A template of a wiki space or of the template library (scope) is deleted. Pages and whiteboards made from it keep their content."],
         ['`page.template.switch`', 'before, after', 'yes · policies', 'A wiki space turns a library template on or off for its new pages (enabled).'],
         ['`page.template.update`', 'before, after', 'yes · policies', "A template of a wiki space or of the template library (scope) is renamed, described, grouped, switched on or off for every space, saved in the template editor, given a page's or a whiteboard's content, or reset to the original (reset)."],
-        ['`page.update`', 'before, after', 'yes · policies', "A wiki page's title or status changes. Publishing also raises page.publish."],
+        ['`page.update`', 'before, after', 'yes · policies', "A wiki page's title, status, heading or figure numbers, or width changes. Publishing also raises page.publish."],
         ['`page.version.restore`', 'after', 'no', "An older version of a wiki page is published again, as the page's newest version (after page.publish)."],
         ['`wiki.label.delete`', 'before, after', 'yes', 'A site admin removes a wiki label from every page.'],
         ['`wiki.label.update`', 'before, after', 'yes', 'A site admin renames a wiki label, or merges it into another label.'],
@@ -237,6 +237,7 @@ _PLATFORM_EVENTS = [
     ('Platform', [
         ['`ai_agents.settings.update`', 'before, after', 'yes', "The installation's settings for AI agents change: whether MCP tools that change something (write tools) may run at all. While off, no plugin setting or AI application can turn them on."],
         ['`cluster.node.rename`', 'before, after', 'yes', "An admin changes a cluster node's display name."],
+        ['`cluster.redis.update`', 'before, after', 'yes', "A super admin saves, changes or removes Redis in Settings → Clustering → Redis: the Redis servers it points at, the mode, the previous ones and whether credentials changed (never the URL or a password). Servers use it after their next restart."],
         ['`license.apply`', 'after', 'no', 'An admin applies a new license.'],
         ['`plugin.data.delete`', 'before, after', 'yes', "A plugin's stored data (its database schema, key-value keys and, unless it is reset, its secrets) is deleted: when it is uninstalled with its data, restarted with its data reset, or its leftover data is deleted."],
         ['`plugin.settings.update`', 'before, after', 'yes', "A plugin's settings are changed on its page: the values of its own settings, its call limits (calls per second, each caller's share, per AI application), and for an MCP plugin whether its write tools are on (read-write) and which tools are switched off."],

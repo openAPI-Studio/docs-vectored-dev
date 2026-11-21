@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-177 screenshots. Save each one into `wiki/assets/` using the
+179 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -94,6 +94,10 @@ realistic but fictional names and figures rather than real people's data.
       The Layout menu, and a three-column row holding text, a panel and a decision
 - [ ] `editor-columns-reading.png`
       The same page as readers see it: three columns, and a highlighted paragraph
+- [ ] `editor-page-width.png`
+      The page width menu at the end of the editor toolbar
+- [ ] `page-width-full.png`
+      A published page at full width on a large screen
 - [ ] `editor-heading-numbers.png`
       A page with numbered headings and a numbered table of contents
 
