@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+222 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -107,11 +107,28 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `repository-group.png`
       A group repository: its members in the order they're asked, and the space's universal URL
+- [ ] `repository-group-read-only.png`
+      A group's Rules tab as someone who isn't its admin sees it: the default repository for uploads, each write rule on one line, and the limits
 
 ## Supported formats
 
 - [ ] `formats-logos.png`
       The repository list in the light theme: official logos beside Go, Maven, PyPI, Cargo, Composer, Helm and Git LFS, simple icons for the other formats
+
+## Go
+
+- [ ] `browse-go-overview.png`
+      A Go module version's Overview: module path, Go version, toolchain, published date and retracted versions
+
+## Helm
+
+- [ ] `browse-helm-overview.png`
+      A Helm chart version's Overview: description, app version, type, maintainers and dependencies
+
+## NuGet
+
+- [ ] `browse-nuget-overview.png`
+      A NuGet version's Overview: the package ID as published, description, authors, licence and tags
 
 ## APT
 
@@ -125,16 +142,25 @@ realistic but fictional names and figures rather than real people's data.
       An APT proxy's Upstream keys: the keys its upstream must sign its Release files with
 - [ ] `repository-distribution.png`
       An APT repository's settings with its distribution release set to debian-12
+- [ ] `browse-apt-overview.png`
+      A Debian package version's Overview: description, maintainer, section, installed size and dependencies
 
 ## YUM
 
 - [ ] `yum-proxy-signatures.png`
       A YUM proxy's settings: the upstream's trusted key, with signed packages and signed repodata required
+- [ ] `browse-yum-overview.png`
+      An RPM version's Overview: summary, licence, packager, build date, sizes and requirements
 
 ## Terraform
 
 - [ ] `terraform-login.png`
       The page terraform login opens: approve or deny the token for terraform on this computer
+
+## Hugging Face
+
+- [ ] `browse-hf-hosted-model.png`
+      A hosted model's version page: the model card on Overview, and the Files tab listing README.md, config.json and model.safetensors
 
 ## RubyGems (Ruby)
 
@@ -438,6 +464,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → System check: what needs attention and every check's result
 - [ ] `system-check-inspection-queue.png`
       System check with new uploads waiting for inspection: the Inspection queue warning, and the Inspection queue and Scan queue lines under Shared services
+- [ ] `system-check-health-alert.png`
+      A System health alert in the bell, naming each check with its items and server
 
 ## Alert Tuning
 
@@ -466,8 +494,15 @@ realistic but fictional names and figures rather than real people's data.
       The bell's dropdown: unread alerts, newest first
 - [ ] `alerts-page.png`
       Notifications: filters by state, severity and category, and every alert with its actions
+- [ ] `profile-notifications-mute-picker.png`
+      Muted categories: pick from the kinds of notifications you have had
 - [ ] `profile-notifications.png`
       Profile settings → Notifications: opt-out, muted and forced categories, and the save bar
+
+## Managing Alerts
+
+- [ ] `alert-tuning-forced-categories.png`
+      Alert tuning → Forced categories: tick the categories nobody can mute
 
 ## Policies
 
@@ -483,6 +518,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Policies: each policy's event, effect, mode, priority and decisions in the last 7 days
 - [ ] `policies-editor.png`
       A policy made from a template: its rule, effect, message and priority
+- [ ] `policies-decisions.png`
+      A dry-run network policy's Decisions tab: Would block, the user's name and the sign-in address each decision checked
 
 ## Automation
 

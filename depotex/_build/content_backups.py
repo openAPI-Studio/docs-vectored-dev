@@ -72,7 +72,7 @@ curl -H "Authorization: Bearer $DEPOTEX_TOKEN" https://depotex.example.com/api/b
                 ["PostgreSQL", "`pg_restore` is missing or older than the dump (an older database server only warns)"],
                 ["Idle", "A backup or another restore is running"],
                 ["Extensions", "A PostgreSQL extension is installed inside a schema the restore replaces"],
-                ["Roles and swap", "The database user can't create plugin roles (needs `CREATEROLE`) or rename the schemas"],
+                ["Roles and swap", "The database user can't create plugin roles (needs `CREATEROLE`), can't take over plugin roles that exist already, or can't rename the schemas. The backup's other database owners don't need to exist on this server"],
             ]),
             P("What the restore does, in order: every server stops taking requests (they answer `503 restore_in_progress`) and pauses its jobs; a **safety backup** of the current database is taken; the backup is checked again and staged; the current database is set aside; the backup is loaded and brought up to this version; the platform files are written back (files added since the backup stay); signed-in sessions, OAuth tokens and plugin caches are reset, and people erased since the backup (GDPR) are erased again; then every server restarts on the restored database. API tokens from the backup keep working."),
             NOTE("**If anything fails, the previous database comes back on its own**, and the servers restart on it. The same happens if the server running the restore stops: another server, or the next one to start, rolls it back."),
@@ -101,8 +101,10 @@ curl -H "Authorization: Bearer $DEPOTEX_TOKEN" https://depotex.example.com/api/b
 
             H("Disaster recovery"),
             P("When the installation itself is lost, restore a backup onto a new server in one of two ways. Both need the backup's `CONFIG_ENCRYPTION_KEY`."),
+            P("The new server's database can be on another database server, and its database user can have another name than the old one's, as it almost always does on a managed database (Amazon RDS, Azure Database for PostgreSQL, Cloud SQL). The restored data becomes that user's. Data that plugins keep in their own tables goes back to each plugin's own database role, which the restore creates if it doesn't exist, so the user needs `CREATEROLE`."),
+            NOTE("If the old installation's database is still on the same database server, its plugin roles (`plg_…`) exist already. On PostgreSQL 16 and later the new user can only take them over with the admin option: the restore's checks fail and name them before anything changes. Grant them as a user that may (`GRANT plg_… TO <new user> WITH ADMIN OPTION;`), then restore again. Both installations then share those roles, so retire the old one."),
             H("In the setup wizard"),
-            P("Start a new server as for a fresh installation and go through the [setup wizard](install.html#setup-wizard) with the same license, database server and storage as before (a new, empty database). On the last step choose **Restore from a backup** instead of creating an administrator:"),
+            P("Start a new server as for a fresh installation and go through the [setup wizard](install.html#setup-wizard) with the same license and storage as before and a new, empty database, on the old database server or another one. On the last step choose **Restore from a backup** instead of creating an administrator:"),
             SHOT("setup-restore-step.png", "The setup wizard's last step with Restore from a backup: the chosen backup's summary, key field and consent box"),
             STEPS([
                 "Choose the backup|Upload the `.dxbak` file (sent in pieces; a broken connection resumes), or pick one already in `backups/import/` of the storage you entered.",

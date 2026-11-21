@@ -10,7 +10,7 @@ HELM = [
         desc="Install, license, scale, upgrade and remove Depotex on Kubernetes with its Helm chart, step by step",
         keywords=["helm", "chart", "kubernetes", "k8s", "values", "values.yaml", "prime-secrets", "install", "upgrade", "rollback", "uninstall", "statefulset", "ingress", "tls", "air-gapped", "openshift", "eks", "aks", "gke"],
         blocks=[
-            NOTE("**Helm chart: TBD.** The address of the published chart repository and the public images will be announced here. Until then, use the chart (`deploy/helm/depotex`) and the `prime-secrets.sh` script from the Depotex distribution you received, and images built from it and pushed to your own registry. Ask [support](support.html) if you don't have them."),
+            NOTE("**Where the chart comes from.** The chart isn't in a public chart repository yet. Use the chart (`deploy/helm/depotex`) and the `prime-secrets.sh` script from the Depotex distribution you received, and images built from it and pushed to your own registry. Ask [support](support.html) if you don't have them."),
             P("The chart deploys the Depotex server (a StatefulSet) and web app (a Deployment), with PostgreSQL, Redis and MinIO built in for a quick start, each of which can be switched off for a managed service. It never creates secrets: a script creates them beforehand and writes the installation's keys to a file you keep. This page walks through an installation from an empty namespace to a running, licensed cluster; [Docker & Kubernetes](kubernetes.html) is the reference for the images, network policies and monitoring."),
 
             H("Requirements"),

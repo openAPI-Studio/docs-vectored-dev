@@ -12,6 +12,7 @@ ALERT_TUNING = [
             H("Overview"),
             P("Alert tuning decides which health problems send an alert or email, and when. Mute a problem for an hour, until a date, until it clears or until you remove it; turn a check's notifications off, or keep only its failures; wait longer before telling; and change a check's thresholds, such as how late a scheduled job may be. A muted or turned-off check keeps running and keeps showing on the [system check](system-check.html) and Settings → Clustering: only its notifications stop."),
             P("Open it under **Settings → Advanced → Alert tuning**. You need the `settings:write` permission (super admins). The system check and cluster health need a Pro license or higher; mutes of whole alert categories work on every license."),
+            P('The page also holds **Forced categories**, for people with `alerts:admin`: the notification categories nobody can mute (see [Notifications](alerts.html)).'),
             SHOT("alert-tuning.png", "Settings → Alert tuning: active mutes and each check's notification rule"),
 
             H("One alert per problem"),

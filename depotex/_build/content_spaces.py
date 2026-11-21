@@ -163,7 +163,7 @@ SPACES = [
                 ["**Released versions can't be overwritten**", "Refuses uploading a file that already exists, unless its version is a snapshot. **Snapshot versions** is a regular expression; empty means versions ending in -SNAPSHOT."],
             ]),
             P("**Try a file** shows what the saved rules decide for a path, size and version, without storing anything."),
-            NOTE("Upload rules apply as soon as repositories in the space accept uploads; until then they can be prepared and tried out."),
+            P("Rules apply to every upload from the moment they're saved; **Try a file** checks a path without uploading."),
             P("Changing the rules raises `space.upload_rules.update` and is recorded in the audit log. Every upload raises `artifact.upload`, which organization [policies](policies.html) can also restrict."),
 
             H("Cleanup"),

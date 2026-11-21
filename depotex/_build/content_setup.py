@@ -21,7 +21,7 @@ SETUP = [
             ]),
             H("Open the wizard"),
             STEPS([
-                "Start the server|With `DATABASE_URL` and `CONFIG_ENCRYPTION_KEY` set (see [Install Depotex](install.html)).",
+                "Start the server|With `DATABASE_URL`, `CONFIG_ENCRYPTION_KEY` and `FRONTEND_URL` (the address people open) set (see [Install Depotex](install.html)).",
                 "Find the setup link|The log prints a line like `open the setup wizard … setup_url=https://depotex.example.com/setup?token=…`. On Kubernetes the key is `SETUP_TOKEN` in the keys file `prime-secrets.sh` wrote.",
                 "Open it|The page reads the key and removes it from the address bar. Anyone without the key gets nothing from setup mode, so nobody else who can reach the server can take it over first.",
                 "Choose your language|The language menu at the top. The first administrator keeps it as their language.",
@@ -78,6 +78,7 @@ SETUP = [
             ]),
             H("If setup fails"),
             TABLE(["What you see", "What to do"], [
+                ["The setup link in the log starts with `http://localhost:3000`", "Set `FRONTEND_URL` to the address people use and restart, or open the line's `setup_path` (`/setup?token=…`) on that address"],
                 ["The setup page says the key is missing or wrong", "Open the exact `setup_url` from the newest log line; the key changes on every restart unless `SETUP_TOKEN` is set"],
                 ["Database: can't connect or can't create tables", "Check host, port and SSL mode; the role needs to own the database (or `CREATE` on it)"],
                 ["Storage isn't accessible", "The bucket or container must exist; check the credentials, region or endpoint, and that the server can reach it (proxy, firewall)"],
@@ -105,8 +106,8 @@ SETUP = [
                 "Get the installation ID|`./server --machine-id` prints it and exits. In a container, run the image with `--machine-id` on the host (or pod) that will run Depotex: the ID belongs to that machine.",
                 "Get the license|Request it for that ID (see [Get a license](licensing.html#get-a-license)).",
                 "Write the setup file|The same sections as the wizard; secrets as `${VARIABLE}` references (below).",
-                "Start the server once with it|`--setup-config setup.yaml`, or `SETUP_CONFIG_FILE=setup.yaml`. The server checks the file, sets up, and continues in normal mode.",
-                "Remove the file|It's read only on a fresh installation and ignored afterwards; don't leave secrets lying around.",
+                "Start the server once with it|`--setup-config setup.yaml`, or `SETUP_CONFIG_FILE=setup.yaml`. The server checks the file, sets up, restarts without it and continues in normal mode. It prints no setup wizard link: there is no wizard to open.",
+                "Remove the file|It's read only on a fresh installation. A later start that still names it (`--setup-config` or `SETUP_CONFIG_FILE`) logs a warning that it's ignored: remove it and the setting, and don't leave secrets lying around.",
             ]),
             CODE("""chmod 600 setup.yaml
 export CONFIG_ENCRYPTION_KEY="$(cat /run/secrets/depotex-encryption-key)"
@@ -173,6 +174,7 @@ admin:
             H("In containers"),
             CODE("""docker run --rm \\
   -e CONFIG_ENCRYPTION_KEY -e DATABASE_URL -e ADMIN_PASSWORD -e S3_ACCESS_KEY -e S3_SECRET_KEY \\
+  -e FRONTEND_URL=https://depotex.example.com \\
   -e SETUP_CONFIG_FILE=/config/setup.yaml \\
   -v "$PWD/setup:/config:ro" \\
   -v depotex-data:/app/data \\

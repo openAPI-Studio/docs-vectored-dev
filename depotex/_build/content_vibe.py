@@ -211,7 +211,7 @@ curl -f -H "Authorization: Bearer $DEPOTEX_TOKEN" -H "Content-Type: application/
             ]),
             STEPS([
                 "Open API Tokens|In Depotex, click your picture (top right) and choose **API Tokens**.",
-                "Create the token|Click **New token**, name it after your computer, tick `spaces:read`, `spaces:push`, `depot:read`, `repo:browse`, `repo:read` and `repo:add`, pick an expiry and click **Create token**.",
+                "Create the token|Click **New token**, name it after your computer, tick `spaces:read`, `spaces:push`, `repo:browse`, `repo:read` and `repo:add`, pick an expiry and click **Create token**.",
                 "Copy it|The token is shown once.",
                 "Save it on your computer|Run `python3 vibepack.py login` in your terminal and paste the token at the hidden prompt. It is saved for that Depotex address, readable by you only.",
             ]),
