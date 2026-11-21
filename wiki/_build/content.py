@@ -15,6 +15,7 @@ from content_platform_operate import PLATFORM_OPERATE
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-21", "Editor", "Fixed: after adding an image or another whole block to a column, clicking into another column left the block selected, so the next thing typed replaced it."),
     ("2026-11-21", "Imports", "Confluence page layouts are imported as rows of columns instead of one block under the other, and the editor's Layout menu gains Two columns."),
     ("2026-11-21", "Editor", "Sections: the editor groups a page into sections (a heading, text up to an empty line, each macro or other block) that can be moved up and down or selected whole from a handle at the right; text colour and highlight in six theme colours; and rows of columns (three equal, wide left, wide right) from the new Layout menu."),
     ("2026-11-20", "Install", "The reverse proxy can send everything under `/api` straight to the server, and the Caddy and nginx examples now do: API calls no longer use the web app's CPU, which was the first thing to run out under load. The server sets the security headers of API responses itself. A proxy that routes only `/api/ws` keeps working. See [Install the Wiki](install.html)."),
