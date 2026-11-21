@@ -165,12 +165,14 @@ admin:
             H("Rules the server enforces"),
             UL([
                 "**Private file.** The file must not be readable by group or others (`chmod 600`); otherwise the server stops and prints the `chmod` to run.",
-                "**No unknown keys.** A misspelled key is an error, so a typo can't silently drop a setting.",
+                "**No unknown keys.** A misspelled key is an error, so a typo can't silently drop a setting. The error names the key by its full path and line, and suggests the key you probably meant (see below).",
                 "**Secrets from the environment.** Any value may use `${NAME}`; only that form is expanded, so a literal `$` stays as it is. A referenced variable that isn't set stops the server with its name.",
                 "**One license source.** `license.file` or `license.data`, not both.",
                 "**Fresh installations only.** On an installed server the file is ignored.",
                 "**Fails loudly.** If a value doesn't work (database, storage, Redis, license), the server stops with an error that says what to fix; nothing is half set up.",
             ]),
+            P("A misspelled key, or a value of the wrong kind, stops the server with every problem in the file, each with its line:"),
+            CODE("setup file setup.yaml: line 4: unknown key cache.redis_ulr (did you mean cache.redis_url?); line 9: storage.minio.use_ssl must be true or false"),
             H("In containers"),
             CODE("""docker run --rm \\
   -e CONFIG_ENCRYPTION_KEY -e DATABASE_URL -e ADMIN_PASSWORD -e S3_ACCESS_KEY -e S3_SECRET_KEY \\
