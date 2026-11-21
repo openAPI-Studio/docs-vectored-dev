@@ -692,7 +692,7 @@ admin:
                 ["**Plugins**", "Install, permissions, settings and data of plugins", "`plugins:read`", "Pro", "[Plugins](plugins.html)"],
             ]),
             H("Security tabs"),
-            P("**Settings → Security** has a tab for each part. The first five are the platform's; the last three are the Wiki's own."),
+            P("**Settings → Security** has a tab for each part. The first five are the platform's; the rest are the Wiki's own."),
             TABLE(["Tab", "What it configures", "Permission", "Docs"], [
                 ["**Sign-in**", "Require single sign-on, and whether super admins may still use a password", "`sso:manage` (Enterprise)", "[Single sign-on](single-sign-on.html)"],
                 ["**Sessions**, **CAPTCHA**", "Session lifetimes and limits; CAPTCHA after failed sign-ins", "`settings:write`", "[Users & directories](users-and-directories.html)"],
@@ -701,8 +701,10 @@ admin:
                 ["**Search engines**", "What robots.txt tells crawlers", "`settings:write`", "[Search engines](search-engines-and-robots.html)"],
                 ["**Video sites**", "YouTube, Vimeo and other sites whose players pages may embed; taking a site off stops it on every page", "`settings:write`", "[Attachments & media](attachments-and-media.html)"],
                 ["**HTML blocks**", "Whether pages may hold HTML blocks (off by default), who adds them, and the only sites they may reach", "`settings:write`", "[Blocks and macros](macros.html#html-blocks)"],
+                ["**Attachments**", "The largest PDF or other file attached to a page, and the file extensions no page takes", "`settings:write`", "[Files and attachments](files-and-attachments.html#for-administrators)"],
                 ["**Imports**", "Whether space admins may import, and the largest export", "`settings:write`", "[Imports](confluence-import.html)"],
                 ["**Mirrors**", "Whether spaces may mirror git repositories and uploaded archives (Pro), who sets mirrors up, the largest archive and internal git hosts", "`settings:write`", "[Mirror spaces](mirror-spaces.html#for-administrators)"],
+                ["**Link previews**", "Whether the server may read a linked page to fill in a link card (off by default), and hosts it never reads", "`settings:write`", "[Link cards](link-cards.html#link-previews)"],
             ]),
             H("Advanced"),
             TABLE(["Page", "What it configures", "Permission", "Tier", "Docs"], [
@@ -891,7 +893,7 @@ admin:
             H("What can be imported"),
             SHOT("confluence-import-space-tab.png", "A space's Import tab: choose a Confluence export or Markdown, and earlier imports"),
             TABLE(["Source", "What comes in"], [
-                ["**Confluence space export** (Space tools → Export, XML, full export, a `.zip`)", "Pages with their tree, versions with dates and authors, comments, labels, blog posts (as posts on the space's blog, or under a page you name), and images and videos as attachments. Page layouts become [rows of columns](editor.html#columns): two equal columns, a left or right sidebar and three equal columns keep their shape, and three columns with sidebars become three equal columns. Common macros become Wiki blocks; others become a plain-text block a plugin may convert"],
+                ["**Confluence space export** (Space tools → Export, XML, full export, a `.zip`)", "Pages with their tree, versions with dates and authors, comments, labels, blog posts (as posts on the space's blog, or under a page you name), and every attachment (images, videos, PDFs and other files the [attachment settings](files-and-attachments.html#for-administrators) allow). Page layouts become [rows of columns](editor.html#columns): two equal columns, a left or right sidebar and three equal columns keep their shape, and three columns with sidebars become three equal columns. Common macros become Wiki blocks; others become a plain-text block a plugin may convert"],
                 ["**Markdown**: one `.md` file, or a `.zip` of a folder", "Each folder becomes a page holding its files' pages (`index.md` or `README.md` is the folder's text); titles from front matter or the first heading; `tags` become labels; images in the upload become attachments"],
             ]),
             UL([
@@ -900,10 +902,28 @@ admin:
                 "Importing the same export again **updates** the pages the earlier import made, and leaves pages edited in the Wiki since as they are.",
                 "Uploads resume after a dropped connection. Imports run in the background, one step at a time, on any server.",
             ]),
+            H("How Confluence macros are imported"),
+            P("Common macros become Wiki blocks. Blocks that came with a newer version are used only once every server runs that version (see [Upgrades](upgrades.html#new-blocks-during-an-upgrade)); until then, and for macros not listed here, the macro is kept as an imported macro that a [plugin](plugins.html) may convert."),
+            TABLE(["Confluence", "Becomes"], [
+                ["Page layouts, and the older **Section** macro with **Column** macros", "A [row of columns](editor.html#columns). Two columns keep their shape by their widths (a first column of 60 % or more is **Wide left**, 40 % or less **Wide right**, otherwise equal); three or more become three equal columns, from the fourth on joined to the third"],
+                ["**View file**, **PDF**, **Office Word / Excel / PowerPoint** viewers, **Multimedia**", "A [File block](files-and-attachments.html#file): a PDF or image shown in the page, other files as a card. A video file becomes a video"],
+                ["A paragraph holding only a link to an attachment", "A File block (a link inside a sentence stays a link)"],
+                ["**Attachments**", "An [attachments list](files-and-attachments.html#attachments-list), with its order and upload setting. A file name filter is kept when it is a simple pattern (such as `.*\\.pdf`); otherwise the list shows every file and the report counts it"],
+                ["**Gallery**", "A [gallery](files-and-attachments.html#gallery): the included images in their order, every image but the excluded ones, or every image; columns and order kept"],
+                ["A file macro, Attachments or Gallery about another page, or naming a file not in the export", "Kept as an imported macro; the report counts the missing files"],
+                ["**Content by label**, **Content report table**", "[Pages by label](lists-of-pages.html#pages-by-label): labels, any or all, spaces (no space named: every space), blog posts, how many and the order; a content report table as a table"],
+                ["**Blog posts**", "[Blog posts](lists-of-pages.html#blog-posts)"],
+                ["**Contributors** (about the page itself), **Change history**", "[Contributors and Change history](lists-of-pages.html#contributors-and-change-history). Contributors about other pages and **Contributors summary** stay imported macros"],
+                ["**Action items** (task lists)", "Checklists whose tasks keep their assignee (a mention) and due date ([Tasks](tasks.html))"],
+                ["**Task report**", "A [task report](tasks.html#task-report): its spaces, first label, first assignee (nobody matched: anyone), open or done, how many and the order"],
+                ["**Widget connector**, **iframe**, smart links shown as a card or an embed", "A video when the address is YouTube or Vimeo (it plays where Settings → Security → Video sites allows it), else a [link card](link-cards.html) with the address. Imports never read the linked sites"],
+            ]),
+            SHOT("page-columns-imported.png", "A page imported from Confluence whose Section and Column macros became a row of two columns"),
+            P("Filters the Wiki doesn't have (an excluded label, a space that isn't in the Wiki, an author, a date range, a page) are dropped, so a list may show more than it did in Confluence; the import report counts these lists. See [What the import report says](import-and-export.html#what-the-import-report-says)."),
             H("What isn't imported"),
             UL([
                 "View and edit restrictions: imported pages get the space's access.",
-                "Attachments other than images and videos.",
+                "Files with a blocked extension or larger than the largest file (Settings → Security → Attachments); the report counts them.",
                 "Notifications: nobody is told about imported pages, comments or mentions.",
                 "Other formats than Confluence XML exports and Markdown.",
             ]),
@@ -1095,6 +1115,15 @@ admin:
                 "**The newest leads.** Leadership moves to a server on the highest version.",
                 "**Open pages notice.** People see **A new version is available** with **Reload** and **Later**.",
             ]),
+            H("New blocks during an upgrade"),
+            P("A release can bring new blocks for pages. So that a server or a browser that doesn't know a block yet can't drop it from a page, new blocks are offered only once the whole installation can keep them:"),
+            UL([
+                "**Upgrade the web app first**, then the servers. A web app newer than the servers offers nothing new until the servers catch up.",
+                "If the servers go first, editors whose web app is still the older one can't connect to a page: the editor says **A newer version of the wiki is running. Reload the page to go on editing**, and keeps changes not yet saved until they reload. Upgrade the web app to end it.",
+                "The \"/\" menu, the Insert menu and imports offer a new block about a minute after the last server runs the new version. Until then imports keep those macros as before (imported macros or text).",
+                "Editor tabs still running the previous web app are disconnected within about 30 seconds of the upgrade and asked to reload.",
+                "Rolling back: a previous version doesn't know the new blocks and drops them from a page edited or published through it. Roll back before people use them, or restore the backup taken before the upgrade.",
+            ]),
             H("Before you upgrade"),
             STEPS([
                 "Read the notes|The [changelog](changelog.html) for every version between yours and the new one.",
@@ -1114,7 +1143,7 @@ admin:
                 "Upgrade one server|Stop it, replace it, start it.",
                 "Watch|**Settings → Clustering** shows it **active** on the new version.",
                 "Continue|One server at a time.",
-                "Upgrade the web apps|They're stateless; roll them after the servers.",
+                "Upgrade the web apps|They're stateless. Roll them before the servers when the release brings new blocks (see [above](#new-blocks-during-an-upgrade)); otherwise after.",
             ]),
             H("Rolling back"),
             UL([
@@ -1143,7 +1172,7 @@ admin:
         keywords=["known issues", "limitations", "bugs", "workaround", "not supported", "caveats", "not yet"],
         blocks=[
             P("What doesn't work yet, or works with a catch, in the current release, and what to do meanwhile. Fixed issues leave this list and appear in the [changelog](changelog.html)."),
-            NOTE("Last reviewed: 18 November 2026."),
+            NOTE("Last reviewed: 21 November 2026."),
             H("Installation"),
             TABLE(["Issue", "Workaround"], [
                 ["No container images or Helm chart yet", "Run the server and web app as services, or in containers you build"],
@@ -1155,7 +1184,10 @@ admin:
             TABLE(["Issue", "Workaround"], [
                 ["No per-page view or edit restrictions", "Put pages that need other access in their own space"],
                 ["Nothing stops an admin from removing a space's last admin", "A super admin adds an admin back"],
-                ["Attachments are images and videos only; no other files, and no per-space quota", "Link to files kept elsewhere"],
+                ["No per-space attachment quota, no virus scan of attached files, no \"Download all\" and no previews of Office files (they download)", "Keep the [blocked extensions](files-and-attachments.html#for-administrators) for programs"],
+                ["Attachments lists and galleries show only the files of their own page; an old version's list shows today's files", "—"],
+                ["Tasks can't be ticked from a task report, and blog posts' tasks aren't in reports", "Open the task's page"],
+                ["A link card's text isn't refreshed after it is saved; previews read UTF-8 pages only", "Change the card and fill it in again, or type the text"],
                 ["Videos are played as uploaded: no transcoding", "Upload MP4 (H.264) or WebM that browsers play"],
                 ["PDF export draws Latin, Greek and Cyrillic text only", "Export to Word for other scripts"],
                 ["A scheduled publish runs up to a minute late, and any edit after scheduling cancels it", "Schedule again after editing"],
@@ -1165,7 +1197,7 @@ admin:
             H("Search, imports and Q&A"),
             TABLE(["Issue", "Workaround"], [
                 ["Global search matches page titles only, not their text", "Search titles and labels"],
-                ["Imports: Confluence XML exports and Markdown only; restrictions and attachments other than images and videos aren't imported", "Recreate restrictions as separate spaces"],
+                ["Imports: Confluence XML exports and Markdown only; restrictions aren't imported, and lists with filters the Wiki doesn't have are widened", "Recreate restrictions as separate spaces; check the lists the report counts"],
                 ["Q&A, comment and mention alerts are in-app only, with no email", "—"],
                 ["Signed-out visitors can't use search or label pages in the web app", "Link to pages directly"],
                 ["No sitemap; robots.txt lists at most 1,000 public spaces", "—"],

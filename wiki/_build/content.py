@@ -8,6 +8,7 @@ run `python3 wiki/_build/build.py`.
 from engine import H, P, UL, TABLE, NOTE, SHOT
 from content_user_a import USER_A
 from content_user_b import USER_B
+from content_user_c import USER_C
 from content_admin_wiki import ADMIN_WIKI
 from content_platform_config import PLATFORM_CONFIG
 from content_platform_operate import PLATFORM_OPERATE
@@ -15,6 +16,17 @@ from content_platform_operate import PLATFORM_OPERATE
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-21", "Upgrades", "New blocks wait for the whole installation: the \"/\" menu and imports offer them once every server runs the new version, and an editor tab whose web app is older than the servers says **A newer version of the wiki is running** and asks to reload. Upgrade the web app first; see [Upgrades](upgrades.html#new-blocks-during-an-upgrade)."),
+    ("2026-11-21", "Imports", "Confluence task reports become task reports, Widget connector and iframe macros become videos (YouTube, Vimeo) or link cards, and smart links shown as cards become link cards; action items keep their assignee and due date."),
+    ("2026-11-21", "Pages", "Link cards: a link shown with its title, description and site name, filled in from the linked page when an administrator turns on Settings → Security → Link previews (off by default; the server reads only the page's text, never private addresses)."),
+    ("2026-11-21", "Pages", "Tasks: a checklist item's first @mention is its assignee and its first date its due date, overdue dates stand out, and the new Task report block lists open or done tasks across spaces, for anyone, one person or whoever is reading."),
+    ("2026-11-21", "Imports", "Confluence Content by label, Content report table, Blog posts, Contributors and Change history macros become the matching blocks; filters the Wiki doesn't have are counted in the import report."),
+    ("2026-11-21", "Pages", "Four new blocks: Pages by label (pages with some labels, in this space or others, as a list or a table), Blog posts (a blog's latest posts), Contributors and Change history."),
+    ("2026-11-21", "Imports", "Every Confluence attachment is imported, not only images and videos; View file, PDF, Office viewer and Multimedia macros become File blocks, Attachments an attachments list and Gallery a gallery. The import report counts files that are missing, blocked or too large, and attachments lists whose name filter was simplified."),
+    ("2026-11-21", "Settings", "Settings → Security → Attachments sets the largest PDF or other file (100 MB by default) and the file extensions no page takes (`.exe`, `.msi`, `.bat` and other programs by default)."),
+    ("2026-11-21", "Pages", "Any file can be attached to a page, and three blocks show them: File (a card with preview and download, or a PDF or image shown in the page), Attachments list (the page's files, with an upload button for editors) and Gallery (images that open full size)."),
+    ("2026-11-21", "Editor", "Dates: **//**, \"/\" Date or Insert → Date puts a date in the text, shown in each reader's language."),
+    ("2026-11-21", "Imports", "Sections and columns made with Confluence's older Section and Column macros are imported as rows of columns too."),
     ("2026-11-21", "Editor", "Fixed: on a published page, changing Figures, heading numbers or the title closed the editor and showed the page, as if it had been published. The unpublished changes were kept as a draft and weren't published."),
     ("2026-11-21", "Mentions", "In a private space, administrators who read every space can be mentioned as well as the space's members, so the @ list is no longer empty in a private space nobody was added to."),
     ("2026-11-21", "Editor", "Fixed: after adding an image or another whole block to a column, clicking into another column left the block selected, so the next thing typed replaced it."),
@@ -87,4 +99,4 @@ CHANGELOG_PAGE = [
         ])),
 ]
 
-PAGES = USER_A + USER_B + ADMIN_WIKI + PLATFORM_CONFIG + PLATFORM_OPERATE + CHANGELOG_PAGE
+PAGES = USER_A + USER_B + USER_C + ADMIN_WIKI + PLATFORM_CONFIG + PLATFORM_OPERATE + CHANGELOG_PAGE

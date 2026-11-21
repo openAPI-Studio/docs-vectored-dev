@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-158 screenshots. Save each one into `wiki/assets/` using the
+177 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -84,6 +84,8 @@ realistic but fictional names and figures rather than real people's data.
       The formatting toolbar
 - [ ] `editor-slash-menu.png`
       The "/" menu, listing the blocks you can insert
+- [ ] `editor-slash-new-blocks.png`
+      The "/" menu showing File, Attachments list, Gallery, Pages by label, Task report and Link card
 - [ ] `editor-section-menu.png`
       A section's handle and its menu: Move up, Move down and Select section
 - [ ] `editor-text-colour.png`
@@ -186,6 +188,8 @@ realistic but fictional names and figures rather than real people's data.
       The Import tab's report for a checked export, before the import starts
 - [ ] `import-blog-posts.png`
       A checked Confluence export with a blog post: Where blog posts go, On the space's blog or Under a page
+- [ ] `import-report.png`
+      A checked Confluence export's report: files, files missing, a simplified filter and a widened list
 
 ## Space blogs
 
@@ -199,6 +203,8 @@ realistic but fictional names and figures rather than real people's data.
       The company Blogs page: Following and All spaces, the space filter, posts with their comments and likes, and the blogs you follow
 - [ ] `blog-dashboard.png`
       The dashboard's Latest posts card
+- [ ] `page-blog-posts-block.png`
+      A Blog posts block: the three latest posts of the space's blog, with their date, authors and summary
 - [ ] `blog-editor-post-settings.png`
       The editor for a post: the Post panel with summary, cover, comments and co-authors
 - [ ] `blog-review.png`
@@ -262,6 +268,10 @@ realistic but fictional names and figures rather than real people's data.
       The calendar's month view on a phone, with a day selected
 - [ ] `mobile-whiteboard.png`
       A whiteboard on a phone: the seven tools at the bottom and the zoom bar
+- [ ] `phone-gallery.png`
+      A gallery on a phone: two columns of images
+- [ ] `phone-task-report.png`
+      A task report on a phone: each task with its due date, assignee and page under it
 
 ## Mirror spaces
 
@@ -281,6 +291,44 @@ realistic but fictional names and figures rather than real people's data.
       Suggest an edit: the page's Markdown source and a line saying what changed
 - [ ] `mirror-spaces-settings.png`
       Settings → Security → Mirrors: allow mirror spaces, who sets them up, the largest archive and internal git hosts
+
+## Files &amp; attachments
+
+- [ ] `page-file-card.png`
+      A File block as readers see it: a Word document's name, kind and size, with Preview and Download
+- [ ] `page-file-inline-pdf.png`
+      A PDF shown in the page, 600 pixels high, with its first page drawn
+- [ ] `page-attachments-list.png`
+      An attachments list showing PDFs and Office files, with Upload files for an editor
+- [ ] `page-gallery.png`
+      A gallery of six images in four columns, with a title and the file names under them
+- [ ] `page-gallery-lightbox.png`
+      An image of a gallery opened full size: image 3 of 6, with the previous and next arrows
+- [ ] `settings-security-attachments.png`
+      Settings → Security → Attachments: the largest file and the blocked extensions
+
+## Lists of pages
+
+- [ ] `page-pages-by-label.png`
+      A Pages by label block in table view: runbooks from three spaces, with the space, when each was updated and who edited it last
+- [ ] `page-contributors-history.png`
+      A Contributors block with names and how many versions each published, and a Change history block with the five latest versions
+
+## Tasks &amp; task reports
+
+- [ ] `editor-date-picker.png`
+      Typing // in a task: the date field with Today and Tomorrow
+- [ ] `page-tasks.png`
+      A checklist of tasks, each with its assignee and due date, one of them overdue
+- [ ] `page-task-report.png`
+      A task report of open tasks in two spaces, by due date: text, due date, assignee and page
+
+## Link cards
+
+- [ ] `page-link-card.png`
+      A link card: the title, the description and the site name of a page on another site
+- [ ] `settings-security-link-previews.png`
+      Settings → Security → Link previews: on, with two hosts that are never fetched
 
 ## Setup wizard
 
@@ -325,6 +373,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Security → Imports: Allow imports and the largest export
 - [ ] `confluence-import-space-tab.png`
       A space's Import tab: choose a Confluence export or Markdown, and earlier imports
+- [ ] `page-columns-imported.png`
+      A page imported from Confluence whose Section and Column macros became a row of two columns
 
 ## Q&amp;A moderation
 

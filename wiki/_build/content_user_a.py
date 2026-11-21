@@ -482,7 +482,7 @@ USER_A = [
     ("editor", dict(
         label="The editor", title="The editor", icon="terminal",
         desc="Formatting, text colour and highlight, sections you can move, columns, headings and heading numbers, lists, tables, images, the \"/\" menu, keyboard shortcuts and full screen",
-        keywords=["editor", "edit", "format", "bold", "heading", "numbered headings", "list", "checklist", "table", "image", "video", "link", "slash", "/", "shortcut", "keyboard", "full screen", "table of contents", "mention", "figure", "section", "move", "move up", "move down", "select section", "columns", "layout", "three columns", "colour", "color", "highlight"],
+        keywords=["editor", "edit", "format", "bold", "heading", "numbered headings", "list", "checklist", "table", "image", "video", "link", "slash", "/", "shortcut", "keyboard", "full screen", "table of contents", "mention", "figure", "section", "move", "move up", "move down", "select section", "columns", "layout", "three columns", "colour", "color", "highlight", "date", "//", "due date"],
         blocks=[
             H("Overview"),
             P("Editors of a space open a page straight into the editor. Your changes are saved as you type (**All changes saved** at the top), and everyone editing the page sees them at once; see [Editing together](editing-together.html). Readers keep seeing the published version until someone chooses **Publish**; see [Drafts and publishing](drafts-and-publishing.html)."),
@@ -502,7 +502,7 @@ USER_A = [
                 ["Alignment", "**Align left**, **Center**, **Align right**, **Justify**"],
                 ["Lists", "**Bulleted list**, **Numbered list**, **Checklist**, **Outdent**, **Indent**"],
                 ["Blocks", "**Quote**, **Divider**"],
-                ["Insert", "**Link**, **Insert image**, **Insert video**, **Insert table of contents**, **Insert table**"],
+                ["Insert", "**Link**, **Insert image**, **Insert video**, **Insert table of contents**, **Insert table**, **Insert file**, **Insert attachments list**, **Insert gallery**, **Date**"],
                 ["Layout", "**One column**, **Two columns**, **Three columns**, **Wide left**, **Wide right** for the section the cursor is in"],
                 ["Other", "**Comment on selection**, **Full screen**"],
             ]),
@@ -511,7 +511,9 @@ USER_A = [
             H("The \"/\" menu"),
             P("Type **/** at the start of a line or after a space to insert any block. Keep typing to narrow the list, use **↑** and **↓** to move, **Enter** to insert and **Esc** to close it."),
             SHOT("editor-slash-menu.png", "The \"/\" menu, listing the blocks you can insert"),
-            P("It lists text styles and lists, **Quote**, **Code block**, **Divider**, **Columns**, **Table**, **Spreadsheet table**, **Image**, **Video**, **Table of contents**, and the blocks described in [Blocks and macros](macros.html): Mermaid diagrams, HTML blocks (when turned on), panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, a [whiteboard](whiteboards.html) (Enterprise), and blocks from plugins."),
+            P("It lists text styles and lists, **Quote**, **Code block**, **Divider**, **Columns**, **Table**, **Spreadsheet table**, **Image**, **Video**, **Table of contents**, **Date**, and the blocks described in [Blocks and macros](macros.html): Mermaid diagrams, HTML blocks (when turned on), panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, a [whiteboard](whiteboards.html) (Enterprise), blocks from plugins, and the newer ones: **File**, **Attachments list** and **Gallery** ([Files and attachments](files-and-attachments.html)), **Pages by label**, **Blog posts**, **Contributors** and **Change history** ([Lists of pages](lists-of-pages.html)), **Task report** ([Tasks](tasks.html)) and **Link card** ([Link cards](link-cards.html))."),
+            SHOT("editor-slash-new-blocks.png", "The \"/\" menu showing File, Attachments list, Gallery, Pages by label, Task report and Link card"),
+            NOTE("While the Wiki is being upgraded, blocks that came with the new version appear in the menu only once every server runs it. See [Upgrades](upgrades.html#new-blocks-during-an-upgrade)."),
 
             H("Sections"),
             P("The editor treats a page as a stack of sections, so a whole piece can be moved or formatted at once. You don't make sections; the editor works them out from what you write, and nothing extra is saved with the page."),
@@ -553,7 +555,10 @@ USER_A = [
             P("**Insert table of contents** lists the page's headings where you put it. Its settings choose the **Headings to list** (top level only, two levels or three levels) and whether to **Number the entries**; when the page numbers its headings, the same numbers are used."),
 
             H("Lists and checklists"),
-            P("**Bulleted list**, **Numbered list** and **Checklist** start a list; **Indent** and **Outdent** (or **Tab** and **Shift+Tab**) nest an item. Readers see checklist boxes as you left them."),
+            P("**Bulleted list**, **Numbered list** and **Checklist** start a list; **Indent** and **Outdent** (or **Tab** and **Shift+Tab**) nest an item. Readers see checklist boxes as you left them. A checklist item is a task: **@** someone to assign it and **//** to give it a due date; see [Tasks and task reports](tasks.html)."),
+
+            H("Dates"),
+            P("Type **//** at the start of a line or after a space, or choose **/date** or **Insert → Date**, to put a date in the text: pick a day, **Today** or **Tomorrow**. Each reader sees it in their own language and date format. Select a date to change it. In an open task, a date that has passed is shown as overdue."),
 
             H("Links and mentions"),
             P("Select text and choose **Link** to link it to a web address (`https://…`), an email (`mailto:…`) or a path in the Wiki (`/spaces/…`). Type **@** and part of a name to mention someone; see [Profile and notifications](profile-and-notifications.html#mentions)."),
@@ -563,7 +568,7 @@ USER_A = [
 
             H("Images and videos"),
             P("**Insert image**, or paste or drop an image onto the page. **Image settings** sets the **Alternative text** (describe the image for people who can't see it), a **Caption**, the **Width** (a quarter, half, three quarters or full width) and the **Position**. With **Figure numbers** turned on in the side panel, captioned images are numbered Figure 1, Figure 2… in reading order."),
-            P("Images can be PNG, JPEG, GIF or WebP up to 20 MB. For videos, files and limits see [Attachments and media](attachments-and-media.html) and [Blocks and macros](macros.html#video)."),
+            P("Images can be PNG, JPEG, GIF or WebP up to 20 MB. For videos and limits see [Images and videos](attachments-and-media.html) and [Blocks and macros](macros.html#video). Dropping a PDF or any other file that isn't an image adds a File block; see [Files and attachments](files-and-attachments.html)."),
 
             H("Full screen"),
             P("**Full screen** at the right end of the toolbar hides the sidebar and header so only the page and toolbar remain. **Leave full screen**, or **Esc**, brings them back."),
@@ -582,6 +587,7 @@ USER_A = [
                 ["Alt+↑ / Alt+↓", "Move the section the cursor is in up / down"],
                 ["Shift+Enter", "Line break inside a paragraph"],
                 ["/", "The \"/\" menu"],
+                ["//", "Insert a date"],
                 ["@", "Mention someone"],
                 ["Ctrl+K", "Search"],
                 ["Esc", "Close a menu, let go of a selected section, leave full screen"],
@@ -592,11 +598,18 @@ USER_A = [
     # ------------------------------------------------------------------
     ("macros", dict(
         label="Blocks and macros", title="Blocks and macros", icon="sliders",
-        desc="Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables, Mermaid diagrams, HTML blocks and plugin blocks",
-        keywords=["macro", "macros", "block", "panel", "info", "warning", "tip", "expand", "decision", "excerpt", "include", "page properties", "properties report", "status", "lozenge", "anchor", "child pages", "page tree", "recently updated", "video", "spreadsheet", "formula", "sum", "mermaid", "diagram", "flowchart", "sequence diagram", "html", "html block", "iframe", "embed", "plugin block"],
+        desc="Panels, expands, decisions, status, anchors, excerpts and includes, page properties, child pages, page trees, recently updated, video, spreadsheet tables, Mermaid diagrams, HTML blocks, plugin blocks, and where to find files, lists of pages, tasks and link cards",
+        keywords=["macro", "macros", "block", "panel", "info", "warning", "tip", "expand", "decision", "excerpt", "include", "page properties", "properties report", "status", "lozenge", "anchor", "child pages", "page tree", "recently updated", "video", "spreadsheet", "formula", "sum", "mermaid", "diagram", "flowchart", "sequence diagram", "html", "html block", "iframe", "embed", "plugin block", "file", "gallery", "attachments", "pages by label", "task report", "link card"],
         blocks=[
             H("Overview"),
             P("Besides text, a page can hold blocks: boxes that stand out, blocks that show other pages, videos, spreadsheet tables and blocks from plugins. Insert any of them from the **\"/\"** menu in the [editor](editor.html). To change one later, select it and choose **Block settings** in the toolbar. Pages imported from Confluence get these blocks for the macros they used; see [Import and export](import-and-export.html)."),
+            P("Some blocks have pages of their own:"),
+            TABLE(["Blocks", "Page"], [
+                ["**File**, **Attachments list**, **Gallery**", "[Files and attachments](files-and-attachments.html)"],
+                ["**Pages by label**, **Blog posts**, **Contributors**, **Change history**", "[Lists of pages and page information](lists-of-pages.html)"],
+                ["**Task report**, and dates in tasks", "[Tasks and task reports](tasks.html)"],
+                ["**Link card**", "[Link cards and link previews](link-cards.html)"],
+            ]),
 
             H("Boxes: panels, expand, decision"),
             SHOT("macros-boxes.png", "An info panel, a note panel, a code block, a closed expand, a decision, an open question and a tip"),

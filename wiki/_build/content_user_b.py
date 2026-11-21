@@ -284,7 +284,7 @@ USER_B = [
 
     ("attachments-and-media", dict(
         label="Images &amp; videos", title="Images and Videos", icon="grid",
-        desc="Add images with captions and videos (uploaded or from an allowed site) to a page",
+        desc="Add images with captions and videos (uploaded or from an allowed site) to a page; other files are in Files and attachments",
         keywords=["image", "images", "picture", "upload", "paste", "drag", "caption", "alt text", "figure", "video", "youtube",
                   "vimeo", "subtitles", "attachment", "attachments", "file"],
         blocks=[
@@ -316,10 +316,10 @@ USER_B = [
                 ["Subtitles", "512 KB, WebVTT, one track per video"],
                 ["Per page", "500 files and 1 GB together"],
             ]),
-            NOTE("Only images, videos and subtitles can be added to pages so far. Other files, such as PDFs, come later."),
+            P("PDFs and any other files (Word, Excel, archives…) can be attached too, up to the size your administrator sets, and shown as a File block, an attachments list or a gallery: see [Files and attachments](files-and-attachments.html)."),
 
             H("Who sees them"),
-            P("People who edit a page see every image and video in its draft. Readers see only those in a published version of the page."),
+            P("People who edit a page see every image and video in its draft. Readers see only those in a published version of the page, and files uploaded through an [attachments list](files-and-attachments.html#attachments-list)."),
         ])),
 
     ("labels-and-feedback", dict(
@@ -366,6 +366,8 @@ USER_B = [
                 "The Word file shows every language. The PDF draws Latin, Greek and Cyrillic text; other scripts and emoji don't show there yet, so use Word for them. Pages are A4.",
                 "A very large page can take too long to turn into a file; try again later or download a smaller page. When many people export at once, the Wiki asks you to try again in a moment.",
                 "A [blog post](blogs.html)'s file starts with its title, its date and authors, and its cover image.",
+                "File blocks print as a line with the file's name, kind and size, linked to the file; an attachments list as the files you may see (up to 100); a gallery as its images one under another (up to 24). A PDF shown in the page isn't drawn, only its line.",
+                "Pages by label, Blog posts, Contributors, Change history and Task report blocks print as lines with their details, as you may see them; a link card as a box with its title, description, site and address. Dates are written in your language.",
             ]),
             SHOT("export-blog-post-pdf.png", "The first page of a blog post downloaded as PDF: title, date and authors, cover image"),
 
@@ -390,6 +392,17 @@ USER_B = [
             ]),
             P("With the space's blog off, blog posts always go under a page."),
             SHOT("import-blog-posts.png", "A checked Confluence export with a blog post: Where blog posts go, On the space's blog or Under a page"),
+            H("What the import report says"),
+            P("Before an import starts, its report counts what the export holds and what will change on the way. Besides pages, versions, comments and people, it can say:"),
+            SHOT("import-report.png", "A checked Confluence export's report: files, files missing, a simplified filter and a widened list"),
+            TABLE(["Line", "Means"], [
+                ["**Files**", "The attachments that will be imported: images, videos, PDFs and any other file."],
+                ["**N files can't be attached here**", "Files with a blocked extension or larger than the largest file your administrator allows (Settings → Security → Attachments) are left out."],
+                ["**N files macros or links show are missing from the export**", "A macro or link names a file the export doesn't hold: it is kept as an imported macro or as text."],
+                ["**N attachments lists have file name filters the wiki can't express**", "The list shows every file of its page. Edit its **File name filter** after the import if needed."],
+                ["**N lists of pages or posts had filters the wiki doesn't have**", "An excluded label, a space that isn't in the Wiki, an author or a date range was dropped from a list of pages, of posts or of tasks: it may list more than in Confluence."],
+            ]),
+            P("Which macros become which blocks is listed in [How Confluence macros are imported](confluence-import.html#how-confluence-macros-are-imported)."),
             NOTE("Imports are for the space's admins, and your administrator can turn them off or limit the upload size."),
         ])),
 
@@ -438,6 +451,10 @@ USER_B = [
             SHOT("blog-dashboard.png", "The dashboard's Latest posts card"),
             P("Posts are also found by [search](search.html), by the words of their title. **Download** on a post saves it as Word or PDF, with its date, authors and cover image ([Import and export](import-and-export.html))."),
             P("A plugin your administrator installed may add a panel beside a blog's posts."),
+
+            H("Blog posts on a page"),
+            P("To show a blog's newest posts on a page, such as the space's overview, type **/blog** in the editor. The **Blog posts** block lists the latest posts of this space's blog, or of other blogs, with their date, authors and summary; its settings choose the blogs, labels, how many (3, 5 or 10) and whether to show the summaries. Each reader sees only posts they may read. See [Lists of pages and page information](lists-of-pages.html#blog-posts)."),
+            SHOT("page-blog-posts-block.png", "A Blog posts block: the three latest posts of the space's blog, with their date, authors and summary"),
 
             H("Writing a post"),
             P("**New post** appears on the Blog tab for people who may write posts in the space: editors and admins, and commenters too when the space allows it (see [Managing a space's blog](#managing-a-space-s-blog))."),
@@ -815,6 +832,10 @@ USER_B = [
             H("Whiteboards"),
             P("On a phone a [whiteboard](whiteboards.html) keeps seven tools at the bottom (select, hand, pen, sticky note, shape, text and undo), and comments, history and facilitation are in the ⋯ menu. Pinch to zoom, add and edit notes and draw with your finger. **Items on this whiteboard** opens as a sheet from the bottom."),
             SHOT("mobile-whiteboard.png", "A whiteboard on a phone: the seven tools at the bottom and the zoom bar"),
+            H("Galleries and task reports"),
+            P("A [gallery](files-and-attachments.html#gallery) shows two columns on a phone; tap an image to see it full screen and swipe to the next one. A [task report](tasks.html#task-report) fits the phone's width too, each task with its due date, assignee and page."),
+            SHOT("phone-gallery.png", "A gallery on a phone: two columns of images"),
+            SHOT("phone-task-report.png", "A task report on a phone: each task with its due date, assignee and page under it"),
             NOTE("On tablets, controls use their compact desktop size. Plugin screens that need a large screen say so on a phone."),
         ])),
     ("mirror-spaces", dict(
