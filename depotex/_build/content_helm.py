@@ -73,7 +73,7 @@ networkPolicy:
             CODE("""kubectl create namespace depotex
 deploy/helm/prime-secrets.sh init -n depotex -r depotex \\
   --public-url https://depotex.example.com"""),
-            P("The script generates every key and password, creates the Secrets `<release>-app` and `<release>-infra` in the namespace, and writes `depotex-<namespace>-<release>-install-keys.txt`, readable only by you. Options:"),
+            P("The script generates every key and password, creates the Secrets `<release>-app` and `<release>-infra` in the namespace (creating the namespace too when it doesn't exist yet), and writes `depotex-<namespace>-<release>-install-keys.txt`, readable only by you. Options:"),
             TABLE(["Option", "Use"], [
                 ["`-n`, `-r`", "Namespace and Helm release name (the release name is part of every resource name)"],
                 ["`--public-url`", "The Depotex address, as in `publicUrl`"],
@@ -82,6 +82,7 @@ deploy/helm/prime-secrets.sh init -n depotex -r depotex \\
                 ["`--storage-access-key`, `--storage-secret-key`", "Credentials for S3, external MinIO or Azure (account name and key). Leave them out for S3 with an IAM role for the service account"],
                 ["`--admin-password`", "Choose the first administrator's password instead of a generated one"],
                 ["`--manifest`", "Print the Secret manifests instead of applying them: for Sealed Secrets, SOPS or an external secret store"],
+                ["`--no-create-namespace`", "Stop with an error instead of creating a missing namespace, where you may not create namespaces"],
                 ["`--dev`", "Also the test tools' secret (MailHog, Keycloak, OpenLDAP); never in production"],
                 ["`--force`", "Overwrite existing secrets. **Never on an installed instance**: a new `CONFIG_ENCRYPTION_KEY` makes every stored setting unreadable"],
             ]),
@@ -168,6 +169,7 @@ kubectl -n depotex logs -f depotex-backend-0"""),
                 ["`storage.azure.container`", "`depotex`", "Azure container; the access key is the account name, the secret key the account key"],
                 ["`storage.local.existingClaim`, `.path`", "empty, `/app/storage`", "A ReadWriteMany claim mounted on every server pod"],
                 ["`minio.enabled`, `.persistence.size`", "`true`, `100Gi`", "Built-in MinIO (single instance) with the bucket and a user limited to it"],
+                ["`minio.provision.resources`, `.goMemLimit`", "request `128Mi`, limit `320Mi`; `192MiB`", "Memory for each container of the job that creates the bucket and its user, and the Go memory limit inside it (about 60% of the limit, in Go units such as `192MiB`, not `Mi`). Raise both together"],
                 ["`dev.*`", "disabled", "Test tools (MailHog, Keycloak, OpenLDAP, a mock Okta) from `values-dev.yaml`. Never in production"],
             ]),
 
