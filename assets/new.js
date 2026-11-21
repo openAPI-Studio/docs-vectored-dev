@@ -660,6 +660,11 @@ window.VC_NEW = {
   },
   "wiki/admin/install.html": {
    "route-the-api-to-the-server": "2026-11-20"
+  },
+  "wiki/docs/editor.html": {
+   "columns": "2026-11-21",
+   "sections": "2026-11-21",
+   "text-colour-and-highlight": "2026-11-21"
   }
  }
 };
