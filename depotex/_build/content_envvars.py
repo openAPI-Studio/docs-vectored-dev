@@ -214,6 +214,7 @@ ENV_VARS = [
             TABLE(T, [
                 ["`INDEX_DIR`", "`./data/index`", "This server's search index (its own disk; rebuilt from the database when missing)"],
                 ["`BROWSE_GUARD_MAX_METADATA`, `…_MAX_SBOM`, `…_MAX_ENVELOPE`", "4 MiB, 32 MiB, 16 MiB", "Largest metadata, SBOM and signature envelope read from an artifact; over a limit quarantines the version"],
+                ["`BROWSE_GUARD_MAX_PACKAGE_HEADER`", "8 MiB", "Most of a package read for the signature in its own headers (an RPM's); a package with bigger headers shows no signature on its version page, and is never refused for it"],
                 ["`BROWSE_GUARD_MAX_DEPTH`, `…_MAX_ELEMENTS`, `…_MAX_RATIO`, `…_TIMEOUT`", "`64`, `2000000`, `100`, `10s`", "Parser limits against hostile files"],
                 ["`BROWSE_GUARD_MAX_COMPONENTS`, `BROWSE_GUARD_MAX_DOC`", "`50000`, 1 MiB", "Components kept per SBOM; documentation text kept per file"],
                 ["`INSPECT_WORKERS`", "`2`", "How many versions this server inspects at once (1 to 32); see [how fast content is read](browse.html#how-fast-content-is-read)"],
