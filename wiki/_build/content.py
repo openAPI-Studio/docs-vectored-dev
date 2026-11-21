@@ -15,6 +15,7 @@ from content_platform_operate import PLATFORM_OPERATE
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-21", "Imports", "Confluence page layouts are imported as rows of columns instead of one block under the other, and the editor's Layout menu gains Two columns."),
     ("2026-11-21", "Editor", "Sections: the editor groups a page into sections (a heading, text up to an empty line, each macro or other block) that can be moved up and down or selected whole from a handle at the right; text colour and highlight in six theme colours; and rows of columns (three equal, wide left, wide right) from the new Layout menu."),
     ("2026-11-20", "Install", "The reverse proxy can send everything under `/api` straight to the server, and the Caddy and nginx examples now do: API calls no longer use the web app's CPU, which was the first thing to run out under load. The server sets the security headers of API responses itself. A proxy that routes only `/api/ws` keeps working. See [Install the Wiki](install.html)."),
     ("2026-11-20", "Security", "The server takes `X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Proto` and `X-Real-IP` only from the proxies in `TRUSTED_PROXIES` (the same host by default) and removes them from anyone else. If your reverse proxy runs on another host and isn't listed, add it: the system check's new **Forwarded headers** line names an address that was refused."),

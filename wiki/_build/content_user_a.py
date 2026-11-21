@@ -503,7 +503,7 @@ USER_A = [
                 ["Lists", "**Bulleted list**, **Numbered list**, **Checklist**, **Outdent**, **Indent**"],
                 ["Blocks", "**Quote**, **Divider**"],
                 ["Insert", "**Link**, **Insert image**, **Insert video**, **Insert table of contents**, **Insert table**"],
-                ["Layout", "**One column**, **Three columns**, **Wide left**, **Wide right** for the section the cursor is in"],
+                ["Layout", "**One column**, **Two columns**, **Three columns**, **Wide left**, **Wide right** for the section the cursor is in"],
                 ["Other", "**Comment on selection**, **Full screen**"],
             ]),
             P("When a table, image, video or block is selected, its own settings appear in the toolbar (**Table**, **Image settings**, **Video settings**, **Block settings**). On a phone, the toolbar scrolls sideways."),
@@ -533,7 +533,7 @@ USER_A = [
             SHOT("editor-text-colour.png", "A selected section with the text colour choices open"),
 
             H("Columns"),
-            P("**Layout** in the toolbar puts the section the cursor is in into a row of columns: **Three columns** of equal width, **Wide left** (two thirds and one third) or **Wide right** (one third and two thirds). What you had written goes into the first column. **/columns** inserts a three-column row too."),
+            P("**Layout** in the toolbar puts the section the cursor is in into a row of columns: **Two columns** or **Three columns** of equal width, **Wide left** (two thirds and one third) or **Wide right** (one third and two thirds). What you had written goes into the first column. **/columns** inserts a three-column row too."),
             SHOT("editor-layout-menu.png", "The Layout menu, and a three-column row holding text, a panel and a decision"),
             UL([
                 "A column holds anything a page does: text, lists, images, tables, panels and other macros. A block stays inside the column it is in and is never wider than it.",
@@ -541,6 +541,7 @@ USER_A = [
                 "The whole row is one section: its handle moves all the columns together.",
                 "The dashed outlines around the columns show only while the pointer or the cursor is in the row. Readers never see them.",
                 "On a phone, and on any screen narrower than a tablet, columns stack one under the other, first column first.",
+                "Pages [imported from Confluence](import-and-export.html#import-from-confluence) keep their page layouts as rows of columns.",
             ]),
             SHOT("editor-columns-reading.png", "The same page as readers see it: three columns, and a highlighted paragraph"),
             NOTE("A row of columns can't be put inside another row, a table or a panel. Word and PDF exports print the columns one after the other."),
