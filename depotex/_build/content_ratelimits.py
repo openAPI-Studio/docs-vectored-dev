@@ -78,6 +78,8 @@ RATE_LIMITS = [
 
             H("Activity"),
             P("The **Activity** tab shows how many requests were limited (or would have been, in dry run) in the last 1 to 24 hours, per kind of traffic, and the callers limited most. Being limited isn't an event; it's only counted here. When Redis is set up but can't be reached, the counts are from the server that answered only, and the tab warns about it. A single server without Redis counts everything itself, so there's no note."),
+            P("The **Activity** tab shows how many requests were limited (or would have been, in dry run) in the last 1 to 24 hours, per kind of traffic, and the callers limited most. People and API tokens show by name, a token with its owner (\"nightly-sync (API token of Sam Doe)\"), with the key the limit counts against (`tok:3`) below; addresses show as `anon:` and `ip:` keys. Being limited isn't an event; it's only counted here. When Redis is unavailable the counts are from the server that answered only, and the tab says so."),
+            SHOT("rate-limits-activity.png", "Settings → Security → Rate limits → Activity: the callers limited most, by name with their key below"),
 
             H("Plugin endpoints (AI agents)"),
             UL([
@@ -100,7 +102,7 @@ RATE_LIMITS = [
                 "Overrides of class **Download quotas** give a day and a month quota to a person, role, organization, API token, AI app, or a **repository** (`space-key/repository-name`). Tokens, AI apps, organizations and repositories have a quota only through an override. Exempt is available on Pro: the downloads are counted but never refused.",
                 "Only successful downloads are counted, by the bytes sent. A download that starts under the quota finishes. Over a quota: **429** `download_quota_exceeded`, with `Retry-After` until the next UTC day or month.",
                 "At the warning level and at the quota, Depotex raises `security.download_quota.reached` and sends an in-app alert, once per counter and period: to the person for their own downloads, tokens and AI apps, to super administrators for organizations and repositories.",
-                "The **Downloads** tab lists the top downloaders over the last 1, 7, 30 or 90 days, by person, token, AI app, organization or repository; **Add quota** on a row opens the override form. It's up to 5 minutes behind and never lists addresses.",
+                "The **Downloads** tab lists the top downloaders over the last 1, 7, 30 or 90 days, by person, token, AI app, organization or repository, with people and API tokens shown by name; **Add quota** on a row opens the override form. It's up to 5 minutes behind and never lists addresses.",
                 "Totals are kept for 90 days (`DOWNLOAD_USAGE_RETENTION_DAYS`) by the `download-usage` job. Erasing a person's data deletes theirs.",
             ]),
             NOTE("Docker, Terraform and linked-installation downloads count against people, tokens and organizations, but not against repository quotas. Download links made by AI tools count against the address that uses them."),
