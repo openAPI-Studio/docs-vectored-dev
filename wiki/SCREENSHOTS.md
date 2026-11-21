@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-154 screenshots. Save each one into `wiki/assets/` using the
+158 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -84,6 +84,14 @@ realistic but fictional names and figures rather than real people's data.
       The formatting toolbar
 - [ ] `editor-slash-menu.png`
       The "/" menu, listing the blocks you can insert
+- [ ] `editor-section-menu.png`
+      A section's handle and its menu: Move up, Move down and Select section
+- [ ] `editor-text-colour.png`
+      A selected section with the text colour choices open
+- [ ] `editor-layout-menu.png`
+      The Layout menu, and a three-column row holding text, a panel and a decision
+- [ ] `editor-columns-reading.png`
+      The same page as readers see it: three columns, and a highlighted paragraph
 - [ ] `editor-heading-numbers.png`
       A page with numbered headings and a numbered table of contents
 
