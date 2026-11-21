@@ -891,7 +891,7 @@ admin:
             H("What can be imported"),
             SHOT("confluence-import-space-tab.png", "A space's Import tab: choose a Confluence export or Markdown, and earlier imports"),
             TABLE(["Source", "What comes in"], [
-                ["**Confluence space export** (Space tools → Export, XML, full export, a `.zip`)", "Pages with their tree, versions with dates and authors, comments, labels, blog posts (as posts on the space's blog, or under a page you name), and images and videos as attachments. Common macros become Wiki blocks; others become a plain-text block a plugin may convert"],
+                ["**Confluence space export** (Space tools → Export, XML, full export, a `.zip`)", "Pages with their tree, versions with dates and authors, comments, labels, blog posts (as posts on the space's blog, or under a page you name), and images and videos as attachments. Page layouts become [rows of columns](editor.html#columns): two equal columns, a left or right sidebar and three equal columns keep their shape, and three columns with sidebars become three equal columns. Common macros become Wiki blocks; others become a plain-text block a plugin may convert"],
                 ["**Markdown**: one `.md` file, or a `.zip` of a folder", "Each folder becomes a page holding its files' pages (`index.md` or `README.md` is the folder's text); titles from front matter or the first heading; `tags` become labels; images in the upload become attachments"],
             ]),
             UL([
