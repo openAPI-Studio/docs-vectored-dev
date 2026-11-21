@@ -275,6 +275,7 @@ window.VC_NEW = {
   "wiki/admin/settings-reference.html": "2026-11-19",
   "wiki/admin/setup-wizard.html": "2026-11-19",
   "wiki/admin/single-sign-on.html": "2026-11-19",
+  "wiki/admin/sizing.html": "2026-11-20",
   "wiki/admin/storage.html": "2026-11-19",
   "wiki/admin/support.html": "2026-11-19",
   "wiki/admin/system-check.html": "2026-11-19",
@@ -384,6 +385,9 @@ window.VC_NEW = {
   },
   "depotex/docs/huggingface.html": {
    "promotion": "2026-11-12"
+  },
+  "depotex/docs/npm.html": {
+   "publishing": "2026-11-21"
   },
   "depotex/docs/nuget.html": {
    "older-clients-and-semver-2-0-0": "2026-10-22"
@@ -653,6 +657,9 @@ window.VC_NEW = {
    "after-a-rejection": "2026-08-03",
    "being-told-the-outcome": "2026-08-04",
    "weeks-carried-over-from-per-entry-mode": "2026-08-04"
+  },
+  "wiki/admin/install.html": {
+   "route-the-api-to-the-server": "2026-11-20"
   }
  }
 };
