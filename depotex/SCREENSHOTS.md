@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-211 screenshots. Save each one into `depotex/assets/` using the
+212 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -516,6 +516,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `rate-limits.png`
       Settings → Security → Rate limits: requests per period for each kind of caller
+- [ ] `rate-limits-activity.png`
+      Settings → Security → Rate limits → Activity: the callers limited most, by name with their key below
 
 ## Repositories
 
