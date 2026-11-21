@@ -133,7 +133,7 @@ ADMIN = [
                 ["**Banners**", "Announcements at the top of every page, scheduled and per audience", "`settings:write`", "All", "[Banners](branding-and-banners.html)"],
                 ["**Application → Licensing**", "The license, its use against limits, and updating it", "`licenses:admin`", "All", "[Licensing](licensing.html)"],
                 ["**Application → Email**", "SMTP or Amazon SES, the sender, a test message", "`email:manage`", "All", "[Email](email.html)"],
-                ["**Clustering**", "Servers, their health, leader, Redis state", "Super admins", "All (a cluster needs Pro)", "[Single Node & Cluster](deployment-modes.html#clustering)"],
+                ["**Clustering**", "Servers, their health, leader, Redis state; add or change Redis", "Super admins", "All (a cluster needs Pro)", "[Single Node & Cluster](deployment-modes.html#clustering)"],
                 ["**Storage**", "Where artifacts and platform files are stored; moving them", "`storage:admin`", "All", "[Storage](storage.html)"],
                 ["**Backups**", "Backups, targets, encryption, restores and test restores", "`backups:read` / `backups:write`", "All (test restores Enterprise)", "[Backups](backups.html)"],
             ]),
