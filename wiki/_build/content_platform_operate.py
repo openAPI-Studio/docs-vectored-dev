@@ -57,7 +57,7 @@ _WIKI_EVENTS = [
         ['`page.template.delete`', 'before, after', 'yes · policies', "A template of a wiki space or of the template library (scope) is deleted. Pages and whiteboards made from it keep their content."],
         ['`page.template.switch`', 'before, after', 'yes · policies', 'A wiki space turns a library template on or off for its new pages (enabled).'],
         ['`page.template.update`', 'before, after', 'yes · policies', "A template of a wiki space or of the template library (scope) is renamed, described, grouped, switched on or off for every space, saved in the template editor, given a page's or a whiteboard's content, or reset to the original (reset)."],
-        ['`page.update`', 'before, after', 'yes · policies', "A wiki page's title or status changes. Publishing also raises page.publish."],
+        ['`page.update`', 'before, after', 'yes · policies', "A wiki page's title, status, heading or figure numbers, or width changes. Publishing also raises page.publish."],
         ['`page.version.restore`', 'after', 'no', "An older version of a wiki page is published again, as the page's newest version (after page.publish)."],
         ['`wiki.label.delete`', 'before, after', 'yes', 'A site admin removes a wiki label from every page.'],
         ['`wiki.label.update`', 'before, after', 'yes', 'A site admin renames a wiki label, or merges it into another label.'],
