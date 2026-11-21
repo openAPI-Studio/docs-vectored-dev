@@ -234,6 +234,7 @@ _PLATFORM_EVENTS = [
     ('Platform', [
         ['`ai_agents.settings.update`', 'before, after', 'yes', "The installation's settings for AI agents change: whether MCP tools that change something (write tools) may run at all. While off, no plugin setting or AI application can turn them on."],
         ['`cluster.node.rename`', 'before, after', 'yes', "An admin changes a cluster node's display name."],
+        ['`cluster.redis.update`', 'before, after', 'yes', "A super admin saves, changes or removes Redis in Settings → Clustering → Redis: the Redis servers it points at, the mode, the previous ones and whether credentials changed (never the URL or a password). Servers use it after their next restart."],
         ['`license.apply`', 'after', 'no', 'An admin applies a new license.'],
         ['`plugin.data.delete`', 'before, after', 'yes', "A plugin's stored data (its database schema, key-value keys and, unless it is reset, its secrets) is deleted: when it is uninstalled with its data, restarted with its data reset, or its leftover data is deleted."],
         ['`plugin.settings.update`', 'before, after', 'yes', "A plugin's settings are changed on its page: the values of its own settings, its call limits (calls per second, each caller's share, per AI application), and for an MCP plugin whether its write tools are on (read-write) and which tools are switched off."],
