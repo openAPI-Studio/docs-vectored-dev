@@ -15,6 +15,8 @@ from content_platform_operate import PLATFORM_OPERATE
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-21", "Editor", "Fixed: on a published page, changing Figures, heading numbers or the title closed the editor and showed the page, as if it had been published. The unpublished changes were kept as a draft and weren't published."),
+    ("2026-11-21", "Mentions", "In a private space, administrators who read every space can be mentioned as well as the space's members, so the @ list is no longer empty in a private space nobody was added to."),
     ("2026-11-21", "Editor", "Fixed: after adding an image or another whole block to a column, clicking into another column left the block selected, so the next thing typed replaced it."),
     ("2026-11-21", "Imports", "Confluence page layouts are imported as rows of columns instead of one block under the other, and the editor's Layout menu gains Two columns."),
     ("2026-11-21", "Editor", "Sections: the editor groups a page into sections (a heading, text up to an empty line, each macro or other block) that can be moved up and down or selected whole from a handle at the right; text colour and highlight in six theme colours; and rows of columns (three equal, wide left, wide right) from the new Layout menu."),

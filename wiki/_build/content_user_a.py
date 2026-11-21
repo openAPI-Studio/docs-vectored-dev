@@ -167,7 +167,7 @@ USER_A = [
             H("Mentions"),
             P("Editors can mention someone in a page by typing **@** and part of their name, then picking them from the list. When the page is next published, each person it mentions gets an alert, once per page: being mentioned again in a later version of the same page doesn't alert them again. Mentions in [comments](comments.html) alert the person when the comment is posted."),
             UL([
-                "The list offers active people of the space's organization, matched on their name (never their email). In a private space, only the space's members can be mentioned.",
+                "The list offers active people of the space's organization, matched on their name (never their email). In a private space, only the space's members and administrators who read every space can be mentioned: add someone to the space to mention them.",
                 "Mentioning needs permission to see people's profiles; editors without it don't get the list.",
                 "Readers who may not see people's profiles, and visitors who aren't signed in, see the name only.",
             ]),
