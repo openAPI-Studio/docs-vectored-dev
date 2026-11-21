@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-21", "Clustering", "Redis can be added to, changed on or removed from a running installation in **Settings → Clustering → Redis**, with a connection test, so a single server can grow into a cluster. The page shows which servers use Redis and which need a restart. A second server without Redis is refused while another one runs. See [Add Redis to a running installation](deployment-modes.html#add-redis-to-a-running-installation)."),
     ("2026-11-21", "Install", "The Helm chart's MinIO setup job no longer runs out of memory on a fresh install (its memory is now set by `minio.provision.resources`). `prime-secrets.sh init` creates the namespace when it doesn't exist, and the Helm install notes show the version being deployed."),
     ("2026-11-21", "Rate limits", "The **Activity** and **Downloads** tabs of rate limits show people and API tokens by name (a token with its owner), with the key below, instead of ids such as `tok:3`."),
     ("2026-11-20", "Install", "The reverse proxy can send everything under `/api` straight to the server, and the Caddy and nginx examples and the Helm chart's ingress (`ingress.backendPaths`, now `[/api]`) do: API calls no longer use the web app's CPU. The server sets the security headers of API responses itself and refuses API requests over 32 MiB. A proxy that routes only `/api/ws` keeps working. See [Behind a proxy](install.html#behind-a-proxy)."),
@@ -364,7 +365,7 @@ location / {
                 ["Nodes", "1", "Up to the license limit"],
             ]),
             H("Redis"),
-            P("Give Redis as a URL in the setup wizard, the unattended setup file (`cache.redis_url`) or the recovery page. Depotex supports three kinds:"),
+            P("Give Redis as a URL in the setup wizard, the unattended setup file (`cache.redis_url`) or, on a running installation, in **Settings → Clustering → Redis** (see [Add Redis to a running installation](#add-redis-to-a-running-installation)). The recovery page can change it too when a server can't start. Depotex supports three kinds:"),
             TABLE(["Kind", "URL"], [
                 ["One server", "`redis://:password@redis.internal:6379/0`, or `rediss://` for TLS"],
                 ["Sentinel group", "`redis+sentinel://:password@s1:26379?master_name=mymaster&addr=s2:26379&addr=s3:26379`: Depotex follows the primary when Sentinel fails over"],
@@ -374,6 +375,26 @@ location / {
                 "Each kind takes TLS (`rediss`, `rediss+sentinel`, `rediss+cluster`), a private certificate authority (`ca_file=/path/ca.pem`) and Redis ACL users (`user:password@`).",
                 "Redis coordinates; PostgreSQL keeps the records. If Redis becomes unavailable, Depotex keeps working: each server counts [rate limits](rate-limits.html#redis-and-clusters) on its own, sign-in keeps working (sessions are kept in PostgreSQL, so a sign-out made while Redis is away still holds when it returns), scheduled jobs keep running once per cluster and a leader is still elected (both are coordinated in PostgreSQL), live updates (the alert bell, job status) and search changes still reach every server through PostgreSQL, and changes reach other servers within 30 seconds instead of at once. It logs one warning when Redis goes and one message when it returns. A server that starts while Redis is down starts anyway, after waiting 10 seconds for it, and connects once Redis answers; the recovery page lists an unreachable Redis as a warning.",
                 "A failover can lose the last few writes to Redis; results stay correct because PostgreSQL holds the records.",
+            ]),
+            H("Add Redis to a running installation"),
+            P("An installation set up without Redis runs on one server. To grow it into a cluster, add Redis first. Super admins do it on **Settings → Clustering**, in the **Redis** card:"),
+            STEPS([
+                "Open Settings → Clustering|The **Redis** card says **Not set up** and lists the servers that are running, each with **No Redis**. On a Standard license the card is below the upgrade prompt: a single server may use Redis too.",
+                "Select Set up Redis|Enter the Redis URL (one server, Sentinel or Redis Cluster, as in the table above). Put the password in the URL or in **Password**.",
+                "Select Test connection|Depotex connects to every server the URL names. It says **Connected**, or why not: the URL can't be used, Redis refused the user name or password, or Redis can't be reached from this server. Nothing is saved yet.",
+                "Select Save|The URL is tested again and saved, encrypted, with the rest of the setup configuration.",
+                "Restart the server|A server starts using Redis when it restarts. Until then the card marks it **Restart needed**. After the restart it shows **Uses Redis**.",
+                "Start the next server|With Redis in use, start the second server with the same database and shared storage. A server without Redis can't join while another one runs: it stops with an error that points here.",
+            ]),
+            SHOT("clustering-redis-card.png", "Settings → Clustering → Redis: Redis saved, the running server marked Restart needed"),
+            UL([
+                "**Change** works the same way. The saved password is never shown: the form shows the URL without it, and leaving **Password** empty keeps it. Each server shows **Restart needed** until it restarts with the new setting.",
+                "**Remove** forgets the URL, so the server runs without Redis after its next restart. It is only offered while one server runs: a cluster needs Redis.",
+                "Why a restart: rate limits, live updates, caches and server stats are connected to Redis when a server starts. A restart switches all of them at once, cleanly, on each server in turn.",
+                "Each change raises `cluster.redis.update` (before and after; the before-event can be refused by a policy or plugin). It carries the Redis servers the URL points at and whether credentials changed, never the URL's password. Changes are in the audit log as `redis:update`, `redis:remove` and `redis:test`.",
+            ]),
+            TABLE(["Permission", "Who has it", "Allows"], [
+                ["`redis:admin`", "Super admins only", "Seeing, testing, adding, changing and removing Redis in Settings → Clustering"],
             ]),
             H("Database connections"),
             P("Each server opens up to `pool_max_conns` connections to PostgreSQL (by default 4, or the number of CPUs if that is more). Set it in `DATABASE_URL`, for example `postgres://depotex:…@db:5432/depotex?pool_max_conns=25`. In a cluster every server opens its own, so keep the number of servers × `pool_max_conns`, plus room for maintenance, under PostgreSQL's `max_connections` (100 by default)."),

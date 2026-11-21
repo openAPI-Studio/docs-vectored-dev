@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-231 screenshots. Save each one into `depotex/assets/` using the
+232 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -28,6 +28,8 @@ realistic but fictional names and figures rather than real people's data.
 
 ## Single Node &amp; Cluster
 
+- [ ] `clustering-redis-card.png`
+      Settings → Clustering → Redis: Redis saved, the running server marked Restart needed
 - [ ] `clustering-redis-degraded.png`
       Settings → Clustering while Redis can't be reached: the notice above the node table
 
