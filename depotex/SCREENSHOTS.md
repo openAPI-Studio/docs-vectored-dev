@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-222 screenshots. Save each one into `depotex/assets/` using the
+231 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -14,6 +14,8 @@ realistic but fictional names and figures rather than real people's data.
       The sign-in page
 - [ ] `quickstart-find-repository.gif`
       From the dashboard to a space, its repositories, and a repository's setup instructions
+- [ ] `repository-your-access-proxy.png`
+      A proxy repository's header: Your access reads browse, download, and fetch from upstream
 - [ ] `quickstart-repository-setup.png`
       An npm repository's setup: the address, then the commands to point npm, pnpm, Yarn and Bun at it
 
@@ -109,11 +111,18 @@ realistic but fictional names and figures rather than real people's data.
       A group repository: its members in the order they're asked, and the space's universal URL
 - [ ] `repository-group-read-only.png`
       A group's Rules tab as someone who isn't its admin sees it: the default repository for uploads, each write rule on one line, and the limits
+- [ ] `repositories-group-empty.png`
+      New repository, type Group, in a space with no npm repositories yet: the form says so and links to creating one
 
 ## Supported formats
 
 - [ ] `formats-logos.png`
       The repository list in the light theme: official logos beside Go, Maven, PyPI, Cargo, Composer, Helm and Git LFS, simple icons for the other formats
+
+## npm
+
+- [ ] `repository-settings-publishing-npm.png`
+      An npm repository's Settings tab: Publishing set to never overwrite, with the note that npm never replaces a published version
 
 ## Go
 
@@ -147,6 +156,10 @@ realistic but fictional names and figures rather than real people's data.
 
 ## YUM
 
+- [ ] `yum-setup-folder.png`
+      A YUM repository with one repodata per folder: the Usage tab's Repository folder picker, with the lines for el9/
+- [ ] `browse-version-rpm-signature.png`
+      A signed RPM's version page: the side panel names the trusted key that signed it and says it was checked
 - [ ] `yum-proxy-signatures.png`
       A YUM proxy's settings: the upstream's trusted key, with signed packages and signed repodata required
 - [ ] `browse-yum-overview.png`
@@ -156,6 +169,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `terraform-login.png`
       The page terraform login opens: approve or deny the token for terraform on this computer
+- [ ] `terraform-module-install.png`
+      A module version's page: the install bar shows the module block to copy
 
 ## Hugging Face
 
@@ -394,6 +409,8 @@ realistic but fictional names and figures rather than real people's data.
       A version's Security tab: Re-check vulnerabilities, Re-inspect SBOMs and when it was last inspected
 - [ ] `sbom-not-covered.png`
       A version's Security tab: components no vulnerability data covers shown as not covered
+- [ ] `huggingface-version-security.png`
+      A Hugging Face model version's Security tab: no vulnerability data covers Hugging Face packages
 - [ ] `vulnerability-data.png`
       Settings → Vulnerability data: turning checks on and where components are checked: the OSV API, OSV's data files or uploaded files
 - [ ] `vuln-settings-malicious.png`
@@ -413,6 +430,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Users: everyone who can sign in, their directory, role, status and last sign-in
 - [ ] `users-user.png`
       A user's page: profile, sign-in and security, and groups
+- [ ] `users-detail-invited.png`
+      Sign-in & security for an invited user: the password is still to be chosen
 - [ ] `groups-group.png`
       A group: its directories and members
 - [ ] `security-proxy-checksums.png`
@@ -553,6 +572,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `rate-limits.png`
       Settings → Security → Rate limits: requests per period for each kind of caller
+- [ ] `rate-limits-activity.png`
+      Settings → Security → Rate limits → Activity: the callers limited most, by name with their key below
 
 ## Repositories
 
