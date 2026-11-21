@@ -110,7 +110,7 @@ deploy/helm/prime-secrets.sh license license.json -n depotex -r depotex"""),
             P("Unattended setup builds the [setup file](headless-setup.html) from the chart: the administrator from `setup.admin.email` and `setup.admin.name` with `ADMIN_PASSWORD` from the secret, the database, Redis and storage from the values and secrets."),
             CODE("""helm upgrade depotex deploy/helm/depotex -n depotex -f my-values.yaml
 kubectl -n depotex logs -f depotex-backend-0"""),
-            P("When the log shows the server running in normal mode, sign in at `publicUrl` as the administrator with the password from the keys file. Then set `setup.mode: none` in your values and upgrade once more, so the server stops receiving the setup key and the setup file. The log says the same: \"passive setup complete — set setup.mode: none in your values and run helm upgrade\"."),
+            P("When the log shows the server running in normal mode, sign in at `publicUrl` as the administrator with the password from the keys file. Then set `setup.mode: none` in your values and upgrade once more, so the server stops receiving the setup key and the setup file. The log tells you the same once setup completes."),
 
             H("5. Check the installation"),
             UL([
