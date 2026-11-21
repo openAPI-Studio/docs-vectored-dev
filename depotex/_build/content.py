@@ -52,6 +52,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-21", "Clustering", "A server that is refused at start (for example because its storage isn't shared) no longer stays in **Settings → Clustering** as **Left**, and the Statuses help explains Left. See [Clustering](deployment-modes.html#clustering)."),
     ("2026-11-21", "Clustering", "Redis can be added to, changed on or removed from a running installation in **Settings → Clustering → Redis**, with a connection test, so a single server can grow into a cluster. The page shows which servers use Redis and which need a restart. A second server can't join while a server runs without Redis. See [Add Redis to a running installation](deployment-modes.html#add-redis-to-a-running-installation)."),
     ("2026-11-21", "Install", "The Helm chart's MinIO setup job no longer runs out of memory on a fresh install (its memory is now set by `minio.provision.resources`). `prime-secrets.sh init` creates the namespace when it doesn't exist, and the Helm install notes show the version being deployed."),
     ("2026-11-21", "Rate limits", "The **Activity** and **Downloads** tabs of rate limits show people and API tokens by name (a token with its owner), with the key below, instead of ids such as `tok:3`."),
@@ -413,9 +414,12 @@ location / {
             TABLE(["Status", "Meaning"], [
                 ["**active**", "Running."],
                 ["**draining**", "Shutting down: finishing its work before it stops."],
-                ["**left**", "Shut down cleanly. Removed from the list after a day (CLUSTER_DEAD_NODE_TTL); a server that starts again with the same identity becomes active again."],
+                ["**left**", "Shut down cleanly. Removed from the list after a day (`CLUSTER_DEAD_NODE_TTL`); a server that starts again with the same identity becomes active again."],
                 ["**dead**", "Stopped sending heartbeats (30 seconds by default, longer for the leader) without shutting down cleanly. A server that was only paused or cut off from the database (a long stall, a network break) becomes **active** again by itself with its next heartbeat; one that stays dead is removed after a day."],
             ]),
+            P("A server whose start is refused after it registered, for example because its storage isn't the cluster's shared storage, is not listed as **left**: it never served. A new server is taken off the list again. A server that ran before keeps the status it had, and its recent events show **Start refused**. The server's own log says why it was refused."),
+            P("**Statuses** under How clustering works explains each status, and the configuration list includes `CLUSTER_DEAD_NODE_TTL`, which removes dead and left servers from the list."),
+            SHOT("clustering-statuses-help.png", "Settings → Clustering, How clustering works: the Statuses list with Left, and the configuration variables"),
             P("When the server showing the page can't reach Redis, a notice above the table says since when, and what still works. Each node's CPU and memory come live over Redis; until it is back, other nodes show the values they last saved (every minute), and their details say when that was. The [system check](system-check.html) lists Redis as a warning on each server that can't reach it."),
             SHOT("clustering-redis-degraded.png", "Settings → Clustering while Redis can't be reached: the notice above the node table"),
         ])),
