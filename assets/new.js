@@ -325,6 +325,9 @@ window.VC_NEW = {
   "apistudio/docs/ui-overview.html": {
    "feedback-card": "2026-11-14"
   },
+  "depotex/admin/deployment-modes.html": {
+   "add-redis-to-a-running-installation": "2026-11-22"
+  },
   "depotex/admin/setup-wizard.html": {
    "a-database-that-is-already-set-up": "2026-11-13"
   },
@@ -658,11 +661,15 @@ window.VC_NEW = {
    "being-told-the-outcome": "2026-08-04",
    "weeks-carried-over-from-per-entry-mode": "2026-08-04"
   },
+  "wiki/admin/deployment-modes.html": {
+   "add-redis-to-a-running-installation": "2026-11-22"
+  },
   "wiki/admin/install.html": {
    "route-the-api-to-the-server": "2026-11-20"
   },
   "wiki/docs/editor.html": {
    "columns": "2026-11-21",
+   "page-width": "2026-11-21",
    "sections": "2026-11-21",
    "text-colour-and-highlight": "2026-11-21"
   }
