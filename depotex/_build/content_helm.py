@@ -110,7 +110,7 @@ deploy/helm/prime-secrets.sh license license.json -n depotex -r depotex"""),
             P("Unattended setup builds the [setup file](headless-setup.html) from the chart: the administrator from `setup.admin.email` and `setup.admin.name` with `ADMIN_PASSWORD` from the secret, the database, Redis and storage from the values and secrets."),
             CODE("""helm upgrade depotex deploy/helm/depotex -n depotex -f my-values.yaml
 kubectl -n depotex logs -f depotex-backend-0"""),
-            P("When the log shows the server running in normal mode, sign in at `publicUrl` as the administrator with the password from the keys file. Then set `setup.mode: none` in your values and upgrade once more, so the server stops receiving the setup key."),
+            P("When the log shows the server running in normal mode, sign in at `publicUrl` as the administrator with the password from the keys file. Then set `setup.mode: none` in your values and upgrade once more, so the server stops receiving the setup key and the setup file. The log says the same: \"passive setup complete — set setup.mode: none in your values and run helm upgrade\"."),
 
             H("5. Check the installation"),
             UL([
@@ -206,6 +206,7 @@ kubectl -n depotex logs -f depotex-backend-0"""),
                 ["Server pod waiting in its init step", "The built-in PostgreSQL isn't ready (check its pod and PVC), or a managed database isn't reachable through the network policy"],
                 ["Pod `Pending`", "A PersistentVolumeClaim can't be bound: no default StorageClass, or the size isn't available"],
                 ["Setup doesn't start on its own", "`setup.mode: auto` waits for the license in the app secret: run `prime-secrets.sh license …`, then `helm upgrade`"],
+                ["The log warns \"setup config ignored\" on every start", "Setup is done but the server still receives the setup file: set `setup.mode: none` in your values and run `helm upgrade`"],
                 ["`413` on large uploads", "The ingress limits request bodies: `nginx.ingress.kubernetes.io/proxy-body-size: \"0\"` (or your controller's equivalent)"],
                 ["Large downloads or uploads cut off", "Raise the ingress read and send timeouts (3600 s in the examples)"],
                 ["Alerts arrive late; system check warns about live updates", "`/api/ws` doesn't reach the server with WebSocket upgrades: keep `/api` (or at least `/api/ws`) in `ingress.backendPaths`, and allow upgrades on any proxy in front"],

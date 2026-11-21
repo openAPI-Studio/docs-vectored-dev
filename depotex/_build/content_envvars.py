@@ -41,6 +41,7 @@ ENV_VARS = [
             TABLE(T, [
                 ["`SETUP_TOKEN`", "random, new on every start", "The setup key the wizard needs. Set it to choose it (several servers sharing one setup, scripts)"],
                 ["`SETUP_CONFIG_FILE`", "empty", "A setup file for [unattended setup](headless-setup.html); same as `--setup-config`"],
+                ["`SETUP_CONFIG_DONE_HINT`", "empty", "For packaging: what the log tells the operator to do once setup is done and the setup file is no longer needed (the Helm chart sets it to set `setup.mode: none`). Empty means \"remove the setup file and SETUP_CONFIG_FILE\""],
                 ["`SETUP_UPLOAD_DIR`", "`./data/setup-upload`", "Where a backup uploaded to the wizard's **Restore from a backup** waits; needs room for the whole file"],
                 ["`RECOVERY_TOKEN`", "random", "The key of the [recovery page](recovery.html)"],
                 ["`LICENSE_BANNER_DAYS`", "`30`", "Super admins see a banner this many days before the license expires (0 turns it off; 0–365)"],
