@@ -28,6 +28,7 @@ CHANGELOG = [
     ("2026-11-21", "Pages", "Any file can be attached to a page, and three blocks show them: File (a card with preview and download, or a PDF or image shown in the page), Attachments list (the page's files, with an upload button for editors) and Gallery (images that open full size)."),
     ("2026-11-21", "Editor", "Dates: **//**, \"/\" Date or Insert → Date puts a date in the text, shown in each reader's language."),
     ("2026-11-21", "Imports", "Sections and columns made with Confluence's older Section and Column macros are imported as rows of columns too."),
+    ("2026-11-21", "Clustering", "A server that is refused at start (for example because its storage isn't shared) no longer stays in **Settings → Clustering** as **Left**, and the Statuses help explains Left. See [Clustering page](deployment-modes.html#clustering-page)."),
     ("2026-11-21", "Editor", "Page width: each page can be Narrow (as before), Medium or Full width, chosen from a new menu at the end of the editor toolbar. Readers see the page at the chosen width; small screens are unchanged."),
     ("2026-11-21", "Editor", "Fixed: on a published page, changing Figures, heading numbers or the title closed the editor and showed the page, as if it had been published. The unpublished changes were kept as a draft and weren't published."),
     ("2026-11-21", "Mentions", "In a private space, administrators who read every space can be mentioned as well as the space's members, so the @ list is no longer empty in a private space nobody was added to."),
