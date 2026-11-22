@@ -50,7 +50,7 @@ KEE_USER = [
             TABLE(["Notice", "What happened", "What to do"], [
                 ["**You have reached today's limit**", "You used all your requests for today. Nothing was sent.", "Wait until midnight UTC, or ask an administrator to raise the limit."],
                 ["**This month's budget is used up**", "The organisation's monthly Kee budget is spent and Kee is paused. Nothing was sent.", "Ask an administrator."],
-                ["**That's a lot of AI requests at once**", "Too many requests within a minute.", "Wait a moment and try again."],
+                ["**Too many requests at once**", "Too many requests within a minute. Nothing was sent.", "Wait a moment and try again."],
                 ["**The model provider is not answering**", "The provider was busy, slow or unreachable, even after several tries.", "Try again later. The request is kept, so **Try again** sends it again."],
                 ["**Off for this space**", "The space's admins turned Kee off. Its pages are not sent to a model.", "Nothing: ask the space's admins if you need it."],
                 ["**This is very long**", "The text is too long to send in one go. Nothing was sent.", "Work on a smaller part: a section or a selection."],
@@ -59,7 +59,7 @@ KEE_USER = [
                 ["**The answer stopped early**", "The connection was lost part way. The part shown is incomplete and not applied.", "Try again."],
                 ["**The answer could not be used**", "The answer couldn't be turned into page content.", "Try again."],
             ]),
-            P("A few problems need an administrator: \"The AI provider rejected the server's credentials\", \"The model is no longer available at the provider\" and \"AI isn't set up yet\". Administrators are also alerted when a provider rejects its key or keeps failing."),
+            P("A few problems need an administrator, and the notice is titled **Kee needs an administrator**: \"The AI provider rejected the server's credentials\", \"The model is no longer available at the provider\" and \"AI isn't set up yet\". Administrators are also alerted when a provider rejects its key or keeps failing."),
             SHOT("kee-notice-daily-limit.png", "The Ask Kee panel saying you have reached today's limit, with 0 left today under the question box"),
             H("Stopping Kee"),
             P("While Kee is working, **Stop** (or **Esc**) ends the request at once. What was written so far is not put on the page. In Ask Kee, what was written so far stays in the conversation."),
