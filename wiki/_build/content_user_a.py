@@ -147,6 +147,7 @@ USER_A = [
                 "**Active sessions**: where you are signed in; sign out one session or all the others.",
                 "**API tokens**: tokens for scripts and integrations. See [API tokens](api-tokens.html).",
                 "**Connected apps**: applications you allowed to act for you. See [OAuth applications](oauth-applications.html).",
+                "**Kee** (while Kee is on): how many Kee requests you have used today and when the count starts again. See [Kee](kee.html#your-daily-limit).",
             ]),
 
             H("Theme and language"),
@@ -322,6 +323,7 @@ USER_A = [
             UL([
                 "**General**: the name, description, visibility, icon, labels, category and status. **Save** applies them; **Discard** puts back what is saved. The key is fixed.",
                 "**Templates**: the space's own templates, and which of the library's templates it offers. See [Copies and templates](copies-and-templates.html).",
+                "**Kee** (while Kee is on for the Wiki): whether Kee works in this space, and whether readers are told when a page holds text written with Kee. See [Kee in a space](kee-data.html#kee-in-a-space).",
                 "**Delete space**: removes the space, its pages and its members' roles for good. Type the space's key to confirm.",
             ]),
             SHOT("spaces-settings.png", "Space settings → General: icon, name, description, labels, category, status and visibility"),
@@ -529,6 +531,7 @@ USER_A = [
                 ["**Select section**", "Selects everything in the section, so the toolbar's formatting (bold, underline, text colour, highlight, alignment) applies to all of it. **Esc** lets go."],
             ]),
             P("A heading moves on its own; the text under it is a separate section. On a phone or tablet the handle shows for the section the cursor is in."),
+            P("When Kee, the Wiki's AI, is on, the menu of a text or heading section also has Kee's actions: improve, shorten, lengthen, fix spelling and grammar, more with Kee, and write a section below. See [Writing with Kee](kee-editor.html)."),
 
             H("Text colour and highlight"),
             P("Select some text, or a whole section with **Select section**, and choose **Text colour** or **Highlight** in the toolbar. Each offers six colours that follow the reader's theme (light, dark or high contrast), so coloured text stays readable for everyone. **Remove text colour** and **Remove highlight** take it off again."),

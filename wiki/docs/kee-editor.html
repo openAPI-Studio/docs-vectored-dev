@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing with Kee — Wiki Docs</title>
+  <meta name="description" content="Rewrite, shorten, translate or fix a section or a selection, write a new section, or draft a whole page with Kee in the editor">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <h1 class="vc-h1">Writing with Kee</h1>
+      <p class="vc-lede">Rewrite, shorten, translate or fix a section or a selection, write a new section, or draft a whole page with Kee in the editor</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">In the editor, Kee works on one piece of the page at a time: a section, a selection, a new section, or the first draft of an empty page. You always see the result before anything changes, and one <strong class="text-text">Undo</strong> takes it back off.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">You need to be able to edit the page, and Kee must be on for you and in the space. See <a href="kee.html#who-gets-kee" class="text-cta hover:underline">Who gets Kee</a>.</p></div>
+      <h2 id="rewrite-a-section" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Rewrite a section</h2>
+      <p class="text-muted mb-4">Rest the pointer on a section of text or a heading and open its handle at the right (see <a href="editor.html#sections" class="text-cta hover:underline">Sections</a>). Below <strong class="text-text">Move up</strong>, <strong class="text-text">Move down</strong> and <strong class="text-text">Select section</strong>, the menu has Kee's actions:</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-editor-menu.png" alt="A section&#x27;s menu with Kee&#x27;s actions: Improve writing, Shorten, Make longer, Fix spelling and grammar, More with Kee and Write a section below" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-editor-menu.png</p>
+          <p class="text-xs text-muted max-w-md">A section's menu with Kee's actions: Improve writing, Shorten, Make longer, Fix spelling and grammar, More with Kee and Write a section below</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A section's menu with Kee's actions: Improve writing, Shorten, Make longer, Fix spelling and grammar, More with Kee and Write a section below</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Action</th><th>Does</th></tr></thead><tbody><tr><td><strong class="text-text">Improve writing</strong></td><td>Clearer, smoother wording with the same meaning</td></tr><tr><td><strong class="text-text">Shorten</strong></td><td>The same points in fewer words</td></tr><tr><td><strong class="text-text">Make longer</strong></td><td>More detail and explanation, in the same voice</td></tr><tr><td><strong class="text-text">Fix spelling and grammar</strong></td><td>Only corrections; the wording stays yours. Always uses the default model</td></tr><tr><td><strong class="text-text">More with Kee…</strong></td><td>Opens the panel with these actions and more: <strong class="text-text">Change tone</strong> (professional, friendly, direct, confident or neutral), <strong class="text-text">Translate</strong> (to one of 20 languages), or a request of your own in <strong class="text-text">Or say what should change…</strong>, then <strong class="text-text">Rewrite</strong></td></tr><tr><td><strong class="text-text">Write a section below…</strong></td><td>Writes a new section under this one (see <a href="#write-a-new-section" class="text-cta hover:underline">below</a>)</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The actions are offered on text and heading sections. Tables, images, macros and other blocks don't have them.</p>
+      <h2 id="the-result" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. The result</h2>
+      <p class="text-muted mb-4">Kee's panel opens under the section and the new text appears as it is written. When it is done:</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-editor-rewrite-result.png" alt="Rewrite with Kee: Changes view with added words marked, Shorter and Longer, Ask for more changes, Replace, Keep original, Try again and the model" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-editor-rewrite-result.png</p>
+          <p class="text-xs text-muted max-w-md">Rewrite with Kee: Changes view with added words marked, Shorter and Longer, Ask for more changes, Replace, Keep original, Try again and the model</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Rewrite with Kee: Changes view with added words marked, Shorter and Longer, Ask for more changes, Replace, Keep original, Try again and the model</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Changes</strong> shows what was removed and added, word by word. <strong class="text-text">Result</strong> shows the new text as it will look on the page. A change of formatting alone (bold, a list) shows only in <strong class="text-text">Result</strong>.</li><li><strong class="text-text">Shorter</strong>, <strong class="text-text">Longer</strong> and <strong class="text-text">Ask for more changes…</strong> refine the result: Kee changes its last answer, not your original. Each round is one request.</li><li><strong class="text-text">Replace</strong> puts the result on the page in place of the section. The editor says <strong class="text-text">Replaced. Undo brings the original back.</strong></li><li><strong class="text-text">Keep original</strong> closes the panel and leaves the page as it was. <strong class="text-text">Esc</strong> does the same.</li><li><strong class="text-text">Try again</strong> asks for a new result from the same text.</li></ul>
+      <p class="text-muted mb-4">When the Wiki has more than one model, a model picker sits at the bottom of the panel. The default model is first. <strong class="text-text">Answered by …: the usual model was not available</strong> means the administrator's fallback model answered.</p>
+      <h2 id="when-the-text-changes-meanwhile" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. When the text changes meanwhile</h2>
+      <p class="text-muted mb-4">Others may edit the page while Kee works. If the section changed since you asked, the panel says <strong class="text-text">The text changed since you asked</strong>: <strong class="text-text">Replace anyway</strong> drops the newer edits, <strong class="text-text">Try again</strong> starts again from the text as it is now. If someone removed the section, the result can't replace it any more.</p>
+      <h2 id="rewrite-a-selection" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Rewrite a selection</h2>
+      <p class="text-muted mb-4">Select some words inside a paragraph, list item or heading: a small <strong class="text-text">Kee</strong> button appears beside the selection. It opens the same panel for just those words, so the rest of the section stays as it is. A selection that runs across several blocks is rewritten like a section.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-editor-selection.png" alt="A selected sentence in a numbered list, with the Kee button beside it" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-editor-selection.png</p>
+          <p class="text-xs text-muted max-w-md">A selected sentence in a numbered list, with the Kee button beside it</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A selected sentence in a numbered list, with the Kee button beside it</figcaption>
+      </figure>
+      <h2 id="what-kee-keeps-in-place" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. What Kee keeps in place</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Images, mentions, macros and other content Kee can't write stay where they are: Kee rewrites the text around them. If an answer drops or moves one, Kee tries once more, then says <strong class="text-text">This part holds content Kee can't rewrite around</strong>. Try a smaller selection.</li><li>Empty lines between blocks are not kept in a rewritten section.</li><li>A long section may be too much to send in one go: <strong class="text-text">This is very long</strong>. Rewrite it a part at a time.</li></ul>
+      <h2 id="write-a-new-section" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Write a new section</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Write a section below…</strong> in a section's menu asks <strong class="text-text">What should the new section say?</strong> Kee writes it from your request, the page's title and the text above. When it is done, <strong class="text-text">Insert below</strong> adds it under the section (one <strong class="text-text">Undo</strong> removes it), <strong class="text-text">Discard</strong> closes the panel, and <strong class="text-text">Try again</strong> writes it again.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-editor-write-section.png" alt="Write with Kee: a new section drafted under Roll back, with Insert below, Discard and Try again" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-editor-write-section.png</p>
+          <p class="text-xs text-muted max-w-md">Write with Kee: a new section drafted under Roll back, with Insert below, Discard and Try again</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Write with Kee: a new section drafted under Roll back, with Insert below, Discard and Try again</figcaption>
+      </figure>
+      <h2 id="write-the-page" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Write the page</h2>
+      <p class="text-muted mb-4">On an empty page, <strong class="text-text">Write the page with Kee</strong> opens a dialog:</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-editor-write-page.png" alt="Write the page with Kee: what the page should say, a template, the model, and Write a draft" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-editor-write-page.png</p>
+          <p class="text-xs text-muted max-w-md">Write the page with Kee: what the page should say, a template, the model, and Write a draft</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Write the page with Kee: what the page should say, a template, the model, and Write a draft</figcaption>
+      </figure>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Say what the page should say</span> &mdash; For example: a runbook for restoring the database from a backup, for the on-call engineer.</li><li class="pl-2"><span class="text-text font-medium">Pick a template, or none</span> &mdash; With a template, its headings are kept and filled in. <strong class="text-text">No template</strong> lets Kee choose the structure.</li><li class="pl-2"><span class="text-text font-medium">Write a draft</span> &mdash; You read the <strong class="text-text">Draft by Kee</strong> first. Nothing is added to the page until you choose <strong class="text-text">Add to the page</strong>. <strong class="text-text">Change the request</strong> goes back to the dialog.</li></ol>
+      <p class="text-muted mb-4">Kee writes the page from your request and the template only: it doesn't read other pages or files for it.</p>
+      <h2 id="long-answers" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. Long answers</h2>
+      <p class="text-muted mb-4">If Kee reaches the model's length limit, the panel says <strong class="text-text">Stopped before the end</strong>. <strong class="text-text">Continue</strong> carries on from where it stopped; the part shown so far is not put on the page until the answer is complete.</p>
+      <h2 id="the-mark-in-the-page-history" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. The mark in the page history</h2>
+      <p class="text-muted mb-4">When a result from Kee goes onto a page, the next published version is marked <strong class="text-text">with Kee</strong> in the page history, so editors can see which versions hold text written with Kee. The mark doesn't say who used Kee or which words came from it. A space's admins can also show readers a line above such pages; see <a href="page-history-and-versions.html#versions-written-with-kee" class="text-cta hover:underline">Page history and versions</a>.</p>
+      <h2 id="when-kee-is-off-in-a-space" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">10. When Kee is off in a space</h2>
+      <p class="text-muted mb-4">In a space whose admins turned Kee off, the section menu shows <strong class="text-text">Kee is off in this space</strong> instead of the actions, and nothing of the space is sent to a model.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-space-off-editor-menu.png" alt="A section&#x27;s menu in a space where Kee is off: Kee is off in this space" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-space-off-editor-menu.png</p>
+          <p class="text-xs text-muted max-w-md">A section's menu in a space where Kee is off: Kee is off in this space</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A section's menu in a space where Kee is off: Kee is off in this space</figcaption>
+      </figure>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

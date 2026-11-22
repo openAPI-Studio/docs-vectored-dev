@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page summaries with Kee — Wiki Docs</title>
+  <meta name="description" content="A short summary of a long page by Kee, made on request and shared by everyone who reads that version">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><polyline points="15 2 15 7 20 7"/></svg></div>
+      <h1 class="vc-h1">Page summaries with Kee</h1>
+      <p class="vc-lede">A short summary of a long page by Kee, made on request and shared by everyone who reads that version</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Kee can sum up a long published page in a few points, at the top of the page. A summary is made once for each version of a page and language, then shared by every reader of that version.</p>
+      <h2 id="get-a-summary" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Get a summary</h2>
+      <p class="text-muted mb-4">On a long published page (at least four blocks and about 150 words), select <strong class="text-text">Summarise with Kee</strong> above the text. The summary appears in place as it is written.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-summary.png" alt="Summary by Kee above a page: the main points, and a footer saying which version it was made for, that it was reused, and that Kee can be wrong" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-summary.png</p>
+          <p class="text-xs text-muted max-w-md">Summary by Kee above a page: the main points, and a footer saying which version it was made for, that it was reused, and that Kee can be wrong</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Summary by Kee above a page: the main points, and a footer saying which version it was made for, that it was reused, and that Kee can be wrong</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The footer says which version the summary was made for and whether it was <strong class="text-text">reused, no new request</strong> or <strong class="text-text">made now, kept for other readers</strong>.</li><li>The buttons in its header copy the summary, collapse it, or hide it. Hiding and opening it again asks nothing new.</li><li>A summary made from an earlier version isn't shown for a newer one: the next reader gets a new summary of the new version.</li><li>Summaries are written in your language (the language of your Wiki interface).</li></ul>
+      <p class="text-muted mb-4">Summaries always use the default model. Only a complete summary from the default model is kept for other readers; one written by the fallback model, or cut short, is shown to you only.</p>
+      <h2 id="very-long-pages" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Very long pages</h2>
+      <p class="text-muted mb-4">A page too long for the model is read in parts, and the parts are summed up together. The summary then says <strong class="text-text">This page is very long</strong>: Kee read it in parts, so detail may be lost. On the longest pages Kee reads only the first sections and says how many of them the summary covers.</p>
+      <h2 id="what-summaries-are-not" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. What summaries are not</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Not part of the page: they aren't in exports, search, versions or the page history, and nobody edits them.</li><li>Not made in the background: only when a reader asks, and only for published pages (not drafts).</li><li>Not available for whiteboards, or in a space where Kee is off.</li></ul>
+      <p class="text-muted mb-4">A summary someone else already made doesn't count against your daily limit. Making a new one counts as one request (a very long page read in parts is still one request).</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

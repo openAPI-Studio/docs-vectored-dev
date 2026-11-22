@@ -242,6 +242,7 @@
   <url><loc>https://docs.vectored.dev/depotex/docs/users-and-directories.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/docs/vibe-artifacts.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/docs/yum.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/ai-settings.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/admin/access-overview.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/admin/alert-tuning.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/admin/alerts-admin.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
@@ -296,6 +297,11 @@
   <url><loc>https://docs.vectored.dev/wiki/docs/copies-and-templates.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/drafts-and-publishing.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/editing-together.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-editor.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-summaries.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/ask-kee.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-tools.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/editor.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/events.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/getting-started.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
@@ -338,6 +344,11 @@
   <url><loc>https://docs.vectored.dev/wiki/admin/sizing.html</loc><lastmod>2026-11-20</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/install.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/known-issues.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-setup.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-providers.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-access.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-limits.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-data.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/licensing.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/logging-and-audit.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/monitoring.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>

@@ -13,11 +13,17 @@ from content_admin_wiki import ADMIN_WIKI
 from content_platform_config import PLATFORM_CONFIG
 from content_platform_operate import PLATFORM_OPERATE
 from content_database import DATABASE
+from content_kee import KEE_USER, KEE_ADMIN
 
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
     ("2026-11-22", "Database", "The database password can be changed without downtime: `DATABASE_URL` now wins over the saved copy at start, servers fail over to a second login (`DATABASE_URL_STANDBY`) when one is refused, and super admins rotate passwords now or on a schedule under **Settings → Database**. See [Database password](database-credentials.html)."),
+    ("2026-11-22", "Kee", "Kee, the Wiki's AI (Pro): administrators turn it on in **Settings → Kee**, connect Anthropic, OpenAI, Google Gemini or Amazon Bedrock with their organisation's own key, choose the models people may use with a default and a fallback, switch each feature on or off, decide who may use Kee in a permissions grid, and set a daily limit per person and a monthly budget. Nothing is sent anywhere until it is set up. See [Set up Kee](kee-setup.html)."),
+    ("2026-11-22", "Kee", "Writing with Kee in the editor: a section's menu can improve, shorten, lengthen or fix the spelling of a section, change its tone, translate it or follow a request of your own, and write a new section below; selected words can be rewritten on their own; an empty page can get a first draft. You see the changes first and choose **Replace** or **Keep original**. See [Writing with Kee](kee-editor.html)."),
+    ("2026-11-22", "Kee", "**Summarise with Kee** above a long published page: a short summary made once per version and language and shared by every reader of it. See [Page summaries](kee-summaries.html)."),
+    ("2026-11-22", "Kee", "**Ask Kee** in the top bar answers questions from the pages you can read, with numbered links to its sources, earlier conversations and feedback on answers. It finds pages by their titles for now. See [Ask Kee](ask-kee.html)."),
+    ("2026-11-22", "Kee", "A space's admins can turn Kee off for their space (nothing of it is then sent to a model) and tell readers when a page holds text written with Kee; the page history marks versions written with Kee. Each person sees their Kee requests left today under **Profile → Kee**. See [Kee data handling](kee-data.html#kee-in-a-space)."),
     ("2026-11-22", "Pages", "Slides: put an HTML deck (from an AI tool, reveal.js or Marp) or a PDF deck in a page, step through it with the Wiki's controls or present it full screen; HTML decks run in a sandbox that loads libraries only from the hosts in the new Settings → Security → Slides, which also sets who adds decks (page editors by default) and the largest deck. See [Slides](slides.html)."),
     ("2026-11-21", "Upgrades", "New blocks wait for the whole installation: the \"/\" menu and imports offer them once every server runs the new version, and an editor tab whose web app is older than the servers says **A newer version of the wiki is running** and asks to reload. Upgrade the web app first; see [Upgrades](upgrades.html#new-blocks-during-an-upgrade)."),
     ("2026-11-21", "Imports", "Confluence task reports become task reports, Widget connector and iframe macros become videos (YouTube, Vimeo) or link cards, and smart links shown as cards become link cards; action items keep their assignee and due date."),
@@ -68,6 +74,7 @@ INTRO = [
         ["**Pages written together**", "A Word-like [editor](docs/editor.html) with headings, tables, images, videos and [macros](docs/macros.html); [live editing](docs/editing-together.html) with everyone's cursors; autosave, [drafts, reviews and publishing](docs/drafts-and-publishing.html), [versions](docs/page-history-and-versions.html) you can compare and restore, and [comments](docs/comments.html)."],
         ["**Whiteboards**", "[Live whiteboards](docs/whiteboards.html) to sketch, plan and run retrospectives together, with timers, dot voting and notes hidden until revealed (Enterprise)."],
         ["**Questions and answers**", "Company-wide [Q&A](docs/qna.html): ask, answer, vote and accept, with mentions and links to pages."],
+        ["**Kee, AI in the Wiki**", "[Writing help](docs/kee-editor.html) in the editor, [page summaries](docs/kee-summaries.html) and [Ask Kee](docs/ask-kee.html), on your organisation's own model provider account, with switches, limits and a switch per space (Pro). See [Kee](docs/kee.html)."],
         ["**Calendars**", "[Space calendars](docs/calendar.html) with events, leave, publishing plans and review dates, and a feed for your own calendar app."],
         ["**Analytics**", "[Page, space and personal analytics](docs/analytics.html) and content health: stale pages, broken links, searches that find nothing."],
         ["**Moves in and out**", "[Import](docs/import-and-export.html) Markdown files or a whole space from Confluence; export pages as Word or PDF."],
@@ -105,4 +112,4 @@ CHANGELOG_PAGE = [
         ])),
 ]
 
-PAGES = USER_A + USER_B + USER_C + ADMIN_WIKI + PLATFORM_CONFIG + PLATFORM_OPERATE + DATABASE + CHANGELOG_PAGE
+PAGES = USER_A + USER_B + USER_C + KEE_USER + ADMIN_WIKI + KEE_ADMIN + PLATFORM_CONFIG + PLATFORM_OPERATE + DATABASE + CHANGELOG_PAGE
