@@ -56,7 +56,7 @@ DATABASE = [
                 "The password is changed|When every running server holds it, the login changes its own password in PostgreSQL. This usually takes a few seconds.",
                 "Servers move to it|Nobody restarts anything, and each server saves the new password in its bootstrap file.",
             ]),
-            P("If a running server doesn't take the new password within 5 minutes, the rotation is given up: nothing was changed, the page says why, and super admins get an alert."),
+            P("If a running server doesn't take the new password within 5 minutes, or a server stops before taking it while only one login is stored, the rotation is given up: nothing was changed, the page says why, and super admins get an alert."),
             TABLE(["Situation", "What happens"], [
                 ["Two logins are stored", "The login the servers aren't using is changed, then becomes the preferred one. No sign-in is refused."],
                 ["One login is stored", "The login in use is changed. A server opening a new connection in the instant before it takes the change can meet one refused sign-in, and retries. The page says so before you confirm."],
