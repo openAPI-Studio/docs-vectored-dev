@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slides — Wiki Docs</title>
+  <meta name="description" content="Put a slide deck in a page, an HTML deck from an AI tool, reveal.js or Marp, or a PDF, and present it full screen">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg></div>
+      <h1 class="vc-h1">Slides</h1>
+      <p class="vc-lede">Put a slide deck in a page, an HTML deck from an AI tool, reveal.js or Marp, or a PDF, and present it full screen</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <h2 id="overview" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Overview</h2>
+      <p class="text-muted mb-4">A <strong class="text-text">Slides</strong> block puts a slide deck in a page: an HTML deck, such as the ones AI tools, reveal.js or Marp write, or a deck exported as PDF. Readers step through it under the page's text with the Wiki's own controls, or press <strong class="text-text">Present</strong> to show it full screen.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/slides-reading.png" alt="A page with an HTML deck: the deck&#x27;s title slide, the controls below it and the caption" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">slides-reading.png</p>
+          <p class="text-xs text-muted max-w-md">A page with an HTML deck: the deck's title slide, the controls below it and the caption</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A page with an HTML deck: the deck's title slide, the controls below it and the caption</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Below the deck: previous and next, the slide counter (<strong class="text-text">3 / 12</strong>), a progress bar, <strong class="text-text">Present</strong> and <strong class="text-text">Open in new tab</strong>. Once the deck has focus, the arrow keys work too.</li><li>An HTML deck shows its title and first lines until someone presses play; only then does the deck load and run.</li><li>Under it, the caption: the title the editor gave it, the kind of deck and its slide count.</li></ul>
+      <h2 id="add-a-deck" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Add a deck</h2>
+      <p class="text-muted mb-4">People who edit a page can add decks, unless an administrator has kept them to space admins (<a href="#for-administrators" class="text-cta hover:underline">below</a>).</p>
+      <figure class="shot mb-6">
+        <img src="../assets/slides-insert.png" alt="Adding a deck: &quot;/&quot; on an empty line and Slides, then the Add slides dialog with an HTML deck that has 12 slides" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">slides-insert.png</p>
+          <p class="text-xs text-muted max-w-md">Adding a deck: "/" on an empty line and Slides, then the Add slides dialog with an HTML deck that has 12 slides</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Adding a deck: "/" on an empty line and Slides, then the Add slides dialog with an HTML deck that has 12 slides</figcaption>
+      </figure>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Insert it</span> &mdash; Type <strong class="text-text">/</strong> on an empty line and pick <strong class="text-text">Slides</strong>, or use <strong class="text-text">Insert → Slides</strong>. Dropping a <span class="font-mono text-sm break-words">.html</span> file on the page opens the same dialog.</li><li class="pl-2"><span class="text-text font-medium">Give the deck</span> &mdash; <strong class="text-text">Upload a file</strong> takes an <span class="font-mono text-sm break-words">.html</span> or <span class="font-mono text-sm break-words">.pdf</span> file, up to the size your administrator allows (20 MB unless changed). <strong class="text-text">Paste HTML</strong> takes the deck's HTML, for example straight from an AI tool.</li><li class="pl-2"><span class="text-text font-medium">Check what was found</span> &mdash; The Wiki reads the deck and says how many slides it found and how (reveal.js, Marp, one element per slide). A deck whose slides it can't tell apart still plays with its own keys; the counter then shows a dash.</li><li class="pl-2"><span class="text-text font-medium">Title and insert</span> &mdash; Change the title if you like (it is shown under the deck, found by search and printed in exports), then <strong class="text-text">Insert</strong>.</li></ol>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">PowerPoint, Keynote and OpenDocument decks (<span class="font-mono text-sm break-words">.pptx</span>, <span class="font-mono text-sm break-words">.ppt</span>, <span class="font-mono text-sm break-words">.key</span>, <span class="font-mono text-sm break-words">.odp</span>) aren't taken: export them as PDF from your slide tool and add the PDF. Attach the original file with a <a href="files-and-attachments.html" class="text-cta hover:underline">File block</a> if people need it.</p></div>
+      <h2 id="change-a-deck" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Change a deck</h2>
+      <p class="text-muted mb-4">In the editor a deck is shown as a still: it doesn't run while you type. Select it for a bar with settings, present, download and remove.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/slides-editor.png" alt="A selected deck in the editor with its bar and the Slides settings panel" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">slides-editor.png</p>
+          <p class="text-xs text-muted max-w-md">A selected deck in the editor with its bar and the Slides settings panel</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A selected deck in the editor with its bar and the Slides settings panel</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>What it does</th></tr></thead><tbody><tr><td><strong class="text-text">Title</strong></td><td>Shown under the deck, in search and in exports.</td></tr><tr><td><strong class="text-text">Start slide</strong></td><td>The slide readers see first, such as the agenda of a long deck.</td></tr><tr><td><strong class="text-text">Replace file</strong></td><td>Uploads another deck in its place. The old file stays among the page's attachments.</td></tr><tr><td><strong class="text-text">Download</strong></td><td>The deck's file, as it was uploaded.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">The maximize button in the bar plays the deck full screen, so you can check it without leaving the editor.</p>
+      <h2 id="present" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Present</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Present</strong> shows the deck on the whole screen. A thin bar at the top shows how far through the deck you are; the controls at the bottom fade after 2 seconds and come back when the pointer moves or a key is pressed. <strong class="text-text">←</strong>, <strong class="text-text">→</strong> or <strong class="text-text">Space</strong> move, <strong class="text-text">Home</strong> and <strong class="text-text">End</strong> jump to the first and last slide, and <strong class="text-text">Esc</strong> leaves.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/slides-fullscreen.png" alt="A deck presented full screen: the slide, the progress bar, the controls and the key hints" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">slides-fullscreen.png</p>
+          <p class="text-xs text-muted max-w-md">A deck presented full screen: the slide, the progress bar, the controls and the key hints</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A deck presented full screen: the slide, the progress bar, the controls and the key hints</figcaption>
+      </figure>
+      <h2 id="pdf-decks" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. PDF decks</h2>
+      <p class="text-muted mb-4">A PDF deck is shown by the Wiki's own PDF viewer, one page a slide, with a strip of page thumbnails below the controls: click one to jump to it. Nothing in a PDF runs, so it is the safest kind of deck.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/slides-pdf.png" alt="A PDF deck on slide 3 of 18, with the thumbnail strip" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">slides-pdf.png</p>
+          <p class="text-xs text-muted max-w-md">A PDF deck on slide 3 of 18, with the thumbnail strip</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A PDF deck on slide 3 of 18, with the thumbnail strip</figcaption>
+      </figure>
+      <h2 id="on-a-phone" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. On a phone</h2>
+      <p class="text-muted mb-4">On a phone the deck is as wide as the screen. Swipe to move between slides (a hint says so the first time), and the full-screen button turns it to landscape where the phone allows.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/slides-phone.png" alt="A deck on a phone: full width, with dots, the counter and the full-screen button" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">slides-phone.png</p>
+          <p class="text-xs text-muted max-w-md">A deck on a phone: full width, with dots, the counter and the full-screen button</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A deck on a phone: full width, with dots, the counter and the full-screen button</figcaption>
+      </figure>
+      <h2 id="what-html-decks-can-do" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. What HTML decks can do</h2>
+      <p class="text-muted mb-4">An HTML deck runs in a sandbox, like an <a href="macros.html#html-blocks" class="text-cta hover:underline">HTML block</a>:</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>It can't read the Wiki, its cookies or the page around it, can't submit forms or open pop-ups, and never acts as the person reading it.</li><li>It can load scripts, styles and fonts only from the hosts your administrator lists in <strong class="text-text">Settings → Security → Slides</strong>, and from nowhere else. Anything else it needs must be in the file.</li><li>The Wiki draws the controls outside the deck and steps it with messages the deck can't use for anything else.</li><li>A deck shows only in a page: an HTML file attached to a page any other way is never served as a page.</li></ul>
+      <p class="text-muted mb-4">Readers are whoever can read the page, visitors who aren't signed in included on public spaces. Word and PDF downloads print the deck's title, its kind and slide count in its place. Copying a page or starting one from a template keeps its decks.</p>
+      <h2 id="for-administrators" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">8. For administrators</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Settings → Security → Slides</strong> (<span class="font-mono text-sm break-words">settings:write</span>) sets who adds decks, the largest deck and the hosts HTML decks may load from. Save with the Security page's Save bar.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/slides-settings.png" alt="Settings → Security → Slides: page editors add decks, 20 MB, the five default library hosts" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">slides-settings.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Security → Slides: page editors add decks, 20 MB, the five default library hosts</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Security → Slides: page editors add decks, 20 MB, the five default library hosts</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Default</th><th>Effect</th></tr></thead><tbody><tr><td><strong class="text-text">Who may add Slides blocks</strong></td><td>Page editors</td><td><strong class="text-text">Page editors</strong>: anyone who can edit the page adds, replaces or removes a deck. <strong class="text-text">Space admins only</strong>: like HTML blocks. Everyone else can still read and present decks.</td></tr><tr><td><strong class="text-text">Largest deck</strong></td><td>20 MB</td><td>1 to 100 MB. Decks are page attachments and count toward the attachment storage.</td></tr><tr><td><strong class="text-text">Slides libraries</strong></td><td><span class="font-mono text-sm break-words">cdnjs.cloudflare.com</span>, <span class="font-mono text-sm break-words">cdn.jsdelivr.net</span>, <span class="font-mono text-sm break-words">unpkg.com</span>, <span class="font-mono text-sm break-words">fonts.googleapis.com</span>, <span class="font-mono text-sm break-words">fonts.gstatic.com</span></td><td>The only hosts HTML decks may load scripts, styles and fonts from, up to 20. Empty the list to allow none: decks then show only what they carry. <strong class="text-text">Restore the defaults</strong> brings back the five.</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Adding a deck raises the blocking <span class="font-mono text-sm break-words">page.slides.create</span> event, so a <a href="../admin/policies.html" class="text-cta hover:underline">policy</a> can, for example, refuse HTML decks in some spaces; changing the setting raises <span class="font-mono text-sm break-words">slides_settings.update</span>. Both are in the audit log. See <a href="events.html" class="text-cta hover:underline">Events</a>.</p>
+      <p class="text-muted mb-4">Confluence imports need nothing new: Confluence has no slides macro, so PowerPoint and PDF files stay file cards, and an editor can replace a PDF's card with a Slides block.</p>
+      <h2 id="api" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">9. API</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Method</th><th>Path</th><th>Who</th><th>What</th></tr></thead><tbody><tr><td>GET</td><td><span class="font-mono text-sm break-words">/api/spaces/{key}/slides</span></td><td>Read the space</td><td>Whether you may add decks here (<span class="font-mono text-sm break-words">mayAdd</span>), the largest deck (<span class="font-mono text-sm break-words">maxBytes</span>), and the library hosts for people who edit pages</td></tr><tr><td>POST</td><td><span class="font-mono text-sm break-words">/api/spaces/{key}/pages/{id}/slides</span></td><td><span class="font-mono text-sm break-words">mayAdd</span></td><td>Multipart <span class="font-mono text-sm break-words">file</span>: an HTML file or a PDF. Answers what was found: <span class="font-mono text-sm break-words">attachment</span>, <span class="font-mono text-sm break-words">format</span>, <span class="font-mono text-sm break-words">engine</span>, <span class="font-mono text-sm break-words">slides</span>, <span class="font-mono text-sm break-words">texts</span>, <span class="font-mono text-sm break-words">title</span>. Refused with <span class="font-mono text-sm break-words">slides_not_allowed</span>, <span class="font-mono text-sm break-words">unsupported_deck</span> or <span class="font-mono text-sm break-words">deck_too_large</span></td></tr><tr><td>GET</td><td><span class="font-mono text-sm break-words">/api/spaces/{key}/pages/{id}/slides/{attachment}/frame</span></td><td>Read the page</td><td>An HTML deck as the sandboxed page the block frames; <span class="font-mono text-sm break-words">not_a_deck</span> for a file not added as a deck</td></tr><tr><td>GET</td><td><span class="font-mono text-sm break-words">/api/wiki/slides-settings</span></td><td><span class="font-mono text-sm break-words">settings:write</span></td><td><span class="font-mono text-sm break-words">{editors, maxMb, hosts}</span></td></tr><tr><td>PUT</td><td><span class="font-mono text-sm break-words">/api/wiki/slides-settings</span></td><td><span class="font-mono text-sm break-words">settings:write</span></td><td><span class="font-mono text-sm break-words">{editors, maxMb, hosts}</span>; <span class="font-mono text-sm break-words">editors</span> is <span class="font-mono text-sm break-words">page_editors</span> or <span class="font-mono text-sm break-words">space_admins</span>. Refused with <span class="font-mono text-sm break-words">invalid_slides_editors</span>, <span class="font-mono text-sm break-words">invalid_slides_max_size</span>, <span class="font-mono text-sm break-words">invalid_slides_host</span> or <span class="font-mono text-sm break-words">too_many_slides_hosts</span></td></tr></tbody></table></div>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

@@ -266,4 +266,84 @@ USER_C = [
                 ["POST", "`/api/wiki/link-preview`", "Edit pages of the space", "`{space, url}`: the page's title, description and site name. Refused with `link_previews_off`, `invalid_link` or `preview_unavailable`"],
             ]),
         ])),
+    # ------------------------------------------------------------------
+    ("slides", dict(
+        label="Slides", title="Slides", icon="presentation",
+        desc="Put a slide deck in a page, an HTML deck from an AI tool, reveal.js or Marp, or a PDF, and present it full screen",
+        keywords=["slides", "slide deck", "deck", "presentation", "present", "full screen", "fullscreen", "reveal.js", "marp", "html deck",
+                  "pdf deck", "powerpoint", "pptx", "keynote", "slideshow", "sandbox", "ai tool"],
+        blocks=[
+            H("Overview"),
+            P("A **Slides** block puts a slide deck in a page: an HTML deck, such as the ones AI tools, reveal.js or Marp write, or a deck exported as PDF. Readers step through it under the page's text with the Wiki's own controls, or press **Present** to show it full screen."),
+            SHOT("slides-reading.png", "A page with an HTML deck: the deck's title slide, the controls below it and the caption"),
+            UL([
+                "Below the deck: previous and next, the slide counter (**3 / 12**), a progress bar, **Present** and **Open in new tab**. Once the deck has focus, the arrow keys work too.",
+                "An HTML deck shows its title and first lines until someone presses play; only then does the deck load and run.",
+                "Under it, the caption: the title the editor gave it, the kind of deck and its slide count.",
+            ]),
+
+            H("Add a deck"),
+            P("People who edit a page can add decks, unless an administrator has kept them to space admins ([below](#for-administrators))."),
+            SHOT("slides-insert.png", "Adding a deck: \"/\" on an empty line and Slides, then the Add slides dialog with an HTML deck that has 12 slides"),
+            STEPS([
+                "Insert it|Type **/** on an empty line and pick **Slides**, or use **Insert → Slides**. Dropping a `.html` file on the page opens the same dialog.",
+                "Give the deck|**Upload a file** takes an `.html` or `.pdf` file, up to the size your administrator allows (20 MB unless changed). **Paste HTML** takes the deck's HTML, for example straight from an AI tool.",
+                "Check what was found|The Wiki reads the deck and says how many slides it found and how (reveal.js, Marp, one element per slide). A deck whose slides it can't tell apart still plays with its own keys; the counter then shows a dash.",
+                "Title and insert|Change the title if you like (it is shown under the deck, found by search and printed in exports), then **Insert**.",
+            ]),
+            NOTE("PowerPoint, Keynote and OpenDocument decks (`.pptx`, `.ppt`, `.key`, `.odp`) aren't taken: export them as PDF from your slide tool and add the PDF. Attach the original file with a [File block](files-and-attachments.html) if people need it."),
+
+            H("Change a deck"),
+            P("In the editor a deck is shown as a still: it doesn't run while you type. Select it for a bar with settings, present, download and remove."),
+            SHOT("slides-editor.png", "A selected deck in the editor with its bar and the Slides settings panel"),
+            TABLE(["Setting", "What it does"], [
+                ["**Title**", "Shown under the deck, in search and in exports."],
+                ["**Start slide**", "The slide readers see first, such as the agenda of a long deck."],
+                ["**Replace file**", "Uploads another deck in its place. The old file stays among the page's attachments."],
+                ["**Download**", "The deck's file, as it was uploaded."],
+            ]),
+            P("The maximize button in the bar plays the deck full screen, so you can check it without leaving the editor."),
+
+            H("Present"),
+            P("**Present** shows the deck on the whole screen. A thin bar at the top shows how far through the deck you are; the controls at the bottom fade after 2 seconds and come back when the pointer moves or a key is pressed. **←**, **→** or **Space** move, **Home** and **End** jump to the first and last slide, and **Esc** leaves."),
+            SHOT("slides-fullscreen.png", "A deck presented full screen: the slide, the progress bar, the controls and the key hints"),
+
+            H("PDF decks"),
+            P("A PDF deck is shown by the Wiki's own PDF viewer, one page a slide, with a strip of page thumbnails below the controls: click one to jump to it. Nothing in a PDF runs, so it is the safest kind of deck."),
+            SHOT("slides-pdf.png", "A PDF deck on slide 3 of 18, with the thumbnail strip"),
+
+            H("On a phone"),
+            P("On a phone the deck is as wide as the screen. Swipe to move between slides (a hint says so the first time), and the full-screen button turns it to landscape where the phone allows."),
+            SHOT("slides-phone.png", "A deck on a phone: full width, with dots, the counter and the full-screen button"),
+
+            H("What HTML decks can do"),
+            P("An HTML deck runs in a sandbox, like an [HTML block](macros.html#html-blocks):"),
+            UL([
+                "It can't read the Wiki, its cookies or the page around it, can't submit forms or open pop-ups, and never acts as the person reading it.",
+                "It can load scripts, styles and fonts only from the hosts your administrator lists in **Settings → Security → Slides**, and from nowhere else. Anything else it needs must be in the file.",
+                "The Wiki draws the controls outside the deck and steps it with messages the deck can't use for anything else.",
+                "A deck shows only in a page: an HTML file attached to a page any other way is never served as a page.",
+            ]),
+            P("Readers are whoever can read the page, visitors who aren't signed in included on public spaces. Word and PDF downloads print the deck's title, its kind and slide count in its place. Copying a page or starting one from a template keeps its decks."),
+
+            H("For administrators"),
+            P("**Settings → Security → Slides** (`settings:write`) sets who adds decks, the largest deck and the hosts HTML decks may load from. Save with the Security page's Save bar."),
+            SHOT("slides-settings.png", "Settings → Security → Slides: page editors add decks, 20 MB, the five default library hosts"),
+            TABLE(["Setting", "Default", "Effect"], [
+                ["**Who may add Slides blocks**", "Page editors", "**Page editors**: anyone who can edit the page adds, replaces or removes a deck. **Space admins only**: like HTML blocks. Everyone else can still read and present decks."],
+                ["**Largest deck**", "20 MB", "1 to 100 MB. Decks are page attachments and count toward the attachment storage."],
+                ["**Slides libraries**", "`cdnjs.cloudflare.com`, `cdn.jsdelivr.net`, `unpkg.com`, `fonts.googleapis.com`, `fonts.gstatic.com`", "The only hosts HTML decks may load scripts, styles and fonts from, up to 20. Empty the list to allow none: decks then show only what they carry. **Restore the defaults** brings back the five."],
+            ]),
+            P("Adding a deck raises the blocking `page.slides.create` event, so a [policy](policies.html) can, for example, refuse HTML decks in some spaces; changing the setting raises `slides_settings.update`. Both are in the audit log. See [Events](events.html)."),
+            P("Confluence imports need nothing new: Confluence has no slides macro, so PowerPoint and PDF files stay file cards, and an editor can replace a PDF's card with a Slides block."),
+
+            H("API"),
+            TABLE(["Method", "Path", "Who", "What"], [
+                ["GET", "`/api/spaces/{key}/slides`", "Read the space", "Whether you may add decks here (`mayAdd`), the largest deck (`maxBytes`), and the library hosts for people who edit pages"],
+                ["POST", "`/api/spaces/{key}/pages/{id}/slides`", "`mayAdd`", "Multipart `file`: an HTML file or a PDF. Answers what was found: `attachment`, `format`, `engine`, `slides`, `texts`, `title`. Refused with `slides_not_allowed`, `unsupported_deck` or `deck_too_large`"],
+                ["GET", "`/api/spaces/{key}/pages/{id}/slides/{attachment}/frame`", "Read the page", "An HTML deck as the sandboxed page the block frames; `not_a_deck` for a file not added as a deck"],
+                ["GET", "`/api/wiki/slides-settings`", "`settings:write`", "`{editors, maxMb, hosts}`"],
+                ["PUT", "`/api/wiki/slides-settings`", "`settings:write`", "`{editors, maxMb, hosts}`; `editors` is `page_editors` or `space_admins`. Refused with `invalid_slides_editors`, `invalid_slides_max_size`, `invalid_slides_host` or `too_many_slides_hosts`"],
+            ]),
+        ])),
 ]

@@ -511,7 +511,7 @@ USER_A = [
             H("The \"/\" menu"),
             P("Type **/** at the start of a line or after a space to insert any block. Keep typing to narrow the list, use **↑** and **↓** to move, **Enter** to insert and **Esc** to close it."),
             SHOT("editor-slash-menu.png", "The \"/\" menu, listing the blocks you can insert"),
-            P("It lists text styles and lists, **Quote**, **Code block**, **Divider**, **Columns**, **Table**, **Spreadsheet table**, **Image**, **Video**, **Table of contents**, **Date**, and the blocks described in [Blocks and macros](macros.html): Mermaid diagrams, HTML blocks (when turned on), panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, a [whiteboard](whiteboards.html) (Enterprise), blocks from plugins, and the newer ones: **File**, **Attachments list** and **Gallery** ([Files and attachments](files-and-attachments.html)), **Pages by label**, **Blog posts**, **Contributors** and **Change history** ([Lists of pages](lists-of-pages.html)), **Task report** ([Tasks](tasks.html)) and **Link card** ([Link cards](link-cards.html))."),
+            P("It lists text styles and lists, **Quote**, **Code block**, **Divider**, **Columns**, **Table**, **Spreadsheet table**, **Image**, **Video**, **Table of contents**, **Date**, and the blocks described in [Blocks and macros](macros.html): Mermaid diagrams, HTML blocks (when turned on), panels, expand, decision, status, anchor, excerpt, page properties, child pages, page tree, recently updated, include page, include excerpt, page properties report, a [whiteboard](whiteboards.html) (Enterprise), blocks from plugins, and the newer ones: **File**, **Attachments list** and **Gallery** ([Files and attachments](files-and-attachments.html)), **Slides** ([Slides](slides.html)), **Pages by label**, **Blog posts**, **Contributors** and **Change history** ([Lists of pages](lists-of-pages.html)), **Task report** ([Tasks](tasks.html)) and **Link card** ([Link cards](link-cards.html))."),
             SHOT("editor-slash-new-blocks.png", "The \"/\" menu showing File, Attachments list, Gallery, Pages by label, Task report and Link card"),
             NOTE("While the Wiki is being upgraded, blocks that came with the new version appear in the menu only once every server runs it. See [Upgrades](upgrades.html#new-blocks-during-an-upgrade)."),
 
@@ -618,6 +618,7 @@ USER_A = [
             P("Some blocks have pages of their own:"),
             TABLE(["Blocks", "Page"], [
                 ["**File**, **Attachments list**, **Gallery**", "[Files and attachments](files-and-attachments.html)"],
+                ["**Slides**", "[Slides](slides.html)"],
                 ["**Pages by label**, **Blog posts**, **Contributors**, **Change history**", "[Lists of pages and page information](lists-of-pages.html)"],
                 ["**Task report**, and dates in tasks", "[Tasks and task reports](tasks.html)"],
                 ["**Link card**", "[Link cards and link previews](link-cards.html)"],

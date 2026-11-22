@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-179 screenshots. Save each one into `wiki/assets/` using the
+186 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -333,6 +333,23 @@ realistic but fictional names and figures rather than real people's data.
       A link card: the title, the description and the site name of a page on another site
 - [ ] `settings-security-link-previews.png`
       Settings → Security → Link previews: on, with two hosts that are never fetched
+
+## Slides
+
+- [ ] `slides-reading.png`
+      A page with an HTML deck: the deck's title slide, the controls below it and the caption
+- [ ] `slides-insert.png`
+      Adding a deck: "/" on an empty line and Slides, then the Add slides dialog with an HTML deck that has 12 slides
+- [ ] `slides-editor.png`
+      A selected deck in the editor with its bar and the Slides settings panel
+- [ ] `slides-fullscreen.png`
+      A deck presented full screen: the slide, the progress bar, the controls and the key hints
+- [ ] `slides-pdf.png`
+      A PDF deck on slide 3 of 18, with the thumbnail strip
+- [ ] `slides-phone.png`
+      A deck on a phone: full width, with dots, the counter and the full-screen button
+- [ ] `slides-settings.png`
+      Settings → Security → Slides: page editors add decks, 20 MB, the five default library hosts
 
 ## Setup wizard
 
