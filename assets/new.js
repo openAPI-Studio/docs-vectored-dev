@@ -295,10 +295,13 @@ window.VC_NEW = {
   "wiki/docs/editing-together.html": "2026-11-19",
   "wiki/docs/editor.html": "2026-11-19",
   "wiki/docs/events.html": "2026-11-19",
+  "wiki/docs/files-and-attachments.html": "2026-11-21",
   "wiki/docs/getting-started.html": "2026-11-19",
   "wiki/docs/home-and-navigation.html": "2026-11-19",
   "wiki/docs/import-and-export.html": "2026-11-19",
   "wiki/docs/labels-and-feedback.html": "2026-11-19",
+  "wiki/docs/link-cards.html": "2026-11-21",
+  "wiki/docs/lists-of-pages.html": "2026-11-21",
   "wiki/docs/macros.html": "2026-11-19",
   "wiki/docs/mirror-spaces.html": "2026-11-19",
   "wiki/docs/mobile.html": "2026-11-19",
@@ -310,7 +313,9 @@ window.VC_NEW = {
   "wiki/docs/qna.html": "2026-11-19",
   "wiki/docs/reviews.html": "2026-11-19",
   "wiki/docs/search.html": "2026-11-19",
+  "wiki/docs/slides.html": "2026-11-22",
   "wiki/docs/spaces.html": "2026-11-19",
+  "wiki/docs/tasks.html": "2026-11-21",
   "wiki/docs/whiteboards.html": "2026-11-19",
   "wiki/index.html": "2026-11-19"
  },
@@ -326,7 +331,7 @@ window.VC_NEW = {
    "feedback-card": "2026-11-14"
   },
   "depotex/admin/deployment-modes.html": {
-   "add-redis-to-a-running-installation": "2026-11-22"
+   "add-redis-to-a-running-installation": "2026-11-21"
   },
   "depotex/admin/setup-wizard.html": {
    "a-database-that-is-already-set-up": "2026-11-13"
@@ -661,17 +666,33 @@ window.VC_NEW = {
    "being-told-the-outcome": "2026-08-04",
    "weeks-carried-over-from-per-entry-mode": "2026-08-04"
   },
+  "wiki/admin/confluence-import.html": {
+   "how-confluence-macros-are-imported": "2026-11-21"
+  },
   "wiki/admin/deployment-modes.html": {
-   "add-redis-to-a-running-installation": "2026-11-22"
+   "add-redis-to-a-running-installation": "2026-11-21"
   },
   "wiki/admin/install.html": {
    "route-the-api-to-the-server": "2026-11-20"
   },
+  "wiki/admin/upgrades.html": {
+   "new-blocks-during-an-upgrade": "2026-11-21"
+  },
+  "wiki/docs/blogs.html": {
+   "blog-posts-on-a-page": "2026-11-21"
+  },
   "wiki/docs/editor.html": {
    "columns": "2026-11-21",
+   "dates": "2026-11-21",
    "page-width": "2026-11-21",
    "sections": "2026-11-21",
    "text-colour-and-highlight": "2026-11-21"
+  },
+  "wiki/docs/import-and-export.html": {
+   "what-the-import-report-says": "2026-11-21"
+  },
+  "wiki/docs/mobile.html": {
+   "galleries-and-task-reports": "2026-11-21"
   }
  }
 };
