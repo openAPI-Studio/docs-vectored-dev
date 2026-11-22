@@ -30,7 +30,7 @@ MOVED = [
 ADMIN_NEW = [
     "index", "install-planning", "install", "helm-chart", "environment-variables", "setup-wizard", "headless-setup",
     "settings-reference", "access-overview", "security-hardening", "upgrades", "known-issues", "faq", "support",
-    "alert-tuning",
+    "alert-tuning", "ai-settings",
 ]
 
 # In docs/, listed in both sidebars.
@@ -57,7 +57,7 @@ ADMIN_GROUPS = [
                  "environment-variables"]),
     ("Set up", ["setup-wizard", "headless-setup", "licensing", "recovery"]),
     ("Configure", ["settings-reference", "access-overview", "users-and-directories", "single-sign-on", "oauth-applications", "api-tokens",
-                   "rate-limits", "storage", "email", "branding-and-banners"]),
+                   "rate-limits", "storage", "email", "branding-and-banners", "ai-settings"]),
     ("Repositories", ["spaces", "repositories", "upstreams", "repository-settings"]),
     ("Security", ["security-hardening", "quarantine", "blocklist", "integrity", "sbom", "vibe-artifacts",
                   "policies", "logging-and-audit", "security-advisories"]),

@@ -149,6 +149,7 @@ ADMIN = [
                 ["**Policies**", "Rules that block, warn or adjust actions; dry runs, compliance scans", "`policies:read`", "Pro", "[Policies](policies.html)"],
                 ["**Automation**", "Alerts, webhooks and emails on events", "`automation:read`", "Pro", "[Automation](automation.html)"],
                 ["**Plugins**", "Install, permissions, settings, limits, data and keys of plugins", "`plugins:read`", "Pro", "[Plugins](plugins.html)"],
+                ["**AI**", "Model provider accounts, models, limits and usage for AI features (Depotex has none yet)", "`ai:manage`", "Pro", "[AI settings](ai-settings.html)"],
             ]),
             H("Repositories"),
             TABLE(["Page", "What it configures", "Permission", "Tier", "Docs"], [

@@ -45,6 +45,7 @@ from content_helm import HELM
 from content_envvars import ENV_VARS
 from content_help import HELP
 from content_advisories import ADVISORIES_PAGE
+from content_ai import AI
 
 PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public release.")
 
@@ -52,6 +53,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-22", "Settings", "**Settings → AI** (Pro) connects an organisation's own model provider account (Anthropic, OpenAI, Google Gemini or Amazon Bedrock), with models, limits, a usage report and a permissions grid. Depotex has no AI features of its own yet, so leave it off. See [AI settings](ai-settings.html)."),
     ("2026-11-21", "Clustering", "A server that is refused at start (for example because its storage isn't shared) no longer stays in **Settings → Clustering** as **Left**, and the Statuses help explains Left. See [Clustering](deployment-modes.html#clustering)."),
     ("2026-11-21", "Clustering", "Redis can be added to, changed on or removed from a running installation in **Settings → Clustering → Redis**, with a connection test, so a single server can grow into a cluster. The page shows which servers use Redis and which need a restart. A second server can't join while a server runs without Redis. See [Add Redis to a running installation](deployment-modes.html#add-redis-to-a-running-installation)."),
     ("2026-11-21", "Install", "The Helm chart's MinIO setup job no longer runs out of memory on a fresh install (its memory is now set by `minio.provision.resources`). `prime-secrets.sh init` creates the namespace when it doesn't exist, and the Helm install notes show the version being deployed."),
@@ -510,7 +512,7 @@ location / {
             H("Tiers"),
             TABLE(["Tier", "Adds, for example"], [
                 ["**Standard**", "Spaces with hosted and group repositories in every format, the artifact browser, users and groups, backups, email and viewing scheduled jobs"],
-                ["**Pro**", "Proxy repositories, [tags](spaces.html#tags) and [promotion](spaces.html#promotion), clustering (several servers), the [system check](system-check.html), the audit log, [policies](policies.html), [automation](automation.html), [plugins](plugins.html), API token IP allowlists and rotation"],
+                ["**Pro**", "Proxy repositories, [AI settings](ai-settings.html), [tags](spaces.html#tags) and [promotion](spaces.html#promotion), clustering (several servers), the [system check](system-check.html), the audit log, [policies](policies.html), [automation](automation.html), [plugins](plugins.html), API token IP allowlists and rotation"],
                 ["**Enterprise**", "[Single sign-on](single-sign-on.html), [quarantine](quarantine.html), the [block list](blocklist.html), [branding](branding-and-banners.html), [vibe artifacts](vibe-artifacts.html) and managing everyone's API tokens"],
             ]),
             P("Each feature's page says which tier it needs. A feature the license doesn't cover shows what it would need instead of its settings, and its API answers `402 license_required`."),
@@ -625,4 +627,4 @@ location / {
 
 # The user guide's start page and the admin guide's own pages (guides.py says
 # which guide and folder each page is in).
-PAGES = QUICKSTART + PAGES + ADMIN + ACCESS + SETUP + HELM + ENV_VARS + HELP + ADVISORIES_PAGE
+PAGES = QUICKSTART + PAGES + ADMIN + ACCESS + SETUP + HELM + ENV_VARS + HELP + ADVISORIES_PAGE + AI

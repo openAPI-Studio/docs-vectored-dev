@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-233 screenshots. Save each one into `depotex/assets/` using the
+234 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -629,3 +629,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `support-about-dialog.png`
       ? → About: the version, build and server, with Copy details for a support request
+
+## AI settings
+
+- [ ] `ai-settings-off.png`
+      Settings → AI while AI is off: Turn on AI, the three set-up steps, and that Depotex has no AI features of its own yet
