@@ -152,6 +152,11 @@ USER_B = [
             ]),
             P("People who edit the page can switch **Show** to **Draft history** to compare snapshots of the draft the same way. See [Drafts & publishing](drafts-and-publishing.html#draft-history)."),
 
+            H("Versions written with Kee"),
+            P("When a result from [Kee](kee-editor.html) was put on a page, the next published version is marked **with Kee**: in the **Compare** and **With** pickers of the page history and in the editor's versions. The mark says only that the version holds text applied from Kee, not who used it or which words."),
+            SHOT("kee-history-mark.png", "Page history comparing version 1 with version 2, marked with Kee"),
+            P("A space's admins can also tell readers: with **Tell readers when a page holds text written with Kee** on in the space's **Settings → Kee**, such pages show \"Parts of this page were written with Kee and checked by its authors.\" above the text. See [Kee in a space](kee-data.html#kee-in-a-space)."),
+
             H("Deleted pages"),
             P("Deleting a page moves it, with the pages under it, to the space's trash, where people who can edit pages can restore it with all its versions until it is removed for good. "
               "See [Pages & the page tree](pages-and-the-page-tree.html)."),

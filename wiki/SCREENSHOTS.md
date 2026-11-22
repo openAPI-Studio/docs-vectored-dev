@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-186 screenshots. Save each one into `wiki/assets/` using the
+207 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -144,6 +144,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `page-history-and-versions-compare.png`
       Page history comparing two versions side by side, with an added and a changed block
+- [ ] `kee-history-mark.png`
+      Page history comparing version 1 with version 2, marked with Kee
 
 ## Comments
 
@@ -351,6 +353,42 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `slides-settings.png`
       Settings → Security → Slides: page editors add decks, 20 MB, the five default library hosts
 
+## Kee: AI in the Wiki
+
+- [ ] `kee-my-limits.png`
+      Profile → Kee: requests used today out of the daily limit, and when the count starts again
+- [ ] `kee-notice-too-long.png`
+      A notice in the editor's Kee panel: this is very long, with Keep original
+- [ ] `kee-notice-daily-limit.png`
+      The Ask Kee panel saying you have reached today's limit, with 0 left today under the question box
+
+## Writing with Kee
+
+- [ ] `kee-editor-menu.png`
+      A section's menu with Kee's actions: Improve writing, Shorten, Make longer, Fix spelling and grammar, More with Kee and Write a section below
+- [ ] `kee-editor-rewrite-result.png`
+      Rewrite with Kee: Changes view with added words marked, Shorter and Longer, Ask for more changes, Replace, Keep original, Try again and the model
+- [ ] `kee-editor-selection.png`
+      A selected sentence in a numbered list, with the Kee button beside it
+- [ ] `kee-editor-write-section.png`
+      Write with Kee: a new section drafted under Roll back, with Insert below, Discard and Try again
+- [ ] `kee-editor-write-page.png`
+      Write the page with Kee: what the page should say, a template, the model, and Write a draft
+- [ ] `kee-space-off-editor-menu.png`
+      A section's menu in a space where Kee is off: Kee is off in this space
+
+## Page summaries
+
+- [ ] `kee-summary.png`
+      Summary by Kee above a page: the main points, and a footer saying which version it was made for, that it was reused, and that Kee can be wrong
+
+## Ask Kee
+
+- [ ] `kee-ask-answer.png`
+      The Ask Kee panel: a question, the steps Kee took, an answer with a numbered source, and the question box with the model, where to look and requests left today
+- [ ] `kee-ask-history.png`
+      Earlier conversations in the Ask Kee panel, each with when it was asked and until when it is kept
+
 ## Setup wizard
 
 - [ ] `setup-wizard-license.png`
@@ -418,6 +456,37 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `search-engines-and-robots-settings.png`
       Settings → Security → Search engines: the three choices and what robots.txt serves now
+
+## Set up Kee
+
+- [ ] `kee-settings-off.png`
+      Settings → Kee while Kee is off: Turn on Kee, the three set-up steps, what people get once it is on, and what is sent to the provider
+
+## Providers & models
+
+- [ ] `kee-settings-providers.png`
+      Providers and models: each provider with its status, and the models table with the default and the fallback model
+- [ ] `kee-settings-add-provider.png`
+      Connect a provider: the four providers, the name, the API key and a passed connection test
+- [ ] `kee-settings-add-model.png`
+      Add a model: the provider, a model picked from the provider's list, the name people see, the limits and the prices
+
+## Features & permissions
+
+- [ ] `kee-settings-features.png`
+      Features and access: the three feature switches, and the Kee permissions grid with roles and groups
+
+## Limits & usage
+
+- [ ] `kee-settings-limits.png`
+      Limits and usage: the daily and per-minute limits, the monthly budget and what happens when it is used up, and the usage report by feature
+
+## Data handling & privacy
+
+- [ ] `kee-settings-data.png`
+      Data handling: what leaves the server for each feature and when, usage record retention, and whether usage reports name people
+- [ ] `kee-space-settings.png`
+      Space settings → Kee: Kee works in this space, and Tell readers when a page holds text written with Kee
 
 ## Users &amp; directories
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set up Kee — Wiki Admin Guide</title>
+  <meta name="description" content="Turn Kee on, connect a provider, choose models, switch features and decide who uses Kee: the Settings → Kee page">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="admin">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+      <h1 class="vc-h1">Set up Kee</h1>
+      <p class="vc-lede">Turn Kee on, connect a provider, choose models, switch features and decide who uses Kee: the Settings → Kee page</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Kee is the Wiki's AI: writing help in the editor, page summaries and Ask Kee. It runs on your organisation's own account with a model provider: you bring the key and pay the provider directly. Nothing goes to Vectored. Kee is <strong class="text-text">off</strong> until an administrator turns it on, and needs a <strong class="text-text">Pro</strong> licence.</p>
+      <h2 id="where-it-is" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Where it is</h2>
+      <p class="text-muted mb-4"><strong class="text-text">Settings → Kee</strong> (marked <strong class="text-text">New</strong>), for people who hold <strong class="text-text">Manage Kee settings</strong> (<span class="font-mono text-sm break-words">ai:manage</span>): super admins, and organization admins by default. The page has a switch for Kee at the top right and four tabs: <strong class="text-text">Providers and models</strong>, <strong class="text-text">Features and access</strong>, <strong class="text-text">Limits and usage</strong> and <strong class="text-text">Data handling</strong>.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-settings-off.png" alt="Settings → Kee while Kee is off: Turn on Kee, the three set-up steps, what people get once it is on, and what is sent to the provider" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-settings-off.png</p>
+          <p class="text-xs text-muted max-w-md">Settings → Kee while Kee is off: Turn on Kee, the three set-up steps, what people get once it is on, and what is sent to the provider</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Settings → Kee while Kee is off: Turn on Kee, the three set-up steps, what people get once it is on, and what is sent to the provider</figcaption>
+      </figure>
+      <h2 id="set-up-in-three-steps" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Set up in three steps</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Turn Kee on</span> &mdash; <strong class="text-text">Turn on Kee</strong>, or the switch at the top right. Nothing shows to anyone yet: Kee stays hidden from everyone else until a provider works and a default model is chosen.</li><li class="pl-2"><span class="text-text font-medium">Connect a provider and add models</span> &mdash; On <strong class="text-text">Providers and models</strong>: connect Anthropic, OpenAI, Google Gemini or Amazon Bedrock with your organisation's key, test it, save it, then add the models people may use and make one the default. See <a href="kee-providers.html" class="text-cta hover:underline">Providers and models</a>.</li><li class="pl-2"><span class="text-text font-medium">Pick features and who gets them</span> &mdash; On <strong class="text-text">Features and access</strong>: switch features on or off and set who may use Kee. On <strong class="text-text">Limits and usage</strong>: a daily limit per person and a monthly budget. See <a href="kee-access.html" class="text-cta hover:underline">Features and permissions</a> and <a href="kee-limits.html" class="text-cta hover:underline">Limits and usage</a>.</li></ol>
+      <p class="text-muted mb-4">Until a provider has passed its connection test and a default model is set, the page says <strong class="text-text">Kee is on, but nobody else sees it yet</strong>. Once both are done, people with the <strong class="text-text">Use Kee</strong> permission see Kee's buttons at once, on every server.</p>
+      <h2 id="turning-kee-off" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Turning Kee off</h2>
+      <p class="text-muted mb-4">The switch at the top right asks first, then turns Kee off everywhere: no Kee button, menu or panel shows to anyone and no request is sent. Providers, models and settings are kept, so turning it back on restores everything. To keep Kee away from one space only, its admins turn it off there: see <a href="kee-data.html#kee-in-a-space" class="text-cta hover:underline">Kee in a space</a>.</p>
+      <h2 id="what-it-needs" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. What it needs</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>What</th><th>Details</th></tr></thead><tbody><tr><td>Licence</td><td><strong class="text-text">Pro</strong> or higher. A fallback model at another provider than the default's, and the usage export by person, need <strong class="text-text">Enterprise</strong>. See <a href="licensing.html" class="text-cta hover:underline">Licensing</a></td></tr><tr><td>A provider account</td><td>Anthropic, OpenAI, Google Gemini or Amazon Bedrock, with access to at least one chat model</td></tr><tr><td>Outbound HTTPS from every server</td><td>To the provider's API (see <a href="kee-providers.html#network" class="text-cta hover:underline">Network</a>)</td></tr><tr><td>A reverse proxy that doesn't hold answers back</td><td>Kee's answers arrive word by word; see <a href="install.html#kee-answers-through-the-proxy" class="text-cta hover:underline">Install the Wiki</a></td></tr></tbody></table></div>
+      <h2 id="kee-s-admin-pages" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Kee's admin pages</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>Page</th><th>What it covers</th></tr></thead><tbody><tr><td><a href="kee-providers.html" class="text-cta hover:underline">Providers and models</a></td><td>Connecting each provider, testing, the models people may use, the default and the fallback</td></tr><tr><td><a href="kee-access.html" class="text-cta hover:underline">Features and permissions</a></td><td>Feature switches and the Kee permissions grid</td></tr><tr><td><a href="kee-limits.html" class="text-cta hover:underline">Limits and usage</a></td><td>Daily and per-minute limits, the monthly budget, the usage report and its CSV</td></tr><tr><td><a href="kee-data.html" class="text-cta hover:underline">Data handling</a></td><td>What is sent to the provider and when, what is kept on the server, Kee in a space, personal data</td></tr><tr><td><a href="../docs/kee-tools.html" class="text-cta hover:underline">What Kee can read</a></td><td>The tools Ask Kee uses</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">For people using Kee: <a href="../docs/kee.html" class="text-cta hover:underline">Kee: AI in the Wiki</a>.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

@@ -29,11 +29,12 @@ ADMIN = [
     "personal-data",
     "system-check", "alert-tuning", "monitoring", "backups", "upgrades", "scheduler", "alerts-admin",
     "automation", "plugins",
+    "kee-setup", "kee-providers", "kee-access", "kee-limits", "kee-data",
     "known-issues", "faq", "support",
 ]
 
 # In docs/, listed in both sidebars.
-SHARED = ["changelog", "api-tokens", "oauth-applications", "spaces", "events"]
+SHARED = ["changelog", "api-tokens", "oauth-applications", "spaces", "events", "kee-tools"]
 
 USER_GROUPS = [
     ("Start here", ["getting-started", "home-and-navigation", "search", "profile-and-notifications", "alerts",
@@ -42,6 +43,7 @@ USER_GROUPS = [
                         "page-history-and-versions", "comments", "editing-together", "copies-and-templates",
                         "attachments-and-media", "files-and-attachments", "slides", "lists-of-pages", "tasks", "link-cards",
                         "labels-and-feedback", "import-and-export", "mirror-spaces", "blogs", "whiteboards"]),
+    ("Kee (AI)", ["kee", "kee-editor", "kee-summaries", "ask-kee", "kee-tools"]),
     ("Q&A", ["qna"]),
     ("Calendar & analytics", ["calendar", "analytics"]),
     ("Mobile", ["mobile"]),
@@ -55,6 +57,7 @@ ADMIN_GROUPS = [
     ("Configure", ["settings-reference", "access-overview", "users-and-directories", "single-sign-on",
                    "oauth-applications", "api-tokens", "rate-limits", "storage", "email", "branding-and-banners"]),
     ("Spaces & content", ["spaces", "analytics-settings", "calendar-feeds", "confluence-import", "template-library", "qna-moderation"]),
+    ("Kee (AI)", ["kee-setup", "kee-providers", "kee-access", "kee-limits", "kee-data", "kee-tools"]),
     ("Security", ["security-hardening", "anonymous-access", "search-engines-and-robots", "policies",
                   "logging-and-audit", "personal-data"]),
     ("Operate", ["system-check", "alert-tuning", "monitoring", "backups", "upgrades", "scheduler", "alerts-admin",

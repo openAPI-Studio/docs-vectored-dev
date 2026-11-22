@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask Kee — Wiki Docs</title>
+  <meta name="description" content="Ask a question and get an answer from the pages you can read, with its sources, earlier conversations and feedback">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h1 class="vc-h1">Ask Kee</h1>
+      <p class="vc-lede">Ask a question and get an answer from the pages you can read, with its sources, earlier conversations and feedback</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4"><strong class="text-text">Ask Kee</strong>, in the top bar of every screen, opens a panel where you ask a question in your own words. Kee looks through the pages you can read, opens the ones that fit, and answers with numbered links to its sources.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-ask-answer.png" alt="The Ask Kee panel: a question, the steps Kee took, an answer with a numbered source, and the question box with the model, where to look and requests left today" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-ask-answer.png</p>
+          <p class="text-xs text-muted max-w-md">The Ask Kee panel: a question, the steps Kee took, an answer with a numbered source, and the question box with the model, where to look and requests left today</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Ask Kee panel: a question, the steps Kee took, an answer with a numbered source, and the question box with the model, where to look and requests left today</figcaption>
+      </figure>
+      <h2 id="ask-a-question" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Ask a question</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open Ask Kee</span> &mdash; From the top bar. On a phone it opens as a sheet from the bottom.</li><li class="pl-2"><span class="text-text font-medium">Choose where to look</span> &mdash; <strong class="text-text">This page only</strong> or <strong class="text-text">This space</strong> when you opened it on a page or in a space, or <strong class="text-text">All my spaces</strong>. When you are on a page, <strong class="text-text">On this page</strong> shows that Kee knows which page you are reading; remove it to ask without it.</li><li class="pl-2"><span class="text-text font-medium">Type your question and send it</span> &mdash; Kee shows each step as it works: what it searched for, how many pages it found, and which pages it read.</li><li class="pl-2"><span class="text-text font-medium">Read the answer</span> &mdash; Each <strong class="text-text">[1]</strong>, <strong class="text-text">[2]</strong> in the answer links to a source, listed under <strong class="text-text">Sources</strong>. Open them to check what the page says.</li></ol>
+      <p class="text-muted mb-4">Ask follow-up questions in the same conversation: Kee remembers what was said. <strong class="text-text">New conversation</strong> (the pencil at the top) starts again.</p>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Copy the answer</strong> puts the answer on your clipboard.</li><li><strong class="text-text">Open the editor</strong> appears when you may edit the page you are on. Kee answers questions; it doesn't change pages. To change a page, open the editor and use <a href="kee-editor.html" class="text-cta hover:underline">Writing with Kee</a>.</li><li>With more than one model, the picker under the question box chooses which one answers.</li><li><strong class="text-text">Stop</strong> (or <strong class="text-text">Esc</strong>) ends an answer at once; what was written so far stays in the conversation.</li></ul>
+      <h2 id="good-to-know" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Good to know</h2>
+      <p class="text-muted mb-4">Some answers carry a note under <strong class="text-text">Good to know</strong>: a long page was read in parts, the conversation is long and its earliest messages were left out, or Kee read as much as one answer may (or took as many steps as it may) and something may be missing. Ask a narrower question, or open the sources yourself.</p>
+      <h2 id="what-kee-can-read" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. What Kee can read</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Pages you can read, with your own access: never a page you can't open, a page under a lock you are not on, or a draft you couldn't see.</li><li>Comments and labels on those pages, the page tree, earlier versions, and templates (templates only where you can edit pages).</li><li>Nothing of a space whose admins turned Kee off.</li><li>Not yet: blog posts, Q&amp;A, attachments and files.</li></ul>
+      <p class="text-muted mb-4">The full list is in <a href="kee-tools.html" class="text-cta hover:underline">What Kee can read</a>.</p>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">Kee finds pages by their <strong class="text-text">titles</strong> for now, not by the words inside them, and it matches whole words: a question about "certificates" may not find a page titled "Certificate rotation runbook". If Kee says it found nothing, ask again with words from the page's title, or ask on the page itself with <strong class="text-text">This page only</strong>.</p></div>
+      <h2 id="earlier-conversations" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Earlier conversations</h2>
+      <p class="text-muted mb-4">The clock at the top of the panel lists your earlier conversations, newest first, each with the date until which it is kept. Open one to read or continue it, or delete it. Only you see your conversations.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-ask-history.png" alt="Earlier conversations in the Ask Kee panel, each with when it was asked and until when it is kept" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-ask-history.png</p>
+          <p class="text-xs text-muted max-w-md">Earlier conversations in the Ask Kee panel, each with when it was asked and until when it is kept</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Earlier conversations in the Ask Kee panel, each with when it was asked and until when it is kept</figcaption>
+      </figure>
+      <p class="text-muted mb-4">Conversations are kept for 30 days after their last message unless your administrator chose another period, then deleted. A conversation holds up to 200 messages; after that Kee asks you to start a new one.</p>
+      <h2 id="feedback" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Feedback</h2>
+      <p class="text-muted mb-4">Under each answer, <strong class="text-text">Good answer</strong> and <strong class="text-text">Bad answer</strong> tell your administrators how Kee is doing. For a bad answer you can say what was wrong (wrong or made up, out of date, missed the point, too long, other) and add a note. Feedback stays in this Wiki: it is never sent to the model provider.</p>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Limits</h2>
+      <p class="text-muted mb-4">Each question is one request against your <a href="kee.html#your-daily-limit" class="text-cta hover:underline">daily limit</a>, however many pages Kee reads for it. The panel shows how many requests you have left today.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
