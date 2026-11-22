@@ -380,7 +380,10 @@ location / {
             H("Bootstrap"),
             TABLE(T, [
                 ["`CONFIG_ENCRYPTION_KEY`", "none, **required**", "Encrypts the bootstrap file and every credential stored in the database. Required on every start; the same on every server; keep it with your backups"],
-                ["`DATABASE_URL`", "none", "PostgreSQL URL. Needed on a server's first start (and for setup); then saved, encrypted, in the bootstrap file. Add `pool_max_conns=N` and `sslmode=verify-full` as needed"],
+                ["`DATABASE_URL`", "none", "PostgreSQL URL. Needed on a server's first start (and for setup); then saved, encrypted, in the bootstrap file. When set on a later start it wins over the saved one, as long as it reaches the same installation: that is how a [changed password](database-credentials.html) is rolled out. Add `pool_max_conns=N` and `sslmode=verify-full` as needed"],
+                ["`DATABASE_URL_FILE`", "none", "A file holding the database URL (a mounted secret), instead of `DATABASE_URL`. Read again while the server runs, so a password a secret manager changes needs no restart"],
+                ["`DATABASE_URL_STANDBY`, `DATABASE_URL_STANDBY_FILE`", "none", "A second login for the same database. The server moves to it when the first is refused; see [Database password](database-credentials.html#two-logins)"],
+                ["`DATABASE_OWNER_ROLE`", "none", "The role every connection acts as, when the logins don't own the tables themselves (two logins, one owner). Set it from the first start, the same on every server"],
                 ["`BOOTSTRAP_FILE_PATH`", "`./data/bootstrap.enc`", "Where the server keeps its encrypted bootstrap file. Per server; keep it on persistent disk"],
                 ["`PORT`", "`8080`", "The server's HTTP port"],
                 ["`BIND_ADDR`", "`127.0.0.1`", "Address the server listens on"],
@@ -665,7 +668,7 @@ admin:
             H("What it checks"),
             TABLE(["Check", "Common causes"], [
                 ["Bootstrap file", "The server was started with a different `CONFIG_ENCRYPTION_KEY`, or the file is damaged"],
-                ["Database connection", "PostgreSQL is down, unreachable, or its credentials changed"],
+                ["Database connection", "PostgreSQL is down or unreachable, every credential the server holds is refused (the password changed: put the new one in `DATABASE_URL` and restart, see [Database password](database-credentials.html)), or the URL points at another installation's database"],
                 ["Database schema", "An upgrade's migration failed partway"],
                 ["Stored configuration", "Wrong encryption key, or the wrong database"],
                 ["Redis", "Redis is down or moved"],
@@ -694,6 +697,7 @@ admin:
                 ["**Application → Licensing**", "The licence, its use against limits, and updating it", "`licenses:admin`", "All", "[Licensing](licensing.html)"],
                 ["**Application → Email**", "SMTP or Amazon SES, the sender, a test message", "`email:manage`", "All", "[Email](email.html)"],
                 ["**Clustering**", "Servers, their health, leader, Redis state", "Super admins", "All (a cluster needs Pro)", "[Single server & cluster](deployment-modes.html)"],
+                ["**Database**", "The PostgreSQL logins the servers sign in with; rotate a password now or on a schedule", "`database:admin`", "All", "[Database password](database-credentials.html)"],
                 ["**Storage**", "Where images, videos and platform files are stored", "`storage:admin`", "All", "[Storage](storage.html)"],
                 ["**Backups**", "Backups, targets, encryption, restores", "`backups:read` / `backups:write`", "All", "[Backups](backups.html)"],
             ]),

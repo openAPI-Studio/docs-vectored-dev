@@ -12,10 +12,12 @@ from content_user_c import USER_C
 from content_admin_wiki import ADMIN_WIKI
 from content_platform_config import PLATFORM_CONFIG
 from content_platform_operate import PLATFORM_OPERATE
+from content_database import DATABASE
 
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-22", "Database", "The database password can be changed without downtime: `DATABASE_URL` now wins over the saved copy at start, servers fail over to a second login (`DATABASE_URL_STANDBY`) when one is refused, and super admins rotate passwords now or on a schedule under **Settings → Database**. See [Database password](database-credentials.html)."),
     ("2026-11-22", "Pages", "Slides: put an HTML deck (from an AI tool, reveal.js or Marp) or a PDF deck in a page, step through it with the Wiki's controls or present it full screen; HTML decks run in a sandbox that loads libraries only from the hosts in the new Settings → Security → Slides, which also sets who adds decks (page editors by default) and the largest deck. See [Slides](slides.html)."),
     ("2026-11-21", "Upgrades", "New blocks wait for the whole installation: the \"/\" menu and imports offer them once every server runs the new version, and an editor tab whose web app is older than the servers says **A newer version of the wiki is running** and asks to reload. Upgrade the web app first; see [Upgrades](upgrades.html#new-blocks-during-an-upgrade)."),
     ("2026-11-21", "Imports", "Confluence task reports become task reports, Widget connector and iframe macros become videos (YouTube, Vimeo) or link cards, and smart links shown as cards become link cards; action items keep their assignee and due date."),
@@ -103,4 +105,4 @@ CHANGELOG_PAGE = [
         ])),
 ]
 
-PAGES = USER_A + USER_B + USER_C + ADMIN_WIKI + PLATFORM_CONFIG + PLATFORM_OPERATE + CHANGELOG_PAGE
+PAGES = USER_A + USER_B + USER_C + ADMIN_WIKI + PLATFORM_CONFIG + PLATFORM_OPERATE + DATABASE + CHANGELOG_PAGE

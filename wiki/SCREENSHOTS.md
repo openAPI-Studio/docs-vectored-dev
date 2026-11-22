@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-186 screenshots. Save each one into `wiki/assets/` using the
+188 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -554,6 +554,13 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `plugins-list.png`
       Settings → Plugins: plugins that need attention, the list by status, the upload area and the side column
+
+## Database password
+
+- [ ] `database-settings.png`
+      Settings → Database: the connection, two stored logins with Rotate now, the rotation schedule and the servers
+- [ ] `database-rotate.png`
+      The Rotate now dialog names the login that gets a new password
 
 ## Overview
 

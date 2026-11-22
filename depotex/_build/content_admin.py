@@ -134,6 +134,7 @@ ADMIN = [
                 ["**Application → Licensing**", "The license, its use against limits, and updating it", "`licenses:admin`", "All", "[Licensing](licensing.html)"],
                 ["**Application → Email**", "SMTP or Amazon SES, the sender, a test message", "`email:manage`", "All", "[Email](email.html)"],
                 ["**Clustering**", "Servers, their health, leader, Redis state; add or change Redis", "Super admins", "All (a cluster needs Pro)", "[Single Node & Cluster](deployment-modes.html#clustering)"],
+                ["**Database**", "The PostgreSQL logins the servers sign in with; rotate a password now or on a schedule", "`database:admin`", "All", "[Database password](database-credentials.html)"],
                 ["**Storage**", "Where artifacts and platform files are stored; moving them", "`storage:admin`", "All", "[Storage](storage.html)"],
                 ["**Backups**", "Backups, targets, encryption, restores and test restores", "`backups:read` / `backups:write`", "All (test restores Enterprise)", "[Backups](backups.html)"],
             ]),

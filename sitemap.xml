@@ -272,6 +272,7 @@
   <url><loc>https://docs.vectored.dev/depotex/admin/settings-reference.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/admin/setup-wizard.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/admin/single-sign-on.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/depotex/admin/database-credentials.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/admin/storage.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/admin/support.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/depotex/admin/system-check.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
@@ -352,6 +353,7 @@
   <url><loc>https://docs.vectored.dev/wiki/admin/settings-reference.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/setup-wizard.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/single-sign-on.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/database-credentials.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/storage.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/support.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/system-check.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>

@@ -23,6 +23,7 @@ from content_spaces import SPACES
 from content_groups import GROUPS
 from content_upstreams import UPSTREAMS
 from content_storage import STORAGE
+from content_database import DATABASE
 from content_backups import BACKUPS
 from content_integrity import INTEGRITY
 from content_quarantine import QUARANTINE
@@ -52,6 +53,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-22", "Database", "The database password can be changed without downtime: `DATABASE_URL` now wins over the saved copy at start, servers fail over to a second login (`DATABASE_URL_STANDBY`) when one is refused, and super admins rotate passwords now or on a schedule under **Settings → Database**. See [Database password](database-credentials.html)."),
     ("2026-11-21", "Clustering", "A server that is refused at start (for example because its storage isn't shared) no longer stays in **Settings → Clustering** as **Left**, and the Statuses help explains Left. See [Clustering](deployment-modes.html#clustering)."),
     ("2026-11-21", "Clustering", "Redis can be added to, changed on or removed from a running installation in **Settings → Clustering → Redis**, with a connection test, so a single server can grow into a cluster. The page shows which servers use Redis and which need a restart. A second server can't join while a server runs without Redis. See [Add Redis to a running installation](deployment-modes.html#add-redis-to-a-running-installation)."),
     ("2026-11-21", "Install", "The Helm chart's MinIO setup job no longer runs out of memory on a fresh install (its memory is now set by `minio.provision.resources`). `prime-secrets.sh init` creates the namespace when it doesn't exist, and the Helm install notes show the version being deployed."),
@@ -340,7 +342,7 @@ location / {
             H("What it checks"),
             TABLE(["Check", "Common causes"], [
                 ["Bootstrap file", "The server was started with a different CONFIG_ENCRYPTION_KEY, or the file is damaged"],
-                ["Database connection", "PostgreSQL is down, unreachable, or its credentials changed"],
+                ["Database connection", "PostgreSQL is down or unreachable, every credential the server holds is refused (the password changed: put the new one in `DATABASE_URL` and restart, see [Database password](database-credentials.html)), or the URL points at another installation's database"],
                 ["Database schema", "An upgrade's migration failed partway"],
                 ["Stored configuration", "Wrong encryption key, or the wrong database"],
                 ["Redis", "Redis is down or moved"],
@@ -435,6 +437,7 @@ location / {
     *UPSTREAMS,
     *REPO_SETTINGS,
     *STORAGE,
+    *DATABASE,
     *BACKUPS,
     *INTEGRITY,
     *QUARANTINE,

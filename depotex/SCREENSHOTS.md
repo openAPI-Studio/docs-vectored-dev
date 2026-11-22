@@ -1,6 +1,6 @@
 # Depotex docs — screenshots needed
 
-233 screenshots. Save each one into `depotex/assets/` using the
+235 screenshots. Save each one into `depotex/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -285,6 +285,13 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `storage-settings.png`
       Settings → Storage: the storage in use with its status and Test connection, then the backend cards, location, credentials and upload limits
+
+## Database password
+
+- [ ] `database-settings.png`
+      Settings → Database: the connection, two stored logins with Rotate now, the rotation schedule and the servers
+- [ ] `database-rotate.png`
+      The Rotate now dialog names the login that gets a new password
 
 ## Backups
 

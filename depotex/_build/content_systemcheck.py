@@ -25,6 +25,8 @@ SYSTEM_CHECK = [
                 ["ConanCenter address", "A [Conan proxy](conan.html) still uses ConanCenter's frozen address `center.conan.io` (the first ten are named, as space/repository): switch its upstream to `https://center2.conan.io`", ""],
                 ["Backup target (each server)", "Backups are kept in the installation's own storage (see [Backups](backups.html#backup-target))", "The backup target can't be reached, its marker is wrong, or a test file can't be written and read back"],
                 ["Test restores", "The last test restore failed, or none passed in 15 days (Enterprise)", ""],
+                ["Database credentials (each server)", "A credential the server holds is refused or points at another installation's database, or its environment holds an out-of-date password (see [Database password](database-credentials.html))", ""],
+                ["Database password rotation", "The last rotation was given up, or the schedule is more than a day overdue", ""],
                 ["Shared storage (each server)", "Not checked yet", "The server's storage doesn't hold this installation's storage ID: not the cluster's shared storage, or another installation's (see [Storage](storage.html))"],
                 ["Disk space (each server)", "Less than 15 % free where logs are written (changeable in [Alert tuning](alert-tuning.html))", "Less than 5 % free"],
                 ["Mail server", "Slow", "Can't connect, secure the connection or sign in (nothing is sent)"],

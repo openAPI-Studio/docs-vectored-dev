@@ -28,7 +28,10 @@ ENV_VARS = [
             H("Bootstrap"),
             TABLE(T, [
                 ["`CONFIG_ENCRYPTION_KEY`", "none, **required**", "Encrypts the bootstrap file and every credential stored in the database. Required on every start. Use a long random value (`openssl rand -base64 32`), the same on every server, and keep it with your backups: without it nothing can be read"],
-                ["`DATABASE_URL`", "none", "PostgreSQL URL. Needed on a server's first start (and for setup); then saved, encrypted, in the bootstrap file. Add `pool_max_conns=N` for the pool size and `sslmode=verify-full` for TLS"],
+                ["`DATABASE_URL`", "none", "PostgreSQL URL. Needed on a server's first start (and for setup); then saved, encrypted, in the bootstrap file. When set on a later start it wins over the saved one, as long as it reaches the same installation: that is how a [changed password](database-credentials.html) is rolled out. Add `pool_max_conns=N` for the pool size and `sslmode=verify-full` for TLS"],
+                ["`DATABASE_URL_FILE`", "none", "A file holding the database URL (a mounted secret), instead of `DATABASE_URL`. Read again while the server runs, so a password a secret manager changes needs no restart"],
+                ["`DATABASE_URL_STANDBY`, `DATABASE_URL_STANDBY_FILE`", "none", "A second login for the same database. The server moves to it when the first is refused; see [Database password](database-credentials.html#two-logins)"],
+                ["`DATABASE_OWNER_ROLE`", "none", "The role every connection acts as, when the logins don't own the tables themselves (two logins, one owner). Set it from the first start, the same on every server"],
                 ["`BOOTSTRAP_FILE_PATH`", "`./data/bootstrap.enc` (`/app/data/bootstrap.enc` in the image)", "Where the server keeps its encrypted bootstrap file (database URL and identity). Per server; keep it on persistent disk"],
                 ["`PORT`", "`8080`", "The server's HTTP port"],
                 ["`BIND_ADDR`", "`127.0.0.1` (`0.0.0.0` in the image)", "Address the server listens on. The default suits a web app and proxy on the same host"],
