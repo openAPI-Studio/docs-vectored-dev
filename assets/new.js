@@ -72,11 +72,13 @@ window.VC_NEW = {
   "apistudio/docs/version-control.html": "2026-08-23",
   "apistudio/docs/websocket.html": "2026-06-21",
   "depotex/admin/access-overview.html": "2026-11-02",
+  "depotex/admin/ai-settings.html": "2026-11-22",
   "depotex/admin/alert-tuning.html": "2026-11-06",
   "depotex/admin/alerts-admin.html": "2026-11-02",
   "depotex/admin/automation.html": "2026-11-02",
   "depotex/admin/backups.html": "2026-11-02",
   "depotex/admin/branding-and-banners.html": "2026-11-02",
+  "depotex/admin/database-credentials.html": "2026-11-22",
   "depotex/admin/deployment-modes.html": "2026-11-02",
   "depotex/admin/email.html": "2026-11-02",
   "depotex/admin/environment-variables.html": "2026-11-02",
@@ -251,6 +253,7 @@ window.VC_NEW = {
   "wiki/admin/branding-and-banners.html": "2026-11-19",
   "wiki/admin/calendar-feeds.html": "2026-11-19",
   "wiki/admin/confluence-import.html": "2026-11-19",
+  "wiki/admin/database-credentials.html": "2026-11-22",
   "wiki/admin/deployment-modes.html": "2026-11-19",
   "wiki/admin/email.html": "2026-11-19",
   "wiki/admin/environment-variables.html": "2026-11-19",
@@ -259,6 +262,11 @@ window.VC_NEW = {
   "wiki/admin/index.html": "2026-11-19",
   "wiki/admin/install-planning.html": "2026-11-19",
   "wiki/admin/install.html": "2026-11-19",
+  "wiki/admin/kee-access.html": "2026-11-22",
+  "wiki/admin/kee-data.html": "2026-11-22",
+  "wiki/admin/kee-limits.html": "2026-11-22",
+  "wiki/admin/kee-providers.html": "2026-11-22",
+  "wiki/admin/kee-setup.html": "2026-11-22",
   "wiki/admin/known-issues.html": "2026-11-19",
   "wiki/admin/licensing.html": "2026-11-19",
   "wiki/admin/logging-and-audit.html": "2026-11-19",
@@ -285,6 +293,7 @@ window.VC_NEW = {
   "wiki/docs/alerts.html": "2026-11-19",
   "wiki/docs/analytics.html": "2026-11-19",
   "wiki/docs/api-tokens.html": "2026-11-19",
+  "wiki/docs/ask-kee.html": "2026-11-22",
   "wiki/docs/attachments-and-media.html": "2026-11-19",
   "wiki/docs/blogs.html": "2026-11-19",
   "wiki/docs/calendar.html": "2026-11-19",
@@ -299,6 +308,10 @@ window.VC_NEW = {
   "wiki/docs/getting-started.html": "2026-11-19",
   "wiki/docs/home-and-navigation.html": "2026-11-19",
   "wiki/docs/import-and-export.html": "2026-11-19",
+  "wiki/docs/kee-editor.html": "2026-11-22",
+  "wiki/docs/kee-summaries.html": "2026-11-22",
+  "wiki/docs/kee-tools.html": "2026-11-22",
+  "wiki/docs/kee.html": "2026-11-22",
   "wiki/docs/labels-and-feedback.html": "2026-11-19",
   "wiki/docs/link-cards.html": "2026-11-21",
   "wiki/docs/lists-of-pages.html": "2026-11-21",
@@ -666,6 +679,9 @@ window.VC_NEW = {
    "being-told-the-outcome": "2026-08-04",
    "weeks-carried-over-from-per-entry-mode": "2026-08-04"
   },
+  "wiki/admin/access-overview.html": {
+   "kee": "2026-11-22"
+  },
   "wiki/admin/confluence-import.html": {
    "how-confluence-macros-are-imported": "2026-11-21"
   },
@@ -673,7 +689,14 @@ window.VC_NEW = {
    "add-redis-to-a-running-installation": "2026-11-21"
   },
   "wiki/admin/install.html": {
+   "kee-answers-through-the-proxy": "2026-11-22",
    "route-the-api-to-the-server": "2026-11-20"
+  },
+  "wiki/admin/known-issues.html": {
+   "kee": "2026-11-22"
+  },
+  "wiki/admin/scheduler.html": {
+   "kee-jobs": "2026-11-22"
   },
   "wiki/admin/upgrades.html": {
    "new-blocks-during-an-upgrade": "2026-11-21"
@@ -688,11 +711,17 @@ window.VC_NEW = {
    "sections": "2026-11-21",
    "text-colour-and-highlight": "2026-11-21"
   },
+  "wiki/docs/events.html": {
+   "kee": "2026-11-22"
+  },
   "wiki/docs/import-and-export.html": {
    "what-the-import-report-says": "2026-11-21"
   },
   "wiki/docs/mobile.html": {
    "galleries-and-task-reports": "2026-11-21"
+  },
+  "wiki/docs/page-history-and-versions.html": {
+   "versions-written-with-kee": "2026-11-22"
   }
  }
 };
