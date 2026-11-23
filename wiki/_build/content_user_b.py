@@ -389,8 +389,18 @@ USER_B = [
                 ("Under **Labels**, type a label and press Enter, or pick a suggestion. It is saved at once.", "page-edit.labels"),
                 "To take a label off, select the **×** next to it.",
             ], howto="label-a-page", task="Add a label to a page or remove one"),
+            STEPS([
+                "Select **Labels** in the left navigation.",
+                "Type the first letters under **Find a label**, then select the label.",
+                "The label's page lists the spaces you can see with it, then its published pages with their space. **Filter by title** narrows the pages; **More pages** loads more.",
+            ], howto="find-pages-with-a-label", task="Find every page and space that carries a label"),
             SHOT("labels-and-feedback-label-page.png", "A label's page: the spaces with the label, then published pages with it, with their space"),
             P("Administrators who manage labels see every label there with how many pages and spaces carry it, and can **Rename** one on every page and space (renaming to a label that exists merges the two) or **Remove** it from every page and space."),
+            STEPS([
+                "Select **Labels** in the left navigation. Administrators who manage labels see every label with how many pages and spaces carry it.",
+                "Select **Rename** beside a label, type the **New name** and confirm. Renaming to a label that exists merges the two.",
+                "Or select **Remove** and confirm: the label comes off every page and space.",
+            ], howto="rename-or-remove-a-label", task="Rename, merge or remove a label everywhere in the Wiki"),
 
             H("Was this page helpful?"),
             P("Under a published page, signed-in readers answer **Was this page helpful?** with **Yes** or **No**, and can change or take back their answer."),
@@ -424,7 +434,7 @@ USER_B = [
             SHOT("export-blog-post-pdf.png", "The first page of a blog post downloaded as PDF: title, date and authors, cover image"),
 
             H("Import Markdown"),
-            P("A space's admins import Markdown on the space's **Import** tab: one `.md` file, or a `.zip` of a folder of `.md` files with their images."),
+            P("A space's admins import Markdown on the **Import** tab of the space's settings: one `.md` file, or a `.zip` of a folder of `.md` files with their images."),
             UL([
                 "Each folder becomes a page holding its files' pages; a folder's `index.md`, `README.md` or `_index.md` is that page's text.",
                 "A file's title comes from its front matter `title`, else its first top-level heading, else its name. A leading number (`02-setup.md`) sets the order and is left out of the title.",
@@ -433,6 +443,13 @@ USER_B = [
             ]),
             P("The upload is checked first, and nothing is written until you start the import from its report. Each page gets one version."),
             SHOT("import-and-export-report.png", "The Import tab's report for a checked export, before the import starts"),
+            STEPS([
+                ("Open the space and select **Space settings** in its sidebar.", "space-rail.settings"),
+                "Open the **Import** tab and select **Choose file**: a Confluence space export (`.zip`), one `.md` file, or a `.zip` of Markdown files.",
+                "Wait while it uploads and is checked. Nothing is written to the space yet.",
+                "Read the report. Choose **Where the pages go** (the top level, or under a page with **Change**), and for a Confluence export the **Versions** (all or the latest only) and where blog posts go.",
+                "Select **Import N pages**. **Cancel import** stops it after the page it is writing; **Discard this export** drops a checked upload. **Earlier imports** lists what was imported before.",
+            ], howto="import-pages-into-a-space", task="Import a Confluence space export or Markdown files into a space"),
 
             H("Import from Confluence"),
             P("A Confluence space export (Space tools → Export, XML, full export, as a `.zip`) is imported the same way, with its page tree, versions, comments, labels, images and videos, and people matched by email. "
@@ -495,11 +512,22 @@ USER_B = [
                 "**Blogs you follow** lists the blogs you follow, each a link to its Blog tab.",
                 "**Feed** gives your personal feed address for every blog you can read (see [Following in a feed reader](#following-in-a-feed-reader)).",
             ]),
+            STEPS([
+                "Choose **Blogs** in the left menu.",
+                "Pick **Following** for the blogs you follow, or **All spaces** for every blog you can read.",
+                "Pick a blog under **Space** to see only its posts.",
+                "Choose **Load more** to see older posts, or a post to read it.",
+            ], howto="read-posts-from-every-blog", task="Read the newest posts of every blog you can read"),
             SHOT("blog-company.png", "The company Blogs page: Following and All spaces, the space filter, posts with their comments and likes, and the blogs you follow"),
             P("A space's posts appear here only while its admins keep **Show posts in the company Blogs page** on. While [anonymous access](anonymous-access.html) is on, visitors who aren't signed in see the posts of public spaces, without the tabs or a feed address."),
 
             H("Latest posts on your dashboard"),
             P("Your **Dashboard** shows **Latest posts**: the five newest posts from the blogs you follow and from the spaces you are a member of, with **All blogs** to open the Blogs page."),
+            STEPS([
+                "Choose **Dashboard** in the left menu.",
+                "Find the **Latest posts** card and choose a post to read it.",
+                "Choose **All blogs** to open the company Blogs page.",
+            ], howto="see-the-latest-posts-on-your-dashboard", task="See the newest posts of your blogs on the dashboard"),
             SHOT("blog-dashboard.png", "The dashboard's Latest posts card"),
             P("Posts are also found by [search](search.html), by the words of their title. **Download** on a post saves it as Word or PDF, with its date, authors and cover image ([Import and export](import-and-export.html))."),
             P("A plugin your administrator installed may add a panel beside a blog's posts."),
@@ -516,7 +544,7 @@ USER_B = [
                 "In the editor's side panel, under **Post**, add a **Summary** (shown in lists and feeds, at most 300 characters), a **Cover image** and where it stays in view when cropped, whether it **Takes comments**, whether to **Tell followers when it's published**, and its **Authors**.",
                 "If the space reviews posts, ask for a review (see [Review before publishing](#review-before-publishing)).",
                 "Choose **Publish**. The post appears on the Blog tab, dated the day it was first published; later publishes update it and keep that date.",
-            ]),
+            ], howto="write-a-blog-post", task="Write and publish a post on a space's blog"),
             SHOT("blog-editor-post-settings.png", "The editor for a post: the Post panel with summary, cover, comments and co-authors"),
             P("Your unpublished posts are listed under **Your drafts** on the Blog tab, to pick up where you left off."),
 
@@ -544,7 +572,7 @@ USER_B = [
             ]),
 
             H("Managing a space's blog"),
-            P("Space admins find the blog's settings in the space's **Settings** tab, under **Blog**:"),
+            P("Space admins find the blog's settings in **Space settings**, on the **Blog** tab:"),
             UL([
                 "**Blog on**: shows the Blog tab's posts and lets people write them. Turning it off hides the posts and keeps them.",
                 "**Who writes posts**: editors and admins, or commenters too.",
@@ -553,9 +581,20 @@ USER_B = [
                 "**Review posts before they are published**: a post's first publish needs an approval (see [Review before publishing](#review-before-publishing)).",
                 "**Public feed**: while the space is public, anyone can follow its blog in a feed reader without signing in. Off, only signed-in people and personal feed addresses read it.",
             ]),
+            STEPS([
+                ("Open the space and choose **Space settings** in its left menu.", "space-rail.settings"),
+                "Open the **Blog** tab.",
+                "Change the settings you need (listed above).",
+                "Choose **Save blog settings**.",
+            ], howto="change-a-spaces-blog-settings", task="Turn a space's blog on or off and change who writes posts, comments, review and the feed"),
             SHOT("blog-settings.png", "Space settings, Blog: on or off, who writes posts, comments on new posts, the company Blogs page, review before publishing and the public feed"),
             P("Posts from a Confluence space export come in as posts of the blog when you import the export on the space's **Import** tab ([Import and export](import-and-export.html#import-from-confluence))."),
             P("To feature a post, open it and choose **Feature**: it moves to the top of the Blog tab until another post is featured or you choose **Stop featuring**. Only published posts can be featured."),
+            STEPS([
+                "Open the space's **Blog** tab and choose the post. It must be published.",
+                "Choose **Feature**. The post moves to the top of the Blog tab.",
+                "To end it, open the post again and choose **Stop featuring**.",
+            ], howto="feature-a-blog-post", task="Feature a published post at the top of a space's blog"),
             NOTE("Changes to a blog's settings, to a post's own settings and to the featured post raise events that policies, automation and plugins can use (`blog.settings.update`, `blog.post.update`, `blog.post.feature`, `blog.follow`), and are in the audit log. A post's first publish raises `blog.post.publish`, which a policy can refuse; making a personal feed address raises `blog.feed.create` and stopping it `blog.feed.delete`. Creating, publishing and deleting a post also raise the page events with `kind` set to `blog`. See [Events](events.html)."),
         ],
     )),
@@ -577,7 +616,7 @@ USER_B = [
                 "Optionally pick the **Background** (dots, grid or plain) and the **Canvas size** (endless, a 16:9 slide or A4). A slide or A4 board shows the page's edges, and **Zoom to fit** fits them.",
                 "Tick **Hide notes until revealed** when people should write without seeing each other's notes first (a retrospective, a silent brainstorm). See [Private mode](#private-mode).",
                 "Choose **Create whiteboard**. It is live at once: there is no draft and nothing to publish.",
-            ]),
+            ], howto="make-a-whiteboard", task="Make a whiteboard in a space"),
             SHOT("whiteboard-new.png", "The new whiteboard form: name, space, location, and the canvas types to start from"),
             TABLE(["Canvas type", "Starts with"], [
                 ["**Blank**", "An empty canvas"],
@@ -624,10 +663,11 @@ USER_B = [
             P("Pick 1, 3, 5, 10 or 15 minutes. Everyone sees the same time left, whatever their computer's clock says. **Pause**, **Resume**, **+1 min** and **Stop** work for everyone. When it runs out, the bar says **Time's up** (screen readers announce it)."),
             H("Voting"),
             STEPS([
+                "On the whiteboard, choose **Facilitate** in the header (in the ⋯ menu on a phone) and open **Voting**.",
                 "Choose how many **Votes each** person has (up to 20) and, under **Where**, the frames to vote in, or none for the whole whiteboard.",
                 "Choose **Start voting**. Each note and shape gets a **+** button; each click is a vote, and **−** takes one back. The bar shows how many votes you have left and how many people voted. The panel lists who has voted.",
                 "Choose **End voting**. Every note shows its count, and the panel ranks the results: choose one to go to it. **Clear the results** removes them.",
-            ]),
+            ], howto="run-a-vote-on-a-whiteboard", task="Run a dot vote on a whiteboard with Facilitate"),
             P("Results stay hidden until voting ends, so nobody follows the crowd."),
             H("Private mode"),
             P("**Hide notes until revealed** hides the notes other people add from then on: each person sees their own notes, and everyone else's as gray **Hidden until revealed** placeholders, until someone chooses **Reveal all notes**. The panel shows how many people are still writing. Notes that were on the board before stay visible, and hidden notes take no votes until they are revealed."),
@@ -727,7 +767,7 @@ USER_B = [
                 "Add the details|What you expected, what happened, what you tried. The editor has headings, lists, quotes, code blocks, tables, links and images (paste or add them, up to 20 per post), and **@** mentions people in your organization.",
                 "Add up to 5 tags|Lower-case words such as `backups`; suggestions show as you type.",
                 "Select **Post question**|You follow it from now on.",
-            ]),
+            ], howto="ask-a-question-in-qna", task="Ask your organization a question in Q&A"),
             P("Under a published page, **Questions about this page** lists questions that link to it, and **Ask about this page** starts a question with a link to it. "
               "A question lists the **Wiki pages** it links to that you can read."),
 
@@ -748,6 +788,12 @@ USER_B = [
                 "The person who asked (or a moderator) selects **Accept this answer** on the one that worked; **Take back the accept** undoes it. One answer is accepted at a time.",
                 "Comments under a question or an answer are short notes on one line, up to 600 characters and 30 per post.",
             ]),
+            STEPS([
+                "Open the question from **Q&A** in the left menu.",
+                "Write in **Your answer** and select **Post answer**.",
+                "Vote on answers with **This is useful** or **This isn't useful**.",
+                "If you asked the question, select **Accept this answer** on the one that worked.",
+            ], howto="answer-a-question", task="Answer, vote on and accept answers to a Q&A question"),
             SHOT("qna-question.png", "A question with its votes, an accepted answer and comments"),
 
             H("Edit, history and delete"),
@@ -805,7 +851,7 @@ USER_B = [
                 "Set the dates|**All day** for whole days (up to a year), or a start and end time (up to 31 days). Times are in your browser's time zone, and the event repeats on that clock.",
                 "Repeat it (optional)|Daily, weekly, monthly or yearly, every 1 to 99, until a date, a number of times, or never ending. A monthly event on the 31st skips months without one.",
                 "Select **Add to the calendar**|",
-            ]),
+            ], howto="add-an-event-to-the-calendar", task="Add an event or your leave to a space's calendar"),
             SHOT("calendar-new-event.png", "The New event dialog: space, kind, dates and a weekly repeat"),
             P("People who edit pages in the space change and delete its events; deleting a repeating event deletes every time it repeats. A space holds up to 5,000 events."),
 
@@ -830,12 +876,24 @@ USER_B = [
             NOTE("Analytics needs a Pro or Enterprise licence. Without one, the Analytics entries don't show and no views are recorded. See [Licensing](licensing.html)."),
             H("Overview"),
             P("Analytics shows how the spaces you read are read and kept up. Numbers follow within a quarter of an hour. Pick the **Period**: 7 days, 30 days, 90 days or 12 months, each compared with the same length of time before it."),
+            STEPS([
+                "Choose **Analytics** in the left menu.",
+                "Pick the **Period**: 7 days, 30 days, 90 days or 12 months.",
+                "Read the totals, the chart and the most viewed pages and spaces; open **People** or **Posts** where shown.",
+                "Choose **Export CSV** to download the numbers.",
+            ], howto="see-analytics", task="See how the spaces you read are read and kept up"),
             SHOT("analytics-overview.png", "Analytics: views, readers, pages published and editors, the views by day chart and the most viewed spaces"),
             TABLE(["Where", "What it shows"], [
                 ["**Analytics** in the left menu", "Every space you can read: views, readers, pages published, editors and average reading time, views or readers by day, the most viewed pages and spaces, who published, and content health"],
-                ["A space's **Analytics** tab", "The same for one space, with **People** (who read and who published) for the space's admins"],
+                ["The **Analytics** tab of a space's settings", "The same for one space, with **People** (who read and who published) for the space's admins"],
                 ["**Analytics** under a page's title", "One published page: its views, readers, reading time and **Was this page helpful?** answers"],
             ]),
+            STEPS([
+                ("Open the space and choose **Space settings** in its left menu.", "space-rail.settings"),
+                "Open the **Analytics** tab.",
+                "Pick the **Period**, then read the totals, the chart and the most viewed pages.",
+                "Space admins open **People** to see who read and who published, and **Posts** for the space's blog.",
+            ], howto="see-a-spaces-analytics", task="See how one space is read and kept up"),
 
             H("Blog posts"),
             P("A space's Analytics tab has a **Posts** tab for its [blog](blogs.html): how many posts the space has and how many were published in the period, their views and readers, the most read posts (views, readers, reading time, likes and comments in the period) and the authors whose posts were read most. Posts aren't included in the lists of pages."),
@@ -932,6 +990,14 @@ USER_B = [
                 ["**Put its pages under a page of their own**", "The source's pages go under one top-level page named after it. Useful when a space follows several sources"],
             ]),
             P("A space can follow up to 20 sources: choose **Add a source** for the next one."),
+            STEPS([
+                "Open the mirror space's **Mirror** tab.",
+                "Choose **Add a source**.",
+                "Fill in **Name** and **Where the pages come from**, then the host, **Repository**, **Branch** and **Folder** (or pick **Uploaded archives**).",
+                "Add an **Access token** for a private repository or suggested edits, and pick the **Schedule**.",
+                "Choose **Set up**. Copy the webhook's **Payload URL** and **Secret** now if you want syncs on every push: they are shown once.",
+                "Choose **Sync now** for the first sync, or wait for the schedule.",
+            ], howto="set-up-a-mirror-space", task="Set up a mirror space's source and run its first sync"),
 
             H("What becomes a page"),
             UL([
