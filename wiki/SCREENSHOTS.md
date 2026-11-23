@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-209 screenshots. Save each one into `wiki/assets/` using the
+211 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -386,6 +386,10 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `kee-ask-answer.png`
       The Ask Kee panel: a question, the steps Kee took, an answer with a numbered source, and the question box with the model, where to look and requests left today
+- [ ] `kee-ask-howto.png`
+      An answer from the product docs in the Ask Kee panel: the numbered steps, Show me, and the documentation page it used
+- [ ] `kee-ask-showme.png`
+      Show me on a space's settings: a ring around the Members tab and the box with step 2 of 5
 - [ ] `kee-ask-history.png`
       Earlier conversations in the Ask Kee panel, each with when it was asked and until when it is kept
 
