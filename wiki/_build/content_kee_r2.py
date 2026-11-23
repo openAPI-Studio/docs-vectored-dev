@@ -247,7 +247,7 @@ KEE_R2_ADMIN = [
                 "Read the dialog **Allow administration tools?** and select **Allow administration**. **Cancel** leaves it off.",
                 "Register the AI app under **Settings → Access management → Applications** with the **Administer** scope (see [Register an AI app](#register-an-ai-app)). People who sign in to it are asked to agree.",
             ], howto="allow-ai-apps-to-administer-the-wiki", task="Let outside AI apps use the Wiki administration tools"),
-            SHOT("kee-outside-apps-admin-level.png", "What apps may do: Space members set to Read, and Wiki administration with its Administration tools badge set to Administration, with the note on what an app needs"),
+            SHOT("kee-outside-apps-admin-level.png", "What apps may do: Space members set to Read, and Wiki administration with its Administration tools badge set to Read, change and administer, with the note on what an app needs"),
             SHOT("kee-outside-apps-admin-confirm.png", "Allow administration tools?: the 14 tools, the warning that an app can then make these changes at once under the person's name, and Allow administration"),
             SHOT("kee-outside-apps-admin-consent.png", "The sign-in screen of an AI app that asks to read, change and administer the Wiki, with the administer scope listed under the warning"),
             UL([

@@ -597,7 +597,7 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `kee-outside-apps-toolsets.png`
       What apps may do: Core set to Read and change, Tool search always on, Product docs and Versions set to Read
 - [ ] `kee-outside-apps-admin-level.png`
-      What apps may do: Space members set to Read, and Wiki administration with its Administration tools badge set to Administration, with the note on what an app needs
+      What apps may do: Space members set to Read, and Wiki administration with its Administration tools badge set to Read, change and administer, with the note on what an app needs
 - [ ] `kee-outside-apps-admin-confirm.png`
       Allow administration tools?: the 14 tools, the warning that an app can then make these changes at once under the person's name, and Allow administration
 - [ ] `kee-outside-apps-admin-consent.png`
@@ -610,7 +610,7 @@ realistic but fictional names and figures rather than real people's data.
 ## Search & search by meaning
 
 - [ ] `kee-settings-search.png`
-      Settings → Kee → Search: the index of page text with pages indexed, and search by meaning with its switch, the embeddings model, pages with vectors, tokens and estimated cost
+      Settings → Kee → Search on a database server without the vector extension: the index of page text with all pages indexed, and the note that search by meaning needs the extension
 
 ## Users &amp; directories
 

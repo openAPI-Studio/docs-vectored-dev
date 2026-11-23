@@ -294,7 +294,7 @@ KEE_R3_ADMIN = [
             P("Every search of page text, by people in the search box and by Kee, uses an index of what published pages say. It is built and kept current on its own. On top of it, **search by meaning** lets Kee also find passages that say the same thing in other words. It is optional and needs a database extension and an embeddings model."),
             H("Where it is"),
             P("**Settings → Kee → Search** (**Manage Kee settings**, Pro). The tab shows the index of page text and, where the database offers it, search by meaning. It reads its numbers when you open it and on **Refresh**; it doesn't update by itself."),
-            SHOT("kee-settings-search.png", "Settings → Kee → Search: the index of page text with pages indexed, and search by meaning with its switch, the embeddings model, pages with vectors, tokens and estimated cost"),
+            SHOT("kee-settings-search.png", "Settings → Kee → Search on a database server without the vector extension: the index of page text with all pages indexed, and the note that search by meaning needs the extension"),
             H("The index of page text"),
             UL([
                 "It holds the text of the newest published version of every page, as Kee reads it (up to about 200,000 characters a page). Drafts and earlier versions aren't in it.",
