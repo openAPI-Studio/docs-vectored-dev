@@ -47,11 +47,12 @@ USER_B = [
 
             H("Publish a version"),
             STEPS([
-                "Select **Publish**|At the top of the editor, or **Published** under the status.",
+                ("Open the page and select **Edit**|The editor opens on the page's draft. Change what you need; it is saved as you type.", "page.edit"),
+                ("Select **Publish**|At the top of the editor, or **Published** under the status.", "page-edit.publish"),
                 "Say what changed (optional)|A short note, such as \"Fixed the escalation steps\", shown with the version in the page's history.",
                 "Tick **Minor change, such as a typo** if it is one|People watching the page aren't told about a minor change.",
                 "Select **Publish**|The draft becomes the page's next version: version 1, 2, 3 and so on. The dialog waits until your latest changes are saved first.",
-            ]),
+            ], howto="edit-and-publish-a-page", task="Edit a page and publish the changes"),
             SHOT("drafts-and-publishing-publish.png", "The publish dialog: a note about what changed and the minor change box"),
             UL([
                 "A page can only be published under published pages: publish the page above it first.",
@@ -139,11 +140,22 @@ USER_B = [
                 ["**Restore**", "Replaces the draft with that version, for everyone editing the page, and opens the publish dialog. Readers see it once you publish."],
             ]),
             P("Restoring changes only the draft: you can still edit before you publish, or undo it. A version published from a restore says which version it restores, as long as the draft wasn't changed in between."),
+            STEPS([
+                ("Open the page and select **Edit**.", "page.edit"),
+                ("Open **Page details**, the side panel of the editor, if it is hidden.", "page-edit.details"),
+                ("Under **Versions**, find the version (**Older versions** shows the rest) and select **Restore**.", "page-edit.versions"),
+                ("Check the draft, then select **Publish**. Readers see the restored text once it is published.", "page-edit.publish"),
+            ], howto="restore-a-page-version", task="Restore an earlier version of a page"),
 
             H("Compare two versions"),
             P("**Page history** under the title of a published page (once it has more than one version), or **Page history and comparison** in the editor, opens the page's history. "
               "Readers of the space can open it for published pages; people who edit pages can for every page."),
             SHOT("page-history-and-versions-compare.png", "Page history comparing two versions side by side, with an added and a changed block"),
+            STEPS([
+                ("Open the page and choose **⋯ → Page history**.", "page.more"),
+                ("Pick the two versions in **Compare** and **With**. The newest against the one before is picked for you.", "page-history.compare"),
+                "Switch between **Inline** and **Side by side**, and select **Show … unchanged blocks** to see what stayed the same.",
+            ], howto="see-page-history", task="See a page's history and compare two versions"),
             UL([
                 "Pick the two versions in **Compare** and **With**: by default the newest against the one before.",
                 "**Inline** shows the changes in one column, **Side by side** in two (on wider screens).",
@@ -172,6 +184,11 @@ USER_B = [
             SHOT("comments-threads.png", "Comments under a page: a thread with a reply, and a resolved thread"),
 
             H("Comment and reply"),
+            STEPS([
+                "Open the page and go to **Comments**, under its text.",
+                ("Write in **Add a comment…**. Type **@** to mention someone.", "page.comment"),
+                "Select **Comment**. The people watching the page are told.",
+            ], howto="comment-on-a-page", task="Comment on a page"),
             UL([
                 "Write in **Add a comment…** under the page and select **Comment**.",
                 "**Reply** answers a thread. Replies go one level deep, up to 50 per thread.",
@@ -269,6 +286,13 @@ USER_B = [
             H("Write or edit a template"),
             P("**New template** opens the template editor on an empty template, and **Edit content** opens it on an existing one. It is the page editor with a list of the template's pages beside it."),
             SHOT("copies-and-templates-editor.png", "The template editor: the template's pages and details on the left, the selected page's content on the right"),
+            STEPS([
+                ("Open the space and select **Space settings** in its sidebar.", "space-rail.settings"),
+                ("Open the **Templates** tab.", "space-tabs.templates"),
+                ("Select **New template**. The template editor opens on an empty template.", "space-templates.new"),
+                "Give it a name under **Details**, write the top page, and add more pages under **Pages** if the template should create several.",
+                ("Select **Save**. The template is offered under **New page** in this space at once.", "space-template.save"),
+            ], howto="create-a-space-template", task="Create a page template for a space"),
             UL([
                 "**Pages**: **Top page** is the page that takes the title people type. **Add page** adds a page under it; each page's menu has **Rename**, **Add page under it**, **Move up**, **Move down**, **Move in a level**, **Move out a level** and **Delete page**. Select a page to edit its content.",
                 "**Details**: the name, an optional description shown when people pick a template, an optional group, and an icon.",
@@ -342,6 +366,12 @@ USER_B = [
                 "**Labels** (at `/labels`) finds a label by its first letters.",
                 "Spaces carry labels too, up to 10 each, set by the space's admins in its settings ([Spaces](spaces.html#icon-labels-and-category)). A label's page lists the spaces you can see with it above its pages, and the space list can be filtered by a label.",
             ]),
+            STEPS([
+                ("Open the page and select **Edit**.", "page.edit"),
+                ("Open **Page details**, the side panel of the editor, if it is hidden.", "page-edit.details"),
+                ("Under **Labels**, type a label and press Enter, or pick a suggestion. It is saved at once.", "page-edit.labels"),
+                "To take a label off, select the **×** next to it.",
+            ], howto="label-a-page", task="Add a label to a page or remove one"),
             SHOT("labels-and-feedback-label-page.png", "A label's page: the spaces with the label, then published pages with it, with their space"),
             P("Administrators who manage labels see every label there with how many pages and spaces carry it, and can **Rename** one on every page and space (renaming to a label that exists merges the two) or **Remove** it from every page and space."),
 

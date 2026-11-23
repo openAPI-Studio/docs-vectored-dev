@@ -275,15 +275,24 @@ USER_A = [
             P("The **Members** tab lists the people, service accounts and groups with a role in the space. **Compare roles** shows the table above. Filter by kind (People, Groups, Service accounts) or by name."),
             SHOT("spaces-members.png", "Members: each member's kind and role, with the role comparison open"),
             STEPS([
-                "Open the space, then **Members**.",
-                "**Add member**, search for a person, service account or group, pick a **Role** and **Add**.",
+                ("Open the space and select **Space settings** in its sidebar.", "space-rail.settings"),
+                ("Open the **Members** tab.", "space-tabs.members"),
+                ("Under **Add member**, search for a person, service account or group and pick it from the list.", "space-members.search"),
+                ("Pick a **Role** and select **Add**. It takes effect at once.", "space-members.add"),
                 "To change a role, pick another one next to the member. To take a member out, **Remove** and confirm. Roles they have through a group stay.",
-            ]),
+            ], howto="add-a-space-member", task="Add a person or a group to a space, or change their role"),
             P("Only the space's admins can add members or change roles. Only the space's members, and people allowed to view profiles, can see who has a role in it."),
 
             H("Creating a space"),
             P("**Create → Space** in the header, or **New space** on the space list, opens the form. By default only super admins may create spaces. Creating a space gives nobody a role in it: add members, and an admin, right after."),
             SHOT("spaces-new.png", "New space: name, key, description and visibility"),
+            STEPS([
+                ("Open **Spaces** in the sidebar and select **New space**.", "spaces.new-space"),
+                ("Enter the **Name**. The **Key** is filled in from it; change it now if you want another, because it can't be changed later.", "space-new.name"),
+                "Add a **Description** and pick the **Visibility**.",
+                ("Select **Create space**. The space opens, still without members.", "space-new.create"),
+                "Add members, and at least one admin, in **Space settings → Members**.",
+            ], howto="create-a-space", task="Create a space"),
             TABLE(["Field", "What to enter"], [
                 ["**Name**", "What people call the space, such as **Engineering handbook**."],
                 ["**Key**", "Used in links (`/spaces/eng`). 2–40 lowercase letters and digits, optionally separated by single hyphens. It can't be changed later."],
@@ -327,6 +336,11 @@ USER_A = [
                 "**Delete space**: removes the space, its pages and its members' roles for good. Type the space's key to confirm.",
             ]),
             SHOT("spaces-settings.png", "Space settings → General: icon, name, description, labels, category, status and visibility"),
+            STEPS([
+                ("Open the space and select **Space settings** in its sidebar.", "space-rail.settings"),
+                "On **General**, change the name, description, visibility, icon, labels, category or status.",
+                ("Select **Save**. **Discard** puts back what is saved.", "space-settings.save"),
+            ], howto="change-space-settings", task="Change a space's name, description, visibility or other settings"),
             WARN("Deleting a space can't be undone. Its pages don't go to the trash."),
 
             H("Events and API for space properties"),
@@ -372,10 +386,11 @@ USER_A = [
 
             H("Creating a page"),
             STEPS([
-                "In the space, choose **New page** above the tree (a top-level page), or **Add a page** on a page (a page under it).",
+                ("In the space, choose **New page** above the tree (a top-level page), or **Add a page** on a page (a page under it).", "space-rail.new-page"),
                 "Enter the **Title**. Under **Start from**, keep **Empty page** or pick a template: one of the space's or one from the library. A template can create a whole tree of pages. See [Copies and templates](copies-and-templates.html).",
                 "**Create page** (or **Create 6 pages** for a template with pages). The page opens in the [editor](editor.html).",
-            ]),
+                ("Write the page, then select **Publish** so readers can see it.", "page-edit.publish"),
+            ], howto="create-a-page", task="Create a page in a space"),
             P("A new page starts as a draft: only people who can edit pages in the space see it until it is published. See [Drafts and publishing](drafts-and-publishing.html)."),
 
             H("Page status"),
@@ -427,11 +442,11 @@ USER_A = [
 
             H("Locking a page"),
             STEPS([
-                "Open the page as someone who may edit it and choose **⋯ → Lock page…**.",
+                ("Open the page as someone who may edit it and choose **⋯ → Lock page…**.", "page.more"),
                 "Pick **Only these people can see it** or **Everyone can view, only these people can edit**.",
                 "Search for people and groups by name, pick **Can view** or **Can edit**, and choose them from the list. You stay on the lock as **Can edit** yourself, so you can't lock yourself out.",
                 "**Save lock**.",
-            ]),
+            ], howto="lock-a-page", task="Restrict who can see or edit a page (lock a page)"),
             SHOT("page-locks-dialog.png", "Lock: who can see the page, and the people and groups on the lock"),
             UL([
                 "People and groups of the space's organization can be put on a lock, up to 200 in all. Searching needs the right to see people's names.",

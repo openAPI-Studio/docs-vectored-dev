@@ -32,8 +32,47 @@ def OL(items):               return ("ol", items)
 def TABLE(headers, rows):    return ("table", (headers, rows))
 def NOTE(text):              return ("note", text)
 def WARN(text):              return ("warn", text)
-def STEPS(items):            return ("steps", items)
 def CODE(text):              return ("code", text)
+
+
+class HowTo(list):
+    """The items of a STEPS block that is a how-to: the steps as plain text
+    (what the page shows), plus what a walkthrough needs."""
+    howto = ""      # stable id, unique across the docs
+    task = ""       # what the steps achieve, as a person would ask for it
+    anchors = ()    # per step: the control it points at ("" for none)
+
+
+HOWTO_ID = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+ANCHOR = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*\.[a-z0-9]+(-[a-z0-9]+)*$")
+
+
+def STEPS(items, howto=None, task=None):
+    """Numbered steps. An item is "text" or "title|detail".
+
+    With `howto` (a stable id) and `task` (what the steps achieve) the block
+    is a how-to the product can walk a person through ("Show me"): an item
+    may then be `(text, "screen.control")`, naming the control the step
+    points at by the anchor the product registers for it. The page renders
+    the same either way; the anchors go into the docs index (index.py).
+    Steps are written by hand and checked against the product's anchor
+    registry by its tests.
+    """
+    if howto is None:
+        if task is not None or any(not isinstance(i, str) for i in items):
+            raise SystemExit("STEPS: anchors and task need howto=")
+        return ("steps", items)
+    if not HOWTO_ID.match(howto) or not (task or "").strip():
+        raise SystemExit(f"STEPS: how-to {howto!r} needs a kebab-case id and a task")
+    out, anchors = HowTo(), []
+    for i in items:
+        text, anchor = (i, "") if isinstance(i, str) else i
+        if anchor and not ANCHOR.match(anchor):
+            raise SystemExit(f"STEPS {howto}: {anchor!r} is not an anchor name (screen.control)")
+        out.append(text)
+        anchors.append(anchor)
+    out.howto, out.task, out.anchors = howto, task, tuple(anchors)
+    return ("steps", out)
 
 def SHOT(filename, caption):
     """A screenshot slot. `filename` is what the user will save into assets."""
