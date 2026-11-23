@@ -28,7 +28,7 @@ DATABASE = [
                 "the URL saved in its bootstrap file, and the other logins it has used or been given."
             ]),
             P("The first that signs in is used and saved in the bootstrap file, with the others kept as fallbacks. So **the environment wins**: put a new password in `DATABASE_URL`, restart, and the server uses it. A server whose saved password stopped working, and that has nothing newer, starts in [recovery mode](recovery.html), which says the credentials were refused."),
-            NOTE("**A URL from the environment must reach the same installation.** The server compares the installation ID in the database with the one it saved. A `DATABASE_URL` that points at another installation's database is refused (shown as **Wrong database**) and the saved one is used. To move an installation to another database on purpose, use [recovery mode](recovery.html) or restore a [backup](backups.html)."),
+            NOTE("**A URL from the environment must reach the same installation.** The server compares the installation ID in the database with the one it saved. A `DATABASE_URL` that points at another installation's database is refused (shown as **Wrong database**) and the saved one is used. This holds from the first start after setup: when the server hasn't saved the ID yet, it reads it through its saved login first. To move an installation to another database on purpose, use [recovery mode](recovery.html) or restore a [backup](backups.html)."),
             P("While a server runs, connections it already has stay open after a password change: PostgreSQL only checks a password when a connection is opened. Before it opens a new one, the server checks the login it uses, and when PostgreSQL refuses it the server moves to the next credential that works, so no request fails."),
 
             H("Change the password by hand"),
@@ -43,7 +43,7 @@ DATABASE = [
             P("Super admins find the logins under **Settings → Database**: the database the servers connect to, the stored logins with their state, the rotation schedule, and what each server signs in with."),
             SHOT("database-settings.png", "Settings → Database: the connection, two stored logins with Rotate now, the rotation schedule and the servers"),
             UL([
-                "**Stored logins.** A few seconds after its first start, a server stores the login it uses (and a second one from `DATABASE_URL_STANDBY`) encrypted in the database, where every server reads it. **Add a second login** or **Replace a login** stores a role you created in PostgreSQL; the page tests that it signs in and can act as the owner of the tables before it is saved.",
+                "**Stored logins.** A few seconds after its first start, a server stores the login it uses (and a second one from `DATABASE_URL_STANDBY`) encrypted in the database, where every server reads it. **Add a second login** or **Replace a login** stores a role you created in PostgreSQL; the page tests that it signs in and can act as the owner of the tables before it is saved. Testing and storing a login together are limited to 10 attempts a minute for the whole installation, so the page can't be used to guess a role's password.",
                 "**Test credentials** makes the server you are on sign in with every credential it holds and shows which work.",
                 "**Rotate now** makes a new random password for one login.",
                 "**Rotation schedule** rotates one password whenever the newest is older than the days you choose (30, 60 or 90, or your own number up to 365). Off by default.",
@@ -85,7 +85,7 @@ DATABASE_OWNER_ROLE=depotex"""),
             P("The [Helm chart](helm-chart.html)'s built-in PostgreSQL is set up with two logins from the start: `prime-secrets.sh init` puts both URLs in the app secret, and the chart sets the owner role."),
             CODE("""deploy/helm/prime-secrets.sh rotate-db -n depotex -r depotex"""),
             UL([
-                "`rotate-db` gives the login the servers aren't using a new password and makes it the preferred one in the secret. Run it twice to change both.",
+                "`rotate-db` gives the login the servers aren't using a new password and makes it the preferred one in the secret. Run it twice to change both. The password is hashed before it is sent to PostgreSQL, so it can't end up in the database's statement log.",
                 "With `backend.database.secretAsFile: true` the pods read the secret as files and pick the change up themselves. Without it, restart the server pods when convenient (`kubectl rollout restart statefulset`): until then they keep running on the other login.",
                 "For an external database, pass `--database-url` and, for a second login, `--database-url-standby` to `init`, and set `backend.database.ownerRole` when the logins act as another role. `rotate-db` works with the built-in database only; rotate an external one from **Settings → Database** or your secret manager.",
             ]),
