@@ -450,6 +450,7 @@ USER_B = [
                 "Read the report. Choose **Where the pages go** (the top level, or under a page with **Change**), and for a Confluence export the **Versions** (all or the latest only) and where blog posts go.",
                 "Select **Import N pages**. **Cancel import** stops it after the page it is writing; **Discard this export** drops a checked upload. **Earlier imports** lists what was imported before.",
             ], howto="import-pages-into-a-space", task="Import a Confluence space export or Markdown files into a space"),
+            P("After an import, Kee can find the imported pages that need tidying (blocks that did not come across, empty layout, headings, links that had no target) and propose a tidied version of each for you to apply. See [Tidy imported pages with Kee](kee-import-cleanup.html)."),
 
             H("Import from Confluence"),
             P("A Confluence space export (Space tools → Export, XML, full export, as a `.zip`) is imported the same way, with its page tree, versions, comments, labels, images and videos, and people matched by email. "

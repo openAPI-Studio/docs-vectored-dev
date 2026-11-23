@@ -1,7 +1,9 @@
 """Wiki doc pages for Kee release 3: the writing helpers (style review, action
 items, diagrams, tables), title and label suggestions, the duplicate page
 warning with its merge proposal, images (describe with Kee, images in Ask
-Kee), the weekly space digest, and the Search tab with search by meaning.
+Kee), the weekly space digest, the Search tab with search by meaning, and
+tidying the pages a Confluence import made (kee/cleanup.go,
+components/kee/cleanup).
 Facts come from the depotex repo: apps/wiki/backend/internal/kee (helpers,
 suggest, duplicates, digest, imageprep), internal/pagesearch, internal/tools
 (admin.go), their screens in apps/wiki/frontend/src/components/kee and
@@ -171,6 +173,7 @@ KEE_R3_USER = [
             SHOT("kee-describe-image.png", "The image dialog: Describe with Kee, the proposed alternative text and caption, Dismiss and Use these"),
             UL([
                 "Nothing changes until you select **Use these**, and nothing is saved until you apply the dialog and save the page.",
+                "Alternative text is at most 150 characters and a caption at most 120: a longer answer is shortened to whole sentences, or at a word with \"…\".",
                 "When the image looks decorative, Kee says so and proposes no alternative text.",
                 "Kee never names the people in an image.",
                 "You need to be able to edit the page. Page locks apply.",
@@ -194,6 +197,45 @@ KEE_R3_USER = [
             SHOT("kee-ask-image-answer.png", "An answer about the release pipeline diagram added to the question, with the page as its source"),
             H("Spreadsheets attached to pages"),
             P("Ask Kee also reads Excel workbooks (`.xlsx`) attached to pages, like PDF and Word files: every sheet, row by row. See [What Kee can read](ask-kee.html#what-kee-can-read)."),
+        ])),
+
+    # ------------------------------------------------------ kee-import-cleanup
+    ("kee-import-cleanup", dict(
+        label="Tidy imported pages", title="Tidy imported pages with Kee", icon="file",
+        desc="After a Confluence import, Kee finds pages with blocks that did not come across, empty layout, uneven headings and links that had no target, and proposes a tidy-up for each page that you review and apply",
+        keywords=["kee", "ai", "import", "confluence", "import cleanup", "tidy", "tidy the imported pages", "imported blocks", "macros", "headings", "missing links", "restore links", "prepare all", "review queue", "proposal", "apply"],
+        blocks=[
+            P("An import from Confluence brings pages across as well as it can, but some things are left behind: blocks of the other wiki that have no match here, empty layout, headings that skip levels, and links to pages that weren't imported yet. Under a finished import, Kee can find those pages and propose a tidied version of each. Nothing changes until you apply a proposal."),
+            NOTE("You need the permission to import into the space (the space's **Import** tab) and to edit each page. Kee must be on for you and in the space, and the **Import cleanup** and **Ask Kee** features must be on. Only imports run since this feature arrived (2026-11-23) can be tidied: older imports did not keep the list of pages they made. Mirror syncs are not included."),
+            H("What Kee looks for"),
+            P("Finding the pages costs nothing: no text is sent to the model and nothing counts against your limit. Each page shows what was found:"),
+            TABLE(["Shown as", "What it means"], [
+                ["**Imported blocks**", "Confluence macros that were kept as imported blocks, with their names. Kee writes their text into the page in plain Wiki content where it can"],
+                ["**Layout problems**", "Runs of empty paragraphs and headings with no words"],
+                ["**Headings to fix**", "Top-level headings inside the page, headings that skip a level, and a first heading that repeats the page's title"],
+                ["**Links to restore**", "Text that was a link in Confluence whose target was missing at import time, and which now exists and you can read (in the same space, or in a space imported later)"],
+            ]),
+            P("A page Kee can't tidy for you says why: you can't edit it, it is locked, it has changes that are not published yet, or it is too long."),
+            SHOT("kee-import-cleanup-found.png", "Tidy the imported pages: two pages could be tidied, Deploying the API with two imported blocks, three headings to fix and a link to restore, and Service owners with two headings to fix"),
+            H("Tidy the pages"),
+            STEPS([
+                ("Open the space and select **Space settings** in its sidebar, then the **Import** tab.", "space-rail.settings"),
+                ("Under a finished import, in **Tidy the imported pages**, select **Find pages to tidy**. Kee lists the pages it made that could be tidied, with what was found on each.", "space-import.cleanup-find"),
+                ("Select **Prepare N proposals** to have Kee prepare a tidy-up for every page, one after another, or **Propose a tidy-up** under one page. **Stop** stops preparing after the page in progress.", "space-import.cleanup-all"),
+                ("Select **Review N proposals**. Each proposal shows the tidied page (**Result**) and what changes (**Changes**).", "space-import.cleanup-review"),
+                "Select **Apply** to publish the tidied page as a new version, **Open the editor** to change it first, or **Discard**. The next proposal follows; **Back to the list** returns to the pages.",
+            ], howto="tidy-imported-pages-with-kee", task="Tidy the pages a Confluence import made with Kee, and apply the proposals"),
+            SHOT("kee-import-cleanup-proposed.png", "After preparing: Review 1 proposal, Deploying the API waiting for review, and Service owners still to propose"),
+            SHOT("kee-import-cleanup-review.png", "The review queue: proposal 1 of 1 for Deploying the API, the tidied page with its restored links, and Apply, Open the editor and Discard"),
+            H("Good to know"),
+            UL([
+                "Applying publishes the page: imported pages are published pages, so the tidied text becomes their next version, under your name, marked as made with Kee. **Page history** can show or restore the version before.",
+                "A proposal is checked again when you apply it: if someone changed the page since, it shows **Out of date** and nothing is written. Prepare it again.",
+                "Your proposals are yours: other people who may import see their own list and their own proposals.",
+                "Each prepared proposal counts as one request against your [daily limit](kee.html#your-daily-limit). **Prepare N proposals** stops when your limit or the installation's budget is reached, or when the provider is down.",
+                "Kee only tidies: it keeps the page's facts and wording, and doesn't change pages you didn't ask about. Links are restored only to pages you can read.",
+                "A page that has been tidied and applied leaves the list.",
+            ]),
         ])),
 ]
 

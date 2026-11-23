@@ -43,7 +43,7 @@ USER_GROUPS = [
                         "page-history-and-versions", "comments", "editing-together", "copies-and-templates",
                         "attachments-and-media", "files-and-attachments", "slides", "lists-of-pages", "tasks", "link-cards",
                         "labels-and-feedback", "import-and-export", "mirror-spaces", "blogs", "whiteboards"]),
-    ("Kee (AI)", ["kee", "kee-editor", "kee-writing-helpers", "kee-suggestions", "kee-images", "kee-summaries", "ask-kee", "kee-studio", "connect-ai-apps", "kee-scheduled-help", "kee-space-digest", "kee-tools"]),
+    ("Kee (AI)", ["kee", "kee-editor", "kee-writing-helpers", "kee-suggestions", "kee-images", "kee-summaries", "ask-kee", "kee-studio", "connect-ai-apps", "kee-scheduled-help", "kee-space-digest", "kee-import-cleanup", "kee-tools"]),
     ("Q&A", ["qna"]),
     ("Calendar & analytics", ["calendar", "analytics"]),
     ("Mobile", ["mobile"]),

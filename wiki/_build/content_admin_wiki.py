@@ -621,7 +621,7 @@ admin:
                 ["Page [analytics](analytics-settings.html)", "Pro"],
                 ["[Kee](kee-setup.html), the Wiki's AI: writing help, page summaries, Ask Kee with proposed changes, Kee studio, change summaries, scheduled help and the weekly space digest, the writing helpers, title, label and duplicate suggestions, images, and [search by meaning](kee-search.html). A fallback model at another provider and the usage export by person need Enterprise", "Pro"],
                 ["[Outside AI apps](kee-outside-apps.html): people connect their own AI apps to the Wiki's built-in server (works with Kee off)", "Pro"],
-                ["The **Administration** level for outside AI apps: [administration tools](kee-outside-apps.html#administration-tools) such as who can do what in a space, labels across the Wiki and page locks", "Enterprise"],
+                ["The **Read, change and administer** level for outside AI apps: [administration tools](kee-outside-apps.html#administration-tools) such as who can do what in a space, labels across the Wiki and page locks", "Enterprise"],
                 ["[Mirror spaces](mirror-spaces.html): spaces that follow a git repository or uploaded archives", "Pro"],
                 ["Plugin blocks in pages", "Pro, as for every plugin"],
                 ["[Whiteboards](whiteboards.html): live canvases, facilitation, whiteboard templates and the whiteboard block", "Enterprise"],
@@ -953,6 +953,7 @@ admin:
             ]),
             SHOT("page-columns-imported.png", "A page imported from Confluence whose Section and Column macros became a row of two columns"),
             P("Filters the Wiki doesn't have (an excluded label, a space that isn't in the Wiki, an author, a date range, a page) are dropped, so a list may show more than it did in Confluence; the import report counts these lists. See [What the import report says](import-and-export.html#what-the-import-report-says)."),
+            P("Where Kee is on, the person who imported can have Kee tidy the imported pages afterwards, as proposals they apply (the **Import cleanup** feature, on by default in **Settings → Kee → Features and access**). See [Tidy imported pages with Kee](kee-import-cleanup.html)."),
             H("What isn't imported"),
             UL([
                 "View and edit restrictions: imported pages get the space's access.",

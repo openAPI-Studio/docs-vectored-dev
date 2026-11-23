@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-249 screenshots. Save each one into `wiki/assets/` using the
+256 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -467,6 +467,15 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `kee-ask-image-answer.png`
       An answer about the release pipeline diagram added to the question, with the page as its source
 
+## Tidy imported pages
+
+- [ ] `kee-import-cleanup-found.png`
+      Tidy the imported pages: two pages could be tidied, Deploying the API with two imported blocks, three headings to fix and a link to restore, and Service owners with two headings to fix
+- [ ] `kee-import-cleanup-proposed.png`
+      After preparing: Review 1 proposal, Deploying the API waiting for review, and Service owners still to propose
+- [ ] `kee-import-cleanup-review.png`
+      The review queue: proposal 1 of 1 for Deploying the API, the tidied page with its restored links, and Apply, Open the editor and Discard
+
 ## Space digest
 
 - [ ] `kee-space-digest.png`
@@ -553,8 +562,16 @@ realistic but fictional names and figures rather than real people's data.
       Providers and models: each provider with its status, and the models table with the default and the fallback model
 - [ ] `kee-settings-add-provider.png`
       Connect a provider: the four providers, the name, the API key and a passed connection test
+- [ ] `kee-provider-assume-role.png`
+      Connect Amazon Bedrock with Assume a role: the region, the role ARN and an optional external ID
+- [ ] `kee-provider-endpoint.png`
+      Connect your own endpoint: the server address, the private network switch, No key, the name, one extra header and a passed connection test
+- [ ] `kee-provider-endpoint-refused.png`
+      A loopback address refused: This server may not connect to that address
 - [ ] `kee-settings-add-model.png`
       Add a model: the provider, a model picked from the provider's list, the name people see, the limits and the prices
+- [ ] `kee-provider-endpoint-model.png`
+      Add a model of your own endpoint: the model ID, the limits typed in, and the Reads images, Calls tools and Offered to people switches
 
 ## Features & permissions
 
