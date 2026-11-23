@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect AI apps — Wiki Docs</title>
+  <meta name="description" content="Connect your own AI app, such as Claude, Cursor or VS Code, to the Wiki: the address, signing in, toolsets, keys, and ending a connection">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+      <h1 class="vc-h1">Connect AI apps</h1>
+      <p class="vc-lede">Connect your own AI app, such as Claude, Cursor or VS Code, to the Wiki: the address, signing in, toolsets, keys, and ending a connection</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">The Wiki has a built-in server that AI apps outside the Wiki can connect to, such as Claude, Cursor or VS Code. Your app signs in <strong class="text-text">as you</strong>: it reads only what you can read, and changes something only when you allowed it and an administrator allowed changes. It uses the same tools as <a href="kee-tools.html" class="text-cta hover:underline">Ask Kee</a>.</p>
+      <h2 id="what-you-need" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. What you need</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>An administrator turned on <strong class="text-text">Let outside AI apps connect</strong> and registered the AI app you use (see <a href="../admin/kee-outside-apps.html" class="text-cta hover:underline">Outside AI apps</a>). This works whether or not Kee itself is on.</li><li>You hold the <strong class="text-text">Connect AI apps</strong> permission (organization admins by default).</li><li>An AI app that supports remote <strong class="text-text">MCP</strong> servers (Model Context Protocol, over streamable HTTP) with sign-in. Some apps call it a custom connector.</li></ul>
+      <p class="text-muted mb-4">While all of this is true, your profile settings have <strong class="text-text">Connect AI apps</strong> under <strong class="text-text">Access</strong>.</p>
+      <h2 id="connect-an-app" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Connect an app</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open your profile settings and select <strong class="text-text">Connect AI apps</strong> under <strong class="text-text">Access</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Copy the <strong class="text-text">Server address</strong>. It is your Wiki's address followed by <span class="font-mono text-sm break-words">/mcp/wiki</span>.</span></li><li class="pl-2"><span class="text-text font-medium">Under <strong class="text-text">How to connect</strong>, pick your app (<strong class="text-text">Claude</strong>, <strong class="text-text">Cursor</strong>, <strong class="text-text">VS Code</strong> or <strong class="text-text">Other apps</strong>) and follow its steps: add the address as a remote server and, when the app asks, enter the client ID shown for it.</span></li><li class="pl-2"><span class="text-text font-medium">When the app opens the Wiki in your browser, sign in and read what it asks for. Allow it.</span></li><li class="pl-2"><span class="text-text font-medium">The app is listed under <strong class="text-text">Your connections</strong>, marked <strong class="text-text">Read only</strong> or <strong class="text-text">Read and change</strong>.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/connect-ai-apps.png" alt="Connect AI apps in the profile settings: the server address, how to connect each app, the registered apps with their client IDs, and your connections" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">connect-ai-apps.png</p>
+          <p class="text-xs text-muted max-w-md">Connect AI apps in the profile settings: the server address, how to connect each app, the registered apps with their client IDs, and your connections</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Connect AI apps in the profile settings: the server address, how to connect each app, the registered apps with their client IDs, and your connections</figcaption>
+      </figure>
+      <p class="text-muted mb-4">If the page says the public address isn't set, or that no AI app is registered, ask an administrator.</p>
+      <h2 id="what-an-app-can-do" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. What an app can do</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Read</strong>: everything <a href="kee-tools.html" class="text-cta hover:underline">Ask Kee can read</a>, with your access: pages, the page tree, spaces, comments, labels, versions, templates, attached files' text, and the Wiki's product docs. Never a page you can't open, a page under a lock you are not on, or anything of a space that turned Kee off.</li><li><strong class="text-text">Change</strong>: create page drafts, change pages (the whole page or one section, a new title, and publish only when asked), comment and reply, add and remove labels. Only when all three allow it: the app was registered for reading and changing, you agreed to that when signing in (it is listed apart, under a warning), and an administrator set that group of tools to <strong class="text-text">Read and change</strong>.</li><li>A change is written at once, as you, with your permissions, page locks and limits, like a change you make yourself. It is in the audit log with you, the app and the page, and the next version of a page an app wrote into is marked <strong class="text-text">With an AI app</strong> in the page history.</li><li>An app never manages settings, permissions, people, keys or sign-in, and never deletes anything.</li></ul>
+      <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 mb-6"><p class="text-sm text-amber-200/90">An app that may change the Wiki acts with your name. Give it only to apps you trust, and only the access it needs.</p></div>
+      <h2 id="choose-the-tools-a-connection-is-shown" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Choose the tools a connection is shown</h2>
+      <p class="text-muted mb-4">AI apps choose less well from a long list of tools. Every connection gets the core tools (search, pages and their tree, spaces, comments, labels, plus the change tools when it may change), tool search and the product docs. Under each connection, <strong class="text-text">Tools this connection is shown</strong> adds more groups:</p>
+      <div class="tbl-wrap"><table><thead><tr><th>Group</th><th>Adds</th></tr></thead><tbody><tr><td><strong class="text-text">Versions</strong></td><td>A page's version history and earlier versions</td></tr><tr><td><strong class="text-text">Templates</strong></td><td>Page templates of a space and the library</td></tr><tr><td><strong class="text-text">Attachments</strong></td><td>Files attached to pages: list them and read their text</td></tr></tbody></table></div>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The line under the list says how many tools the connection will see with your choice. More than 40 shows advice; it is never blocked.</li><li>Tools you leave out stay reachable through tool search, with the same checks.</li><li>A group an administrator switched off can't be chosen.</li><li><strong class="text-text">Save</strong>: the app sees the new list the next time it asks for it.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/connect-ai-apps-toolsets.png" alt="A connection marked Read and change, with the groups of tools it is shown and how many tools that makes" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">connect-ai-apps-toolsets.png</p>
+          <p class="text-xs text-muted max-w-md">A connection marked Read and change, with the groups of tools it is shown and how many tools that makes</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A connection marked Read and change, with the groups of tools it is shown and how many tools that makes</figcaption>
+      </figure>
+      <h2 id="keys" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Keys</h2>
+      <p class="text-muted mb-4">For an app that can't open a browser to sign in, make a key under <strong class="text-text">Your keys</strong>. The app sends the server address and the key as a bearer token. A key acts as you.</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Under <strong class="text-text">Your keys</strong>, give the key a <strong class="text-text">Name</strong>: where you will use it.</span></li><li class="pl-2"><span class="text-text font-medium">Choose how long it <strong class="text-text">Works for</strong>, up to the longest your administrator allows (90 days by default).</span></li><li class="pl-2"><span class="text-text font-medium">Choose what it <strong class="text-text">May</strong> do: <strong class="text-text">Read only</strong>, or <strong class="text-text">Read and change</strong> (tick that you understand anything holding the key can change pages, comments and labels as you).</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Make key</strong>, copy the key and select <strong class="text-text">I copied it</strong>. It is never shown again.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/connect-ai-apps-keys.png" alt="A new key, shown once and masked here, with I copied it" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">connect-ai-apps-keys.png</p>
+          <p class="text-xs text-muted max-w-md">A new key, shown once and masked here, with I copied it</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A new key, shown once and masked here, with I copied it</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Afterwards only the start of the key is shown, with its end date and when it was last used. Only a fingerprint is stored: if you lose it, remove it and make a new one.</li><li><strong class="text-text">Remove</strong> stops a key at once, everywhere it is used.</li><li>If the section says new keys can't be made, keys are switched off for the installation or you may not make them.</li></ul>
+      <h2 id="end-a-connection" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. End a connection</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Disconnect</strong> stops the app using the Wiki as you until you sign in to it again.</li><li>When an administrator ends a connection, it says <strong class="text-text">An administrator ended this connection</strong>. Its calls are refused. To use the app again, remove the connection and connect again.</li></ul>
+      <h2 id="limits" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">7. Limits</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>All your connections together make up to 60 calls a minute by default (an administrator can change it); a change counts as two. Over it, the app is told how long to wait.</li><li>Changes also take from your usual budgets for publishing, comments and labels.</li><li>Calls through an app don't count against your Kee daily limit: your app uses its own model.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

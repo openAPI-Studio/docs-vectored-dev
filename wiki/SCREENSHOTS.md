@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-211 screenshots. Save each one into `wiki/assets/` using the
+229 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -144,6 +144,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `page-history-and-versions-compare.png`
       Page history comparing two versions side by side, with an added and a changed block
+- [ ] `page-history-change-summary.png`
+      Page history comparing version 3 with version 4, with What changed from version 3 to 4 written by Kee above the marked changes
 - [ ] `kee-history-mark.png`
       Page history comparing version 1 with version 2, marked with Kee
 
@@ -241,6 +243,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `qna-list.png`
       The Q&A list: questions with their votes, answers and tags, and the tabs and order
+- [ ] `qna-kee-suggests.png`
+      Kee suggests under a new question: a page that may answer it and a person who could answer, seen only by the asker
 - [ ] `qna-question.png`
       A question with its votes, an accepted answer and comments
 
@@ -386,12 +390,47 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `kee-ask-answer.png`
       The Ask Kee panel: a question, the steps Kee took, an answer with a numbered source, and the question box with the model, where to look and requests left today
+- [ ] `kee-ask-proposal.png`
+      A proposed change in the Ask Kee panel: the page and section, the new text marked, Apply, Open the editor, Ask for changes and Discard, and that it is saved to the page's draft by you
+- [ ] `kee-studio-picker.png`
+      The agent picker under the question box: Kee with no agent, and an agent you can use, picked
 - [ ] `kee-ask-howto.png`
       An answer from the product docs in the Ask Kee panel: the numbered steps, Show me, and the documentation page it used
 - [ ] `kee-ask-showme.png`
       Show me on a space's settings: a ring around the Members tab and the box with step 2 of 5
 - [ ] `kee-ask-history.png`
       Earlier conversations in the Ask Kee panel, each with when it was asked and until when it is kept
+
+## Kee studio: agents
+
+- [ ] `kee-studio-list.png`
+      Kee studio: your agents as cards, a draft and a published one, with New agent and the search box
+- [ ] `kee-studio-builder.png`
+      The builder: icon, name, what it is for, instructions, model, knowledge and what it may do on the left, and a test conversation under Try it on the right
+- [ ] `kee-studio-versions.png`
+      Version history of an agent: version 3 restored from version 1, version 2 with changed instructions, version 1 first published, each with Restore
+- [ ] `kee-studio-share.png`
+      Share an agent: a space found by its name, the owner, a person who can use it, Everyone in the wiki, and the note that sharing gives the agent, not your access
+- [ ] `kee-studio-picker.png`
+      The agent picker in Ask Kee: Kee with no agent, and an agent you can use, picked
+
+## Connect AI apps
+
+- [ ] `connect-ai-apps.png`
+      Connect AI apps in the profile settings: the server address, how to connect each app, the registered apps with their client IDs, and your connections
+- [ ] `connect-ai-apps-toolsets.png`
+      A connection marked Read and change, with the groups of tools it is shown and how many tools that makes
+- [ ] `connect-ai-apps-keys.png`
+      A new key, shown once and masked here, with I copied it
+
+## Scheduled help
+
+- [ ] `kee-scheduled-help-settings.png`
+      The Scheduled help card: Suggestions for new questions and Stale page finder, each with its switch
+- [ ] `kee-scheduled-help-space.png`
+      A space's Kee tab, Scheduled help: Look for pages that are out of date, and Suggest this space's pages for new questions
+- [ ] `kee-scheduled-help-findings.png`
+      Pages that may be out of date in a space's Kee tab: a finding with its reason, the suggestion, the page's age and views, Mark as done and Dismiss
 
 ## Setup wizard
 
@@ -491,6 +530,15 @@ realistic but fictional names and figures rather than real people's data.
       Data handling: what leaves the server for each feature and when, usage record retention, and whether usage reports name people
 - [ ] `kee-space-settings.png`
       Space settings → Kee: Kee works in this space, and Tell readers when a page holds text written with Kee
+
+## Outside AI apps
+
+- [ ] `kee-outside-apps-tab.png`
+      Settings → Kee → Outside AI apps: the switch, and for each group of tools what apps may do
+- [ ] `kee-outside-apps-toolsets.png`
+      What apps may do: Core set to Read and change, Tool search always on, Product docs and Versions set to Read
+- [ ] `kee-outside-apps-access.png`
+      Who may connect, and how: the roles that may connect apps, Let people make keys, calls per person per minute, the registered AI apps, use in the last 7 days and the connections with End connection
 
 ## Users &amp; directories
 

@@ -1390,6 +1390,8 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://wiki.example.com/api/users
             P("The AI application finds how to sign in from the address itself: an unsigned request is answered with a pointer to `/.well-known/oauth-protected-resource/mcp/<plugin>`. The person signs in and sees \"<application> wants to use <server> for you\" with the permissions it asks for. Each sign-in names exactly one plugin address (the `resource` parameter), and the tokens it gets (`dpm_…`) work only there: never on the Wiki API, and never at another plugin. Refreshing keeps the same binding."),
             NOTE("AI agents can't use device sign-in. Machine access and workload identity are only for agents that run with no person: see the next section."),
 
+            P("**The Wiki's own server.** Besides plugins' servers, the Wiki has a built-in server for outside AI apps at `https://<your Wiki address>/mcp/wiki`, with its own switch. Register an AI agent application for it the same way, choosing this Wiki's server (`wiki`); its keys can change the Wiki where the [Outside AI apps](kee-outside-apps.html) tab allows it, without the plugins' write-tools switch. People connect on [Connect AI apps](connect-ai-apps.html)."),
+
             H("Headless AI agents"),
             P("A CI job or a server-side agent can use MCP tools without a person signing in. Give a **Server application** of the kind **AI agent** a [service account](#machine-access-service-accounts), and optionally [workload identity](#workload-identity-no-secret-in-the-pipeline). Its token request must name exactly one MCP server with `resource`:"),
             CODE("""curl -u "$CLIENT_ID:$CLIENT_SECRET" https://wiki.example.com/api/oauth/token \\
@@ -1579,7 +1581,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://wiki.example.com/api/users
                 ["Q&A", "The questions, answers and comments they wrote, their votes and what they follow"],
                 ["Calendar", "The events they wrote, edited or are on leave in, and whether they have a calendar feed address (never the address itself)"],
                 ["Analytics", "The pages they read, by day, as far back as reading history is kept (about 25 months)"],
-                ["Kee", "Their Ask Kee conversations (questions, answers, sources) and feedback on answers, and how many Kee requests they made per day, by feature and model"],
+                ["Kee", "Their Ask Kee conversations (questions, answers, sources), proposed changes and feedback on answers, their agents, their outside AI app connections, and how many Kee requests they made per day, by feature and model"],
             ]),
             P("People can download their own data under **Profile → Security → Download my data**. Every download is recorded in the audit log."),
             NOTE("Page comments and review requests aren't in the download yet."),
@@ -1598,7 +1600,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://wiki.example.com/api/users
                 ["Q&A", "Their votes (scores drop with them), follows, reputation and drafts; their name on their questions, answers, comments and earlier versions; mentions of them in every post; images they uploaded that no post shows", "The posts themselves, since other people's answers and votes hang on them; a moderator removes a post whose text names the person"],
                 ["Calendar", "Their leave and their feed address; their name on the events they wrote or edited", "The events, which belong to the space (its editors change a title that names the person)"],
                 ["Analytics", "Who read what, by day", "Their views, as anonymous ones, so page and space numbers don't change"],
-                ["Kee", "Their Ask Kee conversations, messages and feedback; their name on Kee usage records", "The usage numbers, without who, so reports and the budget don't change"],
+                ["Kee", "Their Ask Kee conversations, messages, proposals and feedback; their agents nobody else uses; their outside AI app connections; their name on Kee usage records and as the author of agent versions", "The usage numbers, without who, so reports and the budget don't change; agents shared with others, with no owner"],
             ]),
             P("**What stays:** the account itself, renamed **Deleted user** with an unusable address, so the audit log and what they wrote still make sense. It can never sign in or be enabled again, and it doesn't use a license seat."),
             P("**Directories:** if the person still exists in an LDAP or Active Directory directory, sync doesn't bring them back; the run lists them as skipped (*anonymized*). The Wiki keeps only a keyed hash of their directory ID for that, not the ID itself."),

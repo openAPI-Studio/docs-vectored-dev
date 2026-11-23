@@ -164,9 +164,26 @@ USER_B = [
             ]),
             P("People who edit the page can switch **Show** to **Draft history** to compare snapshots of the draft the same way. See [Drafts & publishing](drafts-and-publishing.html#draft-history)."),
 
+            H("What changed, in words"),
+            P("While [Kee](kee.html) is on, comparing two published versions offers **What changed, in words**: Kee describes the changes between them in a few plain sentences, above the comparison."),
+            SHOT("page-history-change-summary.png", "Page history comparing version 3 with version 4, with What changed from version 3 to 4 written by Kee above the marked changes"),
+            STEPS([
+                ("Open the page and choose **⋯ → Page history**.", "page.more"),
+                ("Pick the two versions in **Compare** and **With**.", "page-history.compare"),
+                "Select **What changed, in words**. The description appears as it is written; **Hide the summary** folds it away.",
+            ], howto="describe-changes-between-versions", task="Have Kee describe in words what changed between two versions of a page"),
+            UL([
+                "A description is made once for each pair of versions and language, then reused by everyone who compares the same two: the footer says **reused without a new request** or **made just now and kept for other readers**. Making a new one counts as one request against your [daily limit](kee.html#your-daily-limit).",
+                "When the versions differ in many places, Kee describes the first of them and says so; the comparison below always shows everything.",
+                "Two versions with the same content say **Nothing to describe**.",
+                "Not offered in a space where Kee is off, or when an administrator turned **Change summaries** off.",
+                "Kee can be wrong: the marked comparison is what really changed.",
+            ]),
+
             H("Versions written with Kee"),
             P("When a result from [Kee](kee-editor.html) was put on a page, the next published version is marked **with Kee**: in the **Compare** and **With** pickers of the page history and in the editor's versions. The mark says only that the version holds text applied from Kee, not who used it or which words."),
             SHOT("kee-history-mark.png", "Page history comparing version 1 with version 2, marked with Kee"),
+            P("The same goes for a change Kee proposed and you applied in [Ask Kee](ask-kee.html#proposed-changes). A version published from a draft that an [outside AI app](connect-ai-apps.html) wrote into is marked **With an AI app** instead, and names the app. These marks show while Kee or outside AI apps are on; the audit log says how every version came about either way."),
             P("A space's admins can also tell readers: with **Tell readers when a page holds text written with Kee** on in the space's **Settings → Kee**, such pages show \"Parts of this page were written with Kee and checked by its authors.\" above the text. See [Kee in a space](kee-data.html#kee-in-a-space)."),
 
             H("Deleted pages"),
@@ -713,6 +730,16 @@ USER_B = [
             ]),
             P("Under a published page, **Questions about this page** lists questions that link to it, and **Ask about this page** starts a question with a link to it. "
               "A question lists the **Wiki pages** it links to that you can read."),
+
+            H("Suggestions from Kee"),
+            P("When an administrator turned on [scheduled help](kee-scheduled-help.html), a few minutes after you ask a question you may see **Kee suggests** under it: **Pages that may answer this**, questions **Asked before**, people who **Could answer** and **Tags that fit**."),
+            SHOT("qna-kee-suggests.png", "Kee suggests under a new question: a page that may answer it and a person who could answer, seen only by the asker"),
+            UL([
+                "Only you, the asker, see them, and only pages and questions you can read.",
+                "Pages come only from spaces whose admins allowed it, never from pages under a page lock.",
+                "Kee matches words in titles, so the suggestions are a hint, not an answer. Kee can be wrong.",
+                "**Hide these suggestions** (the cross) removes them for good.",
+            ]),
 
             H("Answer, vote and accept"),
             UL([
