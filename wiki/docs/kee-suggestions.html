@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titles, labels and duplicate pages — Wiki Docs</title>
+  <meta name="description" content="Let Kee suggest a title or labels for the page you are editing, see when a new page may already exist, and merge it into the other page through a proposal">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+      <h1 class="vc-h1">Titles, labels and duplicate pages</h1>
+      <p class="vc-lede">Let Kee suggest a title or labels for the page you are editing, see when a new page may already exist, and merge it into the other page through a proposal</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">While you edit a page, Kee can suggest a title and labels from its text, and tell you when a new page covers the same subject as a page that already exists. Kee only suggests: nothing changes until you pick a suggestion or apply a merge.</p>
+      <h2 id="suggest-a-title" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Suggest a title</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the page and select <strong class="text-text">Edit</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Under the title, select <strong class="text-text">Suggest a title</strong>. Kee reads the page and offers three titles.</span></li><li class="pl-2"><span class="text-text font-medium">Select one to use it as the title, or close the suggestions with the cross. The title doesn't change until you pick one.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-suggest-editor.png" alt="The editor with Suggest a title under the page&#x27;s title and Suggest labels under the label field in Page details" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-suggest-editor.png</p>
+          <p class="text-xs text-muted max-w-md">The editor with Suggest a title under the page's title and Suggest labels under the label field in Page details</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The editor with Suggest a title under the page's title and Suggest labels under the label field in Page details</figcaption>
+      </figure>
+      <h2 id="suggest-labels" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Suggest labels</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the page and select <strong class="text-text">Edit</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Open <strong class="text-text">Page details</strong>, the side panel of the editor, if it is hidden.</span></li><li class="pl-2"><span class="text-text font-medium">Under <strong class="text-text">Labels</strong>, select <strong class="text-text">Suggest labels</strong>. Kee offers up to five labels.</span></li><li class="pl-2"><span class="text-text font-medium">Select a label to add it to the page. The others stay offered until you close them.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-suggest.png" alt="Three suggested titles under the title, and suggested labels (tls, certificates, runbook, gateway, operations) under the label field" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-suggest.png</p>
+          <p class="text-xs text-muted max-w-md">Three suggested titles under the title, and suggested labels (tls, certificates, runbook, gateway, operations) under the label field</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Three suggested titles under the title, and suggested labels (tls, certificates, runbook, gateway, operations) under the label field</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Suggestions come from the title and the first part of the page's text. Labels the space already uses are preferred.</li><li>Asking again while the text hasn't changed gives the same suggestions at once: nothing is sent and nothing counts against your limit. A new suggestion counts as one request.</li><li>An empty page has nothing to suggest from: write some text first.</li><li>The <strong class="text-text">Title and label suggestions</strong> feature is on once Kee is on. An administrator can turn it off.</li></ul>
+      <h2 id="this-page-may-already-exist" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. This page may already exist</h2>
+      <p class="text-muted mb-4">When you give a new page its title, Kee looks for pages you can read on the same subject. If it finds some, a box under the title says <strong class="text-text">This page may already exist</strong>, with up to three pages, each with why Kee thinks so. It never stops you from writing or publishing your page.</p>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-duplicates-warning.png" alt="This page may already exist under a new page&#x27;s title: Certificate rotation runbook in Operations, why both pages cover the same subject, and Merge this page into it" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-duplicates-warning.png</p>
+          <p class="text-xs text-muted max-w-md">This page may already exist under a new page's title: Certificate rotation runbook in Operations, why both pages cover the same subject, and Merge this page into it</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">This page may already exist under a new page's title: Certificate rotation runbook in Operations, why both pages cover the same subject, and Merge this page into it</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>It is shown only for a page that was never published, in the editor, and only when an administrator turned on the <strong class="text-text">Duplicate page warning</strong> feature (it is off by default).</li><li>It names only pages you can read: never a page under a page lock, a draft, a whiteboard or blog post, or a page of a space where Kee is off.</li><li>Kee first finds pages with similar words; only when there are some does it ask the model which really cover the same subject. When nothing is similar, nothing is sent and nothing counts.</li><li><strong class="text-text">Not a duplicate</strong> (the cross) closes the box. If the check fails, nothing is shown.</li><li>A page made by Ask Kee or by an outside AI app isn't checked.</li></ul>
+      <h2 id="merge-into-the-other-page" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. Merge into the other page</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">In the box <strong class="text-text">This page may already exist</strong>, read why Kee thinks the pages cover the same subject.</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Merge this page into it</strong>. Kee writes the other page with both pages' content, as a proposal.</span></li><li class="pl-2"><span class="text-text font-medium">Read the proposal: <strong class="text-text">Result</strong> shows the merged page, <strong class="text-text">Changes</strong> what is new. Select <strong class="text-text">Apply</strong> to write it into the other page's draft, or <strong class="text-text">Discard</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Open the other page in the editor, check it and publish it. Then delete or archive your new page yourself.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-duplicates-proposal.png" alt="The merge proposal for Certificate rotation runbook: Result with the merged text, Waiting for you, Apply, Open the editor and Discard" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-duplicates-proposal.png</p>
+          <p class="text-xs text-muted max-w-md">The merge proposal for Certificate rotation runbook: Result with the merged text, Waiting for you, Apply, Open the editor and Discard</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The merge proposal for Certificate rotation runbook: Result with the merged text, Waiting for you, Apply, Open the editor and Discard</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li><strong class="text-text">Merge this page into it</strong> is offered only for a page you may edit.</li><li>Apply writes into the other page's draft as you, with your permissions and page locks, like any <a href="ask-kee.html#proposed-changes" class="text-cta hover:underline">proposed change</a>. If the other page changed since Kee read it, Apply says so and writes nothing.</li><li>Your new page is never changed, archived or redirected. After Apply the box says <strong class="text-text">This page was not changed. Delete or archive it yourself once the other page holds everything.</strong></li><li>The merge takes the text of your new page. Its images, mentions and embeds are not carried over; the other page keeps its own.</li><li>The proposal is also kept in your history in Ask Kee, for 7 days.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-duplicates-applied.png" alt="The proposal applied: the change is in the page&#x27;s draft, and this page was not changed" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-duplicates-applied.png</p>
+          <p class="text-xs text-muted max-w-md">The proposal applied: the change is in the page's draft, and this page was not changed</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The proposal applied: the change is in the page's draft, and this page was not changed</figcaption>
+      </figure>
+      <p class="text-muted mb-4">For administrators: the <strong class="text-text">Title and label suggestions</strong> and <strong class="text-text">Duplicate page warning</strong> switches are on <strong class="text-text">Settings → Kee → Features and access</strong> (<a href="../admin/kee-access.html" class="text-cta hover:underline">Features and permissions</a>).</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

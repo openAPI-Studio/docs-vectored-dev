@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kee's writing helpers — Wiki Docs</title>
+  <meta name="description" content="Review a section against the space's style guide, turn meeting notes into action items, draw a diagram from text, and make, fill, summarise or ask about tables with Kee">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <h1 class="vc-h1">Kee's writing helpers</h1>
+      <p class="vc-lede">Review a section against the space's style guide, turn meeting notes into action items, draw a diagram from text, and make, fill, summarise or ask about tables with Kee</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Besides rewriting, Kee has four helpers in the editor: a review against your space's style guide, action items from meeting notes, a diagram drawn from text, and help with tables. You find them in a section's menu, in Kee's group under the rewrites. Each one shows its result in a panel under the section first: nothing changes on the page until you choose to apply or insert it, and one <strong class="text-text">Undo</strong> takes it back off.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">You need to be able to edit the page, Kee must be on for you and in the space, and the <strong class="text-text">Writing help in the editor</strong> feature must be on. Each helper's run counts as one request against your <a href="kee.html#your-daily-limit" class="text-cta hover:underline">daily limit</a>.</p></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Helper</th><th>In the menu of</th><th>What you get</th></tr></thead><tbody><tr><td><strong class="text-text">Review against the style guide</strong></td><td>A text or heading section, when the space has a style guide</td><td>Findings, each with a suggested change you apply or dismiss one by one</td></tr><tr><td><strong class="text-text">Turn into action items</strong></td><td>A text section</td><td>A task list to insert below</td></tr><tr><td><strong class="text-text">Draft a diagram…</strong></td><td>A text or heading section</td><td>A diagram (Mermaid) to insert below</td></tr><tr><td><strong class="text-text">Make a table</strong></td><td>A text section</td><td>The section as a table, in its place</td></tr><tr><td><strong class="text-text">Add a column…</strong>, <strong class="text-text">Fill empty cells</strong></td><td>A table</td><td>The table with a new column, or its empty cells filled, in its place</td></tr><tr><td><strong class="text-text">Summarise the table</strong>, <strong class="text-text">Ask about the table…</strong></td><td>A table</td><td>Text to insert below the table</td></tr></tbody></table></div>
+      <p class="text-muted mb-4">Select some words in a paragraph, then the <strong class="text-text">Kee</strong> button beside them: its panel also offers <strong class="text-text">Draft a diagram</strong>, <strong class="text-text">Action items</strong> and <strong class="text-text">Make a table</strong> for just those words. The result is then inserted below.</p>
+      <h2 id="review-against-the-style-guide" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Review against the style guide</h2>
+      <p class="text-muted mb-4">A space's admins can choose one published page of the space as its <strong class="text-text">style guide</strong>: a page that lists your writing rules, such as "Use plain words" or "Write dates with the year". Kee checks a section against that page, and only that page.</p>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the page in the editor, rest the pointer on a section and open its menu (the handle at its right).</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Review against the style guide</strong>. Kee reads the section against the guide.</span></li><li class="pl-2"><span class="text-text font-medium">Read each finding: the rule it breaks and the change Kee suggests. Select <strong class="text-text">Apply</strong> to make that change in the page, or <strong class="text-text">Dismiss</strong> to leave it.</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Done</strong> when you have gone through them, or <strong class="text-text">Try again</strong> for a new review.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-helper-review.png" alt="Style review under a section: checked against House style, three findings with the suggested change marked, each with Apply and Dismiss, then Done and Try again" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-helper-review.png</p>
+          <p class="text-xs text-muted max-w-md">Style review under a section: checked against House style, three findings with the suggested change marked, each with Apply and Dismiss, then Done and Try again</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Style review under a section: checked against House style, three findings with the suggested change marked, each with Apply and Dismiss, then Done and Try again</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The item is in the menu only while the space names a style guide. If the guide page was deleted, unpublished or locked away from you, the review says it can't be read.</li><li>Kee reads the guide with your own access, every time. A very long guide is read in part: the panel says so.</li><li>A finding whose text changed since Kee read it says <strong class="text-text">This text has changed, so the suggestion can't be applied.</strong> Run the review again.</li><li>Some findings suggest removing text: their button says <strong class="text-text">Remove this text</strong>.</li><li>Findings are never posted as comments, and nothing is kept once you close the panel.</li></ul>
+      <h2 id="choose-the-style-guide-space-admins" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Choose the style guide (space admins)</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the space and select <strong class="text-text">Space settings</strong> in its sidebar.</span></li><li class="pl-2"><span class="text-text font-medium">Open the <strong class="text-text">Kee</strong> tab.</span></li><li class="pl-2"><span class="text-text font-medium">Under <strong class="text-text">Style guide</strong>, choose a published page of this space. <strong class="text-text">Choose another page</strong> changes it and <strong class="text-text">Remove</strong> takes it away.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-style-guide-setting.png" alt="A space&#x27;s Kee tab: Kee works in this space, Tell readers when a page holds text written with Kee, and Style guide: House style with Choose another page and Remove" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-style-guide-setting.png</p>
+          <p class="text-xs text-muted max-w-md">A space's Kee tab: Kee works in this space, Tell readers when a page holds text written with Kee, and Style guide: House style with Choose another page and Remove</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A space's Kee tab: Kee works in this space, Tell readers when a page holds text written with Kee, and Style guide: House style with Choose another page and Remove</figcaption>
+      </figure>
+      <p class="text-muted mb-4">A good guide page is short and lists one rule a line, with an example of each. Only a published page of the same space can be the guide; a draft or another space's page is refused. Changing it raises <span class="font-mono text-sm break-words">space.ai_settings.update</span> with the page chosen and the one before.</p>
+      <h2 id="meeting-notes-to-action-items" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Meeting notes to action items</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open a section of notes in the editor and open its menu (the handle at its right).</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Turn into action items</strong>. Kee lists the tasks the notes give.</span></li><li class="pl-2"><span class="text-text font-medium">Check each task, its owner and its date.</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Insert below</strong> to add them as a task list under the notes, <strong class="text-text">Discard</strong> to drop them, or <strong class="text-text">Try again</strong>.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-helper-items.png" alt="Action items from meeting notes: Update the runbook for Mira Okafor due Nov 27, 2026, Check the alert thresholds for Tom Reyes, Order the new badges with no owner, and Insert below" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-helper-items.png</p>
+          <p class="text-xs text-muted max-w-md">Action items from meeting notes: Update the runbook for Mira Okafor due Nov 27, 2026, Check the alert thresholds for Tom Reyes, Order the new badges with no owner, and Insert below</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Action items from meeting notes: Update the runbook for Mira Okafor due Nov 27, 2026, Check the alert thresholds for Tom Reyes, Order the new badges with no owner, and Insert below</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>An owner is only a person the notes name, and only when exactly one person you may mention matches that name; otherwise the name stays as text. Nobody is made up.</li><li>A date is only one the notes give. "By Friday" becomes the date of that Friday.</li><li>A task nobody was named for has no owner. The inserted tasks work like any <a href="tasks.html" class="text-cta hover:underline">task</a>: the mention is the assignee, the date the due date.</li></ul>
+      <h2 id="a-diagram-from-text" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">4. A diagram from text</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the menu of the section that describes the steps (the handle at its right).</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Draft a diagram…</strong>. Under <strong class="text-text">What to draw (optional)</strong>, say what you want, for example "a flowchart of the steps", then <strong class="text-text">Draft</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Look at the diagram drawn in the panel.</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Insert below</strong> to add it as a Mermaid diagram under the section, or <strong class="text-text">Discard</strong>.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-helper-diagram.png" alt="The Diagram panel under a section: a flowchart of the release steps drawn from its text" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-helper-diagram.png</p>
+          <p class="text-xs text-muted max-w-md">The Diagram panel under a section: a flowchart of the release steps drawn from its text</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The Diagram panel under a section: a flowchart of the release steps drawn from its text</figcaption>
+      </figure>
+      <p class="text-muted mb-4">The diagram is checked before you see it. When it can't be drawn, Kee corrects it once; if it still can't be drawn the panel says <strong class="text-text">The diagram couldn't be drawn</strong> and nothing is inserted. The diagram is an ordinary <a href="macros.html" class="text-cta hover:underline">Mermaid block</a>: edit its text afterwards like any other.</p>
+      <h2 id="tables" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">5. Tables</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open the menu of a text section, or of a table (the handle at its right).</span></li><li class="pl-2"><span class="text-text font-medium">On text, select <strong class="text-text">Make a table</strong>. On a table, select <strong class="text-text">Add a column…</strong> (and say which column, for example "the owner of each row"), <strong class="text-text">Fill empty cells</strong>, <strong class="text-text">Summarise the table</strong> or <strong class="text-text">Ask about the table…</strong> (and type your question).</span></li><li class="pl-2"><span class="text-text font-medium">Read the result in the panel.</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Replace</strong> to put a new table in place of the old one, or <strong class="text-text">Insert below</strong> for a summary or an answer. <strong class="text-text">Keep original</strong> or <strong class="text-text">Discard</strong> leaves the page as it was.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-helper-table.png" alt="A table of regions by quarter with Kee&#x27;s summary of it in the Table panel underneath" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-helper-table.png</p>
+          <p class="text-xs text-muted max-w-md">A table of regions by quarter with Kee's summary of it in the Table panel underneath</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">A table of regions by quarter with Kee's summary of it in the Table panel underneath</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Kee works on real tables of the editor. A new column is checked to be exactly one more column; a fill only changes cells that were empty.</li><li>When the table doesn't make any empty cell clear, the panel says <strong class="text-text">Nothing to fill</strong> and the table stays as it was.</li><li>Tables have no <strong class="text-text">Ask for more changes</strong>. To change a result, run the helper again.</li></ul>
+      <h2 id="good-to-know" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">6. Good to know</h2>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>The helpers use the same model picker, limits and notices as the rewrites (see <a href="kee-editor.html" class="text-cta hover:underline">Writing with Kee</a>).</li><li>A version with text applied from a helper is marked <strong class="text-text">with Kee</strong> in the page history, like a rewrite.</li><li>The section menu now opens above its handle when there is more room there, and scrolls when it is long.</li><li>Nothing of a helper is available in a space where Kee is off.</li></ul>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>

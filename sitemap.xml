@@ -305,6 +305,10 @@
   <url><loc>https://docs.vectored.dev/wiki/docs/connect-ai-apps.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/kee-scheduled-help.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/kee-tools.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-writing-helpers.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-suggestions.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-images.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-space-digest.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/editor.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/events.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/getting-started.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
@@ -353,6 +357,7 @@
   <url><loc>https://docs.vectored.dev/wiki/admin/kee-limits.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/kee-data.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/kee-outside-apps.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-search.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/licensing.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/logging-and-audit.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/monitoring.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>

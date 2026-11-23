@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-229 screenshots. Save each one into `wiki/assets/` using the
+249 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -391,7 +391,7 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `kee-ask-answer.png`
       The Ask Kee panel: a question, the steps Kee took, an answer with a numbered source, and the question box with the model, where to look and requests left today
 - [ ] `kee-ask-proposal.png`
-      A proposed change in the Ask Kee panel: the page and section, the new text marked, Apply, Open the editor, Ask for changes and Discard, and that it is saved to the page's draft by you
+      A proposed change in the Ask Kee panel: the page and section, the result as it will look with Changes beside it, the version note, Apply, Open the editor, Ask for changes and Discard
 - [ ] `kee-studio-picker.png`
       The agent picker under the question box: Kee with no agent, and an agent you can use, picked
 - [ ] `kee-ask-howto.png`
@@ -431,6 +431,48 @@ realistic but fictional names and figures rather than real people's data.
       A space's Kee tab, Scheduled help: Look for pages that are out of date, and Suggest this space's pages for new questions
 - [ ] `kee-scheduled-help-findings.png`
       Pages that may be out of date in a space's Kee tab: a finding with its reason, the suggestion, the page's age and views, Mark as done and Dismiss
+
+## Kee's writing helpers
+
+- [ ] `kee-helper-review.png`
+      Style review under a section: checked against House style, three findings with the suggested change marked, each with Apply and Dismiss, then Done and Try again
+- [ ] `kee-style-guide-setting.png`
+      A space's Kee tab: Kee works in this space, Tell readers when a page holds text written with Kee, and Style guide: House style with Choose another page and Remove
+- [ ] `kee-helper-items.png`
+      Action items from meeting notes: Update the runbook for Mira Okafor due Nov 27, 2026, Check the alert thresholds for Tom Reyes, Order the new badges with no owner, and Insert below
+- [ ] `kee-helper-diagram.png`
+      The Diagram panel under a section: a flowchart of the release steps drawn from its text
+- [ ] `kee-helper-table.png`
+      A table of regions by quarter with Kee's summary of it in the Table panel underneath
+
+## Titles, labels & duplicates
+
+- [ ] `kee-suggest-editor.png`
+      The editor with Suggest a title under the page's title and Suggest labels under the label field in Page details
+- [ ] `kee-suggest.png`
+      Three suggested titles under the title, and suggested labels (tls, certificates, runbook, gateway, operations) under the label field
+- [ ] `kee-duplicates-warning.png`
+      This page may already exist under a new page's title: Certificate rotation runbook in Operations, why both pages cover the same subject, and Merge this page into it
+- [ ] `kee-duplicates-proposal.png`
+      The merge proposal for Certificate rotation runbook: Result with the merged text, Waiting for you, Apply, Open the editor and Discard
+- [ ] `kee-duplicates-applied.png`
+      The proposal applied: the change is in the page's draft, and this page was not changed
+
+## Images and Kee
+
+- [ ] `kee-describe-image.png`
+      The image dialog: Describe with Kee, the proposed alternative text and caption, Dismiss and Use these
+- [ ] `kee-ask-images-picker.png`
+      Add an image in Ask Kee: the images on this page, From your device, and that images go with this question only and are not stored
+- [ ] `kee-ask-image-answer.png`
+      An answer about the release pipeline diagram added to the question, with the page as its source
+
+## Space digest
+
+- [ ] `kee-space-digest.png`
+      This week in the space on a space's overview: a new page, a new style page with its decisions, and a changed runbook with what changed and what was decided
+- [ ] `kee-space-digest-switch.png`
+      A space's Kee tab, Scheduled help: Look for pages that are out of date, Suggest this space's pages for new questions, and Make a weekly digest of what changed
 
 ## Setup wizard
 
@@ -537,8 +579,21 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Kee → Outside AI apps: the switch, and for each group of tools what apps may do
 - [ ] `kee-outside-apps-toolsets.png`
       What apps may do: Core set to Read and change, Tool search always on, Product docs and Versions set to Read
+- [ ] `kee-outside-apps-admin-level.png`
+      What apps may do: Space members set to Read, and Wiki administration with its Administration tools badge set to Administration, with the note on what an app needs
+- [ ] `kee-outside-apps-admin-confirm.png`
+      Allow administration tools?: the 14 tools, the warning that an app can then make these changes at once under the person's name, and Allow administration
+- [ ] `kee-outside-apps-admin-consent.png`
+      The sign-in screen of an AI app that asks to read, change and administer the Wiki, with the administer scope listed under the warning
+- [ ] `kee-outside-apps-admin-connections.png`
+      Connections used in the last 7 days: two connections with Read and change and Administration badges, and one with Read and change, each with End connection
 - [ ] `kee-outside-apps-access.png`
       Who may connect, and how: the roles that may connect apps, Let people make keys, calls per person per minute, the registered AI apps, use in the last 7 days and the connections with End connection
+
+## Search & search by meaning
+
+- [ ] `kee-settings-search.png`
+      Settings → Kee → Search: the index of page text with pages indexed, and search by meaning with its switch, the embeddings model, pages with vectors, tokens and estimated cost
 
 ## Users &amp; directories
 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Images and Kee — Wiki Docs</title>
+  <meta name="description" content="Let Kee propose alt text and a caption for an image, and add images to a question in Ask Kee">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+    var light=t?t==='light':window.matchMedia('(prefers-color-scheme:light)').matches;
+    var d=document.documentElement;d.dataset.theme=light?'light':'dark';
+    d.classList.toggle('dark',!light);d.classList.toggle('light',light);})();</script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../assets/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <meta name="dx-guide" content="user">
+</head>
+<body>
+
+<div id="vc-header"></div>
+<script src="../../assets/nav.js"></script>
+<script src="../assets/nav-local.js"></script>
+<script src="../../assets/header.js"></script>
+  <style>.dx-bar{background:rgba(245,158,11,.1);border-bottom:1px solid rgba(245,158,11,.28);padding:8px 16px;text-align:center;font-size:14px;font-weight:500;color:#FBBF24}html[data-theme="light"] .dx-bar{background:rgba(245,158,11,.12);border-bottom-color:rgba(180,83,9,.3);color:#B45309}.dx-bar a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}</style>
+  <div class="dx-bar">Coming soon. The Wiki is in active development, so features and these docs may still change. Early adopters: <a href="/support.html?tool=wiki&amp;type=access">contact us for access</a>.</div>
+
+<div class="vc-shell">
+  <aside class="vc-side" data-noprint="1"></aside>
+
+  <main class="vc-main">
+    <div class="vc-col">
+      <div data-vc="printhead"></div>
+      <div data-vc="crumbs"></div>
+      <div class="page-icon-chip w-11 h-11 rounded-xl bg-cta/10 border border-cta/20 text-cta flex items-center justify-center"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg></div>
+      <h1 class="vc-h1">Images and Kee</h1>
+      <p class="vc-lede">Let Kee propose alt text and a caption for an image, and add images to a question in Ask Kee</p>
+      <div data-vc="meta"></div>
+      <div data-vc="contents"></div>
+
+      <article class="vc-doc">
+      <p class="text-muted mb-4">Kee can look at images: it proposes alternative text and a caption for an image in a page, and answers questions about images you add to Ask Kee. An image is sent to the model only when you ask, for that one request.</p>
+      <div class="rounded-xl border border-border bg-surface/90 p-4 mb-6"><p class="text-sm text-muted">Both need the <strong class="text-text">Images</strong> feature, which an administrator turns on (it is off by default), and a model that reads images. If the model can't, Kee says so instead of offering the button.</p></div>
+      <h2 id="describe-an-image" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">1. Describe an image</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">In the editor, select the image and open <strong class="text-text">Image settings</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Under <strong class="text-text">Alternative text</strong>, select <strong class="text-text">Describe with Kee</strong>. Kee looks at the image and the text around it.</span></li><li class="pl-2"><span class="text-text font-medium">Read the proposed <strong class="text-text">Alternative text</strong> and <strong class="text-text">Caption</strong>. Select <strong class="text-text">Use these</strong> to fill them into the fields, or <strong class="text-text">Dismiss</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Change the text if you need to, then select <strong class="text-text">Apply</strong> in the dialog. Publish the page as usual.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-describe-image.png" alt="The image dialog: Describe with Kee, the proposed alternative text and caption, Dismiss and Use these" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-describe-image.png</p>
+          <p class="text-xs text-muted max-w-md">The image dialog: Describe with Kee, the proposed alternative text and caption, Dismiss and Use these</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">The image dialog: Describe with Kee, the proposed alternative text and caption, Dismiss and Use these</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Nothing changes until you select <strong class="text-text">Use these</strong>, and nothing is saved until you apply the dialog and save the page.</li><li>When the image looks decorative, Kee says so and proposes no alternative text.</li><li>Kee never names the people in an image.</li><li>You need to be able to edit the page. Page locks apply.</li><li>If the model can't read images, the dialog says <strong class="text-text">… can't look at images</strong>: ask your administrator for a model that does.</li><li>Each description counts as one request against your daily limit.</li></ul>
+      <h2 id="ask-kee-about-an-image" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">2. Ask Kee about an image</h2>
+      <ol class="text-muted mb-4 space-y-3 list-decimal pl-6 marker:text-cta marker:font-semibold"><li class="pl-2"><span class="text-text font-medium">Open <strong class="text-text">Ask Kee</strong> from the top bar, on the page with the image if it is in a page.</span></li><li class="pl-2"><span class="text-text font-medium">Select <strong class="text-text">Add an image</strong>. Pick one of the images under <strong class="text-text">On this page</strong>, or <strong class="text-text">From your device</strong>.</span></li><li class="pl-2"><span class="text-text font-medium">Type your question and send it. The image goes with that question only.</span></li></ol>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-ask-images-picker.png" alt="Add an image in Ask Kee: the images on this page, From your device, and that images go with this question only and are not stored" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-ask-images-picker.png</p>
+          <p class="text-xs text-muted max-w-md">Add an image in Ask Kee: the images on this page, From your device, and that images go with this question only and are not stored</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">Add an image in Ask Kee: the images on this page, From your device, and that images go with this question only and are not stored</figcaption>
+      </figure>
+      <ul class="text-muted mb-4 space-y-2 list-disc pl-6"><li>Up to four images a question: images attached to the page you opened Ask Kee on (read with your access), or one picture from your device (PNG, JPEG, GIF or WebP, up to 5 MB).</li><li>Images are never stored. Your question keeps only their names (<strong class="text-text">With …</strong> under it), and follow-up questions don't send them again.</li><li>When the chosen model can't read images, the panel says so and you can't send. With an agent that always uses its own model, the server decides.</li><li>The image is made smaller and its hidden details (camera, place, time) are removed before it is sent.</li><li>Asking with images counts like any question.</li></ul>
+      <figure class="shot mb-6">
+        <img src="../assets/kee-ask-image-answer.png" alt="An answer about the release pipeline diagram added to the question, with the page as its source" loading="lazy"
+             class="rounded-lg border border-border"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none" class="flex-col items-center justify-center text-center gap-2 rounded-lg border-2 border-dashed border-border bg-surface/50 px-6 py-10">
+          <svg class="w-7 h-7 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-sm text-muted">Screenshot needed</p>
+          <p class="font-mono text-xs text-cta break-all">kee-ask-image-answer.png</p>
+          <p class="text-xs text-muted max-w-md">An answer about the release pipeline diagram added to the question, with the page as its source</p>
+        </div>
+        <figcaption class="text-xs text-muted mt-2">An answer about the release pipeline diagram added to the question, with the page as its source</figcaption>
+      </figure>
+      <h2 id="spreadsheets-attached-to-pages" class="text-2xl font-semibold mt-10 mb-4 scroll-mt-28">3. Spreadsheets attached to pages</h2>
+      <p class="text-muted mb-4">Ask Kee also reads Excel workbooks (<span class="font-mono text-sm break-words">.xlsx</span>) attached to pages, like PDF and Word files: every sheet, row by row. See <a href="ask-kee.html#what-kee-can-read" class="text-cta hover:underline">What Kee can read</a>.</p>
+      </article>
+
+      <div data-vc="pagefoot"></div>
+    </div>
+  </main>
+
+  <aside class="vc-rail" data-noprint="1"></aside>
+</div>
+
+<div id="vc-footer"></div>
+<script src="../../assets/footer.js"></script>
+<script src="../../assets/docs.js"></script>
+</body>
+</html>
