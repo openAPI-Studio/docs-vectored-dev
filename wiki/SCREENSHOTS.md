@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-209 screenshots. Save each one into `wiki/assets/` using the
+256 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -144,6 +144,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `page-history-and-versions-compare.png`
       Page history comparing two versions side by side, with an added and a changed block
+- [ ] `page-history-change-summary.png`
+      Page history comparing version 3 with version 4, with What changed from version 3 to 4 written by Kee above the marked changes
 - [ ] `kee-history-mark.png`
       Page history comparing version 1 with version 2, marked with Kee
 
@@ -241,6 +243,8 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `qna-list.png`
       The Q&A list: questions with their votes, answers and tags, and the tabs and order
+- [ ] `qna-kee-suggests.png`
+      Kee suggests under a new question: a page that may answer it and a person who could answer, seen only by the asker
 - [ ] `qna-question.png`
       A question with its votes, an accepted answer and comments
 
@@ -386,8 +390,98 @@ realistic but fictional names and figures rather than real people's data.
 
 - [ ] `kee-ask-answer.png`
       The Ask Kee panel: a question, the steps Kee took, an answer with a numbered source, and the question box with the model, where to look and requests left today
+- [ ] `kee-ask-proposal.png`
+      A proposed change in the Ask Kee panel: the page and section, the result as it will look with Changes beside it, the version note, Apply, Open the editor, Ask for changes and Discard
+- [ ] `kee-studio-picker.png`
+      The agent picker under the question box: Kee with no agent, and an agent you can use, picked
+- [ ] `kee-ask-howto.png`
+      An answer from the product docs in the Ask Kee panel: the numbered steps, Show me, and the documentation page it used
+- [ ] `kee-ask-showme.png`
+      Show me on a space's settings: a ring around the Members tab and the box with step 2 of 5
 - [ ] `kee-ask-history.png`
       Earlier conversations in the Ask Kee panel, each with when it was asked and until when it is kept
+
+## Kee studio: agents
+
+- [ ] `kee-studio-list.png`
+      Kee studio: your agents as cards, a draft and a published one, with New agent and the search box
+- [ ] `kee-studio-builder.png`
+      The builder: icon, name, what it is for, instructions, model, knowledge and what it may do on the left, and a test conversation under Try it on the right
+- [ ] `kee-studio-versions.png`
+      Version history of an agent: version 3 restored from version 1, version 2 with changed instructions, version 1 first published, each with Restore
+- [ ] `kee-studio-share.png`
+      Share an agent: a space found by its name, the owner, a person who can use it, Everyone in the wiki, and the note that sharing gives the agent, not your access
+- [ ] `kee-studio-picker.png`
+      The agent picker in Ask Kee: Kee with no agent, and an agent you can use, picked
+
+## Connect AI apps
+
+- [ ] `connect-ai-apps.png`
+      Connect AI apps in the profile settings: the server address, how to connect each app, the registered apps with their client IDs, and your connections
+- [ ] `connect-ai-apps-toolsets.png`
+      A connection marked Read and change, with the groups of tools it is shown and how many tools that makes
+- [ ] `connect-ai-apps-keys.png`
+      A new key, shown once and masked here, with I copied it
+
+## Scheduled help
+
+- [ ] `kee-scheduled-help-settings.png`
+      The Scheduled help card: Suggestions for new questions and Stale page finder, each with its switch
+- [ ] `kee-scheduled-help-space.png`
+      A space's Kee tab, Scheduled help: Look for pages that are out of date, and Suggest this space's pages for new questions
+- [ ] `kee-scheduled-help-findings.png`
+      Pages that may be out of date in a space's Kee tab: a finding with its reason, the suggestion, the page's age and views, Mark as done and Dismiss
+
+## Kee's writing helpers
+
+- [ ] `kee-helper-review.png`
+      Style review under a section: checked against House style, three findings with the suggested change marked, each with Apply and Dismiss, then Done and Try again
+- [ ] `kee-style-guide-setting.png`
+      A space's Kee tab: Kee works in this space, Tell readers when a page holds text written with Kee, and Style guide: House style with Choose another page and Remove
+- [ ] `kee-helper-items.png`
+      Action items from meeting notes: Update the runbook for Mira Okafor due Nov 27, 2026, Check the alert thresholds for Tom Reyes, Order the new badges with no owner, and Insert below
+- [ ] `kee-helper-diagram.png`
+      The Diagram panel under a section: a flowchart of the release steps drawn from its text
+- [ ] `kee-helper-table.png`
+      A table of regions by quarter with Kee's summary of it in the Table panel underneath
+
+## Titles, labels & duplicates
+
+- [ ] `kee-suggest-editor.png`
+      The editor with Suggest a title under the page's title and Suggest labels under the label field in Page details
+- [ ] `kee-suggest.png`
+      Three suggested titles under the title, and suggested labels (tls, certificates, runbook, gateway, operations) under the label field
+- [ ] `kee-duplicates-warning.png`
+      This page may already exist under a new page's title: Certificate rotation runbook in Operations, why both pages cover the same subject, and Merge this page into it
+- [ ] `kee-duplicates-proposal.png`
+      The merge proposal for Certificate rotation runbook: Result with the merged text, Waiting for you, Apply, Open the editor and Discard
+- [ ] `kee-duplicates-applied.png`
+      The proposal applied: the change is in the page's draft, and this page was not changed
+
+## Images and Kee
+
+- [ ] `kee-describe-image.png`
+      The image dialog: Describe with Kee, the proposed alternative text and caption, Dismiss and Use these
+- [ ] `kee-ask-images-picker.png`
+      Add an image in Ask Kee: the images on this page, From your device, and that images go with this question only and are not stored
+- [ ] `kee-ask-image-answer.png`
+      An answer about the release pipeline diagram added to the question, with the page as its source
+
+## Tidy imported pages
+
+- [ ] `kee-import-cleanup-found.png`
+      Tidy the imported pages: two pages could be tidied, Deploying the API with two imported blocks, three headings to fix and a link to restore, and Service owners with two headings to fix
+- [ ] `kee-import-cleanup-proposed.png`
+      After preparing: Review 1 proposal, Deploying the API waiting for review, and Service owners still to propose
+- [ ] `kee-import-cleanup-review.png`
+      The review queue: proposal 1 of 1 for Deploying the API, the tidied page with its restored links, and Apply, Open the editor and Discard
+
+## Space digest
+
+- [ ] `kee-space-digest.png`
+      This week in the space on a space's overview: a new page, a new style page with its decisions, and a changed runbook with what changed and what was decided
+- [ ] `kee-space-digest-switch.png`
+      A space's Kee tab, Scheduled help: Look for pages that are out of date, Suggest this space's pages for new questions, and Make a weekly digest of what changed
 
 ## Setup wizard
 
@@ -468,8 +562,16 @@ realistic but fictional names and figures rather than real people's data.
       Providers and models: each provider with its status, and the models table with the default and the fallback model
 - [ ] `kee-settings-add-provider.png`
       Connect a provider: the four providers, the name, the API key and a passed connection test
+- [ ] `kee-provider-assume-role.png`
+      Connect Amazon Bedrock with Assume a role: the region, the role ARN and an optional external ID
+- [ ] `kee-provider-endpoint.png`
+      Connect your own endpoint: the server address, the private network switch, No key, the name, one extra header and a passed connection test
+- [ ] `kee-provider-endpoint-refused.png`
+      A loopback address refused: This server may not connect to that address
 - [ ] `kee-settings-add-model.png`
       Add a model: the provider, a model picked from the provider's list, the name people see, the limits and the prices
+- [ ] `kee-provider-endpoint-model.png`
+      Add a model of your own endpoint: the model ID, the limits typed in, and the Reads images, Calls tools and Offered to people switches
 
 ## Features & permissions
 
@@ -487,6 +589,28 @@ realistic but fictional names and figures rather than real people's data.
       Data handling: what leaves the server for each feature and when, usage record retention, and whether usage reports name people
 - [ ] `kee-space-settings.png`
       Space settings → Kee: Kee works in this space, and Tell readers when a page holds text written with Kee
+
+## Outside AI apps
+
+- [ ] `kee-outside-apps-tab.png`
+      Settings → Kee → Outside AI apps: the switch, and for each group of tools what apps may do
+- [ ] `kee-outside-apps-toolsets.png`
+      What apps may do: Core set to Read and change, Tool search always on, Product docs and Versions set to Read
+- [ ] `kee-outside-apps-admin-level.png`
+      What apps may do: Space members set to Read, and Wiki administration with its Administration tools badge set to Read, change and administer, with the note on what an app needs
+- [ ] `kee-outside-apps-admin-confirm.png`
+      Allow administration tools?: the 14 tools, the warning that an app can then make these changes at once under the person's name, and Allow administration
+- [ ] `kee-outside-apps-admin-consent.png`
+      The sign-in screen of an AI app that asks to read, change and administer the Wiki, with the administer scope listed under the warning
+- [ ] `kee-outside-apps-admin-connections.png`
+      Connections used in the last 7 days: two connections with Read and change and Administration badges, and one with Read and change, each with End connection
+- [ ] `kee-outside-apps-access.png`
+      Who may connect, and how: the roles that may connect apps, Let people make keys, calls per person per minute, the registered AI apps, use in the last 7 days and the connections with End connection
+
+## Search & search by meaning
+
+- [ ] `kee-settings-search.png`
+      Settings → Kee → Search on a database server without the vector extension: the index of page text with all pages indexed, and the note that search by meaning needs the extension
 
 ## Users &amp; directories
 

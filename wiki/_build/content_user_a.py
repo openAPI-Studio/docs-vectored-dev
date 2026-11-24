@@ -90,7 +90,7 @@ USER_A = [
     # ------------------------------------------------------------------
     ("search", dict(
         label="Search", title="Search", icon="search",
-        desc="Find spaces, pages, labels and questions from the search box at the top of every screen",
+        desc="Find spaces, pages by their title or their text, labels and questions from the search box at the top of every screen",
         keywords=["search", "find", "palette", "ctrl+k", "cmd+k", "shortcut", "spaces", "pages", "posts", "labels", "questions", "api"],
         blocks=[
             H("Overview"),
@@ -107,13 +107,14 @@ USER_A = [
             TABLE(["Kind", "Matches", "Opens"], [
                 ["Spaces", "Name and key", "The space's overview"],
                 ["Pages", "Words of the page's title (published pages only)", "The page"],
+                ["In page text", "Words inside published pages, all of them, with a passage around the match. Pages under a lock you are not on are never found", "The page"],
                 ["Labels", "Labels that start with what you typed, on pages you can read", "The label's list of pages"],
                 ["Posts", "Words of a blog post's title (published posts only)", "The post. See [Space blogs](blogs.html)"],
                 ["Questions", "Title and text of a question", "The question in [Q&A](qna.html)"],
                 ["Settings", "A setting's label, tab or page", "For people who can open Settings"],
                 ["People and groups", "Name, username, email", "For administrators who may see them"],
             ]),
-            NOTE("Pages are found by their title, not yet by the words in their content. To find a page by its subject, give it a clear title and [labels](labels-and-feedback.html)."),
+            NOTE("**In page text** finds pages by the words of their newest published version, within about a minute of publishing. Drafts and earlier versions aren't searched. For questions in your own words, [Ask Kee](ask-kee.html) searches the same text, and by meaning where an administrator set that up."),
             P("While [anonymous access](anonymous-access.html) is on, visitors who aren't signed in find public spaces and their published pages."),
 
             H("How matching works"),
@@ -127,7 +128,7 @@ USER_A = [
             ]),
 
             H("Searching through the API"),
-            P("`GET /api/search` takes the same words in `q` and answers with the kinds your [API token](api-tokens.html) allows; it never finds more than its owner could. Add `kind` (`spaces`, `pages`, `labels` or `questions`) for one kind, 20 a page, and pass each group's `next` back as `cursor` for the next page."),
+            P("`GET /api/search` takes the same words in `q` and answers with the kinds your [API token](api-tokens.html) allows; it never finds more than its owner could. Add `kind` (`spaces`, `pages`, `page-text`, `labels` or `questions`) for one kind, 20 a page, and pass each group's `next` back as `cursor` for the next page."),
             CODE('curl -H "Authorization: Bearer $WIKI_TOKEN" "https://wiki.example.com/api/search?q=failover&kind=pages"'),
         ])),
 
@@ -275,15 +276,24 @@ USER_A = [
             P("The **Members** tab lists the people, service accounts and groups with a role in the space. **Compare roles** shows the table above. Filter by kind (People, Groups, Service accounts) or by name."),
             SHOT("spaces-members.png", "Members: each member's kind and role, with the role comparison open"),
             STEPS([
-                "Open the space, then **Members**.",
-                "**Add member**, search for a person, service account or group, pick a **Role** and **Add**.",
+                ("Open the space and select **Space settings** in its sidebar.", "space-rail.settings"),
+                ("Open the **Members** tab.", "space-tabs.members"),
+                ("Under **Add member**, search for a person, service account or group and pick it from the list.", "space-members.search"),
+                ("Pick a **Role** and select **Add**. It takes effect at once.", "space-members.add"),
                 "To change a role, pick another one next to the member. To take a member out, **Remove** and confirm. Roles they have through a group stay.",
-            ]),
+            ], howto="add-a-space-member", task="Add a person or a group to a space, or change their role"),
             P("Only the space's admins can add members or change roles. Only the space's members, and people allowed to view profiles, can see who has a role in it."),
 
             H("Creating a space"),
             P("**Create → Space** in the header, or **New space** on the space list, opens the form. By default only super admins may create spaces. Creating a space gives nobody a role in it: add members, and an admin, right after."),
             SHOT("spaces-new.png", "New space: name, key, description and visibility"),
+            STEPS([
+                ("Open **Spaces** in the sidebar and select **New space**.", "spaces.new-space"),
+                ("Enter the **Name**. The **Key** is filled in from it; change it now if you want another, because it can't be changed later.", "space-new.name"),
+                "Add a **Description** and pick the **Visibility**.",
+                ("Select **Create space**. The space opens, still without members.", "space-new.create"),
+                "Add members, and at least one admin, in **Space settings → Members**.",
+            ], howto="create-a-space", task="Create a space"),
             TABLE(["Field", "What to enter"], [
                 ["**Name**", "What people call the space, such as **Engineering handbook**."],
                 ["**Key**", "Used in links (`/spaces/eng`). 2–40 lowercase letters and digits, optionally separated by single hyphens. It can't be changed later."],
@@ -317,6 +327,12 @@ USER_A = [
             H("Space categories"),
             P("**Settings → Space categories** holds the categories spaces can be in, such as Teams, Projects or Knowledge base: add, rename, reorder or remove them, then **Save**. Up to 50 categories, each up to 50 characters. Removing a category leaves its spaces in none. It needs the `settings:write` permission, which super admins have."),
             SHOT("spaces-categories.png", "Settings → Space categories: the list in the order the space list shows it"),
+            STEPS([
+                "Open **Settings** and select **Space categories**.",
+                "Select **Add a category** and type its name, or change a name in place. The arrows move a category up or down; the cross removes it.",
+                "Select **Save**. **Discard** drops your changes. Spaces in a removed category are left in none.",
+                "To put a space in a category, its admins choose it in the space's **Space settings → General**.",
+            ], howto="change-space-categories", task="Add, rename, reorder or remove space categories"),
 
             H("Space settings"),
             P("The space's admins see a **Settings** tab:"),
@@ -327,6 +343,11 @@ USER_A = [
                 "**Delete space**: removes the space, its pages and its members' roles for good. Type the space's key to confirm.",
             ]),
             SHOT("spaces-settings.png", "Space settings → General: icon, name, description, labels, category, status and visibility"),
+            STEPS([
+                ("Open the space and select **Space settings** in its sidebar.", "space-rail.settings"),
+                "On **General**, change the name, description, visibility, icon, labels, category or status.",
+                ("Select **Save**. **Discard** puts back what is saved.", "space-settings.save"),
+            ], howto="change-space-settings", task="Change a space's name, description, visibility or other settings"),
             WARN("Deleting a space can't be undone. Its pages don't go to the trash."),
 
             H("Events and API for space properties"),
@@ -372,10 +393,11 @@ USER_A = [
 
             H("Creating a page"),
             STEPS([
-                "In the space, choose **New page** above the tree (a top-level page), or **Add a page** on a page (a page under it).",
+                ("In the space, choose **New page** above the tree (a top-level page), or **Add a page** on a page (a page under it).", "space-rail.new-page"),
                 "Enter the **Title**. Under **Start from**, keep **Empty page** or pick a template: one of the space's or one from the library. A template can create a whole tree of pages. See [Copies and templates](copies-and-templates.html).",
                 "**Create page** (or **Create 6 pages** for a template with pages). The page opens in the [editor](editor.html).",
-            ]),
+                ("Write the page, then select **Publish** so readers can see it.", "page-edit.publish"),
+            ], howto="create-a-page", task="Create a page in a space"),
             P("A new page starts as a draft: only people who can edit pages in the space see it until it is published. See [Drafts and publishing](drafts-and-publishing.html)."),
 
             H("Page status"),
@@ -397,8 +419,14 @@ USER_A = [
             P("The pages under it move with it. A page can't go under itself or one of its own pages, and a published page can only go under a published page. Its address stays the same."),
 
             H("Deleting and the trash"),
-            P("**Delete** on a page moves it, and every page under it, to the space's trash. The **Trash** tab of the space lists them, with when they were deleted and when they will be removed for good."),
+            P("**Delete** on a page moves it, and every page under it, to the space's trash. The **Trash** tab of the space's settings lists them, with how many pages each holds, when they were deleted and when they will be removed for good."),
             SHOT("pages-trash.png", "Trash: deleted pages with Restore and Delete for good"),
+            STEPS([
+                ("Open the space and select **Space settings** in its sidebar.", "space-rail.settings"),
+                "Open the **Trash** tab.",
+                "Find the page and select **Restore**. It goes back with the pages that were deleted with it.",
+                "To remove a page at once instead, select **Delete for good** and confirm. This can't be undone.",
+            ], howto="restore-a-page-from-the-trash", task="Restore a deleted page from a space's trash, or delete it for good"),
             UL([
                 "Pages stay in the trash for 30 days, then they are removed for good.",
                 "**Restore** puts a page back under its old parent, or at the top level if that parent is gone or no longer published. It fails if another page took its title meanwhile: rename that page first.",
@@ -427,11 +455,11 @@ USER_A = [
 
             H("Locking a page"),
             STEPS([
-                "Open the page as someone who may edit it and choose **⋯ → Lock page…**.",
+                ("Open the page as someone who may edit it and choose **⋯ → Lock page…**.", "page.more"),
                 "Pick **Only these people can see it** or **Everyone can view, only these people can edit**.",
                 "Search for people and groups by name, pick **Can view** or **Can edit**, and choose them from the list. You stay on the lock as **Can edit** yourself, so you can't lock yourself out.",
                 "**Save lock**.",
-            ]),
+            ], howto="lock-a-page", task="Restrict who can see or edit a page (lock a page)"),
             SHOT("page-locks-dialog.png", "Lock: who can see the page, and the people and groups on the lock"),
             UL([
                 "People and groups of the space's organization can be put on a lock, up to 200 in all. Searching needs the right to see people's names.",
@@ -465,6 +493,11 @@ USER_A = [
                 "Other locks in the space are only counted under the list.",
                 "**Unlock** removes a lock, with an optional note for the audit log. It never shows the admin the locked pages.",
             ]),
+            STEPS([
+                ("Open the space and select **Space settings** in its sidebar.", "space-rail.settings"),
+                "Open the **Locked pages** tab. Each lock shows its kind, how many pages it covers, how many are on it, and who locked it when.",
+                "To remove a lock, select **Unlock** beside it, add a note for the audit log if you like, and confirm. The pages go back to what the space's roles allow.",
+            ], howto="see-and-remove-locks-in-a-space", task="See a space's locked pages and remove a lock as a space admin"),
 
             H("Events, audit and API"),
             P("Locking raises `page.lock.create`, changing a lock `page.lock.update` and removing one `page.lock.delete` (with `from_settings` and the note when it was removed from the space's settings). "

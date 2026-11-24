@@ -292,18 +292,26 @@
   <url><loc>https://docs.vectored.dev/wiki/docs/whiteboards.html</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/mirror-spaces.html</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/calendar.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/changelog.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/changelog.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/comments.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/copies-and-templates.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/drafts-and-publishing.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/editing-together.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/kee.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/kee-editor.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-editor.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/kee-summaries.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/ask-kee.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/kee-tools.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/ask-kee.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-studio.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/connect-ai-apps.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-scheduled-help.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-tools.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-writing-helpers.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-suggestions.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-images.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-space-digest.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/kee-import-cleanup.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/editor.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/events.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/events.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/getting-started.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/home-and-navigation.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/import-and-export.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
@@ -315,16 +323,16 @@
   <url><loc>https://docs.vectored.dev/wiki/docs/link-cards.html</loc><lastmod>2026-11-21</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/slides.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/mobile.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/oauth-applications.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/page-history-and-versions.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/oauth-applications.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/page-history-and-versions.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/pages-and-the-page-tree.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/page-locks.html</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/profile-and-notifications.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/docs/qna.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/docs/qna.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/reviews.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/search.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/docs/spaces.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/access-overview.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/access-overview.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/alert-tuning.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/alerts-admin.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/analytics-settings.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
@@ -339,29 +347,31 @@
   <url><loc>https://docs.vectored.dev/wiki/admin/environment-variables.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/faq.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/headless-setup.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/index.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/index.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/install-planning.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/sizing.html</loc><lastmod>2026-11-20</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/install.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/known-issues.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/kee-setup.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/known-issues.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-setup.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/kee-providers.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/kee-access.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/kee-limits.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/kee-data.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/licensing.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-access.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-limits.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-data.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-outside-apps.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/kee-search.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/licensing.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/logging-and-audit.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/monitoring.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/personal-data.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/personal-data.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/plugins.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/policies.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/qna-moderation.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/rate-limits.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/recovery.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/scheduler.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/scheduler.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/search-engines-and-robots.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/security-hardening.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://docs.vectored.dev/wiki/admin/settings-reference.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://docs.vectored.dev/wiki/admin/settings-reference.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/setup-wizard.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/single-sign-on.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://docs.vectored.dev/wiki/admin/database-credentials.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
