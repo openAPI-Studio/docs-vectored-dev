@@ -676,14 +676,15 @@ USER_A = [
             P("An invisible mark you can link to. Give it a **Name** (letters, digits, - and _, up to 64); link to it by adding `#` and the name to the page's address. Headings have anchors of their own already."),
 
             H("Code block"),
-            P("Code in a fixed-width font, coloured by its language as you type and for readers: keywords, strings, numbers, comments, names and punctuation each in their own colour, in every theme. Its settings add a **File name** above it, the **Language** and **Line numbers**. Example: `failover.sh` with four numbered lines."),
+            P("Code in a fixed-width font, coloured by its language as you type and for readers: keywords, strings, numbers, comments, names and punctuation each in their own colour, in every theme. Its header names the file, the language and whether lines are numbered; its settings (**Block settings** in the toolbar) add a **File name** and **Line numbers**. Example: `failover.sh` with four numbered lines."),
             UL([
-                "**Language**: **Detect automatically** (the default) colours the code as the language it looks like; or pick one of about 40 (Bash, C, C#, C++, CSS, Go, HTML / XML, Java, JavaScript, JSON, Kotlin, Markdown, PHP, Python, Ruby, Rust, SQL, Swift, TypeScript, YAML and more). The block's caption names the language when it has no file name.",
+                "**Language**: select the language in the block's header to change it. **Detect automatically** (the default) colours the code as the language it looks like; or pick one of about 40 (Bash, C, C#, C++, CSS, Go, HTML / XML, Java, JavaScript, JSON, Kotlin, Markdown, PHP, Python, Ruby, Rust, SQL, Swift, TypeScript, YAML and more). The block's caption names the language when it has no file name.",
                 "Typing three backticks and a language name starts a code block in that language, for example ```` ```python ````.",
                 "Very long code (over 200,000 characters) is shown without colours. A block in a language that isn't in the list, for example from an import, keeps it and shows its code uncoloured.",
                 "Word, PDF and Markdown downloads show code without colours.",
             ]),
-            SHOT("macros-code-highlight.png", "A Python code block coloured by its language: keywords, strings, numbers and names each in their own colour, the language named in its caption"),
+            SHOT("macros-code-highlight.png", "A Python code block coloured by its language, with numbered lines: keywords, strings, numbers and names each in their own colour, the language named in its caption"),
+            SHOT("editor-code-language.png", "The same block in the editor: its header shows the language as a picker, Python, next to Line numbers"),
 
             H("Excerpt and Include excerpt"),
             P("An **Excerpt** marks part of a page so other pages can show it. Give it an optional **Name** when a page has more than one. **Hide on this page** shows it only where it is included."),

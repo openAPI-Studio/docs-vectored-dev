@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-257 screenshots. Save each one into `wiki/assets/` using the
+258 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -106,7 +106,9 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `macros-boxes.png`
       An info panel, a note panel, a code block, a closed expand, a decision, an open question and a tip
 - [ ] `macros-code-highlight.png`
-      A Python code block coloured by its language: keywords, strings, numbers and names each in their own colour, the language named in its caption
+      A Python code block coloured by its language, with numbered lines: keywords, strings, numbers and names each in their own colour, the language named in its caption
+- [ ] `editor-code-language.png`
+      The same block in the editor: its header shows the language as a picker, Python, next to Line numbers
 - [ ] `macros-other-pages.png`
       Child pages two levels deep, an included excerpt, a page properties report and a recently updated list
 - [ ] `macros-video.png`
