@@ -20,6 +20,7 @@ from content_kee_r3 import KEE_R3_USER, KEE_R3_ADMIN, KEE_R3_SHARED
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-24", "Settings", "Settings → Security → **Video sites** no longer stays marked as unsaved after **Save** when both YouTube and Vimeo are allowed."),
     ("2026-11-23", "Kee", "Tidy imported pages: under a finished Confluence import, **Find pages to tidy** lists pages with imported blocks, empty layout, uneven headings or links that had no target, and Kee proposes a tidied version of each, reviewed one by one; **Apply** publishes it. Imports run from this release on. See [Tidy imported pages with Kee](kee-import-cleanup.html)."),
     ("2026-11-23", "Kee", "**Your own endpoint** as a Kee provider: a model server or gateway that answers the OpenAI Chat Completions API, at an `https` address (private addresses only when allowed), with an optional key and extra headers; you type its models' limits and abilities. See [Your own endpoint](kee-providers.html#your-own-endpoint)."),
     ("2026-11-23", "Kee", "Amazon Bedrock can **Assume a role**: the servers sign in with their own credentials and take on the role you name, with an optional external ID. See [Assume a role](kee-providers.html#assume-a-role)."),
