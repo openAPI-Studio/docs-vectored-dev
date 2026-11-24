@@ -683,7 +683,7 @@ USER_A = [
                 "Very long code (over 200,000 characters) is shown without colours. A block in a language that isn't in the list, for example from an import, keeps it and shows its code uncoloured.",
                 "Word, PDF and Markdown downloads show code without colours.",
             ]),
-            SHOT("macros-code-highlight.png", "A Python code block coloured by its language, with a file name and line numbers, and its settings with the Language list"),
+            SHOT("macros-code-highlight.png", "A Python code block coloured by its language: keywords, strings, numbers and names each in their own colour, the language named in its caption"),
 
             H("Excerpt and Include excerpt"),
             P("An **Excerpt** marks part of a page so other pages can show it. Give it an optional **Name** when a page has more than one. **Hide on this page** shows it only where it is included."),

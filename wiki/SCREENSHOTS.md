@@ -106,7 +106,7 @@ realistic but fictional names and figures rather than real people's data.
 - [ ] `macros-boxes.png`
       An info panel, a note panel, a code block, a closed expand, a decision, an open question and a tip
 - [ ] `macros-code-highlight.png`
-      A Python code block coloured by its language, with a file name and line numbers, and its settings with the Language list
+      A Python code block coloured by its language: keywords, strings, numbers and names each in their own colour, the language named in its caption
 - [ ] `macros-other-pages.png`
       Child pages two levels deep, an included excerpt, a page properties report and a recently updated list
 - [ ] `macros-video.png`
