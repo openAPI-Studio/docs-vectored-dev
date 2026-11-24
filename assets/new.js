@@ -265,7 +265,9 @@ window.VC_NEW = {
   "wiki/admin/kee-access.html": "2026-11-22",
   "wiki/admin/kee-data.html": "2026-11-22",
   "wiki/admin/kee-limits.html": "2026-11-22",
+  "wiki/admin/kee-outside-apps.html": "2026-11-24",
   "wiki/admin/kee-providers.html": "2026-11-22",
+  "wiki/admin/kee-search.html": "2026-11-24",
   "wiki/admin/kee-setup.html": "2026-11-22",
   "wiki/admin/known-issues.html": "2026-11-19",
   "wiki/admin/licensing.html": "2026-11-19",
@@ -299,6 +301,7 @@ window.VC_NEW = {
   "wiki/docs/calendar.html": "2026-11-19",
   "wiki/docs/changelog.html": "2026-11-19",
   "wiki/docs/comments.html": "2026-11-19",
+  "wiki/docs/connect-ai-apps.html": "2026-11-24",
   "wiki/docs/copies-and-templates.html": "2026-11-19",
   "wiki/docs/drafts-and-publishing.html": "2026-11-19",
   "wiki/docs/editing-together.html": "2026-11-19",
@@ -309,8 +312,15 @@ window.VC_NEW = {
   "wiki/docs/home-and-navigation.html": "2026-11-19",
   "wiki/docs/import-and-export.html": "2026-11-19",
   "wiki/docs/kee-editor.html": "2026-11-22",
+  "wiki/docs/kee-images.html": "2026-11-24",
+  "wiki/docs/kee-import-cleanup.html": "2026-11-24",
+  "wiki/docs/kee-scheduled-help.html": "2026-11-24",
+  "wiki/docs/kee-space-digest.html": "2026-11-24",
+  "wiki/docs/kee-studio.html": "2026-11-24",
+  "wiki/docs/kee-suggestions.html": "2026-11-24",
   "wiki/docs/kee-summaries.html": "2026-11-22",
   "wiki/docs/kee-tools.html": "2026-11-22",
+  "wiki/docs/kee-writing-helpers.html": "2026-11-24",
   "wiki/docs/kee.html": "2026-11-22",
   "wiki/docs/labels-and-feedback.html": "2026-11-19",
   "wiki/docs/link-cards.html": "2026-11-21",
@@ -692,6 +702,10 @@ window.VC_NEW = {
    "kee-answers-through-the-proxy": "2026-11-22",
    "route-the-api-to-the-server": "2026-11-20"
   },
+  "wiki/admin/kee-providers.html": {
+   "assume-a-role": "2026-11-24",
+   "your-own-endpoint": "2026-11-24"
+  },
   "wiki/admin/known-issues.html": {
    "kee": "2026-11-22"
   },
@@ -700,6 +714,13 @@ window.VC_NEW = {
   },
   "wiki/admin/upgrades.html": {
    "new-blocks-during-an-upgrade": "2026-11-21"
+  },
+  "wiki/docs/ask-kee.html": {
+   "ask-about-images": "2026-11-24",
+   "ask-with-an-agent": "2026-11-24",
+   "help-with-the-wiki-itself": "2026-11-24",
+   "how-kee-finds-pages": "2026-11-24",
+   "proposed-changes": "2026-11-24"
   },
   "wiki/docs/blogs.html": {
    "blog-posts-on-a-page": "2026-11-21"
@@ -712,16 +733,30 @@ window.VC_NEW = {
    "text-colour-and-highlight": "2026-11-21"
   },
   "wiki/docs/events.html": {
+   "agents-and-outside-ai-apps": "2026-11-24",
    "kee": "2026-11-22"
   },
   "wiki/docs/import-and-export.html": {
    "what-the-import-report-says": "2026-11-21"
   },
+  "wiki/docs/kee-editor.html": {
+   "write-with-an-agent": "2026-11-24"
+  },
+  "wiki/docs/kee-tools.html": {
+   "classes-who-does-what": "2026-11-24",
+   "groups-of-tools": "2026-11-24",
+   "not-built-yet": "2026-11-24",
+   "wiki-administration-tools": "2026-11-24"
+  },
   "wiki/docs/mobile.html": {
    "galleries-and-task-reports": "2026-11-21"
   },
   "wiki/docs/page-history-and-versions.html": {
-   "versions-written-with-kee": "2026-11-22"
+   "versions-written-with-kee": "2026-11-22",
+   "what-changed-in-words": "2026-11-24"
+  },
+  "wiki/docs/qna.html": {
+   "suggestions-from-kee": "2026-11-24"
   }
  }
 };
