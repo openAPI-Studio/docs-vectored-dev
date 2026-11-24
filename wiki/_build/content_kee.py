@@ -26,7 +26,7 @@ KEE_USER = [
                 ["**Writing helpers**", "A section's menu: review against the space's style guide, action items from meeting notes, a diagram from text, and tables", "[Kee's writing helpers](kee-writing-helpers.html)"],
                 ["**Title, label and duplicate suggestions**", "**Suggest a title** and **Suggest labels** in the editor, and **This page may already exist** under a new page's title, with a merge you apply", "[Titles, labels and duplicate pages](kee-suggestions.html)"],
                 ["**Images**", "**Describe with Kee** in the image dialog, and images added to a question in Ask Kee", "[Images and Kee](kee-images.html)"],
-                ["**Page summaries**", "**Summarise with Kee** above a long published page", "[Page summaries](kee-summaries.html)"],
+                ["**Page summaries**", "**Summarise with Kee** in the line under a long published page's title", "[Page summaries](kee-summaries.html)"],
                 ["**Ask Kee**", "**Ask Kee** in the top bar, on every screen: answers from your pages and their attached files, help with the Wiki itself, and changes Kee proposes for you to apply", "[Ask Kee](ask-kee.html)"],
                 ["**Kee studio**", "Agents: Kee with instructions, knowledge and allowed actions, built, tried and shared by you", "[Kee studio](kee-studio.html)"],
                 ["**What changed, in words**", "Comparing two versions in a page's history", "[Page history](page-history-and-versions.html#what-changed-in-words)"],
@@ -158,7 +158,7 @@ KEE_USER = [
         blocks=[
             P("Kee can sum up a long published page in a few points, at the top of the page. A summary is made once for each version of a page and language, then shared by every reader of that version."),
             H("Get a summary"),
-            P("On a long published page (at least four blocks and about 150 words), select **Summarise with Kee** above the text. The summary appears in place as it is written."),
+            P("On a long published page (at least four blocks and about 150 words), select **Summarise with Kee** at the end of the line under the title (after who changed it last, when, and the reading time). The summary appears above the text as it is written."),
             SHOT("kee-summary.png", "Summary by Kee above a page: the main points, and a footer saying which version it was made for, that it was reused, and that Kee can be wrong"),
             UL([
                 "The footer says which version the summary was made for and whether it was **reused, no new request** or **made now, kept for other readers**.",
