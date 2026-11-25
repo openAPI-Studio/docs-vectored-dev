@@ -289,7 +289,7 @@ USER_C = [
         label="Slides", title="Slides", icon="presentation",
         desc="Put a slide deck in a page, an HTML deck from an AI tool, reveal.js or Marp, or a PDF, and present it full screen",
         keywords=["slides", "slide deck", "deck", "presentation", "present", "full screen", "fullscreen", "reveal.js", "marp", "html deck",
-                  "pdf deck", "powerpoint", "pptx", "keynote", "slideshow", "sandbox", "ai tool"],
+                  "pdf deck", "powerpoint", "pptx", "keynote", "slideshow", "sandbox", "ai tool", "kee", "make slides", "edit with kee", "slide outline"],
         blocks=[
             H("Overview"),
             P("A **Slides** block puts a slide deck in a page: an HTML deck, such as the ones AI tools, reveal.js or Marp write, or a deck exported as PDF. Readers step through it under the page's text with the Wiki's own controls, or press **Present** to show it full screen."),
@@ -321,6 +321,33 @@ USER_C = [
                 ["**Download**", "The deck's file, as it was uploaded."],
             ]),
             P("The maximize button in the bar plays the deck full screen, so you can check it without leaving the editor."),
+
+            H("Make slides with Kee"),
+            P("Kee can write a deck from a page for you, and change a deck you have. It writes the slides' text and the Wiki draws them in its own light or dark look, so every deck Kee makes looks the same and nothing in it runs. You see every slide before anything is added to the page."),
+            NOTE("You need to be able to add decks (the setting [below](#for-administrators)) and to use Kee in the editor. Each run counts as one request against your [daily limit](kee.html#your-daily-limit)."),
+            STEPS([
+                ("Open the page in the editor, rest the pointer on a text section and open its menu (the handle at its right).", "page-edit.section-menu"),
+                "Select **Make slides…** in Kee's group.",
+                ("Choose **This section** or **The whole page**, and say what the deck is for if you like (for example \"a ten-minute update for the leadership team\"). **Slides** asks for about that many; leave it empty and Kee decides. Add an **Audience** and pick **Light** or **Dark**, then **Make slides**.", "page-edit.ai-slides-form"),
+                ("Read the slides Kee wrote. Speaker notes are shown under a slide, never on it.", "page-edit.ai-slides-result"),
+                ("Select **Insert** to add the deck under the section, **Discard** to drop it, or **Try again**.", "page-edit.ai-slides-apply"),
+            ], howto="make-slides-with-kee", task="Make a slide deck from a page or a section with Kee"),
+            SHOT("slides-kee-make.png", "The Make slides panel under a section: six slides of a rollout plan in the light look, with Insert, Discard and Try again"),
+            UL([
+                "Slides use six layouts: a title slide, section dividers, bullet points, two columns side by side, a quote, and a picture. A picture is always one of the page's own images.",
+                "Kee keeps names, numbers and dates as the page has them and adds no facts of its own, but check them before you insert the deck.",
+                "The deck is an ordinary HTML deck of the page: present it, download it or replace its file like any other.",
+            ]),
+            H("Change a deck with Kee"),
+            STEPS([
+                ("Select the deck in the editor, then the **Edit with Kee** button (the sparkle) in its bar.", "page-edit.slides-kee"),
+                ("Say what to change, for example \"add a slide on costs and shorten the rest\", and pick a look or keep the deck's, then **Change**.", "page-edit.ai-slides-form"),
+                ("Each slide shows how it changed: **Changed**, **New** or **Removed**; unchanged slides have no mark.", "page-edit.ai-slides-result"),
+                ("Select **Replace** to put the new deck in place of the old one, or **Keep original**.", "page-edit.ai-slides-apply"),
+            ], howto="change-a-deck-with-kee", task="Change a slide deck in a page with Kee"),
+            SHOT("slides-kee-edit.png", "Edit with Kee on a deck: three slides kept, one marked Changed and one New, with Replace"),
+            P("**Replace** saves the new deck as a new version of the same file, so published versions of the page keep the deck they were published with. A deck made with another tool (an AI tool's HTML, reveal.js, Marp) is rebuilt as a Wiki deck from its slides' text, with what you asked for; leave the box empty to rebuild it as it is. A PDF deck has no text Kee can change."),
+            P("You can also ask [Ask Kee](kee.html) to make or change a deck on a page: it proposes the deck as slides you look at before **Apply** adds it to the page's draft."),
 
             H("Present"),
             P("**Present** shows the deck on the whole screen. A thin bar at the top shows how far through the deck you are; the controls at the bottom fade after 2 seconds and come back when the pointer moves or a key is pressed. **←**, **→** or **Space** move, **Home** and **End** jump to the first and last slide, and **Esc** leaves."),
@@ -359,6 +386,7 @@ USER_C = [
             TABLE(["Method", "Path", "Who", "What"], [
                 ["GET", "`/api/spaces/{key}/slides`", "Read the space", "Whether you may add decks here (`mayAdd`), the largest deck (`maxBytes`), and the library hosts for people who edit pages"],
                 ["POST", "`/api/spaces/{key}/pages/{id}/slides`", "`mayAdd`", "Multipart `file`: an HTML file or a PDF; a `replace` field (one of the page's decks) before it makes it a new version of that deck. Answers what was found: `attachment`, `version`, `format`, `engine`, `slides`, `texts`, `title`. Refused with `slides_not_allowed`, `unsupported_deck` or `deck_too_large`"],
+                ["POST", "`/api/spaces/{key}/pages/{id}/slides/build`", "Edit the page and `mayAdd`", "JSON `{outline, replace?}`: renders a slide outline (`title`, `theme` `light` or `dark`, `slides` of the layouts `title`, `section`, `bullets`, `columns`, `quote`, `image`, each with optional `notes`) into an HTML deck of the page, a new version of `replace` when given. Answers the deck as the upload does, with the `outline` kept. Refused with `invalid_slide_outline`, `deck_images_too_large` or `slides_not_allowed`"],
                 ["GET", "`/api/spaces/{key}/pages/{id}/slides/{attachment}/frame`", "Read the page", "An HTML deck as the sandboxed page the block frames; `not_a_deck` for a file not added as a deck"],
                 ["GET", "`/api/wiki/slides-settings`", "`settings:write`", "`{editors, maxMb, hosts}`"],
                 ["PUT", "`/api/wiki/slides-settings`", "`settings:write`", "`{editors, maxMb, hosts}`; `editors` is `page_editors` or `space_admins`. Refused with `invalid_slides_editors`, `invalid_slides_max_size`, `invalid_slides_host` or `too_many_slides_hosts`"],

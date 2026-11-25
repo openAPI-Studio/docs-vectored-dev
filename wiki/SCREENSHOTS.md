@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-259 screenshots. Save each one into `wiki/assets/` using the
+261 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -354,6 +354,10 @@ realistic but fictional names and figures rather than real people's data.
       Adding a deck: "/" on an empty line and Slides, then the Add slides dialog with an HTML deck that has 12 slides
 - [ ] `slides-editor.png`
       A selected deck in the editor with its bar and the Slides settings panel
+- [ ] `slides-kee-make.png`
+      The Make slides panel under a section: six slides of a rollout plan in the light look, with Insert, Discard and Try again
+- [ ] `slides-kee-edit.png`
+      Edit with Kee on a deck: three slides kept, one marked Changed and one New, with Replace
 - [ ] `slides-fullscreen.png`
       A deck presented full screen: the slide, the progress bar, the controls and the key hints
 - [ ] `slides-pdf.png`
