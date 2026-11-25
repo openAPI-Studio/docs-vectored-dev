@@ -20,6 +20,7 @@ from content_kee_r3 import KEE_R3_USER, KEE_R3_ADMIN, KEE_R3_SHARED
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-26", "Kee", "Kee reads slide decks: a page's decks come with each slide's text when Kee reads the page, and the new **get_slides** tool lists a page's decks and reads one deck's slides. See [Tools](kee-tools.html)."),
     ("2026-11-26", "Files", "Files have versions: **Upload new version** replaces a file everywhere it is shown while published versions of the page keep the one they showed, an upload named like a file already on the page asks whether it is a new version, and a Slides deck's **Replace file** keeps the block's file. See [Versions of a file](files-and-attachments.html#versions-of-a-file)."),
     ("2026-11-26", "Settings", "Settings → Security → **Video sites** no longer stays marked as unsaved after **Save** when both YouTube and Vimeo are allowed."),
     ("2026-11-25", "Editor", "A code block's **Language** is picked in the block's header, which the editor now always shows, instead of in **Block settings**. See [Code block](macros.html#code-block)."),
