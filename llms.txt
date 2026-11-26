@@ -71,7 +71,7 @@
 - [Settings & data — Proxy Configuration](https://docs.vectored.dev/apistudio/docs/proxy.html): Named proxy profiles for routing requests through HTTP/HTTPS proxies — corporate proxies, debugging proxies, and per-request proxy selection.
 - [Settings & data — Data Storage](https://docs.vectored.dev/apistudio/docs/data-storage.html): How API Studio stores data — local and global JSON files, git workflow, no-workspace mode, and cross-window sync.
 - [Settings & data — Keyboard Shortcuts](https://docs.vectored.dev/apistudio/docs/keyboard-shortcuts.html): All keyboard shortcuts for API Studio — panel, request, tab, and editor shortcuts for macOS and Windows/Linux.
-- [Settings & data — License](https://docs.vectored.dev/apistudio/docs/license.html): API Studio licensing — free until Dec 31 2026, how to activate, update, and compare free vs paid features.
+- [Settings & data — License](https://docs.vectored.dev/apistudio/docs/license.html): API Studio licensing — free until Mar 31 2027, how to activate, update, and compare free vs paid features.
 - [Settings & data — Support Us](https://docs.vectored.dev/apistudio/docs/support-us.html): Support API Studio development — buy us a coffee on Ko-fi. Help keep the project alive and growing.
 - [API Studio — Support](https://docs.vectored.dev/apistudio/support.html): Get help with API Studio. Submit feedback, report bugs, or request features.
 

@@ -8863,11 +8863,11 @@ Shortcuts for the body editor and response viewer.
 
 Source: https://docs.vectored.dev/apistudio/docs/license.html
 
-API Studio is free to use with all Advanced Mode features included until December 31, 2026. No credit card required.
+API Studio is free to use with all Advanced Mode features included until March 31, 2027. No credit card required.
 
 SETTINGS & DATA
 
-### Free Until December 31, 2026
+### Free Until March 31, 2027
 
 All features unlocked — no restrictions, no trial limits.
 
@@ -8875,7 +8875,7 @@ A built-in trial license is automatically applied on installation. You get full 
 
 ### Free vs Paid
 
-After December 31, 2026, a license key will be required for Advanced Mode features. Simple Mode remains free forever.
+After March 31, 2027, a license key will be required for Advanced Mode features. Simple Mode remains free forever.
 
 | Feature | Free (Simple Mode) | Licensed (Advanced) |
 | --- | --- | --- |
@@ -8951,7 +8951,7 @@ Pricing and purchase page will be available before the trial ends.
 
 ### FAQ
 
-##### What happens after Dec 31, 2026?
+##### What happens after Mar 31, 2027?
 
 Without a license, the extension reverts to Simple Mode. All your data remains intact — collections, environments, history are never deleted. You just lose access to advanced features until you activate a key.
 
