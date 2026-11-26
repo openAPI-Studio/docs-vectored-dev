@@ -736,6 +736,9 @@ window.VC_NEW = {
    "agents-and-outside-ai-apps": "2026-11-24",
    "kee": "2026-11-22"
   },
+  "wiki/docs/files-and-attachments.html": {
+   "versions-of-a-file": "2026-11-26"
+  },
   "wiki/docs/import-and-export.html": {
    "what-the-import-report-says": "2026-11-21"
   },
@@ -757,6 +760,10 @@ window.VC_NEW = {
   },
   "wiki/docs/qna.html": {
    "suggestions-from-kee": "2026-11-24"
+  },
+  "wiki/docs/slides.html": {
+   "change-a-deck-with-kee": "2026-11-26",
+   "make-slides-with-kee": "2026-11-26"
   }
  }
 };
