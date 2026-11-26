@@ -67,6 +67,22 @@ USER_C = [
                 "Inside a page included in another ([Include page](macros.html#include-page)), an attachments list and a gallery of every image say that the files are on the included page; File blocks and galleries of chosen images still show.",
             ]),
 
+            H("Versions of a file"),
+            P("Upload a newer version of a file and it replaces the old one everywhere: every File block, list, gallery, image and link that shows the file shows the new version, and its address stays the same. Published versions of the page keep the file they were published with, so readers see the new version once you publish the page."),
+            STEPS([
+                "Open the versions|Choose **Versions** on a File block, or the clock button on a row of an attachments list.",
+                "Upload|Choose **Upload new version** and pick the file. It must be the same kind of file as the old one (an image for an image, a PDF for a PDF); anything else is refused, and can be attached as a new file instead.",
+                "Check|The new version is listed as **Current**. Each version has its own download.",
+            ]),
+            P("When you upload a file through an attachments list's **Upload files** and the page already has a file of the same name, the Wiki asks: **New version** makes it a new version of that file, **Keep both** attaches it as a second file."),
+            SHOT("files-versions.png", "The Versions dialog of a PDF: version 2 marked Current, version 1 below, each with a download, and Upload new version"),
+            UL([
+                "Readers see **Versions** once a file has two published versions, and only the versions a published version of the page showed.",
+                "An older version is kept while a published version of the page shows it; others are deleted when the next version is uploaded. Every version counts toward the page's 500 files and 1 GB.",
+                "Comparing two versions of the page in **History** shows each side's images as they were then.",
+                "Restoring an old version of the page shows the latest version of each file. A copy of a page copies only the latest version of each file.",
+            ]),
+
             H("Rename and delete"),
             P("A file keeps the name it was uploaded with. People who may edit the page can rename or delete one through the [API](#api); a renamed file stays in every block that shows it, and a deleted one shows as **File removed** in the blocks and versions that showed it."),
 
@@ -95,14 +111,16 @@ USER_C = [
             ]),
             P("Save with the Security page's **Save** bar. Files already attached stay as they are. Imports follow the same settings: a blocked or too-large file is left out and counted in the import report."),
             WARN("The Wiki doesn't scan files for viruses. Files other than images, videos and PDFs are always downloaded, never opened in the browser, but keep the blocked list for files that run when opened."),
-            P("Changing the settings raises `attachment_settings.update`; renaming a file raises `page.attachment.update`; uploading and deleting any file raise `page.attachment.create` and `page.attachment.delete`. Policies can refuse each of them; see [Events](events.html). The changes are in the audit log."),
+            P("Changing the settings raises `attachment_settings.update`; renaming a file raises `page.attachment.update`; a new version of a file raises `page.attachment.version`; uploading and deleting any file raise `page.attachment.create` and `page.attachment.delete`. Policies can refuse each of them; see [Events](events.html). The changes are in the audit log."),
 
             H("API"),
             TABLE(["Method", "Path", "Who", "What"], [
                 ["GET", "`/api/spaces/{key}/pages/{id}/attachments`", "Read the page", "The page's files you may see: everything for its editors, the listed files and those its latest published version shows for readers. `kind` (`image`, `video`, `pdf`, `file`, comma-separated), `q` (part of the name), `sort` (`new`, `old`, `name`, `size`), `cursor`, `limit`"],
                 ["POST", "`/api/spaces/{key}/pages/{id}/attachments`", "Edit the page", "Upload a file (multipart, field `file`). `any=true` takes PDFs and other files; `listed=true` puts it in the attachments list. Both go before `file`"],
-                ["GET", "`/api/spaces/{key}/pages/{id}/attachments/{attachment}`", "Read the page", "The file; `?download=1` saves it instead of opening it"],
+                ["GET", "`/api/spaces/{key}/pages/{id}/attachments/{attachment}`", "Read the page", "The file; `?download=1` saves it instead of opening it. `?version=N` asks for a version of it, `?pageVersion=N` for the one a published version of the page showed"],
                 ["PATCH", "`/api/spaces/{key}/pages/{id}/attachments/{attachment}`", "Edit the page", "Rename: `{filename}`, 1 to 255 characters"],
+                ["GET", "`/api/spaces/{key}/pages/{id}/attachments/{attachment}/versions`", "Read the page", "The file's versions you may see, newest first (`number`, `filename`, `size`, `createdAt`, `latest`)"],
+                ["POST", "`/api/spaces/{key}/pages/{id}/attachments/{attachment}/versions`", "Edit the page", "Upload a new version (multipart, field `file`), of the same kind; refused with `version_kind_mismatch` otherwise"],
                 ["DELETE", "`/api/spaces/{key}/pages/{id}/attachments/{attachment}`", "Edit the page", "Delete the file from the page and the versions that showed it"],
                 ["GET", "`/api/wiki/attachment-settings`", "Signed in", "`blockedExtensions` and `maxFileMb`"],
                 ["PUT", "`/api/wiki/attachment-settings`", "`settings:write`", "Change them"],
@@ -271,7 +289,7 @@ USER_C = [
         label="Slides", title="Slides", icon="presentation",
         desc="Put a slide deck in a page, an HTML deck from an AI tool, reveal.js or Marp, or a PDF, and present it full screen",
         keywords=["slides", "slide deck", "deck", "presentation", "present", "full screen", "fullscreen", "reveal.js", "marp", "html deck",
-                  "pdf deck", "powerpoint", "pptx", "keynote", "slideshow", "sandbox", "ai tool"],
+                  "pdf deck", "powerpoint", "pptx", "keynote", "slideshow", "sandbox", "ai tool", "kee", "make slides", "edit with kee", "slide outline"],
         blocks=[
             H("Overview"),
             P("A **Slides** block puts a slide deck in a page: an HTML deck, such as the ones AI tools, reveal.js or Marp write, or a deck exported as PDF. Readers step through it under the page's text with the Wiki's own controls, or press **Present** to show it full screen."),
@@ -299,10 +317,37 @@ USER_C = [
             TABLE(["Setting", "What it does"], [
                 ["**Title**", "Shown under the deck, in search and in exports."],
                 ["**Start slide**", "The slide readers see first, such as the agenda of a long deck."],
-                ["**Replace file**", "Uploads another deck in its place. The old file stays among the page's attachments."],
+                ["**Replace file**", "Uploads a new version of the deck in its place, of the same kind (an HTML deck for an HTML deck, a PDF for a PDF): the block keeps its file, and published versions of the page keep showing the deck they were published with. A deck of the other kind is added as a new file. See [Versions of a file](files-and-attachments.html#versions-of-a-file)."],
                 ["**Download**", "The deck's file, as it was uploaded."],
             ]),
             P("The maximize button in the bar plays the deck full screen, so you can check it without leaving the editor."),
+
+            H("Make slides with Kee"),
+            P("Kee can write a deck from a page for you, and change a deck you have. It writes the slides' text and the Wiki draws them in its own light or dark look, so every deck Kee makes looks the same and nothing in it runs. You see every slide before anything is added to the page."),
+            NOTE("You need to be able to add decks (the setting [below](#for-administrators)) and to use Kee in the editor. Each run counts as one request against your [daily limit](kee.html#your-daily-limit)."),
+            STEPS([
+                ("Open the page in the editor, rest the pointer on a text section and open its menu (the handle at its right).", "page-edit.section-menu"),
+                "Select **Make slides…** in Kee's group.",
+                ("Choose **This section** or **The whole page**, and say what the deck is for if you like (for example \"a ten-minute update for the leadership team\"). **Slides** asks for about that many; leave it empty and Kee decides. Add an **Audience** and pick **Light** or **Dark**, then **Make slides**.", "page-edit.ai-slides-form"),
+                ("Read the slides Kee wrote. Speaker notes are shown under a slide, never on it.", "page-edit.ai-slides-result"),
+                ("Select **Insert** to add the deck under the section, **Discard** to drop it, or **Try again**.", "page-edit.ai-slides-apply"),
+            ], howto="make-slides-with-kee", task="Make a slide deck from a page or a section with Kee"),
+            SHOT("slides-kee-make.png", "The Make slides panel under a section: six slides of a rollout plan in the light look, with Insert, Discard and Try again"),
+            UL([
+                "Slides use six layouts: a title slide, section dividers, bullet points, two columns side by side, a quote, and a picture. A picture is always one of the page's own images.",
+                "Kee keeps names, numbers and dates as the page has them and adds no facts of its own, but check them before you insert the deck.",
+                "The deck is an ordinary HTML deck of the page: present it, download it or replace its file like any other.",
+            ]),
+            H("Change a deck with Kee"),
+            STEPS([
+                ("Select the deck in the editor, then the **Edit with Kee** button (the sparkle) in its bar.", "page-edit.slides-kee"),
+                ("Say what to change, for example \"add a slide on costs and shorten the rest\", and pick a look or keep the deck's, then **Change**.", "page-edit.ai-slides-form"),
+                ("Each slide shows how it changed: **Changed**, **New** or **Removed**; unchanged slides have no mark.", "page-edit.ai-slides-result"),
+                ("Select **Replace** to put the new deck in place of the old one, or **Keep original**.", "page-edit.ai-slides-apply"),
+            ], howto="change-a-deck-with-kee", task="Change a slide deck in a page with Kee"),
+            SHOT("slides-kee-edit.png", "Edit with Kee on a deck: three slides kept, one marked Changed and one New, with Replace"),
+            P("**Replace** saves the new deck as a new version of the same file, so published versions of the page keep the deck they were published with. A deck made with another tool (an AI tool's HTML, reveal.js, Marp) is rebuilt as a Wiki deck from its slides' text, with what you asked for; leave the box empty to rebuild it as it is. A PDF deck has no text Kee can change."),
+            P("You can also ask [Ask Kee](kee.html) to make or change a deck on a page: it proposes the deck as slides you look at before **Apply** adds it to the page's draft."),
 
             H("Present"),
             P("**Present** shows the deck on the whole screen. A thin bar at the top shows how far through the deck you are; the controls at the bottom fade after 2 seconds and come back when the pointer moves or a key is pressed. **←**, **→** or **Space** move, **Home** and **End** jump to the first and last slide, and **Esc** leaves."),
@@ -340,7 +385,8 @@ USER_C = [
             H("API"),
             TABLE(["Method", "Path", "Who", "What"], [
                 ["GET", "`/api/spaces/{key}/slides`", "Read the space", "Whether you may add decks here (`mayAdd`), the largest deck (`maxBytes`), and the library hosts for people who edit pages"],
-                ["POST", "`/api/spaces/{key}/pages/{id}/slides`", "`mayAdd`", "Multipart `file`: an HTML file or a PDF. Answers what was found: `attachment`, `format`, `engine`, `slides`, `texts`, `title`. Refused with `slides_not_allowed`, `unsupported_deck` or `deck_too_large`"],
+                ["POST", "`/api/spaces/{key}/pages/{id}/slides`", "`mayAdd`", "Multipart `file`: an HTML file or a PDF; a `replace` field (one of the page's decks) before it makes it a new version of that deck. Answers what was found: `attachment`, `version`, `format`, `engine`, `slides`, `texts`, `title`. Refused with `slides_not_allowed`, `unsupported_deck` or `deck_too_large`"],
+                ["POST", "`/api/spaces/{key}/pages/{id}/slides/build`", "Edit the page and `mayAdd`", "JSON `{outline, replace?}`: renders a slide outline (`title`, `theme` `light` or `dark`, `slides` of the layouts `title`, `section`, `bullets`, `columns`, `quote`, `image`, each with optional `notes`) into an HTML deck of the page, a new version of `replace` when given. Answers the deck as the upload does, with the `outline` kept. Refused with `invalid_slide_outline`, `deck_images_too_large` or `slides_not_allowed`"],
                 ["GET", "`/api/spaces/{key}/pages/{id}/slides/{attachment}/frame`", "Read the page", "An HTML deck as the sandboxed page the block frames; `not_a_deck` for a file not added as a deck"],
                 ["GET", "`/api/wiki/slides-settings`", "`settings:write`", "`{editors, maxMb, hosts}`"],
                 ["PUT", "`/api/wiki/slides-settings`", "`settings:write`", "`{editors, maxMb, hosts}`; `editors` is `page_editors` or `space_admins`. Refused with `invalid_slides_editors`, `invalid_slides_max_size`, `invalid_slides_host` or `too_many_slides_hosts`"],

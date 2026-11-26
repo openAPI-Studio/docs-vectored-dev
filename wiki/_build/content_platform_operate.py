@@ -39,6 +39,7 @@ _WIKI_EVENTS = [
         ['`page.attachment.create`', 'before, after', 'yes · policies', 'A file (an image, a video, subtitles, a PDF or any other file) is uploaded to a wiki page. Policies can, for example, refuse uploads in some spaces.'],
         ['`page.attachment.delete`', 'before, after', 'yes · policies', 'A file (an image, a video, subtitles, a PDF or any other file) is deleted from a wiki page, also from the published versions that showed it.'],
         ['`page.attachment.update`', 'before, after', 'yes · policies', 'A file attached to a wiki page is renamed (with its previous name). Pages that show it keep showing it.'],
+        ['`page.attachment.version`', 'before, after', 'yes · policies', 'A new version of a file attached to a wiki page is uploaded (with the version number). Pages that show the file show the new version; published versions keep the one they showed. Policies can, for example, refuse new versions in some spaces.'],
         ['`page.comment.create`', 'before, after', 'yes · policies', 'Someone comments on a wiki page: a new thread on the page or on a stretch of its text (inline), or a reply in a thread.'],
         ['`page.comment.delete`', 'before, after', 'yes · policies', "A comment on a wiki page is deleted by its author or a space admin; deleting a thread's first comment deletes its replies."],
         ['`page.comment.update`', 'before, after', 'yes · policies', 'A comment on a wiki page is changed by its author (action edit), or a comment thread is resolved or reopened (resolve, reopen).'],
