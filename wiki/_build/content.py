@@ -20,6 +20,7 @@ from content_kee_r3 import KEE_R3_USER, KEE_R3_ADMIN, KEE_R3_SHARED
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running the Wiki notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-26", "Search", "Visitors who aren't signed in can search public spaces from the header while [anonymous access](anonymous-access.html) is on: spaces, pages by title and text, and blog posts, with a smaller search budget per address. Label suggestions are no longer answered to them through the API. See [Search](search.html)."),
     ("2026-11-26", "Branding", "A changed application name, brand colour, logo or browser icon now shows within about 30 seconds on servers whose clock paused while they slept (a laptop's Docker, a paused virtual machine); before, the old branding could stay for hours. See [Branding](branding-and-banners.html)."),
     ("2026-11-26", "Kee", "Kee makes slide decks: **Make slides…** in a section's menu writes a deck from the section or the whole page, and **Edit with Kee** on a deck changes it, each slide marked as changed, new or removed, before you insert or replace it. Ask Kee and outside AI apps get **create_slides** and **update_slides**. See [Make slides with Kee](slides.html#make-slides-with-kee)."),
     ("2026-11-26", "Kee", "Kee reads slide decks: a page's decks come with each slide's text when Kee reads the page, and the new **get_slides** tool lists a page's decks and reads one deck's slides. See [Tools](kee-tools.html)."),
