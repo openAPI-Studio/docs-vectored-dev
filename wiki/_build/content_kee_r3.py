@@ -29,6 +29,7 @@ KEE_R3_USER = [
                 ["**Add a column…**, **Fill empty cells**", "A table", "The table with a new column, or its empty cells filled, in its place"],
                 ["**Summarise the table**, **Ask about the table…**", "A table", "Text to insert below the table"],
             ]),
+            P("**Make slides…** is in the same group: it writes a slide deck from the section or the page. See [Make slides with Kee](slides.html#make-slides-with-kee)."),
             P("Select some words in a paragraph, then the **Kee** button beside them: its panel also offers **Draft a diagram**, **Action items** and **Make a table** for just those words. The result is then inserted below."),
             H("Review against the style guide"),
             P("A space's admins can choose one published page of the space as its **style guide**: a page that lists your writing rules, such as \"Use plain words\" or \"Write dates with the year\". Kee checks a section against that page, and only that page."),

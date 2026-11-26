@@ -149,6 +149,7 @@ KEE_R2_USER = [
                 ["**Versions**", "A page's version history and earlier versions"],
                 ["**Templates**", "Page templates of a space and the library"],
                 ["**Attachments**", "Files attached to pages: list them and read their text"],
+                ["**Slides**", "Slide decks shown on pages: list them and read their slides"],
             ]),
             UL([
                 "The line under the list says how many tools the connection will see with your choice. More than 40 shows advice; it is never blocked.",
@@ -221,6 +222,7 @@ KEE_R2_ADMIN = [
                 ["**Versions**", "A page's version history and earlier versions", "**Off** or **Read** (default)"],
                 ["**Templates**", "Page templates of a space and the library", "**Off** or **Read** (default)"],
                 ["**Attachments**", "Files attached to pages: list them and read their text", "**Off** or **Read** (default)"],
+                ["**Slides**", "Slide decks shown on pages: list them and read their slides", "**Off** or **Read** (default)"],
                 ["**Space members**", "Who holds a role in a space", "**Off** or **Read**"],
                 ["**Wiki administration**", "14 tools that administer: space access and categories, labels everywhere, page locks, the template library, Q&A and blog settings, mirror syncs, imports and analytics", "**Off** (default) or **Read, change and administer** (Enterprise). See [Administration tools](#administration-tools)"],
             ]),
