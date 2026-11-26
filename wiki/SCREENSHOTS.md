@@ -1,6 +1,6 @@
 # Wiki docs — screenshots needed
 
-258 screenshots. Save each one into `wiki/assets/` using the
+259 screenshots. Save each one into `wiki/assets/` using the
 exact filename below. The docs pick them up automatically on the next build —
 until then each slot renders a dashed placeholder naming the file it wants.
 
@@ -549,6 +549,8 @@ realistic but fictional names and figures rather than real people's data.
       Settings → Security → Anonymous access
 - [ ] `anonymous-access-guest-space.png`
       A public space as a signed-out visitor sees it, with Sign in at the top
+- [ ] `anonymous-access-guest-search.png`
+      Search as a signed-out visitor: public pages and posts only, with Sign in beside it
 
 ## Search engines
 

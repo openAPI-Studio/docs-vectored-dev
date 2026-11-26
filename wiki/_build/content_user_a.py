@@ -115,7 +115,7 @@ USER_A = [
                 ["People and groups", "Name, username, email", "For administrators who may see them"],
             ]),
             NOTE("**In page text** finds pages by the words of their newest published version, within about a minute of publishing. Drafts and earlier versions aren't searched. For questions in your own words, [Ask Kee](ask-kee.html) searches the same text, and by meaning where an administrator set that up."),
-            P("While [anonymous access](anonymous-access.html) is on, visitors who aren't signed in find public spaces and their published pages."),
+            P("While [anonymous access](anonymous-access.html) is on, visitors who aren't signed in get the search box too, in the header beside **Sign in**: it finds public spaces, their published pages by title and text, and their blog posts, and **See all results** opens the Search page. Labels, questions, settings and people aren't searched for them, and they have a smaller search budget (30 a minute per address)."),
 
             H("How matching works"),
             P("Each word you type must start a word of the result: `fail run` finds **Payments failover runbook**, and so does `run`, but `book` doesn't. Dots, dashes, underscores and `@` separate words. Type at least two letters or digits. Case and order don't matter."),

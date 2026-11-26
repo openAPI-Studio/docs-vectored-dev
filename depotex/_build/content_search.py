@@ -48,7 +48,7 @@ SEARCH = [
             H("Limits"),
             P("Search runs as you type, so it is built to stay light on the server:"),
             UL([
-                "Each person can search 120 times a minute, in bursts of up to 30. Typing sends one search per pause and drops the one before, which stays far below that. Past it, the search asks you to wait.",
+                "Each person can search 120 times a minute, in bursts of up to 30; a caller who isn't signed in, 30 times a minute per address, in bursts of 10. Typing sends one search per pause and drops the one before, which stays far below that. Past it, the search asks you to wait.",
                 "Each server runs at most 8 searches at once; past that it answers that search is busy, and the box says to try again in a moment.",
                 "Each kind of result has a second to answer. One that doesn't is left out, and the box says some results couldn't be loaded.",
                 "The box shows the first 5 results of each kind; the **Search** page pages through the rest.",
