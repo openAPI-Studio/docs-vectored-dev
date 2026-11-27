@@ -47,6 +47,7 @@ from content_envvars import ENV_VARS
 from content_help import HELP
 from content_advisories import ADVISORIES_PAGE
 from content_ai import AI
+from content_migrate import MIGRATE
 
 PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public release.")
 
@@ -54,6 +55,7 @@ PLACEHOLDER = NOTE("Placeholder page. Full documentation lands before the public
 # Releases after the initial one, newest first: (date, feature, one-sentence change).
 # Only changes people using or running Depotex notice; nothing internal.
 CHANGELOG = [
+    ("2026-11-27", "Migration", "New [Move from Nexus](migrate-from-nexus.html) guide for nx2dx, the tool that moves a Nexus Repository 3 installation to Depotex: assessment, plan, repositories and groups, content copy and verification, or Nexus kept behind a Depotex cache; with its limitations and known issues."),
     ("2026-11-26", "Search", "Callers who aren't signed in get a smaller search budget of their own: 30 searches a minute per address, in bursts of 10."),
     ("2026-11-26", "Branding", "A changed application name, brand colour, logo or browser icon now shows within about 30 seconds on servers whose clock paused while they slept (a laptop's Docker, a paused virtual machine); before, the old branding could stay for hours. See [Branding](branding-and-banners.html)."),
     ("2026-11-22", "Database", "The database password can be changed without downtime: `DATABASE_URL` now wins over the saved copy at start, servers fail over to a second login (`DATABASE_URL_STANDBY`) when one is refused, and super admins rotate passwords now or on a schedule under **Settings → Database**. See [Database password](database-credentials.html)."),
@@ -442,6 +444,7 @@ location / {
     *REPO_SETTINGS,
     *STORAGE,
     *DATABASE,
+    *MIGRATE,
     *BACKUPS,
     *INTEGRITY,
     *QUARANTINE,

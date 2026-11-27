@@ -30,7 +30,7 @@ MOVED = [
 ADMIN_NEW = [
     "index", "install-planning", "install", "helm-chart", "environment-variables", "setup-wizard", "headless-setup",
     "settings-reference", "access-overview", "security-hardening", "upgrades", "known-issues", "faq", "support",
-    "alert-tuning", "database-credentials", "ai-settings",
+    "alert-tuning", "database-credentials", "ai-settings", "migrate-from-nexus",
 ]
 
 # In docs/, listed in both sidebars.
@@ -55,7 +55,7 @@ ADMIN_GROUPS = [
     ("Admin guide", ["index", "@user"]),
     ("Install", ["install-planning", "install", "helm-chart", "kubernetes", "deployment-modes",
                  "environment-variables"]),
-    ("Set up", ["setup-wizard", "headless-setup", "licensing", "recovery"]),
+    ("Set up", ["setup-wizard", "headless-setup", "licensing", "recovery", "migrate-from-nexus"]),
     ("Configure", ["settings-reference", "access-overview", "users-and-directories", "single-sign-on", "oauth-applications", "api-tokens",
                    "rate-limits", "storage", "database-credentials", "email", "branding-and-banners", "ai-settings"]),
     ("Repositories", ["spaces", "repositories", "upstreams", "repository-settings"]),
