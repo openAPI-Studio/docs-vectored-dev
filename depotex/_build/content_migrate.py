@@ -1,0 +1,273 @@
+"""Moving from Nexus: the nx2dx migration tool. Keep in step with the
+akshaykg/Nexus-to-Depotex repository (README.md, nx2dx/cli.py and the
+modules it calls). Known issues below were found by reading the tool and
+running it against Nexus 3.70.1 and a scratch Depotex on 2026-11-27; remove
+each one when the tool fixes it."""
+from engine import H, P, UL, OL, TABLE, NOTE, WARN, STEPS, CODE
+
+REPO = "https://github.com/akshaykg/Nexus-to-Depotex"
+NX = "https://nexus.example.com"
+DX = "https://depotex.example.com"
+C = f"--nexus {NX} --nexus-user admin --depotex {DX}"
+
+MIGRATE = [
+    ("migrate-from-nexus", dict(
+        label="Move from Nexus", title="Move from Nexus Repository", icon="rocket",
+        desc="Move a Sonatype Nexus Repository 3 installation to Depotex with the nx2dx tool: assess, plan, create repositories, copy content, verify, and keep large repositories in Nexus behind a Depotex cache",
+        keywords=["nexus", "sonatype", "migrate", "migration", "move", "import", "nx2dx", "copy", "bridge", "cutover",
+                  "nexus repository manager", "nxrm", "artifactory", "switch", "transfer", "warm cache"],
+        blocks=[
+            H("Overview"),
+            P("**nx2dx** moves a Sonatype Nexus Repository 3 installation to Depotex: it creates the spaces, upstreams and hosted, proxy and group repositories with their settings, then copies the content of hosted repositories and checks the copy. Each repository can instead be **kept in Nexus behind a Depotex cache**, which suits large repositories or archives you don't want to copy, and lets teams switch to Depotex before any content has moved."),
+            P(f"Source code: [{REPO}]({REPO}) (`akshaykg/Nexus-to-Depotex` on GitHub). Ask [support](support.html) for a copy of the tool if you can't open the repository."),
+            UL([
+                "It reads Nexus only through its REST API and its repository addresses, and writes to Depotex only through Depotex's public API with one API token. No server changes and no plugin are needed on either side.",
+                "**It never changes or deletes anything in Nexus, and never deletes anything in Depotex.**",
+                "Every step can be run again: it reads before it writes, creates what is missing and copies only what is new.",
+                "It is one Python file with no dependencies, so it runs on locked-down hosts.",
+            ]),
+            TABLE(["The tool does today", "Not yet (do it by hand)"], [
+                ["Assessment report, migration plan, spaces, upstreams, repositories and groups with their settings, cache warm-up, content copy, verification",
+                 "Users, roles, privileges, content selectors and LDAP role mappings; cleanup policies; client configuration and the old hostname's rewrite. See [What isn't migrated](#what-isn-t-migrated)"],
+            ]),
+
+            H("Before you start"),
+            TABLE(["You need", "Why"], [
+                ["Python 3.9 or later on the machine that runs the tool", "Nothing else is installed. The machine needs to reach both Nexus and Depotex."],
+                ["A Nexus account that can read repository settings and list assets", "An administrator, or a role with `nx-repository-view-*-*-browse`, `nx-repository-view-*-*-read` and `nx-repository-admin-*-*-read`. Without it Nexus lists no repositories."],
+                ["An [API token](api-tokens.html) of a Depotex **super admin**", "Spaces and upstreams are installation-wide, so only a super admin can create them."],
+                ["A **Pro** licence or higher, for proxies", "Recreated Nexus proxies, and the *proxy* and *bridge* modes, make proxy repositories, which need Pro. On Standard, move hosted content only (`--proxy-mode skip --group-mode skip`, and `copy` for hosted)."],
+                ["Network access from Depotex to Nexus, for the proxy and bridge modes", "Depotex then fetches from Nexus itself. Give the address Depotex uses with `--nexus-upstream-url` when it differs from yours."],
+                ["Room in Depotex's storage", "The assessment shows how much each repository holds."],
+            ]),
+            P("Passwords and tokens are read only from the environment, or asked for when the tool runs at a terminal. They are never taken from the command line and never written to the plan."),
+            TABLE(["Variable", "Used by", "Holds"], [
+                ["`NX2DX_NEXUS_PASSWORD`", "assess, warm, copy, verify", "The password of `--nexus-user`"],
+                ["`NX2DX_DEPOTEX_TOKEN`", "assess (with `--depotex`), apply, warm, copy, verify", "The super admin's Depotex API token"],
+                ["`NX2DX_UPSTREAM_PASSWORD`", "apply", "The password of `--upstream-user`, the Nexus account Depotex signs in with when it proxies Nexus"],
+                ["`NX2DX_SECRET_<REPOSITORY>`", "apply", "The password of a Nexus proxy's remote, which Nexus won't reveal. The plan's notes name each variable, for example `NX2DX_SECRET_THIRD_PARTY`"],
+            ]),
+
+            H("Get the tool"),
+            P(f"Clone [{REPO}]({REPO}) and build the single-file version, which you can copy to any machine with Python:"),
+            CODE("git clone " + REPO + ".git\ncd Nexus-to-Depotex\nscripts/build-pyz.sh                 # writes dist/nx2dx.pyz\npython3 dist/nx2dx.pyz --help\n\n# or run it from the checkout, or install it as a command\npython3 -m nx2dx --help\npip install . && nx2dx --help"),
+            P("The examples below write `nx2dx`; use `python3 nx2dx.pyz` if you didn't install it. `nx2dx --version` shows the version."),
+
+            H("How a migration goes"),
+            STEPS([
+                "Assess|`nx2dx assess` reads Nexus and writes a report: every repository with its size, last download, a suggested mode and what needs attention. Nothing changes.",
+                "Plan|`nx2dx plan` decides the space of each repository and what happens to it, and writes `plan.json`, which you can edit.",
+                "Apply|`nx2dx apply` creates the spaces, upstreams, repositories and groups in Depotex. Try it with `--dry-run` first.",
+                "Warm the cache (repositories kept in Nexus)|`nx2dx warm` fetches the files people used recently through Depotex, so they're cached before builds switch.",
+                "Copy|`nx2dx copy` moves the content of hosted repositories into Depotex while Nexus stays in use.",
+                "Verify|`nx2dx verify` checks every copied file in Depotex against Nexus.",
+                "Freeze and catch up|Make Nexus read-only, run `copy` once more for the last changes, and `verify` again.",
+                "Switch clients|Point builds and developers at Depotex with API tokens. Keep Nexus read-only for a while, then retire it.",
+            ]),
+            P("By default every file goes into the folder `nx2dx-out/` of the current directory. Run every step from the same directory, or pass the same `--plan` to each."),
+
+            H("Choose what happens to each repository"),
+            TABLE(["Mode", "For Nexus", "What Depotex gets", "Use it when"], [
+                ["**copy**", "hosted", "A hosted repository with Nexus's write, version and layout policies; `copy` moves the content", "Most hosted repositories"],
+                ["**proxy**", "hosted, proxy, group", "A proxy repository whose upstream **is the Nexus repository**. Nexus keeps the files and keeps taking publishes; Depotex caches what clients download", "Very large repositories, archives, or a gradual move"],
+                ["**bridge**", "hosted", "A group with the repository's name over `<name>-local` (hosted, takes new publishes) and `<name>-nexus` (a proxy of Nexus). Clients use one address", "Switching clients first and copying later, with Nexus read-only from the start"],
+                ["**recreate**", "proxy", "A proxy of the same remote (Maven Central, npmjs…) with Nexus's cache times. Known public registries use Depotex's [upstream presets](upstreams.html)", "Nexus proxies of public registries (the default)"],
+                ["**recreate**", "group", "A group of the members' new repositories, in Nexus's order, with Nexus routing rules as member routing", "Nexus groups (the default)"],
+                ["**skip**", "any", "Nothing", "Repositories you're retiring"],
+            ]),
+            P("Defaults are *copy* for hosted, *recreate* for proxies and groups. `--large-mode` picks another mode for big hosted repositories, and `--mode` sets one repository or a pattern of names."),
+
+            H("Step 1: Assess"),
+            CODE(f"export NX2DX_NEXUS_PASSWORD=…        # Nexus password of --nexus-user\nexport NX2DX_DEPOTEX_TOKEN=…         # only for --depotex\nnx2dx assess --nexus {NX} --nexus-user admin --depotex {DX}"),
+            P("It writes `nx2dx-out/inventory.json` (what `plan` reads) and `nx2dx-out/report.md`, which lists every repository with its asset count, size, last download, the suggested mode, and what needs attention:"),
+            UL([
+                "names that change in Depotex (upper case, or a format name such as `npm`, see [Names](#names-and-addresses));",
+                "formats Depotex doesn't serve;",
+                "Docker repositories Depotex can't proxy (no connector port and not served under `/repository/<name>/v2/`);",
+                "YUM repositories with a repodata depth above 0, of which a proxy covers one folder;",
+                "remotes with credentials (Nexus never returns stored passwords), routing rules that need translating by hand, and offline repositories.",
+            ]),
+            P("With `--depotex` the report also shows the target's licence tier. Nexus lists assets ten at a time, so counting a large repository takes long: counting stops at `--count-limit` assets (the report shows `20000+`), and `--no-count` skips it."),
+            TABLE(["Option", "Default", "Meaning"], [
+                ["`--nexus URL`", "required", "Nexus base address"],
+                ["`--nexus-user NAME`", "anonymous", "Nexus account; password from `NX2DX_NEXUS_PASSWORD`"],
+                ["`--depotex URL`", "", "Also read the target's licence tier"],
+                ["`--out DIR`", "`nx2dx-out`", "Where the report and inventory go"],
+                ["`--count-limit N`", "20000", "Stop counting a repository after N assets; `0` counts all"],
+                ["`--no-count`", "", "Don't count (fast; no sizes, no large-repository suggestions)"],
+                ["`--large-bytes SIZE`, `--large-assets N`", "`50G`, 100000", "What the report calls large"],
+                ["`--ca-file FILE`", "system", "CA bundle for servers with a private certificate authority"],
+            ]),
+
+            H("Step 2: Plan"),
+            CODE("nx2dx plan --space-strategy single:nexus \\\n           --hosted-mode copy \\\n           --large-mode proxy --large-bytes 50G \\\n           --upstream-user depotex-reader"),
+            P("Depotex keeps repositories in [spaces](spaces.html), and there is no default: you choose where repositories go with `--space-strategy` (asked for when you run the command at a terminal)."),
+            TABLE(["`--space-strategy`", "Result"], [
+                ["`single:<key>`", "Every repository in one space. Client addresses change least: `/repository/<repo>/` becomes `/repository/<key>/<repo>/`"],
+                ["`prefix`", "A space per name prefix, up to the first `-`, `_` or `.`: `team-maven` goes to space `team`"],
+                ["`format`", "A space per format: `maven`, `npm`…"],
+                ["`map:<file.json>`", "A JSON file of `{\"<repository name or pattern>\": \"<space key>\"}`. The first match wins; repositories that match nothing are skipped"],
+            ]),
+            P("Group members must be in the group's space: a member that goes to another space is left out of the group, and the plan says so. With `prefix`, a group such as `maven-public` whose members are named `releases` or `central` loses them; use `single` or a map file instead."),
+            TABLE(["Option", "Default", "Meaning"], [
+                ["`--hosted-mode`", "copy", "copy, proxy, bridge or skip for hosted repositories"],
+                ["`--proxy-mode`", "recreate", "recreate, proxy (through Nexus) or skip for Nexus proxies"],
+                ["`--group-mode`", "recreate", "recreate, proxy (a proxy of the Nexus group) or skip for Nexus groups"],
+                ["`--large-mode` with `--large-bytes SIZE` and/or `--large-assets N`", "", "Another mode for big hosted repositories, for example `--large-mode proxy --large-bytes 50G`. Sizes take K, M, G and T"],
+                ["`--mode 'NAME=MODE'`", "", "Mode for one repository or a pattern such as `'archive-*=proxy'`; repeatable, the first match wins"],
+                ["`--nexus-upstream-url URL`", "the assess address", "Nexus's address as Depotex reaches it (an internal name)"],
+                ["`--upstream-user NAME`", "none", "Nexus account Depotex signs in with when it proxies Nexus; a read-only one is enough"],
+                ["`--visibility`", "internal", "Visibility of new spaces: private, internal or public"],
+                ["`--artifact-max-age MIN`", "60", "Minutes before a cached Nexus file that may still be overwritten is checked again"],
+                ["`--metadata-max-age MIN`", "5", "Minutes before cached Nexus metadata (Maven metadata, npm documents, indexes) is checked again"],
+                ["`--negative-cache MIN`", "5", "Minutes a file missing from Nexus is remembered as missing"],
+                ["`--inventory FILE`, `-o FILE`", "`nx2dx-out/inventory.json`, `nx2dx-out/plan.json`", "Input and output. The output's folder must exist"],
+            ]),
+            P("When Depotex proxies Nexus (proxy and bridge modes), files are cached for good when the Nexus repository is publish-once (write policy *Disable redeploy* or *Read-only*), and otherwise re-checked after `--artifact-max-age`. Metadata and \"not found\" are re-checked after a few minutes, so versions still published to Nexus show up quickly."),
+            P("`plan` prints a summary with notes on everything that needs a person, and writes `nx2dx-out/plan.json`. You may edit it before applying: a repository's `mode`, `space` or `name`, or an upstream's `key`, `url` or credentials. `apply` and `copy` check an edited plan and list its problems before doing anything."),
+            CODE("Plan: 1 bridge, 7 copy, 1 proxy, 5 recreate\nSpaces: nexus\nUpstreams: 5\n  Raw-Files        raw        hosted  copy      nexus/raw-files\n                     · renamed: Depotex repository names are lower case, 2-64 of a-z 0-9 . _ - and not a format name.\n  big-archive      raw        hosted  bridge    nexus/big-archive\n                     · bridge: publish to big-archive (stored in big-archive-local); reads not found there come from Nexus through big-archive-nexus.\n  maven-central    maven2     proxy   recreate  nexus/maven-central\n  npm              npm        hosted  copy      nexus/npm-repo\n  maven-public     maven2     group   recreate  nexus/maven-public"),
+
+            H("Step 3: Apply"),
+            CODE(f"export NX2DX_DEPOTEX_TOKEN=…\nexport NX2DX_UPSTREAM_PASSWORD=…     # with --upstream-user\nnx2dx apply --depotex {DX} --dry-run     # what would change\nnx2dx apply --depotex {DX}"),
+            P("It creates the spaces (or adds formats to existing ones), the upstreams, each space's list of allowed upstreams, the repositories, then the groups (a group that contains another group after it), and sets each repository's settings. Running it again changes only what differs from the plan."),
+            UL([
+                "A repository or upstream that already exists in Depotex with another format, type or address is reported as an error and left alone: give it another name or key in the plan.",
+                "Credentials of a Nexus proxy's remote come from `NX2DX_SECRET_<REPOSITORY>`. Without it the upstream is created without credentials (reported as a warning); add them under **Upstreams** in the sidebar ([Upstreams](upstreams.html)).",
+                "`--only NAME,NAME` limits the run to some Nexus repositories (create a group's members before the group).",
+                "Results are also written to `nx2dx-out/apply-results.json` (`--results`). The exit code is 1 when anything failed.",
+            ]),
+
+            H("Step 4: Warm the cache"),
+            P("For repositories kept in Nexus (proxy and bridge modes), fetch the files Nexus says were downloaded recently through Depotex, so the first builds after the switch don't all wait on Nexus, and those files keep working if Nexus is later switched off:"),
+            CODE(f"nx2dx warm {C} --since-days 90 -j 8"),
+            TABLE(["Option", "Default", "Meaning"], [
+                ["`--since-days N`", "90", "Files Nexus says were downloaded in the last N days"],
+                ["`--all`", "", "Every file"],
+                ["`-j N`", "8", "Parallel fetches"],
+                ["`--limit N`", "no limit", "At most N files per repository"],
+                ["`--only NAME,NAME`", "", "Some Nexus repositories only"],
+            ]),
+            P("Warm-up works for Maven, raw, npm, Helm, APT, YUM, conda and RubyGems, where a file's path in Nexus is the path a client asks Depotex for. Indexes and checksum files are skipped (Depotex refreshes them itself). Other formats fill their cache as clients ask. Files Nexus has never seen downloaded are only fetched with `--all`."),
+
+            H("Step 5: Copy content"),
+            CODE(f"nx2dx copy {C} --dry-run     # how many files, how many bytes\nnx2dx copy {C} -j 4"),
+            P("It moves every file of the *copy*-mode repositories into their Depotex hosted repositories. `--bridge` also moves the Nexus content of *bridge*-mode repositories into their `-local` repository, after which the group no longer needs Nexus. Each file is streamed from Nexus to Depotex, and Depotex checks the checksum Nexus reports."),
+            TABLE(["Format", "How it is copied"], [
+                ["Maven, raw", "To the same path, so every file name stays (timestamped snapshots, signatures, classifiers). Checksum files are left out because Depotex computes them; a version's POM goes after its other files and `maven-metadata.xml` after everything"],
+                ["npm, PyPI, NuGet, Helm, APT, YUM, RubyGems", "As the format's own client publishes, in the order Nexus received them. npm dist-tags and deprecations are set as Nexus has them; APT packages go to the Nexus repository's distribution (component `main`); YUM packages keep their folder and the repository gets Nexus's repodata depth"],
+                ["conda, Cargo, Composer", "The same way, but not yet tried against a Nexus that hosts them: check the result with `verify` and the format's client"],
+                ["Docker", "Over the registry API, with no other tool: each tag's manifest (a multi-platform image with every platform), each layer Depotex doesn't have yet, then the tag, checking that Depotex has the same digest as Nexus"],
+                ["Conan, Git LFS, Hugging Face, Terraform, Go", "Not copied: the repository is created empty. Move [Conan](conan.html) and [RubyGems](rubygems.html) packages with their own clients as those pages show; Nexus has no hosted Go"],
+            ]),
+            P("What was copied is recorded in `copy-state.db` next to the plan (`--state` for another file). A second run copies only what is new or changed in Nexus, so a typical sequence is a full copy while Nexus is still in use, then Nexus made read-only, then `copy` once more, or `copy --since 2026-12-01` for files Nexus received since that day."),
+            P("Packages Depotex refuses (invalid metadata, [upload rules](policies.html), quotas) are listed with the reason, and packages a [quarantine](quarantine.html) rule or content check holds on arrival are counted. The exit code is 1 when a file failed."),
+            H("Get Depotex ready for a large copy"),
+            UL([
+                "**Rate limits.** Give the migration token an override under **Settings → Security → Rate limits** ([Rate limits](rate-limits.html)), or the copy is throttled. Enterprise allows an exempt override.",
+                "**Quarantine and upload rules.** Copied versions are new to Depotex: their publish date is the day of the copy. A quarantine age rule or cooldown on hosted repositories would hold every copied version; pause it for the copy or exclude these repositories.",
+                "**Size limits.** Check the artifact size limit (**Settings → Repositories**) against the largest file in the report, and any request body limit in a reverse proxy in front of Depotex. Pointing `--depotex` at a Depotex server directly avoids the reverse proxy.",
+                "**Read-only and offline repositories.** See [Known issues](#known-issues): make them writable and online in Depotex for the copy.",
+            ]),
+
+            H("Step 6: Verify"),
+            CODE(f"nx2dx verify {C}"),
+            P("It checks every file `copy` takes from Nexus: recorded as copied, present in Depotex, and with the same content (SHA-256, or SHA-1 where Nexus has no SHA-256; for Docker, the manifest digest under each tag). Problems go to `nx2dx-out/verify-problems.csv` with Depotex's reason (`not copied`, `404`, `403 quarantined: …`, a different checksum). Maven metadata that Depotex generates is only checked for presence. The exit code is 1 when there is a problem."),
+            CODE("Checking copied content in Depotex against Nexus\n  Raw-Files → nexus/raw-files: 3 match, 0 problems\n  docker-hosted → nexus/docker-hosted: 1 match, 0 problems\n  maven-releases → nexus/maven-releases: 2 match, 0 problems\n  npm → nexus/npm-repo: 3 match, 0 problems\n  pypi-internal → nexus/pypi-internal: 1 match, 0 problems\n\n10 files match, 0 problems"),
+
+            H("Step 7: Switch clients"),
+            UL([
+                "**Addresses.** Clients use `https://depotex.example.com/repository/<space>/<repository>/`; for a bridge, the group's address. A renamed repository uses its new name (the plan lists them).",
+                "**Docker image names change**: `nexus.example.com:8082/team/app:1.0` becomes `depotex.example.com/<space>/<repository>/team/app:1.0`.",
+                "**Credentials.** Package clients sign in to Depotex with [API tokens](api-tokens.html), sent as the password in Basic authentication, not with account passwords. Every CI job and developer configuration needs a new token, so set up sign-in ([directories](users-and-directories.html), [single sign-on](single-sign-on.html)) first and let people make their own.",
+                "**APT** hosts must trust Depotex's signing key instead of Nexus's ([APT](apt.html)).",
+                "Keep Nexus read-only for as long as you might need to look something up, then retire it. Repositories in proxy or bridge mode need Nexus until their content is copied (`copy`, or `copy --bridge`).",
+            ]),
+
+            H("Examples"),
+            P("**A small installation, everything copied**, into one space:"),
+            CODE(f"nx2dx assess --nexus {NX} --nexus-user admin\nnx2dx plan --space-strategy single:nexus\nnx2dx apply --depotex {DX}\nnx2dx copy {C} -j 4\nnx2dx verify {C}"),
+            P("**Large repositories kept in Nexus.** Every hosted repository over 50 GB stays in Nexus behind a Depotex cache, warmed with the last 90 days' downloads; the rest is copied:"),
+            CODE(f"nx2dx plan --space-strategy single:nexus --large-mode proxy --large-bytes 50G \\\n           --upstream-user depotex-reader\nNX2DX_UPSTREAM_PASSWORD=… nx2dx apply --depotex {DX}\nnx2dx warm {C} --since-days 90\nnx2dx copy {C}"),
+            P("**Switch first, copy later (bridge).** Teams move to Depotex at once; new publishes land in Depotex while existing packages come from Nexus, which can be read-only from the first day. The content is copied afterwards:"),
+            CODE(f"nx2dx plan --space-strategy single:nexus --hosted-mode bridge --upstream-user depotex-reader\nNX2DX_UPSTREAM_PASSWORD=… nx2dx apply --depotex {DX}\nnx2dx warm {C}\n# later, at your own pace\nnx2dx copy {C} --bridge\nnx2dx verify {C} --bridge"),
+            P("**A space per team** from a map file, with one archive kept in Nexus:"),
+            CODE('# spaces.json\n{"payments-*": "payments", "search-*": "search", "*": "shared"}\n\nnx2dx plan --space-strategy map:spaces.json --mode \'legacy-archive=proxy\' --upstream-user depotex-reader'),
+            P("**Freeze and catch up** before switching clients:"),
+            CODE(f"# make the Nexus repositories read-only, then\nnx2dx copy {C}\nnx2dx verify {C}"),
+
+            H("Files it writes"),
+            TABLE(["File", "Written by", "What it is"], [
+                ["`nx2dx-out/inventory.json`", "assess", "Nexus's repositories, settings, routing rules and counts; read by `plan`"],
+                ["`nx2dx-out/report.md`", "assess", "The assessment, for people"],
+                ["`nx2dx-out/plan.json`", "plan", "The plan, which you may edit"],
+                ["`nx2dx-out/apply-results.json`", "apply", "What each item did"],
+                ["`nx2dx-out/copy-state.db`", "copy", "What was copied and where (SQLite). Keep it with the plan: `copy` and `verify` both need it"],
+                ["`nx2dx-out/verify-problems.csv`", "verify", "Each file that doesn't match, with the reason"],
+            ]),
+            P("None of them holds a password or token. `inventory.json` and `plan.json` hold Nexus's repository settings, account names and the remotes' addresses."),
+
+            H("Names and addresses"),
+            UL([
+                "Depotex repository names are lower case, 2 to 64 characters of `a-z 0-9 . _ -`, and can't be a format name (`maven`, `npm`, `docker`…). `Maven-Releases` becomes `maven-releases`; a repository named `npm` becomes `npm-repo`; two names that end up equal get `-2`, `-3`.",
+                "Space and upstream keys are lower case letters, digits and single hyphens, up to 40 characters.",
+                "Proxies of the same remote with the same account share one upstream. Proxies of known public registries use the preset's key (`maven-central`, `npmjs`, `pypi`, `docker-hub`…); when Depotex already has an upstream of that key at another address, `apply` reports it: change the key in the plan.",
+                "Nexus's PyPI remotes are given as the site (`https://pypi.org`); the Depotex upstream gets the Simple API address (`…/simple`).",
+            ]),
+
+            H("What isn't migrated"),
+            TABLE(["Nexus", "What to do in Depotex"], [
+                ["Users, roles, privileges, content selectors, LDAP and SAML role mappings", "Not migrated yet. Connect Depotex to the same [directory](users-and-directories.html) or [single sign-on](single-sign-on.html) and give groups space and repository roles ([How access fits together](access-overview.html)). Local users' passwords can't be moved."],
+                ["Anonymous access", "Turn it on under **Settings → Security → Anonymous access** and put the repositories anonymous users need in a public space."],
+                ["Cleanup policies", "Recreate them per space ([Repository settings](repository-settings.html))."],
+                ["Blob stores and their quotas", "Depotex has one [storage](storage.html) backend; use space quotas."],
+                ["Routing rules on proxy repositories", "Depotex applies them only as group member routing, which the tool sets on recreated groups. Rules with expressions other than a path prefix or a leading `.*` are listed in the plan for you to translate."],
+                ["Publish dates, uploaders and download history", "Copied versions get the copy's date and the migration token as uploader. Quarantine ages, cooldowns and \"not downloaded for N days\" cleanup count from the copy."],
+                ["Content of Nexus proxy repositories (their caches)", "Not copied: a recreated proxy fills itself again from its remote."],
+                ["Formats Depotex doesn't serve (R, p2, Bower, CocoaPods, Go hosted…)", "Skipped. Keep Nexus for them, or move their files into a raw repository yourself."],
+                ["Conan, Git LFS, Hugging Face and Terraform content", "The repository is created empty; move the content with the format's client."],
+                ["Tasks, webhooks, capabilities, email and HTTP proxy settings, SSL certificates", "Configure Depotex's own: [scheduler](scheduler.html), [automation](automation.html), [email](email.html), [repository settings](settings-reference.html)."],
+                ["Client configuration and the old hostname", "Update `settings.xml`, `.npmrc`, `pip.conf`, NuGet sources, Docker image names and so on yourself. A rewrite of the old hostname to Depotex's addresses isn't generated yet."],
+            ]),
+            P("Docker repositories reached only through a Nexus Pro subdomain connector can be proxied, but not copied: the copy reads the registry under `/repository/<name>/v2/` or on the connector port. Images with a schema 1 manifest (Docker 1.9 and older) aren't copied. Layers with foreign URLs are left to their own addresses."),
+
+            H("Known issues"),
+            P("Problems in the current version of the tool, with what to do until they are fixed:"),
+            TABLE(["Issue", "Workaround"], [
+                ["**Read-only and offline Nexus repositories can't be copied.** A hosted repository Nexus has as *Read-only* (write policy Deny) or offline is created the same way in Depotex, which then refuses every copied file (`405 repository_read_only`, `503 repository_offline`; offline repositories are retried before failing).",
+                 "After `apply`, set the repository to **Allow** and online in Depotex ([Repository settings](repository-settings.html)), run `copy` and `verify`, then run `apply` again to put Nexus's settings back."],
+                ["**`warm` stops at a file name with a space** (or `#`, `?`, `%`) in a proxied raw or Maven repository, with a Python error, and the repositories after it aren't warmed. A network error or time-out during `warm` stops the run the same way.",
+                 "Run `warm` with `--only` for the other repositories; those files are cached the first time a client asks for them."],
+                ["**npm versions already in Depotex count as failed.** When `copy` runs without its earlier `copy-state.db` (another machine, a lost or new `--state` file), or retries a version that reached Depotex before a time-out, Depotex answers `version_exists` and the version is reported as failed.",
+                 "Keep `copy-state.db` with the plan and run every copy from the same place. Check reported versions with `npm view` against Depotex; they are there if the checksum matches."],
+                ["**Versions already in a publish-once Depotex repository show as problems in `verify`** (PyPI, NuGet, Helm and the other formats copied as their clients publish): in the same situation as above they are counted as \"already in Depotex\" without comparing the file, and `verify` lists them as `copy recorded no Depotex path (exists)`.",
+                 "Same as above. Download such a version from Depotex and compare its SHA-256 with Nexus's if you need certainty."],
+                ["**With `--large-bytes` alone, a repository whose count stopped at the limit isn't treated as large**, although the report suggests proxy or bridge for it. It is planned as *copy*.",
+                 "Add `--large-assets` (for example `--large-assets 20000`, the counting limit), name it with `--mode`, or count it fully with `assess --count-limit 0`."],
+                ["**Credentials added later aren't picked up.** An upstream created without credentials (no `NX2DX_SECRET_…` or `NX2DX_UPSTREAM_PASSWORD` at the first `apply`) stays without them when `apply` runs again: an existing upstream is never changed.",
+                 "Add the credentials under **Upstreams** in the sidebar (**Edit** on the upstream)."],
+                ["**Routing changes in an edited plan aren't applied to an existing group** when its members stay the same, and `apply --dry-run` doesn't show a changed write member.",
+                 "Change the group's member routing in Depotex ([Repository groups](repository-groups.html))."],
+                ["**A missing output folder stops `plan` and `apply` with a Python error**: `plan -o` into a folder that doesn't exist, or `apply` from a directory without `nx2dx-out/` (it writes `nx2dx-out/apply-results.json` there after doing the work).",
+                 "Create the folder, or pass `--results` to a path that exists. The report's suggested `plan` command uses paths without `nx2dx-out/`; run it from inside that folder or add the folder to both paths."],
+                ["**Rate limits.** A file refused with 429 or 5xx is tried 3 more times within about 7 seconds, without waiting for the time Depotex asks for.",
+                 "Give the migration token a rate-limit override before a large copy, and lower `-j`."],
+                ["**Changing a repository's target after a copy.** The copy state is kept per Nexus repository and path, so after you change a repository's `space` or `name` in the plan, `copy` thinks its files are done.",
+                 "Use a new state file (`--state`) for that repository with `--only`."],
+                ["**Time zones.** `--since` and `warm --since-days` compare with the dates Nexus reports as text; a Nexus that reports times in another offset than UTC can include or leave out files near the boundary.",
+                 "Give `--since` a day earlier than you need; copying a file twice does no harm."],
+            ]),
+
+            H("Troubleshooting"),
+            TABLE(["You see", "Meaning"], [
+                ["`Nexus listed no repositories`", "`--nexus-user` is missing or can't read repository settings"],
+                ["`set NX2DX_DEPOTEX_TOKEN`", "The token wasn't in the environment and the tool isn't at a terminal to ask"],
+                ["`proxy repositories need a Pro licence`", "The Depotex licence is Standard; skip proxies or upgrade ([Licensing](licensing.html))"],
+                ["`exists as a … repository; rename it in the plan`", "Depotex already has a repository of that name with another format or type"],
+                ["`exists for … ; change this upstream's key in the plan`", "Depotex already has an upstream of that key at another address"],
+                ["`Depotex answered 413`", "A reverse proxy's body limit, or the artifact size limit"],
+                ["`refused: …`", "Depotex refused the package; the reason is Depotex's (invalid package, upload rule, quota)"],
+                ["`403 quarantined: …` in `verify-problems.csv`", "The file was copied and a [quarantine](quarantine.html) rule holds it"],
+                ["Exit code 1", "Something failed or didn't match; the output and the files above say what. Fix it and run the same command again"],
+            ]),
+        ])),
+]
